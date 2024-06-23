@@ -1,0 +1,476 @@
+[
+  {
+    "prefix": "-X",
+    "name": "gcpolicy",
+    "type": "enum",
+    "mutex": "",
+    "scope": "[balanced,gencon,optthruput,optavgpause]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "breadthFirstScanOrdering",
+    "type": "bool",
+    "default": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "classUnloadingKickoffThreshold",
+    "type": "int",
+    "default": "80000.0",
+    "scope": "[0,2147483647]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "classUnloadingThreshold",
+    "type": "int",
+    "default": "6.0",
+    "scope": "[0,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "concurrentScavenge",
+    "type": "bool",
+    "default": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "dnssExpectedTimeRatioMaximum",
+    "type": "int",
+    "default": "5.0",
+    "scope": "[0,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "dnssExpectedTimeRatioMinimum",
+    "type": "int",
+    "default": "1 for gencon\n2 for balanced",
+    "scope": "[0,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "dynamicBreadthFirstScanOrdering",
+    "type": "bool",
+    "default": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "excessiveGCratio",
+    "type": "int",
+    "default": "95.0",
+    "scope": "[10,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "minContractPercent",
+    "type": "int",
+    "default": "",
+    "scope": "[0,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "maxContractPercent",
+    "type": "int",
+    "default": "",
+    "scope": "[0,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "noConcurrentScavenge",
+    "type": "bool",
+    "default": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "noSynchronousGCOnOOM",
+    "type": "bool",
+    "default": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "overrideHiresTimerCheck",
+    "type": "bool",
+    "default": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "scvNoAdaptiveTenure",
+    "type": "bool",
+    "default": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "scvTenureAge",
+    "type": "int",
+    "default": "10.0",
+    "scope": "[1,14]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "stdGlobalCompactToSatisfyAllocate",
+    "type": "bool",
+    "default": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "synchronousGCOnOOM",
+    "type": "bool",
+    "default": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "targetPausetime",
+    "type": "int",
+    "default": "3.0",
+    "scope": "(1,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "targetUtilization",
+    "type": "int",
+    "default": "70.0",
+    "scope": "[1,99]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "tlhIncrementSize",
+    "type": "<bytes>",
+    "default": "",
+    "scope": "[0,100000000]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "tlhInitialSize",
+    "type": "<bytes>",
+    "default": "",
+    "scope": "[0,100000]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "tlhMaximumSize",
+    "type": "<bytes>",
+    "default": "",
+    "scope": "[0,2147483647]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "verboseFormat",
+    "type": "enum",
+    "default": "default",
+    "scope": "[default,deprecated]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-Xgc:",
+    "name": "verbosegcCycleTime",
+    "type": "int",
+    "default": "",
+    "scope": "[0,2147483647]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "alwaysclassgc",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "check",
+    "type": "enum",
+    "mutex": "",
+    "scope": "[gc,vm]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "classgc/noclassgc",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "codecache",
+    "type": "size",
+    "mutex": "",
+    "scope": "[0,32*MB]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "codecachetotal",
+    "type": "size",
+    "mutex": "",
+    "scope": "[0,256*MB]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "compactexplicitgc/nocompactexplicitgc",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "nocompressedrefs",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "concurrentbackground",
+    "type": "num",
+    "mutex": "",
+    "scope": "[0,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "concurrentlevel",
+    "type": "num",
+    "mutex": "",
+    "scope": "[0,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "concurrentslack",
+    "type": "num",
+    "mutex": "",
+    "scope": "[0,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "conmeter",
+    "type": "enum",
+    "mutex": "",
+    "scope": "[soa,loa,dynamic]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "enableexcessivegc/disableexcessivegc",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "enableexplicitgc/disableexplicitgc",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "enablestringconstantgc/disablestringconstantgc",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+
+  {
+    "prefix": "-X",
+    "name": "gcworkpackets",
+    "type": "num",
+    "mutex": "",
+    "scope": "[0,10000]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "loa/noloa",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "loaminimum/loainitial/loamaximum",
+    "type": "double",
+    "mutex": "",
+    "scope": "[0,0.95]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "lp:objectheap:pagesize=4K,",
+    "type": "enum",
+    "mutex": "",
+    "scope": "[warn,strict,pageable,nonpageable]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "mine/maxe",
+    "type": "size",
+    "mutex": "",
+    "scope": "[0,1*G]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "minf/maxf",
+    "type": "double",
+    "mutex": "",
+    "scope": "[0,1]",
+    "step": "0.5",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "mint/maxt",
+    "type": "double",
+    "mutex": "",
+    "scope": "[0,1]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-X",
+    "name": "mr/mrx",
+    "type": "size",
+    "mutex": "",
+    "scope": "[0,1*G]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "ConcGCThreads",
+    "type": "num",
+    "mutex": "",
+    "scope": "[0,2]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "CompactStrings",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "DisableExplicitGC",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "HeapManagementMXBeanCompatibility",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "IdleTuningCompactOnIdle",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "IdleTuningGcOnIdle",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "IdleTuningMinFreeHeapOnIdle",
+    "type": "num",
+    "mutex": "",
+    "scope": "[0,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "IdleTuningMinIdleWaitTime",
+    "type": "num",
+    "mutex": "",
+    "scope": "[0,100]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "PageAlignDirectMemory",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "ParallelCMSThreads",
+    "type": "num",
+    "mutex": "",
+    "scope": "[0,2]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "ParallelGCThreads",
+    "type": "num",
+    "mutex": "",
+    "scope": "[0,2]",
+    "priority": "1"
+  },
+  {
+    "prefix": "-XX:",
+    "name": "UserNoGC",
+    "type": "bool",
+    "mutex": "",
+    "scope": "",
+    "priority": "1"
+  }
+]

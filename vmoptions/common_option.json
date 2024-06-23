@@ -1,0 +1,50 @@
+[
+  {
+    "name": "ms",
+    "since": "OpenJDK6",
+    "type": "size",
+    "component": "",
+    "scope": "(0,max_heap)",
+    "default": "8MB",
+    "availability": "product",
+    "prefix": "-X"
+  },
+  {
+    "name": "mx",
+    "since": "OpenJDK6",
+    "type": "size",
+    "component": "",
+    "scope": "(0,max_heap)",
+    "default": "",
+    "availability": "product",
+    "prefix": "-X"
+  },
+  {
+    "prefix": "-X",
+    "name": "mn",
+    "type": "size",
+    "mutex": "mns/mnx",
+    "scope": "[0,1*G]"
+  },
+  {
+    "prefix": "-X",
+    "name": "mns/mnx",
+    "type": "size",
+    "mutex": "mn",
+    "scope": "[0,1*G]"
+  },
+  {
+    "prefix": "-X",
+    "name": "mo",
+    "type": "size",
+    "mutex": "mos/mox",
+    "scope": "[0,1*G]"
+  },
+  {
+    "prefix": "-X",
+    "name": "mos/mox",
+    "type": "size",
+    "mutex": "mo",
+    "scope": "[0,1*G]"
+  }
+]
