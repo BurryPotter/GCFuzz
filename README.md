@@ -5,16 +5,16 @@ This is the implementation repository for out paper submission: **Exploring JVM 
 #### Directory Description
 
 ```
-├── 01JVMS				:  Test jvms
-├── 02Benchmarks		:  Origin benchmarks
-├── 03results			:  Difference results
-├── DTJVM				:  Execution Phase Module
-├── GCMain				:  Generation Phase Module
-├── Main				:  Control Module
-├── analyzer			:  GC log parser
-├── scripts 			:  Execute scripts
-├── vmoptions			:  Collected GC options
-└── sootOutput			:  Benchmarks for generation
+├── 01JVMS         :  Test jvms
+├── 02Benchmarks   :  Origin benchmarks
+├── 03results      :  Difference results
+├── DTJVM          :  Execution Phase Module
+├── GCMain         :  Generation Phase Module
+├── Main           :  Control Module
+├── analyzer       :  GC log parser
+├── scripts        :  Execute scripts
+├── vmoptions      :  Collected GC options
+└── sootOutput     :  Benchmarks for generation
 ```
 
 #### Reported Bugs
