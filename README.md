@@ -1,8 +1,8 @@
-### GCFuzz
+# GCFuzz
 
 This is the implementation repository for out paper submission: **Exploring JVM Garbage Collector Testing with Event-Coverage**
 
-#### Directory Description
+## Directory Description
 
 ```
 ├── 01JVMS         :  Test jvms
@@ -17,7 +17,7 @@ This is the implementation repository for out paper submission: **Exploring JVM 
 └── sootOutput     :  Benchmarks for generation
 ```
 
-#### Reported Bugs
+## Reported Bugs
 
 | Bug ID      | Link                                                  |
 | ----------- | ----------------------------------------------------- |
@@ -40,9 +40,9 @@ This is the implementation repository for out paper submission: **Exploring JVM 
 | #18644      | https://github.com/eclipse-openj9/openj9/issues/18644 |
 | #17793      | https://github.com/eclipse-openj9/openj9/issues/17793 |
 
-#### Start
+## Start
 
-##### step1. Environment Setup
+### step1. Environment Setup
 
 GCFuzz tests the debug build version of the JVMs, so users need to download the source code and enable the debug option during compilation.
 
@@ -85,7 +85,7 @@ If you want to collect the Edge coverage information, you need to build AFLplusp
 # Please use the full path of AFL_GCC_ALLOWLIST.
 ```
 
-##### Step2. Build and Run GCFuzz
+### Step2. Build and Run GCFuzz
 
 * You can import it into IntelliJ IDEA workspace
 
