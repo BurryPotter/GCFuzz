@@ -17,7 +17,7 @@ This is the implementation repository for out paper submission: **Exploring JVM 
 └── sootOutput			:  Benchmarks for generation
 ```
 
-#### Confirmed Bugs
+#### Reported Bugs
 
 | Bug ID      | Link                                                  |
 | ----------- | ----------------------------------------------------- |
