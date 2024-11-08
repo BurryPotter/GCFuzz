@@ -1,0 +1,86 @@
+class livethread extends java.lang.Thread
+{
+    gc.gctests.gctest04.bufreq req;
+
+    void <init>(gc.gctests.gctest04.bufreq)
+    {
+        livethread r0;
+        gc.gctests.gctest04.bufreq r1;
+        gc.gctests.gctest04.livethread $r2;
+
+        r0 := @this: livethread;
+
+        r1 := @parameter0: gc.gctests.gctest04.bufreq;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        $r2 = (gc.gctests.gctest04.livethread) r0;
+
+        $r2.<gc.gctests.gctest04.livethread: gc.gctests.gctest04.bufreq req> = r1;
+
+        return;
+    }
+
+    public void run()
+    {
+        long $l3;
+        gc.gctests.gctest04.livethread $r7, $r8, $r9;
+        int[] $r2;
+        java.lang.InterruptedException $r5, $r6;
+        livethread r0;
+        int $i0, $i1, $i2;
+        gc.gctests.gctest04.bufreq $r1, $r3, $r4;
+
+        r0 := @this: livethread;
+
+        $r7 = (gc.gctests.gctest04.livethread) r0;
+
+        $r1 = $r7.<gc.gctests.gctest04.livethread: gc.gctests.gctest04.bufreq req>;
+
+        $i0 = virtualinvoke $r1.<gc.gctests.gctest04.bufreq: int getsize()>();
+
+        $r2 = newarray (int)[$i0];
+
+        $r8 = (gc.gctests.gctest04.livethread) r0;
+
+        $r3 = $r8.<gc.gctests.gctest04.livethread: gc.gctests.gctest04.bufreq req>;
+
+        $i1 = virtualinvoke $r3.<gc.gctests.gctest04.bufreq: int livetime()>();
+
+        if $i1 != 0 goto label4;
+
+     label1:
+        staticinvoke <gc.gctests.gctest04.livethread: void sleep(long)>(10000L);
+
+     label2:
+        goto label1;
+
+     label3:
+        $r6 := @caughtexception;
+
+        goto label1;
+
+     label4:
+        $r9 = (gc.gctests.gctest04.livethread) r0;
+
+        $r4 = $r9.<gc.gctests.gctest04.livethread: gc.gctests.gctest04.bufreq req>;
+
+        $i2 = virtualinvoke $r4.<gc.gctests.gctest04.bufreq: int livetime()>();
+
+        $l3 = (long) $i2;
+
+        staticinvoke <gc.gctests.gctest04.livethread: void sleep(long)>($l3);
+
+     label5:
+        goto label7;
+
+     label6:
+        $r5 := @caughtexception;
+
+     label7:
+        return;
+
+        catch java.lang.InterruptedException from label1 to label2 with label3;
+        catch java.lang.InterruptedException from label4 to label5 with label6;
+    }
+}

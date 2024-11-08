@@ -1,0 +1,232 @@
+public class GenClassPoolJar extends java.lang.Object
+{
+    private final java.lang.String templateFile;
+    private final java.lang.String destDir;
+    private final int count;
+    private final java.io.File tmpArea;
+    private final java.io.File pkgDir;
+    private static final java.lang.String JAR_NAME;
+    private static final java.lang.String PKG_DIR_NAME;
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Error $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+
+    public void <init>(java.lang.String[])
+    {
+        java.lang.Error $r0;
+        GenClassPoolJar r1;
+        java.lang.String[] r2;
+
+        r1 := @this: GenClassPoolJar;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problems: \n\tThe type jdk.internal.org.objectweb.asm.ClassReader is not accessible\n\tThe type jdk.internal.org.objectweb.asm.ClassVisitor is not accessible\n\tThe type jdk.internal.org.objectweb.asm.ClassWriter is not accessible\n\tThe type jdk.internal.org.objectweb.asm.Opcodes is not accessible\n\tClassReader cannot be resolved to a type\n\tClassReader cannot be resolved to a type\n\tClassWriter cannot be resolved to a type\n\tClassWriter cannot be resolved to a type\n\tClassWriter cannot be resolved to a variable\n\tClassVisitor cannot be resolved to a type\n\tClassVisitor cannot be resolved to a type\n\tOpcodes cannot be resolved to a type\n\tClassVisitor cannot be resolved to a type\n\tASM4 cannot be resolved to a variable\n\tThe method visit(int, int, String, String, String, String[]) of type GenClassPoolJar.ClassRenamer must override or implement a supertype method\n\tcv cannot be resolved\n");
+
+        throw $r0;
+    }
+
+    public void script()
+    {
+        java.lang.Error $r0;
+        GenClassPoolJar r1;
+
+        r1 := @this: GenClassPoolJar;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+
+    java.lang.String generateSource(java.lang.String, int)
+    {
+        GenClassPoolJar r1;
+        int i0;
+        java.lang.Error $r0;
+        java.lang.String r2;
+
+        r1 := @this: GenClassPoolJar;
+
+        r2 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+
+    java.lang.String readTemplate(java.lang.String) throws java.io.IOException
+    {
+        java.lang.Error $r0;
+        GenClassPoolJar r1;
+        java.lang.String r2;
+
+        r1 := @this: GenClassPoolJar;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+
+    void writeSource(java.io.File, java.lang.String) throws java.io.IOException
+    {
+        GenClassPoolJar r1;
+        java.lang.Error $r0;
+        java.lang.String r3;
+        java.io.File r2;
+
+        r1 := @this: GenClassPoolJar;
+
+        r2 := @parameter0: java.io.File;
+
+        r3 := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+
+    void compile(java.io.File[], java.lang.String) throws java.io.IOException
+    {
+        GenClassPoolJar r1;
+        java.lang.Error $r0;
+        java.lang.String r3;
+        java.io.File[] r2;
+
+        r1 := @this: GenClassPoolJar;
+
+        r2 := @parameter0: java.io.File[];
+
+        r3 := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+
+    void createJar(java.io.File, java.lang.String, byte[], int) throws java.io.IOException
+    {
+        byte[] r4;
+        GenClassPoolJar r1;
+        int i0;
+        java.lang.Error $r0;
+        java.lang.String r3;
+        java.io.File r2;
+
+        r1 := @this: GenClassPoolJar;
+
+        r2 := @parameter0: java.io.File;
+
+        r3 := @parameter1: java.lang.String;
+
+        r4 := @parameter2: byte[];
+
+        i0 := @parameter3: int;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+
+    byte[] readFile(java.io.File) throws java.io.IOException
+    {
+        java.lang.Error $r0;
+        GenClassPoolJar r1;
+        java.io.File r2;
+
+        r1 := @this: GenClassPoolJar;
+
+        r2 := @parameter0: java.io.File;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+
+    void writeFile(java.io.File, byte[]) throws java.io.IOException
+    {
+        byte[] r3;
+        GenClassPoolJar r1;
+        java.lang.Error $r0;
+        java.io.File r2;
+
+        r1 := @this: GenClassPoolJar;
+
+        r2 := @parameter0: java.io.File;
+
+        r3 := @parameter1: byte[];
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+
+    void deleteFolder(java.io.File) throws java.io.IOException
+    {
+        java.lang.Error $r0;
+        GenClassPoolJar r1;
+        java.io.File r2;
+
+        r1 := @this: GenClassPoolJar;
+
+        r2 := @parameter0: java.io.File;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+
+    byte[] morphClass(byte[], java.lang.String)
+    {
+        byte[] r2;
+        GenClassPoolJar r1;
+        java.lang.Error $r0;
+        java.lang.String r3;
+
+        r1 := @this: GenClassPoolJar;
+
+        r2 := @parameter0: byte[];
+
+        r3 := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problems: \n\tClassReader cannot be resolved to a type\n\tClassReader cannot be resolved to a type\n\tClassWriter cannot be resolved to a type\n\tClassWriter cannot be resolved to a type\n\tClassWriter cannot be resolved to a variable\n\tClassVisitor cannot be resolved to a type\n");
+
+        throw $r0;
+    }
+}

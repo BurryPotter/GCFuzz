@@ -1,0 +1,25 @@
+class A$MyPhantomReference extends java.lang.ref.PhantomReference
+{
+
+    public void <init>(java.lang.Object, java.lang.ref.ReferenceQueue)
+    {
+        java.io.PrintStream $r3;
+        java.lang.Object r1;
+        A$MyPhantomReference r0;
+        java.lang.ref.ReferenceQueue r2;
+
+        r0 := @this: A$MyPhantomReference;
+
+        r1 := @parameter0: java.lang.Object;
+
+        r2 := @parameter1: java.lang.ref.ReferenceQueue;
+
+        specialinvoke r0.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>(r1, r2);
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("in constructor");
+
+        return;
+    }
+}

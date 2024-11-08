@@ -1,0 +1,134 @@
+public class TestSurvivorRatioFlag extends java.lang.Object
+{
+    public static final long M;
+    public static final long HEAP_SIZE;
+    public static final long NEW_SIZE;
+
+    public void <init>()
+    {
+        TestSurvivorRatioFlag r0;
+
+        r0 := @this: TestSurvivorRatioFlag;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.util.List $r3;
+        java.lang.String[] $r1, $r2, r4;
+        java.util.LinkedList $r0;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.LinkedList;
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "-XX:[^ ]*SurvivorRatio=[^ ]+";
+
+        $r2 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getFilteredTestJavaOpts(java.lang.String[])>($r1);
+
+        $r3 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r2);
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>(java.util.Collection)>($r3);
+
+        staticinvoke <gc.arguments.TestSurvivorRatioFlag: void testSurvivorRatio(int,java.util.LinkedList)>(3, $r0);
+
+        staticinvoke <gc.arguments.TestSurvivorRatioFlag: void testSurvivorRatio(int,java.util.LinkedList)>(6, $r0);
+
+        staticinvoke <gc.arguments.TestSurvivorRatioFlag: void testSurvivorRatio(int,java.util.LinkedList)>(10, $r0);
+
+        staticinvoke <gc.arguments.TestSurvivorRatioFlag: void testSurvivorRatio(int,java.util.LinkedList)>(15, $r0);
+
+        staticinvoke <gc.arguments.TestSurvivorRatioFlag: void testSurvivorRatio(int,java.util.LinkedList)>(20, $r0);
+
+        return;
+    }
+
+    public static void testSurvivorRatio(int, java.util.LinkedList) throws java.lang.Exception
+    {
+        java.lang.Object[] $r10;
+        java.lang.String[] $r2, $r9, $r11;
+        int i0, $i1;
+        java.lang.String $r5, $r7, $r8;
+        java.lang.ProcessBuilder $r12;
+        java.util.LinkedList $r0, r1;
+        java.lang.Process $r14;
+        jdk.test.lib.process.OutputAnalyzer $r13;
+        java.lang.StringBuilder $r3, $r4;
+        java.lang.Class $r6;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.util.LinkedList;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>(java.util.Collection)>(r1);
+
+        $r2 = newarray (java.lang.String)[12];
+
+        $r2[0] = "-Xbootclasspath/a:.";
+
+        $r2[1] = "--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED";
+
+        $r2[2] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r2[3] = "-XX:+WhiteBoxAPI";
+
+        $r2[4] = "-XX:GCLockerEdenExpansionPercent=0";
+
+        $r2[5] = "-XX:MaxNewSize=104857600";
+
+        $r2[6] = "-XX:NewSize=104857600";
+
+        $r2[7] = "-Xmx209715200";
+
+        $r2[8] = "-Xms209715200";
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:SurvivorRatio=");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r2[9] = $r5;
+
+        $r6 = class "Lgc/arguments/TestSurvivorRatioFlag$SurvivorRatioVerifier;";
+
+        $r7 = virtualinvoke $r6.<java.lang.Class: java.lang.String getName()>();
+
+        $r2[10] = $r7;
+
+        $r8 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i0);
+
+        $r2[11] = $r8;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r2);
+
+        $i1 = virtualinvoke $r0.<java.util.LinkedList: int size()>();
+
+        $r9 = newarray (java.lang.String)[$i1];
+
+        $r10 = virtualinvoke $r0.<java.util.LinkedList: java.lang.Object[] toArray(java.lang.Object[])>($r9);
+
+        $r11 = (java.lang.String[]) $r10;
+
+        $r12 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r11);
+
+        $r13 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r14 = virtualinvoke $r12.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r13.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r14);
+
+        virtualinvoke $r13.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

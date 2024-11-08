@@ -1,0 +1,289 @@
+public class TestIHOPErgo$AppIHOP extends java.lang.Object
+{
+    public static final java.util.LinkedList GARBAGE;
+    private final int ITERATIONS;
+    private final int OBJECT_SIZE;
+    private final long HEAP_PREALLOC_PCT;
+    private final long HEAP_ALLOC_PCT;
+    private final long HEAP_SIZE;
+    private final long HEAP_PREALLOC_SIZE;
+    private final long HEAP_ALLOC_SIZE;
+    private final int SLEEP_TIME;
+
+    static void <clinit>()
+    {
+        java.util.LinkedList $r0;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>()>();
+
+        <gc.g1.ihop.TestIHOPErgo$AppIHOP: java.util.LinkedList GARBAGE> = $r0;
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.InterruptedException
+    {
+        java.lang.String[] r1;
+        gc.g1.ihop.TestIHOPErgo$AppIHOP $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new gc.g1.ihop.TestIHOPErgo$AppIHOP;
+
+        specialinvoke $r0.<gc.g1.ihop.TestIHOPErgo$AppIHOP: void <init>()>();
+
+        virtualinvoke $r0.<gc.g1.ihop.TestIHOPErgo$AppIHOP: void start()>();
+
+        return;
+    }
+
+    void <init>()
+    {
+        TestIHOPErgo$AppIHOP r0;
+        long $l3, $l5, $l6, $l7, $l8, $l9, $l10;
+        java.lang.Integer $r1, $r2;
+        int $i0, $i1, $i2, $i4;
+        gc.g1.ihop.TestIHOPErgo$AppIHOP $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12;
+
+        r0 := @this: TestIHOPErgo$AppIHOP;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $r3.<gc.g1.ihop.TestIHOPErgo$AppIHOP: int ITERATIONS> = 10;
+
+        $r4 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $r4.<gc.g1.ihop.TestIHOPErgo$AppIHOP: int OBJECT_SIZE> = 100000;
+
+        $r5 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $r5.<gc.g1.ihop.TestIHOPErgo$AppIHOP: long HEAP_PREALLOC_PCT> = 60L;
+
+        $r6 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $r6.<gc.g1.ihop.TestIHOPErgo$AppIHOP: long HEAP_ALLOC_PCT> = 30L;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String)>("heap.size");
+
+        $i0 = virtualinvoke $r1.<java.lang.Integer: int intValue()>();
+
+        $i1 = $i0 * 1024;
+
+        $i2 = $i1 * 1024;
+
+        $l3 = (long) $i2;
+
+        $r7 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $r7.<gc.g1.ihop.TestIHOPErgo$AppIHOP: long HEAP_SIZE> = $l3;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String)>("sleep.time");
+
+        $i4 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        $r8 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $r8.<gc.g1.ihop.TestIHOPErgo$AppIHOP: int SLEEP_TIME> = $i4;
+
+        $r9 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $l5 = $r9.<gc.g1.ihop.TestIHOPErgo$AppIHOP: long HEAP_SIZE>;
+
+        $l6 = $l5 * 60L;
+
+        $l7 = $l6 / 100L;
+
+        $r10 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $r10.<gc.g1.ihop.TestIHOPErgo$AppIHOP: long HEAP_PREALLOC_SIZE> = $l7;
+
+        $r11 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $l8 = $r11.<gc.g1.ihop.TestIHOPErgo$AppIHOP: long HEAP_SIZE>;
+
+        $l9 = $l8 * 30L;
+
+        $l10 = $l9 / 100L;
+
+        $r12 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $r12.<gc.g1.ihop.TestIHOPErgo$AppIHOP: long HEAP_ALLOC_SIZE> = $l10;
+
+        return;
+    }
+
+    public void start() throws java.lang.InterruptedException
+    {
+        TestIHOPErgo$AppIHOP r0;
+        gc.g1.ihop.TestIHOPErgo$AppIHOP $r1, $r2, $r3, $r4;
+        long $l0, $l1;
+
+        r0 := @this: TestIHOPErgo$AppIHOP;
+
+        $r1 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $l0 = $r1.<gc.g1.ihop.TestIHOPErgo$AppIHOP: long HEAP_PREALLOC_SIZE>;
+
+        $r2 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        virtualinvoke $r2.<gc.g1.ihop.TestIHOPErgo$AppIHOP: void fill(long)>($l0);
+
+        $r3 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        $l1 = $r3.<gc.g1.ihop.TestIHOPErgo$AppIHOP: long HEAP_ALLOC_SIZE>;
+
+        $r4 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r0;
+
+        virtualinvoke $r4.<gc.g1.ihop.TestIHOPErgo$AppIHOP: void fillAndFree(long,int)>($l1, 10);
+
+        return;
+    }
+
+    private void fill(long)
+    {
+        byte[] $r0;
+        byte $b1;
+        TestIHOPErgo$AppIHOP r2;
+        int $i3;
+        long l0, l2;
+        java.util.LinkedList $r1;
+
+        r2 := @this: TestIHOPErgo$AppIHOP;
+
+        l0 := @parameter0: long;
+
+        l2 = 0L;
+
+        goto label2;
+
+     label1:
+        $r1 = <gc.g1.ihop.TestIHOPErgo$AppIHOP: java.util.LinkedList GARBAGE>;
+
+        $r0 = newarray (byte)[100000];
+
+        virtualinvoke $r1.<java.util.LinkedList: void addFirst(java.lang.Object)>($r0);
+
+        l2 = l2 + 100000L;
+
+     label2:
+        $b1 = l2 cmp l0;
+
+        $i3 = (int) $b1;
+
+        if $i3 < 0 goto label1;
+
+        return;
+    }
+
+    private void fillAndFree(long, int) throws java.lang.InterruptedException
+    {
+        byte[] $r4;
+        TestIHOPErgo$AppIHOP r6;
+        long l1, $l5, l8, l9, l11;
+        byte $b2, $b6, $b10;
+        int i0, $i3, $i4, i7, $i12, $i13, $i14;
+        java.lang.String $r3;
+        java.util.LinkedList $r5, $r7;
+        java.io.PrintStream $r1;
+        gc.g1.ihop.TestIHOPErgo$AppIHOP $r9, $r10;
+        java.lang.StringBuilder $r2, $r8;
+
+        r6 := @this: TestIHOPErgo$AppIHOP;
+
+        l1 := @parameter0: long;
+
+        i0 := @parameter1: int;
+
+        i7 = 0;
+
+        goto label6;
+
+     label1:
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("Iteration:");
+
+        $r2 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r3);
+
+        l8 = 0L;
+
+        l9 = 0L;
+
+        goto label3;
+
+     label2:
+        $r5 = <gc.g1.ihop.TestIHOPErgo$AppIHOP: java.util.LinkedList GARBAGE>;
+
+        $r4 = newarray (byte)[100000];
+
+        virtualinvoke $r5.<java.util.LinkedList: void addFirst(java.lang.Object)>($r4);
+
+        l8 = l8 + 100000L;
+
+        l9 = l9 + 100000L;
+
+        $b2 = l9 cmp 1048576L;
+
+        $i12 = (int) $b2;
+
+        if $i12 <= 0 goto label3;
+
+        l9 = 0L;
+
+        $r9 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r6;
+
+        $i3 = $r9.<gc.g1.ihop.TestIHOPErgo$AppIHOP: int SLEEP_TIME>;
+
+        if $i3 == 0 goto label3;
+
+        $r10 = (gc.g1.ihop.TestIHOPErgo$AppIHOP) r6;
+
+        $i4 = $r10.<gc.g1.ihop.TestIHOPErgo$AppIHOP: int SLEEP_TIME>;
+
+        $l5 = (long) $i4;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>($l5);
+
+     label3:
+        $b10 = l8 cmp l1;
+
+        $i13 = (int) $b10;
+
+        if $i13 < 0 goto label2;
+
+        l11 = 0L;
+
+        goto label5;
+
+     label4:
+        $r7 = <gc.g1.ihop.TestIHOPErgo$AppIHOP: java.util.LinkedList GARBAGE>;
+
+        virtualinvoke $r7.<java.util.LinkedList: java.lang.Object removeLast()>();
+
+        l11 = l11 + 100000L;
+
+     label5:
+        $b6 = l11 cmp l1;
+
+        $i14 = (int) $b6;
+
+        if $i14 < 0 goto label4;
+
+        i7 = i7 + 1;
+
+     label6:
+        if i7 < i0 goto label1;
+
+        return;
+    }
+}

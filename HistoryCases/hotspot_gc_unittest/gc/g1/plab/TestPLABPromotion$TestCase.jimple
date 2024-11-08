@@ -1,0 +1,558 @@
+class TestPLABPromotion$TestCase extends java.lang.Object
+{
+    private final int wastePct;
+    private final int plabSize;
+    private final int chunkSize;
+    private final int parGCThreads;
+    private final int edenSize;
+    private final boolean plabIsFixed;
+    private final boolean objectsAreReachable;
+    private final boolean promotedByPLAB;
+
+    public void <init>(int, int, int, int, int, boolean, boolean, boolean)
+    {
+        gc.g1.plab.TestPLABPromotion$TestCase $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10;
+        TestPLABPromotion$TestCase r0;
+        int i0, i1, i2, i3, i4;
+        boolean z0, z1, z2;
+        java.lang.IllegalArgumentException $r2;
+
+        r0 := @this: TestPLABPromotion$TestCase;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        i3 := @parameter3: int;
+
+        i4 := @parameter4: int;
+
+        z0 := @parameter5: boolean;
+
+        z1 := @parameter6: boolean;
+
+        z2 := @parameter7: boolean;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        if i0 == 0 goto label1;
+
+        if i1 == 0 goto label1;
+
+        if i2 == 0 goto label1;
+
+        if i3 == 0 goto label1;
+
+        if i4 != 0 goto label2;
+
+     label1:
+        $r2 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Parameters should not be 0");
+
+        throw $r2;
+
+     label2:
+        $r3 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $r3.<gc.g1.plab.TestPLABPromotion$TestCase: int wastePct> = i0;
+
+        $r4 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $r4.<gc.g1.plab.TestPLABPromotion$TestCase: int plabSize> = i1;
+
+        $r5 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $r5.<gc.g1.plab.TestPLABPromotion$TestCase: int chunkSize> = i2;
+
+        $r6 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $r6.<gc.g1.plab.TestPLABPromotion$TestCase: int parGCThreads> = i3;
+
+        $r7 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $r7.<gc.g1.plab.TestPLABPromotion$TestCase: int edenSize> = i4;
+
+        $r8 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $r8.<gc.g1.plab.TestPLABPromotion$TestCase: boolean plabIsFixed> = z0;
+
+        $r9 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $r9.<gc.g1.plab.TestPLABPromotion$TestCase: boolean objectsAreReachable> = z1;
+
+        $r10 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $r10.<gc.g1.plab.TestPLABPromotion$TestCase: boolean promotedByPLAB> = z2;
+
+        return;
+    }
+
+    public java.util.List toOptions()
+    {
+        gc.g1.plab.TestPLABPromotion$TestCase $r47, $r48, $r49, $r50, $r51, $r52, $r53, $r54, $r55, $r56;
+        boolean $z0, $z1;
+        java.util.List $r35;
+        java.lang.StringBuilder $r3, $r6, $r9, $r12, $r15, $r16, $r19, $r22, $r25, $r26, $r29, $r30, $r33, $r37, $r38, $r39, $r40, $r41, $r42, $r43, $r44, $r45, $r46;
+        java.lang.String[] $r0;
+        long $l7;
+        TestPLABPromotion$TestCase r2;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        java.lang.String $r4, $r7, $r10, $r13, $r17, $r20, $r23, $r27, $r31, $r34, $r36;
+
+        r2 := @this: TestPLABPromotion$TestCase;
+
+        $r0 = newarray (java.lang.String)[10];
+
+        $r37 = new java.lang.StringBuilder;
+
+        specialinvoke $r37.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:ParallelGCThreads=");
+
+        $r47 = (gc.g1.plab.TestPLABPromotion$TestCase) r2;
+
+        $i0 = $r47.<gc.g1.plab.TestPLABPromotion$TestCase: int parGCThreads>;
+
+        $r3 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[0] = $r4;
+
+        $r38 = new java.lang.StringBuilder;
+
+        specialinvoke $r38.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:ParallelGCBufferWastePct=");
+
+        $r48 = (gc.g1.plab.TestPLABPromotion$TestCase) r2;
+
+        $i1 = $r48.<gc.g1.plab.TestPLABPromotion$TestCase: int wastePct>;
+
+        $r6 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[1] = $r7;
+
+        $r39 = new java.lang.StringBuilder;
+
+        specialinvoke $r39.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:OldPLABSize=");
+
+        $r49 = (gc.g1.plab.TestPLABPromotion$TestCase) r2;
+
+        $i2 = $r49.<gc.g1.plab.TestPLABPromotion$TestCase: int plabSize>;
+
+        $r9 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[2] = $r10;
+
+        $r40 = new java.lang.StringBuilder;
+
+        specialinvoke $r40.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:YoungPLABSize=");
+
+        $r50 = (gc.g1.plab.TestPLABPromotion$TestCase) r2;
+
+        $i3 = $r50.<gc.g1.plab.TestPLABPromotion$TestCase: int plabSize>;
+
+        $r12 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[3] = $r13;
+
+        $r41 = new java.lang.StringBuilder;
+
+        specialinvoke $r41.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:");
+
+        $r51 = (gc.g1.plab.TestPLABPromotion$TestCase) r2;
+
+        $z0 = $r51.<gc.g1.plab.TestPLABPromotion$TestCase: boolean plabIsFixed>;
+
+        if $z0 == 0 goto label1;
+
+        $r36 = "-";
+
+        goto label2;
+
+     label1:
+        $r36 = "+";
+
+     label2:
+        $r15 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ResizePLAB");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[4] = $r17;
+
+        $r42 = new java.lang.StringBuilder;
+
+        specialinvoke $r42.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Dchunk.size=");
+
+        $r52 = (gc.g1.plab.TestPLABPromotion$TestCase) r2;
+
+        $i4 = $r52.<gc.g1.plab.TestPLABPromotion$TestCase: int chunkSize>;
+
+        $r19 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[5] = $r20;
+
+        $r43 = new java.lang.StringBuilder;
+
+        specialinvoke $r43.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Dreachable=");
+
+        $r53 = (gc.g1.plab.TestPLABPromotion$TestCase) r2;
+
+        $z1 = $r53.<gc.g1.plab.TestPLABPromotion$TestCase: boolean objectsAreReachable>;
+
+        $r22 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z1);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[6] = $r23;
+
+        $r44 = new java.lang.StringBuilder;
+
+        specialinvoke $r44.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:NewSize=");
+
+        $r54 = (gc.g1.plab.TestPLABPromotion$TestCase) r2;
+
+        $i5 = $r54.<gc.g1.plab.TestPLABPromotion$TestCase: int edenSize>;
+
+        $r25 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("m");
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[7] = $r27;
+
+        $r45 = new java.lang.StringBuilder;
+
+        specialinvoke $r45.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MaxNewSize=");
+
+        $r55 = (gc.g1.plab.TestPLABPromotion$TestCase) r2;
+
+        $i6 = $r55.<gc.g1.plab.TestPLABPromotion$TestCase: int edenSize>;
+
+        $r29 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("m");
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[8] = $r31;
+
+        $r46 = new java.lang.StringBuilder;
+
+        specialinvoke $r46.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Dmem.to.fill=");
+
+        $r56 = (gc.g1.plab.TestPLABPromotion$TestCase) r2;
+
+        $l7 = virtualinvoke $r56.<gc.g1.plab.TestPLABPromotion$TestCase: long getMemToFill()>();
+
+        $r33 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l7);
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[9] = $r34;
+
+        $r35 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r0);
+
+        return $r35;
+    }
+
+    public void print(java.io.PrintStream)
+    {
+        gc.g1.plab.TestPLABPromotion$TestCase $r43, $r44, $r45, $r46, $r47, $r48, $r49, $r50, $r51, $r52, $r53;
+        boolean $z0, z1, z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9;
+        java.lang.StringBuilder $r2, $r5, $r8, $r11, $r14, $r15, $r18, $r21, $r24, $r27, $r34, $r35, $r36, $r37, $r38, $r39, $r40, $r41, $r42;
+        TestPLABPromotion$TestCase r0;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.String $r3, $r6, $r9, $r12, $r16, $r19, $r22, $r25, $r28, $r30, $r31, $r32, $r33;
+        java.io.PrintStream r1;
+
+        r0 := @this: TestPLABPromotion$TestCase;
+
+        r1 := @parameter0: java.io.PrintStream;
+
+        $r43 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $z0 = $r43.<gc.g1.plab.TestPLABPromotion$TestCase: boolean promotedByPLAB>;
+
+        if $z0 == 0 goto label01;
+
+        $r44 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $z5 = $r44.<gc.g1.plab.TestPLABPromotion$TestCase: boolean objectsAreReachable>;
+
+        if $z5 == 0 goto label01;
+
+        $z6 = 1;
+
+        goto label02;
+
+     label01:
+        $z6 = 0;
+
+     label02:
+        z1 = $z6;
+
+        $r45 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $z7 = $r45.<gc.g1.plab.TestPLABPromotion$TestCase: boolean promotedByPLAB>;
+
+        if $z7 != 0 goto label03;
+
+        $r46 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $z4 = $r46.<gc.g1.plab.TestPLABPromotion$TestCase: boolean objectsAreReachable>;
+
+        if $z4 == 0 goto label03;
+
+        $z8 = 1;
+
+        goto label04;
+
+     label03:
+        $z8 = 0;
+
+     label04:
+        z2 = $z8;
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>("Test case details:");
+
+        $r34 = new java.lang.StringBuilder;
+
+        specialinvoke $r34.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Young gen size : ");
+
+        $r47 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $i0 = $r47.<gc.g1.plab.TestPLABPromotion$TestCase: int edenSize>;
+
+        $r14 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        $r35 = new java.lang.StringBuilder;
+
+        specialinvoke $r35.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Predefined PLAB size : ");
+
+        $r48 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $i1 = $r48.<gc.g1.plab.TestPLABPromotion$TestCase: int plabSize>;
+
+        $r18 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>($r19);
+
+        $r36 = new java.lang.StringBuilder;
+
+        specialinvoke $r36.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Parallel GC buffer waste pct : ");
+
+        $r49 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $i2 = $r49.<gc.g1.plab.TestPLABPromotion$TestCase: int wastePct>;
+
+        $r21 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>($r22);
+
+        $r37 = new java.lang.StringBuilder;
+
+        specialinvoke $r37.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Chunk size : ");
+
+        $r50 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $i3 = $r50.<gc.g1.plab.TestPLABPromotion$TestCase: int chunkSize>;
+
+        $r24 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>($r25);
+
+        $r38 = new java.lang.StringBuilder;
+
+        specialinvoke $r38.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Parallel GC threads : ");
+
+        $r51 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $i4 = $r51.<gc.g1.plab.TestPLABPromotion$TestCase: int parGCThreads>;
+
+        $r27 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>($r28);
+
+        $r39 = new java.lang.StringBuilder;
+
+        specialinvoke $r39.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Objects are created : ");
+
+        $r52 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $z9 = $r52.<gc.g1.plab.TestPLABPromotion$TestCase: boolean objectsAreReachable>;
+
+        if $z9 == 0 goto label05;
+
+        $r30 = "reachable";
+
+        goto label06;
+
+     label05:
+        $r30 = "unreachable";
+
+     label06:
+        $r2 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>($r3);
+
+        $r40 = new java.lang.StringBuilder;
+
+        specialinvoke $r40.<java.lang.StringBuilder: void <init>(java.lang.String)>("  PLAB size is fixed: ");
+
+        $r53 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $z3 = $r53.<gc.g1.plab.TestPLABPromotion$TestCase: boolean plabIsFixed>;
+
+        if $z3 == 0 goto label07;
+
+        $r31 = "yes";
+
+        goto label08;
+
+     label07:
+        $r31 = "no";
+
+     label08:
+        $r5 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r31);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>("Test expectations:");
+
+        $r41 = new java.lang.StringBuilder;
+
+        specialinvoke $r41.<java.lang.StringBuilder: void <init>(java.lang.String)>("  PLAB allocation : ");
+
+        if z1 == 0 goto label09;
+
+        $r32 = "expected";
+
+        goto label10;
+
+     label09:
+        $r32 = "unexpected";
+
+     label10:
+        $r8 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        $r42 = new java.lang.StringBuilder;
+
+        specialinvoke $r42.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Direct allocation : ");
+
+        if z2 == 0 goto label11;
+
+        $r33 = "expected";
+
+        goto label12;
+
+     label11:
+        $r33 = "unexpected";
+
+     label12:
+        $r11 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r33);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r1.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        return;
+    }
+
+    public boolean isPromotedByPLAB()
+    {
+        TestPLABPromotion$TestCase r0;
+        gc.g1.plab.TestPLABPromotion$TestCase $r1;
+        boolean $z0;
+
+        r0 := @this: TestPLABPromotion$TestCase;
+
+        $r1 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $z0 = $r1.<gc.g1.plab.TestPLABPromotion$TestCase: boolean promotedByPLAB>;
+
+        return $z0;
+    }
+
+    public boolean isDeadObjectCase()
+    {
+        gc.g1.plab.TestPLABPromotion$TestCase $r1;
+        TestPLABPromotion$TestCase r0;
+        boolean $z0, $z1;
+
+        r0 := @this: TestPLABPromotion$TestCase;
+
+        $r1 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $z0 = $r1.<gc.g1.plab.TestPLABPromotion$TestCase: boolean objectsAreReachable>;
+
+        if $z0 == 0 goto label1;
+
+        $z1 = 0;
+
+        goto label2;
+
+     label1:
+        $z1 = 1;
+
+     label2:
+        return $z1;
+    }
+
+    public long getMemToFill()
+    {
+        gc.g1.plab.TestPLABPromotion$TestCase $r1;
+        int $i0;
+        long $l1, $l2, $l3, $l4;
+        TestPLABPromotion$TestCase r0;
+
+        r0 := @this: TestPLABPromotion$TestCase;
+
+        $r1 = (gc.g1.plab.TestPLABPromotion$TestCase) r0;
+
+        $i0 = $r1.<gc.g1.plab.TestPLABPromotion$TestCase: int edenSize>;
+
+        $l1 = (long) $i0;
+
+        $l2 = $l1 * 1024L;
+
+        $l3 = $l2 * 1024L;
+
+        $l4 = $l3 / 2L;
+
+        return $l4;
+    }
+}

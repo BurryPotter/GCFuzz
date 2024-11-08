@@ -1,0 +1,399 @@
+public class GCDownTest extends java.lang.Object
+{
+    private java.lang.management.MemoryPoolMXBean pool;
+    private int counter;
+
+    public void <init>()
+    {
+        GCDownTest r0;
+        java.lang.management.MemoryPoolMXBean $r1;
+
+        r0 := @this: GCDownTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = staticinvoke <GCDownTest: java.lang.management.MemoryPoolMXBean getMemoryPool(java.lang.String)>("Metaspace");
+
+        r0.<GCDownTest: java.lang.management.MemoryPoolMXBean pool> = $r1;
+
+        r0.<GCDownTest: int counter> = 0;
+
+        return;
+    }
+
+    public long getCommitted()
+    {
+        GCDownTest r0;
+        java.lang.management.MemoryPoolMXBean $r1;
+        long $l0;
+        java.lang.management.MemoryUsage $r2;
+
+        r0 := @this: GCDownTest;
+
+        $r1 = r0.<GCDownTest: java.lang.management.MemoryPoolMXBean pool>;
+
+        $r2 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l0 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        return $l0;
+    }
+
+    private static java.lang.management.MemoryPoolMXBean getMemoryPool(java.lang.String)
+    {
+        java.util.Iterator $r1;
+        java.util.List $r0;
+        java.lang.management.MemoryPoolMXBean r3;
+        java.lang.Object $r2;
+        java.lang.String $r4, r5;
+        boolean $z0, $z1;
+
+        r5 := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r2 = interfaceinvoke $r1.<java.util.Iterator: java.lang.Object next()>();
+
+        r3 = (java.lang.management.MemoryPoolMXBean) $r2;
+
+        $r4 = interfaceinvoke r3.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        $z1 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+
+        if $z1 == 0 goto label2;
+
+        return r3;
+
+     label2:
+        goto label1;
+
+     label3:
+        return null;
+    }
+
+    public long getUsed()
+    {
+        GCDownTest r0;
+        java.lang.management.MemoryPoolMXBean $r1;
+        long $l0;
+        java.lang.management.MemoryUsage $r2;
+
+        r0 := @this: GCDownTest;
+
+        $r1 = r0.<GCDownTest: java.lang.management.MemoryPoolMXBean pool>;
+
+        $r2 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l0 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        return $l0;
+    }
+
+    protected GCDownTest$Foo loadNewClass()
+    {
+        java.net.URL $r6;
+        GCDownTest$FooBar $r10;
+        GCDownTest$Foo r20;
+        java.net.URL[] r5;
+        java.net.URLClassLoader $r7;
+        GCDownTest$FooInvocationHandler $r9;
+        int $i0, $i1, $i2;
+        java.lang.String $r4, $r17;
+        java.io.PrintStream $r14;
+        GCDownTest r19;
+        java.net.MalformedURLException $r12;
+        java.lang.Class[] $r8;
+        java.lang.RuntimeException $r18;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3, $r13, $r15, $r16;
+        java.lang.Object $r11;
+
+        r19 := @this: GCDownTest;
+
+     label1:
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("file://");
+
+        $i0 = r19.<GCDownTest: int counter>;
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".jar");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $i1 = r19.<GCDownTest: int counter>;
+
+        $i2 = $i1 + 1;
+
+        r19.<GCDownTest: int counter> = $i2;
+
+        r5 = newarray (java.net.URL)[1];
+
+        $r6 = new java.net.URL;
+
+        specialinvoke $r6.<java.net.URL: void <init>(java.lang.String)>($r4);
+
+        r5[0] = $r6;
+
+        $r7 = new java.net.URLClassLoader;
+
+        specialinvoke $r7.<java.net.URLClassLoader: void <init>(java.net.URL[])>(r5);
+
+        $r8 = newarray (java.lang.Class)[1];
+
+        $r8[0] = class "LGCDownTest$Foo;";
+
+        $r9 = new GCDownTest$FooInvocationHandler;
+
+        $r10 = new GCDownTest$FooBar;
+
+        specialinvoke $r10.<GCDownTest$FooBar: void <init>()>();
+
+        specialinvoke $r9.<GCDownTest$FooInvocationHandler: void <init>(GCDownTest,GCDownTest$Foo)>(r19, $r10);
+
+        $r11 = staticinvoke <java.lang.reflect.Proxy: java.lang.Object newProxyInstance(java.lang.ClassLoader,java.lang.Class[],java.lang.reflect.InvocationHandler)>($r7, $r8, $r9);
+
+        r20 = (GCDownTest$Foo) $r11;
+
+     label2:
+        return r20;
+
+     label3:
+        $r12 := @caughtexception;
+
+        $r14 = <java.lang.System: java.io.PrintStream err>;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+
+        $r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unexpeted error: ");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r12);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+        $r18 = new java.lang.RuntimeException;
+
+        specialinvoke $r18.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r12);
+
+        throw $r18;
+
+        catch java.net.MalformedURLException from label1 to label2 with label3;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int $i0;
+        GCDownTest $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new GCDownTest;
+
+        specialinvoke $r0.<GCDownTest: void <init>()>();
+
+        $i0 = virtualinvoke $r0.<GCDownTest: int test()>();
+
+        staticinvoke <java.lang.System: void exit(int)>($i0);
+
+        return;
+    }
+
+    public int test()
+    {
+        byte $b0, $b1, $b2;
+        java.lang.StringBuilder $r5, $r6, $r7, $r8, $r12, $r13, $r14, $r15, $r20, $r21, $r22, $r23, $r27, $r28, $r29, $r30, $r35, $r36, $r37, $r38, $r40, $r41, $r42, $r43, $r44;
+        long l3, l4, l5, l6, l7, l8, l9;
+        int $i10, $i11, $i12;
+        java.lang.String $r9, $r16, $r24, $r31, $r39;
+        java.io.PrintStream $r1, $r2, $r4, $r11, $r17, $r19, $r26, $r32, $r34;
+        GCDownTest r0;
+
+        r0 := @this: GCDownTest;
+
+        l3 = 0L;
+
+        l4 = 0L;
+
+        l5 = virtualinvoke r0.<GCDownTest: long getUsed()>();
+
+        l6 = virtualinvoke r0.<GCDownTest: long getCommitted()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Starting...");
+
+     label1:
+        $b0 = l5 cmp l3;
+
+        $i10 = (int) $b0;
+
+        if $i10 <= 0 goto label2;
+
+        virtualinvoke r0.<GCDownTest: GCDownTest$Foo loadNewClass()>();
+
+        l3 = l5;
+
+        l4 = l6;
+
+        l5 = virtualinvoke r0.<GCDownTest: long getUsed()>();
+
+        l6 = virtualinvoke r0.<GCDownTest: long getCommitted()>();
+
+        goto label1;
+
+     label2:
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("The first GC!");
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r40 = new java.lang.StringBuilder;
+
+        specialinvoke $r40.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  Used:      ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l3);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" --> ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l5);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        $r41 = new java.lang.StringBuilder;
+
+        specialinvoke $r41.<java.lang.StringBuilder: void <init>()>();
+
+        $r12 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  Committed: ");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l4);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" --> ");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l6);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        l7 = l3;
+
+        l8 = 0L;
+
+        l9 = 0L;
+
+     label3:
+        $b1 = l5 cmp l8;
+
+        $i11 = (int) $b1;
+
+        if $i11 <= 0 goto label4;
+
+        virtualinvoke r0.<GCDownTest: GCDownTest$Foo loadNewClass()>();
+
+        l8 = l5;
+
+        l9 = l6;
+
+        l5 = virtualinvoke r0.<GCDownTest: long getUsed()>();
+
+        l6 = virtualinvoke r0.<GCDownTest: long getCommitted()>();
+
+        goto label3;
+
+     label4:
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>("The second GC!");
+
+        $r19 = <java.lang.System: java.io.PrintStream out>;
+
+        $r42 = new java.lang.StringBuilder;
+
+        specialinvoke $r42.<java.lang.StringBuilder: void <init>()>();
+
+        $r20 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  Used:      ");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l8);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" -- >");
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l5);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>($r24);
+
+        $r26 = <java.lang.System: java.io.PrintStream out>;
+
+        $r43 = new java.lang.StringBuilder;
+
+        specialinvoke $r43.<java.lang.StringBuilder: void <init>()>();
+
+        $r27 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  Committed: ");
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l9);
+
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" -- >");
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l6);
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r31);
+
+        $b2 = l7 cmp l8;
+
+        $i12 = (int) $b2;
+
+        if $i12 >= 0 goto label5;
+
+        $r34 = <java.lang.System: java.io.PrintStream out>;
+
+        $r44 = new java.lang.StringBuilder;
+
+        specialinvoke $r44.<java.lang.StringBuilder: void <init>()>();
+
+        $r35 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Test failed: ");
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l7);
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" less than ");
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l8);
+
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r34.<java.io.PrintStream: void println(java.lang.String)>($r39);
+
+        return 2;
+
+     label5:
+        $r32 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r32.<java.io.PrintStream: void println(java.lang.String)>("Test passed");
+
+        return 0;
+    }
+}

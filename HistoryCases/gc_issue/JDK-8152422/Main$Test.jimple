@@ -1,0 +1,197 @@
+class Main$Test extends java.lang.Object
+{
+    private static final java.text.NumberFormat nf;
+    private static int maxNameLength;
+    private static jprtlogparser.Main$Format format;
+    public java.lang.String name;
+    public float time;
+    public java.lang.String status;
+
+    public void <init>(java.lang.String)
+    {
+        Main$Test r0;
+        jprtlogparser.Main$Test $r2, $r3, $r4;
+        java.lang.String r1;
+
+        r0 := @this: Main$Test;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = (jprtlogparser.Main$Test) r0;
+
+        $r2.<jprtlogparser.Main$Test: java.lang.String name> = r1;
+
+        $r3 = (jprtlogparser.Main$Test) r0;
+
+        $r3.<jprtlogparser.Main$Test: float time> = 0.0F;
+
+        $r4 = (jprtlogparser.Main$Test) r0;
+
+        $r4.<jprtlogparser.Main$Test: java.lang.String status> = null;
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        jprtlogparser.Main$Format $r3;
+        jprtlogparser.Main$Test $r25, $r26, $r27, $r28;
+        int[] $r4;
+        Main$Test r0;
+        float $f0;
+        java.lang.StringBuilder $r7, $r10, $r11, $r12, $r17, $r18, $r19, $r21, $r23, $r24;
+        java.text.NumberFormat $r1;
+        int $i0, $i1, $i2;
+        java.lang.String $r2, $r6, $r8, $r9, $r13, $r15, $r16, $r20, $r22;
+        double $d0;
+
+        r0 := @this: Main$Test;
+
+        $r1 = <jprtlogparser.Main$Test: java.text.NumberFormat nf>;
+
+        $r25 = (jprtlogparser.Main$Test) r0;
+
+        $f0 = $r25.<jprtlogparser.Main$Test: float time>;
+
+        $d0 = (double) $f0;
+
+        $r2 = virtualinvoke $r1.<java.text.NumberFormat: java.lang.String format(double)>($d0);
+
+        $r4 = <jprtlogparser.Main$1: int[] $SwitchMap$jprtlogparser$Main$Format>;
+
+        $r3 = <jprtlogparser.Main$Test: jprtlogparser.Main$Format format>;
+
+        $i0 = virtualinvoke $r3.<jprtlogparser.Main$Format: int ordinal()>();
+
+        $i1 = $r4[$i0];
+
+        lookupswitch($i1)
+        {
+            case 1: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        $r23 = new java.lang.StringBuilder;
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>()>();
+
+        $r26 = (jprtlogparser.Main$Test) r0;
+
+        $r6 = $r26.<jprtlogparser.Main$Test: java.lang.String name>;
+
+        $r7 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r27 = (jprtlogparser.Main$Test) r0;
+
+        $r8 = $r27.<jprtlogparser.Main$Test: java.lang.String name>;
+
+        $r9 = staticinvoke <jprtlogparser.Main$Test: java.lang.String ident(java.lang.String)>($r8);
+
+        $r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" : ");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r13;
+
+     label2:
+        $r24 = new java.lang.StringBuilder;
+
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>()>();
+
+        $r15 = "           ";
+
+        $i2 = virtualinvoke $r2.<java.lang.String: int length()>();
+
+        $r16 = virtualinvoke $r15.<java.lang.String: java.lang.String substring(int)>($i2);
+
+        $r17 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" : ");
+
+        $r28 = (jprtlogparser.Main$Test) r0;
+
+        $r20 = $r28.<jprtlogparser.Main$Test: java.lang.String name>;
+
+        $r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r22;
+    }
+
+    private static java.lang.String ident(java.lang.String)
+    {
+        int $i0, $i1, i2;
+        char[] $r2;
+        java.lang.String r0, $r1, $r3;
+
+        r0 := @parameter0: java.lang.String;
+
+        $i0 = <jprtlogparser.Main$Test: int maxNameLength>;
+
+        $i1 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        i2 = $i0 - $i1;
+
+        if i2 <= 0 goto label1;
+
+        $r1 = new java.lang.String;
+
+        $r2 = newarray (char)[i2];
+
+        specialinvoke $r1.<java.lang.String: void <init>(char[])>($r2);
+
+        $r3 = virtualinvoke $r1.<java.lang.String: java.lang.String replace(char,char)>(0, 32);
+
+        return $r3;
+
+     label1:
+        return "";
+    }
+
+    static jprtlogparser.Main$Format access$002(jprtlogparser.Main$Format)
+    {
+        jprtlogparser.Main$Format r0;
+
+        r0 := @parameter0: jprtlogparser.Main$Format;
+
+        <jprtlogparser.Main$Test: jprtlogparser.Main$Format format> = r0;
+
+        return r0;
+    }
+
+    static int access$102(int)
+    {
+        int i0;
+
+        i0 := @parameter0: int;
+
+        <jprtlogparser.Main$Test: int maxNameLength> = i0;
+
+        return i0;
+    }
+
+    static void <clinit>()
+    {
+        java.text.DecimalFormat $r0;
+
+        $r0 = new java.text.DecimalFormat;
+
+        specialinvoke $r0.<java.text.DecimalFormat: void <init>(java.lang.String)>("####0.00");
+
+        <jprtlogparser.Main$Test: java.text.NumberFormat nf> = $r0;
+
+        <jprtlogparser.Main$Test: int maxNameLength> = 50;
+
+        return;
+    }
+}

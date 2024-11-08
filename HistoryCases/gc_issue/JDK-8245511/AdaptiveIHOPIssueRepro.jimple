@@ -1,0 +1,201 @@
+public class AdaptiveIHOPIssueRepro extends java.lang.Object
+{
+    static final int K;
+    static final int M;
+    static final int REGION_SIZE;
+    static final int HUMONGOUS_OBJECT_SIZE;
+    static final int YOUNG_OBJECT_SIZE;
+    static final int HUMONGOUS_ALLOCATION_RATE;
+    static final int YOUNG_ALLOCATION_RATE;
+    static final int N_OLD_OBJECTS;
+    static final java.lang.Object[] oldObjects;
+    static int _oldObjectIndex;
+
+    public void <init>()
+    {
+        AdaptiveIHOPIssueRepro r0;
+
+        r0 := @this: AdaptiveIHOPIssueRepro;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static void retain(java.lang.Object, int)
+    {
+        java.lang.Object[] $r0;
+        int $i0, $i1, i2, $i3, $i4;
+        java.lang.Object r1;
+
+        r1 := @parameter0: java.lang.Object;
+
+        i2 := @parameter1: int;
+
+        $r0 = <AdaptiveIHOPIssueRepro: java.lang.Object[] oldObjects>;
+
+        $i0 = <AdaptiveIHOPIssueRepro: int _oldObjectIndex>;
+
+        $i1 = $i0 + 1;
+
+        <AdaptiveIHOPIssueRepro: int _oldObjectIndex> = $i1;
+
+        $r0[$i0] = r1;
+
+        $i3 = <AdaptiveIHOPIssueRepro: int _oldObjectIndex>;
+
+        $i4 = $i3 % i2;
+
+        <AdaptiveIHOPIssueRepro: int _oldObjectIndex> = $i4;
+
+        return;
+    }
+
+    private static java.lang.Object newObject()
+    {
+        byte[] $r0;
+
+        $r0 = newarray (byte)[2048];
+
+        return $r0;
+    }
+
+    private static java.lang.Object newHumongousObject()
+    {
+        byte[] $r0;
+
+        $r0 = newarray (byte)[1048576];
+
+        return $r0;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.InterruptedException
+    {
+        java.lang.String[] r0;
+        long $l2, $l4, $l6, $l7;
+        byte $b5;
+        int $i0, i1, $i3, $i8, i9, i10, i11, $i13, $i14;
+        java.lang.String $r1, $r6;
+        java.io.PrintStream $r3;
+        java.lang.StringBuilder $r4, $r5, $r11;
+        java.lang.Object $r7, $r8, $r9, $r10;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = r0[0];
+
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        i1 = $i0 * 35;
+
+        i9 = 0;
+
+        i10 = 1;
+
+     label1:
+        if i10 > i1 goto label9;
+
+        $l2 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        staticinvoke <AdaptiveIHOPIssueRepro: java.lang.Object newHumongousObject()>();
+
+        i11 = 1;
+
+     label2:
+        if i11 >= 731 goto label5;
+
+        if i9 <= 0 goto label3;
+
+        $r8 = staticinvoke <AdaptiveIHOPIssueRepro: java.lang.Object newObject()>();
+
+        staticinvoke <AdaptiveIHOPIssueRepro: void retain(java.lang.Object,int)>($r8, 81920);
+
+        $r9 = staticinvoke <AdaptiveIHOPIssueRepro: java.lang.Object newObject()>();
+
+        staticinvoke <AdaptiveIHOPIssueRepro: void retain(java.lang.Object,int)>($r9, 81920);
+
+        $r10 = staticinvoke <AdaptiveIHOPIssueRepro: java.lang.Object newObject()>();
+
+        staticinvoke <AdaptiveIHOPIssueRepro: void retain(java.lang.Object,int)>($r10, 81920);
+
+        goto label4;
+
+     label3:
+        $i8 = i11 % 4;
+
+        if $i8 != 0 goto label4;
+
+        $r7 = staticinvoke <AdaptiveIHOPIssueRepro: java.lang.Object newObject()>();
+
+        staticinvoke <AdaptiveIHOPIssueRepro: void retain(java.lang.Object,int)>($r7, 10240);
+
+     label4:
+        i11 = i11 + 1;
+
+        goto label2;
+
+     label5:
+        $i13 = (int) -1;
+
+        i9 = i9 + $i13;
+
+        $i3 = i10 % 350;
+
+        if $i3 != 0 goto label6;
+
+        i9 = 70;
+
+     label6:
+        $l4 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l7 = $l4 - $l2;
+
+        $b5 = $l7 cmp 28L;
+
+        $i14 = (int) $b5;
+
+        if $i14 >= 0 goto label7;
+
+        $l6 = 28L - $l7;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>($l6);
+
+        goto label8;
+
+     label7:
+        $r3 = <java.lang.System: java.io.PrintStream err>;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[WARN] allocation took longer than expected, milliseconds: ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l7);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+     label8:
+        i10 = i10 + 1;
+
+        goto label1;
+
+     label9:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Object[] $r0;
+
+        $r0 = newarray (java.lang.Object)[81920];
+
+        <AdaptiveIHOPIssueRepro: java.lang.Object[] oldObjects> = $r0;
+
+        <AdaptiveIHOPIssueRepro: int _oldObjectIndex> = 0;
+
+        return;
+    }
+}

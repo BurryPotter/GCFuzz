@@ -1,0 +1,397 @@
+public class TestNewRatioFlag$NewRatioVerifier extends java.lang.Object
+{
+    static sun.hotspot.WhiteBox wb;
+    private static int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.arguments.TestNewRatioFlag$NewRatioVerifier: sun.hotspot.WhiteBox wb> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestNewRatioFlag$NewRatioVerifier r0;
+
+        r0 := @this: TestNewRatioFlag$NewRatioVerifier;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.arguments.GCTypes$YoungGCType $r4;
+        java.lang.String[] r0;
+        java.lang.RuntimeException $r5;
+        java.lang.IllegalArgumentException $r6;
+        java.lang.Integer $r2;
+        int[] $r3;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String $r1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 1 goto label1;
+
+        $r6 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r6.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Expected 1 arg: <expectedRatio>");
+
+        throw $r6;
+
+     label1:
+        $r1 = r0[0];
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r1);
+
+        $i1 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        $r3 = staticinvoke <gc.arguments.TestNewRatioFlag$NewRatioVerifier: int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType()>();
+
+        $r4 = staticinvoke <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType getYoungGCType()>();
+
+        $i2 = virtualinvoke $r4.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        $i3 = $r3[$i2];
+
+        tableswitch($i3)
+        {
+            case 1: goto label2;
+            case 2: goto label2;
+            case 3: goto label3;
+            case 4: goto label4;
+            default: goto label5;
+        };
+
+     label2:
+        staticinvoke <gc.arguments.TestNewRatioFlag$NewRatioVerifier: void verifyDefNewNewRatio(int)>($i1);
+
+        goto label6;
+
+     label3:
+        staticinvoke <gc.arguments.TestNewRatioFlag$NewRatioVerifier: void verifyPSNewRatio(int)>($i1);
+
+        goto label6;
+
+     label4:
+        staticinvoke <gc.arguments.TestNewRatioFlag$NewRatioVerifier: void verifyG1NewRatio(int)>($i1);
+
+        goto label6;
+
+     label5:
+        $r5 = new java.lang.RuntimeException;
+
+        specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>("Unexpected young GC type");
+
+        throw $r5;
+
+     label6:
+        return;
+    }
+
+    public static void verifyDefNewNewRatio(int)
+    {
+        long $l0, $l1, $l2, $l3, l4, $l6, $l7, $l8, $l9;
+        byte $b10;
+        int i5;
+        java.lang.String $r9;
+        java.lang.management.MemoryUsage $r0, $r1, $r2;
+        sun.hotspot.WhiteBox $r3;
+        java.lang.RuntimeException $r4;
+        java.lang.StringBuilder $r5, $r6, $r7, $r8;
+
+        i5 := @parameter0: int;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r1 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l1 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r2 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getOldUsage()>();
+
+        $l2 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $l3 = 2L * $l1;
+
+        l4 = $l0 + $l3;
+
+        $l6 = (long) i5;
+
+        $l7 = $l2 / $l6;
+
+        $r3 = <gc.arguments.TestNewRatioFlag$NewRatioVerifier: sun.hotspot.WhiteBox wb>;
+
+        $l8 = virtualinvoke $r3.<sun.hotspot.WhiteBox: long getHeapSpaceAlignment()>();
+
+        $l9 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignDown(long,long)>($l7, $l8);
+
+        $b10 = $l9 cmp l4;
+
+        if $b10 == 0 goto label1;
+
+        $r4 = new java.lang.RuntimeException;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected young gen size is: ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", but observed new size is: ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l4);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>($r9);
+
+        throw $r4;
+
+     label1:
+        return;
+    }
+
+    public static void verifyPSNewRatio(int)
+    {
+        long $l0, $l1, $l2, $l3, l4, $l6, $l7, $l8, $l9, $l10, $l11;
+        byte $b12;
+        int i5;
+        java.lang.String $r10;
+        java.lang.management.MemoryUsage $r0, $r1, $r2;
+        sun.hotspot.WhiteBox $r3, $r4;
+        java.lang.RuntimeException $r5;
+        java.lang.StringBuilder $r6, $r7, $r8, $r9;
+
+        i5 := @parameter0: int;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r1 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l1 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r2 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getOldUsage()>();
+
+        $l2 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $l3 = 2L * $l1;
+
+        l4 = $l0 + $l3;
+
+        $l6 = (long) i5;
+
+        $l7 = $l2 / $l6;
+
+        $r3 = <gc.arguments.TestNewRatioFlag$NewRatioVerifier: sun.hotspot.WhiteBox wb>;
+
+        $l8 = virtualinvoke $r3.<sun.hotspot.WhiteBox: long getHeapSpaceAlignment()>();
+
+        $l9 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignDown(long,long)>($l7, $l8);
+
+        $r4 = <gc.arguments.TestNewRatioFlag$NewRatioVerifier: sun.hotspot.WhiteBox wb>;
+
+        $l10 = virtualinvoke $r4.<sun.hotspot.WhiteBox: long psVirtualSpaceAlignment()>();
+
+        $l11 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignUp(long,long)>($l9, $l10);
+
+        $b12 = $l11 cmp l4;
+
+        if $b12 == 0 goto label1;
+
+        $r5 = new java.lang.RuntimeException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected young gen size is: ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l11);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", but observed new size is: ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l4);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>($r10);
+
+        throw $r5;
+
+     label1:
+        return;
+    }
+
+    public static void verifyG1NewRatio(int)
+    {
+        long $l0, $l1, $l2, $l4, $l5, $l6, $l8, $l9;
+        int $i3, i7, i10, i11, $i12, i13;
+        java.lang.String $r9;
+        java.lang.management.MemoryUsage $r0, $r1, $r2;
+        double $d0, $d1, $d2;
+        sun.hotspot.WhiteBox $r3;
+        java.lang.RuntimeException $r4;
+        java.lang.StringBuilder $r5, $r6, $r7, $r8;
+
+        i11 := @parameter0: int;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r1 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l1 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r2 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getOldUsage()>();
+
+        $l2 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $r3 = <gc.arguments.TestNewRatioFlag$NewRatioVerifier: sun.hotspot.WhiteBox wb>;
+
+        $i3 = virtualinvoke $r3.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        $l5 = $l0 + $l1;
+
+        $l4 = (long) $i3;
+
+        $l6 = $l5 / $l4;
+
+        i7 = (int) $l6;
+
+        $l8 = (long) $i3;
+
+        $l9 = $l2 / $l8;
+
+        i10 = (int) $l9;
+
+        $d1 = (double) i10;
+
+        $i12 = i11 + 1;
+
+        $d0 = (double) $i12;
+
+        $d2 = $d1 / $d0;
+
+        i13 = (int) $d2;
+
+        if i7 == i13 goto label1;
+
+        $r4 = new java.lang.RuntimeException;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected G1 young list length is: ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i13);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", but observed young list length is: ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>($r9);
+
+        throw $r4;
+
+     label1:
+        return;
+    }
+
+    static int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType()
+    {
+        gc.arguments.GCTypes$YoungGCType $r3, $r4, $r5, $r6;
+        java.lang.NoSuchFieldError $r7, $r8, $r9, $r10;
+        int[] $r0, r2;
+        gc.arguments.GCTypes$YoungGCType[] $r1;
+        int $i0, $i1, $i2, $i3, $i4;
+
+        $r0 = <gc.arguments.TestNewRatioFlag$NewRatioVerifier: int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType>;
+
+        if $r0 == null goto label01;
+
+        return $r0;
+
+     label01:
+        $r1 = staticinvoke <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType[] values()>();
+
+        $i0 = lengthof $r1;
+
+        r2 = newarray (int)[$i0];
+
+     label02:
+        $r3 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType DefNew>;
+
+        $i1 = virtualinvoke $r3.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i1] = 1;
+
+     label03:
+        goto label05;
+
+     label04:
+        $r10 := @caughtexception;
+
+     label05:
+        $r4 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType G1>;
+
+        $i2 = virtualinvoke $r4.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i2] = 4;
+
+     label06:
+        goto label08;
+
+     label07:
+        $r9 := @caughtexception;
+
+     label08:
+        $r5 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType PSNew>;
+
+        $i3 = virtualinvoke $r5.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i3] = 3;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r8 := @caughtexception;
+
+     label11:
+        $r6 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType ParNew>;
+
+        $i4 = virtualinvoke $r6.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i4] = 2;
+
+     label12:
+        goto label14;
+
+     label13:
+        $r7 := @caughtexception;
+
+     label14:
+        <gc.arguments.TestNewRatioFlag$NewRatioVerifier: int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType> = r2;
+
+        return r2;
+
+        catch java.lang.NoSuchFieldError from label02 to label03 with label04;
+        catch java.lang.NoSuchFieldError from label05 to label06 with label07;
+        catch java.lang.NoSuchFieldError from label08 to label09 with label10;
+        catch java.lang.NoSuchFieldError from label11 to label12 with label13;
+    }
+}

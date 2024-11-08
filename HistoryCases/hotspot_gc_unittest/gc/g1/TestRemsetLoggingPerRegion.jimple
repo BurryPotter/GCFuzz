@@ -1,0 +1,42 @@
+public class TestRemsetLoggingPerRegion extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestRemsetLoggingPerRegion r0;
+
+        r0 := @this: TestRemsetLoggingPerRegion;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r0, $r2, r4;
+        java.lang.String $r1, $r3;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "-Xlog:gc+remset*=trace";
+
+        $r1 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>($r0, 0);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectPerRegionRSetSummaries(java.lang.String,int,int)>($r1, 1, 0);
+
+        $r2 = newarray (java.lang.String)[2];
+
+        $r2[0] = "-Xlog:gc+remset*=trace";
+
+        $r2[1] = "-XX:G1SummarizeRSetStatsPeriod=1";
+
+        $r3 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>($r2, 1);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectPerRegionRSetSummaries(java.lang.String,int,int)>($r3, 1, 2);
+
+        return;
+    }
+}

@@ -1,0 +1,80 @@
+public class Test extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Test r0;
+
+        r0 := @this: Test;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r1, $r4, $r6, $r7;
+        java.lang.Throwable $r3, $r5;
+        java.lang.String[] r8;
+        java.lang.Integer $r2;
+        java.util.ArrayList $r0;
+        int i0;
+
+        r8 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+     label1:
+        i0 = 0;
+
+     label2:
+        if i0 >= 2147483647 goto label3;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>($r2);
+
+        i0 = i0 + 1;
+
+        goto label2;
+
+     label3:
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Test finally");
+
+        goto label7;
+
+     label4:
+        $r5 := @caughtexception;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>("Test catch");
+
+     label5:
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>("Test finally");
+
+        goto label7;
+
+     label6:
+        $r3 := @caughtexception;
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>("Test finally");
+
+        throw $r3;
+
+     label7:
+        return;
+
+        catch java.lang.Throwable from label1 to label3 with label4;
+        catch java.lang.Throwable from label4 to label5 with label6;
+    }
+}

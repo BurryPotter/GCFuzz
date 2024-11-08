@@ -1,0 +1,143 @@
+public final enum class GCTypes$OldGCType extends java.lang.Enum implements gc.arguments.GCTypes$GCType
+{
+    public static final enum gc.arguments.GCTypes$OldGCType Serial;
+    public static final enum gc.arguments.GCTypes$OldGCType CMS;
+    public static final enum gc.arguments.GCTypes$OldGCType PSOld;
+    public static final enum gc.arguments.GCTypes$OldGCType G1;
+    private final java.lang.String gcTypeName;
+    private static final gc.arguments.GCTypes$OldGCType[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.arguments.GCTypes$OldGCType $r0, $r1, $r2, $r3, $r5, $r6, $r7, $r8;
+        gc.arguments.GCTypes$OldGCType[] $r4;
+
+        $r0 = new gc.arguments.GCTypes$OldGCType;
+
+        specialinvoke $r0.<gc.arguments.GCTypes$OldGCType: void <init>(java.lang.String,int,java.lang.String)>("Serial", 0, "MarkSweepCompact");
+
+        <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType Serial> = $r0;
+
+        $r1 = new gc.arguments.GCTypes$OldGCType;
+
+        specialinvoke $r1.<gc.arguments.GCTypes$OldGCType: void <init>(java.lang.String,int,java.lang.String)>("CMS", 1, "ConcurrentMarkSweep");
+
+        <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType CMS> = $r1;
+
+        $r2 = new gc.arguments.GCTypes$OldGCType;
+
+        specialinvoke $r2.<gc.arguments.GCTypes$OldGCType: void <init>(java.lang.String,int,java.lang.String)>("PSOld", 2, "PS MarkSweep");
+
+        <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType PSOld> = $r2;
+
+        $r3 = new gc.arguments.GCTypes$OldGCType;
+
+        specialinvoke $r3.<gc.arguments.GCTypes$OldGCType: void <init>(java.lang.String,int,java.lang.String)>("G1", 3, "G1 Old Generation");
+
+        <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType G1> = $r3;
+
+        $r4 = newarray (gc.arguments.GCTypes$OldGCType)[4];
+
+        $r5 = <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType Serial>;
+
+        $r4[0] = $r5;
+
+        $r6 = <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType CMS>;
+
+        $r4[1] = $r6;
+
+        $r7 = <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType PSOld>;
+
+        $r4[2] = $r7;
+
+        $r8 = <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType G1>;
+
+        $r4[3] = $r8;
+
+        <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType[] ENUM$VALUES> = $r4;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int, java.lang.String)
+    {
+        GCTypes$OldGCType r0;
+        int i0;
+        gc.arguments.GCTypes$OldGCType $r3;
+        java.lang.String r1, r2;
+
+        r0 := @this: GCTypes$OldGCType;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r2 := @parameter2: java.lang.String;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        $r3 = (gc.arguments.GCTypes$OldGCType) r0;
+
+        $r3.<gc.arguments.GCTypes$OldGCType: java.lang.String gcTypeName> = r2;
+
+        return;
+    }
+
+    public static gc.arguments.GCTypes$OldGCType getOldGCType()
+    {
+        gc.arguments.GCTypes$OldGCType $r1;
+        gc.arguments.GCTypes$GCType $r0;
+
+        $r0 = staticinvoke <gc.arguments.GCTypes: gc.arguments.GCTypes$GCType getCurrentGCType(java.lang.Class)>(class "Lgc/arguments/GCTypes$OldGCType;");
+
+        $r1 = (gc.arguments.GCTypes$OldGCType) $r0;
+
+        return $r1;
+    }
+
+    public java.lang.String getGCName()
+    {
+        gc.arguments.GCTypes$OldGCType $r2;
+        java.lang.String $r1;
+        GCTypes$OldGCType r0;
+
+        r0 := @this: GCTypes$OldGCType;
+
+        $r2 = (gc.arguments.GCTypes$OldGCType) r0;
+
+        $r1 = $r2.<gc.arguments.GCTypes$OldGCType: java.lang.String gcTypeName>;
+
+        return $r1;
+    }
+
+    public static gc.arguments.GCTypes$OldGCType[] values()
+    {
+        int $i0;
+        gc.arguments.GCTypes$OldGCType[] $r0, $r1;
+
+        $r0 = <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.arguments.GCTypes$OldGCType)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.arguments.GCTypes$OldGCType valueOf(java.lang.String)
+    {
+        gc.arguments.GCTypes$OldGCType $r2;
+        java.lang.String r0;
+        java.lang.Enum $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/arguments/GCTypes$OldGCType;", r0);
+
+        $r2 = (gc.arguments.GCTypes$OldGCType) $r1;
+
+        return $r2;
+    }
+}

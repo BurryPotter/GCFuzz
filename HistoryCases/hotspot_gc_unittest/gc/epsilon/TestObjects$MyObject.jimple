@@ -1,0 +1,38 @@
+public class TestObjects$MyObject extends java.lang.Object
+{
+    int id;
+
+    public void <init>(int)
+    {
+        int i0;
+        TestObjects$MyObject r0;
+        gc.epsilon.TestObjects$MyObject $r1;
+
+        r0 := @this: TestObjects$MyObject;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.epsilon.TestObjects$MyObject) r0;
+
+        $r1.<gc.epsilon.TestObjects$MyObject: int id> = i0;
+
+        return;
+    }
+
+    public int id()
+    {
+        int $i0;
+        TestObjects$MyObject r0;
+        gc.epsilon.TestObjects$MyObject $r1;
+
+        r0 := @this: TestObjects$MyObject;
+
+        $r1 = (gc.epsilon.TestObjects$MyObject) r0;
+
+        $i0 = $r1.<gc.epsilon.TestObjects$MyObject: int id>;
+
+        return $i0;
+    }
+}

@@ -1,0 +1,94 @@
+class MemEvil extends java.lang.Thread
+{
+    static java.util.Vector v;
+
+    static void <clinit>()
+    {
+        java.util.Vector $r0, $r2;
+        int i0;
+        char[] $r1;
+
+        $r0 = new java.util.Vector;
+
+        specialinvoke $r0.<java.util.Vector: void <init>()>();
+
+        <gc.gctests.MTsyncGC.MemEvil: java.util.Vector v> = $r0;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r2 = <gc.gctests.MTsyncGC.MemEvil: java.util.Vector v>;
+
+        $r1 = newarray (char)[100000];
+
+        virtualinvoke $r2.<java.util.Vector: void addElement(java.lang.Object)>($r1);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 10 goto label1;
+
+        return;
+    }
+
+    void <init>()
+    {
+        MemEvil r0;
+
+        r0 := @this: MemEvil;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        java.util.Vector $r1;
+        MemEvil r5;
+        gc.gctests.MTsyncGC.Reclaimer $r2, $r3;
+        int i0;
+        char[] $r0;
+        java.lang.Exception $r4;
+
+        r5 := @this: MemEvil;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r1 = <gc.gctests.MTsyncGC.MemEvil: java.util.Vector v>;
+
+        $r0 = newarray (char)[100000];
+
+        virtualinvoke $r1.<java.util.Vector: void setElementAt(java.lang.Object,int)>($r0, i0);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 10 goto label1;
+
+     label3:
+        $r2 = <gc.gctests.MTsyncGC.MTsyncGC: gc.gctests.MTsyncGC.Reclaimer reclaimer>;
+
+        virtualinvoke $r2.<gc.gctests.MTsyncGC.Reclaimer: void start()>();
+
+        $r3 = <gc.gctests.MTsyncGC.MTsyncGC: gc.gctests.MTsyncGC.Reclaimer reclaimer>;
+
+        virtualinvoke $r3.<gc.gctests.MTsyncGC.Reclaimer: void join()>();
+
+     label4:
+        goto label6;
+
+     label5:
+        $r4 := @caughtexception;
+
+     label6:
+        return;
+
+        catch java.lang.Exception from label3 to label4 with label5;
+    }
+}

@@ -1,0 +1,505 @@
+public class TestEvacFailureThreaded extends java.lang.Object
+{
+    static int wu_threads;
+    static int main_threads;
+    static long wu_size;
+    static int wu_iter;
+    static long main_size;
+    static int main_iter;
+    static double alive_fraq;
+    public static volatile java.lang.Object tmp;
+    public static volatile boolean cont;
+
+    public void <init>()
+    {
+        TestEvacFailureThreaded r0;
+
+        r0 := @this: TestEvacFailureThreaded;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static native int TestCriticalArray0(int[]);
+
+    public static void warmUp(long, int)
+    {
+        long l1, l6;
+        TestEvacFailureThreaded$Node $r2;
+        byte $b2;
+        int i0, $i3, $i4, i5, i7, $i8;
+        TestEvacFailureThreaded$Node[] r0;
+        double $d0, $d1, $d2;
+
+        l1 := @parameter0: long;
+
+        i0 := @parameter1: int;
+
+        r0 = newarray (TestEvacFailureThreaded$Node)[i0];
+
+        l6 = 0L;
+
+     label1:
+        $b2 = l6 cmp l1;
+
+        $i8 = (int) $b2;
+
+        if $i8 >= 0 goto label2;
+
+        $d0 = staticinvoke <java.lang.Math: double random()>();
+
+        $i4 = lengthof r0;
+
+        $d1 = (double) $i4;
+
+        $d2 = $d0 * $d1;
+
+        i5 = (int) $d2;
+
+        $r2 = new TestEvacFailureThreaded$Node;
+
+        specialinvoke $r2.<TestEvacFailureThreaded$Node: void <init>(int)>(1);
+
+        r0[i5] = $r2;
+
+        l6 = l6 + 1L;
+
+        goto label1;
+
+     label2:
+        i7 = 0;
+
+     label3:
+        $i3 = lengthof r0;
+
+        if i7 >= $i3 goto label4;
+
+        r0[i7] = null;
+
+        i7 = i7 + 1;
+
+        goto label3;
+
+     label4:
+        return;
+    }
+
+    public static void runTest(long, int, double)
+    {
+        long l1, $l2;
+        TestEvacFailureThreaded$Node $r2, $r6, $r10, $r11, $r12, $r14;
+        byte $b3, $b5;
+        int[] r0;
+        int i0, $i4, $i6, i7, i8, i9, $i10, $i11;
+        java.lang.ref.SoftReference $r13;
+        TestEvacFailureThreaded$Node[] r9;
+        boolean $z0;
+        double $d0, d1, $d2, $d3, $d4;
+        java.lang.OutOfMemoryError $r8;
+
+        l1 := @parameter0: long;
+
+        i0 := @parameter1: int;
+
+        d1 := @parameter2: double;
+
+        r0 = newarray (int)[10000];
+
+        i7 = 1;
+
+     label01:
+        if i7 >= 10000 goto label02;
+
+        r0[i7] = i7;
+
+        i7 = i7 + 1;
+
+        goto label01;
+
+     label02:
+        r9 = newarray (TestEvacFailureThreaded$Node)[i0];
+
+     label03:
+        $r10 = new TestEvacFailureThreaded$Node;
+
+        specialinvoke $r10.<TestEvacFailureThreaded$Node: void <init>(int)>(0);
+
+        r9[0] = $r10;
+
+        i8 = 0;
+
+     label04:
+        $z0 = <TestEvacFailureThreaded: boolean cont>;
+
+        if $z0 == 0 goto label08;
+
+        $l2 = (long) i8;
+
+        $b3 = $l2 cmp l1;
+
+        $i10 = (int) $b3;
+
+        if $i10 >= 0 goto label08;
+
+        i8 = i8 + 1;
+
+        $i4 = staticinvoke <TestEvacFailureThreaded: int TestCriticalArray0(int[])>(r0);
+
+        $d0 = staticinvoke <java.lang.Math: double random()>();
+
+        $b5 = $d0 cmpl d1;
+
+        $i11 = (int) $b5;
+
+        if $i11 <= 0 goto label05;
+
+        $r11 = new TestEvacFailureThreaded$Node;
+
+        specialinvoke $r11.<TestEvacFailureThreaded$Node: void <init>(int)>($i4);
+
+        <TestEvacFailureThreaded: java.lang.Object tmp> = $r11;
+
+        goto label07;
+
+     label05:
+        $d2 = staticinvoke <java.lang.Math: double random()>();
+
+        $i6 = lengthof r9;
+
+        $d3 = (double) $i6;
+
+        $d4 = $d2 * $d3;
+
+        i9 = (int) $d4;
+
+        $r2 = r9[i9];
+
+        if $r2 == null goto label06;
+
+        $r12 = new TestEvacFailureThreaded$Node;
+
+        specialinvoke $r12.<TestEvacFailureThreaded$Node: void <init>(int)>($i4);
+
+        $r13 = new java.lang.ref.SoftReference;
+
+        $r6 = r9[i9];
+
+        specialinvoke $r13.<java.lang.ref.SoftReference: void <init>(java.lang.Object)>($r6);
+
+        $r12.<TestEvacFailureThreaded$Node: java.lang.ref.SoftReference next> = $r13;
+
+        r9[i9] = $r12;
+
+        goto label07;
+
+     label06:
+        $r14 = new TestEvacFailureThreaded$Node;
+
+        specialinvoke $r14.<TestEvacFailureThreaded$Node: void <init>(int)>($i4);
+
+        r9[i9] = $r14;
+
+     label07:
+        goto label04;
+
+     label08:
+        goto label10;
+
+     label09:
+        $r8 := @caughtexception;
+
+        <TestEvacFailureThreaded: boolean cont> = 0;
+
+        virtualinvoke $r8.<java.lang.OutOfMemoryError: void printStackTrace()>();
+
+     label10:
+        return;
+
+        catch java.lang.OutOfMemoryError from label03 to label08 with label09;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Thread $r46, $r47, $r49;
+        java.lang.StringBuilder $r2, $r4, $r5, $r8, $r10, $r11, $r14, $r16, $r17, $r20, $r22, $r23, $r26, $r28, $r29, $r32, $r34, $r35, $r38, $r40, $r41;
+        long $l3, $l4, $l7, $l8;
+        java.lang.String $r1, $r6, $r7, $r12, $r13, $r18, $r19, $r24, $r25, $r30, $r31, $r36, $r37, $r42;
+        TestEvacFailureThreaded$1 $r48;
+        TestEvacFailureThreaded$2 $r45;
+        java.lang.String[] r0;
+        int $i0, $i1, $i2, $i5, $i6, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, i18, $i19, i20, i21;
+        double $d0, $d1;
+        java.io.PrintStream $r3, $r9, $r15, $r21, $r27, $r33, $r39, $r43, $r44, $r50;
+        java.lang.Thread[] $r51;
+        java.lang.InterruptedException $r52;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 >= 7 goto label01;
+
+        $r50 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r50.<java.io.PrintStream: void println(java.lang.String)>("Usage: java TestEvacFailureThreaded <numThreads> <wu size> <wu iter> <size> <iter> <aliveFraq>");
+
+        staticinvoke <java.lang.System: void exit(int)>(0);
+
+     label01:
+        $r1 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        <TestEvacFailureThreaded: int wu_threads> = $i1;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("wu_threads = ");
+
+        $i2 = <TestEvacFailureThreaded: int wu_threads>;
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $r7 = r0[1];
+
+        $l3 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r7);
+
+        <TestEvacFailureThreaded: long wu_size> = $l3;
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("wu_size = ");
+
+        $l4 = <TestEvacFailureThreaded: long wu_size>;
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l4);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        $r13 = r0[2];
+
+        $i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r13);
+
+        <TestEvacFailureThreaded: int wu_iter> = $i5;
+
+        $r15 = <java.lang.System: java.io.PrintStream out>;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+
+        $r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("wu_iter = ");
+
+        $i6 = <TestEvacFailureThreaded: int wu_iter>;
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r18);
+
+        $r19 = r0[3];
+
+        $l7 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r19);
+
+        <TestEvacFailureThreaded: long main_size> = $l7;
+
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+
+        $r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("main_size = ");
+
+        $l8 = <TestEvacFailureThreaded: long main_size>;
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r24);
+
+        $r25 = r0[4];
+
+        $i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r25);
+
+        <TestEvacFailureThreaded: int main_threads> = $i9;
+
+        $r27 = <java.lang.System: java.io.PrintStream out>;
+
+        $r26 = new java.lang.StringBuilder;
+
+        specialinvoke $r26.<java.lang.StringBuilder: void <init>()>();
+
+        $r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("main_threads = ");
+
+        $i10 = <TestEvacFailureThreaded: int main_threads>;
+
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10);
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r30);
+
+        $r31 = r0[5];
+
+        $i11 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r31);
+
+        <TestEvacFailureThreaded: int main_iter> = $i11;
+
+        $r33 = <java.lang.System: java.io.PrintStream out>;
+
+        $r32 = new java.lang.StringBuilder;
+
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>()>();
+
+        $r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("main_iter = ");
+
+        $i12 = <TestEvacFailureThreaded: int main_iter>;
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12);
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>($r36);
+
+        $r37 = r0[6];
+
+        $d0 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r37);
+
+        <TestEvacFailureThreaded: double alive_fraq> = $d0;
+
+        $r39 = <java.lang.System: java.io.PrintStream out>;
+
+        $r38 = new java.lang.StringBuilder;
+
+        specialinvoke $r38.<java.lang.StringBuilder: void <init>()>();
+
+        $r40 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" alive_fraq = ");
+
+        $d1 = <TestEvacFailureThreaded: double alive_fraq>;
+
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d1);
+
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>($r42);
+
+        $i14 = <TestEvacFailureThreaded: int wu_threads>;
+
+        $i13 = <TestEvacFailureThreaded: int main_threads>;
+
+        $i15 = staticinvoke <java.lang.Math: int max(int,int)>($i14, $i13);
+
+        $r51 = newarray (java.lang.Thread)[$i15];
+
+        $r43 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r43.<java.io.PrintStream: void println(java.lang.String)>("Start warm-up threads!");
+
+        i18 = 0;
+
+     label02:
+        $i19 = <TestEvacFailureThreaded: int wu_threads>;
+
+        if i18 >= $i19 goto label03;
+
+        $r48 = new TestEvacFailureThreaded$1;
+
+        specialinvoke $r48.<TestEvacFailureThreaded$1: void <init>()>();
+
+        $r51[i18] = $r48;
+
+        $r49 = $r51[i18];
+
+        virtualinvoke $r49.<java.lang.Thread: void start()>();
+
+        i18 = i18 + 1;
+
+        goto label02;
+
+     label03:
+        i20 = 0;
+
+     label04:
+        $i16 = <TestEvacFailureThreaded: int wu_threads>;
+
+        if i20 >= $i16 goto label09;
+
+     label05:
+        $r47 = $r51[i20];
+
+        virtualinvoke $r47.<java.lang.Thread: void join()>();
+
+     label06:
+        goto label08;
+
+     label07:
+        $r52 := @caughtexception;
+
+        virtualinvoke $r52.<java.lang.InterruptedException: void printStackTrace()>();
+
+     label08:
+        i20 = i20 + 1;
+
+        goto label04;
+
+     label09:
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r44 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r44.<java.io.PrintStream: void println(java.lang.String)>("Keep alive a lot");
+
+        i21 = 0;
+
+     label10:
+        $i17 = <TestEvacFailureThreaded: int main_threads>;
+
+        if i21 >= $i17 goto label11;
+
+        $r45 = new TestEvacFailureThreaded$2;
+
+        specialinvoke $r45.<TestEvacFailureThreaded$2: void <init>()>();
+
+        $r51[i21] = $r45;
+
+        $r46 = $r51[i21];
+
+        virtualinvoke $r46.<java.lang.Thread: void start()>();
+
+        i21 = i21 + 1;
+
+        goto label10;
+
+     label11:
+        return;
+
+        catch java.lang.InterruptedException from label05 to label06 with label07;
+    }
+
+    static void <clinit>()
+    {
+        staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("TestEvacFailureThreaded");
+
+        <TestEvacFailureThreaded: boolean cont> = 1;
+
+        return;
+    }
+}

@@ -1,0 +1,409 @@
+public class HumongousTemplateClassGen extends java.lang.Object
+{
+    private static final java.lang.String CLASS_NAME;
+    private static final java.lang.String PKG_NAME;
+    private static final java.lang.String PKG_DIR_NAME;
+    private static final int ITERATIONS;
+    private static final double MG;
+    private static final int RECORD_COUNT;
+
+    static void <clinit>()
+    {
+        java.lang.String $r0, $r1, $r2;
+        double $d0;
+
+        $r1 = "gc.g1.unloading.bytecode";
+
+        $r0 = <java.io.File: java.lang.String separator>;
+
+        $r2 = virtualinvoke $r1.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>(".", $r0);
+
+        <gc.g1.unloading.bytecode.HumongousTemplateClassGen: java.lang.String PKG_DIR_NAME> = $r2;
+
+        $d0 = staticinvoke <java.lang.Math: double pow(double,double)>(1024.0, 2.0);
+
+        <gc.g1.unloading.bytecode.HumongousTemplateClassGen: double MG> = $d0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        HumongousTemplateClassGen r0;
+
+        r0 := @this: HumongousTemplateClassGen;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void addFileTop(java.util.List)
+    {
+        java.util.List r0;
+
+        r0 := @parameter0: java.util.List;
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("package gc.g1.unloading.bytecode;\n");
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("\n");
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("import java.util.*;\n");
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("\n");
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("public class HumongousTemplateClass {\n");
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("    public static void main() {\n");
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("        System.out.println(\"In humongous class \");\n");
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("    }");
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("\n");
+
+        return;
+    }
+
+    public static void addIteration(int, java.util.List)
+    {
+        java.util.List r0;
+        java.lang.StringBuilder $r1, $r2, $r3, $r5, $r6, $r7, $r9, $r10, $r11, $r13, $r14, $r15, $r17, $r18, $r19, $r21, $r22, $r23, $r25, $r26, $r27, $r29, $r30, $r31, $r33, $r34, $r35, $r37, $r38, $r39, $r41, $r42, $r43, $r45, $r46, $r47;
+        int i0;
+        java.lang.String $r4, $r8, $r12, $r16, $r20, $r24, $r28, $r32, $r36, $r40, $r44, $r48;
+
+        i0 := @parameter0: int;
+
+        r0 := @parameter1: java.util.List;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("    public static Object public_static_object_");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = new Object();\n");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r4);
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("    protected static Object protected_static_object_");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = new Object();\n");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r8);
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>("    private static Object private_static_Object_");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = new Object();\n");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r12);
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("\n");
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("    public static long public_static_long_");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(";\n");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r16);
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>(java.lang.String)>("    protected static long protected_static_long_");
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = new Random().nextLong();\n");
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r20);
+
+        $r21 = new java.lang.StringBuilder;
+
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>(java.lang.String)>("    private static long private_static_long_");
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = 42;\n");
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r24);
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("\n");
+
+        $r25 = new java.lang.StringBuilder;
+
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>("    public Object public_object_");
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = new Object();\n");
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r28);
+
+        $r29 = new java.lang.StringBuilder;
+
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>("    protected Object protected_object_");
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = new Object();\n");
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r32);
+
+        $r33 = new java.lang.StringBuilder;
+
+        specialinvoke $r33.<java.lang.StringBuilder: void <init>(java.lang.String)>("    private Object private_Object_");
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = new Object();\n");
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r36);
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>("\n");
+
+        $r37 = new java.lang.StringBuilder;
+
+        specialinvoke $r37.<java.lang.StringBuilder: void <init>(java.lang.String)>("    public long public_long_");
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = 43;\n");
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r40);
+
+        $r41 = new java.lang.StringBuilder;
+
+        specialinvoke $r41.<java.lang.StringBuilder: void <init>(java.lang.String)>("    protected long protected_long_");
+
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = 44;\n");
+
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r44);
+
+        $r45 = new java.lang.StringBuilder;
+
+        specialinvoke $r45.<java.lang.StringBuilder: void <init>(java.lang.String)>("    private long private_long_");
+
+        $r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = new Random().nextLong();\n");
+
+        $r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r48);
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r3;
+        java.lang.String[] r0;
+        java.util.ArrayList $r1;
+        int $i0, $i1, i2;
+        java.lang.String $r2;
+        double $d0, $d1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 >= 1 goto label1;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("Usage: HumongousTemplateClassGen <vm-testbase_src_folder>");
+
+        return;
+
+     label1:
+        $r1 = new java.util.ArrayList;
+
+        specialinvoke $r1.<java.util.ArrayList: void <init>(int)>(17210);
+
+        staticinvoke <gc.g1.unloading.bytecode.HumongousTemplateClassGen: void addFileTop(java.util.List)>($r1);
+
+        i2 = 1;
+
+        goto label3;
+
+     label2:
+        staticinvoke <gc.g1.unloading.bytecode.HumongousTemplateClassGen: void addIteration(int,java.util.List)>(i2, $r1);
+
+        i2 = i2 + 1;
+
+     label3:
+        if i2 < 1075 goto label2;
+
+        interfaceinvoke $r1.<java.util.List: boolean add(java.lang.Object)>("}");
+
+        $d0 = <gc.g1.unloading.bytecode.HumongousTemplateClassGen: double MG>;
+
+        $d1 = $d0 * 1.0;
+
+        $i1 = (int) $d1;
+
+        $r2 = r0[0];
+
+        staticinvoke <gc.g1.unloading.bytecode.HumongousTemplateClassGen: void writeBuffered(java.util.List,int,java.lang.String)>($r1, $i1, $r2);
+
+        return;
+    }
+
+    private static void writeBuffered(java.util.List, int, java.lang.String) throws java.io.IOException
+    {
+        boolean $z0;
+        java.util.List r20;
+        float $f0, $f1;
+        java.lang.StringBuilder $r0, $r4, $r6, $r8, $r9, $r10, $r12, $r14, $r23, $r26;
+        long $l0, $l2, $l3;
+        int i1;
+        java.lang.String r1, $r2, $r3, $r5, $r7, $r11, $r15, $r25, $r27, r28;
+        java.io.PrintStream $r13, $r24;
+        java.util.Iterator $r21;
+        java.io.BufferedWriter $r19;
+        java.io.FileWriter $r18;
+        java.io.File $r16, $r17;
+        java.lang.Object $r22;
+
+        r20 := @parameter0: java.util.List;
+
+        i1 := @parameter1: int;
+
+        r1 := @parameter2: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = <java.io.File: java.lang.String separator>;
+
+        $r4 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        $r5 = <gc.g1.unloading.bytecode.HumongousTemplateClassGen: java.lang.String PKG_DIR_NAME>;
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = <java.io.File: java.lang.String separator>;
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("HumongousTemplateClass");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".java");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("Path=");
+
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r15);
+
+        $r16 = new java.io.File;
+
+        specialinvoke $r16.<java.io.File: void <init>(java.lang.String)>($r11);
+
+        $r17 = virtualinvoke $r16.<java.io.File: java.io.File getParentFile()>();
+
+        virtualinvoke $r17.<java.io.File: boolean mkdirs()>();
+
+        virtualinvoke $r16.<java.io.File: boolean createNewFile()>();
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r18 = new java.io.FileWriter;
+
+        specialinvoke $r18.<java.io.FileWriter: void <init>(java.io.File)>($r16);
+
+        $r19 = new java.io.BufferedWriter;
+
+        specialinvoke $r19.<java.io.BufferedWriter: void <init>(java.io.Writer,int)>($r18, i1);
+
+        $r21 = interfaceinvoke r20.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        $r22 = interfaceinvoke $r21.<java.util.Iterator: java.lang.Object next()>();
+
+        r28 = (java.lang.String) $r22;
+
+        virtualinvoke $r19.<java.io.BufferedWriter: void write(java.lang.String)>(r28);
+
+     label2:
+        $z0 = interfaceinvoke $r21.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+        virtualinvoke $r19.<java.io.BufferedWriter: void flush()>();
+
+        virtualinvoke $r19.<java.io.BufferedWriter: void close()>();
+
+        $l2 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r24 = <java.lang.System: java.io.PrintStream out>;
+
+        $r23 = new java.lang.StringBuilder;
+
+        $l3 = $l2 - $l0;
+
+        $f0 = (float) $l3;
+
+        $f1 = $f0 / 1000.0F;
+
+        $r25 = staticinvoke <java.lang.String: java.lang.String valueOf(float)>($f1);
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>($r25);
+
+        $r26 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" seconds");
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r27);
+
+        return;
+    }
+}

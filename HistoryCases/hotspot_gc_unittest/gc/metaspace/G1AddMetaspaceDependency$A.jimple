@@ -1,0 +1,23 @@
+public class G1AddMetaspaceDependency$A extends java.lang.Object
+{
+    final gc.metaspace.G1AddMetaspaceDependency this$0;
+
+    public void <init>(gc.metaspace.G1AddMetaspaceDependency)
+    {
+        gc.metaspace.G1AddMetaspaceDependency$A $r2;
+        gc.metaspace.G1AddMetaspaceDependency r1;
+        G1AddMetaspaceDependency$A r0;
+
+        r0 := @this: G1AddMetaspaceDependency$A;
+
+        r1 := @parameter0: gc.metaspace.G1AddMetaspaceDependency;
+
+        $r2 = (gc.metaspace.G1AddMetaspaceDependency$A) r0;
+
+        $r2.<gc.metaspace.G1AddMetaspaceDependency$A: gc.metaspace.G1AddMetaspaceDependency this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

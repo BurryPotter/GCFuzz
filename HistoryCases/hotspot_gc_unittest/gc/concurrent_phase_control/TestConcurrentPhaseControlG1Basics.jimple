@@ -1,0 +1,63 @@
+public class TestConcurrentPhaseControlG1Basics extends java.lang.Object
+{
+    private static final java.lang.String[] phases;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        $r0 = newarray (java.lang.String)[12];
+
+        $r0[0] = "ANY";
+
+        $r0[1] = "IDLE";
+
+        $r0[2] = "CONCURRENT_CYCLE";
+
+        $r0[3] = "CLEAR_CLAIMED_MARKS";
+
+        $r0[4] = "SCAN_ROOT_REGIONS";
+
+        $r0[5] = "CONCURRENT_MARK";
+
+        $r0[6] = "MARK_FROM_ROOTS";
+
+        $r0[7] = "PRECLEAN";
+
+        $r0[8] = "BEFORE_REMARK";
+
+        $r0[9] = "REMARK";
+
+        $r0[10] = "REBUILD_REMEMBERED_SETS";
+
+        $r0[11] = "CLEANUP_FOR_NEXT_MARK";
+
+        <gc.concurrent_phase_control.TestConcurrentPhaseControlG1Basics: java.lang.String[] phases> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestConcurrentPhaseControlG1Basics r0;
+
+        r0 := @this: TestConcurrentPhaseControlG1Basics;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r0, r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = <gc.concurrent_phase_control.TestConcurrentPhaseControlG1Basics: java.lang.String[] phases>;
+
+        staticinvoke <gc.concurrent_phase_control.CheckSupported: void check(java.lang.String,java.lang.String[])>("G1", $r0);
+
+        return;
+    }
+}

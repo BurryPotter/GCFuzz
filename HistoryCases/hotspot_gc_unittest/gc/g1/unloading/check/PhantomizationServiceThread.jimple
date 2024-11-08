@@ -1,0 +1,111 @@
+public class PhantomizationServiceThread extends gc.g1.unloading.ExecutionTask
+{
+    private static final int TIMEOUT;
+    private java.util.Map map;
+    private java.lang.ref.ReferenceQueue queue;
+
+    public void <init>(nsk.share.test.ExecutionController)
+    {
+        PhantomizationServiceThread r0;
+        gc.g1.unloading.check.PhantomizationServiceThread $r6, $r7;
+        nsk.share.test.ExecutionController r1;
+        java.util.HashMap $r4;
+        java.lang.ref.ReferenceQueue $r5;
+
+        r0 := @this: PhantomizationServiceThread;
+
+        r1 := @parameter0: nsk.share.test.ExecutionController;
+
+        specialinvoke r0.<gc.g1.unloading.ExecutionTask: void <init>(nsk.share.test.ExecutionController)>(r1);
+
+        $r4 = new java.util.HashMap;
+
+        specialinvoke $r4.<java.util.HashMap: void <init>()>();
+
+        $r6 = (gc.g1.unloading.check.PhantomizationServiceThread) r0;
+
+        $r6.<gc.g1.unloading.check.PhantomizationServiceThread: java.util.Map map> = $r4;
+
+        $r5 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r5.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r7 = (gc.g1.unloading.check.PhantomizationServiceThread) r0;
+
+        $r7.<gc.g1.unloading.check.PhantomizationServiceThread: java.lang.ref.ReferenceQueue queue> = $r5;
+
+        return;
+    }
+
+    public void add(java.lang.ref.Reference, gc.g1.unloading.check.PhantomizedAssertion)
+    {
+        PhantomizationServiceThread r0;
+        java.lang.ref.Reference r1;
+        gc.g1.unloading.check.PhantomizationServiceThread $r4;
+        java.util.Map $r3;
+        gc.g1.unloading.check.PhantomizedAssertion r2;
+
+        r0 := @this: PhantomizationServiceThread;
+
+        r1 := @parameter0: java.lang.ref.Reference;
+
+        r2 := @parameter1: gc.g1.unloading.check.PhantomizedAssertion;
+
+        $r4 = (gc.g1.unloading.check.PhantomizationServiceThread) r0;
+
+        $r3 = $r4.<gc.g1.unloading.check.PhantomizationServiceThread: java.util.Map map>;
+
+        interfaceinvoke $r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r1, r2);
+
+        return;
+    }
+
+    public java.lang.ref.ReferenceQueue getQueue()
+    {
+        PhantomizationServiceThread r0;
+        gc.g1.unloading.check.PhantomizationServiceThread $r2;
+        java.lang.ref.ReferenceQueue $r1;
+
+        r0 := @this: PhantomizationServiceThread;
+
+        $r2 = (gc.g1.unloading.check.PhantomizationServiceThread) r0;
+
+        $r1 = $r2.<gc.g1.unloading.check.PhantomizationServiceThread: java.lang.ref.ReferenceQueue queue>;
+
+        return $r1;
+    }
+
+    protected void task() throws java.lang.Exception
+    {
+        PhantomizationServiceThread r0;
+        gc.g1.unloading.check.PhantomizationServiceThread $r6, $r7;
+        java.lang.ref.ReferenceQueue $r1;
+        java.lang.ref.Reference $r2;
+        java.util.Map $r3;
+        gc.g1.unloading.check.PhantomizedAssertion r5;
+        java.lang.Object $r4;
+
+        r0 := @this: PhantomizationServiceThread;
+
+        $r6 = (gc.g1.unloading.check.PhantomizationServiceThread) r0;
+
+        $r1 = $r6.<gc.g1.unloading.check.PhantomizationServiceThread: java.lang.ref.ReferenceQueue queue>;
+
+        $r2 = virtualinvoke $r1.<java.lang.ref.ReferenceQueue: java.lang.ref.Reference remove(long)>(100L);
+
+        $r7 = (gc.g1.unloading.check.PhantomizationServiceThread) r0;
+
+        $r3 = $r7.<gc.g1.unloading.check.PhantomizationServiceThread: java.util.Map map>;
+
+        $r4 = interfaceinvoke $r3.<java.util.Map: java.lang.Object remove(java.lang.Object)>($r2);
+
+        r5 = (gc.g1.unloading.check.PhantomizedAssertion) $r4;
+
+        if r5 == null goto label1;
+
+        virtualinvoke r5.<gc.g1.unloading.check.PhantomizedAssertion: void setPhantomized()>();
+
+     label1:
+        return;
+    }
+}

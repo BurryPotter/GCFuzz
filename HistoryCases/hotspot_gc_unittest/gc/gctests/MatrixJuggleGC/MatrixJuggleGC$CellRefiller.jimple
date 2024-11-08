@@ -1,0 +1,88 @@
+class MatrixJuggleGC$CellRefiller extends java.lang.Thread
+{
+    final gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0;
+
+    private void <init>(gc.gctests.MatrixJuggleGC.MatrixJuggleGC)
+    {
+        gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellRefiller $r2;
+        MatrixJuggleGC$CellRefiller r0;
+        gc.gctests.MatrixJuggleGC.MatrixJuggleGC r1;
+
+        r0 := @this: MatrixJuggleGC$CellRefiller;
+
+        r1 := @parameter0: gc.gctests.MatrixJuggleGC.MatrixJuggleGC;
+
+        $r2 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellRefiller) r0;
+
+        $r2.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellRefiller: gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0> = r1;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        nsk.share.gc.Matrix $r8;
+        java.util.Stack $r2, $r4;
+        gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellRefiller $r10, $r11, $r12;
+        MatrixJuggleGC$CellRefiller r0;
+        int $i0, $i1;
+        nsk.share.gc.IndexPair r6;
+        boolean $z0;
+        java.util.EmptyStackException $r9;
+        gc.gctests.MatrixJuggleGC.MatrixJuggleGC $r1, $r3, $r7;
+        java.lang.Object $r5;
+
+        r0 := @this: MatrixJuggleGC$CellRefiller;
+
+        goto label4;
+
+     label1:
+        $r10 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellRefiller) r0;
+
+        $r3 = $r10.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellRefiller: gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0>;
+
+        $r4 = $r3.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC: java.util.Stack emptiedLocations>;
+
+        $r5 = virtualinvoke $r4.<java.util.Stack: java.lang.Object pop()>();
+
+        r6 = (nsk.share.gc.IndexPair) $r5;
+
+        $r11 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellRefiller) r0;
+
+        $r7 = $r11.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellRefiller: gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0>;
+
+        $r8 = $r7.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC: nsk.share.gc.Matrix cm>;
+
+        $i0 = virtualinvoke r6.<nsk.share.gc.IndexPair: int getI()>();
+
+        $i1 = virtualinvoke r6.<nsk.share.gc.IndexPair: int getJ()>();
+
+        virtualinvoke $r8.<nsk.share.gc.Matrix: void repopulate(int,int)>($i0, $i1);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r9 := @caughtexception;
+
+        goto label5;
+
+     label4:
+        $r12 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellRefiller) r0;
+
+        $r1 = $r12.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellRefiller: gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0>;
+
+        $r2 = $r1.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC: java.util.Stack emptiedLocations>;
+
+        $z0 = virtualinvoke $r2.<java.util.Stack: boolean empty()>();
+
+        if $z0 == 0 goto label1;
+
+     label5:
+        return;
+
+        catch java.util.EmptyStackException from label1 to label2 with label3;
+    }
+}

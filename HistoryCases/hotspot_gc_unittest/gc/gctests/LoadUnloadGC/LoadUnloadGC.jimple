@@ -1,0 +1,221 @@
+public class LoadUnloadGC extends nsk.share.gc.ThreadedGCTest
+{
+    private final java.lang.String className;
+    private int[] memory_reserve;
+
+    public void <init>()
+    {
+        gc.gctests.LoadUnloadGC.LoadUnloadGC $r2, $r3;
+        int[] $r1;
+        LoadUnloadGC r0;
+
+        r0 := @this: LoadUnloadGC;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r2 = (gc.gctests.LoadUnloadGC.LoadUnloadGC) r0;
+
+        $r2.<gc.gctests.LoadUnloadGC.LoadUnloadGC: java.lang.String className> = "nsk.share.gc.ClassChain";
+
+        $r1 = newarray (int)[10000];
+
+        $r3 = (gc.gctests.LoadUnloadGC.LoadUnloadGC) r0;
+
+        $r3.<gc.gctests.LoadUnloadGC.LoadUnloadGC: int[] memory_reserve> = $r1;
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.gctests.LoadUnloadGC.LoadUnloadGC $r3;
+        int i0;
+        gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader $r2;
+        LoadUnloadGC r1;
+        java.lang.Runnable $r4;
+
+        r1 := @this: LoadUnloadGC;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader;
+
+        $r3 = (gc.gctests.LoadUnloadGC.LoadUnloadGC) r1;
+
+        specialinvoke $r2.<gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader: void <init>(gc.gctests.LoadUnloadGC.LoadUnloadGC)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    protected static int getThreadCount()
+    {
+        byte $b2;
+        java.lang.Runtime $r11;
+        java.lang.Exception $r13;
+        java.lang.StringBuilder $r5, $r6;
+        nsk.share.classload.ClassPathNonDelegatingClassLoader $r2;
+        long $l0, $l1, $l3, $l4, $l5, $l6, $l7, $l8, l13, l14;
+        vm.share.monitoring.MemoryPoolFinder $r0;
+        java.lang.management.MemoryPoolMXBean $r1;
+        int $i9, $i10, $i11, i12;
+        java.lang.String $r7;
+        java.lang.management.MemoryUsage $r3, $r4, $r8, $r9, $r10;
+        double $d0, $d1, $d2, $d3;
+        java.lang.RuntimeException $r12, $r14;
+
+        $r0 = <vm.share.monitoring.MemoryPoolFinder: vm.share.monitoring.MemoryPoolFinder METASPACE>;
+
+        $r1 = staticinvoke <vm.share.monitoring.MemoryPoolFinder: java.lang.management.MemoryPoolMXBean findPool(vm.share.monitoring.MemoryPoolFinder)>($r0);
+
+        $r2 = new nsk.share.classload.ClassPathNonDelegatingClassLoader;
+
+        specialinvoke $r2.<nsk.share.classload.ClassPathNonDelegatingClassLoader: void <init>()>();
+
+        $r3 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l0 = virtualinvoke $r3.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r4 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l1 = virtualinvoke $r4.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $b2 = $l1 cmp -1L;
+
+        if $b2 != 0 goto label1;
+
+        $r12 = new java.lang.RuntimeException;
+
+        specialinvoke $r12.<java.lang.RuntimeException: void <init>(java.lang.String)>("Metaspace size should be limited for this test.");
+
+        throw $r12;
+
+     label1:
+        i12 = 1;
+
+        goto label3;
+
+     label2:
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("nsk.share.gc.Class");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i12);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<nsk.share.classload.ClassPathNonDelegatingClassLoader: java.lang.Class loadClass(java.lang.String)>($r7);
+
+        i12 = i12 + 1;
+
+     label3:
+        if i12 <= 10 goto label2;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r13 := @caughtexception;
+
+        $r14 = new java.lang.RuntimeException;
+
+        specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r13);
+
+        throw $r14;
+
+     label6:
+        $r8 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l3 = virtualinvoke $r8.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        l13 = $l3 - $l0;
+
+        $r9 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l4 = virtualinvoke $r9.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $r10 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l5 = virtualinvoke $r10.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $l6 = $l4 - $l5;
+
+        l14 = $l6 / 2L;
+
+        $d0 = (double) l14;
+
+        $d2 = 0.95 * $d0;
+
+        $l7 = (long) 100;
+
+        $l8 = $l7 * l13;
+
+        $d1 = (double) $l8;
+
+        $d3 = $d2 / $d1;
+
+        $i9 = (int) $d3;
+
+        $r11 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $i10 = virtualinvoke $r11.<java.lang.Runtime: int availableProcessors()>();
+
+        $i11 = staticinvoke <java.lang.Math: int min(int,int)>($i9, $i10);
+
+        return $i11;
+
+        catch java.lang.Exception from label1 to label4 with label5;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Object[] $r1;
+        nsk.share.test.Test $r5;
+        java.lang.String[] r3;
+        gc.gctests.LoadUnloadGC.LoadUnloadGC $r4;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.lang.String $r2;
+
+        r3 := @parameter0: java.lang.String[];
+
+        $i0 = staticinvoke <gc.gctests.LoadUnloadGC.LoadUnloadGC: int getThreadCount()>();
+
+        $i1 = staticinvoke <java.util.Arrays: int binarySearch(java.lang.Object[],java.lang.Object)>(r3, "-t");
+
+        if $i1 >= 0 goto label1;
+
+        $i2 = lengthof r3;
+
+        $i3 = $i2 + 2;
+
+        $r1 = staticinvoke <java.util.Arrays: java.lang.Object[] copyOf(java.lang.Object[],int)>(r3, $i3);
+
+        r3 = (java.lang.String[]) $r1;
+
+        $i4 = lengthof r3;
+
+        $i5 = $i4 - 2;
+
+        r3[$i5] = "-t";
+
+        $i6 = lengthof r3;
+
+        $i7 = $i6 - 1;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>($i0);
+
+        r3[$i7] = $r2;
+
+     label1:
+        $r4 = new gc.gctests.LoadUnloadGC.LoadUnloadGC;
+
+        specialinvoke $r4.<gc.gctests.LoadUnloadGC.LoadUnloadGC: void <init>()>();
+
+        $r5 = (nsk.share.test.Test) $r4;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r5, r3);
+
+        return;
+    }
+}

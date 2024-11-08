@@ -1,0 +1,75 @@
+public class TestShrinkDefragmentedHeap extends java.lang.Object
+{
+    private static final int INITIAL_HEAP_SIZE;
+    private static final int MINIMAL_YOUNG_SIZE;
+    private static final int MAXIMUM_HEAP_SIZE;
+    private static final int REGION_SIZE;
+
+    public void <init>()
+    {
+        TestShrinkDefragmentedHeap r0;
+
+        r0 := @this: TestShrinkDefragmentedHeap;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception, java.lang.Throwable
+    {
+        java.lang.String[] $r0, r5;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+        java.lang.ProcessBuilder $r3;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+
+        r5 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[10];
+
+        $r0[0] = "-XX:InitialHeapSize=209715200";
+
+        $r0[1] = "-Xmn199229440";
+
+        $r0[2] = "-Xmx268435456";
+
+        $r0[3] = "-XX:MinHeapFreeRatio=10";
+
+        $r0[4] = "-XX:MaxHeapFreeRatio=11";
+
+        $r0[5] = "-XX:+UseG1GC";
+
+        $r0[6] = "-XX:G1HeapRegionSize=1048576";
+
+        $r0[7] = "-XX:-ExplicitGCInvokesConcurrent";
+
+        $r0[8] = "-verbose:gc";
+
+        $r1 = class "Lgc/g1/TestShrinkDefragmentedHeap$GCTest;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[9] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r4 = staticinvoke <jdk.test.lib.process.ProcessTools: jdk.test.lib.process.OutputAnalyzer executeProcess(java.lang.ProcessBuilder)>($r3);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    static java.lang.management.MemoryUsage getHeapMemoryUsage()
+    {
+        java.lang.management.MemoryMXBean $r0;
+        java.lang.management.MemoryUsage $r1;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r1 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        return $r1;
+    }
+}

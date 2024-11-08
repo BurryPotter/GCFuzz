@@ -1,0 +1,25 @@
+public class TestGCOldWithParallel extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestGCOldWithParallel r0;
+
+        r0 := @this: TestGCOldWithParallel;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.stress.gcold.TestGCOld: void main(java.lang.String[])>(r0);
+
+        return;
+    }
+}

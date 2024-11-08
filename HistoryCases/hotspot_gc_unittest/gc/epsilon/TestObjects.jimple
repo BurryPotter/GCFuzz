@@ -1,0 +1,139 @@
+public class TestObjects extends java.lang.Object
+{
+    static long SEED;
+    static int COUNT;
+    static gc.epsilon.TestObjects$MyObject[] arr;
+
+    static void <clinit>()
+    {
+        java.lang.Long $r0;
+        int $i2;
+        long $l0, $l1;
+        java.lang.Integer $r1;
+
+        $l0 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $r0 = staticinvoke <java.lang.Long: java.lang.Long getLong(java.lang.String,long)>("seed", $l0);
+
+        $l1 = virtualinvoke $r0.<java.lang.Long: long longValue()>();
+
+        <gc.epsilon.TestObjects: long SEED> = $l1;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String,int)>("count", 1000000);
+
+        $i2 = virtualinvoke $r1.<java.lang.Integer: int intValue()>();
+
+        <gc.epsilon.TestObjects: int COUNT> = $i2;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestObjects r0;
+
+        r0 := @this: TestObjects;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.IllegalStateException $r7;
+        java.util.Random $r0, $r4;
+        long $l0, $l4;
+        java.lang.String[] r13;
+        gc.epsilon.TestObjects$MyObject[] $r1, $r3, $r5;
+        int $i1, $i2, $i3, $i5, $i6, $i7, i8, i9;
+        java.lang.String $r12;
+        gc.epsilon.TestObjects$MyObject $r2, $r6;
+        java.lang.StringBuilder $r8, $r9, $r10, $r11;
+
+        r13 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.Random;
+
+        $l0 = <gc.epsilon.TestObjects: long SEED>;
+
+        specialinvoke $r0.<java.util.Random: void <init>(long)>($l0);
+
+        $i1 = <gc.epsilon.TestObjects: int COUNT>;
+
+        $r1 = newarray (gc.epsilon.TestObjects$MyObject)[$i1];
+
+        <gc.epsilon.TestObjects: gc.epsilon.TestObjects$MyObject[] arr> = $r1;
+
+        i8 = 0;
+
+        goto label2;
+
+     label1:
+        $r3 = <gc.epsilon.TestObjects: gc.epsilon.TestObjects$MyObject[] arr>;
+
+        $r2 = new gc.epsilon.TestObjects$MyObject;
+
+        $i3 = virtualinvoke $r0.<java.util.Random: int nextInt()>();
+
+        specialinvoke $r2.<gc.epsilon.TestObjects$MyObject: void <init>(int)>($i3);
+
+        $r3[i8] = $r2;
+
+        i8 = i8 + 1;
+
+     label2:
+        $i2 = <gc.epsilon.TestObjects: int COUNT>;
+
+        if i8 < $i2 goto label1;
+
+        $r4 = new java.util.Random;
+
+        $l4 = <gc.epsilon.TestObjects: long SEED>;
+
+        specialinvoke $r4.<java.util.Random: void <init>(long)>($l4);
+
+        i9 = 0;
+
+        goto label5;
+
+     label3:
+        $i6 = virtualinvoke $r4.<java.util.Random: int nextInt()>();
+
+        $r5 = <gc.epsilon.TestObjects: gc.epsilon.TestObjects$MyObject[] arr>;
+
+        $r6 = $r5[i9];
+
+        $i7 = virtualinvoke $r6.<gc.epsilon.TestObjects$MyObject: int id()>();
+
+        if $i6 == $i7 goto label4;
+
+        $r7 = new java.lang.IllegalStateException;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("Failure: expected = ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", actual = ");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r7.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r12);
+
+        throw $r7;
+
+     label4:
+        i9 = i9 + 1;
+
+     label5:
+        $i5 = <gc.epsilon.TestObjects: int COUNT>;
+
+        if i9 < $i5 goto label3;
+
+        return;
+    }
+}

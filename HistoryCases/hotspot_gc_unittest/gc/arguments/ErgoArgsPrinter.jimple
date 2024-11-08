@@ -1,0 +1,28 @@
+class ErgoArgsPrinter extends java.lang.Object
+{
+
+    void <init>()
+    {
+        ErgoArgsPrinter r0;
+
+        r0 := @this: ErgoArgsPrinter;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        sun.hotspot.WhiteBox $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void printHeapSizes()>();
+
+        return;
+    }
+}

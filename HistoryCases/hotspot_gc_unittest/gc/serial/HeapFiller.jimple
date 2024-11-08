@@ -1,0 +1,51 @@
+class HeapFiller extends java.lang.Object
+{
+    public static gc.serial.Entry root;
+    private static final int PAYLOAD_SIZE;
+
+    void <init>()
+    {
+        HeapFiller r0;
+
+        r0 := @this: HeapFiller;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r3;
+        gc.serial.Entry $r0, $r1, r4;
+        java.lang.OutOfMemoryError $r2;
+
+        r3 := @parameter0: java.lang.String[];
+
+        $r0 = new gc.serial.Entry;
+
+        specialinvoke $r0.<gc.serial.Entry: void <init>(int,gc.serial.Entry)>(1000, null);
+
+        <gc.serial.HeapFiller: gc.serial.Entry root> = $r0;
+
+        r4 = <gc.serial.HeapFiller: gc.serial.Entry root>;
+
+     label1:
+        $r1 = new gc.serial.Entry;
+
+        specialinvoke $r1.<gc.serial.Entry: void <init>(int,gc.serial.Entry)>(1000, r4);
+
+        r4 = $r1;
+
+        goto label1;
+
+     label2:
+        $r2 := @caughtexception;
+
+        <gc.serial.HeapFiller: gc.serial.Entry root> = null;
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label1 to label2 with label2;
+    }
+}

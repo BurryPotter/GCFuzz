@@ -1,0 +1,137 @@
+public class TestInitialTenuringThreshold extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestInitialTenuringThreshold r0;
+
+        r0 := @this: TestInitialTenuringThreshold;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void runWithThresholds(int, int, boolean) throws java.lang.Exception
+    {
+        java.lang.Process $r11;
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r10;
+        int i0, i1;
+        java.lang.StringBuilder $r1, $r3, $r5, $r7;
+        java.lang.String $r2, $r4, $r6, $r8;
+        java.lang.ProcessBuilder $r9;
+        boolean z0;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        z0 := @parameter2: boolean;
+
+        $r0 = newarray (java.lang.String)[4];
+
+        $r0[0] = "-XX:+UseParallelGC";
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:InitialTenuringThreshold=");
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i0);
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[1] = $r4;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MaxTenuringThreshold=");
+
+        $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i1);
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[2] = $r8;
+
+        $r0[3] = "-version";
+
+        $r9 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r10 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r11 = virtualinvoke $r9.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r11);
+
+        if z0 == 0 goto label1;
+
+        virtualinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+     label2:
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Process $r3;
+        java.lang.String[] $r0, r4;
+        jdk.test.lib.process.OutputAnalyzer $r5;
+        int $i1, $i3, $i5;
+        java.lang.ProcessBuilder $r1;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "-XX:MaxTenuringThreshold=1";
+
+        $r0[1] = "-version";
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r5 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        staticinvoke <gc.arguments.TestInitialTenuringThreshold: void runWithThresholds(int,int,boolean)>(0, 10, 0);
+
+        staticinvoke <gc.arguments.TestInitialTenuringThreshold: void runWithThresholds(int,int,boolean)>(5, 5, 0);
+
+        staticinvoke <gc.arguments.TestInitialTenuringThreshold: void runWithThresholds(int,int,boolean)>(8, 16, 0);
+
+        staticinvoke <gc.arguments.TestInitialTenuringThreshold: void runWithThresholds(int,int,boolean)>(10, 0, 1);
+
+        staticinvoke <gc.arguments.TestInitialTenuringThreshold: void runWithThresholds(int,int,boolean)>(9, 8, 1);
+
+        $i1 = (int) -1;
+
+        staticinvoke <gc.arguments.TestInitialTenuringThreshold: void runWithThresholds(int,int,boolean)>($i1, 8, 1);
+
+        $i3 = (int) -1;
+
+        staticinvoke <gc.arguments.TestInitialTenuringThreshold: void runWithThresholds(int,int,boolean)>(0, $i3, 1);
+
+        $i5 = (int) -1;
+
+        staticinvoke <gc.arguments.TestInitialTenuringThreshold: void runWithThresholds(int,int,boolean)>(8, $i5, 1);
+
+        staticinvoke <gc.arguments.TestInitialTenuringThreshold: void runWithThresholds(int,int,boolean)>(16, 8, 1);
+
+        staticinvoke <gc.arguments.TestInitialTenuringThreshold: void runWithThresholds(int,int,boolean)>(8, 17, 1);
+
+        return;
+    }
+}

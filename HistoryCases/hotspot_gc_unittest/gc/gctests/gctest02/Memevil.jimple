@@ -1,0 +1,158 @@
+class Memevil extends java.lang.Thread
+{
+    int sum;
+    int bufsz;
+    boolean debug;
+
+    void <init>(int)
+    {
+        Memevil r0;
+        int i0;
+        gc.gctests.gctest02.Memevil $r1, $r2, $r3, $r4;
+
+        r0 := @this: Memevil;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        $r1 = (gc.gctests.gctest02.Memevil) r0;
+
+        $r1.<gc.gctests.gctest02.Memevil: int bufsz> = 64;
+
+        $r2 = (gc.gctests.gctest02.Memevil) r0;
+
+        $r2.<gc.gctests.gctest02.Memevil: boolean debug> = 0;
+
+        $r3 = (gc.gctests.gctest02.Memevil) r0;
+
+        $r3.<gc.gctests.gctest02.Memevil: int sum> = 0;
+
+        $r4 = (gc.gctests.gctest02.Memevil) r0;
+
+        $r4.<gc.gctests.gctest02.Memevil: int bufsz> = i0;
+
+        return;
+    }
+
+    private boolean doit()
+    {
+        java.lang.Throwable $r10;
+        Memevil r1;
+        int $i0, $i1;
+        java.lang.String $r6, $r7, $r9;
+        double $d0, $d1;
+        java.io.PrintStream $r5;
+        gc.gctests.gctest02.Person $r11;
+        gc.gctests.gctest02.hr $r12;
+        java.lang.StringBuilder $r8, $r13;
+        java.lang.OutOfMemoryError $r3;
+        gc.gctests.gctest02.Memevil $r14, $r15;
+
+        r1 := @this: Memevil;
+
+     label1:
+        $r11 = new gc.gctests.gctest02.Person;
+
+        $r14 = (gc.gctests.gctest02.Memevil) r1;
+
+        $i0 = $r14.<gc.gctests.gctest02.Memevil: int bufsz>;
+
+        specialinvoke $r11.<gc.gctests.gctest02.Person: void <init>(java.lang.String,int,int,int)>("Duke", 100, 100, $i0);
+
+        $r12 = new gc.gctests.gctest02.hr;
+
+        $d0 = staticinvoke <gc.gctests.gctest02.LocalRandom: double random()>();
+
+        $d1 = 100.0 * $d0;
+
+        $i1 = (int) $d1;
+
+        specialinvoke $r12.<gc.gctests.gctest02.hr: void <init>(gc.gctests.gctest02.Person,int)>($r11, $i1);
+
+        virtualinvoke $r12.<gc.gctests.gctest02.hr: void start()>();
+
+     label2:
+        return 1;
+
+     label3:
+        $r10 := @caughtexception;
+
+        return 0;
+
+     label4:
+        $r3 := @caughtexception;
+
+        $r5 = <java.lang.System: java.io.PrintStream err>;
+
+        $r13 = new java.lang.StringBuilder;
+
+        $r15 = (gc.gctests.gctest02.Memevil) r1;
+
+        $r6 = virtualinvoke $r15.<gc.gctests.gctest02.Memevil: java.lang.String getName()>();
+
+        $r7 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r6);
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>($r7);
+
+        $r8 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": Out of Memory");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        return 0;
+
+        catch gc.gctests.gctest02.PopulationException from label1 to label2 with label3;
+        catch java.lang.OutOfMemoryError from label1 to label2 with label4;
+    }
+
+    public void run()
+    {
+        Memevil r0;
+        byte $b0;
+        java.lang.InterruptedException $r1;
+        int $i1;
+        gc.gctests.gctest02.Memevil $r2;
+        double $d0;
+        boolean $z0;
+
+        r0 := @this: Memevil;
+
+        goto label6;
+
+     label1:
+        $d0 = staticinvoke <gc.gctests.gctest02.LocalRandom: double random()>();
+
+        $b0 = $d0 cmpl 0.6668;
+
+        $i1 = (int) $b0;
+
+        if $i1 <= 0 goto label5;
+
+     label2:
+        staticinvoke <gc.gctests.gctest02.Memevil: void sleep(long)>(10L);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r1 := @caughtexception;
+
+     label5:
+        staticinvoke <java.lang.Thread: void yield()>();
+
+     label6:
+        $r2 = (gc.gctests.gctest02.Memevil) r0;
+
+        $z0 = virtualinvoke $r2.<gc.gctests.gctest02.Memevil: boolean doit()>();
+
+        if $z0 != 0 goto label1;
+
+        staticinvoke <gc.gctests.gctest02.ThreadCount: void dec()>();
+
+        return;
+
+        catch java.lang.InterruptedException from label2 to label3 with label4;
+    }
+}

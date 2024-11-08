@@ -1,0 +1,162 @@
+public class NewlyAllocatedArrayFilledByOtherInstanceFinalizer extends java.lang.Object
+{
+    private static final java.lang.String ALPHA_NUMERIC_STRING;
+    private static final java.util.Random RND;
+
+    public void <init>()
+    {
+        NewlyAllocatedArrayFilledByOtherInstanceFinalizer r0;
+
+        r0 := @this: NewlyAllocatedArrayFilledByOtherInstanceFinalizer;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    void demonstrate() throws java.lang.Exception
+    {
+        java.util.stream.IntStream $r0, $r1;
+        NewlyAllocatedArrayFilledByOtherInstanceFinalizer r3;
+        java.util.function.IntConsumer $r2;
+
+        r3 := @this: NewlyAllocatedArrayFilledByOtherInstanceFinalizer;
+
+        $r0 = staticinvoke <java.util.stream.IntStream: java.util.stream.IntStream range(int,int)>(0, 1000000);
+
+        $r1 = interfaceinvoke $r0.<java.util.stream.IntStream: java.util.stream.IntStream parallel()>();
+
+        $r2 = staticinvoke <NewlyAllocatedArrayFilledByOtherInstanceFinalizer$lambda_demonstrate_0__1: java.util.function.IntConsumer bootstrap$()>();
+
+        interfaceinvoke $r1.<java.util.stream.IntStream: void forEach(java.util.function.IntConsumer)>($r2);
+
+        return;
+    }
+
+    static java.lang.String randomAlphaNumeric(int)
+    {
+        java.util.Random $r3;
+        char $c3;
+        int $i0, $i1, $i2, i4, $i6;
+        java.lang.StringBuilder $r5;
+        java.lang.String $r1, $r2, $r4;
+
+        i4 := @parameter0: int;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+     label1:
+        $i0 = i4;
+
+        $i6 = (int) -1;
+
+        i4 = i4 + $i6;
+
+        if $i0 == 0 goto label2;
+
+        $r3 = <NewlyAllocatedArrayFilledByOtherInstanceFinalizer: java.util.Random RND>;
+
+        $r2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        $i1 = virtualinvoke $r2.<java.lang.String: int length()>();
+
+        $i2 = virtualinvoke $r3.<java.util.Random: int nextInt(int)>($i1);
+
+        $r4 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        $c3 = virtualinvoke $r4.<java.lang.String: char charAt(int)>($i2);
+
+        virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($c3);
+
+        goto label1;
+
+     label2:
+        $r1 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r1;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r1;
+        NewlyAllocatedArrayFilledByOtherInstanceFinalizer $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new NewlyAllocatedArrayFilledByOtherInstanceFinalizer;
+
+        specialinvoke $r0.<NewlyAllocatedArrayFilledByOtherInstanceFinalizer: void <init>()>();
+
+        virtualinvoke $r0.<NewlyAllocatedArrayFilledByOtherInstanceFinalizer: void demonstrate()>();
+
+        return;
+    }
+
+    public static void lambda$demonstrate$0(int)
+    {
+        java.io.PrintStream $r8;
+        byte[] $r2, $r4;
+        java.lang.Object[] $r7;
+        NewlyAllocatedArrayFilledByOtherInstanceFinalizer$ArrayHolder $r3;
+        java.nio.charset.Charset $r1, $r6;
+        int i0;
+        java.lang.String $r0, $r5, $r9;
+        boolean $z0;
+
+        i0 := @parameter0: int;
+
+        $r0 = staticinvoke <NewlyAllocatedArrayFilledByOtherInstanceFinalizer: java.lang.String randomAlphaNumeric(int)>(10);
+
+        $r1 = <java.nio.charset.StandardCharsets: java.nio.charset.Charset UTF_8>;
+
+        $r2 = virtualinvoke $r0.<java.lang.String: byte[] getBytes(java.nio.charset.Charset)>($r1);
+
+        $r3 = new NewlyAllocatedArrayFilledByOtherInstanceFinalizer$ArrayHolder;
+
+        specialinvoke $r3.<NewlyAllocatedArrayFilledByOtherInstanceFinalizer$ArrayHolder: void <init>(byte[])>($r2);
+
+        $r4 = virtualinvoke $r3.<NewlyAllocatedArrayFilledByOtherInstanceFinalizer$ArrayHolder: byte[] getBytes()>();
+
+        $z0 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r2, $r4);
+
+        if $z0 != 0 goto label1;
+
+        $r5 = new java.lang.String;
+
+        $r6 = <java.nio.charset.StandardCharsets: java.nio.charset.Charset UTF_8>;
+
+        specialinvoke $r5.<java.lang.String: void <init>(byte[],java.nio.charset.Charset)>($r4, $r6);
+
+        $r8 = <java.lang.System: java.io.PrintStream err>;
+
+        $r7 = newarray (java.lang.Object)[3];
+
+        $r7[0] = $r0;
+
+        $r7[1] = $r5;
+
+        $r9 = staticinvoke <javax.xml.bind.DatatypeConverter: java.lang.String printHexBinary(byte[])>($r4);
+
+        $r7[2] = $r9;
+
+        virtualinvoke $r8.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Assertion failed: expected=\'%s\' actual=\'%s\' (bytes: %s)%n", $r7);
+
+     label1:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.util.Random $r0;
+
+        $r0 = new java.util.Random;
+
+        specialinvoke $r0.<java.util.Random: void <init>()>();
+
+        <NewlyAllocatedArrayFilledByOtherInstanceFinalizer: java.util.Random RND> = $r0;
+
+        return;
+    }
+}

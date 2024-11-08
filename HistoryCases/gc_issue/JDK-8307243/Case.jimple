@@ -1,0 +1,62 @@
+public class Case extends java.lang.Object
+{
+    public java.lang.String str;
+    public float[][][] floatArray;
+    protected long[][][] longArray;
+    private java.lang.Object[][][] objArray;
+
+    public void <init>()
+    {
+        float[][][] $r1;
+        java.lang.Object[][][] $r3;
+        long[][][] $r2;
+        Case r0;
+
+        r0 := @this: Case;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = newmultiarray (float)[32][32][256];
+
+        r0.<Case: float[][][] floatArray> = $r1;
+
+        $r2 = newmultiarray (long)[64][256][256];
+
+        r0.<Case: long[][][] longArray> = $r2;
+
+        $r3 = newmultiarray (java.lang.Object)[256][64][256];
+
+        r0.<Case: java.lang.Object[][][] objArray> = $r3;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r4;
+        java.lang.String $r2;
+        Case $r0, $r1, $r3;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = new Case;
+
+        specialinvoke $r0.<Case: void <init>()>();
+
+        $r1 = new Case;
+
+        specialinvoke $r1.<Case: void <init>()>();
+
+        $r2 = new java.lang.String;
+
+        specialinvoke $r2.<java.lang.String: void <init>()>();
+
+        $r0.<Case: java.lang.String str> = $r2;
+
+        $r3 = new Case;
+
+        specialinvoke $r3.<Case: void <init>()>();
+
+        return;
+    }
+}

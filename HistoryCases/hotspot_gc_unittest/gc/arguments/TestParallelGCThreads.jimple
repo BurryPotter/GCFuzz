@@ -1,0 +1,301 @@
+public class TestParallelGCThreads extends java.lang.Object
+{
+    private static final java.lang.String flagName;
+    private static final java.lang.String printFlagsFinalPattern;
+
+    public void <init>()
+    {
+        TestParallelGCThreads r0;
+
+        r0 := @this: TestParallelGCThreads;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.arguments.TestParallelGCThreads: void testFlags()>();
+
+        staticinvoke <gc.arguments.TestParallelGCThreads: void testDefaultValue()>();
+
+        return;
+    }
+
+    public static void testDefaultValue() throws java.lang.Exception
+    {
+        java.io.PrintStream $r7;
+        java.lang.Process $r3;
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+        java.lang.Exception $r6;
+        java.lang.Long $r5;
+        java.lang.ProcessBuilder $r1;
+        java.lang.String $r4, $r8;
+
+        $r0 = newarray (java.lang.String)[3];
+
+        $r0[0] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r0[1] = "-XX:+PrintFlagsFinal";
+
+        $r0[2] = "-version";
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        $r4 = virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String,int)>(" *uint *ParallelGCThreads *:?= *(\\d+) *\\{product\\} *", 1);
+
+     label1:
+        staticinvoke <jdk.test.lib.Asserts: void assertNotNull(java.lang.Object,java.lang.String)>($r4, "Couldn\'t find uint flag ParallelGCThreads");
+
+        $r5 = new java.lang.Long;
+
+        specialinvoke $r5.<java.lang.Long: void <init>(java.lang.String)>($r4);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertNotEquals(java.lang.Object,java.lang.Object)>($r5, "0");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r6 := @caughtexception;
+
+        $r7 = <java.lang.System: java.io.PrintStream err>;
+
+        $r8 = virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        throw $r6;
+
+     label4:
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    public static void testFlags() throws java.lang.Exception
+    {
+        byte $b0, $b2;
+        java.lang.Long $r17, $r18, $r29, $r30;
+        java.lang.Process $r8;
+        jdk.test.lib.process.OutputAnalyzer $r37;
+        java.lang.StringBuilder $r3, $r4, $r11, $r12, $r15, $r20, $r21, $r22, $r23, $r27, $r32, $r33, $r36, $r38, $r39, $r40, $r41, $r42;
+        java.lang.String[] $r0, $r1, $r9, $r25;
+        long $l1, $l3, $l4, l7, l8;
+        int i5, i6, $i9, $i10;
+        java.lang.String $r5, $r13, $r16, $r24, $r28, $r34, r35;
+        java.lang.ProcessBuilder $r6;
+
+        $r0 = newarray (java.lang.String)[3];
+
+        $r0[0] = "G1";
+
+        $r0[1] = "Parallel";
+
+        $r0[2] = "ConcMarkSweep";
+
+        i5 = lengthof $r0;
+
+        i6 = 0;
+
+        goto label4;
+
+     label1:
+        r35 = $r0[i6];
+
+        $r1 = newarray (java.lang.String)[4];
+
+        $r36 = new java.lang.StringBuilder;
+
+        specialinvoke $r36.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:+Use");
+
+        $r3 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r35);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("GC");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r1[0] = $r5;
+
+        $r1[1] = "-XX:ParallelGCThreads=0";
+
+        $r1[2] = "-XX:+PrintFlagsFinal";
+
+        $r1[3] = "-version";
+
+        $r6 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r1);
+
+        $r37 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r8 = virtualinvoke $r6.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r37.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r8);
+
+        virtualinvoke $r37.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+        l7 = 1L;
+
+        goto label3;
+
+     label2:
+        $r9 = newarray (java.lang.String)[4];
+
+        $r38 = new java.lang.StringBuilder;
+
+        specialinvoke $r38.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:+Use");
+
+        $r11 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r35);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("GC");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r9[0] = $r13;
+
+        $r39 = new java.lang.StringBuilder;
+
+        specialinvoke $r39.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:ParallelGCThreads=");
+
+        $r15 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l7);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r9[1] = $r16;
+
+        $r9[2] = "-XX:+PrintFlagsFinal";
+
+        $r9[3] = "-version";
+
+        $l1 = staticinvoke <gc.arguments.TestParallelGCThreads: long getParallelGCThreadCount(java.lang.String[])>($r9);
+
+        $r17 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l7);
+
+        $r40 = new java.lang.StringBuilder;
+
+        specialinvoke $r40.<java.lang.StringBuilder: void <init>(java.lang.String)>("Specifying ParallelGCThreads=");
+
+        $r20 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l7);
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" for ");
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r35);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("GC does not set the thread count properly!");
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object,java.lang.String)>($r17, $r18, $r24);
+
+        l7 = l7 + 1L;
+
+     label3:
+        $b0 = l7 cmp 3L;
+
+        $i9 = (int) $b0;
+
+        if $i9 <= 0 goto label2;
+
+        i6 = i6 + 1;
+
+     label4:
+        if i6 < i5 goto label1;
+
+        l8 = 4294967295L;
+
+        goto label6;
+
+     label5:
+        $r25 = newarray (java.lang.String)[4];
+
+        $r25[0] = "-XX:+UseSerialGC";
+
+        $r41 = new java.lang.StringBuilder;
+
+        specialinvoke $r41.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:ParallelGCThreads=");
+
+        $r27 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l8);
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r25[1] = $r28;
+
+        $r25[2] = "-XX:+PrintFlagsFinal";
+
+        $r25[3] = "-version";
+
+        $l3 = staticinvoke <gc.arguments.TestParallelGCThreads: long getParallelGCThreadCount(java.lang.String[])>($r25);
+
+        $r29 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        $l4 = l8 % 4294967296L;
+
+        $r30 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l4);
+
+        $r42 = new java.lang.StringBuilder;
+
+        specialinvoke $r42.<java.lang.StringBuilder: void <init>(java.lang.String)>("Specifying ParallelGCThreads=");
+
+        $r32 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l8);
+
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" does not set the thread count properly!");
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object,java.lang.String)>($r29, $r30, $r34);
+
+        l8 = l8 + 1L;
+
+     label6:
+        $b2 = l8 cmp 4294967296L;
+
+        $i10 = (int) $b2;
+
+        if $i10 <= 0 goto label5;
+
+        return;
+    }
+
+    public static long getParallelGCThreadCount(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Process $r3;
+        java.lang.String[] r0;
+        long $l0;
+        java.lang.ProcessBuilder $r1;
+        java.lang.String $r4;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>(r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r4 = virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        $l0 = staticinvoke <gc.arguments.FlagsValue: long getFlagLongValue(java.lang.String,java.lang.String)>("ParallelGCThreads", $r4);
+
+        return $l0;
+    }
+}

@@ -1,0 +1,602 @@
+public class StringInternSyncWithGC extends nsk.share.gc.ThreadedGCTest implements nsk.share.gc.gp.MemoryStrategyAware
+{
+    private int maxStringSize;
+    private nsk.share.gc.gp.MemoryStrategy memoryStrategy;
+    private final int memUsageFactor;
+    private final long endTimeCapacityVer;
+    private final java.util.List stringsToIntern;
+    private final nsk.share.gc.gp.string.RandomStringProducer gp;
+
+    public void <init>(int, long)
+    {
+        nsk.share.gc.gp.string.RandomStringProducer $r4;
+        long l1;
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r5, $r6, $r7, $r8;
+        java.util.ArrayList $r3;
+        int i0;
+        StringInternSyncWithGC r0;
+
+        r0 := @this: StringInternSyncWithGC;
+
+        i0 := @parameter0: int;
+
+        l1 := @parameter1: long;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r3 = new java.util.ArrayList;
+
+        specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+
+        $r5 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r5.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: java.util.List stringsToIntern> = $r3;
+
+        $r4 = new nsk.share.gc.gp.string.RandomStringProducer;
+
+        specialinvoke $r4.<nsk.share.gc.gp.string.RandomStringProducer: void <init>()>();
+
+        $r6 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r6.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.gc.gp.string.RandomStringProducer gp> = $r4;
+
+        $r7 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r7.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: int memUsageFactor> = i0;
+
+        $r8 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r8.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: long endTimeCapacityVer> = l1;
+
+        return;
+    }
+
+    public void setMemoryStrategy(nsk.share.gc.gp.MemoryStrategy)
+    {
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r2;
+        StringInternSyncWithGC r0;
+        nsk.share.gc.gp.MemoryStrategy r1;
+
+        r0 := @this: StringInternSyncWithGC;
+
+        r1 := @parameter0: nsk.share.gc.gp.MemoryStrategy;
+
+        $r2 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r2.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.gc.gp.MemoryStrategy memoryStrategy> = r1;
+
+        return;
+    }
+
+    private boolean verifyInternedStringCapacity(long)
+    {
+        byte $b5, $b15;
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r17, $r18, $r19, $r20, $r21;
+        java.lang.StringBuilder $r10, $r11, $r16;
+        long l0, $l1, $l3, $l4, $l12, l13;
+        java.util.ArrayList $r14;
+        int $i2, $i7, $i9, $i10, $i11, i14, $i16, $i17, $i18;
+        java.lang.String $r4, $r12, $r15;
+        StringInternSyncWithGC r2;
+        char $c6, $c8;
+        char[] r0;
+        nsk.share.log.Log $r5, $r6, $r9, $r13;
+        java.lang.OutOfMemoryError $r7;
+
+        r2 := @this: StringInternSyncWithGC;
+
+        l0 := @parameter0: long;
+
+        l13 = 0L;
+
+        i14 = 0;
+
+        $l1 = l0 / 1000L;
+
+        $i2 = (int) $l1;
+
+        r0 = newarray (char)[$i2];
+
+        $r14 = new java.util.ArrayList;
+
+        specialinvoke $r14.<java.util.ArrayList: void <init>(int)>(1000);
+
+     label1:
+        goto label6;
+
+     label2:
+        $r17 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r2;
+
+        $l3 = $r17.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: long endTimeCapacityVer>;
+
+        $l4 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $b5 = $l3 cmp $l4;
+
+        $i16 = (int) $b5;
+
+        if $i16 >= 0 goto label4;
+
+        $r18 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r2;
+
+        $r5 = $r18.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.log.Log log>;
+
+        interfaceinvoke $r5.<nsk.share.log.Log: void debug(java.lang.Object)>("Too long to verify interned string capacity");
+
+        $r19 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r2;
+
+        $r6 = $r19.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.log.Log log>;
+
+        interfaceinvoke $r6.<nsk.share.log.Log: void debug(java.lang.Object)>("Silently pass.");
+
+     label3:
+        return 0;
+
+     label4:
+        $c6 = r0[i14];
+
+        $i17 = (int) $c6;
+
+        $i7 = $i17 + 1;
+
+        $c8 = (char) $i7;
+
+        r0[i14] = $c8;
+
+        i14 = i14 + 1;
+
+        $i9 = lengthof r0;
+
+        if i14 != $i9 goto label5;
+
+        i14 = 0;
+
+     label5:
+        $r15 = new java.lang.String;
+
+        specialinvoke $r15.<java.lang.String: void <init>(char[])>(r0);
+
+        $r4 = virtualinvoke $r15.<java.lang.String: java.lang.String intern()>();
+
+        interfaceinvoke $r14.<java.util.List: boolean add(java.lang.Object)>($r4);
+
+        $i10 = virtualinvoke $r15.<java.lang.String: int length()>();
+
+        $i11 = $i10 * 2;
+
+        $l12 = (long) $i11;
+
+        l13 = l13 + $l12;
+
+     label6:
+        $b15 = l13 cmp l0;
+
+        $i18 = (int) $b15;
+
+        if $i18 <= 0 goto label2;
+
+     label7:
+        goto label9;
+
+     label8:
+        $r7 := @caughtexception;
+
+        $r20 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r2;
+
+        $r9 = $r20.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.log.Log log>;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("It is not possible to allocate ");
+
+        $r10 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" size of interned string.");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r9.<nsk.share.log.Log: void debug(java.lang.Object)>($r12);
+
+        $r21 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r2;
+
+        $r13 = $r21.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.log.Log log>;
+
+        interfaceinvoke $r13.<nsk.share.log.Log: void debug(java.lang.Object)>("Silently pass.");
+
+        return 0;
+
+     label9:
+        return 1;
+
+        catch java.lang.OutOfMemoryError from label1 to label3 with label8;
+        catch java.lang.OutOfMemoryError from label4 to label7 with label8;
+    }
+
+    public void run()
+    {
+        nsk.share.runner.RunParams $r1, $r3;
+        byte $b19;
+        boolean $z0;
+        nsk.share.gc.gp.string.RandomStringProducer $r13;
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30;
+        java.util.List $r14;
+        nsk.share.gc.gp.MemoryStrategy $r2;
+        java.lang.StringBuilder $r6, $r7, $r11, $r16, $r17;
+        long $l0, $l2, l3, l4, $l6, $l7, $l8, l13, $l14, $l16, $l17, $l18, $l21, $l23, $l24, l25;
+        int $i1, $i5, $i9, $i10, $i11, $i12, $i15, $i20, $i22, $i26;
+        java.lang.String $r8, $r12, $r15;
+        StringInternSyncWithGC r0;
+        nsk.share.log.Log $r5, $r10;
+
+        r0 := @this: StringInternSyncWithGC;
+
+        $r18 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r1 = $r18.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r1.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $r19 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $i1 = $r19.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: int memUsageFactor>;
+
+        $l2 = (long) $i1;
+
+        l3 = $l0 / $l2;
+
+        $r20 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $z0 = virtualinvoke $r20.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: boolean verifyInternedStringCapacity(long)>(l3);
+
+        if $z0 != 0 goto label1;
+
+        return;
+
+     label1:
+        l4 = l3 / 2L;
+
+        $r21 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r2 = $r21.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.gc.gp.MemoryStrategy memoryStrategy>;
+
+        $i5 = staticinvoke <nsk.share.gc.Memory: int getObjectExtraSize()>();
+
+        $l6 = (long) $i5;
+
+        $l7 = virtualinvoke $r2.<nsk.share.gc.gp.MemoryStrategy: long getSize(long,long)>(l4, $l6);
+
+        $l8 = l4 / $l7;
+
+        $i9 = (int) $l8;
+
+        $r22 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r22.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: int maxStringSize> = $i9;
+
+        $r23 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r3 = $r23.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.runner.RunParams runParams>;
+
+        $i10 = virtualinvoke $r3.<nsk.share.runner.RunParams: int getNumberOfThreads()>();
+
+        $i11 = staticinvoke <nsk.share.gc.Memory: int getReferenceSize()>();
+
+        $i12 = $i10 * $i11;
+
+        l13 = (long) $i12;
+
+        $r24 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r5 = $r24.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.log.Log log>;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("The overall size of interned strings  : ");
+
+        $l14 = l4 / 1048576L;
+
+        $r6 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l14);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r5.<nsk.share.log.Log: void debug(java.lang.Object)>($r8);
+
+        $r25 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r10 = $r25.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.log.Log log>;
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>(java.lang.String)>("The count of interned strings : ");
+
+        $r26 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $i15 = $r26.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: int maxStringSize>;
+
+        $l16 = (long) $i15;
+
+        $l17 = $l16 + l13;
+
+        $l18 = l4 / $l17;
+
+        $r11 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l18);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r10.<nsk.share.log.Log: void debug(java.lang.Object)>($r12);
+
+        l25 = 0L;
+
+        goto label3;
+
+     label2:
+        $r27 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r14 = $r27.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: java.util.List stringsToIntern>;
+
+        $r28 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r13 = $r28.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.gc.gp.string.RandomStringProducer gp>;
+
+        $r29 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $i20 = $r29.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: int maxStringSize>;
+
+        $l21 = (long) $i20;
+
+        $r15 = virtualinvoke $r13.<nsk.share.gc.gp.string.RandomStringProducer: java.lang.String create(long)>($l21);
+
+        interfaceinvoke $r14.<java.util.List: boolean add(java.lang.Object)>($r15);
+
+        $r30 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $i22 = $r30.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: int maxStringSize>;
+
+        $l23 = (long) $i22;
+
+        $l24 = $l23 + l13;
+
+        l25 = l25 + $l24;
+
+     label3:
+        $b19 = l25 cmp l4;
+
+        $i26 = (int) $b19;
+
+        if $i26 <= 0 goto label2;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void run()>();
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.gctests.StringInternSyncWithGC.StringGenerator $r2;
+        int i0;
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r3;
+        StringInternSyncWithGC r1;
+        java.lang.Runnable $r4;
+
+        r1 := @this: StringInternSyncWithGC;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.StringInternSyncWithGC.StringGenerator;
+
+        $r3 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r1;
+
+        specialinvoke $r2.<gc.gctests.StringInternSyncWithGC.StringGenerator: void <init>(int,gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC)>(i0, $r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        long $l4, $l5, l10;
+        int $i0, $i1, $i2, $i3, i6, i7, i8, $i9, $i12, $i14;
+        java.lang.String $r1, $r2, $r3, $r4;
+        boolean $z0, $z1, $z2;
+        double $d0, $d1, $d2, d3;
+        nsk.share.test.Test $r9;
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r8;
+        java.lang.IllegalArgumentException $r7;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i12 = (int) -1;
+
+        i6 = $i12;
+
+        i7 = 1;
+
+        d3 = 2.0;
+
+        i8 = 0;
+
+        goto label09;
+
+     label01:
+        $r1 = r0[i8];
+
+        $i0 = virtualinvoke $r1.<java.lang.String: int hashCode()>();
+
+        lookupswitch($i0)
+        {
+            case -968313777: goto label02;
+            case -392116231: goto label03;
+            case 560160749: goto label04;
+            default: goto label08;
+        };
+
+     label02:
+        $z2 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("-capacityVerPart");
+
+        if $z2 != 0 goto label06;
+
+        goto label08;
+
+     label03:
+        $z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("-memUsage");
+
+        if $z1 != 0 goto label05;
+
+        goto label08;
+
+     label04:
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("-appTimeout");
+
+        if $z0 != 0 goto label07;
+
+        goto label08;
+
+     label05:
+        $i2 = i8 + 1;
+
+        $r3 = r0[$i2];
+
+        i7 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        goto label08;
+
+     label06:
+        $i3 = i8 + 1;
+
+        $r4 = r0[$i3];
+
+        d3 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r4);
+
+        goto label08;
+
+     label07:
+        $i1 = i8 + 1;
+
+        $r2 = r0[$i1];
+
+        i6 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+     label08:
+        i8 = i8 + 1;
+
+     label09:
+        $i9 = lengthof r0;
+
+        if i8 < $i9 goto label01;
+
+        $i14 = (int) -1;
+
+        if i6 != $i14 goto label10;
+
+        $r7 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r7.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Specify -appTimeout.");
+
+        throw $r7;
+
+     label10:
+        $l4 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $d0 = (double) i6;
+
+        $d1 = $d0 / d3;
+
+        $d2 = $d1 * 60000.0;
+
+        $l5 = (long) $d2;
+
+        l10 = $l4 + $l5;
+
+        $r8 = new gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC;
+
+        specialinvoke $r8.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: void <init>(int,long)>(i7, l10);
+
+        $r9 = (nsk.share.test.Test) $r8;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r9, r0);
+
+        return;
+    }
+
+    protected java.util.List getStringsToIntern()
+    {
+        java.util.List $r1;
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r2;
+        StringInternSyncWithGC r0;
+
+        r0 := @this: StringInternSyncWithGC;
+
+        $r2 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r1 = $r2.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: java.util.List stringsToIntern>;
+
+        return $r1;
+    }
+
+    protected int getNumberOfThreads()
+    {
+        nsk.share.runner.RunParams $r1;
+        int $i0;
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r2;
+        StringInternSyncWithGC r0;
+
+        r0 := @this: StringInternSyncWithGC;
+
+        $r2 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r1 = $r2.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.runner.RunParams runParams>;
+
+        $i0 = virtualinvoke $r1.<nsk.share.runner.RunParams: int getNumberOfThreads()>();
+
+        return $i0;
+    }
+
+    protected nsk.share.gc.gp.string.RandomStringProducer getGarbageProducer()
+    {
+        nsk.share.gc.gp.string.RandomStringProducer $r1;
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r2;
+        StringInternSyncWithGC r0;
+
+        r0 := @this: StringInternSyncWithGC;
+
+        $r2 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r1 = $r2.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.gc.gp.string.RandomStringProducer gp>;
+
+        return $r1;
+    }
+
+    protected int getMaxStringSize()
+    {
+        int $i0;
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r1;
+        StringInternSyncWithGC r0;
+
+        r0 := @this: StringInternSyncWithGC;
+
+        $r1 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $i0 = $r1.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: int maxStringSize>;
+
+        return $i0;
+    }
+
+    protected nsk.share.test.ExecutionController getExecController()
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC $r2;
+        StringInternSyncWithGC r0;
+
+        r0 := @this: StringInternSyncWithGC;
+
+        $r2 = (gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC) r0;
+
+        $r1 = virtualinvoke $r2.<gc.gctests.StringInternSyncWithGC.StringInternSyncWithGC: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+}

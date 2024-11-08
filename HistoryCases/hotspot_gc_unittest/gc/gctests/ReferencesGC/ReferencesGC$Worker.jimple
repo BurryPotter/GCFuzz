@@ -1,0 +1,940 @@
+class ReferencesGC$Worker extends java.lang.Object implements java.lang.Runnable
+{
+    static final int WEAK;
+    static final int SOFT;
+    static final int PHANTOM;
+    private nsk.share.test.ExecutionController stresser;
+    int finalizationMaxTime;
+    int[] alive;
+    int[] enqued;
+    gc.gctests.ReferencesGC.CircularLinkedList[] holder;
+    java.lang.ref.WeakReference[] wr;
+    java.lang.ref.SoftReference[] sr;
+    java.lang.ref.PhantomReference[] phr;
+    java.lang.ref.ReferenceQueue refq;
+    nsk.share.gc.gp.GarbageProducer gp;
+    int iter;
+    final gc.gctests.ReferencesGC.ReferencesGC this$0;
+
+    private void <init>(gc.gctests.ReferencesGC.ReferencesGC)
+    {
+        nsk.share.runner.RunParams $r2;
+        java.lang.ref.WeakReference[] $r6;
+        gc.gctests.ReferencesGC.ReferencesGC$Worker $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24;
+        gc.gctests.ReferencesGC.CircularLinkedList[] $r5;
+        java.lang.ref.ReferenceQueue $r13;
+        gc.gctests.ReferencesGC.ReferencesGC r1;
+        int[] $r3, $r4;
+        java.lang.ref.PhantomReference[] $r8;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i7;
+        nsk.share.gc.gp.GarbageProducer $r12;
+        java.lang.ref.SoftReference[] $r7;
+        ReferencesGC$Worker r0;
+        java.util.List $r10;
+        java.lang.Object $r11;
+
+        r0 := @this: ReferencesGC$Worker;
+
+        r1 := @parameter0: gc.gctests.ReferencesGC.ReferencesGC;
+
+        $r14 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r14.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.ReferencesGC this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = staticinvoke <gc.gctests.ReferencesGC.ReferencesGC: nsk.share.runner.RunParams access$0(gc.gctests.ReferencesGC.ReferencesGC)>(r1);
+
+        $i0 = virtualinvoke $r2.<nsk.share.runner.RunParams: int getNumberOfThreads()>();
+
+        $i7 = (int) 60000;
+
+        $i1 = $i7 * $i0;
+
+        $r15 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r15.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int finalizationMaxTime> = $i1;
+
+        $r3 = newarray (int)[3];
+
+        $r16 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r16.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] alive> = $r3;
+
+        $r4 = newarray (int)[3];
+
+        $r17 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r17.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued> = $r4;
+
+        $i2 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        $r5 = newarray (gc.gctests.ReferencesGC.CircularLinkedList)[$i2];
+
+        $r18 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r18.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.CircularLinkedList[] holder> = $r5;
+
+        $i3 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        $r6 = newarray (java.lang.ref.WeakReference)[$i3];
+
+        $r19 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r19.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.WeakReference[] wr> = $r6;
+
+        $i4 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        $r7 = newarray (java.lang.ref.SoftReference)[$i4];
+
+        $r20 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r20.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.SoftReference[] sr> = $r7;
+
+        $i5 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        $r8 = newarray (java.lang.ref.PhantomReference)[$i5];
+
+        $r21 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r21.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.PhantomReference[] phr> = $r8;
+
+        $r13 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r13.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r22 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r22.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.ReferenceQueue refq> = $r13;
+
+        $r10 = staticinvoke <nsk.share.gc.gp.GarbageUtils: java.util.List getArrayProducers()>();
+
+        $r11 = interfaceinvoke $r10.<java.util.List: java.lang.Object get(int)>(0);
+
+        $r12 = (nsk.share.gc.gp.GarbageProducer) $r11;
+
+        $r23 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r23.<gc.gctests.ReferencesGC.ReferencesGC$Worker: nsk.share.gc.gp.GarbageProducer gp> = $r12;
+
+        $r24 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r24.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int iter> = 0;
+
+        return;
+    }
+
+    public void run()
+    {
+        int[] $r3, $r4, $r33, $r34, $r47, $r48, $r49, $r50, $r51, $r58, $r59, $r72, $r73, $r74, $r75, $r76, $r77, $r78, $r79, $r85, $r88, $r91, $r95, $r98;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i14, $i16, $i17, $i18, $i19, $i20, $i21, $i22, $i23, $i26, $i27, $i28, $i29, $i30, $i31, $i32, $i33, $i34, $i35, $i36, $i37, $i38, $i39, $i40, $i41, $i42, $i43, $i44, $i45, $i46, $i47, $i48, $i49, i50, i51, i52, $i53, i54, i55, $i56, i58, $i59, $i60, $i62, $i63;
+        java.lang.ref.WeakReference $r25, $r36, $r39, $r61, $r64, $r117;
+        java.lang.ref.WeakReference[] $r13, $r24, $r35, $r38, $r60, $r63;
+        nsk.share.test.ExecutionController $r1, $r31, $r32, $r111, $r114;
+        java.lang.String $r56, $r102, $r109;
+        ReferencesGC$Worker r0;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9, $z10;
+        java.lang.ref.PhantomReference $r29, $r46, $r71, $r119;
+        double $d0, $d1, $d2, $d3, $d4, $d5, $d6;
+        nsk.share.log.Log $r53, $r81, $r104;
+        byte $b25, $b61;
+        java.lang.StringBuilder $r55, $r83, $r84, $r86, $r87, $r89, $r90, $r92, $r93, $r94, $r96, $r97, $r99, $r100, $r101, $r107, $r108, $r120, $r122, $r123;
+        long $l13, $l15, $l24, l57;
+        gc.gctests.ReferencesGC.CircularLinkedList[] $r6, $r7, $r10, $r15, $r20, $r30;
+        java.lang.ref.SoftReference $r27, $r41, $r44, $r66, $r69, $r118;
+        java.lang.ref.SoftReference[] $r18, $r26, $r40, $r43, $r65, $r68;
+        java.lang.Object $r37, $r42, $r62, $r67;
+        gc.gctests.ReferencesGC.ReferencesGC $r52, $r80, $r103, $r110;
+        java.lang.Throwable $r145, $r187;
+        java.lang.ref.ReferenceQueue $r11, $r16, $r21, $r115;
+        nsk.share.TestFailure $r121, $r124;
+        java.lang.OutOfMemoryError $r113;
+        gc.gctests.ReferencesGC.ReferencesGC$Worker $r125, $r126, $r127, $r128, $r129, $r130, $r131, $r132, $r133, $r134, $r135, $r136, $r137, $r138, $r139, $r140, $r141, $r142, $r143, $r144, $r146, $r147, $r148, $r149, $r150, $r151, $r152, $r153, $r154, $r155, $r156, $r157, $r158, $r159, $r160, $r161, $r162, $r163, $r164, $r165, $r166, $r167, $r168, $r169, $r170, $r171, $r172, $r173, $r174, $r175, $r176, $r177, $r178, $r179, $r180, $r181, $r182, $r183, $r184, $r185, $r186, $r188;
+        java.lang.ref.PhantomReference[] $r23, $r28, $r45, $r70;
+        float $f0, $f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8, $f9, $f10, $f11, $f12, $f13, $f14, $f15, $f16, $f17, $f18;
+        gc.gctests.ReferencesGC.CircularLinkedList $r8, $r12, $r17, $r22, $r116;
+        java.lang.InterruptedException $r112;
+
+        r0 := @this: ReferencesGC$Worker;
+
+        $r125 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r1 = $r125.<gc.gctests.ReferencesGC.ReferencesGC$Worker: nsk.share.test.ExecutionController stresser>;
+
+        if $r1 != null goto label38;
+
+        $r126 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r110 = $r126.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.ReferencesGC this$0>;
+
+        $r111 = staticinvoke <gc.gctests.ReferencesGC.ReferencesGC: nsk.share.test.ExecutionController access$1(gc.gctests.ReferencesGC.ReferencesGC)>($r110);
+
+        $r127 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r127.<gc.gctests.ReferencesGC.ReferencesGC$Worker: nsk.share.test.ExecutionController stresser> = $r111;
+
+        goto label38;
+
+     label01:
+        i50 = 0;
+
+     label02:
+        $r115 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r115.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r128 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r128.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.ReferenceQueue refq> = $r115;
+
+        $r3 = newarray (int)[3];
+
+        $r129 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r129.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] alive> = $r3;
+
+        $r4 = newarray (int)[3];
+
+        $r130 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r130.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued> = $r4;
+
+        i51 = 0;
+
+        goto label04;
+
+     label03:
+        $r131 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r6 = $r131.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.CircularLinkedList[] holder>;
+
+        $r116 = new gc.gctests.ReferencesGC.CircularLinkedList;
+
+        specialinvoke $r116.<gc.gctests.ReferencesGC.CircularLinkedList: void <init>()>();
+
+        $r6[i51] = $r116;
+
+        $r132 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r7 = $r132.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.CircularLinkedList[] holder>;
+
+        $r8 = $r7[i51];
+
+        virtualinvoke $r8.<gc.gctests.ReferencesGC.CircularLinkedList: void addNelements(int)>(300);
+
+        $r133 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r13 = $r133.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.WeakReference[] wr>;
+
+        $r117 = new java.lang.ref.WeakReference;
+
+        $r134 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r10 = $r134.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.CircularLinkedList[] holder>;
+
+        $r12 = $r10[i51];
+
+        $r135 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r11 = $r135.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.ReferenceQueue refq>;
+
+        specialinvoke $r117.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r12, $r11);
+
+        $r13[i51] = $r117;
+
+        $r136 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r18 = $r136.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.SoftReference[] sr>;
+
+        $r118 = new java.lang.ref.SoftReference;
+
+        $r137 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r15 = $r137.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.CircularLinkedList[] holder>;
+
+        $r17 = $r15[i51];
+
+        $r138 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r16 = $r138.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.ReferenceQueue refq>;
+
+        specialinvoke $r118.<java.lang.ref.SoftReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r17, $r16);
+
+        $r18[i51] = $r118;
+
+        $r139 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r23 = $r139.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.PhantomReference[] phr>;
+
+        $r119 = new java.lang.ref.PhantomReference;
+
+        $r140 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r20 = $r140.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.CircularLinkedList[] holder>;
+
+        $r22 = $r20[i51];
+
+        $r141 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r21 = $r141.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.ReferenceQueue refq>;
+
+        specialinvoke $r119.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r22, $r21);
+
+        $r23[i51] = $r119;
+
+        i51 = i51 + 1;
+
+     label04:
+        $i0 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        if i51 < $i0 goto label03;
+
+     label05:
+        goto label07;
+
+     label06:
+        $r113 := @caughtexception;
+
+        goto label38;
+
+     label07:
+        i52 = 0;
+
+        goto label12;
+
+     label08:
+        $r142 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r24 = $r142.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.WeakReference[] wr>;
+
+        $r25 = $r24[i52];
+
+        $z0 = virtualinvoke $r25.<java.lang.ref.WeakReference: boolean isEnqueued()>();
+
+        if $z0 == 0 goto label09;
+
+        i50 = i50 + 1;
+
+     label09:
+        $r143 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r26 = $r143.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.SoftReference[] sr>;
+
+        $r27 = $r26[i52];
+
+        $z1 = virtualinvoke $r27.<java.lang.ref.SoftReference: boolean isEnqueued()>();
+
+        if $z1 == 0 goto label10;
+
+        i50 = i50 + 1;
+
+     label10:
+        $r144 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r28 = $r144.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.PhantomReference[] phr>;
+
+        $r29 = $r28[i52];
+
+        $z2 = virtualinvoke $r29.<java.lang.ref.PhantomReference: boolean isEnqueued()>();
+
+        if $z2 == 0 goto label11;
+
+        i50 = i50 + 1;
+
+     label11:
+        i52 = i52 + 1;
+
+     label12:
+        $i53 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        if i52 < $i53 goto label08;
+
+        if i50 == 0 goto label13;
+
+        $r121 = new nsk.share.TestFailure;
+
+        $r120 = new java.lang.StringBuilder;
+
+        specialinvoke $r120.<java.lang.StringBuilder: void <init>(java.lang.String)>("There are ");
+
+        $r107 = virtualinvoke $r120.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i50);
+
+        $r108 = virtualinvoke $r107.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" references in the queue instead 0 before null-assigment.");
+
+        $r109 = virtualinvoke $r108.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r121.<nsk.share.TestFailure: void <init>(java.lang.String)>($r109);
+
+        $r145 = (java.lang.Throwable) $r121;
+
+        throw $r145;
+
+     label13:
+        i54 = 0;
+
+        goto label15;
+
+     label14:
+        $r146 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r30 = $r146.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.CircularLinkedList[] holder>;
+
+        $r30[i54] = null;
+
+        i54 = i54 + 1;
+
+     label15:
+        $i1 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        $f1 = (float) $i1;
+
+        $f0 = <gc.gctests.ReferencesGC.ReferencesGC: float RATIO>;
+
+        $f2 = $f1 * $f0;
+
+        $i2 = (int) $f2;
+
+        if i54 < $i2 goto label14;
+
+        $r147 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r31 = $r147.<gc.gctests.ReferencesGC.ReferencesGC$Worker: nsk.share.test.ExecutionController stresser>;
+
+        staticinvoke <nsk.share.gc.Algorithms: void eatMemory(nsk.share.test.ExecutionController)>($r31);
+
+        $r148 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r32 = $r148.<gc.gctests.ReferencesGC.ReferencesGC$Worker: nsk.share.test.ExecutionController stresser>;
+
+        $z3 = interfaceinvoke $r32.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z3 != 0 goto label16;
+
+        goto label39;
+
+     label16:
+        $r33 = newarray (int)[3];
+
+        $r149 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r149.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] alive> = $r33;
+
+        $r34 = newarray (int)[3];
+
+        $r150 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r150.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued> = $r34;
+
+        i55 = 0;
+
+        goto label23;
+
+     label17:
+        $r151 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r35 = $r151.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.WeakReference[] wr>;
+
+        $r36 = $r35[i55];
+
+        $r37 = virtualinvoke $r36.<java.lang.ref.WeakReference: java.lang.Object get()>();
+
+        if $r37 == null goto label18;
+
+        $r152 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r51 = $r152.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] alive>;
+
+        $i11 = $r51[0];
+
+        $i12 = $i11 + 1;
+
+        $r51[0] = $i12;
+
+     label18:
+        $r153 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r38 = $r153.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.WeakReference[] wr>;
+
+        $r39 = $r38[i55];
+
+        $z4 = virtualinvoke $r39.<java.lang.ref.WeakReference: boolean isEnqueued()>();
+
+        if $z4 == 0 goto label19;
+
+        $r154 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r50 = $r154.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i9 = $r50[0];
+
+        $i10 = $i9 + 1;
+
+        $r50[0] = $i10;
+
+     label19:
+        $r155 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r40 = $r155.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.SoftReference[] sr>;
+
+        $r41 = $r40[i55];
+
+        $r42 = virtualinvoke $r41.<java.lang.ref.SoftReference: java.lang.Object get()>();
+
+        if $r42 == null goto label20;
+
+        $r156 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r49 = $r156.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] alive>;
+
+        $i7 = $r49[1];
+
+        $i8 = $i7 + 1;
+
+        $r49[1] = $i8;
+
+     label20:
+        $r157 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r43 = $r157.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.SoftReference[] sr>;
+
+        $r44 = $r43[i55];
+
+        $z5 = virtualinvoke $r44.<java.lang.ref.SoftReference: boolean isEnqueued()>();
+
+        if $z5 == 0 goto label21;
+
+        $r158 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r48 = $r158.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i5 = $r48[1];
+
+        $i6 = $i5 + 1;
+
+        $r48[1] = $i6;
+
+     label21:
+        $r159 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r45 = $r159.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.PhantomReference[] phr>;
+
+        $r46 = $r45[i55];
+
+        $z6 = virtualinvoke $r46.<java.lang.ref.PhantomReference: boolean isEnqueued()>();
+
+        if $z6 == 0 goto label22;
+
+        $r160 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r47 = $r160.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i3 = $r47[2];
+
+        $i4 = $i3 + 1;
+
+        $r47[2] = $i4;
+
+     label22:
+        i55 = i55 + 1;
+
+     label23:
+        $i56 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        if i55 < $i56 goto label17;
+
+        $l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r161 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $i14 = $r161.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int finalizationMaxTime>;
+
+        $l15 = (long) $i14;
+
+        l57 = $l13 + $l15;
+
+        goto label35;
+
+     label24:
+        $r58 = newarray (int)[3];
+
+        $r162 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r162.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] alive> = $r58;
+
+        $r59 = newarray (int)[3];
+
+        $r163 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r163.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued> = $r59;
+
+        i58 = 0;
+
+        goto label31;
+
+     label25:
+        $r164 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r60 = $r164.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.WeakReference[] wr>;
+
+        $r61 = $r60[i58];
+
+        $r62 = virtualinvoke $r61.<java.lang.ref.WeakReference: java.lang.Object get()>();
+
+        if $r62 == null goto label26;
+
+        $r165 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r76 = $r165.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] alive>;
+
+        $i34 = $r76[0];
+
+        $i35 = $i34 + 1;
+
+        $r76[0] = $i35;
+
+     label26:
+        $r166 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r63 = $r166.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.WeakReference[] wr>;
+
+        $r64 = $r63[i58];
+
+        $z7 = virtualinvoke $r64.<java.lang.ref.WeakReference: boolean isEnqueued()>();
+
+        if $z7 == 0 goto label27;
+
+        $r167 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r75 = $r167.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i32 = $r75[0];
+
+        $i33 = $i32 + 1;
+
+        $r75[0] = $i33;
+
+     label27:
+        $r168 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r65 = $r168.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.SoftReference[] sr>;
+
+        $r66 = $r65[i58];
+
+        $r67 = virtualinvoke $r66.<java.lang.ref.SoftReference: java.lang.Object get()>();
+
+        if $r67 == null goto label28;
+
+        $r169 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r74 = $r169.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] alive>;
+
+        $i30 = $r74[1];
+
+        $i31 = $i30 + 1;
+
+        $r74[1] = $i31;
+
+     label28:
+        $r170 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r68 = $r170.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.SoftReference[] sr>;
+
+        $r69 = $r68[i58];
+
+        $z8 = virtualinvoke $r69.<java.lang.ref.SoftReference: boolean isEnqueued()>();
+
+        if $z8 == 0 goto label29;
+
+        $r171 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r73 = $r171.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i28 = $r73[1];
+
+        $i29 = $i28 + 1;
+
+        $r73[1] = $i29;
+
+     label29:
+        $r172 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r70 = $r172.<gc.gctests.ReferencesGC.ReferencesGC$Worker: java.lang.ref.PhantomReference[] phr>;
+
+        $r71 = $r70[i58];
+
+        $z9 = virtualinvoke $r71.<java.lang.ref.PhantomReference: boolean isEnqueued()>();
+
+        if $z9 == 0 goto label30;
+
+        $r173 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r72 = $r173.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i26 = $r72[2];
+
+        $i27 = $i26 + 1;
+
+        $r72[2] = $i27;
+
+     label30:
+        i58 = i58 + 1;
+
+     label31:
+        $i59 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        if i58 < $i59 goto label25;
+
+        $r174 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r77 = $r174.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i37 = $r77[0];
+
+        $r175 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r78 = $r175.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i36 = $r78[1];
+
+        $i39 = $i37 + $i36;
+
+        $r176 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r79 = $r176.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i38 = $r79[2];
+
+        i50 = $i39 + $i38;
+
+        $i40 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        $i41 = 3 * $i40;
+
+        $f10 = (float) $i41;
+
+        $f9 = <gc.gctests.ReferencesGC.ReferencesGC: float RATIO>;
+
+        $f11 = $f10 * $f9;
+
+        $d2 = (double) $f11;
+
+        $d3 = $d2 * 0.9;
+
+        $i42 = (int) $d3;
+
+        if i50 >= $i42 goto label35;
+
+        $r177 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r80 = $r177.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.ReferencesGC this$0>;
+
+        $r81 = staticinvoke <gc.gctests.ReferencesGC.ReferencesGC: nsk.share.log.Log access$2(gc.gctests.ReferencesGC.ReferencesGC)>($r80);
+
+        $r122 = new java.lang.StringBuilder;
+
+        specialinvoke $r122.<java.lang.StringBuilder: void <init>(java.lang.String)>("After null-assignment to ");
+
+        $i43 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        $f13 = (float) $i43;
+
+        $f12 = <gc.gctests.ReferencesGC.ReferencesGC: float RATIO>;
+
+        $f14 = $f13 * $f12;
+
+        $i44 = (int) $f14;
+
+        $r83 = virtualinvoke $r122.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i44);
+
+        $r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" and provoking gc found:\n\t");
+
+        $r178 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r85 = $r178.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i45 = $r85[0];
+
+        $r86 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i45);
+
+        $r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" weak\n\t");
+
+        $r179 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r88 = $r179.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i46 = $r88[1];
+
+        $r89 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i46);
+
+        $r90 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" soft\n\t");
+
+        $r180 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r91 = $r180.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] enqued>;
+
+        $i47 = $r91[2];
+
+        $r92 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i47);
+
+        $r93 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" phantom ");
+
+        $r94 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" queuened refs and \n\t");
+
+        $r181 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r95 = $r181.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] alive>;
+
+        $i48 = $r95[0];
+
+        $r96 = virtualinvoke $r94.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i48);
+
+        $r97 = virtualinvoke $r96.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" weak\n\t");
+
+        $r182 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r98 = $r182.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int[] alive>;
+
+        $i49 = $r98[1];
+
+        $r99 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i49);
+
+        $r100 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" soft\n\t");
+
+        $r101 = virtualinvoke $r100.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("alive refs.");
+
+        $r102 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r81.<nsk.share.log.Log: void debug(java.lang.Object)>($r102);
+
+     label32:
+        $r183 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r103 = $r183.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.ReferencesGC this$0>;
+
+        $r104 = staticinvoke <gc.gctests.ReferencesGC.ReferencesGC: nsk.share.log.Log access$2(gc.gctests.ReferencesGC.ReferencesGC)>($r103);
+
+        interfaceinvoke $r104.<nsk.share.log.Log: void debug(java.lang.Object)>("sleeping to give gc one more chance ......");
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000L);
+
+     label33:
+        goto label35;
+
+     label34:
+        $r112 := @caughtexception;
+
+     label35:
+        $d4 = (double) i50;
+
+        $i60 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        $f15 = (float) $i60;
+
+        $f16 = <gc.gctests.ReferencesGC.ReferencesGC: float RATIO>;
+
+        $f17 = $f15 * $f16;
+
+        $f18 = $f17 * 3.0F;
+
+        $d5 = (double) $f18;
+
+        $d6 = $d5 * 0.9;
+
+        $b61 = $d4 cmpg $d6;
+
+        $i62 = (int) $b61;
+
+        if $i62 >= 0 goto label36;
+
+        $l24 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $b25 = $l24 cmp l57;
+
+        $i63 = (int) $b25;
+
+        if $i63 < 0 goto label24;
+
+     label36:
+        $r184 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r52 = $r184.<gc.gctests.ReferencesGC.ReferencesGC$Worker: gc.gctests.ReferencesGC.ReferencesGC this$0>;
+
+        $r53 = staticinvoke <gc.gctests.ReferencesGC.ReferencesGC: nsk.share.log.Log access$2(gc.gctests.ReferencesGC.ReferencesGC)>($r52);
+
+        $r123 = new java.lang.StringBuilder;
+
+        specialinvoke $r123.<java.lang.StringBuilder: void <init>(java.lang.String)>("iteration.... ");
+
+        $r185 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $i16 = $r185.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int iter>;
+
+        $i17 = $i16 + 1;
+
+        $r186 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r186.<gc.gctests.ReferencesGC.ReferencesGC$Worker: int iter> = $i17;
+
+        $r55 = virtualinvoke $r123.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i16);
+
+        $r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r53.<nsk.share.log.Log: void debug(java.lang.Object)>($r56);
+
+        $i18 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        $i19 = 3 * $i18;
+
+        $f4 = (float) $i19;
+
+        $f3 = <gc.gctests.ReferencesGC.ReferencesGC: float RATIO>;
+
+        $f5 = $f4 * $f3;
+
+        $d0 = (double) $f5;
+
+        $d1 = $d0 * 0.9;
+
+        $i20 = (int) $d1;
+
+        if i50 < $i20 goto label37;
+
+        $i21 = <gc.gctests.ReferencesGC.ReferencesGC: int RANGE>;
+
+        $i22 = 3 * $i21;
+
+        $f7 = (float) $i22;
+
+        $f6 = <gc.gctests.ReferencesGC.ReferencesGC: float RATIO>;
+
+        $f8 = $f7 * $f6;
+
+        $i23 = (int) $f8;
+
+        if i50 <= $i23 goto label38;
+
+     label37:
+        $r124 = new nsk.share.TestFailure;
+
+        specialinvoke $r124.<nsk.share.TestFailure: void <init>(java.lang.String)>("Test failed");
+
+        $r187 = (java.lang.Throwable) $r124;
+
+        throw $r187;
+
+     label38:
+        $r188 = (gc.gctests.ReferencesGC.ReferencesGC$Worker) r0;
+
+        $r114 = $r188.<gc.gctests.ReferencesGC.ReferencesGC$Worker: nsk.share.test.ExecutionController stresser>;
+
+        $z10 = interfaceinvoke $r114.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z10 != 0 goto label01;
+
+     label39:
+        return;
+
+        catch java.lang.OutOfMemoryError from label02 to label05 with label06;
+        catch java.lang.InterruptedException from label32 to label33 with label34;
+    }
+}

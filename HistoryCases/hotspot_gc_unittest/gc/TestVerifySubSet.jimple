@@ -1,0 +1,145 @@
+public class TestVerifySubSet extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestVerifySubSet r0;
+
+        r0 := @this: TestVerifySubSet;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static jdk.test.lib.process.OutputAnalyzer runTest(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.Object[] $r11;
+        java.lang.String[] $r1, $r2, $r3, $r10, $r12;
+        java.util.ArrayList $r0;
+        int $i0;
+        java.lang.String r5, $r7, $r9, $r18, $r20;
+        java.lang.ProcessBuilder $r13;
+        java.io.PrintStream $r17;
+        java.lang.Process $r15;
+        jdk.test.lib.process.OutputAnalyzer $r14;
+        java.lang.StringBuilder $r4, $r6, $r16, $r19;
+        java.lang.Class $r8;
+
+        r5 := @parameter0: java.lang.String;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "-Xlog.*";
+
+        $r2 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getFilteredTestJavaOpts(java.lang.String[])>($r1);
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r2);
+
+        $r3 = newarray (java.lang.String)[6];
+
+        $r3[0] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r3[1] = "-XX:+VerifyBeforeGC";
+
+        $r3[2] = "-XX:+VerifyAfterGC";
+
+        $r3[3] = "-Xlog:gc+verify=debug";
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:VerifySubSet=");
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r3[4] = $r7;
+
+        $r8 = class "Lgc/RunSystemGC;";
+
+        $r9 = virtualinvoke $r8.<java.lang.Class: java.lang.String getName()>();
+
+        $r3[5] = $r9;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r3);
+
+        $i0 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+        $r10 = newarray (java.lang.String)[$i0];
+
+        $r11 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r10);
+
+        $r12 = (java.lang.String[]) $r11;
+
+        $r13 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r12);
+
+        $r14 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r15 = virtualinvoke $r13.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r14.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r15);
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("Output:\n");
+
+        $r18 = virtualinvoke $r14.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        $r19 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r18);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20);
+
+        return $r14;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r2;
+        jdk.test.lib.process.OutputAnalyzer $r0, $r1;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <gc.TestVerifySubSet: jdk.test.lib.process.OutputAnalyzer runTest(java.lang.String)>("heap, threads, codecache, metaspace");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Heap");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Threads");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("CodeCache");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("MetaspaceUtils");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("SymbolTable");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("StringTable");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("SystemDictionary");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("CodeCache Oops");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r1 = staticinvoke <gc.TestVerifySubSet: jdk.test.lib.process.OutputAnalyzer runTest(java.lang.String)>("hello, threads, codecache, metaspace");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("memory sub-system is unknown, please correct it");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Threads");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("CodeCache");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("MetaspaceUtils");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+        return;
+    }
+}

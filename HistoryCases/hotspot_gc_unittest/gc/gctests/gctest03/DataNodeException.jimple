@@ -1,0 +1,14 @@
+class DataNodeException extends java.lang.Exception
+{
+
+    void <init>()
+    {
+        DataNodeException r0;
+
+        r0 := @this: DataNodeException;
+
+        specialinvoke r0.<java.lang.Exception: void <init>()>();
+
+        return;
+    }
+}

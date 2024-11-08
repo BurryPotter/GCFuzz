@@ -1,0 +1,39 @@
+final class Test7190310$1 extends java.lang.Object
+{
+
+    void <init>()
+    {
+        Test7190310$1 r0;
+
+        r0 := @this: Test7190310$1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        Test7190310$1 r0;
+
+        r0 := @this: Test7190310$1;
+
+        return "The Object";
+    }
+
+    protected void finalize() throws java.lang.Throwable
+    {
+        java.io.PrintStream $r0;
+        Test7190310$1 r1;
+
+        r1 := @this: Test7190310$1;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("The Object is being finalized");
+
+        specialinvoke r1.<java.lang.Object: void finalize()>();
+
+        return;
+    }
+}

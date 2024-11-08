@@ -1,0 +1,353 @@
+public class ObjectGraph extends java.lang.Object
+{
+
+    private void <init>()
+    {
+        ObjectGraph r0;
+
+        r0 := @this: ObjectGraph;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void propagateTransitiveProperty(java.util.Set, java.util.function.Consumer)
+    {
+        java.util.function.Consumer $r3, r4;
+        java.util.stream.Stream $r2;
+        java.util.Set r1;
+        java.util.ArrayDeque $r0;
+
+        r1 := @parameter0: java.util.Set;
+
+        r4 := @parameter1: java.util.function.Consumer;
+
+        $r0 = new java.util.ArrayDeque;
+
+        specialinvoke $r0.<java.util.ArrayDeque: void <init>()>();
+
+        $r2 = interfaceinvoke r1.<java.util.Set: java.util.stream.Stream stream()>();
+
+        virtualinvoke $r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r3 = staticinvoke <ObjectGraph$push__1: java.util.function.Consumer bootstrap$(java.util.Deque)>($r0);
+
+        interfaceinvoke $r2.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r3);
+
+        staticinvoke <gc.g1.humongousObjects.objectGraphTest.ObjectGraph: void enumerateAndMark(java.util.Deque,java.util.function.Consumer)>($r0, r4);
+
+        return;
+    }
+
+    private static void connectVertexes(java.lang.Object[], java.lang.Object[])
+    {
+        java.lang.Object[] r0, r3;
+        java.lang.Error $r4;
+        int $i0, $i1, i2;
+        java.lang.Object $r1, $r2;
+
+        r0 := @parameter0: java.lang.Object[];
+
+        r3 := @parameter1: java.lang.Object[];
+
+        $i0 = lengthof r0;
+
+        $i1 = $i0 - 1;
+
+        $r1 = r0[$i1];
+
+        if $r1 == null goto label1;
+
+        $r4 = new java.lang.Error;
+
+        specialinvoke $r4.<java.lang.Error: void <init>(java.lang.String)>("Array is full and no connections could be added");
+
+        throw $r4;
+
+     label1:
+        i2 = 0;
+
+        goto label3;
+
+     label2:
+        i2 = i2 + 1;
+
+     label3:
+        $r2 = r0[i2];
+
+        if $r2 != null goto label2;
+
+        r0[i2] = r3;
+
+        return;
+    }
+
+    public static java.lang.Object[] generateObjectNodes(java.util.List, java.util.Map, int, int)
+    {
+        java.lang.Integer $r13;
+        java.util.Map r15;
+        boolean $z0;
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode $r3, $r6, $r10;
+        java.util.Set $r16;
+        java.util.List r0, $r7, $r11;
+        java.util.stream.Stream $r17;
+        java.lang.Object[] $r4, $r8, $r14, $r19;
+        java.lang.Object[][] r1;
+        int $i0, i1, i2, $i3, $i4, $i5, $i6, i7, $i8, $i9, i10, i11;
+        java.util.function.Consumer $r18;
+        java.lang.Object $r2, $r5, $r9, $r12;
+
+        r0 := @parameter0: java.util.List;
+
+        r15 := @parameter1: java.util.Map;
+
+        i2 := @parameter2: int;
+
+        i1 := @parameter3: int;
+
+        $i0 = interfaceinvoke r0.<java.util.List: int size()>();
+
+        r1 = newarray (java.lang.Object[])[$i0];
+
+        i7 = 0;
+
+        goto label4;
+
+     label1:
+        $i3 = i7;
+
+        $r2 = interfaceinvoke r0.<java.util.List: java.lang.Object get(int)>(i7);
+
+        $r3 = (gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode) $r2;
+
+        $z0 = $r3.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: boolean isHumongous>;
+
+        if $z0 == 0 goto label2;
+
+        $i8 = i2;
+
+        goto label3;
+
+     label2:
+        $i8 = i1;
+
+     label3:
+        $r4 = newarray (java.lang.Object)[$i8];
+
+        r1[$i3] = $r4;
+
+        i7 = i7 + 1;
+
+     label4:
+        $i9 = interfaceinvoke r0.<java.util.List: int size()>();
+
+        if i7 < $i9 goto label1;
+
+        i10 = 0;
+
+        goto label8;
+
+     label5:
+        i11 = 0;
+
+        goto label7;
+
+     label6:
+        $r8 = r1[i10];
+
+        $r9 = interfaceinvoke r0.<java.util.List: java.lang.Object get(int)>(i10);
+
+        $r10 = (gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode) $r9;
+
+        $r11 = virtualinvoke $r10.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: java.util.List getConnectedTo()>();
+
+        $r12 = interfaceinvoke $r11.<java.util.List: java.lang.Object get(int)>(i11);
+
+        $r13 = (java.lang.Integer) $r12;
+
+        $i6 = virtualinvoke $r13.<java.lang.Integer: int intValue()>();
+
+        $r14 = r1[$i6];
+
+        staticinvoke <gc.g1.humongousObjects.objectGraphTest.ObjectGraph: void connectVertexes(java.lang.Object[],java.lang.Object[])>($r8, $r14);
+
+        i11 = i11 + 1;
+
+     label7:
+        $r5 = interfaceinvoke r0.<java.util.List: java.lang.Object get(int)>(i10);
+
+        $r6 = (gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode) $r5;
+
+        $r7 = virtualinvoke $r6.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: java.util.List getConnectedTo()>();
+
+        $i5 = interfaceinvoke $r7.<java.util.List: int size()>();
+
+        if i11 < $i5 goto label6;
+
+        i10 = i10 + 1;
+
+     label8:
+        $i4 = interfaceinvoke r0.<java.util.List: int size()>();
+
+        if i10 < $i4 goto label5;
+
+        $r16 = interfaceinvoke r15.<java.util.Map: java.util.Set entrySet()>();
+
+        $r17 = interfaceinvoke $r16.<java.util.Set: java.util.stream.Stream stream()>();
+
+        $r18 = staticinvoke <ObjectGraph$lambda_1__2: java.util.function.Consumer bootstrap$(java.util.List,java.lang.Object[][])>(r0, r1);
+
+        interfaceinvoke $r17.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r18);
+
+        $r19 = r1[0];
+
+        return $r19;
+    }
+
+    public static void enumerateAndMark(java.util.Deque, java.util.function.Consumer)
+    {
+        java.lang.Object[] r3, $r8;
+        java.util.HashMap $r0;
+        java.util.Deque r1;
+        java.util.function.Consumer r5;
+        int $i0, i1;
+        java.lang.Boolean $r4;
+        java.lang.Object $r2, $r6, $r7;
+        boolean $z0, $z1;
+
+        r1 := @parameter0: java.util.Deque;
+
+        r5 := @parameter1: java.util.function.Consumer;
+
+        $r0 = new java.util.HashMap;
+
+        specialinvoke $r0.<java.util.HashMap: void <init>()>();
+
+        goto label6;
+
+     label1:
+        $r2 = interfaceinvoke r1.<java.util.Deque: java.lang.Object pop()>();
+
+        r3 = (java.lang.Object[]) $r2;
+
+        if r3 == null goto label6;
+
+        $z0 = interfaceinvoke $r0.<java.util.Map: boolean containsKey(java.lang.Object)>(r3);
+
+        if $z0 == 0 goto label2;
+
+        goto label6;
+
+     label2:
+        $r4 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(1);
+
+        interfaceinvoke $r0.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r3, $r4);
+
+        interfaceinvoke r5.<java.util.function.Consumer: void accept(java.lang.Object)>(r3);
+
+        i1 = 0;
+
+        goto label5;
+
+     label3:
+        $r6 = r3[i1];
+
+        if $r6 != null goto label4;
+
+        goto label6;
+
+     label4:
+        $r7 = r3[i1];
+
+        $r8 = (java.lang.Object[]) $r7;
+
+        interfaceinvoke r1.<java.util.Deque: boolean add(java.lang.Object)>($r8);
+
+        i1 = i1 + 1;
+
+     label5:
+        $i0 = lengthof r3;
+
+        if i1 < $i0 goto label3;
+
+     label6:
+        $z1 = interfaceinvoke r1.<java.util.Deque: boolean isEmpty()>();
+
+        if $z1 == 0 goto label1;
+
+        return;
+    }
+
+    private static void lambda$1(java.util.List, java.lang.Object[][], java.util.Map$Entry)
+    {
+        java.lang.Object[][] r5;
+        java.util.function.Consumer $r6;
+        java.util.List r0;
+        java.util.Map$Entry r2;
+        java.util.stream.Stream $r1, $r4;
+        java.util.function.Predicate $r3;
+
+        r0 := @parameter0: java.util.List;
+
+        r5 := @parameter1: java.lang.Object[][];
+
+        r2 := @parameter2: java.util.Map$Entry;
+
+        $r1 = interfaceinvoke r0.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r3 = staticinvoke <ObjectGraph$lambda_2__3: java.util.function.Predicate bootstrap$(java.util.Map$Entry)>(r2);
+
+        $r4 = interfaceinvoke $r1.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r3);
+
+        $r6 = staticinvoke <ObjectGraph$lambda_3__4: java.util.function.Consumer bootstrap$(java.util.Map$Entry,java.lang.Object[][])>(r2, r5);
+
+        interfaceinvoke $r4.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r6);
+
+        return;
+    }
+
+    private static boolean lambda$2(java.util.Map$Entry, gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode)
+    {
+        java.util.Map$Entry r0;
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode r2;
+        java.util.function.Predicate $r3;
+        java.lang.Object $r1;
+        boolean $z0;
+
+        r0 := @parameter0: java.util.Map$Entry;
+
+        r2 := @parameter1: gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode;
+
+        $r1 = interfaceinvoke r0.<java.util.Map$Entry: java.lang.Object getKey()>();
+
+        $r3 = (java.util.function.Predicate) $r1;
+
+        $z0 = interfaceinvoke $r3.<java.util.function.Predicate: boolean test(java.lang.Object)>(r2);
+
+        return $z0;
+    }
+
+    private static void lambda$3(java.util.Map$Entry, java.lang.Object[][], gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode)
+    {
+        java.lang.Object[][] r3;
+        java.util.Map$Entry r0;
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode r2;
+        java.util.function.BiConsumer $r4;
+        java.lang.Object $r1;
+
+        r0 := @parameter0: java.util.Map$Entry;
+
+        r3 := @parameter1: java.lang.Object[][];
+
+        r2 := @parameter2: gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode;
+
+        $r1 = interfaceinvoke r0.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        $r4 = (java.util.function.BiConsumer) $r1;
+
+        interfaceinvoke $r4.<java.util.function.BiConsumer: void accept(java.lang.Object,java.lang.Object)>(r2, r3);
+
+        return;
+    }
+}

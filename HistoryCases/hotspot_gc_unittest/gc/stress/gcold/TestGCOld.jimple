@@ -1,0 +1,1316 @@
+public class TestGCOld extends java.lang.Object
+{
+    private static int size;
+    private static int workUnits;
+    private static int promoteRate;
+    private static int ptrMutRate;
+    private static int steps;
+    private static final int MEG;
+    private static final int INSIGNIFICANT;
+    private static final int BYTES_PER_WORD;
+    private static final int BYTES_PER_NODE;
+    private static final int WORDS_DEAD;
+    private static final int treeHeight;
+    private static final long treeSize;
+    private static final java.lang.String msg1;
+    private static final java.lang.String msg2;
+    private static final java.lang.String msg3;
+    private static final java.lang.String msg4;
+    private static final java.lang.String msg5;
+    private static final java.lang.String msg6;
+    private static long youngBytes;
+    private static long nodes;
+    private static long actuallyMut;
+    private static long mutatorSum;
+    public static int[] aexport;
+    private static gc.stress.gcold.TreeNode[] trees;
+    private static int where;
+    private static java.util.Random rnd;
+
+    static void <clinit>()
+    {
+        long $l0;
+        java.util.Random $r0;
+
+        $l0 = staticinvoke <gc.stress.gcold.TestGCOld: long heightToBytes(int)>(14);
+
+        <gc.stress.gcold.TestGCOld: long treeSize> = $l0;
+
+        <gc.stress.gcold.TestGCOld: long youngBytes> = 0L;
+
+        <gc.stress.gcold.TestGCOld: long nodes> = 0L;
+
+        <gc.stress.gcold.TestGCOld: long actuallyMut> = 0L;
+
+        <gc.stress.gcold.TestGCOld: long mutatorSum> = 0L;
+
+        <gc.stress.gcold.TestGCOld: int where> = 0;
+
+        $r0 = new java.util.Random;
+
+        specialinvoke $r0.<java.util.Random: void <init>()>();
+
+        <gc.stress.gcold.TestGCOld: java.util.Random rnd> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestGCOld r0;
+
+        r0 := @this: TestGCOld;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static int height(gc.stress.gcold.TreeNode)
+    {
+        gc.stress.gcold.TreeNode r0, $r1, $r2;
+        int $i0, $i1, $i2, $i3;
+
+        r0 := @parameter0: gc.stress.gcold.TreeNode;
+
+        if r0 != null goto label1;
+
+        return 0;
+
+     label1:
+        $r1 = r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left>;
+
+        $i0 = staticinvoke <gc.stress.gcold.TestGCOld: int height(gc.stress.gcold.TreeNode)>($r1);
+
+        $r2 = r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right>;
+
+        $i1 = staticinvoke <gc.stress.gcold.TestGCOld: int height(gc.stress.gcold.TreeNode)>($r2);
+
+        $i2 = staticinvoke <java.lang.Math: int max(int,int)>($i0, $i1);
+
+        $i3 = 1 + $i2;
+
+        return $i3;
+    }
+
+    private static int shortestPath(gc.stress.gcold.TreeNode)
+    {
+        gc.stress.gcold.TreeNode r0, $r1, $r2;
+        int $i0, $i1, $i2, $i3;
+
+        r0 := @parameter0: gc.stress.gcold.TreeNode;
+
+        if r0 != null goto label1;
+
+        return 0;
+
+     label1:
+        $r1 = r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left>;
+
+        $i0 = staticinvoke <gc.stress.gcold.TestGCOld: int shortestPath(gc.stress.gcold.TreeNode)>($r1);
+
+        $r2 = r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right>;
+
+        $i1 = staticinvoke <gc.stress.gcold.TestGCOld: int shortestPath(gc.stress.gcold.TreeNode)>($r2);
+
+        $i2 = staticinvoke <java.lang.Math: int min(int,int)>($i0, $i1);
+
+        $i3 = 1 + $i2;
+
+        return $i3;
+    }
+
+    private static long heightToNodes(int)
+    {
+        int i2, $i5;
+        long $l0, $l1, l3;
+
+        i2 := @parameter0: int;
+
+        if i2 != 0 goto label1;
+
+        return 0L;
+
+     label1:
+        l3 = 1L;
+
+        goto label3;
+
+     label2:
+        l3 = l3 + l3;
+
+        $i5 = (int) -1;
+
+        i2 = i2 + $i5;
+
+     label3:
+        if i2 > 1 goto label2;
+
+        $l0 = l3 + l3;
+
+        $l1 = $l0 - 1L;
+
+        return $l1;
+    }
+
+    private static long heightToBytes(int)
+    {
+        int i0;
+        long $l1, $l2;
+
+        i0 := @parameter0: int;
+
+        $l1 = staticinvoke <gc.stress.gcold.TestGCOld: long heightToNodes(int)>(i0);
+
+        $l2 = 20L * $l1;
+
+        return $l2;
+    }
+
+    private static int nodesToHeight(long)
+    {
+        long $l0, l1, $l2, l6;
+        byte $b3;
+        int $i4, i5, $i7;
+
+        l1 := @parameter0: long;
+
+        i5 = 1;
+
+        l6 = 1L;
+
+        goto label2;
+
+     label1:
+        l6 = l6 + l6;
+
+        i5 = i5 + 1;
+
+     label2:
+        $l0 = l6 + l6;
+
+        $l2 = $l0 - 1L;
+
+        $b3 = $l2 cmp l1;
+
+        $i7 = (int) $b3;
+
+        if $i7 <= 0 goto label1;
+
+        $i4 = i5 - 1;
+
+        return $i4;
+    }
+
+    private static int bytesToHeight(long)
+    {
+        int $i2;
+        long l0, $l1;
+
+        l0 := @parameter0: long;
+
+        $l1 = l0 / 20L;
+
+        $i2 = staticinvoke <gc.stress.gcold.TestGCOld: int nodesToHeight(long)>($l1);
+
+        return $i2;
+    }
+
+    private static gc.stress.gcold.TreeNode makeTree(int)
+    {
+        gc.stress.gcold.TreeNode $r0, $r1, $r2;
+        long $l1, $l2;
+        int i0, $i3, $i4;
+
+        i0 := @parameter0: int;
+
+        if i0 != 0 goto label1;
+
+        return null;
+
+     label1:
+        $r0 = new gc.stress.gcold.TreeNode;
+
+        specialinvoke $r0.<gc.stress.gcold.TreeNode: void <init>()>();
+
+        $l1 = <gc.stress.gcold.TestGCOld: long nodes>;
+
+        $l2 = $l1 + 1L;
+
+        <gc.stress.gcold.TestGCOld: long nodes> = $l2;
+
+        $i3 = i0 - 1;
+
+        $r1 = staticinvoke <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode makeTree(int)>($i3);
+
+        $r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left> = $r1;
+
+        $i4 = i0 - 1;
+
+        $r2 = staticinvoke <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode makeTree(int)>($i4);
+
+        $r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right> = $r2;
+
+        $r0.<gc.stress.gcold.TreeNode: int val> = i0;
+
+        return $r0;
+    }
+
+    private static void init()
+    {
+        long $l2, $l3, $l4, $l6, $l7, $l8, $l9;
+        gc.stress.gcold.TreeNode[] $r0, $r11;
+        int $i0, $i1, i5, i10;
+        java.lang.String $r5, $r10, $r17;
+        java.io.PrintStream $r2, $r7, $r14;
+        gc.stress.gcold.TreeNode $r12;
+        java.lang.StringBuilder $r1, $r3, $r4, $r6, $r8, $r9, $r13, $r15, $r16;
+
+        $i0 = <gc.stress.gcold.TestGCOld: int size>;
+
+        $i1 = $i0 * 1000000;
+
+        $l3 = (long) $i1;
+
+        $l2 = <gc.stress.gcold.TestGCOld: long treeSize>;
+
+        $l4 = $l3 / $l2;
+
+        i5 = (int) $l4;
+
+        $r0 = newarray (gc.stress.gcold.TreeNode)[i5];
+
+        <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees> = $r0;
+
+        $r2 = <java.lang.System: java.io.PrintStream err>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("Allocating ");
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i5);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" trees.");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $r7 = <java.lang.System: java.io.PrintStream err>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("  (");
+
+        $l7 = (long) i5;
+
+        $l6 = <gc.stress.gcold.TestGCOld: long treeSize>;
+
+        $l8 = $l7 * $l6;
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" bytes)");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        i10 = 0;
+
+        goto label2;
+
+     label1:
+        $r11 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        $r12 = staticinvoke <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode makeTree(int)>(14);
+
+        $r11[i10] = $r12;
+
+        i10 = i10 + 1;
+
+     label2:
+        if i10 < i5 goto label1;
+
+        $r14 = <java.lang.System: java.io.PrintStream err>;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("  (");
+
+        $l9 = <gc.stress.gcold.TestGCOld: long nodes>;
+
+        $r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" nodes)");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+        return;
+    }
+
+    private static void checkTrees()
+    {
+        java.io.PrintStream $r4;
+        gc.stress.gcold.TreeNode r2;
+        gc.stress.gcold.TreeNode[] $r0, $r1;
+        int i0, $i1, $i2, i3;
+        java.lang.StringBuilder $r3, $r5, $r6, $r7;
+        java.lang.String $r8;
+
+        $r0 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        i0 = lengthof $r0;
+
+        i3 = 0;
+
+        goto label4;
+
+     label1:
+        $r1 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        r2 = $r1[i3];
+
+        $i1 = staticinvoke <gc.stress.gcold.TestGCOld: int height(gc.stress.gcold.TreeNode)>(r2);
+
+        $i2 = staticinvoke <gc.stress.gcold.TestGCOld: int shortestPath(gc.stress.gcold.TreeNode)>(r2);
+
+        if $i1 != 14 goto label2;
+
+        if $i2 == 14 goto label3;
+
+     label2:
+        $r4 = <java.lang.System: java.io.PrintStream err>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("*****BUG: ");
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+     label3:
+        i3 = i3 + 1;
+
+     label4:
+        if i3 < i0 goto label1;
+
+        return;
+    }
+
+    private static void replaceTreeWork(gc.stress.gcold.TreeNode, gc.stress.gcold.TreeNode, boolean)
+    {
+        int $i0, $i1, $i2, $i3;
+        boolean z0, z1, z2, $z3, $z5, $z6, $z7, $z8;
+        gc.stress.gcold.TreeNode r0, $r1, r2, $r3, $r4, $r5, $r6, $r7;
+
+        r0 := @parameter0: gc.stress.gcold.TreeNode;
+
+        r2 := @parameter1: gc.stress.gcold.TreeNode;
+
+        z2 := @parameter2: boolean;
+
+        $r1 = r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left>;
+
+        if $r1 == null goto label01;
+
+        $r6 = r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left>;
+
+        $i3 = $r6.<gc.stress.gcold.TreeNode: int val>;
+
+        $i2 = r2.<gc.stress.gcold.TreeNode: int val>;
+
+        if $i3 <= $i2 goto label01;
+
+        $z3 = 1;
+
+        goto label02;
+
+     label01:
+        $z3 = 0;
+
+     label02:
+        z0 = $z3;
+
+        $r7 = r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right>;
+
+        if $r7 == null goto label03;
+
+        $r5 = r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right>;
+
+        $i1 = $r5.<gc.stress.gcold.TreeNode: int val>;
+
+        $i0 = r2.<gc.stress.gcold.TreeNode: int val>;
+
+        if $i1 <= $i0 goto label03;
+
+        $z8 = 1;
+
+        $z7 = 1;
+
+        goto label04;
+
+     label03:
+        $z8 = 0;
+
+        $z7 = 0;
+
+     label04:
+        z1 = $z7;
+
+        if z0 == 0 goto label10;
+
+        if $z8 == 0 goto label10;
+
+        if z2 == 0 goto label07;
+
+        $r4 = r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left>;
+
+        if z2 == 0 goto label05;
+
+        $z5 = 0;
+
+        goto label06;
+
+     label05:
+        $z5 = 1;
+
+     label06:
+        staticinvoke <gc.stress.gcold.TestGCOld: void replaceTreeWork(gc.stress.gcold.TreeNode,gc.stress.gcold.TreeNode,boolean)>($r4, r2, $z5);
+
+        goto label14;
+
+     label07:
+        $r3 = r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right>;
+
+        if z2 == 0 goto label08;
+
+        $z6 = 0;
+
+        goto label09;
+
+     label08:
+        $z6 = 1;
+
+     label09:
+        staticinvoke <gc.stress.gcold.TestGCOld: void replaceTreeWork(gc.stress.gcold.TreeNode,gc.stress.gcold.TreeNode,boolean)>($r3, r2, $z6);
+
+        goto label14;
+
+     label10:
+        if z0 != 0 goto label12;
+
+        if z1 != 0 goto label12;
+
+        if z2 == 0 goto label11;
+
+        r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left> = r2;
+
+        goto label14;
+
+     label11:
+        r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right> = r2;
+
+        goto label14;
+
+     label12:
+        if z0 != 0 goto label13;
+
+        r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left> = r2;
+
+        goto label14;
+
+     label13:
+        r0.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right> = r2;
+
+     label14:
+        return;
+    }
+
+    private static void replaceTree(gc.stress.gcold.TreeNode, gc.stress.gcold.TreeNode)
+    {
+        gc.stress.gcold.TreeNode r0, r1;
+        int $i0, $i1;
+        long $l2, $l3;
+        boolean $z0;
+
+        r1 := @parameter0: gc.stress.gcold.TreeNode;
+
+        r0 := @parameter1: gc.stress.gcold.TreeNode;
+
+        $i0 = r0.<gc.stress.gcold.TreeNode: int val>;
+
+        $i1 = $i0 % 2;
+
+        if $i1 != 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        $l2 = <gc.stress.gcold.TestGCOld: long actuallyMut>;
+
+        $l3 = $l2 + 1L;
+
+        <gc.stress.gcold.TestGCOld: long actuallyMut> = $l3;
+
+        staticinvoke <gc.stress.gcold.TestGCOld: void replaceTreeWork(gc.stress.gcold.TreeNode,gc.stress.gcold.TreeNode,boolean)>(r1, r0, $z0);
+
+        return;
+    }
+
+    private static void oldGenAlloc(long)
+    {
+        long l0, $l1, $l2, $l4, $l14, l15;
+        gc.stress.gcold.TreeNode[] $r0, $r2, $r4, $r6;
+        byte $b17;
+        int i3, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, i16, $i18;
+        gc.stress.gcold.TreeNode $r1, $r3, $r5;
+
+        l0 := @parameter0: long;
+
+        $l1 = <gc.stress.gcold.TestGCOld: long treeSize>;
+
+        $l2 = l0 / $l1;
+
+        i3 = (int) $l2;
+
+        $l4 = <gc.stress.gcold.TestGCOld: long treeSize>;
+
+        l15 = l0 % $l4;
+
+        i16 = 0;
+
+        goto label3;
+
+     label1:
+        $r0 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        $i5 = <gc.stress.gcold.TestGCOld: int where>;
+
+        $i6 = $i5 + 1;
+
+        <gc.stress.gcold.TestGCOld: int where> = $i6;
+
+        $r1 = staticinvoke <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode makeTree(int)>(14);
+
+        $r0[$i5] = $r1;
+
+        $i8 = <gc.stress.gcold.TestGCOld: int where>;
+
+        $r2 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        $i7 = lengthof $r2;
+
+        if $i8 != $i7 goto label2;
+
+        <gc.stress.gcold.TestGCOld: int where> = 0;
+
+     label2:
+        i16 = i16 + 1;
+
+     label3:
+        if i16 < i3 goto label1;
+
+        goto label6;
+
+     label4:
+        $i9 = staticinvoke <gc.stress.gcold.TestGCOld: int bytesToHeight(long)>(l15);
+
+        $r3 = staticinvoke <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode makeTree(int)>($i9);
+
+        $r4 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        $i10 = <gc.stress.gcold.TestGCOld: int where>;
+
+        $i11 = $i10 + 1;
+
+        <gc.stress.gcold.TestGCOld: int where> = $i11;
+
+        $r5 = $r4[$i10];
+
+        staticinvoke <gc.stress.gcold.TestGCOld: void replaceTree(gc.stress.gcold.TreeNode,gc.stress.gcold.TreeNode)>($r5, $r3);
+
+        $i13 = <gc.stress.gcold.TestGCOld: int where>;
+
+        $r6 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        $i12 = lengthof $r6;
+
+        if $i13 != $i12 goto label5;
+
+        <gc.stress.gcold.TestGCOld: int where> = 0;
+
+     label5:
+        $l14 = staticinvoke <gc.stress.gcold.TestGCOld: long heightToBytes(int)>($i9);
+
+        l15 = l15 - $l14;
+
+     label6:
+        $b17 = l15 cmp 999L;
+
+        $i18 = (int) $b17;
+
+        if $i18 > 0 goto label4;
+
+        return;
+    }
+
+    private static void oldGenSwapSubtrees()
+    {
+        java.util.Random $r1, $r3, $r4, $r5;
+        long $l7, $l8;
+        gc.stress.gcold.TreeNode[] $r0, $r2, $r6, $r7;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, i9, i10;
+        gc.stress.gcold.TreeNode $r8, $r9, r10, r11, r12, r13;
+
+        $r1 = <gc.stress.gcold.TestGCOld: java.util.Random rnd>;
+
+        $r0 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        $i0 = lengthof $r0;
+
+        $i1 = virtualinvoke $r1.<java.util.Random: int nextInt(int)>($i0);
+
+        $r3 = <gc.stress.gcold.TestGCOld: java.util.Random rnd>;
+
+        $r2 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        $i2 = lengthof $r2;
+
+        $i3 = virtualinvoke $r3.<java.util.Random: int nextInt(int)>($i2);
+
+        $r4 = <gc.stress.gcold.TestGCOld: java.util.Random rnd>;
+
+        $i4 = virtualinvoke $r4.<java.util.Random: int nextInt(int)>(14);
+
+        $r5 = <gc.stress.gcold.TestGCOld: java.util.Random rnd>;
+
+        i9 = virtualinvoke $r5.<java.util.Random: int nextInt()>();
+
+        $r6 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        r10 = $r6[$i1];
+
+        $r7 = <gc.stress.gcold.TestGCOld: gc.stress.gcold.TreeNode[] trees>;
+
+        r11 = $r7[$i3];
+
+        i10 = 0;
+
+        goto label4;
+
+     label1:
+        $i5 = i9 & 1;
+
+        if $i5 != 0 goto label2;
+
+        r10 = r10.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left>;
+
+        r11 = r11.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left>;
+
+        goto label3;
+
+     label2:
+        r10 = r10.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right>;
+
+        r11 = r11.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right>;
+
+     label3:
+        i9 = i9 >> 1;
+
+        i10 = i10 + 1;
+
+     label4:
+        if i10 < $i4 goto label1;
+
+        $i6 = i9 & 1;
+
+        if $i6 != 0 goto label5;
+
+        r12 = r10.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left>;
+
+        $r9 = r11.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left>;
+
+        r10.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left> = $r9;
+
+        r11.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode left> = r12;
+
+        goto label6;
+
+     label5:
+        r13 = r10.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right>;
+
+        $r8 = r11.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right>;
+
+        r10.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right> = $r8;
+
+        r11.<gc.stress.gcold.TreeNode: gc.stress.gcold.TreeNode right> = r13;
+
+     label6:
+        $l7 = <gc.stress.gcold.TestGCOld: long actuallyMut>;
+
+        $l8 = $l7 + 2L;
+
+        <gc.stress.gcold.TestGCOld: long actuallyMut> = $l8;
+
+        return;
+    }
+
+    private static void oldGenMut(long)
+    {
+        byte $b3;
+        int i4, $i5;
+        long l0, $l1, $l2;
+
+        l0 := @parameter0: long;
+
+        i4 = 0;
+
+        goto label2;
+
+     label1:
+        staticinvoke <gc.stress.gcold.TestGCOld: void oldGenSwapSubtrees()>();
+
+        i4 = i4 + 1;
+
+     label2:
+        $l2 = (long) i4;
+
+        $l1 = l0 / 2L;
+
+        $b3 = $l2 cmp $l1;
+
+        $i5 = (int) $b3;
+
+        if $i5 < 0 goto label1;
+
+        return;
+    }
+
+    private static void doMutWork(long)
+    {
+        long l1, $l2, $l3, l4, $l6, $l7, $l8, l10;
+        byte $b5;
+        int $i0, i9, $i11;
+
+        l1 := @parameter0: long;
+
+        i9 = 0;
+
+        $i0 = <gc.stress.gcold.TestGCOld: int workUnits>;
+
+        $l2 = (long) $i0;
+
+        $l3 = $l2 * l1;
+
+        l4 = $l3 / 10L;
+
+        l10 = 0L;
+
+        goto label2;
+
+     label1:
+        i9 = i9 + 1;
+
+        l10 = l10 + 1L;
+
+     label2:
+        $b5 = l10 cmp l4;
+
+        $i11 = (int) $b5;
+
+        if $i11 < 0 goto label1;
+
+        $l7 = <gc.stress.gcold.TestGCOld: long mutatorSum>;
+
+        $l6 = (long) i9;
+
+        $l8 = $l7 + $l6;
+
+        <gc.stress.gcold.TestGCOld: long mutatorSum> = $l8;
+
+        return;
+    }
+
+    private static void doYoungGenAlloc(long, int)
+    {
+        long l2, $l3, $l5, $l6, $l7;
+        byte $b4;
+        int[] $r0;
+        int i0, i1, i8, $i9;
+
+        l2 := @parameter0: long;
+
+        i0 := @parameter1: int;
+
+        i1 = i0 * 4;
+
+        i8 = 0;
+
+        goto label2;
+
+     label1:
+        $r0 = newarray (int)[i0];
+
+        <gc.stress.gcold.TestGCOld: int[] aexport> = $r0;
+
+        i8 = i8 + i1;
+
+     label2:
+        $l3 = (long) i8;
+
+        $b4 = $l3 cmp l2;
+
+        $i9 = (int) $b4;
+
+        if $i9 < 0 goto label1;
+
+        $l6 = <gc.stress.gcold.TestGCOld: long youngBytes>;
+
+        $l5 = (long) i8;
+
+        $l7 = $l6 + $l5;
+
+        <gc.stress.gcold.TestGCOld: long youngBytes> = $l7;
+
+        return;
+    }
+
+    private static void doStep(long)
+    {
+        long l0, l1, $l3, $l4, $l6, $l7, $l8, $l9, $l10;
+        int $i2, $i5;
+
+        l1 := @parameter0: long;
+
+        l0 = <gc.stress.gcold.TestGCOld: long actuallyMut>;
+
+        staticinvoke <gc.stress.gcold.TestGCOld: void doYoungGenAlloc(long,int)>(l1, 100);
+
+        staticinvoke <gc.stress.gcold.TestGCOld: void doMutWork(long)>(l1);
+
+        $i2 = <gc.stress.gcold.TestGCOld: int promoteRate>;
+
+        $l3 = (long) $i2;
+
+        $l4 = l1 / $l3;
+
+        staticinvoke <gc.stress.gcold.TestGCOld: void oldGenAlloc(long)>($l4);
+
+        $i5 = <gc.stress.gcold.TestGCOld: int ptrMutRate>;
+
+        $l6 = (long) $i5;
+
+        $l8 = l0 + $l6;
+
+        $l7 = <gc.stress.gcold.TestGCOld: long actuallyMut>;
+
+        $l9 = $l8 - $l7;
+
+        $l10 = staticinvoke <java.lang.Math: long max(long,long)>(0L, $l9);
+
+        staticinvoke <gc.stress.gcold.TestGCOld: void oldGenMut(long)>($l10);
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.StringBuilder $r6, $r9, $r11, $r14, $r16, $r18, $r20, $r22, $r24, $r27, $r31, $r34, $r35, $r37, $r39, $r40, $r41, $r43, $r44, $r46, $r49, $r50, $r52, $r54, $r55, $r57, $r58, $r60, $r63, $r64, $r66, $r69, $r71, $r73, $r74, $r76, $r77;
+        long $l11, $l13, $l14, $l17, $l20, $l21, $l24, $l25, $l26, $l27, $l28;
+        int[] $r68;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i12, $i15, $i16, $i18, $i19, $i22, $i23, i29;
+        java.io.PrintStream $r7, $r12, $r17, $r21, $r25, $r29, $r32, $r38, $r47, $r53, $r61, $r67, $r72, $r79, $r80, $r81, $r82, $r83, $r84;
+        java.text.NumberFormat $r30;
+        java.lang.String $r1, $r2, $r3, $r4, $r5, $r8, $r10, $r13, $r15, $r19, $r23, $r26, $r28, $r33, $r36, $r42, $r45, $r48, $r51, $r56, $r59, $r62, $r65, $r70, $r75, $r78;
+        float $f0, f1, $f2, $f3, $f4, $f5, $f6, $f7, f8, $f9, $f10, $f11, $f12, $f13;
+        java.lang.String[] r0;
+        double $d0, $d1, $d2, $d3, $d4, $d5;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 5 goto label1;
+
+        $r79 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r79.<java.io.PrintStream: void println(java.lang.String)>("Usage: java TestGCOld <size> <work> <ratio> <mutation> <steps>");
+
+        $r80 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r80.<java.io.PrintStream: void println(java.lang.String)>("  where <size> is the live storage in megabytes");
+
+        $r81 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r81.<java.io.PrintStream: void println(java.lang.String)>("        <work> is the mutator work per step (arbitrary units)");
+
+        $r82 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r82.<java.io.PrintStream: void println(java.lang.String)>("        <ratio> is the ratio of short-lived to long-lived allocation");
+
+        $r83 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r83.<java.io.PrintStream: void println(java.lang.String)>("        <mutation> is the mutations per step");
+
+        $r84 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r84.<java.io.PrintStream: void println(java.lang.String)>("        <steps> is the number of steps");
+
+        return;
+
+     label1:
+        $r1 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        <gc.stress.gcold.TestGCOld: int size> = $i1;
+
+        $r2 = r0[1];
+
+        $i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        <gc.stress.gcold.TestGCOld: int workUnits> = $i2;
+
+        $r3 = r0[2];
+
+        $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        <gc.stress.gcold.TestGCOld: int promoteRate> = $i3;
+
+        $r4 = r0[3];
+
+        $i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r4);
+
+        <gc.stress.gcold.TestGCOld: int ptrMutRate> = $i4;
+
+        $r5 = r0[4];
+
+        $i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r5);
+
+        <gc.stress.gcold.TestGCOld: int steps> = $i5;
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        $i6 = <gc.stress.gcold.TestGCOld: int size>;
+
+        $r8 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i6);
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+
+        $r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" megabytes of live storage");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        $r11 = new java.lang.StringBuilder;
+
+        $i7 = <gc.stress.gcold.TestGCOld: int workUnits>;
+
+        $r13 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i7);
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>($r13);
+
+        $r14 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" work units per step");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r15);
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("promotion ratio is 1:");
+
+        $i8 = <gc.stress.gcold.TestGCOld: int promoteRate>;
+
+        $r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r19);
+
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>(java.lang.String)>("pointer mutation rate is ");
+
+        $i9 = <gc.stress.gcold.TestGCOld: int ptrMutRate>;
+
+        $r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r23);
+
+        $r25 = <java.lang.System: java.io.PrintStream out>;
+
+        $r24 = new java.lang.StringBuilder;
+
+        $i10 = <gc.stress.gcold.TestGCOld: int steps>;
+
+        $r26 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>($i10);
+
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>(java.lang.String)>($r26);
+
+        $r27 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" steps");
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r28);
+
+        staticinvoke <gc.stress.gcold.TestGCOld: void init()>();
+
+        <gc.stress.gcold.TestGCOld: long youngBytes> = 0L;
+
+        <gc.stress.gcold.TestGCOld: long nodes> = 0L;
+
+        $r29 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r29.<java.io.PrintStream: void println(java.lang.String)>("Initialization complete...");
+
+        $l11 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        i29 = 0;
+
+        goto label3;
+
+     label2:
+        staticinvoke <gc.stress.gcold.TestGCOld: void doStep(long)>(1000000L);
+
+        i29 = i29 + 1;
+
+     label3:
+        $i12 = <gc.stress.gcold.TestGCOld: int steps>;
+
+        if i29 < $i12 goto label2;
+
+        $l13 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l14 = $l13 - $l11;
+
+        $f0 = (float) $l14;
+
+        f1 = $f0 / 1000.0F;
+
+        $r30 = staticinvoke <java.text.NumberFormat: java.text.NumberFormat getInstance()>();
+
+        virtualinvoke $r30.<java.text.NumberFormat: void setMaximumFractionDigits(int)>(1);
+
+        $r32 = <java.lang.System: java.io.PrintStream out>;
+
+        $r31 = new java.lang.StringBuilder;
+
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>(java.lang.String)>("\nTook ");
+
+        $d0 = (double) f1;
+
+        $r33 = virtualinvoke $r30.<java.text.NumberFormat: java.lang.String format(double)>($d0);
+
+        $r34 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r33);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" sec in steady state.");
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r32.<java.io.PrintStream: void println(java.lang.String)>($r36);
+
+        virtualinvoke $r30.<java.text.NumberFormat: void setMaximumFractionDigits(int)>(2);
+
+        $r38 = <java.lang.System: java.io.PrintStream out>;
+
+        $r37 = new java.lang.StringBuilder;
+
+        specialinvoke $r37.<java.lang.StringBuilder: void <init>(java.lang.String)>("Allocated ");
+
+        $i15 = <gc.stress.gcold.TestGCOld: int steps>;
+
+        $r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i15);
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" Mb of young gen garbage");
+
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" (= ");
+
+        $i16 = <gc.stress.gcold.TestGCOld: int steps>;
+
+        $f2 = (float) $i16;
+
+        $f3 = $f2 / f1;
+
+        $d1 = (double) $f3;
+
+        $r42 = virtualinvoke $r30.<java.text.NumberFormat: java.lang.String format(double)>($d1);
+
+        $r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r42);
+
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" Mb/sec)");
+
+        $r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>($r45);
+
+        $r47 = <java.lang.System: java.io.PrintStream out>;
+
+        $r46 = new java.lang.StringBuilder;
+
+        specialinvoke $r46.<java.lang.StringBuilder: void <init>(java.lang.String)>("    (actually allocated ");
+
+        $l17 = <gc.stress.gcold.TestGCOld: long youngBytes>;
+
+        $f4 = (float) $l17;
+
+        $f5 = $f4 / 1000000.0F;
+
+        $d2 = (double) $f5;
+
+        $r48 = virtualinvoke $r30.<java.text.NumberFormat: java.lang.String format(double)>($d2);
+
+        $r49 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r48);
+
+        $r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" megabytes)");
+
+        $r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r47.<java.io.PrintStream: void println(java.lang.String)>($r51);
+
+        $i18 = <gc.stress.gcold.TestGCOld: int steps>;
+
+        $f7 = (float) $i18;
+
+        $i19 = <gc.stress.gcold.TestGCOld: int promoteRate>;
+
+        $f6 = (float) $i19;
+
+        f8 = $f7 / $f6;
+
+        $r53 = <java.lang.System: java.io.PrintStream out>;
+
+        $r52 = new java.lang.StringBuilder;
+
+        specialinvoke $r52.<java.lang.StringBuilder: void <init>(java.lang.String)>("Promoted ");
+
+        $r54 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>(f8);
+
+        $r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" Mb (= ");
+
+        $f9 = f8 / f1;
+
+        $d3 = (double) $f9;
+
+        $r56 = virtualinvoke $r30.<java.text.NumberFormat: java.lang.String format(double)>($d3);
+
+        $r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r56);
+
+        $r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" Mb/sec)");
+
+        $r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r53.<java.io.PrintStream: void println(java.lang.String)>($r59);
+
+        $r61 = <java.lang.System: java.io.PrintStream out>;
+
+        $r60 = new java.lang.StringBuilder;
+
+        specialinvoke $r60.<java.lang.StringBuilder: void <init>(java.lang.String)>("    (actually promoted ");
+
+        $l20 = <gc.stress.gcold.TestGCOld: long nodes>;
+
+        $l21 = $l20 * 20L;
+
+        $f10 = (float) $l21;
+
+        $f11 = $f10 / 1000000.0F;
+
+        $d4 = (double) $f11;
+
+        $r62 = virtualinvoke $r30.<java.text.NumberFormat: java.lang.String format(double)>($d4);
+
+        $r63 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r62);
+
+        $r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" megabytes)");
+
+        $r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r61.<java.io.PrintStream: void println(java.lang.String)>($r65);
+
+        $i22 = <gc.stress.gcold.TestGCOld: int ptrMutRate>;
+
+        if $i22 == 0 goto label4;
+
+        $r72 = <java.lang.System: java.io.PrintStream out>;
+
+        $r71 = new java.lang.StringBuilder;
+
+        specialinvoke $r71.<java.lang.StringBuilder: void <init>(java.lang.String)>("Mutated ");
+
+        $l27 = <gc.stress.gcold.TestGCOld: long actuallyMut>;
+
+        $r73 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l27);
+
+        $r74 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" pointers (= ");
+
+        $l28 = <gc.stress.gcold.TestGCOld: long actuallyMut>;
+
+        $f12 = (float) $l28;
+
+        $f13 = $f12 / f1;
+
+        $d5 = (double) $f13;
+
+        $r75 = virtualinvoke $r30.<java.text.NumberFormat: java.lang.String format(double)>($d5);
+
+        $r76 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r75);
+
+        $r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ptrs/sec)");
+
+        $r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r72.<java.io.PrintStream: void println(java.lang.String)>($r78);
+
+     label4:
+        $r67 = <java.lang.System: java.io.PrintStream out>;
+
+        $r66 = new java.lang.StringBuilder;
+
+        specialinvoke $r66.<java.lang.StringBuilder: void <init>(java.lang.String)>("Checksum = ");
+
+        $l25 = <gc.stress.gcold.TestGCOld: long mutatorSum>;
+
+        $r68 = <gc.stress.gcold.TestGCOld: int[] aexport>;
+
+        $i23 = lengthof $r68;
+
+        $l24 = (long) $i23;
+
+        $l26 = $l25 + $l24;
+
+        $r69 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l26);
+
+        $r70 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r67.<java.io.PrintStream: void println(java.lang.String)>($r70);
+
+        return;
+    }
+}

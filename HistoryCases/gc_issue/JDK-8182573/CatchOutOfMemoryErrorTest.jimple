@@ -1,0 +1,236 @@
+public class CatchOutOfMemoryErrorTest extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        CatchOutOfMemoryErrorTest r0;
+
+        r0 := @this: CatchOutOfMemoryErrorTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r15;
+        java.lang.Integer $r8, $r23, $r29;
+        byte $b3, $b13;
+        java.lang.Long $r5, $r6, $r7, $r10, $r12, $r14, $r20, $r21, $r22, $r26, $r27, $r28;
+        java.lang.Runtime $r9, $r11, $r13, $r17;
+        java.lang.Object[] $r1, $r3, $r18, $r24;
+        long $l0, $l1, $l2, $l5, $l7, $l8, $l9, $l10, $l11;
+        java.lang.String[] r30;
+        java.util.ArrayList $r31;
+        int $i4, $i6, $i12, i14, $i15, $i16;
+        java.io.PrintStream $r2, $r4, $r19, $r25;
+        java.lang.OutOfMemoryError $r16;
+
+        r30 := @parameter0: java.lang.String[];
+
+        $r31 = new java.util.ArrayList;
+
+        specialinvoke $r31.<java.util.ArrayList: void <init>(int)>(10000000);
+
+     label01:
+        $l0 = staticinvoke <CatchOutOfMemoryErrorTest: long getAvailableMemory()>();
+
+     label02:
+        i14 = 0;
+
+     label03:
+        if i14 >= 100 goto label04;
+
+        $r15 = newarray (byte)[10000];
+
+        interfaceinvoke $r31.<java.util.List: boolean add(java.lang.Object)>($r15);
+
+        i14 = i14 + 1;
+
+        goto label03;
+
+     label04:
+        goto label07;
+
+     label05:
+        $r16 := @caughtexception;
+
+        $l10 = staticinvoke <CatchOutOfMemoryErrorTest: long getAvailableMemory()>();
+
+        $r17 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l11 = virtualinvoke $r17.<java.lang.Runtime: long freeMemory()>();
+
+        $i12 = interfaceinvoke $r31.<java.util.List: int size()>();
+
+        $b13 = $l0 cmp 2000000L;
+
+        $i15 = (int) $b13;
+
+        if $i15 <= 0 goto label06;
+
+        $r25 = <java.lang.System: java.io.PrintStream err>;
+
+        $r24 = newarray (java.lang.Object)[4];
+
+        $r26 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r24[0] = $r26;
+
+        $r27 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l10);
+
+        $r24[1] = $r27;
+
+        $r28 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l11);
+
+        $r24[2] = $r28;
+
+        $r29 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12);
+
+        $r24[3] = $r29;
+
+        virtualinvoke $r25.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Got out of memory trying to allocate memory when availableMemory was %,d and is now %,d. Free=%,d. Allocated blocks=%,d\n", $r24);
+
+        goto label10;
+
+     label06:
+        $r19 = <java.lang.System: java.io.PrintStream out>;
+
+        $r18 = newarray (java.lang.Object)[4];
+
+        $r20 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r18[0] = $r20;
+
+        $r21 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l10);
+
+        $r18[1] = $r21;
+
+        $r22 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l11);
+
+        $r18[2] = $r22;
+
+        $r23 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12);
+
+        $r18[3] = $r23;
+
+        virtualinvoke $r19.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Finished when availableMemory was %,d and is now %,d. Free=%,d. Allocated blocks=%,d\n", $r18);
+
+        goto label10;
+
+     label07:
+        $l1 = staticinvoke <CatchOutOfMemoryErrorTest: long getUsedMemory()>();
+
+        $l2 = staticinvoke <CatchOutOfMemoryErrorTest: long getAvailableMemory()>();
+
+        $b3 = $l2 cmp 1500000L;
+
+        $i16 = (int) $b3;
+
+        if $i16 <= 0 goto label08;
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r3 = newarray (java.lang.Object)[7];
+
+        $r5 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r3[0] = $r5;
+
+        $r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $r3[1] = $r6;
+
+        $l5 = $l1 + $l2;
+
+        $r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l5);
+
+        $r3[2] = $r7;
+
+        $i6 = interfaceinvoke $r31.<java.util.List: int size()>();
+
+        $r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+
+        $r3[3] = $r8;
+
+        $r9 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l7 = virtualinvoke $r9.<java.lang.Runtime: long maxMemory()>();
+
+        $r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l7);
+
+        $r3[4] = $r10;
+
+        $r11 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l8 = virtualinvoke $r11.<java.lang.Runtime: long totalMemory()>();
+
+        $r12 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l8);
+
+        $r3[5] = $r12;
+
+        $r13 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l9 = virtualinvoke $r13.<java.lang.Runtime: long freeMemory()>();
+
+        $r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l9);
+
+        $r3[6] = $r14;
+
+        virtualinvoke $r4.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Used=%,d available=%,d of %,d size=%,d max=%,d total=%,d free=%,d\n", $r3);
+
+     label08:
+        $i4 = interfaceinvoke $r31.<java.util.List: int size()>();
+
+        if $i4 <= 10000000 goto label09;
+
+        $r2 = <java.lang.System: java.io.PrintStream err>;
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r2.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("initial capacity should have been higher\n", $r1);
+
+        goto label10;
+
+     label09:
+        goto label01;
+
+     label10:
+        return;
+
+        catch java.lang.OutOfMemoryError from label02 to label04 with label05;
+    }
+
+    private static long getAvailableMemory()
+    {
+        java.lang.Runtime $r0;
+        long $l0, $l1, $l2;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long maxMemory()>();
+
+        $l1 = staticinvoke <CatchOutOfMemoryErrorTest: long getUsedMemory()>();
+
+        $l2 = $l0 - $l1;
+
+        return $l2;
+    }
+
+    private static long getUsedMemory()
+    {
+        java.lang.Runtime $r0;
+        long $l0, $l1, $l2;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long totalMemory()>();
+
+        $l1 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+        $l2 = $l0 - $l1;
+
+        return $l2;
+    }
+}

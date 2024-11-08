@@ -1,0 +1,110 @@
+public class Repro2 extends java.lang.Object
+{
+    public static java.util.LinkedList dummyStore;
+
+    public void <init>()
+    {
+        Repro2 r0;
+
+        r0 := @this: Repro2;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r0, $r1, $r4, $r5;
+        byte[] $r6, $r8;
+        java.lang.String[] r10;
+        java.lang.Runnable $r3;
+        java.lang.Thread $r2;
+        int i0, i1;
+        java.util.LinkedList $r7, $r9;
+
+        r10 := @parameter0: java.lang.String[];
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Started");
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 16384 goto label2;
+
+        $r9 = <Repro2: java.util.LinkedList dummyStore>;
+
+        $r8 = newarray (byte)[1024];
+
+        virtualinvoke $r9.<java.util.LinkedList: boolean add(java.lang.Object)>($r8);
+
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label2:
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Triggered one YC");
+
+        $r2 = new java.lang.Thread;
+
+        $r3 = staticinvoke <Repro2$lambda_main_0__1: java.lang.Runnable bootstrap$()>();
+
+        specialinvoke $r2.<java.lang.Thread: void <init>(java.lang.Runnable)>($r3);
+
+        virtualinvoke $r2.<java.lang.Thread: void start()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+        i1 = 0;
+
+     label3:
+        if i1 >= 16384 goto label4;
+
+        $r7 = <Repro2: java.util.LinkedList dummyStore>;
+
+        $r6 = newarray (byte)[1024];
+
+        virtualinvoke $r7.<java.util.LinkedList: boolean add(java.lang.Object)>($r6);
+
+        i1 = i1 + 1;
+
+        goto label3;
+
+     label4:
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>("Triggered Initial mark");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>("Done.");
+
+        return;
+    }
+
+    public static void lambda$main$0()
+    {
+        staticinvoke <java.lang.System: void exit(int)>(0);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.util.LinkedList $r0;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>()>();
+
+        <Repro2: java.util.LinkedList dummyStore> = $r0;
+
+        return;
+    }
+}

@@ -1,0 +1,217 @@
+public class nativeGC05 extends nsk.share.gc.GCTestBase
+{
+    private final int threadCount;
+    private java.util.Stack emptiedLocations;
+    private nsk.share.gc.Matrix matrix;
+
+    static void <clinit>()
+    {
+        staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("nativeGC05");
+
+        return;
+    }
+
+    public void <init>()
+    {
+        gc.gctests.nativeGC05.nativeGC05 $r5, $r6, $r7;
+        nativeGC05 r0;
+        nsk.share.gc.Matrix $r4;
+        java.util.Stack $r3;
+
+        r0 := @this: nativeGC05;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        $r5 = (gc.gctests.nativeGC05.nativeGC05) r0;
+
+        $r5.<gc.gctests.nativeGC05.nativeGC05: int threadCount> = 5;
+
+        $r3 = new java.util.Stack;
+
+        specialinvoke $r3.<java.util.Stack: void <init>()>();
+
+        $r6 = (gc.gctests.nativeGC05.nativeGC05) r0;
+
+        $r6.<gc.gctests.nativeGC05.nativeGC05: java.util.Stack emptiedLocations> = $r3;
+
+        $r4 = new nsk.share.gc.Matrix;
+
+        specialinvoke $r4.<nsk.share.gc.Matrix: void <init>(int,int)>(100, 100);
+
+        $r7 = (gc.gctests.nativeGC05.nativeGC05) r0;
+
+        $r7.<gc.gctests.nativeGC05.nativeGC05: nsk.share.gc.Matrix matrix> = $r4;
+
+        return;
+    }
+
+    public native void kickOffRefillers(nsk.share.gc.Matrix, java.util.Stack);
+
+    public void run()
+    {
+        java.lang.Throwable $r27;
+        java.lang.Object[] r0;
+        nativeGC05 r3;
+        nsk.share.gc.Matrix $r7, $r8;
+        java.util.Stack $r6;
+        gc.gctests.nativeGC05.nativeGC05$CellEmptier $r17;
+        int[] $r1;
+        gc.gctests.nativeGC05.nativeGC05 $r20, $r23, $r24, $r25, $r26;
+        java.lang.Thread $r21, $r22;
+        int i0, i1, i2, i3;
+        java.lang.String $r15;
+        java.io.PrintStream $r9;
+        nsk.share.TestFailure $r19;
+        java.lang.InterruptedException $r16;
+        java.lang.Object $r4, $r5;
+        java.lang.StringBuilder $r13, $r14, $r18;
+        java.lang.OutOfMemoryError $r10;
+
+        r3 := @this: nativeGC05;
+
+        r0 = newarray (java.lang.Thread)[5];
+
+        i0 = 0;
+
+        $r1 = newarray (int)[10000];
+
+     label01:
+        goto label12;
+
+     label02:
+        i1 = 0;
+
+        goto label04;
+
+     label03:
+        $r17 = new gc.gctests.nativeGC05.nativeGC05$CellEmptier;
+
+        $r20 = (gc.gctests.nativeGC05.nativeGC05) r3;
+
+        specialinvoke $r17.<gc.gctests.nativeGC05.nativeGC05$CellEmptier: void <init>(gc.gctests.nativeGC05.nativeGC05)>($r20);
+
+        r0[i1] = $r17;
+
+        i1 = i1 + 1;
+
+     label04:
+        if i1 < 5 goto label03;
+
+        i2 = 0;
+
+        goto label06;
+
+     label05:
+        $r4 = r0[i2];
+
+        $r21 = (java.lang.Thread) $r4;
+
+        virtualinvoke $r21.<java.lang.Thread: void start()>();
+
+        i2 = i2 + 1;
+
+     label06:
+        if i2 < 5 goto label05;
+
+        i3 = 0;
+
+        goto label11;
+
+     label07:
+        $r5 = r0[i3];
+
+        $r22 = (java.lang.Thread) $r5;
+
+        virtualinvoke $r22.<java.lang.Thread: void join()>();
+
+     label08:
+        goto label10;
+
+     label09:
+        $r16 := @caughtexception;
+
+     label10:
+        i3 = i3 + 1;
+
+     label11:
+        if i3 < 5 goto label07;
+
+        $r23 = (gc.gctests.nativeGC05.nativeGC05) r3;
+
+        $r7 = $r23.<gc.gctests.nativeGC05.nativeGC05: nsk.share.gc.Matrix matrix>;
+
+        $r24 = (gc.gctests.nativeGC05.nativeGC05) r3;
+
+        $r6 = $r24.<gc.gctests.nativeGC05.nativeGC05: java.util.Stack emptiedLocations>;
+
+        $r25 = (gc.gctests.nativeGC05.nativeGC05) r3;
+
+        virtualinvoke $r25.<gc.gctests.nativeGC05.nativeGC05: void kickOffRefillers(nsk.share.gc.Matrix,java.util.Stack)>($r7, $r6);
+
+        $r26 = (gc.gctests.nativeGC05.nativeGC05) r3;
+
+        $r8 = $r26.<gc.gctests.nativeGC05.nativeGC05: nsk.share.gc.Matrix matrix>;
+
+        virtualinvoke $r8.<nsk.share.gc.Matrix: void resetCellCount()>();
+
+        i0 = i0 + 1;
+
+     label12:
+        if i0 < 50 goto label02;
+
+     label13:
+        goto label15;
+
+     label14:
+        $r10 := @caughtexception;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r19 = new nsk.share.TestFailure;
+
+        $r18 = new java.lang.StringBuilder;
+
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>("Test Failed at ");
+
+        $r13 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("th iteration.");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r19.<nsk.share.TestFailure: void <init>(java.lang.String)>($r15);
+
+        $r27 = (java.lang.Throwable) $r19;
+
+        throw $r27;
+
+     label15:
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>("Test passed.");
+
+        return;
+
+        catch java.lang.InterruptedException from label07 to label08 with label09;
+        catch java.lang.OutOfMemoryError from label01 to label13 with label14;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.nativeGC05.nativeGC05 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.nativeGC05.nativeGC05;
+
+        specialinvoke $r2.<gc.gctests.nativeGC05.nativeGC05: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

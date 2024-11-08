@@ -1,0 +1,101 @@
+class Main$1 extends java.lang.Object
+{
+    static final int[] $SwitchMap$jprtlogparser$Main$Format;
+    static final int[] $SwitchMap$jprtlogparser$Main$Sort;
+
+    static void <clinit>()
+    {
+        jprtlogparser.Main$Format $r10;
+        jprtlogparser.Main$Sort $r2, $r4, $r6;
+        jprtlogparser.Main$Sort[] $r0;
+        java.lang.NoSuchFieldError $r12, $r13, $r14, $r15;
+        int[] $r1, $r3, $r5, $r7, $r9, $r11;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        jprtlogparser.Main$Format[] $r8;
+
+        $r0 = staticinvoke <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort[] values()>();
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (int)[$i0];
+
+        <jprtlogparser.Main$1: int[] $SwitchMap$jprtlogparser$Main$Sort> = $r1;
+
+     label01:
+        $r3 = <jprtlogparser.Main$1: int[] $SwitchMap$jprtlogparser$Main$Sort>;
+
+        $r2 = <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort NAME>;
+
+        $i1 = virtualinvoke $r2.<jprtlogparser.Main$Sort: int ordinal()>();
+
+        $r3[$i1] = 1;
+
+     label02:
+        goto label04;
+
+     label03:
+        $r15 := @caughtexception;
+
+     label04:
+        $r5 = <jprtlogparser.Main$1: int[] $SwitchMap$jprtlogparser$Main$Sort>;
+
+        $r4 = <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort FAST>;
+
+        $i2 = virtualinvoke $r4.<jprtlogparser.Main$Sort: int ordinal()>();
+
+        $r5[$i2] = 2;
+
+     label05:
+        goto label07;
+
+     label06:
+        $r14 := @caughtexception;
+
+     label07:
+        $r7 = <jprtlogparser.Main$1: int[] $SwitchMap$jprtlogparser$Main$Sort>;
+
+        $r6 = <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort SLOW>;
+
+        $i3 = virtualinvoke $r6.<jprtlogparser.Main$Sort: int ordinal()>();
+
+        $r7[$i3] = 3;
+
+     label08:
+        goto label10;
+
+     label09:
+        $r13 := @caughtexception;
+
+     label10:
+        $r8 = staticinvoke <jprtlogparser.Main$Format: jprtlogparser.Main$Format[] values()>();
+
+        $i4 = lengthof $r8;
+
+        $r9 = newarray (int)[$i4];
+
+        <jprtlogparser.Main$1: int[] $SwitchMap$jprtlogparser$Main$Format> = $r9;
+
+     label11:
+        $r11 = <jprtlogparser.Main$1: int[] $SwitchMap$jprtlogparser$Main$Format>;
+
+        $r10 = <jprtlogparser.Main$Format: jprtlogparser.Main$Format NAME_TIME>;
+
+        $i5 = virtualinvoke $r10.<jprtlogparser.Main$Format: int ordinal()>();
+
+        $r11[$i5] = 1;
+
+     label12:
+        goto label14;
+
+     label13:
+        $r12 := @caughtexception;
+
+     label14:
+        return;
+
+        catch java.lang.NoSuchFieldError from label01 to label02 with label03;
+        catch java.lang.NoSuchFieldError from label04 to label05 with label06;
+        catch java.lang.NoSuchFieldError from label07 to label08 with label09;
+        catch java.lang.NoSuchFieldError from label11 to label12 with label13;
+    }
+}

@@ -1,0 +1,34 @@
+class DetermineMaxHeapForCompressedOops extends java.lang.Object
+{
+
+    void <init>()
+    {
+        DetermineMaxHeapForCompressedOops r0;
+
+        r0 := @this: DetermineMaxHeapForCompressedOops;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r1;
+        sun.hotspot.WhiteBox $r0;
+        long $l0;
+        java.lang.String[] r2;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $l0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: long getCompressedOopsMaxHeapSize()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void print(long)>($l0);
+
+        return;
+    }
+}

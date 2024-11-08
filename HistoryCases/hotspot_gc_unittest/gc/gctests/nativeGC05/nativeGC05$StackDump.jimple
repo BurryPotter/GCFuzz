@@ -1,0 +1,60 @@
+class nativeGC05$StackDump extends java.lang.Thread
+{
+    final gc.gctests.nativeGC05.nativeGC05 this$0;
+
+    public void <init>(gc.gctests.nativeGC05.nativeGC05)
+    {
+        gc.gctests.nativeGC05.nativeGC05$StackDump $r2;
+        gc.gctests.nativeGC05.nativeGC05 r1;
+        nativeGC05$StackDump r0;
+
+        r0 := @this: nativeGC05$StackDump;
+
+        r1 := @parameter0: gc.gctests.nativeGC05.nativeGC05;
+
+        $r2 = (gc.gctests.nativeGC05.nativeGC05$StackDump) r0;
+
+        $r2.<gc.gctests.nativeGC05.nativeGC05$StackDump: gc.gctests.nativeGC05.nativeGC05 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        java.io.PrintStream $r4;
+        java.util.Stack $r2;
+        nativeGC05$StackDump r0;
+        gc.gctests.nativeGC05.nativeGC05$StackDump $r8;
+        gc.gctests.nativeGC05.nativeGC05 $r1;
+        int $i0;
+        java.lang.StringBuilder $r5, $r7;
+        java.lang.String $r6;
+
+        r0 := @this: nativeGC05$StackDump;
+
+     label1:
+        $r8 = (gc.gctests.nativeGC05.nativeGC05$StackDump) r0;
+
+        $r1 = $r8.<gc.gctests.nativeGC05.nativeGC05$StackDump: gc.gctests.nativeGC05.nativeGC05 this$0>;
+
+        $r2 = $r1.<gc.gctests.nativeGC05.nativeGC05: java.util.Stack emptiedLocations>;
+
+        $i0 = virtualinvoke $r2.<java.util.Stack: int size()>();
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("Number of empty cells = ");
+
+        $r5 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        goto label1;
+    }
+}

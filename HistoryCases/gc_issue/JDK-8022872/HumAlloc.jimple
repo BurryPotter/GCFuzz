@@ -1,0 +1,30 @@
+public class HumAlloc extends java.lang.Object
+{
+    public static byte[] humObj;
+
+    public void <init>()
+    {
+        HumAlloc r0;
+
+        r0 := @this: HumAlloc;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+     label1:
+        $r0 = newarray (byte)[2097152];
+
+        <HumAlloc: byte[] humObj> = $r0;
+
+        goto label1;
+    }
+}

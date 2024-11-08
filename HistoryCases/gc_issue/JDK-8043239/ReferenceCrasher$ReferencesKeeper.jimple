@@ -1,0 +1,17 @@
+class ReferenceCrasher$ReferencesKeeper extends java.lang.Object
+{
+    ReferenceCrasher$ReferenceKeeper3 r3;
+    ReferenceCrasher$ReferenceKeeper2 r2;
+    ReferenceCrasher$ReferenceKeeper1 r1;
+
+    void <init>()
+    {
+        ReferenceCrasher$ReferencesKeeper r0;
+
+        r0 := @this: ReferenceCrasher$ReferencesKeeper;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

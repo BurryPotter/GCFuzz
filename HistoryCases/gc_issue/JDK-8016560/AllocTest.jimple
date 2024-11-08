@@ -1,0 +1,56 @@
+public class AllocTest extends java.lang.Object
+{
+    public static java.util.ArrayList list;
+
+    public void <init>()
+    {
+        AllocTest r0;
+
+        r0 := @this: AllocTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r0;
+        int i0;
+        java.lang.String[] r2;
+        java.util.ArrayList $r1;
+
+        r2 := @parameter0: java.lang.String[];
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 10485760 goto label2;
+
+        $r1 = <AllocTest: java.util.ArrayList list>;
+
+        $r0 = newarray (byte)[30];
+
+        virtualinvoke $r1.<java.util.ArrayList: boolean add(java.lang.Object)>($r0);
+
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.util.ArrayList $r0;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>(int)>(0);
+
+        <AllocTest: java.util.ArrayList list> = $r0;
+
+        return;
+    }
+}

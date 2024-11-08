@@ -1,0 +1,60 @@
+class TestEagerReclaimHumongousRegionsLog$GCTest extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WB;
+    public static java.lang.Object holder;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.TestEagerReclaimHumongousRegionsLog$GCTest: sun.hotspot.WhiteBox WB> = $r0;
+
+        return;
+    }
+
+    void <init>()
+    {
+        TestEagerReclaimHumongousRegionsLog$GCTest r0;
+
+        r0 := @this: TestEagerReclaimHumongousRegionsLog$GCTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r3;
+        byte[] $r0;
+        sun.hotspot.WhiteBox $r1, $r4;
+        java.lang.Object $r2;
+        java.lang.String[] r5;
+
+        r5 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (byte)[4194304];
+
+        <gc.g1.TestEagerReclaimHumongousRegionsLog$GCTest: java.lang.Object holder> = $r0;
+
+        $r1 = <gc.g1.TestEagerReclaimHumongousRegionsLog$GCTest: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r1.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r2 = <gc.g1.TestEagerReclaimHumongousRegionsLog$GCTest: java.lang.Object holder>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.Object)>($r2);
+
+        <gc.g1.TestEagerReclaimHumongousRegionsLog$GCTest: java.lang.Object holder> = null;
+
+        $r4 = <gc.g1.TestEagerReclaimHumongousRegionsLog$GCTest: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r4.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        return;
+    }
+}

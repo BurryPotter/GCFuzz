@@ -1,0 +1,83 @@
+public class Test extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Test r0;
+
+        r0 := @this: Test;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r0, $r5;
+        java.util.stream.IntStream $r6, $r7;
+        java.lang.String[] r11;
+        java.util.stream.Stream $r9;
+        int i0;
+        java.lang.StringBuilder $r1, $r2, $r3;
+        java.lang.String $r4;
+        java.util.stream.Collector $r10;
+        java.util.function.IntFunction $r8;
+
+        r11 := @parameter0: java.lang.String[];
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 100 goto label2;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("round #");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r4);
+
+        $r6 = staticinvoke <java.util.stream.IntStream: java.util.stream.IntStream range(int,int)>(0, 10000000);
+
+        $r7 = interfaceinvoke $r6.<java.util.stream.IntStream: java.util.stream.IntStream parallel()>();
+
+        $r8 = staticinvoke <Test$lambda_main_0__1: java.util.function.IntFunction bootstrap$(java.lang.String)>($r4);
+
+        $r9 = interfaceinvoke $r7.<java.util.stream.IntStream: java.util.stream.Stream mapToObj(java.util.function.IntFunction)>($r8);
+
+        $r10 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>();
+
+        interfaceinvoke $r9.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r10);
+
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label2:
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("PASSED");
+
+        return;
+    }
+
+    private static java.lang.String lambda$main$0(java.lang.String, int)
+    {
+        int i0;
+        java.lang.String r0;
+
+        r0 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        return r0;
+    }
+}

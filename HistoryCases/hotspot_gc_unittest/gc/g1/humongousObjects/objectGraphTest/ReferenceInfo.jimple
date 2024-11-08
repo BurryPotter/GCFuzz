@@ -1,0 +1,129 @@
+public class ReferenceInfo extends java.lang.Object
+{
+    public final java.lang.ref.Reference reference;
+    public final java.lang.String graphId;
+    public final java.lang.String nodeId;
+    public final boolean softlyReachable;
+    public final boolean effectiveHumongous;
+
+    public void <init>(java.lang.ref.Reference, java.lang.String, java.lang.String, boolean, boolean)
+    {
+        gc.g1.humongousObjects.objectGraphTest.ReferenceInfo $r4, $r5, $r6, $r7, $r8;
+        java.lang.ref.Reference r1;
+        java.lang.String r2, r3;
+        ReferenceInfo r0;
+        boolean z0, z1;
+
+        r0 := @this: ReferenceInfo;
+
+        r1 := @parameter0: java.lang.ref.Reference;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        z0 := @parameter3: boolean;
+
+        z1 := @parameter4: boolean;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r4 = (gc.g1.humongousObjects.objectGraphTest.ReferenceInfo) r0;
+
+        $r4.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: java.lang.ref.Reference reference> = r1;
+
+        $r5 = (gc.g1.humongousObjects.objectGraphTest.ReferenceInfo) r0;
+
+        $r5.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: java.lang.String graphId> = r2;
+
+        $r6 = (gc.g1.humongousObjects.objectGraphTest.ReferenceInfo) r0;
+
+        $r6.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: java.lang.String nodeId> = r3;
+
+        $r7 = (gc.g1.humongousObjects.objectGraphTest.ReferenceInfo) r0;
+
+        $r7.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: boolean softlyReachable> = z0;
+
+        $r8 = (gc.g1.humongousObjects.objectGraphTest.ReferenceInfo) r0;
+
+        $r8.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: boolean effectiveHumongous> = z1;
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        java.lang.Object[] $r0;
+        java.lang.String $r2, $r5, $r8, $r9, $r10;
+        boolean $z0, $z1;
+        gc.g1.humongousObjects.objectGraphTest.ReferenceInfo $r11, $r12, $r13, $r14, $r15;
+        java.lang.ref.Reference $r3, $r6;
+        java.lang.Class $r4;
+        java.lang.Object $r7;
+        ReferenceInfo r1;
+
+        r1 := @this: ReferenceInfo;
+
+        $r0 = newarray (java.lang.Object)[5];
+
+        $r11 = (gc.g1.humongousObjects.objectGraphTest.ReferenceInfo) r1;
+
+        $r2 = $r11.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: java.lang.String nodeId>;
+
+        $r0[0] = $r2;
+
+        $r12 = (gc.g1.humongousObjects.objectGraphTest.ReferenceInfo) r1;
+
+        $z0 = $r12.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: boolean effectiveHumongous>;
+
+        if $z0 == 0 goto label1;
+
+        $r9 = "";
+
+        goto label2;
+
+     label1:
+        $r9 = "non-";
+
+     label2:
+        $r0[1] = $r9;
+
+        $r13 = (gc.g1.humongousObjects.objectGraphTest.ReferenceInfo) r1;
+
+        $z1 = $r13.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: boolean softlyReachable>;
+
+        if $z1 == 0 goto label3;
+
+        $r10 = "";
+
+        goto label4;
+
+     label3:
+        $r10 = "non-";
+
+     label4:
+        $r0[2] = $r10;
+
+        $r14 = (gc.g1.humongousObjects.objectGraphTest.ReferenceInfo) r1;
+
+        $r3 = $r14.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: java.lang.ref.Reference reference>;
+
+        $r4 = virtualinvoke $r3.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r0[3] = $r5;
+
+        $r15 = (gc.g1.humongousObjects.objectGraphTest.ReferenceInfo) r1;
+
+        $r6 = $r15.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: java.lang.ref.Reference reference>;
+
+        $r7 = virtualinvoke $r6.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        $r0[4] = $r7;
+
+        $r8 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Node %s is effectively %shumongous and effectively %ssoft referenced\n\tReference type is %s and it points to %s", $r0);
+
+        return $r8;
+    }
+}

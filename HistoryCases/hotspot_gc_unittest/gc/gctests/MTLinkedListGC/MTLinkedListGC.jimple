@@ -1,0 +1,160 @@
+public class MTLinkedListGC extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        MTLinkedListGC r0;
+
+        r0 := @this: MTLinkedListGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Throwable $r24;
+        java.lang.String[] r17;
+        gc.gctests.MTLinkedListGC.LinkedListGrower $r3, $r4, $r18;
+        int[] $r0;
+        java.lang.Thread $r22, $r23;
+        int $i0, $i1, $i2, i3, i4, i5, i6;
+        java.lang.String $r8, $r15;
+        gc.gctests.MTLinkedListGC.LinkedListGrower[] r1;
+        java.io.PrintStream $r6, $r9;
+        java.lang.Exception $r16;
+        nsk.share.TestFailure $r21;
+        java.lang.StringBuilder $r7, $r13, $r14, $r19, $r20;
+        java.lang.OutOfMemoryError $r10;
+
+        r17 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (int)[1000];
+
+        r1 = newarray (gc.gctests.MTLinkedListGC.LinkedListGrower)[1000];
+
+        i3 = 0;
+
+     label01:
+        goto label13;
+
+     label02:
+        i4 = 0;
+
+        goto label04;
+
+     label03:
+        $r18 = new gc.gctests.MTLinkedListGC.LinkedListGrower;
+
+        specialinvoke $r18.<gc.gctests.MTLinkedListGC.LinkedListGrower: void <init>(int)>(i4);
+
+        r1[i4] = $r18;
+
+        i4 = i4 + 1;
+
+     label04:
+        $i0 = lengthof r1;
+
+        if i4 < $i0 goto label03;
+
+        i5 = 0;
+
+        goto label06;
+
+     label05:
+        $r3 = r1[i5];
+
+        $r22 = (java.lang.Thread) $r3;
+
+        virtualinvoke $r22.<java.lang.Thread: void start()>();
+
+        i5 = i5 + 1;
+
+     label06:
+        $i1 = lengthof r1;
+
+        if i5 < $i1 goto label05;
+
+     label07:
+        i6 = 0;
+
+        goto label09;
+
+     label08:
+        $r4 = r1[i6];
+
+        $r23 = (java.lang.Thread) $r4;
+
+        virtualinvoke $r23.<java.lang.Thread: void join()>();
+
+        i6 = i6 + 1;
+
+     label09:
+        $i2 = lengthof r1;
+
+        if i6 < $i2 goto label08;
+
+     label10:
+        goto label12;
+
+     label11:
+        $r16 := @caughtexception;
+
+     label12:
+        staticinvoke <gc.gctests.MTLinkedListGC.LinkedListHolder: void getNewList()>();
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>("Finished iteration ");
+
+        $r7 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        i3 = i3 + 1;
+
+     label13:
+        if i3 < 50 goto label02;
+
+     label14:
+        goto label16;
+
+     label15:
+        $r10 := @caughtexception;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r21 = new nsk.share.TestFailure;
+
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>(java.lang.String)>("Test Failed at ");
+
+        $r13 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("th iteration.");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r21.<nsk.share.TestFailure: void <init>(java.lang.String)>($r15);
+
+        $r24 = (java.lang.Throwable) $r21;
+
+        throw $r24;
+
+     label16:
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>("Test Passed");
+
+        return;
+
+        catch java.lang.Exception from label07 to label10 with label11;
+        catch java.lang.OutOfMemoryError from label01 to label14 with label15;
+    }
+}

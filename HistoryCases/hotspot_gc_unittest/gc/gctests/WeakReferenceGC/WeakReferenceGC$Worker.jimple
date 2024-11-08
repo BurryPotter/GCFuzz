@@ -1,0 +1,91 @@
+class WeakReferenceGC$Worker extends java.lang.Object implements java.lang.Runnable
+{
+    final gc.gctests.WeakReferenceGC.WeakReferenceGC this$0;
+
+    private void <init>(gc.gctests.WeakReferenceGC.WeakReferenceGC)
+    {
+        WeakReferenceGC$Worker r0;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker $r2;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC r1;
+
+        r0 := @this: WeakReferenceGC$Worker;
+
+        r1 := @parameter0: gc.gctests.WeakReferenceGC.WeakReferenceGC;
+
+        $r2 = (gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker) r0;
+
+        $r2.<gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker: gc.gctests.WeakReferenceGC.WeakReferenceGC this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.String[] $r1;
+        boolean $z0;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker $r11, $r12, $r13, $r14, $r15, $r16, $r17;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC $r2, $r3, $r4, $r5, $r6, $r8, $r9;
+        nsk.share.log.Log $r7, $r10;
+        WeakReferenceGC$Worker r0;
+
+        r0 := @this: WeakReferenceGC$Worker;
+
+        $r11 = (gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker) r0;
+
+        $r2 = $r11.<gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker: gc.gctests.WeakReferenceGC.WeakReferenceGC this$0>;
+
+        $r1 = <gc.gctests.WeakReferenceGC.WeakReferenceGC: java.lang.String[] args>;
+
+        virtualinvoke $r2.<gc.gctests.WeakReferenceGC.WeakReferenceGC: void parseTestParams(java.lang.String[])>($r1);
+
+        $r12 = (gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker) r0;
+
+        $r3 = $r12.<gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker: gc.gctests.WeakReferenceGC.WeakReferenceGC this$0>;
+
+        virtualinvoke $r3.<gc.gctests.WeakReferenceGC.WeakReferenceGC: void runTest()>();
+
+        $r13 = (gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker) r0;
+
+        $r4 = $r13.<gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker: gc.gctests.WeakReferenceGC.WeakReferenceGC this$0>;
+
+        virtualinvoke $r4.<gc.gctests.WeakReferenceGC.WeakReferenceGC: void dumpTestResults()>();
+
+        $r14 = (gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker) r0;
+
+        $r5 = $r14.<gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker: gc.gctests.WeakReferenceGC.WeakReferenceGC this$0>;
+
+        $z0 = virtualinvoke $r5.<gc.gctests.WeakReferenceGC.WeakReferenceGC: boolean hasPassed()>();
+
+        if $z0 == 0 goto label1;
+
+        $r15 = (gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker) r0;
+
+        $r9 = $r15.<gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker: gc.gctests.WeakReferenceGC.WeakReferenceGC this$0>;
+
+        $r10 = staticinvoke <gc.gctests.WeakReferenceGC.WeakReferenceGC: nsk.share.log.Log access$0(gc.gctests.WeakReferenceGC.WeakReferenceGC)>($r9);
+
+        interfaceinvoke $r10.<nsk.share.log.Log: void info(java.lang.Object)>("Test passed.");
+
+        goto label2;
+
+     label1:
+        $r16 = (gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker) r0;
+
+        $r6 = $r16.<gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker: gc.gctests.WeakReferenceGC.WeakReferenceGC this$0>;
+
+        $r7 = staticinvoke <gc.gctests.WeakReferenceGC.WeakReferenceGC: nsk.share.log.Log access$0(gc.gctests.WeakReferenceGC.WeakReferenceGC)>($r6);
+
+        interfaceinvoke $r7.<nsk.share.log.Log: void error(java.lang.Object)>("Test failed.");
+
+        $r17 = (gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker) r0;
+
+        $r8 = $r17.<gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker: gc.gctests.WeakReferenceGC.WeakReferenceGC this$0>;
+
+        virtualinvoke $r8.<gc.gctests.WeakReferenceGC.WeakReferenceGC: void setFailed(boolean)>(1);
+
+     label2:
+        return;
+    }
+}

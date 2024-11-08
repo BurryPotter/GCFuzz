@@ -1,0 +1,59 @@
+public class Case extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Case r0;
+
+        r0 := @this: Case;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] r0, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14;
+        java.lang.String[] r1;
+        int $i1, $i3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $i1 = (int) 32768;
+
+        r2 = newarray (byte)[$i1];
+
+        r3 = newarray (byte)[33554432];
+
+        r4 = newarray (byte)[536870912];
+
+        $i3 = (int) 32768;
+
+        r5 = newarray (byte)[$i3];
+
+        r6 = newarray (byte)[536870912];
+
+        r0 = newarray (byte)[16777216];
+
+        r7 = newarray (byte)[134217728];
+
+        r8 = newarray (byte)[262144];
+
+        r9 = newarray (byte)[65536];
+
+        r10 = newarray (byte)[262144];
+
+        r11 = newarray (byte)[268435456];
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        r12 = newarray (byte)[65536];
+
+        r13 = newarray (byte)[524288];
+
+        r14 = newarray (byte)[536870912];
+
+        return;
+    }
+}

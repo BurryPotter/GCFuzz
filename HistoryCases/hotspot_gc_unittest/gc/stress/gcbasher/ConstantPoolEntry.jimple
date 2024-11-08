@@ -1,0 +1,146 @@
+class ConstantPoolEntry extends java.lang.Object
+{
+    private int index;
+    private java.lang.String value;
+
+    public void <init>(int)
+    {
+        int i0;
+        ConstantPoolEntry r0;
+        gc.stress.gcbasher.ConstantPoolEntry $r1, $r2;
+
+        r0 := @this: ConstantPoolEntry;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.stress.gcbasher.ConstantPoolEntry) r0;
+
+        $r1.<gc.stress.gcbasher.ConstantPoolEntry: int index> = i0;
+
+        $r2 = (gc.stress.gcbasher.ConstantPoolEntry) r0;
+
+        $r2.<gc.stress.gcbasher.ConstantPoolEntry: java.lang.String value> = null;
+
+        return;
+    }
+
+    public void <init>(java.lang.String)
+    {
+        int $i1;
+        java.lang.String r1;
+        ConstantPoolEntry r0;
+        gc.stress.gcbasher.ConstantPoolEntry $r2, $r3;
+
+        r0 := @this: ConstantPoolEntry;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = (gc.stress.gcbasher.ConstantPoolEntry) r0;
+
+        $i1 = (int) -1;
+
+        $r2.<gc.stress.gcbasher.ConstantPoolEntry: int index> = $i1;
+
+        $r3 = (gc.stress.gcbasher.ConstantPoolEntry) r0;
+
+        $r3.<gc.stress.gcbasher.ConstantPoolEntry: java.lang.String value> = r1;
+
+        return;
+    }
+
+    public java.lang.String getValue() throws java.lang.IllegalStateException
+    {
+        java.lang.IllegalStateException $r3;
+        int $i0, $i2;
+        java.lang.String $r1;
+        ConstantPoolEntry r0;
+        gc.stress.gcbasher.ConstantPoolEntry $r4, $r5;
+
+        r0 := @this: ConstantPoolEntry;
+
+        $r4 = (gc.stress.gcbasher.ConstantPoolEntry) r0;
+
+        $i0 = $r4.<gc.stress.gcbasher.ConstantPoolEntry: int index>;
+
+        $i2 = (int) -1;
+
+        if $i0 == $i2 goto label1;
+
+        $r3 = new java.lang.IllegalStateException;
+
+        specialinvoke $r3.<java.lang.IllegalStateException: void <init>()>();
+
+        throw $r3;
+
+     label1:
+        $r5 = (gc.stress.gcbasher.ConstantPoolEntry) r0;
+
+        $r1 = $r5.<gc.stress.gcbasher.ConstantPoolEntry: java.lang.String value>;
+
+        return $r1;
+    }
+
+    public int getNameIndex() throws java.lang.IllegalStateException
+    {
+        java.lang.IllegalStateException $r3;
+        int $i0;
+        java.lang.String $r1;
+        ConstantPoolEntry r0;
+        gc.stress.gcbasher.ConstantPoolEntry $r4, $r5;
+
+        r0 := @this: ConstantPoolEntry;
+
+        $r4 = (gc.stress.gcbasher.ConstantPoolEntry) r0;
+
+        $r1 = $r4.<gc.stress.gcbasher.ConstantPoolEntry: java.lang.String value>;
+
+        if $r1 == null goto label1;
+
+        $r3 = new java.lang.IllegalStateException;
+
+        specialinvoke $r3.<java.lang.IllegalStateException: void <init>()>();
+
+        throw $r3;
+
+     label1:
+        $r5 = (gc.stress.gcbasher.ConstantPoolEntry) r0;
+
+        $i0 = $r5.<gc.stress.gcbasher.ConstantPoolEntry: int index>;
+
+        return $i0;
+    }
+
+    public int getClassIndex() throws java.lang.IllegalStateException
+    {
+        java.lang.IllegalStateException $r3;
+        int $i0;
+        java.lang.String $r1;
+        ConstantPoolEntry r0;
+        gc.stress.gcbasher.ConstantPoolEntry $r4, $r5;
+
+        r0 := @this: ConstantPoolEntry;
+
+        $r4 = (gc.stress.gcbasher.ConstantPoolEntry) r0;
+
+        $r1 = $r4.<gc.stress.gcbasher.ConstantPoolEntry: java.lang.String value>;
+
+        if $r1 == null goto label1;
+
+        $r3 = new java.lang.IllegalStateException;
+
+        specialinvoke $r3.<java.lang.IllegalStateException: void <init>()>();
+
+        throw $r3;
+
+     label1:
+        $r5 = (gc.stress.gcbasher.ConstantPoolEntry) r0;
+
+        $i0 = $r5.<gc.stress.gcbasher.ConstantPoolEntry: int index>;
+
+        return $i0;
+    }
+}

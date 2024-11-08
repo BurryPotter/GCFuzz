@@ -1,0 +1,752 @@
+public class TestPrintReferences extends java.lang.Object
+{
+    static java.lang.String output;
+    static final java.lang.String doubleRegex;
+    static final java.lang.String referenceProcessing;
+    static final java.lang.String softReference;
+    static final java.lang.String weakReference;
+    static final java.lang.String finalReference;
+    static final java.lang.String phantomReference;
+    static final java.lang.String phaseReconsiderSoftReferences;
+    static final java.lang.String phaseNotifySoftWeakReferences;
+    static final java.lang.String phaseNotifyKeepAliveFinalizer;
+    static final java.lang.String phaseNotifyPhantomReferences;
+    static final java.lang.String phase1;
+    static final java.lang.String phase2;
+    static final java.lang.String phase3;
+    static final java.lang.String gcLogTimeRegex;
+
+    public void <init>()
+    {
+        TestPrintReferences r0;
+
+        r0 := @this: TestPrintReferences;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.logging.TestPrintReferences: void testPhases(boolean)>(1);
+
+        staticinvoke <gc.logging.TestPrintReferences: void testPhases(boolean)>(0);
+
+        staticinvoke <gc.logging.TestPrintReferences: void testRefs()>();
+
+        return;
+    }
+
+    static java.lang.String indent(int)
+    {
+        int i0;
+        java.lang.StringBuilder $r0, $r1, $r2;
+        java.lang.String $r3;
+
+        i0 := @parameter0: int;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>(" {");
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("}");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r3;
+    }
+
+    public static void testRefs() throws java.lang.Exception
+    {
+        java.lang.Process $r5;
+        java.lang.String[] $r0;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+        java.lang.ProcessBuilder $r3;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+
+        $r0 = newarray (java.lang.String)[4];
+
+        $r0[0] = "-Xlog:gc+ref+phases=debug";
+
+        $r0[1] = "-XX:+UseG1GC";
+
+        $r0[2] = "-Xmx32M";
+
+        $r1 = class "Lgc/logging/TestPrintReferences$GCTest;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[3] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r4 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        staticinvoke <gc.logging.TestPrintReferences: void checkRefsLogFormat(jdk.test.lib.process.OutputAnalyzer)>($r4);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    private static java.lang.String refRegex(java.lang.String)
+    {
+        java.lang.String $r1, r3, $r7, $r13, $r18;
+        java.lang.StringBuilder $r0, $r2, $r4, $r5, $r6, $r8, $r9, $r10, $r11, $r12, $r14, $r15, $r16, $r17;
+
+        r3 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r1 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String indent(int)>(6);
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":\n");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r7 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String indent(int)>(8);
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Discovered: ");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[0-9]+");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r13 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String indent(int)>(8);
+
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Cleared: ");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[0-9]+");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r18;
+    }
+
+    private static void checkRefsLogFormat(jdk.test.lib.process.OutputAnalyzer)
+    {
+        jdk.test.lib.process.OutputAnalyzer r0;
+        java.lang.StringBuilder $r1, $r5, $r7, $r9;
+        java.lang.String $r2, $r3, $r4, $r6, $r8, $r10;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        $r1 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String refRegex(java.lang.String)>("SoftReference");
+
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r2);
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+
+        $r4 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String refRegex(java.lang.String)>("WeakReference");
+
+        $r5 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r6 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String refRegex(java.lang.String)>("FinalReference");
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String refRegex(java.lang.String)>("PhantomReference");
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>($r10);
+
+        return;
+    }
+
+    public static void testPhases(boolean) throws java.lang.Exception
+    {
+        java.lang.Process $r9;
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r8;
+        java.lang.StringBuilder $r1, $r2, $r3;
+        java.lang.Class $r5;
+        java.lang.String $r4, $r6, $r10;
+        java.lang.ProcessBuilder $r7;
+        boolean z0;
+
+        z0 := @parameter0: boolean;
+
+        $r0 = newarray (java.lang.String)[7];
+
+        $r0[0] = "-Xlog:gc+phases+ref=debug";
+
+        $r0[1] = "-XX:+UseG1GC";
+
+        $r0[2] = "-Xmx32M";
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:");
+
+        if z0 == 0 goto label1;
+
+        $r10 = "+";
+
+        goto label2;
+
+     label1:
+        $r10 = "-";
+
+     label2:
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ParallelRefProcEnabled");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[3] = $r4;
+
+        $r0[4] = "-XX:-UseDynamicNumberOfGCThreads";
+
+        $r0[5] = "-XX:ParallelGCThreads=2";
+
+        $r5 = class "Lgc/logging/TestPrintReferences$GCTest;";
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[6] = $r6;
+
+        $r7 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r8 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r9 = virtualinvoke $r7.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r9);
+
+        staticinvoke <gc.logging.TestPrintReferences: void checkLogFormat(jdk.test.lib.process.OutputAnalyzer,boolean)>($r8, z0);
+
+        staticinvoke <gc.logging.TestPrintReferences: void checkLogValue(jdk.test.lib.process.OutputAnalyzer)>($r8);
+
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    private static java.lang.String phaseRegex(java.lang.String)
+    {
+        java.lang.StringBuilder $r0, $r4, $r5, $r6, $r7;
+        java.lang.String $r1, $r2, r3, $r8;
+
+        r3 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r1 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String indent(int)>(6);
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[0-9]+[.,][0-9]+ms");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r8;
+    }
+
+    private static java.lang.String subphaseRegex(java.lang.String, boolean)
+    {
+        java.lang.String $r1, r3, $r8, $r10, $r25;
+        boolean z0;
+        java.lang.StringBuilder $r0, $r2, $r4, $r5, $r6, $r7, $r9, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24;
+
+        r3 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        if z0 == 0 goto label1;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r10 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String indent(int)>(8);
+
+        $r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" \\(ms\\):\\s+(Min:");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\s+[0-9]+[.,][0-9]+,\\s");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Avg:");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\s+[0-9]+[.,][0-9]+,\\s");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Max:");
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\s+[0-9]+[.,][0-9]+,\\s");
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Diff:");
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\s+[0-9]+[.,][0-9]+,\\s");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Sum:");
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\s+[0-9]+[.,][0-9]+,\\s");
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Workers: [0-9]+|skipped)");
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r25;
+
+     label1:
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r1 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String indent(int)>(8);
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":(");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\s+[0-9]+[.,][0-9]+");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ms|\\s+skipped)\n");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r8;
+    }
+
+    private static void checkLogFormat(jdk.test.lib.process.OutputAnalyzer, boolean)
+    {
+        boolean z0;
+        jdk.test.lib.process.OutputAnalyzer r42;
+        java.lang.StringBuilder $r0, $r2, $r3, $r4, $r5, $r6, $r8, $r10, $r11, $r13, $r15, $r17, $r18, $r20, $r22, $r24, $r26, $r28, $r30, $r31, $r33, $r35, $r37, $r38, $r40, $r43, $r45, $r46, $r47, $r48, $r50, $r52, $r53, $r54, $r55;
+        java.lang.String $r1, $r7, $r9, $r12, $r14, $r16, $r19, $r21, $r23, $r25, $r27, $r29, $r32, $r34, $r36, $r39, $r41, $r44, $r49, $r51, $r56;
+
+        r42 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        z0 := @parameter1: boolean;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r1 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String indent(int)>(4);
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Reference Processing");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[0-9]+[.,][0-9]+ms");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        if z0 == 0 goto label1;
+
+        $r50 = new java.lang.StringBuilder;
+
+        specialinvoke $r50.<java.lang.StringBuilder: void <init>(java.lang.String)>("(.* GC\\([0-9]+\\) ");
+
+        $r51 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String indent(int)>(8);
+
+        $r52 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r51);
+
+        $r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Balance queues: ");
+
+        $r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[0-9]+[.,][0-9]+ms");
+
+        $r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n)??");
+
+        $r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label2;
+
+     label1:
+        $r56 = "";
+
+     label2:
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r9 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String phaseRegex(java.lang.String)>("Reconsider SoftReferences");
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r56);
+
+        $r12 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String subphaseRegex(java.lang.String,boolean)>("SoftRef", z0);
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r16 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String phaseRegex(java.lang.String)>("Notify Soft/WeakReferences");
+
+        $r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r56);
+
+        $r19 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String subphaseRegex(java.lang.String,boolean)>("SoftRef", z0);
+
+        $r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19);
+
+        $r21 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String subphaseRegex(java.lang.String,boolean)>("WeakRef", z0);
+
+        $r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21);
+
+        $r23 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String subphaseRegex(java.lang.String,boolean)>("FinalRef", z0);
+
+        $r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+
+        $r25 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String subphaseRegex(java.lang.String,boolean)>("Total", z0);
+
+        $r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r25);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r28 = new java.lang.StringBuilder;
+
+        specialinvoke $r28.<java.lang.StringBuilder: void <init>(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r29 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String phaseRegex(java.lang.String)>("Notify and keep alive finalizable");
+
+        $r30 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r29);
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r56);
+
+        $r32 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String subphaseRegex(java.lang.String,boolean)>("FinalRef", z0);
+
+        $r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r35 = new java.lang.StringBuilder;
+
+        specialinvoke $r35.<java.lang.StringBuilder: void <init>(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r36 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String phaseRegex(java.lang.String)>("Notify PhantomReferences");
+
+        $r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36);
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r56);
+
+        $r39 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String subphaseRegex(java.lang.String,boolean)>("PhantomRef", z0);
+
+        $r40 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r39);
+
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r43 = new java.lang.StringBuilder;
+
+        $r44 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7);
+
+        specialinvoke $r43.<java.lang.StringBuilder: void <init>(java.lang.String)>($r44);
+
+        $r45 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14);
+
+        $r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r27);
+
+        $r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r34);
+
+        $r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r41);
+
+        $r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r42.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>($r49);
+
+        return;
+    }
+
+    private static java.math.BigDecimal getTimeValue(java.lang.String, int)
+    {
+        java.math.BigDecimal $r16;
+        java.util.regex.Matcher $r12;
+        int i0, $i1, $i2, $i4;
+        java.lang.String $r1, r3, $r9, $r11, $r13, $r14, $r15, $r17, $r18, $r19, $r23;
+        boolean $z0;
+        double $d0;
+        java.lang.RuntimeException $r26;
+        java.lang.StringBuilder $r2, $r4, $r5, $r6, $r7, $r8, $r22, $r24, $r25;
+        java.util.regex.Pattern $r10;
+
+        r3 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        $r24 = new java.lang.StringBuilder;
+
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r1 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String indent(int)>(i0);
+
+        $r2 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("(");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[0-9]+[.,][0-9]+");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r10 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>($r9);
+
+        $r11 = <gc.logging.TestPrintReferences: java.lang.String output>;
+
+        $r12 = virtualinvoke $r10.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r11);
+
+        $z0 = virtualinvoke $r12.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label1;
+
+        $r26 = new java.lang.RuntimeException;
+
+        $r25 = new java.lang.StringBuilder;
+
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>("Could not find time log for ");
+
+        $r22 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r26.<java.lang.RuntimeException: void <init>(java.lang.String)>($r23);
+
+        throw $r26;
+
+     label1:
+        $r13 = virtualinvoke $r12.<java.util.regex.Matcher: java.lang.String group()>();
+
+        $r14 = virtualinvoke $r12.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        $d0 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r14);
+
+        $r15 = <gc.logging.TestPrintReferences: java.lang.String output>;
+
+        $i1 = virtualinvoke $r15.<java.lang.String: int indexOf(java.lang.String)>($r13);
+
+        $i4 = (int) -1;
+
+        if $i1 == $i4 goto label2;
+
+        $r18 = <gc.logging.TestPrintReferences: java.lang.String output>;
+
+        $r17 = <gc.logging.TestPrintReferences: java.lang.String output>;
+
+        $i2 = virtualinvoke $r17.<java.lang.String: int length()>();
+
+        $r19 = virtualinvoke $r18.<java.lang.String: java.lang.String substring(int,int)>($i1, $i2);
+
+        <gc.logging.TestPrintReferences: java.lang.String output> = $r19;
+
+     label2:
+        $r16 = staticinvoke <java.math.BigDecimal: java.math.BigDecimal valueOf(double)>($d0);
+
+        return $r16;
+    }
+
+    private static boolean greaterThanOrApproximatelyEqual(java.math.BigDecimal, java.math.BigDecimal, java.math.BigDecimal)
+    {
+        java.math.BigDecimal r0, r1, $r2, r3;
+        int $i0, $i1;
+
+        r0 := @parameter0: java.math.BigDecimal;
+
+        r1 := @parameter1: java.math.BigDecimal;
+
+        r3 := @parameter2: java.math.BigDecimal;
+
+        $i0 = virtualinvoke r0.<java.math.BigDecimal: int compareTo(java.math.BigDecimal)>(r1);
+
+        if $i0 < 0 goto label1;
+
+        return 1;
+
+     label1:
+        $r2 = virtualinvoke r1.<java.math.BigDecimal: java.math.BigDecimal subtract(java.math.BigDecimal)>(r0);
+
+        $i1 = virtualinvoke $r2.<java.math.BigDecimal: int compareTo(java.math.BigDecimal)>(r3);
+
+        if $i1 > 0 goto label2;
+
+        return 1;
+
+     label2:
+        return 0;
+    }
+
+    public static void checkLogValue(jdk.test.lib.process.OutputAnalyzer)
+    {
+        java.util.regex.Matcher $r11;
+        int $i0, i1, $i3;
+        java.lang.String $r1, $r3, $r8, $r10, $r12, $r13, $r14;
+        boolean $z0, $z1;
+        jdk.test.lib.process.OutputAnalyzer r0;
+        java.lang.StringBuilder $r4, $r5, $r6, $r7, $r15;
+        java.util.regex.Pattern $r9;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        $r1 = virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        <gc.logging.TestPrintReferences: java.lang.String output> = $r1;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>(".* GC\\([0-9]+\\) ");
+
+        $r3 = staticinvoke <gc.logging.TestPrintReferences: java.lang.String indent(int)>(0);
+
+        $r4 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Reference Processing");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("[0-9]+[.,][0-9]+");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r9 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>($r8);
+
+        $r10 = <gc.logging.TestPrintReferences: java.lang.String output>;
+
+        $r11 = virtualinvoke $r9.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r10);
+
+        $z0 = virtualinvoke $r11.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 == 0 goto label2;
+
+        $i0 = virtualinvoke $r11.<java.util.regex.Matcher: int start()>();
+
+        $r12 = <gc.logging.TestPrintReferences: java.lang.String output>;
+
+        i1 = virtualinvoke $r12.<java.lang.String: int length()>();
+
+        $z1 = virtualinvoke $r11.<java.util.regex.Matcher: boolean find()>();
+
+        if $z1 == 0 goto label1;
+
+        i1 = virtualinvoke $r11.<java.util.regex.Matcher: int start()>();
+
+     label1:
+        $i3 = (int) -1;
+
+        if $i0 == $i3 goto label2;
+
+        $r13 = <gc.logging.TestPrintReferences: java.lang.String output>;
+
+        $r14 = virtualinvoke $r13.<java.lang.String: java.lang.String substring(int,int)>($i0, i1);
+
+        <gc.logging.TestPrintReferences: java.lang.String output> = $r14;
+
+        staticinvoke <gc.logging.TestPrintReferences: void checkTrimmedLogValue()>();
+
+     label2:
+        return;
+    }
+
+    private static void checkTrimmedLogValue()
+    {
+        java.math.BigDecimal $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8;
+        java.lang.String $r15;
+        boolean $z0;
+        java.lang.RuntimeException $r9;
+        java.lang.StringBuilder $r10, $r11, $r12, $r13, $r14;
+
+        $r0 = staticinvoke <gc.logging.TestPrintReferences: java.math.BigDecimal getTimeValue(java.lang.String,int)>("Reference Processing", 0);
+
+        $r1 = staticinvoke <gc.logging.TestPrintReferences: java.math.BigDecimal getTimeValue(java.lang.String,int)>("Reconsider SoftReferences", 2);
+
+        $r2 = staticinvoke <gc.logging.TestPrintReferences: java.math.BigDecimal getTimeValue(java.lang.String,int)>("Notify Soft/WeakReferences", 2);
+
+        $r3 = virtualinvoke $r1.<java.math.BigDecimal: java.math.BigDecimal add(java.math.BigDecimal)>($r2);
+
+        $r4 = staticinvoke <gc.logging.TestPrintReferences: java.math.BigDecimal getTimeValue(java.lang.String,int)>("Notify and keep alive finalizable", 2);
+
+        $r5 = virtualinvoke $r3.<java.math.BigDecimal: java.math.BigDecimal add(java.math.BigDecimal)>($r4);
+
+        $r6 = staticinvoke <gc.logging.TestPrintReferences: java.math.BigDecimal getTimeValue(java.lang.String,int)>("Notify PhantomReferences", 2);
+
+        $r7 = virtualinvoke $r5.<java.math.BigDecimal: java.math.BigDecimal add(java.math.BigDecimal)>($r6);
+
+        $r8 = staticinvoke <java.math.BigDecimal: java.math.BigDecimal valueOf(double)>(0.2);
+
+        $z0 = staticinvoke <gc.logging.TestPrintReferences: boolean greaterThanOrApproximatelyEqual(java.math.BigDecimal,java.math.BigDecimal,java.math.BigDecimal)>($r0, $r7, $r8);
+
+        if $z0 != 0 goto label1;
+
+        $r9 = new java.lang.RuntimeException;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("Reference Processing time(");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r0);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ms) is less than the sum(");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r7);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ms) of each phases");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r9.<java.lang.RuntimeException: void <init>(java.lang.String)>($r15);
+
+        throw $r9;
+
+     label1:
+        return;
+    }
+}

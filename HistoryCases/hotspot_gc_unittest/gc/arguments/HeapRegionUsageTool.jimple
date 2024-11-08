@@ -1,0 +1,132 @@
+public final class HeapRegionUsageTool extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        HeapRegionUsageTool r0;
+
+        r0 := @this: HeapRegionUsageTool;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static java.lang.management.MemoryUsage getUsage(java.lang.String)
+    {
+        java.util.Iterator $r1;
+        java.util.List $r0;
+        java.lang.management.MemoryPoolMXBean r3;
+        java.lang.Object $r2;
+        java.lang.String $r4, r5;
+        java.lang.management.MemoryUsage $r6;
+        boolean $z0, $z1;
+
+        r5 := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        $r2 = interfaceinvoke $r1.<java.util.Iterator: java.lang.Object next()>();
+
+        r3 = (java.lang.management.MemoryPoolMXBean) $r2;
+
+        $r4 = interfaceinvoke r3.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        $z1 = virtualinvoke $r4.<java.lang.String: boolean matches(java.lang.String)>(r5);
+
+        if $z1 == 0 goto label2;
+
+        $r6 = interfaceinvoke r3.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        return $r6;
+
+     label2:
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+        return null;
+    }
+
+    public static java.lang.management.MemoryUsage getEdenUsage()
+    {
+        java.lang.management.MemoryUsage $r0;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getUsage(java.lang.String)>(".*Eden.*");
+
+        return $r0;
+    }
+
+    public static java.lang.management.MemoryUsage getSurvivorUsage()
+    {
+        java.lang.management.MemoryUsage $r0;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getUsage(java.lang.String)>(".*Survivor.*");
+
+        return $r0;
+    }
+
+    public static java.lang.management.MemoryUsage getOldUsage()
+    {
+        java.lang.management.MemoryUsage $r0;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getUsage(java.lang.String)>(".*(Old|Tenured).*");
+
+        return $r0;
+    }
+
+    public static java.lang.management.MemoryUsage getHeapUsage()
+    {
+        java.lang.management.MemoryMXBean $r0;
+        java.lang.management.MemoryUsage $r1;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r1 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        return $r1;
+    }
+
+    public static long alignUp(long, long)
+    {
+        long l0, l1, $l2, $l3, $l4, $l5, $l6;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        $l2 = l0 + l1;
+
+        $l5 = $l2 - 1L;
+
+        $l3 = l1 - 1L;
+
+        $l4 = $l3 ^ -1L;
+
+        $l6 = $l5 & $l4;
+
+        return $l6;
+    }
+
+    public static long alignDown(long, long)
+    {
+        long l0, l1, $l2, $l3, $l4;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        $l2 = l1 - 1L;
+
+        $l3 = $l2 ^ -1L;
+
+        $l4 = l0 & $l3;
+
+        return $l4;
+    }
+}

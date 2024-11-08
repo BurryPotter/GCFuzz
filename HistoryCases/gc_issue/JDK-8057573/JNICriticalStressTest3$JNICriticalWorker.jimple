@@ -1,0 +1,98 @@
+class JNICriticalStressTest3$JNICriticalWorker extends java.lang.Object implements java.lang.Runnable
+{
+    private int count;
+
+    private void <init>()
+    {
+        JNICriticalStressTest3$JNICriticalWorker r0;
+
+        r0 := @this: JNICriticalStressTest3$JNICriticalWorker;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private void doStep()
+    {
+        byte[] r0, r2;
+        JNICriticalStressTest3$JNICriticalWorker r3;
+        java.util.zip.Deflater $r1;
+        byte $b7;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, i8;
+
+        r3 := @this: JNICriticalStressTest3$JNICriticalWorker;
+
+        r0 = newarray (byte)[16384];
+
+        i8 = 0;
+
+     label1:
+        $i0 = lengthof r0;
+
+        if i8 >= $i0 goto label2;
+
+        $i5 = r3.<JNICriticalStressTest3$JNICriticalWorker: int count>;
+
+        $i6 = $i5 + i8;
+
+        $b7 = (byte) $i6;
+
+        r0[i8] = $b7;
+
+        i8 = i8 + 1;
+
+        goto label1;
+
+     label2:
+        $r1 = new java.util.zip.Deflater;
+
+        specialinvoke $r1.<java.util.zip.Deflater: void <init>()>();
+
+        virtualinvoke $r1.<java.util.zip.Deflater: void setInput(byte[])>(r0);
+
+        virtualinvoke $r1.<java.util.zip.Deflater: void finish()>();
+
+        $i1 = lengthof r0;
+
+        $i2 = 2 * $i1;
+
+        r2 = newarray (byte)[$i2];
+
+        virtualinvoke $r1.<java.util.zip.Deflater: int deflate(byte[])>(r2);
+
+        $i3 = r3.<JNICriticalStressTest3$JNICriticalWorker: int count>;
+
+        $i4 = $i3 + 1;
+
+        r3.<JNICriticalStressTest3$JNICriticalWorker: int count> = $i4;
+
+        return;
+    }
+
+    public void run()
+    {
+        JNICriticalStressTest3$JNICriticalWorker r0;
+
+        r0 := @this: JNICriticalStressTest3$JNICriticalWorker;
+
+     label1:
+        specialinvoke r0.<JNICriticalStressTest3$JNICriticalWorker: void doStep()>();
+
+        goto label1;
+    }
+
+    void <init>(JNICriticalStressTest3$1)
+    {
+        JNICriticalStressTest3$JNICriticalWorker r0;
+        JNICriticalStressTest3$1 r1;
+
+        r0 := @this: JNICriticalStressTest3$JNICriticalWorker;
+
+        r1 := @parameter0: JNICriticalStressTest3$1;
+
+        specialinvoke r0.<JNICriticalStressTest3$JNICriticalWorker: void <init>()>();
+
+        return;
+    }
+}

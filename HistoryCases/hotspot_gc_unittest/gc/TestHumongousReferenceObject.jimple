@@ -1,0 +1,2744 @@
+public class TestHumongousReferenceObject extends java.lang.Object
+{
+    static volatile java.lang.Object instance;
+    java.lang.Integer int_1;
+    java.lang.Integer int_2;
+    java.lang.Integer int_3;
+    java.lang.Integer int_4;
+    java.lang.Integer int_5;
+    java.lang.Integer int_6;
+    java.lang.Integer int_7;
+    java.lang.Integer int_8;
+    java.lang.Integer int_9;
+    java.lang.Integer int_10;
+    java.lang.Integer int_11;
+    java.lang.Integer int_12;
+    java.lang.Integer int_13;
+    java.lang.Integer int_14;
+    java.lang.Integer int_15;
+    java.lang.Integer int_16;
+    java.lang.Integer int_17;
+    java.lang.Integer int_18;
+    java.lang.Integer int_19;
+    java.lang.Integer int_20;
+    java.lang.Integer int_21;
+    java.lang.Integer int_22;
+    java.lang.Integer int_23;
+    java.lang.Integer int_24;
+    java.lang.Integer int_25;
+    java.lang.Integer int_26;
+    java.lang.Integer int_27;
+    java.lang.Integer int_28;
+    java.lang.Integer int_29;
+    java.lang.Integer int_30;
+    java.lang.Integer int_31;
+    java.lang.Integer int_32;
+    java.lang.Integer int_33;
+    java.lang.Integer int_34;
+    java.lang.Integer int_35;
+    java.lang.Integer int_36;
+    java.lang.Integer int_37;
+    java.lang.Integer int_38;
+    java.lang.Integer int_39;
+    java.lang.Integer int_40;
+    java.lang.Integer int_41;
+    java.lang.Integer int_42;
+    java.lang.Integer int_43;
+    java.lang.Integer int_44;
+    java.lang.Integer int_45;
+    java.lang.Integer int_46;
+    java.lang.Integer int_47;
+    java.lang.Integer int_48;
+    java.lang.Integer int_49;
+    java.lang.Integer int_50;
+    java.lang.Integer int_51;
+    java.lang.Integer int_52;
+    java.lang.Integer int_53;
+    java.lang.Integer int_54;
+    java.lang.Integer int_55;
+    java.lang.Integer int_56;
+    java.lang.Integer int_57;
+    java.lang.Integer int_58;
+    java.lang.Integer int_59;
+    java.lang.Integer int_60;
+    java.lang.Integer int_61;
+    java.lang.Integer int_62;
+    java.lang.Integer int_63;
+    java.lang.Integer int_64;
+    java.lang.Integer int_65;
+    java.lang.Integer int_66;
+    java.lang.Integer int_67;
+    java.lang.Integer int_68;
+    java.lang.Integer int_69;
+    java.lang.Integer int_70;
+    java.lang.Integer int_71;
+    java.lang.Integer int_72;
+    java.lang.Integer int_73;
+    java.lang.Integer int_74;
+    java.lang.Integer int_75;
+    java.lang.Integer int_76;
+    java.lang.Integer int_77;
+    java.lang.Integer int_78;
+    java.lang.Integer int_79;
+    java.lang.Integer int_80;
+    java.lang.Integer int_81;
+    java.lang.Integer int_82;
+    java.lang.Integer int_83;
+    java.lang.Integer int_84;
+    java.lang.Integer int_85;
+    java.lang.Integer int_86;
+    java.lang.Integer int_87;
+    java.lang.Integer int_88;
+    java.lang.Integer int_89;
+    java.lang.Integer int_90;
+    java.lang.Integer int_91;
+    java.lang.Integer int_92;
+    java.lang.Integer int_93;
+    java.lang.Integer int_94;
+    java.lang.Integer int_95;
+    java.lang.Integer int_96;
+    java.lang.Integer int_97;
+    java.lang.Integer int_98;
+    java.lang.Integer int_99;
+    java.lang.Integer int_100;
+    java.lang.Integer int_101;
+    java.lang.Integer int_102;
+    java.lang.Integer int_103;
+    java.lang.Integer int_104;
+    java.lang.Integer int_105;
+    java.lang.Integer int_106;
+    java.lang.Integer int_107;
+    java.lang.Integer int_108;
+    java.lang.Integer int_109;
+    java.lang.Integer int_110;
+    java.lang.Integer int_111;
+    java.lang.Integer int_112;
+    java.lang.Integer int_113;
+    java.lang.Integer int_114;
+    java.lang.Integer int_115;
+    java.lang.Integer int_116;
+    java.lang.Integer int_117;
+    java.lang.Integer int_118;
+    java.lang.Integer int_119;
+    java.lang.Integer int_120;
+    java.lang.Integer int_121;
+    java.lang.Integer int_122;
+    java.lang.Integer int_123;
+    java.lang.Integer int_124;
+    java.lang.Integer int_125;
+    java.lang.Integer int_126;
+    java.lang.Integer int_127;
+    java.lang.Integer int_128;
+    java.lang.Integer int_129;
+    java.lang.Integer int_130;
+    java.lang.Integer int_131;
+    java.lang.Integer int_132;
+    java.lang.Integer int_133;
+    java.lang.Integer int_134;
+    java.lang.Integer int_135;
+    java.lang.Integer int_136;
+    java.lang.Integer int_137;
+    java.lang.Integer int_138;
+    java.lang.Integer int_139;
+    java.lang.Integer int_140;
+    java.lang.Integer int_141;
+    java.lang.Integer int_142;
+    java.lang.Integer int_143;
+    java.lang.Integer int_144;
+    java.lang.Integer int_145;
+    java.lang.Integer int_146;
+    java.lang.Integer int_147;
+    java.lang.Integer int_148;
+    java.lang.Integer int_149;
+    java.lang.Integer int_150;
+    java.lang.Integer int_151;
+    java.lang.Integer int_152;
+    java.lang.Integer int_153;
+    java.lang.Integer int_154;
+    java.lang.Integer int_155;
+    java.lang.Integer int_156;
+    java.lang.Integer int_157;
+    java.lang.Integer int_158;
+    java.lang.Integer int_159;
+    java.lang.Integer int_160;
+    java.lang.Integer int_161;
+    java.lang.Integer int_162;
+    java.lang.Integer int_163;
+    java.lang.Integer int_164;
+    java.lang.Integer int_165;
+    java.lang.Integer int_166;
+    java.lang.Integer int_167;
+    java.lang.Integer int_168;
+    java.lang.Integer int_169;
+    java.lang.Integer int_170;
+    java.lang.Integer int_171;
+    java.lang.Integer int_172;
+    java.lang.Integer int_173;
+    java.lang.Integer int_174;
+    java.lang.Integer int_175;
+    java.lang.Integer int_176;
+    java.lang.Integer int_177;
+    java.lang.Integer int_178;
+    java.lang.Integer int_179;
+    java.lang.Integer int_180;
+    java.lang.Integer int_181;
+    java.lang.Integer int_182;
+    java.lang.Integer int_183;
+    java.lang.Integer int_184;
+    java.lang.Integer int_185;
+    java.lang.Integer int_186;
+    java.lang.Integer int_187;
+    java.lang.Integer int_188;
+    java.lang.Integer int_189;
+    java.lang.Integer int_190;
+    java.lang.Integer int_191;
+    java.lang.Integer int_192;
+    java.lang.Integer int_193;
+    java.lang.Integer int_194;
+    java.lang.Integer int_195;
+    java.lang.Integer int_196;
+    java.lang.Integer int_197;
+    java.lang.Integer int_198;
+    java.lang.Integer int_199;
+    java.lang.Integer int_200;
+    java.lang.Integer int_201;
+    java.lang.Integer int_202;
+    java.lang.Integer int_203;
+    java.lang.Integer int_204;
+    java.lang.Integer int_205;
+    java.lang.Integer int_206;
+    java.lang.Integer int_207;
+    java.lang.Integer int_208;
+    java.lang.Integer int_209;
+    java.lang.Integer int_210;
+    java.lang.Integer int_211;
+    java.lang.Integer int_212;
+    java.lang.Integer int_213;
+    java.lang.Integer int_214;
+    java.lang.Integer int_215;
+    java.lang.Integer int_216;
+    java.lang.Integer int_217;
+    java.lang.Integer int_218;
+    java.lang.Integer int_219;
+    java.lang.Integer int_220;
+    java.lang.Integer int_221;
+    java.lang.Integer int_222;
+    java.lang.Integer int_223;
+    java.lang.Integer int_224;
+    java.lang.Integer int_225;
+    java.lang.Integer int_226;
+    java.lang.Integer int_227;
+    java.lang.Integer int_228;
+    java.lang.Integer int_229;
+    java.lang.Integer int_230;
+    java.lang.Integer int_231;
+    java.lang.Integer int_232;
+    java.lang.Integer int_233;
+    java.lang.Integer int_234;
+    java.lang.Integer int_235;
+    java.lang.Integer int_236;
+    java.lang.Integer int_237;
+    java.lang.Integer int_238;
+    java.lang.Integer int_239;
+    java.lang.Integer int_240;
+    java.lang.Integer int_241;
+    java.lang.Integer int_242;
+    java.lang.Integer int_243;
+    java.lang.Integer int_244;
+    java.lang.Integer int_245;
+    java.lang.Integer int_246;
+    java.lang.Integer int_247;
+    java.lang.Integer int_248;
+    java.lang.Integer int_249;
+    java.lang.Integer int_250;
+    java.lang.Integer int_251;
+    java.lang.Integer int_252;
+    java.lang.Integer int_253;
+    java.lang.Integer int_254;
+    java.lang.Integer int_255;
+    java.lang.Integer int_256;
+    java.lang.Integer int_257;
+    java.lang.Integer int_258;
+    java.lang.Integer int_259;
+    java.lang.Integer int_260;
+    java.lang.Integer int_261;
+    java.lang.Integer int_262;
+    java.lang.Integer int_263;
+    java.lang.Integer int_264;
+    java.lang.Integer int_265;
+    java.lang.Integer int_266;
+    java.lang.Integer int_267;
+    java.lang.Integer int_268;
+    java.lang.Integer int_269;
+    java.lang.Integer int_270;
+    java.lang.Integer int_271;
+    java.lang.Integer int_272;
+    java.lang.Integer int_273;
+    java.lang.Integer int_274;
+    java.lang.Integer int_275;
+    java.lang.Integer int_276;
+    java.lang.Integer int_277;
+    java.lang.Integer int_278;
+    java.lang.Integer int_279;
+    java.lang.Integer int_280;
+    java.lang.Integer int_281;
+    java.lang.Integer int_282;
+    java.lang.Integer int_283;
+    java.lang.Integer int_284;
+    java.lang.Integer int_285;
+    java.lang.Integer int_286;
+    java.lang.Integer int_287;
+    java.lang.Integer int_288;
+    java.lang.Integer int_289;
+    java.lang.Integer int_290;
+    java.lang.Integer int_291;
+    java.lang.Integer int_292;
+    java.lang.Integer int_293;
+    java.lang.Integer int_294;
+    java.lang.Integer int_295;
+    java.lang.Integer int_296;
+    java.lang.Integer int_297;
+    java.lang.Integer int_298;
+    java.lang.Integer int_299;
+    java.lang.Integer int_300;
+
+    public void <init>()
+    {
+        java.lang.Integer $r301, $r302, $r303, $r304, $r305, $r306, $r307, $r308, $r309, $r310, $r311, $r312, $r313, $r314, $r315, $r316, $r317, $r318, $r319, $r320, $r321, $r322, $r323, $r324, $r325, $r326, $r327, $r328, $r329, $r330, $r331, $r332, $r333, $r334, $r335, $r336, $r337, $r338, $r339, $r340, $r341, $r342, $r343, $r344, $r345, $r346, $r347, $r348, $r349, $r350, $r351, $r352, $r353, $r354, $r355, $r356, $r357, $r358, $r359, $r360, $r361, $r362, $r363, $r364, $r365, $r366, $r367, $r368, $r369, $r370, $r371, $r372, $r373, $r374, $r375, $r376, $r377, $r378, $r379, $r380, $r381, $r382, $r383, $r384, $r385, $r386, $r387, $r388, $r389, $r390, $r391, $r392, $r393, $r394, $r395, $r396, $r397, $r398, $r399, $r400, $r401, $r402, $r403, $r404, $r405, $r406, $r407, $r408, $r409, $r410, $r411, $r412, $r413, $r414, $r415, $r416, $r417, $r418, $r419, $r420, $r421, $r422, $r423, $r424, $r425, $r426, $r427, $r428, $r429, $r430, $r431, $r432, $r433, $r434, $r435, $r436, $r437, $r438, $r439, $r440, $r441, $r442, $r443, $r444, $r445, $r446, $r447, $r448, $r449, $r450, $r451, $r452, $r453, $r454, $r455, $r456, $r457, $r458, $r459, $r460, $r461, $r462, $r463, $r464, $r465, $r466, $r467, $r468, $r469, $r470, $r471, $r472, $r473, $r474, $r475, $r476, $r477, $r478, $r479, $r480, $r481, $r482, $r483, $r484, $r485, $r486, $r487, $r488, $r489, $r490, $r491, $r492, $r493, $r494, $r495, $r496, $r497, $r498, $r499, $r500, $r501, $r502, $r503, $r504, $r505, $r506, $r507, $r508, $r509, $r510, $r511, $r512, $r513, $r514, $r515, $r516, $r517, $r518, $r519, $r520, $r521, $r522, $r523, $r524, $r525, $r526, $r527, $r528, $r529, $r530, $r531, $r532, $r533, $r534, $r535, $r536, $r537, $r538, $r539, $r540, $r541, $r542, $r543, $r544, $r545, $r546, $r547, $r548, $r549, $r550, $r551, $r552, $r553, $r554, $r555, $r556, $r557, $r558, $r559, $r560, $r561, $r562, $r563, $r564, $r565, $r566, $r567, $r568, $r569, $r570, $r571, $r572, $r573, $r574, $r575, $r576, $r577, $r578, $r579, $r580, $r581, $r582, $r583, $r584, $r585, $r586, $r587, $r588, $r589, $r590, $r591, $r592, $r593, $r594, $r595, $r596, $r597, $r598, $r599, $r600;
+        gc.TestHumongousReferenceObject $r601, $r602, $r603, $r604, $r605, $r606, $r607, $r608, $r609, $r610, $r611, $r612, $r613, $r614, $r615, $r616, $r617, $r618, $r619, $r620, $r621, $r622, $r623, $r624, $r625, $r626, $r627, $r628, $r629, $r630, $r631, $r632, $r633, $r634, $r635, $r636, $r637, $r638, $r639, $r640, $r641, $r642, $r643, $r644, $r645, $r646, $r647, $r648, $r649, $r650, $r651, $r652, $r653, $r654, $r655, $r656, $r657, $r658, $r659, $r660, $r661, $r662, $r663, $r664, $r665, $r666, $r667, $r668, $r669, $r670, $r671, $r672, $r673, $r674, $r675, $r676, $r677, $r678, $r679, $r680, $r681, $r682, $r683, $r684, $r685, $r686, $r687, $r688, $r689, $r690, $r691, $r692, $r693, $r694, $r695, $r696, $r697, $r698, $r699, $r700, $r701, $r702, $r703, $r704, $r705, $r706, $r707, $r708, $r709, $r710, $r711, $r712, $r713, $r714, $r715, $r716, $r717, $r718, $r719, $r720, $r721, $r722, $r723, $r724, $r725, $r726, $r727, $r728, $r729, $r730, $r731, $r732, $r733, $r734, $r735, $r736, $r737, $r738, $r739, $r740, $r741, $r742, $r743, $r744, $r745, $r746, $r747, $r748, $r749, $r750, $r751, $r752, $r753, $r754, $r755, $r756, $r757, $r758, $r759, $r760, $r761, $r762, $r763, $r764, $r765, $r766, $r767, $r768, $r769, $r770, $r771, $r772, $r773, $r774, $r775, $r776, $r777, $r778, $r779, $r780, $r781, $r782, $r783, $r784, $r785, $r786, $r787, $r788, $r789, $r790, $r791, $r792, $r793, $r794, $r795, $r796, $r797, $r798, $r799, $r800, $r801, $r802, $r803, $r804, $r805, $r806, $r807, $r808, $r809, $r810, $r811, $r812, $r813, $r814, $r815, $r816, $r817, $r818, $r819, $r820, $r821, $r822, $r823, $r824, $r825, $r826, $r827, $r828, $r829, $r830, $r831, $r832, $r833, $r834, $r835, $r836, $r837, $r838, $r839, $r840, $r841, $r842, $r843, $r844, $r845, $r846, $r847, $r848, $r849, $r850, $r851, $r852, $r853, $r854, $r855, $r856, $r857, $r858, $r859, $r860, $r861, $r862, $r863, $r864, $r865, $r866, $r867, $r868, $r869, $r870, $r871, $r872, $r873, $r874, $r875, $r876, $r877, $r878, $r879, $r880, $r881, $r882, $r883, $r884, $r885, $r886, $r887, $r888, $r889, $r890, $r891, $r892, $r893, $r894, $r895, $r896, $r897, $r898, $r899, $r900;
+        TestHumongousReferenceObject r0;
+
+        r0 := @this: TestHumongousReferenceObject;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r301 = new java.lang.Integer;
+
+        specialinvoke $r301.<java.lang.Integer: void <init>(int)>(1);
+
+        $r601 = (gc.TestHumongousReferenceObject) r0;
+
+        $r601.<gc.TestHumongousReferenceObject: java.lang.Integer int_1> = $r301;
+
+        $r302 = new java.lang.Integer;
+
+        specialinvoke $r302.<java.lang.Integer: void <init>(int)>(2);
+
+        $r602 = (gc.TestHumongousReferenceObject) r0;
+
+        $r602.<gc.TestHumongousReferenceObject: java.lang.Integer int_2> = $r302;
+
+        $r303 = new java.lang.Integer;
+
+        specialinvoke $r303.<java.lang.Integer: void <init>(int)>(3);
+
+        $r603 = (gc.TestHumongousReferenceObject) r0;
+
+        $r603.<gc.TestHumongousReferenceObject: java.lang.Integer int_3> = $r303;
+
+        $r304 = new java.lang.Integer;
+
+        specialinvoke $r304.<java.lang.Integer: void <init>(int)>(4);
+
+        $r604 = (gc.TestHumongousReferenceObject) r0;
+
+        $r604.<gc.TestHumongousReferenceObject: java.lang.Integer int_4> = $r304;
+
+        $r305 = new java.lang.Integer;
+
+        specialinvoke $r305.<java.lang.Integer: void <init>(int)>(5);
+
+        $r605 = (gc.TestHumongousReferenceObject) r0;
+
+        $r605.<gc.TestHumongousReferenceObject: java.lang.Integer int_5> = $r305;
+
+        $r306 = new java.lang.Integer;
+
+        specialinvoke $r306.<java.lang.Integer: void <init>(int)>(6);
+
+        $r606 = (gc.TestHumongousReferenceObject) r0;
+
+        $r606.<gc.TestHumongousReferenceObject: java.lang.Integer int_6> = $r306;
+
+        $r307 = new java.lang.Integer;
+
+        specialinvoke $r307.<java.lang.Integer: void <init>(int)>(7);
+
+        $r607 = (gc.TestHumongousReferenceObject) r0;
+
+        $r607.<gc.TestHumongousReferenceObject: java.lang.Integer int_7> = $r307;
+
+        $r308 = new java.lang.Integer;
+
+        specialinvoke $r308.<java.lang.Integer: void <init>(int)>(8);
+
+        $r608 = (gc.TestHumongousReferenceObject) r0;
+
+        $r608.<gc.TestHumongousReferenceObject: java.lang.Integer int_8> = $r308;
+
+        $r309 = new java.lang.Integer;
+
+        specialinvoke $r309.<java.lang.Integer: void <init>(int)>(9);
+
+        $r609 = (gc.TestHumongousReferenceObject) r0;
+
+        $r609.<gc.TestHumongousReferenceObject: java.lang.Integer int_9> = $r309;
+
+        $r310 = new java.lang.Integer;
+
+        specialinvoke $r310.<java.lang.Integer: void <init>(int)>(10);
+
+        $r610 = (gc.TestHumongousReferenceObject) r0;
+
+        $r610.<gc.TestHumongousReferenceObject: java.lang.Integer int_10> = $r310;
+
+        $r311 = new java.lang.Integer;
+
+        specialinvoke $r311.<java.lang.Integer: void <init>(int)>(11);
+
+        $r611 = (gc.TestHumongousReferenceObject) r0;
+
+        $r611.<gc.TestHumongousReferenceObject: java.lang.Integer int_11> = $r311;
+
+        $r312 = new java.lang.Integer;
+
+        specialinvoke $r312.<java.lang.Integer: void <init>(int)>(12);
+
+        $r612 = (gc.TestHumongousReferenceObject) r0;
+
+        $r612.<gc.TestHumongousReferenceObject: java.lang.Integer int_12> = $r312;
+
+        $r313 = new java.lang.Integer;
+
+        specialinvoke $r313.<java.lang.Integer: void <init>(int)>(13);
+
+        $r613 = (gc.TestHumongousReferenceObject) r0;
+
+        $r613.<gc.TestHumongousReferenceObject: java.lang.Integer int_13> = $r313;
+
+        $r314 = new java.lang.Integer;
+
+        specialinvoke $r314.<java.lang.Integer: void <init>(int)>(14);
+
+        $r614 = (gc.TestHumongousReferenceObject) r0;
+
+        $r614.<gc.TestHumongousReferenceObject: java.lang.Integer int_14> = $r314;
+
+        $r315 = new java.lang.Integer;
+
+        specialinvoke $r315.<java.lang.Integer: void <init>(int)>(15);
+
+        $r615 = (gc.TestHumongousReferenceObject) r0;
+
+        $r615.<gc.TestHumongousReferenceObject: java.lang.Integer int_15> = $r315;
+
+        $r316 = new java.lang.Integer;
+
+        specialinvoke $r316.<java.lang.Integer: void <init>(int)>(16);
+
+        $r616 = (gc.TestHumongousReferenceObject) r0;
+
+        $r616.<gc.TestHumongousReferenceObject: java.lang.Integer int_16> = $r316;
+
+        $r317 = new java.lang.Integer;
+
+        specialinvoke $r317.<java.lang.Integer: void <init>(int)>(17);
+
+        $r617 = (gc.TestHumongousReferenceObject) r0;
+
+        $r617.<gc.TestHumongousReferenceObject: java.lang.Integer int_17> = $r317;
+
+        $r318 = new java.lang.Integer;
+
+        specialinvoke $r318.<java.lang.Integer: void <init>(int)>(18);
+
+        $r618 = (gc.TestHumongousReferenceObject) r0;
+
+        $r618.<gc.TestHumongousReferenceObject: java.lang.Integer int_18> = $r318;
+
+        $r319 = new java.lang.Integer;
+
+        specialinvoke $r319.<java.lang.Integer: void <init>(int)>(19);
+
+        $r619 = (gc.TestHumongousReferenceObject) r0;
+
+        $r619.<gc.TestHumongousReferenceObject: java.lang.Integer int_19> = $r319;
+
+        $r320 = new java.lang.Integer;
+
+        specialinvoke $r320.<java.lang.Integer: void <init>(int)>(20);
+
+        $r620 = (gc.TestHumongousReferenceObject) r0;
+
+        $r620.<gc.TestHumongousReferenceObject: java.lang.Integer int_20> = $r320;
+
+        $r321 = new java.lang.Integer;
+
+        specialinvoke $r321.<java.lang.Integer: void <init>(int)>(21);
+
+        $r621 = (gc.TestHumongousReferenceObject) r0;
+
+        $r621.<gc.TestHumongousReferenceObject: java.lang.Integer int_21> = $r321;
+
+        $r322 = new java.lang.Integer;
+
+        specialinvoke $r322.<java.lang.Integer: void <init>(int)>(22);
+
+        $r622 = (gc.TestHumongousReferenceObject) r0;
+
+        $r622.<gc.TestHumongousReferenceObject: java.lang.Integer int_22> = $r322;
+
+        $r323 = new java.lang.Integer;
+
+        specialinvoke $r323.<java.lang.Integer: void <init>(int)>(23);
+
+        $r623 = (gc.TestHumongousReferenceObject) r0;
+
+        $r623.<gc.TestHumongousReferenceObject: java.lang.Integer int_23> = $r323;
+
+        $r324 = new java.lang.Integer;
+
+        specialinvoke $r324.<java.lang.Integer: void <init>(int)>(24);
+
+        $r624 = (gc.TestHumongousReferenceObject) r0;
+
+        $r624.<gc.TestHumongousReferenceObject: java.lang.Integer int_24> = $r324;
+
+        $r325 = new java.lang.Integer;
+
+        specialinvoke $r325.<java.lang.Integer: void <init>(int)>(25);
+
+        $r625 = (gc.TestHumongousReferenceObject) r0;
+
+        $r625.<gc.TestHumongousReferenceObject: java.lang.Integer int_25> = $r325;
+
+        $r326 = new java.lang.Integer;
+
+        specialinvoke $r326.<java.lang.Integer: void <init>(int)>(26);
+
+        $r626 = (gc.TestHumongousReferenceObject) r0;
+
+        $r626.<gc.TestHumongousReferenceObject: java.lang.Integer int_26> = $r326;
+
+        $r327 = new java.lang.Integer;
+
+        specialinvoke $r327.<java.lang.Integer: void <init>(int)>(27);
+
+        $r627 = (gc.TestHumongousReferenceObject) r0;
+
+        $r627.<gc.TestHumongousReferenceObject: java.lang.Integer int_27> = $r327;
+
+        $r328 = new java.lang.Integer;
+
+        specialinvoke $r328.<java.lang.Integer: void <init>(int)>(28);
+
+        $r628 = (gc.TestHumongousReferenceObject) r0;
+
+        $r628.<gc.TestHumongousReferenceObject: java.lang.Integer int_28> = $r328;
+
+        $r329 = new java.lang.Integer;
+
+        specialinvoke $r329.<java.lang.Integer: void <init>(int)>(29);
+
+        $r629 = (gc.TestHumongousReferenceObject) r0;
+
+        $r629.<gc.TestHumongousReferenceObject: java.lang.Integer int_29> = $r329;
+
+        $r330 = new java.lang.Integer;
+
+        specialinvoke $r330.<java.lang.Integer: void <init>(int)>(30);
+
+        $r630 = (gc.TestHumongousReferenceObject) r0;
+
+        $r630.<gc.TestHumongousReferenceObject: java.lang.Integer int_30> = $r330;
+
+        $r331 = new java.lang.Integer;
+
+        specialinvoke $r331.<java.lang.Integer: void <init>(int)>(31);
+
+        $r631 = (gc.TestHumongousReferenceObject) r0;
+
+        $r631.<gc.TestHumongousReferenceObject: java.lang.Integer int_31> = $r331;
+
+        $r332 = new java.lang.Integer;
+
+        specialinvoke $r332.<java.lang.Integer: void <init>(int)>(32);
+
+        $r632 = (gc.TestHumongousReferenceObject) r0;
+
+        $r632.<gc.TestHumongousReferenceObject: java.lang.Integer int_32> = $r332;
+
+        $r333 = new java.lang.Integer;
+
+        specialinvoke $r333.<java.lang.Integer: void <init>(int)>(33);
+
+        $r633 = (gc.TestHumongousReferenceObject) r0;
+
+        $r633.<gc.TestHumongousReferenceObject: java.lang.Integer int_33> = $r333;
+
+        $r334 = new java.lang.Integer;
+
+        specialinvoke $r334.<java.lang.Integer: void <init>(int)>(34);
+
+        $r634 = (gc.TestHumongousReferenceObject) r0;
+
+        $r634.<gc.TestHumongousReferenceObject: java.lang.Integer int_34> = $r334;
+
+        $r335 = new java.lang.Integer;
+
+        specialinvoke $r335.<java.lang.Integer: void <init>(int)>(35);
+
+        $r635 = (gc.TestHumongousReferenceObject) r0;
+
+        $r635.<gc.TestHumongousReferenceObject: java.lang.Integer int_35> = $r335;
+
+        $r336 = new java.lang.Integer;
+
+        specialinvoke $r336.<java.lang.Integer: void <init>(int)>(36);
+
+        $r636 = (gc.TestHumongousReferenceObject) r0;
+
+        $r636.<gc.TestHumongousReferenceObject: java.lang.Integer int_36> = $r336;
+
+        $r337 = new java.lang.Integer;
+
+        specialinvoke $r337.<java.lang.Integer: void <init>(int)>(37);
+
+        $r637 = (gc.TestHumongousReferenceObject) r0;
+
+        $r637.<gc.TestHumongousReferenceObject: java.lang.Integer int_37> = $r337;
+
+        $r338 = new java.lang.Integer;
+
+        specialinvoke $r338.<java.lang.Integer: void <init>(int)>(38);
+
+        $r638 = (gc.TestHumongousReferenceObject) r0;
+
+        $r638.<gc.TestHumongousReferenceObject: java.lang.Integer int_38> = $r338;
+
+        $r339 = new java.lang.Integer;
+
+        specialinvoke $r339.<java.lang.Integer: void <init>(int)>(39);
+
+        $r639 = (gc.TestHumongousReferenceObject) r0;
+
+        $r639.<gc.TestHumongousReferenceObject: java.lang.Integer int_39> = $r339;
+
+        $r340 = new java.lang.Integer;
+
+        specialinvoke $r340.<java.lang.Integer: void <init>(int)>(40);
+
+        $r640 = (gc.TestHumongousReferenceObject) r0;
+
+        $r640.<gc.TestHumongousReferenceObject: java.lang.Integer int_40> = $r340;
+
+        $r341 = new java.lang.Integer;
+
+        specialinvoke $r341.<java.lang.Integer: void <init>(int)>(41);
+
+        $r641 = (gc.TestHumongousReferenceObject) r0;
+
+        $r641.<gc.TestHumongousReferenceObject: java.lang.Integer int_41> = $r341;
+
+        $r342 = new java.lang.Integer;
+
+        specialinvoke $r342.<java.lang.Integer: void <init>(int)>(42);
+
+        $r642 = (gc.TestHumongousReferenceObject) r0;
+
+        $r642.<gc.TestHumongousReferenceObject: java.lang.Integer int_42> = $r342;
+
+        $r343 = new java.lang.Integer;
+
+        specialinvoke $r343.<java.lang.Integer: void <init>(int)>(43);
+
+        $r643 = (gc.TestHumongousReferenceObject) r0;
+
+        $r643.<gc.TestHumongousReferenceObject: java.lang.Integer int_43> = $r343;
+
+        $r344 = new java.lang.Integer;
+
+        specialinvoke $r344.<java.lang.Integer: void <init>(int)>(44);
+
+        $r644 = (gc.TestHumongousReferenceObject) r0;
+
+        $r644.<gc.TestHumongousReferenceObject: java.lang.Integer int_44> = $r344;
+
+        $r345 = new java.lang.Integer;
+
+        specialinvoke $r345.<java.lang.Integer: void <init>(int)>(45);
+
+        $r645 = (gc.TestHumongousReferenceObject) r0;
+
+        $r645.<gc.TestHumongousReferenceObject: java.lang.Integer int_45> = $r345;
+
+        $r346 = new java.lang.Integer;
+
+        specialinvoke $r346.<java.lang.Integer: void <init>(int)>(46);
+
+        $r646 = (gc.TestHumongousReferenceObject) r0;
+
+        $r646.<gc.TestHumongousReferenceObject: java.lang.Integer int_46> = $r346;
+
+        $r347 = new java.lang.Integer;
+
+        specialinvoke $r347.<java.lang.Integer: void <init>(int)>(47);
+
+        $r647 = (gc.TestHumongousReferenceObject) r0;
+
+        $r647.<gc.TestHumongousReferenceObject: java.lang.Integer int_47> = $r347;
+
+        $r348 = new java.lang.Integer;
+
+        specialinvoke $r348.<java.lang.Integer: void <init>(int)>(48);
+
+        $r648 = (gc.TestHumongousReferenceObject) r0;
+
+        $r648.<gc.TestHumongousReferenceObject: java.lang.Integer int_48> = $r348;
+
+        $r349 = new java.lang.Integer;
+
+        specialinvoke $r349.<java.lang.Integer: void <init>(int)>(49);
+
+        $r649 = (gc.TestHumongousReferenceObject) r0;
+
+        $r649.<gc.TestHumongousReferenceObject: java.lang.Integer int_49> = $r349;
+
+        $r350 = new java.lang.Integer;
+
+        specialinvoke $r350.<java.lang.Integer: void <init>(int)>(50);
+
+        $r650 = (gc.TestHumongousReferenceObject) r0;
+
+        $r650.<gc.TestHumongousReferenceObject: java.lang.Integer int_50> = $r350;
+
+        $r351 = new java.lang.Integer;
+
+        specialinvoke $r351.<java.lang.Integer: void <init>(int)>(51);
+
+        $r651 = (gc.TestHumongousReferenceObject) r0;
+
+        $r651.<gc.TestHumongousReferenceObject: java.lang.Integer int_51> = $r351;
+
+        $r352 = new java.lang.Integer;
+
+        specialinvoke $r352.<java.lang.Integer: void <init>(int)>(52);
+
+        $r652 = (gc.TestHumongousReferenceObject) r0;
+
+        $r652.<gc.TestHumongousReferenceObject: java.lang.Integer int_52> = $r352;
+
+        $r353 = new java.lang.Integer;
+
+        specialinvoke $r353.<java.lang.Integer: void <init>(int)>(53);
+
+        $r653 = (gc.TestHumongousReferenceObject) r0;
+
+        $r653.<gc.TestHumongousReferenceObject: java.lang.Integer int_53> = $r353;
+
+        $r354 = new java.lang.Integer;
+
+        specialinvoke $r354.<java.lang.Integer: void <init>(int)>(54);
+
+        $r654 = (gc.TestHumongousReferenceObject) r0;
+
+        $r654.<gc.TestHumongousReferenceObject: java.lang.Integer int_54> = $r354;
+
+        $r355 = new java.lang.Integer;
+
+        specialinvoke $r355.<java.lang.Integer: void <init>(int)>(55);
+
+        $r655 = (gc.TestHumongousReferenceObject) r0;
+
+        $r655.<gc.TestHumongousReferenceObject: java.lang.Integer int_55> = $r355;
+
+        $r356 = new java.lang.Integer;
+
+        specialinvoke $r356.<java.lang.Integer: void <init>(int)>(56);
+
+        $r656 = (gc.TestHumongousReferenceObject) r0;
+
+        $r656.<gc.TestHumongousReferenceObject: java.lang.Integer int_56> = $r356;
+
+        $r357 = new java.lang.Integer;
+
+        specialinvoke $r357.<java.lang.Integer: void <init>(int)>(57);
+
+        $r657 = (gc.TestHumongousReferenceObject) r0;
+
+        $r657.<gc.TestHumongousReferenceObject: java.lang.Integer int_57> = $r357;
+
+        $r358 = new java.lang.Integer;
+
+        specialinvoke $r358.<java.lang.Integer: void <init>(int)>(58);
+
+        $r658 = (gc.TestHumongousReferenceObject) r0;
+
+        $r658.<gc.TestHumongousReferenceObject: java.lang.Integer int_58> = $r358;
+
+        $r359 = new java.lang.Integer;
+
+        specialinvoke $r359.<java.lang.Integer: void <init>(int)>(59);
+
+        $r659 = (gc.TestHumongousReferenceObject) r0;
+
+        $r659.<gc.TestHumongousReferenceObject: java.lang.Integer int_59> = $r359;
+
+        $r360 = new java.lang.Integer;
+
+        specialinvoke $r360.<java.lang.Integer: void <init>(int)>(60);
+
+        $r660 = (gc.TestHumongousReferenceObject) r0;
+
+        $r660.<gc.TestHumongousReferenceObject: java.lang.Integer int_60> = $r360;
+
+        $r361 = new java.lang.Integer;
+
+        specialinvoke $r361.<java.lang.Integer: void <init>(int)>(61);
+
+        $r661 = (gc.TestHumongousReferenceObject) r0;
+
+        $r661.<gc.TestHumongousReferenceObject: java.lang.Integer int_61> = $r361;
+
+        $r362 = new java.lang.Integer;
+
+        specialinvoke $r362.<java.lang.Integer: void <init>(int)>(62);
+
+        $r662 = (gc.TestHumongousReferenceObject) r0;
+
+        $r662.<gc.TestHumongousReferenceObject: java.lang.Integer int_62> = $r362;
+
+        $r363 = new java.lang.Integer;
+
+        specialinvoke $r363.<java.lang.Integer: void <init>(int)>(63);
+
+        $r663 = (gc.TestHumongousReferenceObject) r0;
+
+        $r663.<gc.TestHumongousReferenceObject: java.lang.Integer int_63> = $r363;
+
+        $r364 = new java.lang.Integer;
+
+        specialinvoke $r364.<java.lang.Integer: void <init>(int)>(64);
+
+        $r664 = (gc.TestHumongousReferenceObject) r0;
+
+        $r664.<gc.TestHumongousReferenceObject: java.lang.Integer int_64> = $r364;
+
+        $r365 = new java.lang.Integer;
+
+        specialinvoke $r365.<java.lang.Integer: void <init>(int)>(65);
+
+        $r665 = (gc.TestHumongousReferenceObject) r0;
+
+        $r665.<gc.TestHumongousReferenceObject: java.lang.Integer int_65> = $r365;
+
+        $r366 = new java.lang.Integer;
+
+        specialinvoke $r366.<java.lang.Integer: void <init>(int)>(66);
+
+        $r666 = (gc.TestHumongousReferenceObject) r0;
+
+        $r666.<gc.TestHumongousReferenceObject: java.lang.Integer int_66> = $r366;
+
+        $r367 = new java.lang.Integer;
+
+        specialinvoke $r367.<java.lang.Integer: void <init>(int)>(67);
+
+        $r667 = (gc.TestHumongousReferenceObject) r0;
+
+        $r667.<gc.TestHumongousReferenceObject: java.lang.Integer int_67> = $r367;
+
+        $r368 = new java.lang.Integer;
+
+        specialinvoke $r368.<java.lang.Integer: void <init>(int)>(68);
+
+        $r668 = (gc.TestHumongousReferenceObject) r0;
+
+        $r668.<gc.TestHumongousReferenceObject: java.lang.Integer int_68> = $r368;
+
+        $r369 = new java.lang.Integer;
+
+        specialinvoke $r369.<java.lang.Integer: void <init>(int)>(69);
+
+        $r669 = (gc.TestHumongousReferenceObject) r0;
+
+        $r669.<gc.TestHumongousReferenceObject: java.lang.Integer int_69> = $r369;
+
+        $r370 = new java.lang.Integer;
+
+        specialinvoke $r370.<java.lang.Integer: void <init>(int)>(70);
+
+        $r670 = (gc.TestHumongousReferenceObject) r0;
+
+        $r670.<gc.TestHumongousReferenceObject: java.lang.Integer int_70> = $r370;
+
+        $r371 = new java.lang.Integer;
+
+        specialinvoke $r371.<java.lang.Integer: void <init>(int)>(71);
+
+        $r671 = (gc.TestHumongousReferenceObject) r0;
+
+        $r671.<gc.TestHumongousReferenceObject: java.lang.Integer int_71> = $r371;
+
+        $r372 = new java.lang.Integer;
+
+        specialinvoke $r372.<java.lang.Integer: void <init>(int)>(72);
+
+        $r672 = (gc.TestHumongousReferenceObject) r0;
+
+        $r672.<gc.TestHumongousReferenceObject: java.lang.Integer int_72> = $r372;
+
+        $r373 = new java.lang.Integer;
+
+        specialinvoke $r373.<java.lang.Integer: void <init>(int)>(73);
+
+        $r673 = (gc.TestHumongousReferenceObject) r0;
+
+        $r673.<gc.TestHumongousReferenceObject: java.lang.Integer int_73> = $r373;
+
+        $r374 = new java.lang.Integer;
+
+        specialinvoke $r374.<java.lang.Integer: void <init>(int)>(74);
+
+        $r674 = (gc.TestHumongousReferenceObject) r0;
+
+        $r674.<gc.TestHumongousReferenceObject: java.lang.Integer int_74> = $r374;
+
+        $r375 = new java.lang.Integer;
+
+        specialinvoke $r375.<java.lang.Integer: void <init>(int)>(75);
+
+        $r675 = (gc.TestHumongousReferenceObject) r0;
+
+        $r675.<gc.TestHumongousReferenceObject: java.lang.Integer int_75> = $r375;
+
+        $r376 = new java.lang.Integer;
+
+        specialinvoke $r376.<java.lang.Integer: void <init>(int)>(76);
+
+        $r676 = (gc.TestHumongousReferenceObject) r0;
+
+        $r676.<gc.TestHumongousReferenceObject: java.lang.Integer int_76> = $r376;
+
+        $r377 = new java.lang.Integer;
+
+        specialinvoke $r377.<java.lang.Integer: void <init>(int)>(77);
+
+        $r677 = (gc.TestHumongousReferenceObject) r0;
+
+        $r677.<gc.TestHumongousReferenceObject: java.lang.Integer int_77> = $r377;
+
+        $r378 = new java.lang.Integer;
+
+        specialinvoke $r378.<java.lang.Integer: void <init>(int)>(78);
+
+        $r678 = (gc.TestHumongousReferenceObject) r0;
+
+        $r678.<gc.TestHumongousReferenceObject: java.lang.Integer int_78> = $r378;
+
+        $r379 = new java.lang.Integer;
+
+        specialinvoke $r379.<java.lang.Integer: void <init>(int)>(79);
+
+        $r679 = (gc.TestHumongousReferenceObject) r0;
+
+        $r679.<gc.TestHumongousReferenceObject: java.lang.Integer int_79> = $r379;
+
+        $r380 = new java.lang.Integer;
+
+        specialinvoke $r380.<java.lang.Integer: void <init>(int)>(80);
+
+        $r680 = (gc.TestHumongousReferenceObject) r0;
+
+        $r680.<gc.TestHumongousReferenceObject: java.lang.Integer int_80> = $r380;
+
+        $r381 = new java.lang.Integer;
+
+        specialinvoke $r381.<java.lang.Integer: void <init>(int)>(81);
+
+        $r681 = (gc.TestHumongousReferenceObject) r0;
+
+        $r681.<gc.TestHumongousReferenceObject: java.lang.Integer int_81> = $r381;
+
+        $r382 = new java.lang.Integer;
+
+        specialinvoke $r382.<java.lang.Integer: void <init>(int)>(82);
+
+        $r682 = (gc.TestHumongousReferenceObject) r0;
+
+        $r682.<gc.TestHumongousReferenceObject: java.lang.Integer int_82> = $r382;
+
+        $r383 = new java.lang.Integer;
+
+        specialinvoke $r383.<java.lang.Integer: void <init>(int)>(83);
+
+        $r683 = (gc.TestHumongousReferenceObject) r0;
+
+        $r683.<gc.TestHumongousReferenceObject: java.lang.Integer int_83> = $r383;
+
+        $r384 = new java.lang.Integer;
+
+        specialinvoke $r384.<java.lang.Integer: void <init>(int)>(84);
+
+        $r684 = (gc.TestHumongousReferenceObject) r0;
+
+        $r684.<gc.TestHumongousReferenceObject: java.lang.Integer int_84> = $r384;
+
+        $r385 = new java.lang.Integer;
+
+        specialinvoke $r385.<java.lang.Integer: void <init>(int)>(85);
+
+        $r685 = (gc.TestHumongousReferenceObject) r0;
+
+        $r685.<gc.TestHumongousReferenceObject: java.lang.Integer int_85> = $r385;
+
+        $r386 = new java.lang.Integer;
+
+        specialinvoke $r386.<java.lang.Integer: void <init>(int)>(86);
+
+        $r686 = (gc.TestHumongousReferenceObject) r0;
+
+        $r686.<gc.TestHumongousReferenceObject: java.lang.Integer int_86> = $r386;
+
+        $r387 = new java.lang.Integer;
+
+        specialinvoke $r387.<java.lang.Integer: void <init>(int)>(87);
+
+        $r687 = (gc.TestHumongousReferenceObject) r0;
+
+        $r687.<gc.TestHumongousReferenceObject: java.lang.Integer int_87> = $r387;
+
+        $r388 = new java.lang.Integer;
+
+        specialinvoke $r388.<java.lang.Integer: void <init>(int)>(88);
+
+        $r688 = (gc.TestHumongousReferenceObject) r0;
+
+        $r688.<gc.TestHumongousReferenceObject: java.lang.Integer int_88> = $r388;
+
+        $r389 = new java.lang.Integer;
+
+        specialinvoke $r389.<java.lang.Integer: void <init>(int)>(89);
+
+        $r689 = (gc.TestHumongousReferenceObject) r0;
+
+        $r689.<gc.TestHumongousReferenceObject: java.lang.Integer int_89> = $r389;
+
+        $r390 = new java.lang.Integer;
+
+        specialinvoke $r390.<java.lang.Integer: void <init>(int)>(90);
+
+        $r690 = (gc.TestHumongousReferenceObject) r0;
+
+        $r690.<gc.TestHumongousReferenceObject: java.lang.Integer int_90> = $r390;
+
+        $r391 = new java.lang.Integer;
+
+        specialinvoke $r391.<java.lang.Integer: void <init>(int)>(91);
+
+        $r691 = (gc.TestHumongousReferenceObject) r0;
+
+        $r691.<gc.TestHumongousReferenceObject: java.lang.Integer int_91> = $r391;
+
+        $r392 = new java.lang.Integer;
+
+        specialinvoke $r392.<java.lang.Integer: void <init>(int)>(92);
+
+        $r692 = (gc.TestHumongousReferenceObject) r0;
+
+        $r692.<gc.TestHumongousReferenceObject: java.lang.Integer int_92> = $r392;
+
+        $r393 = new java.lang.Integer;
+
+        specialinvoke $r393.<java.lang.Integer: void <init>(int)>(93);
+
+        $r693 = (gc.TestHumongousReferenceObject) r0;
+
+        $r693.<gc.TestHumongousReferenceObject: java.lang.Integer int_93> = $r393;
+
+        $r394 = new java.lang.Integer;
+
+        specialinvoke $r394.<java.lang.Integer: void <init>(int)>(94);
+
+        $r694 = (gc.TestHumongousReferenceObject) r0;
+
+        $r694.<gc.TestHumongousReferenceObject: java.lang.Integer int_94> = $r394;
+
+        $r395 = new java.lang.Integer;
+
+        specialinvoke $r395.<java.lang.Integer: void <init>(int)>(95);
+
+        $r695 = (gc.TestHumongousReferenceObject) r0;
+
+        $r695.<gc.TestHumongousReferenceObject: java.lang.Integer int_95> = $r395;
+
+        $r396 = new java.lang.Integer;
+
+        specialinvoke $r396.<java.lang.Integer: void <init>(int)>(96);
+
+        $r696 = (gc.TestHumongousReferenceObject) r0;
+
+        $r696.<gc.TestHumongousReferenceObject: java.lang.Integer int_96> = $r396;
+
+        $r397 = new java.lang.Integer;
+
+        specialinvoke $r397.<java.lang.Integer: void <init>(int)>(97);
+
+        $r697 = (gc.TestHumongousReferenceObject) r0;
+
+        $r697.<gc.TestHumongousReferenceObject: java.lang.Integer int_97> = $r397;
+
+        $r398 = new java.lang.Integer;
+
+        specialinvoke $r398.<java.lang.Integer: void <init>(int)>(98);
+
+        $r698 = (gc.TestHumongousReferenceObject) r0;
+
+        $r698.<gc.TestHumongousReferenceObject: java.lang.Integer int_98> = $r398;
+
+        $r399 = new java.lang.Integer;
+
+        specialinvoke $r399.<java.lang.Integer: void <init>(int)>(99);
+
+        $r699 = (gc.TestHumongousReferenceObject) r0;
+
+        $r699.<gc.TestHumongousReferenceObject: java.lang.Integer int_99> = $r399;
+
+        $r400 = new java.lang.Integer;
+
+        specialinvoke $r400.<java.lang.Integer: void <init>(int)>(100);
+
+        $r700 = (gc.TestHumongousReferenceObject) r0;
+
+        $r700.<gc.TestHumongousReferenceObject: java.lang.Integer int_100> = $r400;
+
+        $r401 = new java.lang.Integer;
+
+        specialinvoke $r401.<java.lang.Integer: void <init>(int)>(101);
+
+        $r701 = (gc.TestHumongousReferenceObject) r0;
+
+        $r701.<gc.TestHumongousReferenceObject: java.lang.Integer int_101> = $r401;
+
+        $r402 = new java.lang.Integer;
+
+        specialinvoke $r402.<java.lang.Integer: void <init>(int)>(102);
+
+        $r702 = (gc.TestHumongousReferenceObject) r0;
+
+        $r702.<gc.TestHumongousReferenceObject: java.lang.Integer int_102> = $r402;
+
+        $r403 = new java.lang.Integer;
+
+        specialinvoke $r403.<java.lang.Integer: void <init>(int)>(103);
+
+        $r703 = (gc.TestHumongousReferenceObject) r0;
+
+        $r703.<gc.TestHumongousReferenceObject: java.lang.Integer int_103> = $r403;
+
+        $r404 = new java.lang.Integer;
+
+        specialinvoke $r404.<java.lang.Integer: void <init>(int)>(104);
+
+        $r704 = (gc.TestHumongousReferenceObject) r0;
+
+        $r704.<gc.TestHumongousReferenceObject: java.lang.Integer int_104> = $r404;
+
+        $r405 = new java.lang.Integer;
+
+        specialinvoke $r405.<java.lang.Integer: void <init>(int)>(105);
+
+        $r705 = (gc.TestHumongousReferenceObject) r0;
+
+        $r705.<gc.TestHumongousReferenceObject: java.lang.Integer int_105> = $r405;
+
+        $r406 = new java.lang.Integer;
+
+        specialinvoke $r406.<java.lang.Integer: void <init>(int)>(106);
+
+        $r706 = (gc.TestHumongousReferenceObject) r0;
+
+        $r706.<gc.TestHumongousReferenceObject: java.lang.Integer int_106> = $r406;
+
+        $r407 = new java.lang.Integer;
+
+        specialinvoke $r407.<java.lang.Integer: void <init>(int)>(107);
+
+        $r707 = (gc.TestHumongousReferenceObject) r0;
+
+        $r707.<gc.TestHumongousReferenceObject: java.lang.Integer int_107> = $r407;
+
+        $r408 = new java.lang.Integer;
+
+        specialinvoke $r408.<java.lang.Integer: void <init>(int)>(108);
+
+        $r708 = (gc.TestHumongousReferenceObject) r0;
+
+        $r708.<gc.TestHumongousReferenceObject: java.lang.Integer int_108> = $r408;
+
+        $r409 = new java.lang.Integer;
+
+        specialinvoke $r409.<java.lang.Integer: void <init>(int)>(109);
+
+        $r709 = (gc.TestHumongousReferenceObject) r0;
+
+        $r709.<gc.TestHumongousReferenceObject: java.lang.Integer int_109> = $r409;
+
+        $r410 = new java.lang.Integer;
+
+        specialinvoke $r410.<java.lang.Integer: void <init>(int)>(110);
+
+        $r710 = (gc.TestHumongousReferenceObject) r0;
+
+        $r710.<gc.TestHumongousReferenceObject: java.lang.Integer int_110> = $r410;
+
+        $r411 = new java.lang.Integer;
+
+        specialinvoke $r411.<java.lang.Integer: void <init>(int)>(111);
+
+        $r711 = (gc.TestHumongousReferenceObject) r0;
+
+        $r711.<gc.TestHumongousReferenceObject: java.lang.Integer int_111> = $r411;
+
+        $r412 = new java.lang.Integer;
+
+        specialinvoke $r412.<java.lang.Integer: void <init>(int)>(112);
+
+        $r712 = (gc.TestHumongousReferenceObject) r0;
+
+        $r712.<gc.TestHumongousReferenceObject: java.lang.Integer int_112> = $r412;
+
+        $r413 = new java.lang.Integer;
+
+        specialinvoke $r413.<java.lang.Integer: void <init>(int)>(113);
+
+        $r713 = (gc.TestHumongousReferenceObject) r0;
+
+        $r713.<gc.TestHumongousReferenceObject: java.lang.Integer int_113> = $r413;
+
+        $r414 = new java.lang.Integer;
+
+        specialinvoke $r414.<java.lang.Integer: void <init>(int)>(114);
+
+        $r714 = (gc.TestHumongousReferenceObject) r0;
+
+        $r714.<gc.TestHumongousReferenceObject: java.lang.Integer int_114> = $r414;
+
+        $r415 = new java.lang.Integer;
+
+        specialinvoke $r415.<java.lang.Integer: void <init>(int)>(115);
+
+        $r715 = (gc.TestHumongousReferenceObject) r0;
+
+        $r715.<gc.TestHumongousReferenceObject: java.lang.Integer int_115> = $r415;
+
+        $r416 = new java.lang.Integer;
+
+        specialinvoke $r416.<java.lang.Integer: void <init>(int)>(116);
+
+        $r716 = (gc.TestHumongousReferenceObject) r0;
+
+        $r716.<gc.TestHumongousReferenceObject: java.lang.Integer int_116> = $r416;
+
+        $r417 = new java.lang.Integer;
+
+        specialinvoke $r417.<java.lang.Integer: void <init>(int)>(117);
+
+        $r717 = (gc.TestHumongousReferenceObject) r0;
+
+        $r717.<gc.TestHumongousReferenceObject: java.lang.Integer int_117> = $r417;
+
+        $r418 = new java.lang.Integer;
+
+        specialinvoke $r418.<java.lang.Integer: void <init>(int)>(118);
+
+        $r718 = (gc.TestHumongousReferenceObject) r0;
+
+        $r718.<gc.TestHumongousReferenceObject: java.lang.Integer int_118> = $r418;
+
+        $r419 = new java.lang.Integer;
+
+        specialinvoke $r419.<java.lang.Integer: void <init>(int)>(119);
+
+        $r719 = (gc.TestHumongousReferenceObject) r0;
+
+        $r719.<gc.TestHumongousReferenceObject: java.lang.Integer int_119> = $r419;
+
+        $r420 = new java.lang.Integer;
+
+        specialinvoke $r420.<java.lang.Integer: void <init>(int)>(120);
+
+        $r720 = (gc.TestHumongousReferenceObject) r0;
+
+        $r720.<gc.TestHumongousReferenceObject: java.lang.Integer int_120> = $r420;
+
+        $r421 = new java.lang.Integer;
+
+        specialinvoke $r421.<java.lang.Integer: void <init>(int)>(121);
+
+        $r721 = (gc.TestHumongousReferenceObject) r0;
+
+        $r721.<gc.TestHumongousReferenceObject: java.lang.Integer int_121> = $r421;
+
+        $r422 = new java.lang.Integer;
+
+        specialinvoke $r422.<java.lang.Integer: void <init>(int)>(122);
+
+        $r722 = (gc.TestHumongousReferenceObject) r0;
+
+        $r722.<gc.TestHumongousReferenceObject: java.lang.Integer int_122> = $r422;
+
+        $r423 = new java.lang.Integer;
+
+        specialinvoke $r423.<java.lang.Integer: void <init>(int)>(123);
+
+        $r723 = (gc.TestHumongousReferenceObject) r0;
+
+        $r723.<gc.TestHumongousReferenceObject: java.lang.Integer int_123> = $r423;
+
+        $r424 = new java.lang.Integer;
+
+        specialinvoke $r424.<java.lang.Integer: void <init>(int)>(124);
+
+        $r724 = (gc.TestHumongousReferenceObject) r0;
+
+        $r724.<gc.TestHumongousReferenceObject: java.lang.Integer int_124> = $r424;
+
+        $r425 = new java.lang.Integer;
+
+        specialinvoke $r425.<java.lang.Integer: void <init>(int)>(125);
+
+        $r725 = (gc.TestHumongousReferenceObject) r0;
+
+        $r725.<gc.TestHumongousReferenceObject: java.lang.Integer int_125> = $r425;
+
+        $r426 = new java.lang.Integer;
+
+        specialinvoke $r426.<java.lang.Integer: void <init>(int)>(126);
+
+        $r726 = (gc.TestHumongousReferenceObject) r0;
+
+        $r726.<gc.TestHumongousReferenceObject: java.lang.Integer int_126> = $r426;
+
+        $r427 = new java.lang.Integer;
+
+        specialinvoke $r427.<java.lang.Integer: void <init>(int)>(127);
+
+        $r727 = (gc.TestHumongousReferenceObject) r0;
+
+        $r727.<gc.TestHumongousReferenceObject: java.lang.Integer int_127> = $r427;
+
+        $r428 = new java.lang.Integer;
+
+        specialinvoke $r428.<java.lang.Integer: void <init>(int)>(128);
+
+        $r728 = (gc.TestHumongousReferenceObject) r0;
+
+        $r728.<gc.TestHumongousReferenceObject: java.lang.Integer int_128> = $r428;
+
+        $r429 = new java.lang.Integer;
+
+        specialinvoke $r429.<java.lang.Integer: void <init>(int)>(129);
+
+        $r729 = (gc.TestHumongousReferenceObject) r0;
+
+        $r729.<gc.TestHumongousReferenceObject: java.lang.Integer int_129> = $r429;
+
+        $r430 = new java.lang.Integer;
+
+        specialinvoke $r430.<java.lang.Integer: void <init>(int)>(130);
+
+        $r730 = (gc.TestHumongousReferenceObject) r0;
+
+        $r730.<gc.TestHumongousReferenceObject: java.lang.Integer int_130> = $r430;
+
+        $r431 = new java.lang.Integer;
+
+        specialinvoke $r431.<java.lang.Integer: void <init>(int)>(131);
+
+        $r731 = (gc.TestHumongousReferenceObject) r0;
+
+        $r731.<gc.TestHumongousReferenceObject: java.lang.Integer int_131> = $r431;
+
+        $r432 = new java.lang.Integer;
+
+        specialinvoke $r432.<java.lang.Integer: void <init>(int)>(132);
+
+        $r732 = (gc.TestHumongousReferenceObject) r0;
+
+        $r732.<gc.TestHumongousReferenceObject: java.lang.Integer int_132> = $r432;
+
+        $r433 = new java.lang.Integer;
+
+        specialinvoke $r433.<java.lang.Integer: void <init>(int)>(133);
+
+        $r733 = (gc.TestHumongousReferenceObject) r0;
+
+        $r733.<gc.TestHumongousReferenceObject: java.lang.Integer int_133> = $r433;
+
+        $r434 = new java.lang.Integer;
+
+        specialinvoke $r434.<java.lang.Integer: void <init>(int)>(134);
+
+        $r734 = (gc.TestHumongousReferenceObject) r0;
+
+        $r734.<gc.TestHumongousReferenceObject: java.lang.Integer int_134> = $r434;
+
+        $r435 = new java.lang.Integer;
+
+        specialinvoke $r435.<java.lang.Integer: void <init>(int)>(135);
+
+        $r735 = (gc.TestHumongousReferenceObject) r0;
+
+        $r735.<gc.TestHumongousReferenceObject: java.lang.Integer int_135> = $r435;
+
+        $r436 = new java.lang.Integer;
+
+        specialinvoke $r436.<java.lang.Integer: void <init>(int)>(136);
+
+        $r736 = (gc.TestHumongousReferenceObject) r0;
+
+        $r736.<gc.TestHumongousReferenceObject: java.lang.Integer int_136> = $r436;
+
+        $r437 = new java.lang.Integer;
+
+        specialinvoke $r437.<java.lang.Integer: void <init>(int)>(137);
+
+        $r737 = (gc.TestHumongousReferenceObject) r0;
+
+        $r737.<gc.TestHumongousReferenceObject: java.lang.Integer int_137> = $r437;
+
+        $r438 = new java.lang.Integer;
+
+        specialinvoke $r438.<java.lang.Integer: void <init>(int)>(138);
+
+        $r738 = (gc.TestHumongousReferenceObject) r0;
+
+        $r738.<gc.TestHumongousReferenceObject: java.lang.Integer int_138> = $r438;
+
+        $r439 = new java.lang.Integer;
+
+        specialinvoke $r439.<java.lang.Integer: void <init>(int)>(139);
+
+        $r739 = (gc.TestHumongousReferenceObject) r0;
+
+        $r739.<gc.TestHumongousReferenceObject: java.lang.Integer int_139> = $r439;
+
+        $r440 = new java.lang.Integer;
+
+        specialinvoke $r440.<java.lang.Integer: void <init>(int)>(140);
+
+        $r740 = (gc.TestHumongousReferenceObject) r0;
+
+        $r740.<gc.TestHumongousReferenceObject: java.lang.Integer int_140> = $r440;
+
+        $r441 = new java.lang.Integer;
+
+        specialinvoke $r441.<java.lang.Integer: void <init>(int)>(141);
+
+        $r741 = (gc.TestHumongousReferenceObject) r0;
+
+        $r741.<gc.TestHumongousReferenceObject: java.lang.Integer int_141> = $r441;
+
+        $r442 = new java.lang.Integer;
+
+        specialinvoke $r442.<java.lang.Integer: void <init>(int)>(142);
+
+        $r742 = (gc.TestHumongousReferenceObject) r0;
+
+        $r742.<gc.TestHumongousReferenceObject: java.lang.Integer int_142> = $r442;
+
+        $r443 = new java.lang.Integer;
+
+        specialinvoke $r443.<java.lang.Integer: void <init>(int)>(143);
+
+        $r743 = (gc.TestHumongousReferenceObject) r0;
+
+        $r743.<gc.TestHumongousReferenceObject: java.lang.Integer int_143> = $r443;
+
+        $r444 = new java.lang.Integer;
+
+        specialinvoke $r444.<java.lang.Integer: void <init>(int)>(144);
+
+        $r744 = (gc.TestHumongousReferenceObject) r0;
+
+        $r744.<gc.TestHumongousReferenceObject: java.lang.Integer int_144> = $r444;
+
+        $r445 = new java.lang.Integer;
+
+        specialinvoke $r445.<java.lang.Integer: void <init>(int)>(145);
+
+        $r745 = (gc.TestHumongousReferenceObject) r0;
+
+        $r745.<gc.TestHumongousReferenceObject: java.lang.Integer int_145> = $r445;
+
+        $r446 = new java.lang.Integer;
+
+        specialinvoke $r446.<java.lang.Integer: void <init>(int)>(146);
+
+        $r746 = (gc.TestHumongousReferenceObject) r0;
+
+        $r746.<gc.TestHumongousReferenceObject: java.lang.Integer int_146> = $r446;
+
+        $r447 = new java.lang.Integer;
+
+        specialinvoke $r447.<java.lang.Integer: void <init>(int)>(147);
+
+        $r747 = (gc.TestHumongousReferenceObject) r0;
+
+        $r747.<gc.TestHumongousReferenceObject: java.lang.Integer int_147> = $r447;
+
+        $r448 = new java.lang.Integer;
+
+        specialinvoke $r448.<java.lang.Integer: void <init>(int)>(148);
+
+        $r748 = (gc.TestHumongousReferenceObject) r0;
+
+        $r748.<gc.TestHumongousReferenceObject: java.lang.Integer int_148> = $r448;
+
+        $r449 = new java.lang.Integer;
+
+        specialinvoke $r449.<java.lang.Integer: void <init>(int)>(149);
+
+        $r749 = (gc.TestHumongousReferenceObject) r0;
+
+        $r749.<gc.TestHumongousReferenceObject: java.lang.Integer int_149> = $r449;
+
+        $r450 = new java.lang.Integer;
+
+        specialinvoke $r450.<java.lang.Integer: void <init>(int)>(150);
+
+        $r750 = (gc.TestHumongousReferenceObject) r0;
+
+        $r750.<gc.TestHumongousReferenceObject: java.lang.Integer int_150> = $r450;
+
+        $r451 = new java.lang.Integer;
+
+        specialinvoke $r451.<java.lang.Integer: void <init>(int)>(151);
+
+        $r751 = (gc.TestHumongousReferenceObject) r0;
+
+        $r751.<gc.TestHumongousReferenceObject: java.lang.Integer int_151> = $r451;
+
+        $r452 = new java.lang.Integer;
+
+        specialinvoke $r452.<java.lang.Integer: void <init>(int)>(152);
+
+        $r752 = (gc.TestHumongousReferenceObject) r0;
+
+        $r752.<gc.TestHumongousReferenceObject: java.lang.Integer int_152> = $r452;
+
+        $r453 = new java.lang.Integer;
+
+        specialinvoke $r453.<java.lang.Integer: void <init>(int)>(153);
+
+        $r753 = (gc.TestHumongousReferenceObject) r0;
+
+        $r753.<gc.TestHumongousReferenceObject: java.lang.Integer int_153> = $r453;
+
+        $r454 = new java.lang.Integer;
+
+        specialinvoke $r454.<java.lang.Integer: void <init>(int)>(154);
+
+        $r754 = (gc.TestHumongousReferenceObject) r0;
+
+        $r754.<gc.TestHumongousReferenceObject: java.lang.Integer int_154> = $r454;
+
+        $r455 = new java.lang.Integer;
+
+        specialinvoke $r455.<java.lang.Integer: void <init>(int)>(155);
+
+        $r755 = (gc.TestHumongousReferenceObject) r0;
+
+        $r755.<gc.TestHumongousReferenceObject: java.lang.Integer int_155> = $r455;
+
+        $r456 = new java.lang.Integer;
+
+        specialinvoke $r456.<java.lang.Integer: void <init>(int)>(156);
+
+        $r756 = (gc.TestHumongousReferenceObject) r0;
+
+        $r756.<gc.TestHumongousReferenceObject: java.lang.Integer int_156> = $r456;
+
+        $r457 = new java.lang.Integer;
+
+        specialinvoke $r457.<java.lang.Integer: void <init>(int)>(157);
+
+        $r757 = (gc.TestHumongousReferenceObject) r0;
+
+        $r757.<gc.TestHumongousReferenceObject: java.lang.Integer int_157> = $r457;
+
+        $r458 = new java.lang.Integer;
+
+        specialinvoke $r458.<java.lang.Integer: void <init>(int)>(158);
+
+        $r758 = (gc.TestHumongousReferenceObject) r0;
+
+        $r758.<gc.TestHumongousReferenceObject: java.lang.Integer int_158> = $r458;
+
+        $r459 = new java.lang.Integer;
+
+        specialinvoke $r459.<java.lang.Integer: void <init>(int)>(159);
+
+        $r759 = (gc.TestHumongousReferenceObject) r0;
+
+        $r759.<gc.TestHumongousReferenceObject: java.lang.Integer int_159> = $r459;
+
+        $r460 = new java.lang.Integer;
+
+        specialinvoke $r460.<java.lang.Integer: void <init>(int)>(160);
+
+        $r760 = (gc.TestHumongousReferenceObject) r0;
+
+        $r760.<gc.TestHumongousReferenceObject: java.lang.Integer int_160> = $r460;
+
+        $r461 = new java.lang.Integer;
+
+        specialinvoke $r461.<java.lang.Integer: void <init>(int)>(161);
+
+        $r761 = (gc.TestHumongousReferenceObject) r0;
+
+        $r761.<gc.TestHumongousReferenceObject: java.lang.Integer int_161> = $r461;
+
+        $r462 = new java.lang.Integer;
+
+        specialinvoke $r462.<java.lang.Integer: void <init>(int)>(162);
+
+        $r762 = (gc.TestHumongousReferenceObject) r0;
+
+        $r762.<gc.TestHumongousReferenceObject: java.lang.Integer int_162> = $r462;
+
+        $r463 = new java.lang.Integer;
+
+        specialinvoke $r463.<java.lang.Integer: void <init>(int)>(163);
+
+        $r763 = (gc.TestHumongousReferenceObject) r0;
+
+        $r763.<gc.TestHumongousReferenceObject: java.lang.Integer int_163> = $r463;
+
+        $r464 = new java.lang.Integer;
+
+        specialinvoke $r464.<java.lang.Integer: void <init>(int)>(164);
+
+        $r764 = (gc.TestHumongousReferenceObject) r0;
+
+        $r764.<gc.TestHumongousReferenceObject: java.lang.Integer int_164> = $r464;
+
+        $r465 = new java.lang.Integer;
+
+        specialinvoke $r465.<java.lang.Integer: void <init>(int)>(165);
+
+        $r765 = (gc.TestHumongousReferenceObject) r0;
+
+        $r765.<gc.TestHumongousReferenceObject: java.lang.Integer int_165> = $r465;
+
+        $r466 = new java.lang.Integer;
+
+        specialinvoke $r466.<java.lang.Integer: void <init>(int)>(166);
+
+        $r766 = (gc.TestHumongousReferenceObject) r0;
+
+        $r766.<gc.TestHumongousReferenceObject: java.lang.Integer int_166> = $r466;
+
+        $r467 = new java.lang.Integer;
+
+        specialinvoke $r467.<java.lang.Integer: void <init>(int)>(167);
+
+        $r767 = (gc.TestHumongousReferenceObject) r0;
+
+        $r767.<gc.TestHumongousReferenceObject: java.lang.Integer int_167> = $r467;
+
+        $r468 = new java.lang.Integer;
+
+        specialinvoke $r468.<java.lang.Integer: void <init>(int)>(168);
+
+        $r768 = (gc.TestHumongousReferenceObject) r0;
+
+        $r768.<gc.TestHumongousReferenceObject: java.lang.Integer int_168> = $r468;
+
+        $r469 = new java.lang.Integer;
+
+        specialinvoke $r469.<java.lang.Integer: void <init>(int)>(169);
+
+        $r769 = (gc.TestHumongousReferenceObject) r0;
+
+        $r769.<gc.TestHumongousReferenceObject: java.lang.Integer int_169> = $r469;
+
+        $r470 = new java.lang.Integer;
+
+        specialinvoke $r470.<java.lang.Integer: void <init>(int)>(170);
+
+        $r770 = (gc.TestHumongousReferenceObject) r0;
+
+        $r770.<gc.TestHumongousReferenceObject: java.lang.Integer int_170> = $r470;
+
+        $r471 = new java.lang.Integer;
+
+        specialinvoke $r471.<java.lang.Integer: void <init>(int)>(171);
+
+        $r771 = (gc.TestHumongousReferenceObject) r0;
+
+        $r771.<gc.TestHumongousReferenceObject: java.lang.Integer int_171> = $r471;
+
+        $r472 = new java.lang.Integer;
+
+        specialinvoke $r472.<java.lang.Integer: void <init>(int)>(172);
+
+        $r772 = (gc.TestHumongousReferenceObject) r0;
+
+        $r772.<gc.TestHumongousReferenceObject: java.lang.Integer int_172> = $r472;
+
+        $r473 = new java.lang.Integer;
+
+        specialinvoke $r473.<java.lang.Integer: void <init>(int)>(173);
+
+        $r773 = (gc.TestHumongousReferenceObject) r0;
+
+        $r773.<gc.TestHumongousReferenceObject: java.lang.Integer int_173> = $r473;
+
+        $r474 = new java.lang.Integer;
+
+        specialinvoke $r474.<java.lang.Integer: void <init>(int)>(174);
+
+        $r774 = (gc.TestHumongousReferenceObject) r0;
+
+        $r774.<gc.TestHumongousReferenceObject: java.lang.Integer int_174> = $r474;
+
+        $r475 = new java.lang.Integer;
+
+        specialinvoke $r475.<java.lang.Integer: void <init>(int)>(175);
+
+        $r775 = (gc.TestHumongousReferenceObject) r0;
+
+        $r775.<gc.TestHumongousReferenceObject: java.lang.Integer int_175> = $r475;
+
+        $r476 = new java.lang.Integer;
+
+        specialinvoke $r476.<java.lang.Integer: void <init>(int)>(176);
+
+        $r776 = (gc.TestHumongousReferenceObject) r0;
+
+        $r776.<gc.TestHumongousReferenceObject: java.lang.Integer int_176> = $r476;
+
+        $r477 = new java.lang.Integer;
+
+        specialinvoke $r477.<java.lang.Integer: void <init>(int)>(177);
+
+        $r777 = (gc.TestHumongousReferenceObject) r0;
+
+        $r777.<gc.TestHumongousReferenceObject: java.lang.Integer int_177> = $r477;
+
+        $r478 = new java.lang.Integer;
+
+        specialinvoke $r478.<java.lang.Integer: void <init>(int)>(178);
+
+        $r778 = (gc.TestHumongousReferenceObject) r0;
+
+        $r778.<gc.TestHumongousReferenceObject: java.lang.Integer int_178> = $r478;
+
+        $r479 = new java.lang.Integer;
+
+        specialinvoke $r479.<java.lang.Integer: void <init>(int)>(179);
+
+        $r779 = (gc.TestHumongousReferenceObject) r0;
+
+        $r779.<gc.TestHumongousReferenceObject: java.lang.Integer int_179> = $r479;
+
+        $r480 = new java.lang.Integer;
+
+        specialinvoke $r480.<java.lang.Integer: void <init>(int)>(180);
+
+        $r780 = (gc.TestHumongousReferenceObject) r0;
+
+        $r780.<gc.TestHumongousReferenceObject: java.lang.Integer int_180> = $r480;
+
+        $r481 = new java.lang.Integer;
+
+        specialinvoke $r481.<java.lang.Integer: void <init>(int)>(181);
+
+        $r781 = (gc.TestHumongousReferenceObject) r0;
+
+        $r781.<gc.TestHumongousReferenceObject: java.lang.Integer int_181> = $r481;
+
+        $r482 = new java.lang.Integer;
+
+        specialinvoke $r482.<java.lang.Integer: void <init>(int)>(182);
+
+        $r782 = (gc.TestHumongousReferenceObject) r0;
+
+        $r782.<gc.TestHumongousReferenceObject: java.lang.Integer int_182> = $r482;
+
+        $r483 = new java.lang.Integer;
+
+        specialinvoke $r483.<java.lang.Integer: void <init>(int)>(183);
+
+        $r783 = (gc.TestHumongousReferenceObject) r0;
+
+        $r783.<gc.TestHumongousReferenceObject: java.lang.Integer int_183> = $r483;
+
+        $r484 = new java.lang.Integer;
+
+        specialinvoke $r484.<java.lang.Integer: void <init>(int)>(184);
+
+        $r784 = (gc.TestHumongousReferenceObject) r0;
+
+        $r784.<gc.TestHumongousReferenceObject: java.lang.Integer int_184> = $r484;
+
+        $r485 = new java.lang.Integer;
+
+        specialinvoke $r485.<java.lang.Integer: void <init>(int)>(185);
+
+        $r785 = (gc.TestHumongousReferenceObject) r0;
+
+        $r785.<gc.TestHumongousReferenceObject: java.lang.Integer int_185> = $r485;
+
+        $r486 = new java.lang.Integer;
+
+        specialinvoke $r486.<java.lang.Integer: void <init>(int)>(186);
+
+        $r786 = (gc.TestHumongousReferenceObject) r0;
+
+        $r786.<gc.TestHumongousReferenceObject: java.lang.Integer int_186> = $r486;
+
+        $r487 = new java.lang.Integer;
+
+        specialinvoke $r487.<java.lang.Integer: void <init>(int)>(187);
+
+        $r787 = (gc.TestHumongousReferenceObject) r0;
+
+        $r787.<gc.TestHumongousReferenceObject: java.lang.Integer int_187> = $r487;
+
+        $r488 = new java.lang.Integer;
+
+        specialinvoke $r488.<java.lang.Integer: void <init>(int)>(188);
+
+        $r788 = (gc.TestHumongousReferenceObject) r0;
+
+        $r788.<gc.TestHumongousReferenceObject: java.lang.Integer int_188> = $r488;
+
+        $r489 = new java.lang.Integer;
+
+        specialinvoke $r489.<java.lang.Integer: void <init>(int)>(189);
+
+        $r789 = (gc.TestHumongousReferenceObject) r0;
+
+        $r789.<gc.TestHumongousReferenceObject: java.lang.Integer int_189> = $r489;
+
+        $r490 = new java.lang.Integer;
+
+        specialinvoke $r490.<java.lang.Integer: void <init>(int)>(190);
+
+        $r790 = (gc.TestHumongousReferenceObject) r0;
+
+        $r790.<gc.TestHumongousReferenceObject: java.lang.Integer int_190> = $r490;
+
+        $r491 = new java.lang.Integer;
+
+        specialinvoke $r491.<java.lang.Integer: void <init>(int)>(191);
+
+        $r791 = (gc.TestHumongousReferenceObject) r0;
+
+        $r791.<gc.TestHumongousReferenceObject: java.lang.Integer int_191> = $r491;
+
+        $r492 = new java.lang.Integer;
+
+        specialinvoke $r492.<java.lang.Integer: void <init>(int)>(192);
+
+        $r792 = (gc.TestHumongousReferenceObject) r0;
+
+        $r792.<gc.TestHumongousReferenceObject: java.lang.Integer int_192> = $r492;
+
+        $r493 = new java.lang.Integer;
+
+        specialinvoke $r493.<java.lang.Integer: void <init>(int)>(193);
+
+        $r793 = (gc.TestHumongousReferenceObject) r0;
+
+        $r793.<gc.TestHumongousReferenceObject: java.lang.Integer int_193> = $r493;
+
+        $r494 = new java.lang.Integer;
+
+        specialinvoke $r494.<java.lang.Integer: void <init>(int)>(194);
+
+        $r794 = (gc.TestHumongousReferenceObject) r0;
+
+        $r794.<gc.TestHumongousReferenceObject: java.lang.Integer int_194> = $r494;
+
+        $r495 = new java.lang.Integer;
+
+        specialinvoke $r495.<java.lang.Integer: void <init>(int)>(195);
+
+        $r795 = (gc.TestHumongousReferenceObject) r0;
+
+        $r795.<gc.TestHumongousReferenceObject: java.lang.Integer int_195> = $r495;
+
+        $r496 = new java.lang.Integer;
+
+        specialinvoke $r496.<java.lang.Integer: void <init>(int)>(196);
+
+        $r796 = (gc.TestHumongousReferenceObject) r0;
+
+        $r796.<gc.TestHumongousReferenceObject: java.lang.Integer int_196> = $r496;
+
+        $r497 = new java.lang.Integer;
+
+        specialinvoke $r497.<java.lang.Integer: void <init>(int)>(197);
+
+        $r797 = (gc.TestHumongousReferenceObject) r0;
+
+        $r797.<gc.TestHumongousReferenceObject: java.lang.Integer int_197> = $r497;
+
+        $r498 = new java.lang.Integer;
+
+        specialinvoke $r498.<java.lang.Integer: void <init>(int)>(198);
+
+        $r798 = (gc.TestHumongousReferenceObject) r0;
+
+        $r798.<gc.TestHumongousReferenceObject: java.lang.Integer int_198> = $r498;
+
+        $r499 = new java.lang.Integer;
+
+        specialinvoke $r499.<java.lang.Integer: void <init>(int)>(199);
+
+        $r799 = (gc.TestHumongousReferenceObject) r0;
+
+        $r799.<gc.TestHumongousReferenceObject: java.lang.Integer int_199> = $r499;
+
+        $r500 = new java.lang.Integer;
+
+        specialinvoke $r500.<java.lang.Integer: void <init>(int)>(200);
+
+        $r800 = (gc.TestHumongousReferenceObject) r0;
+
+        $r800.<gc.TestHumongousReferenceObject: java.lang.Integer int_200> = $r500;
+
+        $r501 = new java.lang.Integer;
+
+        specialinvoke $r501.<java.lang.Integer: void <init>(int)>(201);
+
+        $r801 = (gc.TestHumongousReferenceObject) r0;
+
+        $r801.<gc.TestHumongousReferenceObject: java.lang.Integer int_201> = $r501;
+
+        $r502 = new java.lang.Integer;
+
+        specialinvoke $r502.<java.lang.Integer: void <init>(int)>(202);
+
+        $r802 = (gc.TestHumongousReferenceObject) r0;
+
+        $r802.<gc.TestHumongousReferenceObject: java.lang.Integer int_202> = $r502;
+
+        $r503 = new java.lang.Integer;
+
+        specialinvoke $r503.<java.lang.Integer: void <init>(int)>(203);
+
+        $r803 = (gc.TestHumongousReferenceObject) r0;
+
+        $r803.<gc.TestHumongousReferenceObject: java.lang.Integer int_203> = $r503;
+
+        $r504 = new java.lang.Integer;
+
+        specialinvoke $r504.<java.lang.Integer: void <init>(int)>(204);
+
+        $r804 = (gc.TestHumongousReferenceObject) r0;
+
+        $r804.<gc.TestHumongousReferenceObject: java.lang.Integer int_204> = $r504;
+
+        $r505 = new java.lang.Integer;
+
+        specialinvoke $r505.<java.lang.Integer: void <init>(int)>(205);
+
+        $r805 = (gc.TestHumongousReferenceObject) r0;
+
+        $r805.<gc.TestHumongousReferenceObject: java.lang.Integer int_205> = $r505;
+
+        $r506 = new java.lang.Integer;
+
+        specialinvoke $r506.<java.lang.Integer: void <init>(int)>(206);
+
+        $r806 = (gc.TestHumongousReferenceObject) r0;
+
+        $r806.<gc.TestHumongousReferenceObject: java.lang.Integer int_206> = $r506;
+
+        $r507 = new java.lang.Integer;
+
+        specialinvoke $r507.<java.lang.Integer: void <init>(int)>(207);
+
+        $r807 = (gc.TestHumongousReferenceObject) r0;
+
+        $r807.<gc.TestHumongousReferenceObject: java.lang.Integer int_207> = $r507;
+
+        $r508 = new java.lang.Integer;
+
+        specialinvoke $r508.<java.lang.Integer: void <init>(int)>(208);
+
+        $r808 = (gc.TestHumongousReferenceObject) r0;
+
+        $r808.<gc.TestHumongousReferenceObject: java.lang.Integer int_208> = $r508;
+
+        $r509 = new java.lang.Integer;
+
+        specialinvoke $r509.<java.lang.Integer: void <init>(int)>(209);
+
+        $r809 = (gc.TestHumongousReferenceObject) r0;
+
+        $r809.<gc.TestHumongousReferenceObject: java.lang.Integer int_209> = $r509;
+
+        $r510 = new java.lang.Integer;
+
+        specialinvoke $r510.<java.lang.Integer: void <init>(int)>(210);
+
+        $r810 = (gc.TestHumongousReferenceObject) r0;
+
+        $r810.<gc.TestHumongousReferenceObject: java.lang.Integer int_210> = $r510;
+
+        $r511 = new java.lang.Integer;
+
+        specialinvoke $r511.<java.lang.Integer: void <init>(int)>(211);
+
+        $r811 = (gc.TestHumongousReferenceObject) r0;
+
+        $r811.<gc.TestHumongousReferenceObject: java.lang.Integer int_211> = $r511;
+
+        $r512 = new java.lang.Integer;
+
+        specialinvoke $r512.<java.lang.Integer: void <init>(int)>(212);
+
+        $r812 = (gc.TestHumongousReferenceObject) r0;
+
+        $r812.<gc.TestHumongousReferenceObject: java.lang.Integer int_212> = $r512;
+
+        $r513 = new java.lang.Integer;
+
+        specialinvoke $r513.<java.lang.Integer: void <init>(int)>(213);
+
+        $r813 = (gc.TestHumongousReferenceObject) r0;
+
+        $r813.<gc.TestHumongousReferenceObject: java.lang.Integer int_213> = $r513;
+
+        $r514 = new java.lang.Integer;
+
+        specialinvoke $r514.<java.lang.Integer: void <init>(int)>(214);
+
+        $r814 = (gc.TestHumongousReferenceObject) r0;
+
+        $r814.<gc.TestHumongousReferenceObject: java.lang.Integer int_214> = $r514;
+
+        $r515 = new java.lang.Integer;
+
+        specialinvoke $r515.<java.lang.Integer: void <init>(int)>(215);
+
+        $r815 = (gc.TestHumongousReferenceObject) r0;
+
+        $r815.<gc.TestHumongousReferenceObject: java.lang.Integer int_215> = $r515;
+
+        $r516 = new java.lang.Integer;
+
+        specialinvoke $r516.<java.lang.Integer: void <init>(int)>(216);
+
+        $r816 = (gc.TestHumongousReferenceObject) r0;
+
+        $r816.<gc.TestHumongousReferenceObject: java.lang.Integer int_216> = $r516;
+
+        $r517 = new java.lang.Integer;
+
+        specialinvoke $r517.<java.lang.Integer: void <init>(int)>(217);
+
+        $r817 = (gc.TestHumongousReferenceObject) r0;
+
+        $r817.<gc.TestHumongousReferenceObject: java.lang.Integer int_217> = $r517;
+
+        $r518 = new java.lang.Integer;
+
+        specialinvoke $r518.<java.lang.Integer: void <init>(int)>(218);
+
+        $r818 = (gc.TestHumongousReferenceObject) r0;
+
+        $r818.<gc.TestHumongousReferenceObject: java.lang.Integer int_218> = $r518;
+
+        $r519 = new java.lang.Integer;
+
+        specialinvoke $r519.<java.lang.Integer: void <init>(int)>(219);
+
+        $r819 = (gc.TestHumongousReferenceObject) r0;
+
+        $r819.<gc.TestHumongousReferenceObject: java.lang.Integer int_219> = $r519;
+
+        $r520 = new java.lang.Integer;
+
+        specialinvoke $r520.<java.lang.Integer: void <init>(int)>(220);
+
+        $r820 = (gc.TestHumongousReferenceObject) r0;
+
+        $r820.<gc.TestHumongousReferenceObject: java.lang.Integer int_220> = $r520;
+
+        $r521 = new java.lang.Integer;
+
+        specialinvoke $r521.<java.lang.Integer: void <init>(int)>(221);
+
+        $r821 = (gc.TestHumongousReferenceObject) r0;
+
+        $r821.<gc.TestHumongousReferenceObject: java.lang.Integer int_221> = $r521;
+
+        $r522 = new java.lang.Integer;
+
+        specialinvoke $r522.<java.lang.Integer: void <init>(int)>(222);
+
+        $r822 = (gc.TestHumongousReferenceObject) r0;
+
+        $r822.<gc.TestHumongousReferenceObject: java.lang.Integer int_222> = $r522;
+
+        $r523 = new java.lang.Integer;
+
+        specialinvoke $r523.<java.lang.Integer: void <init>(int)>(223);
+
+        $r823 = (gc.TestHumongousReferenceObject) r0;
+
+        $r823.<gc.TestHumongousReferenceObject: java.lang.Integer int_223> = $r523;
+
+        $r524 = new java.lang.Integer;
+
+        specialinvoke $r524.<java.lang.Integer: void <init>(int)>(224);
+
+        $r824 = (gc.TestHumongousReferenceObject) r0;
+
+        $r824.<gc.TestHumongousReferenceObject: java.lang.Integer int_224> = $r524;
+
+        $r525 = new java.lang.Integer;
+
+        specialinvoke $r525.<java.lang.Integer: void <init>(int)>(225);
+
+        $r825 = (gc.TestHumongousReferenceObject) r0;
+
+        $r825.<gc.TestHumongousReferenceObject: java.lang.Integer int_225> = $r525;
+
+        $r526 = new java.lang.Integer;
+
+        specialinvoke $r526.<java.lang.Integer: void <init>(int)>(226);
+
+        $r826 = (gc.TestHumongousReferenceObject) r0;
+
+        $r826.<gc.TestHumongousReferenceObject: java.lang.Integer int_226> = $r526;
+
+        $r527 = new java.lang.Integer;
+
+        specialinvoke $r527.<java.lang.Integer: void <init>(int)>(227);
+
+        $r827 = (gc.TestHumongousReferenceObject) r0;
+
+        $r827.<gc.TestHumongousReferenceObject: java.lang.Integer int_227> = $r527;
+
+        $r528 = new java.lang.Integer;
+
+        specialinvoke $r528.<java.lang.Integer: void <init>(int)>(228);
+
+        $r828 = (gc.TestHumongousReferenceObject) r0;
+
+        $r828.<gc.TestHumongousReferenceObject: java.lang.Integer int_228> = $r528;
+
+        $r529 = new java.lang.Integer;
+
+        specialinvoke $r529.<java.lang.Integer: void <init>(int)>(229);
+
+        $r829 = (gc.TestHumongousReferenceObject) r0;
+
+        $r829.<gc.TestHumongousReferenceObject: java.lang.Integer int_229> = $r529;
+
+        $r530 = new java.lang.Integer;
+
+        specialinvoke $r530.<java.lang.Integer: void <init>(int)>(230);
+
+        $r830 = (gc.TestHumongousReferenceObject) r0;
+
+        $r830.<gc.TestHumongousReferenceObject: java.lang.Integer int_230> = $r530;
+
+        $r531 = new java.lang.Integer;
+
+        specialinvoke $r531.<java.lang.Integer: void <init>(int)>(231);
+
+        $r831 = (gc.TestHumongousReferenceObject) r0;
+
+        $r831.<gc.TestHumongousReferenceObject: java.lang.Integer int_231> = $r531;
+
+        $r532 = new java.lang.Integer;
+
+        specialinvoke $r532.<java.lang.Integer: void <init>(int)>(232);
+
+        $r832 = (gc.TestHumongousReferenceObject) r0;
+
+        $r832.<gc.TestHumongousReferenceObject: java.lang.Integer int_232> = $r532;
+
+        $r533 = new java.lang.Integer;
+
+        specialinvoke $r533.<java.lang.Integer: void <init>(int)>(233);
+
+        $r833 = (gc.TestHumongousReferenceObject) r0;
+
+        $r833.<gc.TestHumongousReferenceObject: java.lang.Integer int_233> = $r533;
+
+        $r534 = new java.lang.Integer;
+
+        specialinvoke $r534.<java.lang.Integer: void <init>(int)>(234);
+
+        $r834 = (gc.TestHumongousReferenceObject) r0;
+
+        $r834.<gc.TestHumongousReferenceObject: java.lang.Integer int_234> = $r534;
+
+        $r535 = new java.lang.Integer;
+
+        specialinvoke $r535.<java.lang.Integer: void <init>(int)>(235);
+
+        $r835 = (gc.TestHumongousReferenceObject) r0;
+
+        $r835.<gc.TestHumongousReferenceObject: java.lang.Integer int_235> = $r535;
+
+        $r536 = new java.lang.Integer;
+
+        specialinvoke $r536.<java.lang.Integer: void <init>(int)>(236);
+
+        $r836 = (gc.TestHumongousReferenceObject) r0;
+
+        $r836.<gc.TestHumongousReferenceObject: java.lang.Integer int_236> = $r536;
+
+        $r537 = new java.lang.Integer;
+
+        specialinvoke $r537.<java.lang.Integer: void <init>(int)>(237);
+
+        $r837 = (gc.TestHumongousReferenceObject) r0;
+
+        $r837.<gc.TestHumongousReferenceObject: java.lang.Integer int_237> = $r537;
+
+        $r538 = new java.lang.Integer;
+
+        specialinvoke $r538.<java.lang.Integer: void <init>(int)>(238);
+
+        $r838 = (gc.TestHumongousReferenceObject) r0;
+
+        $r838.<gc.TestHumongousReferenceObject: java.lang.Integer int_238> = $r538;
+
+        $r539 = new java.lang.Integer;
+
+        specialinvoke $r539.<java.lang.Integer: void <init>(int)>(239);
+
+        $r839 = (gc.TestHumongousReferenceObject) r0;
+
+        $r839.<gc.TestHumongousReferenceObject: java.lang.Integer int_239> = $r539;
+
+        $r540 = new java.lang.Integer;
+
+        specialinvoke $r540.<java.lang.Integer: void <init>(int)>(240);
+
+        $r840 = (gc.TestHumongousReferenceObject) r0;
+
+        $r840.<gc.TestHumongousReferenceObject: java.lang.Integer int_240> = $r540;
+
+        $r541 = new java.lang.Integer;
+
+        specialinvoke $r541.<java.lang.Integer: void <init>(int)>(241);
+
+        $r841 = (gc.TestHumongousReferenceObject) r0;
+
+        $r841.<gc.TestHumongousReferenceObject: java.lang.Integer int_241> = $r541;
+
+        $r542 = new java.lang.Integer;
+
+        specialinvoke $r542.<java.lang.Integer: void <init>(int)>(242);
+
+        $r842 = (gc.TestHumongousReferenceObject) r0;
+
+        $r842.<gc.TestHumongousReferenceObject: java.lang.Integer int_242> = $r542;
+
+        $r543 = new java.lang.Integer;
+
+        specialinvoke $r543.<java.lang.Integer: void <init>(int)>(243);
+
+        $r843 = (gc.TestHumongousReferenceObject) r0;
+
+        $r843.<gc.TestHumongousReferenceObject: java.lang.Integer int_243> = $r543;
+
+        $r544 = new java.lang.Integer;
+
+        specialinvoke $r544.<java.lang.Integer: void <init>(int)>(244);
+
+        $r844 = (gc.TestHumongousReferenceObject) r0;
+
+        $r844.<gc.TestHumongousReferenceObject: java.lang.Integer int_244> = $r544;
+
+        $r545 = new java.lang.Integer;
+
+        specialinvoke $r545.<java.lang.Integer: void <init>(int)>(245);
+
+        $r845 = (gc.TestHumongousReferenceObject) r0;
+
+        $r845.<gc.TestHumongousReferenceObject: java.lang.Integer int_245> = $r545;
+
+        $r546 = new java.lang.Integer;
+
+        specialinvoke $r546.<java.lang.Integer: void <init>(int)>(246);
+
+        $r846 = (gc.TestHumongousReferenceObject) r0;
+
+        $r846.<gc.TestHumongousReferenceObject: java.lang.Integer int_246> = $r546;
+
+        $r547 = new java.lang.Integer;
+
+        specialinvoke $r547.<java.lang.Integer: void <init>(int)>(247);
+
+        $r847 = (gc.TestHumongousReferenceObject) r0;
+
+        $r847.<gc.TestHumongousReferenceObject: java.lang.Integer int_247> = $r547;
+
+        $r548 = new java.lang.Integer;
+
+        specialinvoke $r548.<java.lang.Integer: void <init>(int)>(248);
+
+        $r848 = (gc.TestHumongousReferenceObject) r0;
+
+        $r848.<gc.TestHumongousReferenceObject: java.lang.Integer int_248> = $r548;
+
+        $r549 = new java.lang.Integer;
+
+        specialinvoke $r549.<java.lang.Integer: void <init>(int)>(249);
+
+        $r849 = (gc.TestHumongousReferenceObject) r0;
+
+        $r849.<gc.TestHumongousReferenceObject: java.lang.Integer int_249> = $r549;
+
+        $r550 = new java.lang.Integer;
+
+        specialinvoke $r550.<java.lang.Integer: void <init>(int)>(250);
+
+        $r850 = (gc.TestHumongousReferenceObject) r0;
+
+        $r850.<gc.TestHumongousReferenceObject: java.lang.Integer int_250> = $r550;
+
+        $r551 = new java.lang.Integer;
+
+        specialinvoke $r551.<java.lang.Integer: void <init>(int)>(251);
+
+        $r851 = (gc.TestHumongousReferenceObject) r0;
+
+        $r851.<gc.TestHumongousReferenceObject: java.lang.Integer int_251> = $r551;
+
+        $r552 = new java.lang.Integer;
+
+        specialinvoke $r552.<java.lang.Integer: void <init>(int)>(252);
+
+        $r852 = (gc.TestHumongousReferenceObject) r0;
+
+        $r852.<gc.TestHumongousReferenceObject: java.lang.Integer int_252> = $r552;
+
+        $r553 = new java.lang.Integer;
+
+        specialinvoke $r553.<java.lang.Integer: void <init>(int)>(253);
+
+        $r853 = (gc.TestHumongousReferenceObject) r0;
+
+        $r853.<gc.TestHumongousReferenceObject: java.lang.Integer int_253> = $r553;
+
+        $r554 = new java.lang.Integer;
+
+        specialinvoke $r554.<java.lang.Integer: void <init>(int)>(254);
+
+        $r854 = (gc.TestHumongousReferenceObject) r0;
+
+        $r854.<gc.TestHumongousReferenceObject: java.lang.Integer int_254> = $r554;
+
+        $r555 = new java.lang.Integer;
+
+        specialinvoke $r555.<java.lang.Integer: void <init>(int)>(255);
+
+        $r855 = (gc.TestHumongousReferenceObject) r0;
+
+        $r855.<gc.TestHumongousReferenceObject: java.lang.Integer int_255> = $r555;
+
+        $r556 = new java.lang.Integer;
+
+        specialinvoke $r556.<java.lang.Integer: void <init>(int)>(256);
+
+        $r856 = (gc.TestHumongousReferenceObject) r0;
+
+        $r856.<gc.TestHumongousReferenceObject: java.lang.Integer int_256> = $r556;
+
+        $r557 = new java.lang.Integer;
+
+        specialinvoke $r557.<java.lang.Integer: void <init>(int)>(257);
+
+        $r857 = (gc.TestHumongousReferenceObject) r0;
+
+        $r857.<gc.TestHumongousReferenceObject: java.lang.Integer int_257> = $r557;
+
+        $r558 = new java.lang.Integer;
+
+        specialinvoke $r558.<java.lang.Integer: void <init>(int)>(258);
+
+        $r858 = (gc.TestHumongousReferenceObject) r0;
+
+        $r858.<gc.TestHumongousReferenceObject: java.lang.Integer int_258> = $r558;
+
+        $r559 = new java.lang.Integer;
+
+        specialinvoke $r559.<java.lang.Integer: void <init>(int)>(259);
+
+        $r859 = (gc.TestHumongousReferenceObject) r0;
+
+        $r859.<gc.TestHumongousReferenceObject: java.lang.Integer int_259> = $r559;
+
+        $r560 = new java.lang.Integer;
+
+        specialinvoke $r560.<java.lang.Integer: void <init>(int)>(260);
+
+        $r860 = (gc.TestHumongousReferenceObject) r0;
+
+        $r860.<gc.TestHumongousReferenceObject: java.lang.Integer int_260> = $r560;
+
+        $r561 = new java.lang.Integer;
+
+        specialinvoke $r561.<java.lang.Integer: void <init>(int)>(261);
+
+        $r861 = (gc.TestHumongousReferenceObject) r0;
+
+        $r861.<gc.TestHumongousReferenceObject: java.lang.Integer int_261> = $r561;
+
+        $r562 = new java.lang.Integer;
+
+        specialinvoke $r562.<java.lang.Integer: void <init>(int)>(262);
+
+        $r862 = (gc.TestHumongousReferenceObject) r0;
+
+        $r862.<gc.TestHumongousReferenceObject: java.lang.Integer int_262> = $r562;
+
+        $r563 = new java.lang.Integer;
+
+        specialinvoke $r563.<java.lang.Integer: void <init>(int)>(263);
+
+        $r863 = (gc.TestHumongousReferenceObject) r0;
+
+        $r863.<gc.TestHumongousReferenceObject: java.lang.Integer int_263> = $r563;
+
+        $r564 = new java.lang.Integer;
+
+        specialinvoke $r564.<java.lang.Integer: void <init>(int)>(264);
+
+        $r864 = (gc.TestHumongousReferenceObject) r0;
+
+        $r864.<gc.TestHumongousReferenceObject: java.lang.Integer int_264> = $r564;
+
+        $r565 = new java.lang.Integer;
+
+        specialinvoke $r565.<java.lang.Integer: void <init>(int)>(265);
+
+        $r865 = (gc.TestHumongousReferenceObject) r0;
+
+        $r865.<gc.TestHumongousReferenceObject: java.lang.Integer int_265> = $r565;
+
+        $r566 = new java.lang.Integer;
+
+        specialinvoke $r566.<java.lang.Integer: void <init>(int)>(266);
+
+        $r866 = (gc.TestHumongousReferenceObject) r0;
+
+        $r866.<gc.TestHumongousReferenceObject: java.lang.Integer int_266> = $r566;
+
+        $r567 = new java.lang.Integer;
+
+        specialinvoke $r567.<java.lang.Integer: void <init>(int)>(267);
+
+        $r867 = (gc.TestHumongousReferenceObject) r0;
+
+        $r867.<gc.TestHumongousReferenceObject: java.lang.Integer int_267> = $r567;
+
+        $r568 = new java.lang.Integer;
+
+        specialinvoke $r568.<java.lang.Integer: void <init>(int)>(268);
+
+        $r868 = (gc.TestHumongousReferenceObject) r0;
+
+        $r868.<gc.TestHumongousReferenceObject: java.lang.Integer int_268> = $r568;
+
+        $r569 = new java.lang.Integer;
+
+        specialinvoke $r569.<java.lang.Integer: void <init>(int)>(269);
+
+        $r869 = (gc.TestHumongousReferenceObject) r0;
+
+        $r869.<gc.TestHumongousReferenceObject: java.lang.Integer int_269> = $r569;
+
+        $r570 = new java.lang.Integer;
+
+        specialinvoke $r570.<java.lang.Integer: void <init>(int)>(270);
+
+        $r870 = (gc.TestHumongousReferenceObject) r0;
+
+        $r870.<gc.TestHumongousReferenceObject: java.lang.Integer int_270> = $r570;
+
+        $r571 = new java.lang.Integer;
+
+        specialinvoke $r571.<java.lang.Integer: void <init>(int)>(271);
+
+        $r871 = (gc.TestHumongousReferenceObject) r0;
+
+        $r871.<gc.TestHumongousReferenceObject: java.lang.Integer int_271> = $r571;
+
+        $r572 = new java.lang.Integer;
+
+        specialinvoke $r572.<java.lang.Integer: void <init>(int)>(272);
+
+        $r872 = (gc.TestHumongousReferenceObject) r0;
+
+        $r872.<gc.TestHumongousReferenceObject: java.lang.Integer int_272> = $r572;
+
+        $r573 = new java.lang.Integer;
+
+        specialinvoke $r573.<java.lang.Integer: void <init>(int)>(273);
+
+        $r873 = (gc.TestHumongousReferenceObject) r0;
+
+        $r873.<gc.TestHumongousReferenceObject: java.lang.Integer int_273> = $r573;
+
+        $r574 = new java.lang.Integer;
+
+        specialinvoke $r574.<java.lang.Integer: void <init>(int)>(274);
+
+        $r874 = (gc.TestHumongousReferenceObject) r0;
+
+        $r874.<gc.TestHumongousReferenceObject: java.lang.Integer int_274> = $r574;
+
+        $r575 = new java.lang.Integer;
+
+        specialinvoke $r575.<java.lang.Integer: void <init>(int)>(275);
+
+        $r875 = (gc.TestHumongousReferenceObject) r0;
+
+        $r875.<gc.TestHumongousReferenceObject: java.lang.Integer int_275> = $r575;
+
+        $r576 = new java.lang.Integer;
+
+        specialinvoke $r576.<java.lang.Integer: void <init>(int)>(276);
+
+        $r876 = (gc.TestHumongousReferenceObject) r0;
+
+        $r876.<gc.TestHumongousReferenceObject: java.lang.Integer int_276> = $r576;
+
+        $r577 = new java.lang.Integer;
+
+        specialinvoke $r577.<java.lang.Integer: void <init>(int)>(277);
+
+        $r877 = (gc.TestHumongousReferenceObject) r0;
+
+        $r877.<gc.TestHumongousReferenceObject: java.lang.Integer int_277> = $r577;
+
+        $r578 = new java.lang.Integer;
+
+        specialinvoke $r578.<java.lang.Integer: void <init>(int)>(278);
+
+        $r878 = (gc.TestHumongousReferenceObject) r0;
+
+        $r878.<gc.TestHumongousReferenceObject: java.lang.Integer int_278> = $r578;
+
+        $r579 = new java.lang.Integer;
+
+        specialinvoke $r579.<java.lang.Integer: void <init>(int)>(279);
+
+        $r879 = (gc.TestHumongousReferenceObject) r0;
+
+        $r879.<gc.TestHumongousReferenceObject: java.lang.Integer int_279> = $r579;
+
+        $r580 = new java.lang.Integer;
+
+        specialinvoke $r580.<java.lang.Integer: void <init>(int)>(280);
+
+        $r880 = (gc.TestHumongousReferenceObject) r0;
+
+        $r880.<gc.TestHumongousReferenceObject: java.lang.Integer int_280> = $r580;
+
+        $r581 = new java.lang.Integer;
+
+        specialinvoke $r581.<java.lang.Integer: void <init>(int)>(281);
+
+        $r881 = (gc.TestHumongousReferenceObject) r0;
+
+        $r881.<gc.TestHumongousReferenceObject: java.lang.Integer int_281> = $r581;
+
+        $r582 = new java.lang.Integer;
+
+        specialinvoke $r582.<java.lang.Integer: void <init>(int)>(282);
+
+        $r882 = (gc.TestHumongousReferenceObject) r0;
+
+        $r882.<gc.TestHumongousReferenceObject: java.lang.Integer int_282> = $r582;
+
+        $r583 = new java.lang.Integer;
+
+        specialinvoke $r583.<java.lang.Integer: void <init>(int)>(283);
+
+        $r883 = (gc.TestHumongousReferenceObject) r0;
+
+        $r883.<gc.TestHumongousReferenceObject: java.lang.Integer int_283> = $r583;
+
+        $r584 = new java.lang.Integer;
+
+        specialinvoke $r584.<java.lang.Integer: void <init>(int)>(284);
+
+        $r884 = (gc.TestHumongousReferenceObject) r0;
+
+        $r884.<gc.TestHumongousReferenceObject: java.lang.Integer int_284> = $r584;
+
+        $r585 = new java.lang.Integer;
+
+        specialinvoke $r585.<java.lang.Integer: void <init>(int)>(285);
+
+        $r885 = (gc.TestHumongousReferenceObject) r0;
+
+        $r885.<gc.TestHumongousReferenceObject: java.lang.Integer int_285> = $r585;
+
+        $r586 = new java.lang.Integer;
+
+        specialinvoke $r586.<java.lang.Integer: void <init>(int)>(286);
+
+        $r886 = (gc.TestHumongousReferenceObject) r0;
+
+        $r886.<gc.TestHumongousReferenceObject: java.lang.Integer int_286> = $r586;
+
+        $r587 = new java.lang.Integer;
+
+        specialinvoke $r587.<java.lang.Integer: void <init>(int)>(287);
+
+        $r887 = (gc.TestHumongousReferenceObject) r0;
+
+        $r887.<gc.TestHumongousReferenceObject: java.lang.Integer int_287> = $r587;
+
+        $r588 = new java.lang.Integer;
+
+        specialinvoke $r588.<java.lang.Integer: void <init>(int)>(288);
+
+        $r888 = (gc.TestHumongousReferenceObject) r0;
+
+        $r888.<gc.TestHumongousReferenceObject: java.lang.Integer int_288> = $r588;
+
+        $r589 = new java.lang.Integer;
+
+        specialinvoke $r589.<java.lang.Integer: void <init>(int)>(289);
+
+        $r889 = (gc.TestHumongousReferenceObject) r0;
+
+        $r889.<gc.TestHumongousReferenceObject: java.lang.Integer int_289> = $r589;
+
+        $r590 = new java.lang.Integer;
+
+        specialinvoke $r590.<java.lang.Integer: void <init>(int)>(290);
+
+        $r890 = (gc.TestHumongousReferenceObject) r0;
+
+        $r890.<gc.TestHumongousReferenceObject: java.lang.Integer int_290> = $r590;
+
+        $r591 = new java.lang.Integer;
+
+        specialinvoke $r591.<java.lang.Integer: void <init>(int)>(291);
+
+        $r891 = (gc.TestHumongousReferenceObject) r0;
+
+        $r891.<gc.TestHumongousReferenceObject: java.lang.Integer int_291> = $r591;
+
+        $r592 = new java.lang.Integer;
+
+        specialinvoke $r592.<java.lang.Integer: void <init>(int)>(292);
+
+        $r892 = (gc.TestHumongousReferenceObject) r0;
+
+        $r892.<gc.TestHumongousReferenceObject: java.lang.Integer int_292> = $r592;
+
+        $r593 = new java.lang.Integer;
+
+        specialinvoke $r593.<java.lang.Integer: void <init>(int)>(293);
+
+        $r893 = (gc.TestHumongousReferenceObject) r0;
+
+        $r893.<gc.TestHumongousReferenceObject: java.lang.Integer int_293> = $r593;
+
+        $r594 = new java.lang.Integer;
+
+        specialinvoke $r594.<java.lang.Integer: void <init>(int)>(294);
+
+        $r894 = (gc.TestHumongousReferenceObject) r0;
+
+        $r894.<gc.TestHumongousReferenceObject: java.lang.Integer int_294> = $r594;
+
+        $r595 = new java.lang.Integer;
+
+        specialinvoke $r595.<java.lang.Integer: void <init>(int)>(295);
+
+        $r895 = (gc.TestHumongousReferenceObject) r0;
+
+        $r895.<gc.TestHumongousReferenceObject: java.lang.Integer int_295> = $r595;
+
+        $r596 = new java.lang.Integer;
+
+        specialinvoke $r596.<java.lang.Integer: void <init>(int)>(296);
+
+        $r896 = (gc.TestHumongousReferenceObject) r0;
+
+        $r896.<gc.TestHumongousReferenceObject: java.lang.Integer int_296> = $r596;
+
+        $r597 = new java.lang.Integer;
+
+        specialinvoke $r597.<java.lang.Integer: void <init>(int)>(297);
+
+        $r897 = (gc.TestHumongousReferenceObject) r0;
+
+        $r897.<gc.TestHumongousReferenceObject: java.lang.Integer int_297> = $r597;
+
+        $r598 = new java.lang.Integer;
+
+        specialinvoke $r598.<java.lang.Integer: void <init>(int)>(298);
+
+        $r898 = (gc.TestHumongousReferenceObject) r0;
+
+        $r898.<gc.TestHumongousReferenceObject: java.lang.Integer int_298> = $r598;
+
+        $r599 = new java.lang.Integer;
+
+        specialinvoke $r599.<java.lang.Integer: void <init>(int)>(299);
+
+        $r899 = (gc.TestHumongousReferenceObject) r0;
+
+        $r899.<gc.TestHumongousReferenceObject: java.lang.Integer int_299> = $r599;
+
+        $r600 = new java.lang.Integer;
+
+        specialinvoke $r600.<java.lang.Integer: void <init>(int)>(300);
+
+        $r900 = (gc.TestHumongousReferenceObject) r0;
+
+        $r900.<gc.TestHumongousReferenceObject: java.lang.Integer int_300> = $r600;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int i0;
+        java.lang.String[] r1;
+        gc.TestHumongousReferenceObject $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r0 = new gc.TestHumongousReferenceObject;
+
+        specialinvoke $r0.<gc.TestHumongousReferenceObject: void <init>()>();
+
+        <gc.TestHumongousReferenceObject: java.lang.Object instance> = $r0;
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 100 goto label1;
+
+        return;
+    }
+}

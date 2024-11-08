@@ -1,0 +1,128 @@
+final class BigRamTester$Statistics extends java.lang.Object
+{
+    private final java.util.concurrent.atomic.AtomicLong hits;
+    private final java.util.concurrent.atomic.AtomicLong misses;
+    private long maxTimeTakenNanos;
+
+    public void <init>()
+    {
+        java.util.concurrent.atomic.AtomicLong $r1, $r2;
+        BigRamTester$Statistics r0;
+        BigRamTester$Statistics$1 $r3;
+
+        r0 := @this: BigRamTester$Statistics;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.concurrent.atomic.AtomicLong;
+
+        specialinvoke $r1.<java.util.concurrent.atomic.AtomicLong: void <init>()>();
+
+        r0.<BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong hits> = $r1;
+
+        $r2 = new java.util.concurrent.atomic.AtomicLong;
+
+        specialinvoke $r2.<java.util.concurrent.atomic.AtomicLong: void <init>()>();
+
+        r0.<BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong misses> = $r2;
+
+        r0.<BigRamTester$Statistics: long maxTimeTakenNanos> = 0L;
+
+        $r3 = new BigRamTester$Statistics$1;
+
+        specialinvoke $r3.<BigRamTester$Statistics$1: void <init>(BigRamTester$Statistics)>(r0);
+
+        virtualinvoke $r3.<java.lang.Thread: void start()>();
+
+        return;
+    }
+
+    public synchronized void registerHit()
+    {
+        java.util.concurrent.atomic.AtomicLong $r1;
+        BigRamTester$Statistics r0;
+
+        r0 := @this: BigRamTester$Statistics;
+
+        $r1 = r0.<BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong hits>;
+
+        virtualinvoke $r1.<java.util.concurrent.atomic.AtomicLong: long getAndIncrement()>();
+
+        return;
+    }
+
+    public synchronized void registerMiss()
+    {
+        java.util.concurrent.atomic.AtomicLong $r1;
+        BigRamTester$Statistics r0;
+
+        r0 := @this: BigRamTester$Statistics;
+
+        $r1 = r0.<BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong misses>;
+
+        virtualinvoke $r1.<java.util.concurrent.atomic.AtomicLong: long getAndIncrement()>();
+
+        return;
+    }
+
+    public synchronized void recordTimeTaken(long)
+    {
+        byte $b2;
+        BigRamTester$Statistics r0;
+        int $i3;
+        long l0, $l1;
+
+        r0 := @this: BigRamTester$Statistics;
+
+        l0 := @parameter0: long;
+
+        $l1 = r0.<BigRamTester$Statistics: long maxTimeTakenNanos>;
+
+        $b2 = l0 cmp $l1;
+
+        $i3 = (int) $b2;
+
+        if $i3 <= 0 goto label1;
+
+        r0.<BigRamTester$Statistics: long maxTimeTakenNanos> = l0;
+
+     label1:
+        return;
+    }
+
+    static java.util.concurrent.atomic.AtomicLong access$100(BigRamTester$Statistics)
+    {
+        java.util.concurrent.atomic.AtomicLong $r1;
+        BigRamTester$Statistics r0;
+
+        r0 := @parameter0: BigRamTester$Statistics;
+
+        $r1 = r0.<BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong hits>;
+
+        return $r1;
+    }
+
+    static java.util.concurrent.atomic.AtomicLong access$200(BigRamTester$Statistics)
+    {
+        java.util.concurrent.atomic.AtomicLong $r1;
+        BigRamTester$Statistics r0;
+
+        r0 := @parameter0: BigRamTester$Statistics;
+
+        $r1 = r0.<BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong misses>;
+
+        return $r1;
+    }
+
+    static long access$400(BigRamTester$Statistics)
+    {
+        long $l0;
+        BigRamTester$Statistics r0;
+
+        r0 := @parameter0: BigRamTester$Statistics;
+
+        $l0 = r0.<BigRamTester$Statistics: long maxTimeTakenNanos>;
+
+        return $l0;
+    }
+}

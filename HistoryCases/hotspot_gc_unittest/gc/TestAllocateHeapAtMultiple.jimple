@@ -1,0 +1,191 @@
+public class TestAllocateHeapAtMultiple extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestAllocateHeapAtMultiple r0;
+
+        r0 := @this: TestAllocateHeapAtMultiple;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        boolean $z0;
+        java.lang.Process $r27;
+        jdk.test.lib.process.OutputAnalyzer $r26;
+        java.lang.StringBuilder $r7, $r8, $r10, $r13, $r15, $r19, $r28, $r31;
+        java.lang.Object[] $r23;
+        java.lang.String[] $r3, $r5, $r6, $r22, $r24, r33, r34;
+        java.util.ArrayList $r0;
+        int $i0, $i1, $i2, i3, i4;
+        java.lang.String $r1, $r2, r4, $r9, $r12, $r14, $r18, $r20, $r30, $r32;
+        java.lang.ProcessBuilder $r25;
+        java.io.PrintStream $r11, $r16, $r21, $r29;
+        java.lang.Object $r17;
+
+        r33 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        r34 = null;
+
+        $r1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>("test.dir", ".");
+
+        $r2 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("test.java.opts");
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean isEmpty()>();
+
+        if $z0 != 0 goto label1;
+
+        r34 = virtualinvoke $r2.<java.lang.String: java.lang.String[] split(java.lang.String)>(" ");
+
+     label1:
+        $r3 = newarray (java.lang.String)[6];
+
+        $r3[0] = "-Xmx32m -Xms32m -XX:+UseCompressedOops";
+
+        $r3[1] = "-Xmx32m -Xms32m -XX:-UseCompressedOops";
+
+        $r3[2] = "-Xmx32m -Xms32m -XX:HeapBaseMinAddress=3g";
+
+        $r3[3] = "-Xmx4g -Xms4g";
+
+        $r3[4] = "-Xmx4g -Xms4g -XX:+UseLargePages";
+
+        $r3[5] = "-Xmx4g -Xms4g -XX:+UseNUMA";
+
+        $i2 = lengthof $r3;
+
+        i3 = 0;
+
+        goto label7;
+
+     label2:
+        r4 = $r3[i3];
+
+        virtualinvoke $r0.<java.util.ArrayList: void clear()>();
+
+        if r34 == null goto label3;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, r34);
+
+     label3:
+        $r5 = virtualinvoke r4.<java.lang.String: java.lang.String[] split(java.lang.String)>(" ");
+
+        if $r5 == null goto label4;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r5);
+
+     label4:
+        $r6 = newarray (java.lang.String)[3];
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:AllocateHeapAt=");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6[0] = $r9;
+
+        $r6[1] = "-Xlog:gc+heap=info";
+
+        $r6[2] = "-version";
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r6);
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("Testing:\n");
+
+        $r12 = staticinvoke <jdk.test.lib.JDKToolFinder: java.lang.String getJDKTool(java.lang.String)>("java");
+
+        $r13 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void print(java.lang.String)>($r14);
+
+        i4 = 0;
+
+        goto label6;
+
+     label5:
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>(" ");
+
+        $r17 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object get(int)>(i4);
+
+        $r18 = (java.lang.String) $r17;
+
+        $r19 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r18);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r16.<java.io.PrintStream: void print(java.lang.String)>($r20);
+
+        i4 = i4 + 1;
+
+     label6:
+        $i0 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+        if i4 < $i0 goto label5;
+
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r21.<java.io.PrintStream: void println()>();
+
+        $i1 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+        $r22 = newarray (java.lang.String)[$i1];
+
+        $r23 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r22);
+
+        $r24 = (java.lang.String[]) $r23;
+
+        $r25 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r24);
+
+        $r26 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r27 = virtualinvoke $r25.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r26.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r27);
+
+        $r29 = <java.lang.System: java.io.PrintStream out>;
+
+        $r28 = new java.lang.StringBuilder;
+
+        specialinvoke $r28.<java.lang.StringBuilder: void <init>(java.lang.String)>("Output:\n");
+
+        $r30 = virtualinvoke $r26.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        $r31 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r29.<java.io.PrintStream: void println(java.lang.String)>($r32);
+
+        virtualinvoke $r26.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Successfully allocated Java heap at location");
+
+        virtualinvoke $r26.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        i3 = i3 + 1;
+
+     label7:
+        if i3 < $i2 goto label2;
+
+        return;
+    }
+}

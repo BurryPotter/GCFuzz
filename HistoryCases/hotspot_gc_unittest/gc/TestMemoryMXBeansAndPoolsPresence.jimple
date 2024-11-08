@@ -1,0 +1,341 @@
+public class TestMemoryMXBeansAndPoolsPresence extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestMemoryMXBeansAndPoolsPresence r0;
+
+        r0 := @this: TestMemoryMXBeansAndPoolsPresence;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static transient void test(gc.GCBeanDescription[])
+    {
+        gc.GCBeanDescription[] r1;
+        java.lang.Integer $r2, $r3, $r11, $r12, $r19, $r20;
+        java.util.stream.Collector $r8;
+        java.util.function.Predicate $r6;
+        java.util.List $r0, r10;
+        gc.GCBeanDescription r4;
+        java.util.stream.Stream $r5, $r7;
+        java.lang.String[] $r17, $r18, $r21, $r22;
+        java.lang.management.GarbageCollectorMXBean r14;
+        int $i0, $i1, i2, $i3, $i4, $i5, $i6, i7, i8;
+        java.lang.String $r15, $r16, $r23, $r24;
+        java.lang.Object $r9, $r13;
+
+        r1 := @parameter0: gc.GCBeanDescription[];
+
+        staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getGarbageCollectorMXBeans()>();
+
+        $i0 = lengthof r1;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        $i1 = interfaceinvoke $r0.<java.util.List: int size()>();
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r2, $r3);
+
+        i2 = lengthof r1;
+
+        i7 = 0;
+
+        goto label4;
+
+     label1:
+        r4 = r1[i7];
+
+        $r5 = interfaceinvoke $r0.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r6 = staticinvoke <TestMemoryMXBeansAndPoolsPresence$lambda_0__1: java.util.function.Predicate bootstrap$(gc.GCBeanDescription)>(r4);
+
+        $r7 = interfaceinvoke $r5.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r6);
+
+        $r8 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>();
+
+        $r9 = interfaceinvoke $r7.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r8);
+
+        r10 = (java.util.List) $r9;
+
+        $i3 = interfaceinvoke r10.<java.util.List: int size()>();
+
+        $r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+
+        $r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r11, $r12);
+
+        $r13 = interfaceinvoke r10.<java.util.List: java.lang.Object get(int)>(0);
+
+        r14 = (java.lang.management.GarbageCollectorMXBean) $r13;
+
+        $r15 = r4.<gc.GCBeanDescription: java.lang.String name>;
+
+        $r16 = interfaceinvoke r14.<java.lang.management.GarbageCollectorMXBean: java.lang.String getName()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r15, $r16);
+
+        $r17 = interfaceinvoke r14.<java.lang.management.GarbageCollectorMXBean: java.lang.String[] getMemoryPoolNames()>();
+
+        $r18 = r4.<gc.GCBeanDescription: java.lang.String[] poolNames>;
+
+        $i4 = lengthof $r18;
+
+        $r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+
+        $i5 = lengthof $r17;
+
+        $r20 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r19, $r20);
+
+        i8 = 0;
+
+        goto label3;
+
+     label2:
+        $r22 = r4.<gc.GCBeanDescription: java.lang.String[] poolNames>;
+
+        $r24 = $r22[i8];
+
+        $r23 = $r17[i8];
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r24, $r23);
+
+        i8 = i8 + 1;
+
+     label3:
+        $r21 = r4.<gc.GCBeanDescription: java.lang.String[] poolNames>;
+
+        $i6 = lengthof $r21;
+
+        if i8 < $i6 goto label2;
+
+        i7 = i7 + 1;
+
+     label4:
+        if i7 < i2 goto label1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.GCBeanDescription[] $r2, $r7, $r12, $r17;
+        java.lang.String[] r0, $r4, $r6, $r9, $r11, $r14, $r16, $r19, $r21;
+        int $i0;
+        java.lang.String $r1;
+        boolean $z0, $z1, $z2, $z3;
+        gc.GCBeanDescription $r3, $r5, $r8, $r10, $r13, $r15, $r18, $r20;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = r0[0];
+
+        $i0 = virtualinvoke $r1.<java.lang.String: int hashCode()>();
+
+        lookupswitch($i0)
+        {
+            case -1821971948: goto label01;
+            case 2250: goto label02;
+            case 66857: goto label03;
+            case 1236046375: goto label04;
+            default: goto label09;
+        };
+
+     label01:
+        $z3 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("Serial");
+
+        if $z3 != 0 goto label08;
+
+        goto label09;
+
+     label02:
+        $z2 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("G1");
+
+        if $z2 != 0 goto label05;
+
+        goto label09;
+
+     label03:
+        $z1 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("CMS");
+
+        if $z1 != 0 goto label06;
+
+        goto label09;
+
+     label04:
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>("Parallel");
+
+        if $z0 != 0 goto label07;
+
+        goto label09;
+
+     label05:
+        $r12 = newarray (gc.GCBeanDescription)[2];
+
+        $r13 = new gc.GCBeanDescription;
+
+        $r14 = newarray (java.lang.String)[3];
+
+        $r14[0] = "G1 Eden Space";
+
+        $r14[1] = "G1 Survivor Space";
+
+        $r14[2] = "G1 Old Gen";
+
+        specialinvoke $r13.<gc.GCBeanDescription: void <init>(java.lang.String,java.lang.String[])>("G1 Young Generation", $r14);
+
+        $r12[0] = $r13;
+
+        $r15 = new gc.GCBeanDescription;
+
+        $r16 = newarray (java.lang.String)[3];
+
+        $r16[0] = "G1 Eden Space";
+
+        $r16[1] = "G1 Survivor Space";
+
+        $r16[2] = "G1 Old Gen";
+
+        specialinvoke $r15.<gc.GCBeanDescription: void <init>(java.lang.String,java.lang.String[])>("G1 Old Generation", $r16);
+
+        $r12[1] = $r15;
+
+        staticinvoke <gc.TestMemoryMXBeansAndPoolsPresence: void test(gc.GCBeanDescription[])>($r12);
+
+        goto label10;
+
+     label06:
+        $r7 = newarray (gc.GCBeanDescription)[2];
+
+        $r8 = new gc.GCBeanDescription;
+
+        $r9 = newarray (java.lang.String)[2];
+
+        $r9[0] = "Par Eden Space";
+
+        $r9[1] = "Par Survivor Space";
+
+        specialinvoke $r8.<gc.GCBeanDescription: void <init>(java.lang.String,java.lang.String[])>("ParNew", $r9);
+
+        $r7[0] = $r8;
+
+        $r10 = new gc.GCBeanDescription;
+
+        $r11 = newarray (java.lang.String)[3];
+
+        $r11[0] = "Par Eden Space";
+
+        $r11[1] = "Par Survivor Space";
+
+        $r11[2] = "CMS Old Gen";
+
+        specialinvoke $r10.<gc.GCBeanDescription: void <init>(java.lang.String,java.lang.String[])>("ConcurrentMarkSweep", $r11);
+
+        $r7[1] = $r10;
+
+        staticinvoke <gc.TestMemoryMXBeansAndPoolsPresence: void test(gc.GCBeanDescription[])>($r7);
+
+        goto label10;
+
+     label07:
+        $r2 = newarray (gc.GCBeanDescription)[2];
+
+        $r3 = new gc.GCBeanDescription;
+
+        $r4 = newarray (java.lang.String)[2];
+
+        $r4[0] = "PS Eden Space";
+
+        $r4[1] = "PS Survivor Space";
+
+        specialinvoke $r3.<gc.GCBeanDescription: void <init>(java.lang.String,java.lang.String[])>("PS Scavenge", $r4);
+
+        $r2[0] = $r3;
+
+        $r5 = new gc.GCBeanDescription;
+
+        $r6 = newarray (java.lang.String)[3];
+
+        $r6[0] = "PS Eden Space";
+
+        $r6[1] = "PS Survivor Space";
+
+        $r6[2] = "PS Old Gen";
+
+        specialinvoke $r5.<gc.GCBeanDescription: void <init>(java.lang.String,java.lang.String[])>("PS MarkSweep", $r6);
+
+        $r2[1] = $r5;
+
+        staticinvoke <gc.TestMemoryMXBeansAndPoolsPresence: void test(gc.GCBeanDescription[])>($r2);
+
+        goto label10;
+
+     label08:
+        $r17 = newarray (gc.GCBeanDescription)[2];
+
+        $r18 = new gc.GCBeanDescription;
+
+        $r19 = newarray (java.lang.String)[2];
+
+        $r19[0] = "Eden Space";
+
+        $r19[1] = "Survivor Space";
+
+        specialinvoke $r18.<gc.GCBeanDescription: void <init>(java.lang.String,java.lang.String[])>("Copy", $r19);
+
+        $r17[0] = $r18;
+
+        $r20 = new gc.GCBeanDescription;
+
+        $r21 = newarray (java.lang.String)[3];
+
+        $r21[0] = "Eden Space";
+
+        $r21[1] = "Survivor Space";
+
+        $r21[2] = "Tenured Gen";
+
+        specialinvoke $r20.<gc.GCBeanDescription: void <init>(java.lang.String,java.lang.String[])>("MarkSweepCompact", $r21);
+
+        $r17[1] = $r20;
+
+        staticinvoke <gc.TestMemoryMXBeansAndPoolsPresence: void test(gc.GCBeanDescription[])>($r17);
+
+        goto label10;
+
+     label09:
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean)>(0);
+
+     label10:
+        return;
+    }
+
+    private static boolean lambda$0(gc.GCBeanDescription, java.lang.management.GarbageCollectorMXBean)
+    {
+        gc.GCBeanDescription r2;
+        java.lang.management.GarbageCollectorMXBean r0;
+        java.lang.String $r1, $r3;
+        boolean $z0;
+
+        r2 := @parameter0: gc.GCBeanDescription;
+
+        r0 := @parameter1: java.lang.management.GarbageCollectorMXBean;
+
+        $r1 = interfaceinvoke r0.<java.lang.management.GarbageCollectorMXBean: java.lang.String getName()>();
+
+        $r3 = r2.<gc.GCBeanDescription: java.lang.String name>;
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        return $z0;
+    }
+}

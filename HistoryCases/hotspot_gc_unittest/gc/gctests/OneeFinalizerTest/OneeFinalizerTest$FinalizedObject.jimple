@@ -1,0 +1,59 @@
+public class OneeFinalizerTest$FinalizedObject extends java.lang.Object
+{
+    private final int counterIndex;
+    final gc.gctests.OneeFinalizerTest.OneeFinalizerTest this$0;
+
+    protected void <init>(gc.gctests.OneeFinalizerTest.OneeFinalizerTest, int)
+    {
+        OneeFinalizerTest$FinalizedObject r0;
+        int i0;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest r1;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject $r2, $r3;
+
+        r0 := @this: OneeFinalizerTest$FinalizedObject;
+
+        r1 := @parameter0: gc.gctests.OneeFinalizerTest.OneeFinalizerTest;
+
+        i0 := @parameter1: int;
+
+        $r2 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject) r0;
+
+        $r2.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject: gc.gctests.OneeFinalizerTest.OneeFinalizerTest this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject) r0;
+
+        $r3.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject: int counterIndex> = i0;
+
+        return;
+    }
+
+    protected final void finalize()
+    {
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter[] $r2;
+        OneeFinalizerTest$FinalizedObject r0;
+        int $i0;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest $r1;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject $r4, $r5;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter $r3;
+
+        r0 := @this: OneeFinalizerTest$FinalizedObject;
+
+        $r4 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject) r0;
+
+        $r1 = $r4.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject: gc.gctests.OneeFinalizerTest.OneeFinalizerTest this$0>;
+
+        $r2 = $r1.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest: gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter[] finalizerCounters>;
+
+        $r5 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject) r0;
+
+        $i0 = $r5.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject: int counterIndex>;
+
+        $r3 = $r2[$i0];
+
+        virtualinvoke $r3.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter: void increaseCounter()>();
+
+        return;
+    }
+}

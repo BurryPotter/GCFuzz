@@ -1,0 +1,38 @@
+public class TestRefArrays$MyObject extends java.lang.Object
+{
+    int id;
+
+    public void <init>(int)
+    {
+        int i0;
+        gc.epsilon.TestRefArrays$MyObject $r1;
+        TestRefArrays$MyObject r0;
+
+        r0 := @this: TestRefArrays$MyObject;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.epsilon.TestRefArrays$MyObject) r0;
+
+        $r1.<gc.epsilon.TestRefArrays$MyObject: int id> = i0;
+
+        return;
+    }
+
+    public int id()
+    {
+        int $i0;
+        gc.epsilon.TestRefArrays$MyObject $r1;
+        TestRefArrays$MyObject r0;
+
+        r0 := @this: TestRefArrays$MyObject;
+
+        $r1 = (gc.epsilon.TestRefArrays$MyObject) r0;
+
+        $i0 = $r1.<gc.epsilon.TestRefArrays$MyObject: int id>;
+
+        return $i0;
+    }
+}

@@ -1,0 +1,68 @@
+public class GcPointerCheckTest extends nsk.share.gc.ThreadedGCTest
+{
+
+    public void <init>()
+    {
+        GcPointerCheckTest r0;
+
+        r0 := @this: GcPointerCheckTest;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        int i0;
+        GcPointerCheckTest r1;
+        java.lang.Runnable $r4;
+        gc.gctests.GcPointerCheckTest.GcPointerCheckTest $r3;
+        gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test $r2;
+
+        r1 := @this: GcPointerCheckTest;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test;
+
+        $r3 = (gc.gctests.GcPointerCheckTest.GcPointerCheckTest) r1;
+
+        specialinvoke $r2.<gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test: void <init>(gc.gctests.GcPointerCheckTest.GcPointerCheckTest)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.GcPointerCheckTest.GcPointerCheckTest $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.GcPointerCheckTest.GcPointerCheckTest;
+
+        specialinvoke $r2.<gc.gctests.GcPointerCheckTest.GcPointerCheckTest: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.test.ExecutionController access$0(gc.gctests.GcPointerCheckTest.GcPointerCheckTest)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.GcPointerCheckTest.GcPointerCheckTest r0;
+
+        r0 := @parameter0: gc.gctests.GcPointerCheckTest.GcPointerCheckTest;
+
+        $r1 = virtualinvoke r0.<gc.gctests.GcPointerCheckTest.GcPointerCheckTest: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+}

@@ -1,0 +1,508 @@
+class phantom001$Test extends java.lang.Object implements java.lang.Runnable
+{
+    int iteration;
+    private volatile boolean finalized;
+    final gc.gctests.PhantomReference.phantom001.phantom001 this$0;
+
+    void <init>(gc.gctests.PhantomReference.phantom001.phantom001)
+    {
+        phantom001$Test r0;
+        gc.gctests.PhantomReference.phantom001.phantom001$Test $r2;
+        gc.gctests.PhantomReference.phantom001.phantom001 r1;
+
+        r0 := @this: phantom001$Test;
+
+        r1 := @parameter0: gc.gctests.PhantomReference.phantom001.phantom001;
+
+        $r2 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r2.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        byte[] $r50;
+        nsk.share.gc.gp.string.InternedStringProducer $r9;
+        byte b3, $b10, $b11;
+        java.lang.StringBuilder $r4, $r71;
+        java.lang.Object[] $r34;
+        double[] $r38;
+        nsk.share.test.ExecutionController $r22, $r26, $r28, $r65, $r69;
+        long $l6, $l7, $l9;
+        float[] $r36;
+        java.lang.ref.ReferenceQueue $r72;
+        java.lang.String $r5, $r10, r60;
+        boolean[] $r40;
+        char[] $r42;
+        java.lang.OutOfMemoryError $r53;
+        phantom001$Test r0;
+        int[] $r46;
+        gc.gctests.PhantomReference.phantom001.phantom001$Test$Referent $r85;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5;
+        java.lang.ref.PhantomReference r59, $r73, $r74, $r75, $r76, $r77, $r78, $r79, $r80, $r81, $r83, $r84, $r86;
+        gc.gctests.PhantomReference.phantom001.phantom001 $r1, $r8, $r11, $r15, $r17, $r18, $r20, $r21, $r23, $r25, $r27, $r29, $r55, $r57, $r61, $r64, $r66, $r68;
+        java.lang.ref.Reference $r14, r70;
+        nsk.share.gc.gp.MemoryStrategy $r12, $r13, $r62, $r63;
+        short[] $r48;
+        nsk.share.gc.NonbranchyTree $r82;
+        long[] $r44;
+        int $i0, $i1, i2, $i4, $i5;
+        gc.gctests.PhantomReference.phantom001.phantom001$Test $r87, $r88, $r89, $r90, $r91, $r92, $r93, $r94, $r95, $r96, $r97, $r98, $r99, $r100, $r101, $r102, $r103, $r104, $r105, $r106, $r107, $r108, $r109, $r110;
+        nsk.share.gc.gp.GarbageProducer $r24, $r30, $r67;
+        java.lang.InterruptedException $r54, $r58;
+        nsk.share.log.Log $r2, $r16, $r19, $r56;
+
+        r0 := @this: phantom001$Test;
+
+     label01:
+        $r87 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r1 = $r87.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r2 = staticinvoke <gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.log.Log access$0(gc.gctests.PhantomReference.phantom001.phantom001)>($r1);
+
+        $r71 = new java.lang.StringBuilder;
+
+        specialinvoke $r71.<java.lang.StringBuilder: void <init>(java.lang.String)>("iteration ");
+
+        $r88 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $i0 = $r88.<gc.gctests.PhantomReference.phantom001.phantom001$Test: int iteration>;
+
+        $r4 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r2.<nsk.share.log.Log: void info(java.lang.Object)>($r5);
+
+        $r72 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r72.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r89 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $i1 = $r89.<gc.gctests.PhantomReference.phantom001.phantom001$Test: int iteration>;
+
+        i2 = $i1 % 12;
+
+        tableswitch(i2)
+        {
+            case 0: goto label02;
+            case 1: goto label03;
+            case 2: goto label04;
+            case 3: goto label05;
+            case 4: goto label06;
+            case 5: goto label07;
+            case 6: goto label08;
+            case 7: goto label09;
+            case 8: goto label10;
+            case 9: goto label11;
+            case 10: goto label12;
+            default: goto label13;
+        };
+
+     label02:
+        $r73 = new java.lang.ref.PhantomReference;
+
+        $r50 = newarray (byte)[100];
+
+        specialinvoke $r73.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r50, $r72);
+
+        r59 = $r73;
+
+        r60 = "byte";
+
+        goto label14;
+
+     label03:
+        $r74 = new java.lang.ref.PhantomReference;
+
+        $r48 = newarray (short)[100];
+
+        specialinvoke $r74.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r48, $r72);
+
+        r59 = $r74;
+
+        r60 = "short";
+
+        goto label14;
+
+     label04:
+        $r75 = new java.lang.ref.PhantomReference;
+
+        $r46 = newarray (int)[100];
+
+        specialinvoke $r75.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r46, $r72);
+
+        r59 = $r75;
+
+        r60 = "int";
+
+        goto label14;
+
+     label05:
+        $r76 = new java.lang.ref.PhantomReference;
+
+        $r44 = newarray (long)[100];
+
+        specialinvoke $r76.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r44, $r72);
+
+        r59 = $r76;
+
+        r60 = "long";
+
+        goto label14;
+
+     label06:
+        $r77 = new java.lang.ref.PhantomReference;
+
+        $r42 = newarray (char)[100];
+
+        specialinvoke $r77.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r42, $r72);
+
+        r59 = $r77;
+
+        r60 = "char";
+
+        goto label14;
+
+     label07:
+        $r78 = new java.lang.ref.PhantomReference;
+
+        $r40 = newarray (boolean)[100];
+
+        specialinvoke $r78.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r40, $r72);
+
+        r59 = $r78;
+
+        r60 = "boolean";
+
+        goto label14;
+
+     label08:
+        $r79 = new java.lang.ref.PhantomReference;
+
+        $r38 = newarray (double)[100];
+
+        specialinvoke $r79.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r38, $r72);
+
+        r59 = $r79;
+
+        r60 = "double";
+
+        goto label14;
+
+     label09:
+        $r80 = new java.lang.ref.PhantomReference;
+
+        $r36 = newarray (float)[100];
+
+        specialinvoke $r80.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r36, $r72);
+
+        r59 = $r80;
+
+        r60 = "float";
+
+        goto label14;
+
+     label10:
+        $r81 = new java.lang.ref.PhantomReference;
+
+        $r34 = newarray (java.lang.Object)[100];
+
+        specialinvoke $r81.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r34, $r72);
+
+        r59 = $r81;
+
+        r60 = "Object";
+
+        goto label14;
+
+     label11:
+        $r83 = new java.lang.ref.PhantomReference;
+
+        $r82 = new nsk.share.gc.NonbranchyTree;
+
+        specialinvoke $r82.<nsk.share.gc.NonbranchyTree: void <init>(int,float,int)>(100, 0.3F, 100);
+
+        specialinvoke $r83.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r82, $r72);
+
+        r59 = $r83;
+
+        r60 = "NonbranchyTree";
+
+        goto label14;
+
+     label12:
+        $r84 = new java.lang.ref.PhantomReference;
+
+        $r90 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r8 = $r90.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r9 = $r8.<gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.gc.gp.string.InternedStringProducer internedStringProducer>;
+
+        $r10 = virtualinvoke $r9.<nsk.share.gc.gp.string.InternedStringProducer: java.lang.String create(long)>(100L);
+
+        specialinvoke $r84.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r10, $r72);
+
+        r59 = $r84;
+
+        r60 = "InternedString";
+
+        goto label14;
+
+     label13:
+        $r86 = new java.lang.ref.PhantomReference;
+
+        $r85 = new gc.gctests.PhantomReference.phantom001.phantom001$Test$Referent;
+
+        $r91 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        specialinvoke $r85.<gc.gctests.PhantomReference.phantom001.phantom001$Test$Referent: void <init>(gc.gctests.PhantomReference.phantom001.phantom001$Test)>($r91);
+
+        specialinvoke $r86.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r85, $r72);
+
+        r59 = $r86;
+
+        r60 = "class";
+
+     label14:
+        $r92 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r61 = $r92.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r62 = $r61.<gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.gc.gp.MemoryStrategy memoryStrategy>;
+
+        $r63 = <nsk.share.gc.gp.MemoryStrategy: nsk.share.gc.gp.MemoryStrategy HIGH>;
+
+        $z2 = virtualinvoke $r62.<java.lang.Object: boolean equals(java.lang.Object)>($r63);
+
+        if $z2 == 0 goto label15;
+
+        $b11 = 1;
+
+        $b10 = 1;
+
+        goto label17;
+
+     label15:
+        $r93 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r11 = $r93.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r13 = $r11.<gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.gc.gp.MemoryStrategy memoryStrategy>;
+
+        $r12 = <nsk.share.gc.gp.MemoryStrategy: nsk.share.gc.gp.MemoryStrategy LOW>;
+
+        $z0 = virtualinvoke $r13.<java.lang.Object: boolean equals(java.lang.Object)>($r12);
+
+        if $z0 == 0 goto label16;
+
+        $b11 = 10;
+
+        $b10 = 10;
+
+        goto label17;
+
+     label16:
+        $b11 = 2;
+
+        $b10 = 2;
+
+     label17:
+        b3 = $b10;
+
+        $r94 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r64 = $r94.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r65 = staticinvoke <gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.test.ExecutionController access$1(gc.gctests.PhantomReference.phantom001.phantom001)>($r64);
+
+        $r95 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r66 = $r95.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r67 = $r66.<gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.gc.gp.GarbageProducer garbageProducer>;
+
+        $l9 = (long) $b11;
+
+        staticinvoke <nsk.share.gc.gp.GarbageUtils: int eatMemory(nsk.share.test.ExecutionController,nsk.share.gc.gp.GarbageProducer,long,long,long)>($r65, $r67, $l9, 10L, 0L);
+
+        $z3 = virtualinvoke r60.<java.lang.String: boolean equals(java.lang.Object)>("class");
+
+        if $z3 == 0 goto label25;
+
+        goto label23;
+
+     label18:
+        staticinvoke <java.lang.System: void runFinalization()>();
+
+     label19:
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+     label20:
+        goto label22;
+
+     label21:
+        $r58 := @caughtexception;
+
+     label22:
+        $r96 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r27 = $r96.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r28 = staticinvoke <gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.test.ExecutionController access$1(gc.gctests.PhantomReference.phantom001.phantom001)>($r27);
+
+        $r97 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r29 = $r97.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r30 = $r29.<gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.gc.gp.GarbageProducer garbageProducer>;
+
+        $l7 = (long) b3;
+
+        staticinvoke <nsk.share.gc.gp.GarbageUtils: int eatMemory(nsk.share.test.ExecutionController,nsk.share.gc.gp.GarbageProducer,long,long,long)>($r28, $r30, $l7, 10L, 0L);
+
+     label23:
+        $r98 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $z4 = $r98.<gc.gctests.PhantomReference.phantom001.phantom001$Test: boolean finalized>;
+
+        if $z4 != 0 goto label24;
+
+        $r99 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r25 = $r99.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r26 = staticinvoke <gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.test.ExecutionController access$1(gc.gctests.PhantomReference.phantom001.phantom001)>($r25);
+
+        $z1 = interfaceinvoke $r26.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z1 != 0 goto label18;
+
+     label24:
+        $r100 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r21 = $r100.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r22 = staticinvoke <gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.test.ExecutionController access$1(gc.gctests.PhantomReference.phantom001.phantom001)>($r21);
+
+        $r101 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r23 = $r101.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r24 = $r23.<gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.gc.gp.GarbageProducer garbageProducer>;
+
+        $l6 = (long) b3;
+
+        staticinvoke <nsk.share.gc.gp.GarbageUtils: int eatMemory(nsk.share.test.ExecutionController,nsk.share.gc.gp.GarbageProducer,long,long,long)>($r22, $r24, $l6, 10L, 0L);
+
+     label25:
+        $r102 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r68 = $r102.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r69 = staticinvoke <gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.test.ExecutionController access$1(gc.gctests.PhantomReference.phantom001.phantom001)>($r68);
+
+        $z5 = interfaceinvoke $r69.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z5 != 0 goto label27;
+
+     label26:
+        return;
+
+     label27:
+        r70 = null;
+
+     label28:
+        r70 = virtualinvoke $r72.<java.lang.ref.ReferenceQueue: java.lang.ref.Reference remove()>();
+
+     label29:
+        goto label31;
+
+     label30:
+        $r54 := @caughtexception;
+
+        $r103 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r55 = $r103.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r56 = staticinvoke <gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.log.Log access$0(gc.gctests.PhantomReference.phantom001.phantom001)>($r55);
+
+        interfaceinvoke $r56.<nsk.share.log.Log: void error(java.lang.Object)>("Unexpected InterruptedException during queue.remove().");
+
+        $r104 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r57 = $r104.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        virtualinvoke $r57.<gc.gctests.PhantomReference.phantom001.phantom001: void setFailed(boolean)>(1);
+
+     label31:
+        if r70 == r59 goto label32;
+
+        $r105 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r18 = $r105.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r19 = staticinvoke <gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.log.Log access$0(gc.gctests.PhantomReference.phantom001.phantom001)>($r18);
+
+        interfaceinvoke $r19.<nsk.share.log.Log: void error(java.lang.Object)>("The original reference is not equal to polled reference.");
+
+        $r106 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r20 = $r106.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        virtualinvoke $r20.<gc.gctests.PhantomReference.phantom001.phantom001: void setFailed(boolean)>(1);
+
+     label32:
+        $r14 = virtualinvoke $r72.<java.lang.ref.ReferenceQueue: java.lang.ref.Reference poll()>();
+
+        if $r14 == null goto label33;
+
+        $r107 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r15 = $r107.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        $r16 = staticinvoke <gc.gctests.PhantomReference.phantom001.phantom001: nsk.share.log.Log access$0(gc.gctests.PhantomReference.phantom001.phantom001)>($r15);
+
+        interfaceinvoke $r16.<nsk.share.log.Log: void error(java.lang.Object)>("There are more  than one references in the queue.");
+
+        $r108 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r17 = $r108.<gc.gctests.PhantomReference.phantom001.phantom001$Test: gc.gctests.PhantomReference.phantom001.phantom001 this$0>;
+
+        virtualinvoke $r17.<gc.gctests.PhantomReference.phantom001.phantom001: void setFailed(boolean)>(1);
+
+     label33:
+        virtualinvoke r59.<java.lang.ref.PhantomReference: void clear()>();
+
+     label34:
+        goto label36;
+
+     label35:
+        $r53 := @caughtexception;
+
+     label36:
+        $r109 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $i4 = $r109.<gc.gctests.PhantomReference.phantom001.phantom001$Test: int iteration>;
+
+        $i5 = $i4 + 1;
+
+        $r110 = (gc.gctests.PhantomReference.phantom001.phantom001$Test) r0;
+
+        $r110.<gc.gctests.PhantomReference.phantom001.phantom001$Test: int iteration> = $i5;
+
+        return;
+
+        catch java.lang.InterruptedException from label19 to label20 with label21;
+        catch java.lang.InterruptedException from label28 to label29 with label30;
+        catch java.lang.OutOfMemoryError from label01 to label26 with label35;
+        catch java.lang.OutOfMemoryError from label27 to label34 with label35;
+    }
+}

@@ -1,0 +1,334 @@
+public final class TestcaseData extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestcaseData r0;
+
+        r0 := @this: TestcaseData;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.util.List parse(java.lang.String)
+    {
+        java.lang.Integer $r10, $r12, $r22, r30;
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode $r3, $r15, $r20, r29;
+        java.util.stream.Collector $r26;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7;
+        java.util.List $r6, $r8, r31;
+        java.util.stream.Stream $r23, $r25;
+        java.lang.String[] $r1;
+        java.util.function.Function $r24;
+        java.util.ArrayList $r2, $r9, $r11, $r16, $r21;
+        int $i0, $i1, $i2, $i3, i4, $i5, i6;
+        java.lang.String r0, $r4, r28;
+        java.util.Iterator $r17;
+        gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType $r5, $r7;
+        java.lang.Object $r13, $r14, $r18, $r19, $r27;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>("-");
+
+        $r2 = new java.util.ArrayList;
+
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+
+        i4 = 0;
+
+        goto label10;
+
+     label01:
+        r28 = $r1[i4];
+
+        $z0 = virtualinvoke r28.<java.lang.String: boolean contains(java.lang.CharSequence)>("1");
+
+        if $z0 == 0 goto label02;
+
+        $r13 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(0);
+
+        r29 = (gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode) $r13;
+
+        goto label03;
+
+     label02:
+        $r3 = new gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode;
+
+        specialinvoke $r3.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: void <init>()>();
+
+        r29 = $r3;
+
+        interfaceinvoke $r2.<java.util.List: boolean add(java.lang.Object)>($r3);
+
+        $r4 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i4);
+
+        $r3.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: java.lang.String id> = $r4;
+
+     label03:
+        $z1 = virtualinvoke r28.<java.lang.String: boolean startsWith(java.lang.String)>(">");
+
+        if $z1 == 0 goto label04;
+
+        $r11 = r29.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: java.util.ArrayList connectedFrom>;
+
+        $i1 = i4 - 1;
+
+        $r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        virtualinvoke $r11.<java.util.ArrayList: boolean add(java.lang.Object)>($r12);
+
+     label04:
+        $z2 = virtualinvoke r28.<java.lang.String: boolean endsWith(java.lang.String)>("<");
+
+        if $z2 == 0 goto label05;
+
+        $r9 = r29.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: java.util.ArrayList connectedFrom>;
+
+        $i0 = i4 + 1;
+
+        $r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        virtualinvoke $r9.<java.util.ArrayList: boolean add(java.lang.Object)>($r10);
+
+     label05:
+        $z3 = virtualinvoke r28.<java.lang.String: boolean contains(java.lang.CharSequence)>("w");
+
+        if $z3 == 0 goto label06;
+
+        $r8 = r29.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: java.util.List referencesTypes>;
+
+        $r7 = <gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType: gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType WEAK>;
+
+        interfaceinvoke $r8.<java.util.List: boolean add(java.lang.Object)>($r7);
+
+     label06:
+        $z4 = virtualinvoke r28.<java.lang.String: boolean contains(java.lang.CharSequence)>("s");
+
+        if $z4 == 0 goto label07;
+
+        $r6 = r29.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: java.util.List referencesTypes>;
+
+        $r5 = <gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType: gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType SOFT>;
+
+        interfaceinvoke $r6.<java.util.List: boolean add(java.lang.Object)>($r5);
+
+     label07:
+        $z5 = virtualinvoke r28.<java.lang.String: boolean contains(java.lang.CharSequence)>("H");
+
+        if $z5 == 0 goto label08;
+
+        r29.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: boolean isHumongous> = 1;
+
+     label08:
+        $z6 = virtualinvoke r28.<java.lang.String: boolean contains(java.lang.CharSequence)>("S");
+
+        if $z6 == 0 goto label09;
+
+        r29.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: boolean isHumongous> = 0;
+
+     label09:
+        i4 = i4 + 1;
+
+     label10:
+        $i5 = lengthof $r1;
+
+        if i4 < $i5 goto label01;
+
+        i6 = 0;
+
+        goto label14;
+
+     label11:
+        $r14 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(i6);
+
+        $r15 = (gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode) $r14;
+
+        $r16 = $r15.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: java.util.ArrayList connectedFrom>;
+
+        $r17 = virtualinvoke $r16.<java.util.ArrayList: java.util.Iterator iterator()>();
+
+        goto label13;
+
+     label12:
+        $r18 = interfaceinvoke $r17.<java.util.Iterator: java.lang.Object next()>();
+
+        r30 = (java.lang.Integer) $r18;
+
+        $i3 = virtualinvoke r30.<java.lang.Integer: int intValue()>();
+
+        $r19 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>($i3);
+
+        $r20 = (gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode) $r19;
+
+        $r21 = $r20.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: java.util.ArrayList connectedTo>;
+
+        $r22 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i6);
+
+        virtualinvoke $r21.<java.util.ArrayList: boolean add(java.lang.Object)>($r22);
+
+     label13:
+        $z7 = interfaceinvoke $r17.<java.util.Iterator: boolean hasNext()>();
+
+        if $z7 != 0 goto label12;
+
+        i6 = i6 + 1;
+
+     label14:
+        $i2 = interfaceinvoke $r2.<java.util.List: int size()>();
+
+        if i6 < $i2 goto label11;
+
+        $r23 = interfaceinvoke $r2.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r24 = staticinvoke <TestcaseData$init__1: java.util.function.Function bootstrap$()>();
+
+        $r25 = interfaceinvoke $r23.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r24);
+
+        $r26 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>();
+
+        $r27 = interfaceinvoke $r25.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r26);
+
+        r31 = (java.util.List) $r27;
+
+        return r31;
+    }
+
+    public static java.util.List getPregeneratedTestcases()
+    {
+        java.lang.String[] $r0;
+        java.util.List $r1;
+
+        $r0 = newarray (java.lang.String)[62];
+
+        $r0[0] = "Hw";
+
+        $r0[1] = "Sw";
+
+        $r0[2] = "Sw->Hw";
+
+        $r0[3] = "Hw->Sw";
+
+        $r0[4] = "Sw<->Hw";
+
+        $r0[5] = "Sw<->Sw";
+
+        $r0[6] = "Hw->Sw->Sw";
+
+        $r0[7] = "Hw->Sw->Sw";
+
+        $r0[8] = "Sw->Hw->Sw";
+
+        $r0[9] = "Hw->Sw->Sw->1";
+
+        $r0[10] = "Sw->Hw->Sw->1";
+
+        $r0[11] = "Sw->Hw->Hw->1";
+
+        $r0[12] = "Sw<->Hw<->Hw->1";
+
+        $r0[13] = "Sw<->Hw<->Sw->1";
+
+        $r0[14] = "Sw->Hw<->Sw";
+
+        $r0[15] = "Hs";
+
+        $r0[16] = "Ss";
+
+        $r0[17] = "Ss->Hs";
+
+        $r0[18] = "Hs->Ss";
+
+        $r0[19] = "Ss<->Hs";
+
+        $r0[20] = "Ss<->Ss";
+
+        $r0[21] = "Hs->Ss->Ss";
+
+        $r0[22] = "Hs->Ss->Ss";
+
+        $r0[23] = "Ss->Hs->Ss";
+
+        $r0[24] = "Hs->Ss->Ss->1";
+
+        $r0[25] = "Ss->Hs->Ss->1";
+
+        $r0[26] = "Ss->Hs->Hs->1";
+
+        $r0[27] = "Ss<->Hs<->Hs->1";
+
+        $r0[28] = "Ss<->Hs<->Ss->1";
+
+        $r0[29] = "Ss->Hs<->Ss";
+
+        $r0[30] = "Ss->Hw";
+
+        $r0[31] = "Sw->Hs";
+
+        $r0[32] = "Hs->Sw";
+
+        $r0[33] = "Hw->Ss";
+
+        $r0[34] = "Ss<->Hw";
+
+        $r0[35] = "Sw<->Hs";
+
+        $r0[36] = "Ss<->Sw";
+
+        $r0[37] = "Sw<->Ss";
+
+        $r0[38] = "Hs->Sw->Sw";
+
+        $r0[39] = "Hw->Ss->Sw";
+
+        $r0[40] = "Hw->Sw->Ss";
+
+        $r0[41] = "Ss->Hw->Sw";
+
+        $r0[42] = "Sw->Hs->Sw";
+
+        $r0[43] = "Sw->Hw->Ss";
+
+        $r0[44] = "Hs->Sw->Sw->1";
+
+        $r0[45] = "Hw->Ss->Sw->1";
+
+        $r0[46] = "Hw->Sw->Ss->1";
+
+        $r0[47] = "Ss->Hw->Sw->1";
+
+        $r0[48] = "Ss->Hs->Sw->1";
+
+        $r0[49] = "Sw->Hw->Ss->1";
+
+        $r0[50] = "Ss->Hw->Hw->1";
+
+        $r0[51] = "Sw->Hs->Hw->1";
+
+        $r0[52] = "Sw->Hw->Hs->1";
+
+        $r0[53] = "Ss<->Hw<->Hw->1";
+
+        $r0[54] = "Sw<->Hs<->Hw->1";
+
+        $r0[55] = "Sw<->Hw<->Hs->1";
+
+        $r0[56] = "Ss<->Hw<->Sw->1";
+
+        $r0[57] = "Sw<->Hs<->Sw->1";
+
+        $r0[58] = "Sw<->Hw<->Ss->1";
+
+        $r0[59] = "Ss->Hw<->Sw";
+
+        $r0[60] = "Sw->Hs<->Sw";
+
+        $r0[61] = "Sw->Hw<->Ss";
+
+        $r1 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r0);
+
+        return $r1;
+    }
+}

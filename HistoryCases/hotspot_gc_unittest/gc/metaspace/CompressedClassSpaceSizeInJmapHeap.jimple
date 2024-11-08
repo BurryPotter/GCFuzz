@@ -1,0 +1,165 @@
+public class CompressedClassSpaceSizeInJmapHeap extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        CompressedClassSpaceSizeInJmapHeap r0;
+
+        r0 := @this: CompressedClassSpaceSizeInJmapHeap;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        jdk.test.lib.JDKToolLauncher $r1, $r2, $r3, $r4, $r5;
+        long $l0;
+        java.lang.String[] $r7, r12;
+        jdk.test.lib.process.OutputAnalyzer $r10;
+        java.io.File $r8, $r9;
+        java.lang.String $r0, $r11;
+        java.lang.ProcessBuilder $r6;
+        boolean $z0;
+
+        r12 := @parameter0: java.lang.String[];
+
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean is64bit()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+
+     label1:
+        $l0 = staticinvoke <jdk.test.lib.process.ProcessTools: long getProcessId()>();
+
+        $r0 = staticinvoke <java.lang.Long: java.lang.String toString(long)>($l0);
+
+        $r1 = staticinvoke <jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher create(java.lang.String)>("jhsdb");
+
+        $r2 = virtualinvoke $r1.<jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher addToolArg(java.lang.String)>("jmap");
+
+        $r3 = virtualinvoke $r2.<jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher addToolArg(java.lang.String)>("--heap");
+
+        $r4 = virtualinvoke $r3.<jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher addToolArg(java.lang.String)>("--pid");
+
+        $r5 = virtualinvoke $r4.<jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher addToolArg(java.lang.String)>($r0);
+
+        $r6 = new java.lang.ProcessBuilder;
+
+        $r7 = virtualinvoke $r5.<jdk.test.lib.JDKToolLauncher: java.lang.String[] getCommand()>();
+
+        specialinvoke $r6.<java.lang.ProcessBuilder: void <init>(java.lang.String[])>($r7);
+
+        $r8 = new java.io.File;
+
+        specialinvoke $r8.<java.io.File: void <init>(java.lang.String)>("CompressedClassSpaceSizeInJmapHeap.stdout.txt");
+
+        virtualinvoke $r6.<java.lang.ProcessBuilder: java.lang.ProcessBuilder redirectOutput(java.io.File)>($r8);
+
+        $r9 = new java.io.File;
+
+        specialinvoke $r9.<java.io.File: void <init>(java.lang.String)>("CompressedClassSpaceSizeInJmapHeap.stderr.txt");
+
+        virtualinvoke $r6.<java.lang.ProcessBuilder: java.lang.ProcessBuilder redirectError(java.io.File)>($r9);
+
+        staticinvoke <gc.metaspace.CompressedClassSpaceSizeInJmapHeap: void run(java.lang.ProcessBuilder)>($r6);
+
+        $r10 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r11 = staticinvoke <gc.metaspace.CompressedClassSpaceSizeInJmapHeap: java.lang.String read(java.io.File)>($r8);
+
+        specialinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.String)>($r11);
+
+        virtualinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("CompressedClassSpaceSize = 52428800 (50.0MB)");
+
+        virtualinvoke $r8.<java.io.File: boolean delete()>();
+
+        return;
+    }
+
+    private static void run(java.lang.ProcessBuilder) throws java.lang.Exception
+    {
+        java.lang.Process $r1;
+        int $i0;
+        java.lang.StringBuilder $r3, $r4;
+        java.lang.ProcessBuilder r0;
+        java.lang.String $r5;
+        java.lang.Exception $r2;
+
+        r0 := @parameter0: java.lang.ProcessBuilder;
+
+        $r1 = virtualinvoke r0.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        virtualinvoke $r1.<java.lang.Process: int waitFor()>();
+
+        $i0 = virtualinvoke $r1.<java.lang.Process: int exitValue()>();
+
+        if $i0 == 0 goto label1;
+
+        $r2 = new java.lang.Exception;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("jmap -heap exited with error code: ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.Exception: void <init>(java.lang.String)>($r5);
+
+        throw $r2;
+
+     label1:
+        return;
+    }
+
+    private static java.lang.String read(java.io.File) throws java.lang.Exception
+    {
+        java.util.Iterator $r5;
+        java.io.File r0;
+        java.util.List $r3;
+        java.nio.charset.Charset $r2;
+        java.lang.StringBuilder $r4, $r8;
+        java.lang.Object $r6;
+        java.lang.String r7, $r9;
+        java.nio.file.Path $r1;
+        boolean $z0;
+
+        r0 := @parameter0: java.io.File;
+
+        $r1 = virtualinvoke r0.<java.io.File: java.nio.file.Path toPath()>();
+
+        $r2 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset defaultCharset()>();
+
+        $r3 = staticinvoke <java.nio.file.Files: java.util.List readAllLines(java.nio.file.Path,java.nio.charset.Charset)>($r1, $r2);
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = interfaceinvoke $r3.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        $r6 = interfaceinvoke $r5.<java.util.Iterator: java.lang.Object next()>();
+
+        r7 = (java.lang.String) $r6;
+
+        $r8 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7);
+
+        virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(10);
+
+     label2:
+        $z0 = interfaceinvoke $r5.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+        $r9 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r9;
+    }
+}

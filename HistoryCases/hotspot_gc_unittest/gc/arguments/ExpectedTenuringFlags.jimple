@@ -1,0 +1,56 @@
+class ExpectedTenuringFlags extends java.lang.Object
+{
+    public boolean alwaysTenure;
+    public boolean neverTenure;
+    public long initialTenuringThreshold;
+    public long maxTenuringThreshold;
+
+    public void <init>(boolean, boolean, long, long)
+    {
+        long l0, l1;
+        gc.arguments.ExpectedTenuringFlags $r1, $r2, $r3, $r4;
+        ExpectedTenuringFlags r0;
+        boolean z0, z1;
+
+        r0 := @this: ExpectedTenuringFlags;
+
+        z0 := @parameter0: boolean;
+
+        z1 := @parameter1: boolean;
+
+        l0 := @parameter2: long;
+
+        l1 := @parameter3: long;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.arguments.ExpectedTenuringFlags) r0;
+
+        $r1.<gc.arguments.ExpectedTenuringFlags: boolean alwaysTenure> = z0;
+
+        $r2 = (gc.arguments.ExpectedTenuringFlags) r0;
+
+        $r2.<gc.arguments.ExpectedTenuringFlags: boolean neverTenure> = z1;
+
+        $r3 = (gc.arguments.ExpectedTenuringFlags) r0;
+
+        $r3.<gc.arguments.ExpectedTenuringFlags: long initialTenuringThreshold> = l0;
+
+        $r4 = (gc.arguments.ExpectedTenuringFlags) r0;
+
+        $r4.<gc.arguments.ExpectedTenuringFlags: long maxTenuringThreshold> = l1;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        ExpectedTenuringFlags r0;
+
+        r0 := @this: ExpectedTenuringFlags;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

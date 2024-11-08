@@ -1,0 +1,123 @@
+class BigChains$1 extends java.lang.Object implements java.lang.Runnable
+{
+    final gc.gctests.BigChains.BigChains this$0;
+
+    void <init>(gc.gctests.BigChains.BigChains)
+    {
+        BigChains$1 r0;
+        gc.gctests.BigChains.BigChains r1;
+        gc.gctests.BigChains.BigChains$1 $r2;
+
+        r0 := @this: BigChains$1;
+
+        r1 := @parameter0: gc.gctests.BigChains.BigChains;
+
+        $r2 = (gc.gctests.BigChains.BigChains$1) r0;
+
+        $r2.<gc.gctests.BigChains.BigChains$1: gc.gctests.BigChains.BigChains this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        gc.gctests.BigChains.BigChains$1 $r1, $r2;
+        int $i0, i1;
+        BigChains$1 r0;
+
+        r0 := @this: BigChains$1;
+
+        $r1 = (gc.gctests.BigChains.BigChains$1) r0;
+
+        virtualinvoke $r1.<gc.gctests.BigChains.BigChains$1: void createChain(int,boolean)>(100000, 1);
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        $r2 = (gc.gctests.BigChains.BigChains$1) r0;
+
+        virtualinvoke $r2.<gc.gctests.BigChains.BigChains$1: void createChain(int,boolean)>(10000, 0);
+
+     label2:
+        $i0 = i1;
+
+        i1 = i1 + 1;
+
+        if $i0 < 100 goto label1;
+
+        return;
+    }
+
+    private void createChain(int, boolean)
+    {
+        gc.gctests.BigChains.FinalizerNo $r7, $r8;
+        gc.gctests.BigChains.FinalizerYes $r6;
+        gc.gctests.BigChains.BaseClass $r9, $r10, $r11, $r12, $r13;
+        BigChains$1 r3;
+        int i0, i1;
+        java.lang.Object r4, r5;
+        boolean z0;
+
+        r3 := @this: BigChains$1;
+
+        i0 := @parameter0: int;
+
+        z0 := @parameter1: boolean;
+
+        if z0 == 0 goto label1;
+
+        $r6 = new gc.gctests.BigChains.FinalizerYes;
+
+        specialinvoke $r6.<gc.gctests.BigChains.FinalizerYes: void <init>()>();
+
+        r4 = $r6;
+
+        goto label2;
+
+     label1:
+        $r7 = new gc.gctests.BigChains.FinalizerNo;
+
+        specialinvoke $r7.<gc.gctests.BigChains.FinalizerNo: void <init>()>();
+
+        r4 = $r7;
+
+     label2:
+        r5 = r4;
+
+        i1 = 0;
+
+        goto label4;
+
+     label3:
+        $r8 = new gc.gctests.BigChains.FinalizerNo;
+
+        specialinvoke $r8.<gc.gctests.BigChains.FinalizerNo: void <init>()>();
+
+        $r9 = (gc.gctests.BigChains.BaseClass) r5;
+
+        $r10 = (gc.gctests.BigChains.BaseClass) $r8;
+
+        $r9.<gc.gctests.BigChains.BaseClass: gc.gctests.BigChains.BaseClass next> = $r10;
+
+        $r11 = (gc.gctests.BigChains.BaseClass) r5;
+
+        r5 = $r11.<gc.gctests.BigChains.BaseClass: gc.gctests.BigChains.BaseClass next>;
+
+        i1 = i1 + 1;
+
+     label4:
+        if i1 < i0 goto label3;
+
+        $r12 = (gc.gctests.BigChains.BaseClass) r5;
+
+        $r13 = (gc.gctests.BigChains.BaseClass) r4;
+
+        $r12.<gc.gctests.BigChains.BaseClass: gc.gctests.BigChains.BaseClass next> = $r13;
+
+        return;
+    }
+}

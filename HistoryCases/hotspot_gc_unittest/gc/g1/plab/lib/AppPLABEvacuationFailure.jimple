@@ -1,0 +1,78 @@
+public class AppPLABEvacuationFailure extends java.lang.Object
+{
+    public static final int CHUNK;
+    public static java.util.ArrayList arr;
+
+    static void <clinit>()
+    {
+        java.util.ArrayList $r0;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        <gc.g1.plab.lib.AppPLABEvacuationFailure: java.util.ArrayList arr> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        AppPLABEvacuationFailure r0;
+
+        r0 := @this: AppPLABEvacuationFailure;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r0, $r6;
+        java.lang.String[] r8;
+        java.util.ArrayList $r1, $r3, $r5, $r7;
+        java.lang.OutOfMemoryError $r2, $r4;
+
+        r8 := @parameter0: java.lang.String[];
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label1:
+        $r1 = <gc.g1.plab.lib.AppPLABEvacuationFailure: java.util.ArrayList arr>;
+
+        $r0 = newarray (byte)[10000];
+
+        virtualinvoke $r1.<java.util.ArrayList: boolean add(java.lang.Object)>($r0);
+
+        goto label1;
+
+     label2:
+        $r4 := @caughtexception;
+
+        $r5 = <gc.g1.plab.lib.AppPLABEvacuationFailure: java.util.ArrayList arr>;
+
+        virtualinvoke $r5.<java.util.ArrayList: void clear()>();
+
+     label3:
+        $r7 = <gc.g1.plab.lib.AppPLABEvacuationFailure: java.util.ArrayList arr>;
+
+        $r6 = newarray (byte)[10000];
+
+        virtualinvoke $r7.<java.util.ArrayList: boolean add(java.lang.Object)>($r6);
+
+        goto label3;
+
+     label4:
+        $r2 := @caughtexception;
+
+        $r3 = <gc.g1.plab.lib.AppPLABEvacuationFailure: java.util.ArrayList arr>;
+
+        virtualinvoke $r3.<java.util.ArrayList: void clear()>();
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label1 to label2 with label2;
+        catch java.lang.OutOfMemoryError from label3 to label4 with label4;
+    }
+}

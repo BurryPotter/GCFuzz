@@ -1,0 +1,62 @@
+class hr extends java.lang.Thread
+{
+    gc.gctests.gctest02.Person pp;
+    int lifetime;
+
+    void <init>(gc.gctests.gctest02.Person, int)
+    {
+        gc.gctests.gctest02.hr $r2, $r3;
+        gc.gctests.gctest02.Person r1;
+        int i0;
+        hr r0;
+
+        r0 := @this: hr;
+
+        r1 := @parameter0: gc.gctests.gctest02.Person;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        $r2 = (gc.gctests.gctest02.hr) r0;
+
+        $r2.<gc.gctests.gctest02.hr: gc.gctests.gctest02.Person pp> = r1;
+
+        $r3 = (gc.gctests.gctest02.hr) r0;
+
+        $r3.<gc.gctests.gctest02.hr: int lifetime> = i0;
+
+        return;
+    }
+
+    public void run()
+    {
+        gc.gctests.gctest02.hr $r2;
+        java.lang.InterruptedException $r1;
+        int $i0;
+        hr r0;
+        long $l1;
+
+        r0 := @this: hr;
+
+     label1:
+        $r2 = (gc.gctests.gctest02.hr) r0;
+
+        $i0 = $r2.<gc.gctests.gctest02.hr: int lifetime>;
+
+        $l1 = (long) $i0;
+
+        staticinvoke <gc.gctests.gctest02.hr: void sleep(long)>($l1);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+     label4:
+        return;
+
+        catch java.lang.InterruptedException from label1 to label2 with label3;
+    }
+}

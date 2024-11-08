@@ -1,0 +1,254 @@
+public class TestDeprecatedPrintFlags extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestDeprecatedPrintFlags r0;
+
+        r0 := @this: TestDeprecatedPrintFlags;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void testPrintGC() throws java.lang.Exception
+    {
+        java.lang.Process $r3;
+        java.lang.String[] $r0;
+        java.lang.ProcessBuilder $r1;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "-XX:+PrintGC";
+
+        $r0[1] = "DoGC";
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("-XX:+PrintGC is deprecated. Will use -Xlog:gc instead.");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("PrintGCDetails");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldMatch(java.lang.String)>("\\[info.*\\]\\[gc *\\]");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldNotMatch(java.lang.String)>("\\[info.*\\]\\[gc\\,");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static void testPrintGCDetails() throws java.lang.Exception
+    {
+        java.lang.Process $r3;
+        java.lang.String[] $r0;
+        java.lang.ProcessBuilder $r1;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "-XX:+PrintGCDetails";
+
+        $r0[1] = "DoGC";
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("-XX:+PrintGCDetails is deprecated. Will use -Xlog:gc* instead.");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("PrintGC is deprecated");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldMatch(java.lang.String)>("\\[info.*\\]\\[gc *\\]");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldMatch(java.lang.String)>("\\[info.*\\]\\[gc\\,");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static void testXloggc() throws java.lang.Exception
+    {
+        java.lang.String[] $r0, $r7;
+        java.lang.String $r3, r12, $r16;
+        java.lang.ProcessBuilder $r4;
+        java.util.stream.Collector $r10;
+        java.nio.file.Path $r8;
+        java.io.PrintStream $r14;
+        java.lang.Process $r6;
+        jdk.test.lib.process.OutputAnalyzer $r5, $r17;
+        java.util.stream.Stream $r9;
+        java.lang.StringBuilder $r1, $r2, $r13, $r15;
+        java.lang.Object $r11;
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xloggc:");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("gc-test.log");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[0] = $r3;
+
+        $r0[1] = "DoGC";
+
+        $r4 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r5 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r6 = virtualinvoke $r4.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r6);
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("-Xloggc is deprecated. Will use -Xlog:gc:gc-test.log instead.");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("PrintGCDetails");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("PrintGC");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldNotMatch(java.lang.String)>("\\[info.*\\]\\[gc *\\]");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldNotMatch(java.lang.String)>("\\[info.*\\]\\[gc\\,");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r7 = newarray (java.lang.String)[0];
+
+        $r8 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>("gc-test.log", $r7);
+
+        $r9 = staticinvoke <java.nio.file.Files: java.util.stream.Stream lines(java.nio.file.Path)>($r8);
+
+        $r10 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector joining()>();
+
+        $r11 = interfaceinvoke $r9.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r10);
+
+        r12 = (java.lang.String) $r11;
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("lines: ");
+
+        $r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r12);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        $r17 = new jdk.test.lib.process.OutputAnalyzer;
+
+        specialinvoke $r17.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.String,java.lang.String)>(r12, "");
+
+        virtualinvoke $r17.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldMatch(java.lang.String)>("\\[info.*\\]\\[gc *\\]");
+
+        virtualinvoke $r17.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldNotMatch(java.lang.String)>("\\[info.*\\]\\[gc\\,");
+
+        return;
+    }
+
+    public static void testXloggcWithPrintGCDetails() throws java.lang.Exception
+    {
+        java.lang.Process $r6;
+        java.lang.String[] $r0, $r7;
+        jdk.test.lib.process.OutputAnalyzer $r5, $r13;
+        java.util.stream.Stream $r9;
+        java.lang.StringBuilder $r1, $r2;
+        java.lang.Object $r11;
+        java.lang.String $r3, r12;
+        java.lang.ProcessBuilder $r4;
+        java.util.stream.Collector $r10;
+        java.nio.file.Path $r8;
+
+        $r0 = newarray (java.lang.String)[3];
+
+        $r0[0] = "-XX:+PrintGCDetails";
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xloggc:");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("gc-test.log");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[1] = $r3;
+
+        $r0[2] = "DoGC";
+
+        $r4 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r5 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r6 = virtualinvoke $r4.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r6);
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("-XX:+PrintGCDetails is deprecated. Will use -Xlog:gc* instead.");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("-Xloggc is deprecated. Will use -Xlog:gc:gc-test.log instead.");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("PrintGC is deprecated");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldNotMatch(java.lang.String)>("\\[info.*\\]\\[gc *\\]");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldNotMatch(java.lang.String)>("\\[info.*\\]\\[gc\\,");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r7 = newarray (java.lang.String)[0];
+
+        $r8 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>("gc-test.log", $r7);
+
+        $r9 = staticinvoke <java.nio.file.Files: java.util.stream.Stream lines(java.nio.file.Path)>($r8);
+
+        $r10 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector joining()>();
+
+        $r11 = interfaceinvoke $r9.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r10);
+
+        r12 = (java.lang.String) $r11;
+
+        $r13 = new jdk.test.lib.process.OutputAnalyzer;
+
+        specialinvoke $r13.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.String,java.lang.String)>(r12, "");
+
+        virtualinvoke $r13.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldMatch(java.lang.String)>("\\[info.*\\]\\[gc *\\]");
+
+        virtualinvoke $r13.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldMatch(java.lang.String)>("\\[info.*\\]\\[gc\\,");
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.logging.TestDeprecatedPrintFlags: void testPrintGC()>();
+
+        staticinvoke <gc.logging.TestDeprecatedPrintFlags: void testPrintGCDetails()>();
+
+        staticinvoke <gc.logging.TestDeprecatedPrintFlags: void testXloggc()>();
+
+        staticinvoke <gc.logging.TestDeprecatedPrintFlags: void testXloggcWithPrintGCDetails()>();
+
+        return;
+    }
+}

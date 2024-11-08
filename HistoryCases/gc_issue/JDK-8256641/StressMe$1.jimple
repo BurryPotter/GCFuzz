@@ -1,0 +1,32 @@
+final class StressMe$1 extends java.lang.Thread
+{
+
+    void <init>()
+    {
+        StressMe$1 r0;
+
+        r0 := @this: StressMe$1;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        int $i0, $i1;
+        StressMe$1 r0;
+
+        r0 := @this: StressMe$1;
+
+        $i0 = <StressMe: int count>;
+
+        $i1 = $i0 - 1;
+
+        <StressMe: int count> = $i1;
+
+        staticinvoke <StressMe: void spawn()>();
+
+        return;
+    }
+}

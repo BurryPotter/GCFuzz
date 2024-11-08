@@ -1,0 +1,136 @@
+public class TestManyThreads extends java.lang.Object
+{
+    static int COUNT;
+    static volatile java.lang.Object sink;
+    static volatile java.lang.Throwable failed;
+    static final java.util.concurrent.atomic.AtomicInteger allocated;
+
+    static void <clinit>()
+    {
+        int $i0;
+        java.lang.Integer $r0;
+        java.util.concurrent.atomic.AtomicInteger $r1;
+
+        $r0 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String,int)>("count", 128);
+
+        $i0 = virtualinvoke $r0.<java.lang.Integer: int intValue()>();
+
+        <gc.epsilon.TestManyThreads: int COUNT> = $i0;
+
+        $r1 = new java.util.concurrent.atomic.AtomicInteger;
+
+        specialinvoke $r1.<java.util.concurrent.atomic.AtomicInteger: void <init>()>();
+
+        <gc.epsilon.TestManyThreads: java.util.concurrent.atomic.AtomicInteger allocated> = $r1;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestManyThreads r0;
+
+        r0 := @this: TestManyThreads;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void workload()
+    {
+        java.lang.Throwable $r2;
+        java.lang.Object $r0;
+        java.util.concurrent.atomic.AtomicInteger $r1;
+
+     label1:
+        $r0 = new java.lang.Object;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        <gc.epsilon.TestManyThreads: java.lang.Object sink> = $r0;
+
+        $r1 = <gc.epsilon.TestManyThreads: java.util.concurrent.atomic.AtomicInteger allocated>;
+
+        virtualinvoke $r1.<java.util.concurrent.atomic.AtomicInteger: int incrementAndGet()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(3600000L);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r2 := @caughtexception;
+
+        <gc.epsilon.TestManyThreads: java.lang.Throwable failed> = $r2;
+
+     label4:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Throwable
+    {
+        java.lang.Throwable $r2, $r3, $r4;
+        java.lang.String[] r6;
+        java.lang.Runnable $r1;
+        java.util.concurrent.atomic.AtomicInteger $r5;
+        java.lang.Thread $r0;
+        int $i0, $i1, $i2, i3;
+
+        r6 := @parameter0: java.lang.String[];
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        $r0 = new java.lang.Thread;
+
+        $r1 = staticinvoke <TestManyThreads$workload__1: java.lang.Runnable bootstrap$()>();
+
+        specialinvoke $r0.<java.lang.Thread: void <init>(java.lang.Runnable)>($r1);
+
+        virtualinvoke $r0.<java.lang.Thread: void setDaemon(boolean)>(1);
+
+        virtualinvoke $r0.<java.lang.Thread: void start()>();
+
+        i3 = i3 + 1;
+
+     label2:
+        $i0 = <gc.epsilon.TestManyThreads: int COUNT>;
+
+        if i3 < $i0 goto label1;
+
+        goto label4;
+
+     label3:
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+     label4:
+        $r2 = <gc.epsilon.TestManyThreads: java.lang.Throwable failed>;
+
+        if $r2 != null goto label5;
+
+        $r5 = <gc.epsilon.TestManyThreads: java.util.concurrent.atomic.AtomicInteger allocated>;
+
+        $i1 = virtualinvoke $r5.<java.util.concurrent.atomic.AtomicInteger: int get()>();
+
+        $i2 = <gc.epsilon.TestManyThreads: int COUNT>;
+
+        if $i1 != $i2 goto label3;
+
+     label5:
+        $r3 = <gc.epsilon.TestManyThreads: java.lang.Throwable failed>;
+
+        if $r3 == null goto label6;
+
+        $r4 = <gc.epsilon.TestManyThreads: java.lang.Throwable failed>;
+
+        throw $r4;
+
+     label6:
+        return;
+    }
+}

@@ -1,0 +1,102 @@
+class NoPDClassLoader extends java.lang.ClassLoader
+{
+    java.lang.String path;
+
+    void <init>(java.lang.String)
+    {
+        java.lang.String r1;
+        gc.class_unloading.NoPDClassLoader $r2;
+        NoPDClassLoader r0;
+
+        r0 := @this: NoPDClassLoader;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.ClassLoader: void <init>()>();
+
+        $r2 = (gc.class_unloading.NoPDClassLoader) r0;
+
+        $r2.<gc.class_unloading.NoPDClassLoader: java.lang.String path> = r1;
+
+        return;
+    }
+
+    public java.lang.Class loadClass(java.lang.String) throws java.lang.ClassNotFoundException
+    {
+        byte[] $r11;
+        java.lang.String[] $r9;
+        int $i0;
+        java.lang.String r3, $r4, $r5, $r7, $r8;
+        java.nio.file.Path $r10;
+        boolean $z0;
+        java.io.IOException $r14;
+        java.io.File $r17;
+        NoPDClassLoader r1;
+        gc.class_unloading.NoPDClassLoader $r19, $r20;
+        java.lang.StringBuilder $r6, $r16;
+        java.lang.Class $r12, $r13;
+        java.lang.ClassNotFoundException $r18;
+
+        r1 := @this: NoPDClassLoader;
+
+        r3 := @parameter0: java.lang.String;
+
+        $r17 = new java.io.File;
+
+        $r19 = (gc.class_unloading.NoPDClassLoader) r1;
+
+        $r4 = $r19.<gc.class_unloading.NoPDClassLoader: java.lang.String path>;
+
+        $r16 = new java.lang.StringBuilder;
+
+        $r5 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r3);
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>($r5);
+
+        $r6 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".class");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r17.<java.io.File: void <init>(java.lang.String,java.lang.String)>($r4, $r7);
+
+        $z0 = virtualinvoke $r17.<java.io.File: boolean exists()>();
+
+        if $z0 != 0 goto label1;
+
+        $r13 = specialinvoke r1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>(r3);
+
+        return $r13;
+
+     label1:
+        $r8 = virtualinvoke $r17.<java.io.File: java.lang.String getAbsolutePath()>();
+
+        $r9 = newarray (java.lang.String)[0];
+
+        $r10 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>($r8, $r9);
+
+        $r11 = staticinvoke <java.nio.file.Files: byte[] readAllBytes(java.nio.file.Path)>($r10);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r14 := @caughtexception;
+
+        $r18 = new java.lang.ClassNotFoundException;
+
+        specialinvoke $r18.<java.lang.ClassNotFoundException: void <init>(java.lang.String)>(r3);
+
+        throw $r18;
+
+     label4:
+        $i0 = lengthof $r11;
+
+        $r20 = (gc.class_unloading.NoPDClassLoader) r1;
+
+        $r12 = virtualinvoke $r20.<gc.class_unloading.NoPDClassLoader: java.lang.Class defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)>(r3, $r11, 0, $i0, null);
+
+        return $r12;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+}

@@ -1,0 +1,547 @@
+public class TestTargetSurvivorRatioFlag extends java.lang.Object
+{
+    public static final long M;
+    public static final long MAX_NEW_SIZE;
+    public static final int SURVIVOR_RATIO;
+    public static final int MAX_TENURING_THRESHOLD;
+    public static final double DELTA;
+    public static double VARIANCE;
+    public static final java.lang.String UNSUPPORTED_GC;
+    public static final java.lang.String START_TEST;
+    public static final java.lang.String END_TEST;
+    public static final java.lang.String TENURING_DISTRIBUTION;
+    public static final java.lang.String AGE_TABLE_ENTRY;
+    public static final java.lang.String MAX_SURVIVOR_SIZE;
+
+    static void <clinit>()
+    {
+        <gc.arguments.TestTargetSurvivorRatioFlag: double VARIANCE> = 1.0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestTargetSurvivorRatioFlag r0;
+
+        r0 := @this: TestTargetSurvivorRatioFlag;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.util.List $r2;
+        int $i1;
+        java.lang.String[] $r1, r3;
+        java.util.LinkedList $r4;
+        boolean $z0;
+
+        r3 := @parameter0: java.lang.String[];
+
+        $r4 = new java.util.LinkedList;
+
+        $r1 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getTestJavaOpts()>();
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r1);
+
+        specialinvoke $r4.<java.util.LinkedList: void <init>(java.util.Collection)>($r2);
+
+        $z0 = virtualinvoke $r4.<java.util.LinkedList: boolean contains(java.lang.Object)>("-XX:+UseG1GC");
+
+        if $z0 == 0 goto label1;
+
+        <gc.arguments.TestTargetSurvivorRatioFlag: double VARIANCE> = 2.0;
+
+        goto label2;
+
+     label1:
+        <gc.arguments.TestTargetSurvivorRatioFlag: double VARIANCE> = 1.0;
+
+     label2:
+        $i1 = (int) -1;
+
+        staticinvoke <gc.arguments.TestTargetSurvivorRatioFlag: void negativeTest(int,java.util.LinkedList)>($i1, $r4);
+
+        staticinvoke <gc.arguments.TestTargetSurvivorRatioFlag: void negativeTest(int,java.util.LinkedList)>(101, $r4);
+
+        staticinvoke <gc.arguments.TestTargetSurvivorRatioFlag: void positiveTest(int,java.util.LinkedList)>(20, $r4);
+
+        staticinvoke <gc.arguments.TestTargetSurvivorRatioFlag: void positiveTest(int,java.util.LinkedList)>(30, $r4);
+
+        staticinvoke <gc.arguments.TestTargetSurvivorRatioFlag: void positiveTest(int,java.util.LinkedList)>(55, $r4);
+
+        staticinvoke <gc.arguments.TestTargetSurvivorRatioFlag: void positiveTest(int,java.util.LinkedList)>(70, $r4);
+
+        return;
+    }
+
+    public static void negativeTest(int, java.util.LinkedList) throws java.lang.Exception
+    {
+        java.lang.Object[] $r6;
+        java.lang.Process $r10;
+        java.lang.String[] $r5, $r7;
+        jdk.test.lib.process.OutputAnalyzer $r9;
+        int i0, $i1;
+        java.lang.StringBuilder $r2, $r3;
+        java.lang.String $r4;
+        java.lang.ProcessBuilder $r8;
+        java.util.LinkedList $r0, r1;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.util.LinkedList;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>(java.util.Collection)>(r1);
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:TargetSurvivorRatio=");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r0.<java.util.LinkedList: boolean add(java.lang.Object)>($r4);
+
+        virtualinvoke $r0.<java.util.LinkedList: boolean add(java.lang.Object)>("-version");
+
+        $i1 = virtualinvoke $r0.<java.util.LinkedList: int size()>();
+
+        $r5 = newarray (java.lang.String)[$i1];
+
+        $r6 = virtualinvoke $r0.<java.util.LinkedList: java.lang.Object[] toArray(java.lang.Object[])>($r5);
+
+        $r7 = (java.lang.String[]) $r6;
+
+        $r8 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r7);
+
+        $r9 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r10 = virtualinvoke $r8.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r9.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r10);
+
+        virtualinvoke $r9.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+        virtualinvoke $r9.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Error: Could not create the Java Virtual Machine.");
+
+        return;
+    }
+
+    public static void positiveTest(int, java.util.LinkedList) throws java.lang.Exception
+    {
+        byte $b3, $b4, $b5;
+        boolean $z0;
+        java.lang.Process $r14;
+        jdk.test.lib.process.OutputAnalyzer $r46;
+        java.util.List $r17;
+        java.lang.StringBuilder $r4, $r23, $r24, $r26, $r36, $r41, $r42, $r45, $r47, $r49, $r51;
+        java.lang.Object[] $r10;
+        java.lang.Double $r19, $r29, $r31;
+        java.lang.String[] $r2, $r9, $r11;
+        int i0, $i1, $i2, $i6, $i7, $i8, $i9;
+        java.lang.String $r5, $r7, $r8, $r15, $r27, $r37, $r43;
+        java.lang.ProcessBuilder $r12;
+        java.util.LinkedList r1, $r44;
+        double $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7;
+        java.io.PrintStream $r16, $r20, $r32, $r38;
+        java.lang.RuntimeException $r48, $r50, $r52;
+        java.lang.Class $r6;
+        java.lang.Object $r18, $r25, $r28, $r30, $r35;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.util.LinkedList;
+
+        $r44 = new java.util.LinkedList;
+
+        specialinvoke $r44.<java.util.LinkedList: void <init>(java.util.Collection)>(r1);
+
+        $r2 = newarray (java.lang.String)[16];
+
+        $r2[0] = "-Xbootclasspath/a:.";
+
+        $r2[1] = "--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED";
+
+        $r2[2] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r2[3] = "-XX:+WhiteBoxAPI";
+
+        $r2[4] = "-XX:+UseAdaptiveSizePolicy";
+
+        $r2[5] = "-Xlog:gc+age=trace";
+
+        $r2[6] = "-XX:MaxTenuringThreshold=15";
+
+        $r2[7] = "-XX:NewSize=41943040";
+
+        $r2[8] = "-XX:MaxNewSize=41943040";
+
+        $r2[9] = "-XX:InitialHeapSize=83886080";
+
+        $r2[10] = "-XX:MaxHeapSize=83886080";
+
+        $r2[11] = "-XX:SurvivorRatio=8";
+
+        $r45 = new java.lang.StringBuilder;
+
+        specialinvoke $r45.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:TargetSurvivorRatio=");
+
+        $r4 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r2[12] = $r5;
+
+        $r2[13] = "-XX:TargetPLABWastePct=1";
+
+        $r6 = class "Lgc/arguments/TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier;";
+
+        $r7 = virtualinvoke $r6.<java.lang.Class: java.lang.String getName()>();
+
+        $r2[14] = $r7;
+
+        $r8 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i0);
+
+        $r2[15] = $r8;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r44, $r2);
+
+        $i1 = virtualinvoke $r44.<java.util.LinkedList: int size()>();
+
+        $r9 = newarray (java.lang.String)[$i1];
+
+        $r10 = virtualinvoke $r44.<java.util.LinkedList: java.lang.Object[] toArray(java.lang.Object[])>($r9);
+
+        $r11 = (java.lang.String[]) $r10;
+
+        $r12 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r11);
+
+        $r46 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r14 = virtualinvoke $r12.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r46.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r14);
+
+        virtualinvoke $r46.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r15 = virtualinvoke $r46.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        $z0 = virtualinvoke $r15.<java.lang.String: boolean contains(java.lang.CharSequence)>("Unsupported GC");
+
+        if $z0 != 0 goto label4;
+
+        $r17 = staticinvoke <gc.arguments.TestTargetSurvivorRatioFlag: java.util.List parseTestOutput(java.lang.String)>($r15);
+
+        $i2 = interfaceinvoke $r17.<java.util.List: int size()>();
+
+        if $i2 == 2 goto label1;
+
+        $r38 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>($r15);
+
+        $r48 = new java.lang.RuntimeException;
+
+        $r47 = new java.lang.StringBuilder;
+
+        specialinvoke $r47.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected number of ratios extraced for output is 2, but ");
+
+        $i6 = interfaceinvoke $r17.<java.util.List: int size()>();
+
+        $r41 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ratios were extracted");
+
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r48.<java.lang.RuntimeException: void <init>(java.lang.String)>($r43);
+
+        throw $r48;
+
+     label1:
+        $d0 = (double) i0;
+
+        $r18 = interfaceinvoke $r17.<java.util.List: java.lang.Object get(int)>(0);
+
+        $r19 = (java.lang.Double) $r18;
+
+        $d1 = virtualinvoke $r19.<java.lang.Double: double doubleValue()>();
+
+        $b3 = $d0 cmpg $d1;
+
+        $i7 = (int) $b3;
+
+        if $i7 < 0 goto label2;
+
+        $d2 = (double) i0;
+
+        $r28 = interfaceinvoke $r17.<java.util.List: java.lang.Object get(int)>(0);
+
+        $r29 = (java.lang.Double) $r28;
+
+        $d3 = virtualinvoke $r29.<java.lang.Double: double doubleValue()>();
+
+        $d5 = $d2 - $d3;
+
+        $d4 = <gc.arguments.TestTargetSurvivorRatioFlag: double VARIANCE>;
+
+        $b4 = $d5 cmpl $d4;
+
+        $i8 = (int) $b4;
+
+        if $i8 <= 0 goto label3;
+
+     label2:
+        $r20 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r15);
+
+        $r50 = new java.lang.RuntimeException;
+
+        $r49 = new java.lang.StringBuilder;
+
+        specialinvoke $r49.<java.lang.StringBuilder: void <init>(java.lang.String)>("Survivor space usage ratio expected to be close to ");
+
+        $r23 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", but observed ratio is: ");
+
+        $r25 = interfaceinvoke $r17.<java.util.List: java.lang.Object get(int)>(0);
+
+        $r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r25);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r50.<java.lang.RuntimeException: void <init>(java.lang.String)>($r27);
+
+        throw $r50;
+
+     label3:
+        $r30 = interfaceinvoke $r17.<java.util.List: java.lang.Object get(int)>(1);
+
+        $r31 = (java.lang.Double) $r30;
+
+        $d6 = virtualinvoke $r31.<java.lang.Double: double doubleValue()>();
+
+        $d7 = <gc.arguments.TestTargetSurvivorRatioFlag: double VARIANCE>;
+
+        $b5 = $d6 cmpl $d7;
+
+        $i9 = (int) $b5;
+
+        if $i9 <= 0 goto label5;
+
+        $r32 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r32.<java.io.PrintStream: void println(java.lang.String)>($r15);
+
+        $r52 = new java.lang.RuntimeException;
+
+        $r51 = new java.lang.StringBuilder;
+
+        specialinvoke $r51.<java.lang.StringBuilder: void <init>(java.lang.String)>("Survivor space expected to be empty due to TargetSurvivorRatio overlimit, however observed survivor space usage ratio is: ");
+
+        $r35 = interfaceinvoke $r17.<java.util.List: java.lang.Object get(int)>(1);
+
+        $r36 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r35);
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r52.<java.lang.RuntimeException: void <init>(java.lang.String)>($r37);
+
+        throw $r52;
+
+     label4:
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>("Selected GC does not support TargetSurvivorRatio option.");
+
+     label5:
+        return;
+    }
+
+    public static java.util.List parseTestOutput(java.lang.String)
+    {
+        java.util.regex.Matcher $r13, $r17;
+        java.lang.Long $r15, $r19;
+        boolean $z0, $z1, $z2, $z3, $z4, z5, z6, z7;
+        java.lang.StringBuilder $r7, $r8, $r9, $r10, $r11;
+        java.util.regex.Pattern $r3, $r4;
+        java.lang.Double $r16;
+        java.lang.String[] $r2;
+        long l1, l2;
+        int i0, i3, i4;
+        java.lang.String r1, r5, $r12, $r14, $r18;
+        java.util.LinkedList $r0;
+        double $d0, $d1, $d2, d3;
+        java.lang.RuntimeException $r6;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>()>();
+
+        $r2 = virtualinvoke r1.<java.lang.String: java.lang.String[] split(java.lang.String)>("[\n\r]");
+
+        z5 = 0;
+
+        z7 = 0;
+
+        z6 = 0;
+
+        l1 = 0L;
+
+        l2 = 0L;
+
+        i3 = 0;
+
+        $r3 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(".*-[\\s]+age[\\s]+([0-9]+):[\\s]+([0-9]+)[\\s]+bytes,[\\s]+([0-9]+)[\\s]+total");
+
+        $r4 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("Max survivor size: ([0-9]+)");
+
+        i0 = lengthof $r2;
+
+        i4 = 0;
+
+        goto label10;
+
+     label01:
+        r5 = $r2[i4];
+
+        $z0 = staticinvoke <java.util.regex.Pattern: boolean matches(java.lang.String,java.lang.CharSequence)>("Max survivor size: ([0-9]+)", r5);
+
+        if $z0 == 0 goto label02;
+
+        $r17 = virtualinvoke $r4.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r5);
+
+        virtualinvoke $r17.<java.util.regex.Matcher: boolean find()>();
+
+        $r18 = virtualinvoke $r17.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        $r19 = staticinvoke <java.lang.Long: java.lang.Long valueOf(java.lang.String)>($r18);
+
+        l1 = virtualinvoke $r19.<java.lang.Long: long longValue()>();
+
+        goto label09;
+
+     label02:
+        $z1 = virtualinvoke r5.<java.lang.String: boolean contains(java.lang.CharSequence)>("Start test");
+
+        if $z1 == 0 goto label03;
+
+        if z6 != 0 goto label03;
+
+        z5 = 1;
+
+        z7 = 1;
+
+        z6 = 1;
+
+        i3 = 0;
+
+        goto label09;
+
+     label03:
+        if z7 == 0 goto label09;
+
+        $z2 = virtualinvoke r5.<java.lang.String: boolean contains(java.lang.CharSequence)>("Desired survivor size");
+
+        if $z2 == 0 goto label06;
+
+        i3 = i3 + 1;
+
+        $d1 = (double) l2;
+
+        $d0 = (double) l1;
+
+        d3 = $d1 / $d0;
+
+        if i3 == 15 goto label04;
+
+        if i3 != 30 goto label05;
+
+     label04:
+        $d2 = d3 * 100.0;
+
+        $r16 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d2);
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>($r16);
+
+        z5 = 0;
+
+        z7 = 0;
+
+        z6 = 0;
+
+     label05:
+        l2 = 0L;
+
+        goto label09;
+
+     label06:
+        $z3 = staticinvoke <java.util.regex.Pattern: boolean matches(java.lang.String,java.lang.CharSequence)>(".*-[\\s]+age[\\s]+([0-9]+):[\\s]+([0-9]+)[\\s]+bytes,[\\s]+([0-9]+)[\\s]+total", r5);
+
+        if $z3 == 0 goto label07;
+
+        $r13 = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r5);
+
+        virtualinvoke $r13.<java.util.regex.Matcher: boolean find()>();
+
+        $r14 = virtualinvoke $r13.<java.util.regex.Matcher: java.lang.String group(int)>(3);
+
+        $r15 = staticinvoke <java.lang.Long: java.lang.Long valueOf(java.lang.String)>($r14);
+
+        l2 = virtualinvoke $r15.<java.lang.Long: long longValue()>();
+
+        goto label09;
+
+     label07:
+        $z4 = virtualinvoke r5.<java.lang.String: boolean contains(java.lang.CharSequence)>("End test");
+
+        if $z4 == 0 goto label09;
+
+        if i3 >= 15 goto label08;
+
+        $r6 = new java.lang.RuntimeException;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("Observed ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" GC events, ");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("while it is expected to see at least ");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(15);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>($r12);
+
+        throw $r6;
+
+     label08:
+        z5 = 0;
+
+        z7 = 0;
+
+        z6 = 0;
+
+     label09:
+        i4 = i4 + 1;
+
+     label10:
+        if i4 < i0 goto label01;
+
+        return $r0;
+    }
+}

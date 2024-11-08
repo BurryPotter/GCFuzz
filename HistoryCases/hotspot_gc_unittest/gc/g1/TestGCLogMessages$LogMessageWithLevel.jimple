@@ -1,0 +1,48 @@
+class TestGCLogMessages$LogMessageWithLevel extends java.lang.Object
+{
+    java.lang.String message;
+    gc.g1.TestGCLogMessages$Level level;
+    final gc.g1.TestGCLogMessages this$0;
+
+    public void <init>(gc.g1.TestGCLogMessages, java.lang.String, gc.g1.TestGCLogMessages$Level)
+    {
+        TestGCLogMessages$LogMessageWithLevel r0;
+        gc.g1.TestGCLogMessages$LogMessageWithLevel $r4, $r5, $r6;
+        gc.g1.TestGCLogMessages$Level r3;
+        java.lang.String r2;
+        gc.g1.TestGCLogMessages r1;
+
+        r0 := @this: TestGCLogMessages$LogMessageWithLevel;
+
+        r1 := @parameter0: gc.g1.TestGCLogMessages;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: gc.g1.TestGCLogMessages$Level;
+
+        $r4 = (gc.g1.TestGCLogMessages$LogMessageWithLevel) r0;
+
+        $r4.<gc.g1.TestGCLogMessages$LogMessageWithLevel: gc.g1.TestGCLogMessages this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r5 = (gc.g1.TestGCLogMessages$LogMessageWithLevel) r0;
+
+        $r5.<gc.g1.TestGCLogMessages$LogMessageWithLevel: java.lang.String message> = r2;
+
+        $r6 = (gc.g1.TestGCLogMessages$LogMessageWithLevel) r0;
+
+        $r6.<gc.g1.TestGCLogMessages$LogMessageWithLevel: gc.g1.TestGCLogMessages$Level level> = r3;
+
+        return;
+    }
+
+    public boolean isAvailable()
+    {
+        TestGCLogMessages$LogMessageWithLevel r0;
+
+        r0 := @this: TestGCLogMessages$LogMessageWithLevel;
+
+        return 1;
+    }
+}

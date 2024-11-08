@@ -1,0 +1,132 @@
+public class Garbage1 extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Garbage1 r0;
+
+        r0 := @this: Garbage1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        Chair $r19;
+        long $l0, $l4, $l5;
+        java.lang.String[] r0;
+        int $i1, $i2, $i3;
+        java.lang.String $r7, $r8, $r10, $r16, $r20;
+        boolean $z0, $z1, $z2;
+        java.io.PrintStream $r2, $r9, $r12, $r17, $r18, $r21;
+        java.lang.StringBuilder $r1, $r3, $r4, $r5, $r6, $r11, $r13, $r14, $r15;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $i1 = lengthof r0;
+
+        if $i1 != 0 goto label1;
+
+        $r21 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>("Usage: \njava Garbage1 before\n or:\njava Garbage1 after");
+
+        return;
+
+     label1:
+        $z0 = <Chair: boolean f>;
+
+        if $z0 != 0 goto label2;
+
+        $r19 = new Chair;
+
+        specialinvoke $r19.<Chair: void <init>()>();
+
+        $r20 = new java.lang.String;
+
+        specialinvoke $r20.<java.lang.String: void <init>(java.lang.String)>("To take up space");
+
+        goto label1;
+
+     label2:
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("After all Chairs have been created:\ntotal created = ");
+
+        $i2 = <Chair: int created>;
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", total finalized = ");
+
+        $i3 = <Chair: int finalized>;
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        $r8 = r0[0];
+
+        $z1 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>("before");
+
+        if $z1 == 0 goto label3;
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>("gc():");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r18 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>("runFinalization():");
+
+        staticinvoke <java.lang.System: void runFinalization()>();
+
+     label3:
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>("bye!");
+
+        $r10 = r0[0];
+
+        $z2 = virtualinvoke $r10.<java.lang.String: boolean equals(java.lang.Object)>("after");
+
+        if $z2 == 0 goto label4;
+
+        staticinvoke <java.lang.System: void runFinalizersOnExit(boolean)>(1);
+
+     label4:
+        $l4 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>()>();
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Finish: ");
+
+        $l5 = $l4 - $l0;
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l5);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ms");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        return;
+    }
+}

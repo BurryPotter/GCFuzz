@@ -1,0 +1,247 @@
+public class TestHumongousMovement extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WB;
+    private static final double HUMONGOUS_OBJECTS_DELETED_FACTOR;
+    private static final double ALLOCATED_HUMONGOUS_REGIONS_FACTOR;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.humongousObjects.TestHumongousMovement: sun.hotspot.WhiteBox WB> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestHumongousMovement r0;
+
+        r0 := @this: TestHumongousMovement;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r25;
+        java.util.Random $r26;
+        java.lang.Integer $r14, $r15, $r22, $r23;
+        java.util.stream.Collector $r31;
+        java.util.function.Predicate $r29;
+        gc.g1.humongousObjects.TestHumongousMovement$AllocationData $r24;
+        java.util.List r39;
+        java.util.stream.Stream $r28, $r30, $r35;
+        java.lang.StringBuilder $r1, $r4, $r5, $r7, $r10, $r11, $r16, $r18, $r19;
+        java.lang.Error $r37;
+        long $l2, $l3, $l4;
+        java.lang.String[] r38;
+        java.util.ArrayList $r21;
+        int $i0, $i1, i5, $i6, i7, $i8, $i9, i10, $i11, $i12, $i13, i14, i15;
+        java.lang.String $r6, $r12, $r20;
+        double $d0, $d1, $d2, $d3, $d4, $d5;
+        java.io.PrintStream $r2, $r8, $r17, $r33, $r34;
+        sun.hotspot.WhiteBox $r0, $r3, $r9, $r13, $r27;
+        java.util.function.Consumer $r36;
+        java.lang.Object $r32;
+
+        r38 := @parameter0: java.lang.String[];
+
+        $r0 = <gc.g1.humongousObjects.TestHumongousMovement: sun.hotspot.WhiteBox WB>;
+
+        $i0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        $i1 = staticinvoke <gc.testlibrary.Helpers: int detectByteArrayAllocationOverhead()>();
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("Total ");
+
+        $r3 = <gc.g1.humongousObjects.TestHumongousMovement: sun.hotspot.WhiteBox WB>;
+
+        $l2 = virtualinvoke $r3.<sun.hotspot.WhiteBox: long g1NumMaxRegions()>();
+
+        $r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" regions");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("Total ");
+
+        $r9 = <gc.g1.humongousObjects.TestHumongousMovement: sun.hotspot.WhiteBox WB>;
+
+        $l3 = virtualinvoke $r9.<sun.hotspot.WhiteBox: long g1NumFreeRegions()>();
+
+        $r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" free regions");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        $r13 = <gc.g1.humongousObjects.TestHumongousMovement: sun.hotspot.WhiteBox WB>;
+
+        $l4 = virtualinvoke $r13.<sun.hotspot.WhiteBox: long g1NumFreeRegions()>();
+
+        $d0 = (double) $l4;
+
+        $d1 = $d0 * 0.25;
+
+        i5 = (int) $d1;
+
+        $r14 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i5);
+
+        $r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGreaterThan(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r14, $r15, "Test Bug: no regions to allocate");
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("Allocating ");
+
+        $r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i5);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" humongous objects, each 90% of g1 region size");
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20);
+
+        $r21 = new java.util.ArrayList;
+
+        specialinvoke $r21.<java.util.ArrayList: void <init>()>();
+
+        $i6 = $i0 - $i1;
+
+        $d2 = (double) $i6;
+
+        $d3 = $d2 * 0.9;
+
+        i7 = (int) $d3;
+
+        $r22 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i7);
+
+        $i8 = $i0 / 2;
+
+        $r23 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i8);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGreaterThan(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r22, $r23, "Test Bug: allocation size is not humongous");
+
+        i14 = 0;
+
+        goto label2;
+
+     label1:
+        $r24 = new gc.g1.humongousObjects.TestHumongousMovement$AllocationData;
+
+        $r25 = newarray (byte)[i7];
+
+        specialinvoke $r24.<gc.g1.humongousObjects.TestHumongousMovement$AllocationData: void <init>(byte[])>($r25);
+
+        interfaceinvoke $r21.<java.util.List: boolean add(java.lang.Object)>($r24);
+
+        i14 = i14 + 1;
+
+     label2:
+        if i14 < i5 goto label1;
+
+        $r26 = staticinvoke <jdk.test.lib.Utils: java.util.Random getRandomInstance()>();
+
+        $i9 = interfaceinvoke $r21.<java.util.List: int size()>();
+
+        $d4 = (double) $i9;
+
+        $d5 = $d4 * 0.5;
+
+        i10 = (int) $d5;
+
+        i15 = 0;
+
+        goto label4;
+
+     label3:
+        $i11 = interfaceinvoke $r21.<java.util.List: int size()>();
+
+        $i12 = virtualinvoke $r26.<java.util.Random: int nextInt(int)>($i11);
+
+        interfaceinvoke $r21.<java.util.List: java.lang.Object remove(int)>($i12);
+
+        i15 = i15 + 1;
+
+     label4:
+        if i15 < i10 goto label3;
+
+        $r27 = <gc.g1.humongousObjects.TestHumongousMovement: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r27.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        $r28 = interfaceinvoke $r21.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r29 = staticinvoke <TestHumongousMovement$isAddressChanged__1: java.util.function.Predicate bootstrap$()>();
+
+        $r30 = interfaceinvoke $r28.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r29);
+
+        $r31 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>();
+
+        $r32 = interfaceinvoke $r30.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r31);
+
+        r39 = (java.util.List) $r32;
+
+        $i13 = interfaceinvoke r39.<java.util.List: int size()>();
+
+        if $i13 <= 0 goto label5;
+
+        $r34 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r34.<java.io.PrintStream: void println(java.lang.String)>("Test failed - some humongous objects moved after Full GC");
+
+        $r35 = interfaceinvoke r39.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r36 = staticinvoke <TestHumongousMovement$lambda_1__2: java.util.function.Consumer bootstrap$()>();
+
+        interfaceinvoke $r35.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r36);
+
+        $r37 = new java.lang.Error;
+
+        specialinvoke $r37.<java.lang.Error: void <init>(java.lang.String)>("Test failed - some humongous objects moved after Full GC");
+
+        throw $r37;
+
+     label5:
+        $r33 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>("Passed");
+
+        return;
+    }
+
+    private static void lambda$1(gc.g1.humongousObjects.TestHumongousMovement$AllocationData)
+    {
+        java.io.PrintStream $r1;
+        gc.g1.humongousObjects.TestHumongousMovement$AllocationData r0;
+
+        r0 := @parameter0: gc.g1.humongousObjects.TestHumongousMovement$AllocationData;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke r0.<gc.g1.humongousObjects.TestHumongousMovement$AllocationData: void printDetails(java.io.PrintStream)>($r1);
+
+        return;
+    }
+}

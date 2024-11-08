@@ -1,0 +1,201 @@
+public class CMSGCALot extends java.lang.Object
+{
+    private static java.util.ArrayList arrayList;
+    private static CMSGCALot$TmpClass[] tmp;
+
+    public void <init>()
+    {
+        CMSGCALot r0;
+
+        r0 := @this: CMSGCALot;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0, $r4, $r8;
+        int $i0;
+        java.lang.String $r1, $r3, r5, $r6, $r11, $r14, $r17, $r22;
+        java.lang.ProcessBuilder $r7;
+        java.io.PrintStream $r23;
+        java.lang.management.RuntimeMXBean $r2;
+        java.lang.Process $r18;
+        java.io.InputStreamReader $r21;
+        java.lang.StringBuilder $r9, $r10, $r12, $r13, $r15, $r16;
+        java.io.BufferedReader $r20;
+        java.io.InputStream $r19;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = r0[0];
+
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        staticinvoke <CMSGCALot: void consumeHeap(int)>($i0);
+
+        $r2 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.RuntimeMXBean getRuntimeMXBean()>();
+
+        $r3 = interfaceinvoke $r2.<java.lang.management.RuntimeMXBean: java.lang.String getName()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.String: java.lang.String[] split(java.lang.String)>("@");
+
+        r5 = $r4[0];
+
+        $r6 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("java.home");
+
+        $r7 = new java.lang.ProcessBuilder;
+
+        $r8 = newarray (java.lang.String)[3];
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r11 = <java.io.File: java.lang.String separator>;
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("bin");
+
+        $r14 = <java.io.File: java.lang.String separator>;
+
+        $r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("jstat");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r8[0] = $r17;
+
+        $r8[1] = "-gcutil";
+
+        $r8[2] = r5;
+
+        specialinvoke $r7.<java.lang.ProcessBuilder: void <init>(java.lang.String[])>($r8);
+
+        $r18 = virtualinvoke $r7.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        virtualinvoke $r18.<java.lang.Process: int waitFor()>();
+
+        $r19 = virtualinvoke $r18.<java.lang.Process: java.io.InputStream getInputStream()>();
+
+        $r20 = new java.io.BufferedReader;
+
+        $r21 = new java.io.InputStreamReader;
+
+        specialinvoke $r21.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r19);
+
+        specialinvoke $r20.<java.io.BufferedReader: void <init>(java.io.Reader)>($r21);
+
+     label1:
+        $r22 = virtualinvoke $r20.<java.io.BufferedReader: java.lang.String readLine()>();
+
+        if $r22 == null goto label2;
+
+        $r23 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>($r22);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    static void consumeHeap(int) throws java.lang.Exception
+    {
+        byte[] r5;
+        CMSGCALot$TmpClass $r3;
+        java.util.Random $r0;
+        java.util.ArrayList $r1, $r4;
+        CMSGCALot$TmpClass[] $r2;
+        int i0, i1, $i2, $i3, i4, i5, i6;
+        double $d0, $d1;
+
+        i0 := @parameter0: int;
+
+        $r0 = new java.util.Random;
+
+        specialinvoke $r0.<java.util.Random: void <init>()>();
+
+        $r1 = new java.util.ArrayList;
+
+        specialinvoke $r1.<java.util.ArrayList: void <init>()>();
+
+        <CMSGCALot: java.util.ArrayList arrayList> = $r1;
+
+        $d0 = (double) i0;
+
+        $d1 = $d0 * 0.65;
+
+        i1 = (int) $d1;
+
+        i4 = 0;
+
+     label1:
+        $i2 = 1024 * i1;
+
+        if i4 >= $i2 goto label2;
+
+        r5 = newarray (byte)[1024];
+
+        $r4 = <CMSGCALot: java.util.ArrayList arrayList>;
+
+        virtualinvoke $r4.<java.util.ArrayList: boolean add(java.lang.Object)>(r5);
+
+        i4 = i4 + 1;
+
+        goto label1;
+
+     label2:
+        i5 = 0;
+
+     label3:
+        if i5 >= 1000 goto label6;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(10L);
+
+        i6 = 0;
+
+     label4:
+        if i6 >= 100000 goto label5;
+
+        $r2 = <CMSGCALot: CMSGCALot$TmpClass[] tmp>;
+
+        $i3 = virtualinvoke $r0.<java.util.Random: int nextInt(int)>(1024);
+
+        $r3 = new CMSGCALot$TmpClass;
+
+        specialinvoke $r3.<CMSGCALot$TmpClass: void <init>(int)>(1);
+
+        $r2[$i3] = $r3;
+
+        i6 = i6 + 1;
+
+        goto label4;
+
+     label5:
+        i5 = i5 + 1;
+
+        goto label3;
+
+     label6:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        CMSGCALot$TmpClass[] $r0;
+
+        $r0 = newarray (CMSGCALot$TmpClass)[1024];
+
+        <CMSGCALot: CMSGCALot$TmpClass[] tmp> = $r0;
+
+        return;
+    }
+}

@@ -1,0 +1,152 @@
+class card_scan_big_instances extends java.lang.Object
+{
+    static card_scan_big_instances$BigInstance[] bigInstances;
+    public static final int K;
+    public static final int M;
+    public static final long G;
+    public static final int LONG_SIZE_BYTES;
+    public static final int BIG_INSTANCE_SIZE_BYTES;
+    static byte[] garbage;
+    static final int loop_count;
+
+    void <init>()
+    {
+        card_scan_big_instances r0;
+
+        r0 := @this: card_scan_big_instances;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r13;
+        card_scan_big_instances$BigInstance $r15, $r16;
+        java.lang.String[] r0;
+        long $l1, l2, $l3;
+        card_scan_big_instances$BigInstance[] $r8, $r12, $r14, $r17;
+        int $i0, i4, $i5, i6, i7, i8, i9, i10;
+        java.lang.String $r1, $r7;
+        java.io.PrintStream $r2, $r4, $r9, $r10;
+        java.lang.StringBuilder $r3, $r5, $r6;
+        java.lang.Object $r11;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = r0[0];
+
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        $l1 = (long) $i0;
+
+        l2 = $l1 * 1073741824L;
+
+        $l3 = l2 / 32768L;
+
+        i4 = (int) $l3;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("BIG_INSTANCE_SIZE_BYTES:32768 (32K)");
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("bigInstancesCount:");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        $r8 = newarray (card_scan_big_instances$BigInstance)[i4];
+
+        <card_scan_big_instances: card_scan_big_instances$BigInstance[] bigInstances> = $r8;
+
+        i6 = 0;
+
+     label1:
+        if i6 >= i4 goto label2;
+
+        $r17 = <card_scan_big_instances: card_scan_big_instances$BigInstance[] bigInstances>;
+
+        $r16 = new card_scan_big_instances$BigInstance;
+
+        specialinvoke $r16.<card_scan_big_instances$BigInstance: void <init>()>();
+
+        $r17[i6] = $r16;
+
+        i6 = i6 + 1;
+
+        goto label1;
+
+     label2:
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>("### System.gc");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>("### System.gc done");
+
+        i7 = 0;
+
+     label3:
+        if i7 >= 20 goto label8;
+
+        $r11 = new java.lang.Object;
+
+        specialinvoke $r11.<java.lang.Object: void <init>()>();
+
+        i8 = 0;
+
+     label4:
+        $r12 = <card_scan_big_instances: card_scan_big_instances$BigInstance[] bigInstances>;
+
+        $i5 = lengthof $r12;
+
+        if i8 >= $i5 goto label5;
+
+        $r14 = <card_scan_big_instances: card_scan_big_instances$BigInstance[] bigInstances>;
+
+        $r15 = $r14[i8];
+
+        $r15.<card_scan_big_instances$BigInstance: java.lang.Object objOnOtherStripe> = $r11;
+
+        i8 = i8 + 1;
+
+        goto label4;
+
+     label5:
+        i9 = i4 * 4;
+
+        i10 = 0;
+
+     label6:
+        if i10 >= i9 goto label7;
+
+        $r13 = newarray (byte)[1024];
+
+        <card_scan_big_instances: byte[] garbage> = $r13;
+
+        i10 = i10 + 1;
+
+        goto label6;
+
+     label7:
+        i7 = i7 + 1;
+
+        goto label3;
+
+     label8:
+        return;
+    }
+}

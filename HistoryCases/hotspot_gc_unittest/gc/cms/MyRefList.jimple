@@ -1,0 +1,48 @@
+class MyRefList extends java.util.LinkedList
+{
+    java.lang.ref.WeakReference ref;
+
+    void <init>(java.lang.Object, java.lang.ref.ReferenceQueue)
+    {
+        gc.cms.MyRefList $r5;
+        MyRefList r0;
+        java.lang.Object r2;
+        java.lang.ref.WeakReference $r4;
+        java.lang.ref.ReferenceQueue r3;
+
+        r0 := @this: MyRefList;
+
+        r2 := @parameter0: java.lang.Object;
+
+        r3 := @parameter1: java.lang.ref.ReferenceQueue;
+
+        specialinvoke r0.<java.util.LinkedList: void <init>()>();
+
+        $r4 = new java.lang.ref.WeakReference;
+
+        specialinvoke $r4.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>(r2, r3);
+
+        $r5 = (gc.cms.MyRefList) r0;
+
+        $r5.<gc.cms.MyRefList: java.lang.ref.WeakReference ref> = $r4;
+
+        return;
+    }
+
+    void clearReferent()
+    {
+        MyRefList r0;
+        gc.cms.MyRefList $r2;
+        java.lang.ref.WeakReference $r1;
+
+        r0 := @this: MyRefList;
+
+        $r2 = (gc.cms.MyRefList) r0;
+
+        $r1 = $r2.<gc.cms.MyRefList: java.lang.ref.WeakReference ref>;
+
+        virtualinvoke $r1.<java.lang.ref.WeakReference: void clear()>();
+
+        return;
+    }
+}

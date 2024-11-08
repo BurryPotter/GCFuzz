@@ -1,0 +1,60 @@
+final class FireHunter$1 extends java.lang.Object implements java.io.FilenameFilter
+{
+
+    void <init>()
+    {
+        FireHunter$1 r0;
+
+        r0 := @this: FireHunter$1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public boolean accept(java.io.File, java.lang.String)
+    {
+        FireHunter$1 r5;
+        java.io.File r6;
+        int $i0;
+        java.lang.StringBuilder $r1, $r2, $r3;
+        java.lang.String r0, $r4;
+        boolean $z0, $z1, $z2;
+
+        r5 := @this: FireHunter$1;
+
+        r6 := @parameter0: java.io.File;
+
+        r0 := @parameter1: java.lang.String;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("java");
+
+        $i0 = staticinvoke <FireHunter: int access$000()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>($r4);
+
+        if $z0 == 0 goto label1;
+
+        $z1 = virtualinvoke r0.<java.lang.String: boolean endsWith(java.lang.String)>(".eprof");
+
+        if $z1 == 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        return $z2;
+    }
+}

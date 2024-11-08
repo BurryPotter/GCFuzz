@@ -1,0 +1,152 @@
+public final class AppPLABPromotion extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WHITE_BOX;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.plab.lib.AppPLABPromotion: sun.hotspot.WhiteBox WHITE_BOX> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        AppPLABPromotion r0;
+
+        r0 := @this: AppPLABPromotion;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        long $l0, $l1;
+        sun.hotspot.WhiteBox $r2, $r3;
+        java.lang.String[] r6;
+        java.lang.IllegalArgumentException $r7, $r8;
+        byte $b2, $b3;
+        java.lang.Long $r0, $r1;
+        int $i4;
+        boolean $z0;
+
+        r6 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <java.lang.Long: java.lang.Long getLong(java.lang.String)>("chunk.size");
+
+        $l0 = virtualinvoke $r0.<java.lang.Long: long longValue()>();
+
+        $r1 = staticinvoke <java.lang.Long: java.lang.Long getLong(java.lang.String)>("mem.to.fill");
+
+        $l1 = virtualinvoke $r1.<java.lang.Long: long longValue()>();
+
+        $z0 = staticinvoke <java.lang.Boolean: boolean getBoolean(java.lang.String)>("reachable");
+
+        $b2 = $l0 cmp 0L;
+
+        if $b2 != 0 goto label1;
+
+        $r7 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r7.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Chunk size must be not 0");
+
+        throw $r7;
+
+     label1:
+        $b3 = $l1 cmp 0L;
+
+        $i4 = (int) $b3;
+
+        if $i4 > 0 goto label2;
+
+        $r8 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r8.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("mem.to.fill property should be above 0");
+
+        throw $r8;
+
+     label2:
+        staticinvoke <gc.g1.plab.lib.AppPLABPromotion: void allocate(boolean,long,long)>($z0, $l1, $l0);
+
+        $r2 = <gc.g1.plab.lib.AppPLABPromotion: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r2.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r3 = <gc.g1.plab.lib.AppPLABPromotion: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r3.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        return;
+    }
+
+    private static void allocate(boolean, long, long)
+    {
+        byte[] $r0;
+        long l0, $l2, l3, $l4, $l5, $l9, $l10;
+        int $i1, $i6, i7, $i8, $i11;
+        gc.g1.plab.lib.MemoryConsumer $r2, $r4, r5;
+        boolean z0;
+        sun.hotspot.WhiteBox $r1, $r3;
+
+        z0 := @parameter0: boolean;
+
+        l3 := @parameter1: long;
+
+        l0 := @parameter2: long;
+
+        $r1 = <gc.g1.plab.lib.AppPLABPromotion: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $i1 = (int) l0;
+
+        $r0 = newarray (byte)[$i1];
+
+        $l2 = virtualinvoke $r1.<sun.hotspot.WhiteBox: long getObjectSize(java.lang.Object)>($r0);
+
+        $l4 = l3 - 1L;
+
+        $l5 = $l4 / $l2;
+
+        $i6 = (int) $l5;
+
+        i7 = $i6 + 1;
+
+        if z0 == 0 goto label1;
+
+        $r4 = new gc.g1.plab.lib.MemoryConsumer;
+
+        $i11 = (int) l0;
+
+        specialinvoke $r4.<gc.g1.plab.lib.MemoryConsumer: void <init>(int,int)>(i7, $i11);
+
+        r5 = $r4;
+
+        goto label2;
+
+     label1:
+        $r2 = new gc.g1.plab.lib.MemoryConsumer;
+
+        $i8 = (int) l0;
+
+        specialinvoke $r2.<gc.g1.plab.lib.MemoryConsumer: void <init>(int,int)>(1, $i8);
+
+        r5 = $r2;
+
+     label2:
+        $r3 = <gc.g1.plab.lib.AppPLABPromotion: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r3.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        $l9 = (long) i7;
+
+        $l10 = $l9 * l0;
+
+        virtualinvoke r5.<gc.g1.plab.lib.MemoryConsumer: void consume(long)>($l10);
+
+        return;
+    }
+}

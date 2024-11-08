@@ -1,0 +1,96 @@
+final class HCHelper$AllocObject extends java.lang.Object
+{
+    private byte[] allocatedArray;
+    private int hashValue;
+    final gc.hashcode.HCHelper this$0;
+
+    void <init>(gc.hashcode.HCHelper, int)
+    {
+        byte[] $r2, $r3;
+        gc.hashcode.HCHelper r1;
+        gc.hashcode.HCHelper$AllocObject $r4, $r5, $r6, $r7;
+        HCHelper$AllocObject r0;
+        int i0, $i1;
+
+        r0 := @this: HCHelper$AllocObject;
+
+        r1 := @parameter0: gc.hashcode.HCHelper;
+
+        i0 := @parameter1: int;
+
+        $r4 = (gc.hashcode.HCHelper$AllocObject) r0;
+
+        $r4.<gc.hashcode.HCHelper$AllocObject: gc.hashcode.HCHelper this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = newarray (byte)[i0];
+
+        $r5 = (gc.hashcode.HCHelper$AllocObject) r0;
+
+        $r5.<gc.hashcode.HCHelper$AllocObject: byte[] allocatedArray> = $r2;
+
+        $r6 = (gc.hashcode.HCHelper$AllocObject) r0;
+
+        $r3 = $r6.<gc.hashcode.HCHelper$AllocObject: byte[] allocatedArray>;
+
+        $i1 = virtualinvoke $r3.<java.lang.Object: int hashCode()>();
+
+        $r7 = (gc.hashcode.HCHelper$AllocObject) r0;
+
+        $r7.<gc.hashcode.HCHelper$AllocObject: int hashValue> = $i1;
+
+        return;
+    }
+
+    int getStoredHashValue()
+    {
+        HCHelper$AllocObject r0;
+        int $i0;
+        gc.hashcode.HCHelper$AllocObject $r1;
+
+        r0 := @this: HCHelper$AllocObject;
+
+        $r1 = (gc.hashcode.HCHelper$AllocObject) r0;
+
+        $i0 = $r1.<gc.hashcode.HCHelper$AllocObject: int hashValue>;
+
+        return $i0;
+    }
+
+    int getCurrentHashValue()
+    {
+        byte[] $r1;
+        gc.hashcode.HCHelper$AllocObject $r2;
+        HCHelper$AllocObject r0;
+        int $i0;
+
+        r0 := @this: HCHelper$AllocObject;
+
+        $r2 = (gc.hashcode.HCHelper$AllocObject) r0;
+
+        $r1 = $r2.<gc.hashcode.HCHelper$AllocObject: byte[] allocatedArray>;
+
+        $i0 = virtualinvoke $r1.<java.lang.Object: int hashCode()>();
+
+        return $i0;
+    }
+
+    int getAllocatedSize()
+    {
+        byte[] $r1;
+        gc.hashcode.HCHelper$AllocObject $r2;
+        HCHelper$AllocObject r0;
+        int $i0;
+
+        r0 := @this: HCHelper$AllocObject;
+
+        $r2 = (gc.hashcode.HCHelper$AllocObject) r0;
+
+        $r1 = $r2.<gc.hashcode.HCHelper$AllocObject: byte[] allocatedArray>;
+
+        $i0 = lengthof $r1;
+
+        return $i0;
+    }
+}

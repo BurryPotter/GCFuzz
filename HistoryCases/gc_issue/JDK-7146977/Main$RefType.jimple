@@ -1,0 +1,129 @@
+abstract enum class Main$RefType extends java.lang.Enum
+{
+    public static final enum driver.Main$RefType ClassLoader;
+    public static final enum driver.Main$RefType Class;
+    public static final enum driver.Main$RefType Object;
+    private static final driver.Main$RefType[] $VALUES;
+
+    public static driver.Main$RefType[] values()
+    {
+        driver.Main$RefType[] $r0, $r2;
+        java.lang.Object $r1;
+
+        $r0 = <driver.Main$RefType: driver.Main$RefType[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (driver.Main$RefType[]) $r1;
+
+        return $r2;
+    }
+
+    public static driver.Main$RefType valueOf(java.lang.String)
+    {
+        driver.Main$RefType $r2;
+        java.lang.String r0;
+        java.lang.Enum $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Ldriver/Main$RefType;", r0);
+
+        $r2 = (driver.Main$RefType) $r1;
+
+        return $r2;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        java.lang.String r1;
+        Main$RefType r0;
+
+        r0 := @this: Main$RefType;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public abstract java.lang.Object get(java.net.URLClassLoader, java.lang.Class, java.lang.Object);
+
+    void <init>(java.lang.String, int, driver.Main$1)
+    {
+        Main$RefType r0;
+        int i0;
+        driver.Main$RefType $r3;
+        java.lang.String r1;
+        driver.Main$1 r2;
+
+        r0 := @this: Main$RefType;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r2 := @parameter2: driver.Main$1;
+
+        $r3 = (driver.Main$RefType) r0;
+
+        specialinvoke $r3.<driver.Main$RefType: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        driver.Main$RefType[] $r3;
+        driver.Main$RefType$3 $r9;
+        driver.Main$RefType$2 $r8;
+        driver.Main$RefType$1 $r7;
+        driver.Main$RefType $r4, $r5, $r6, $r10, $r11, $r12;
+
+        $r7 = new driver.Main$RefType$1;
+
+        specialinvoke $r7.<driver.Main$RefType$1: void <init>(java.lang.String,int)>("ClassLoader", 0);
+
+        $r10 = (driver.Main$RefType) $r7;
+
+        <driver.Main$RefType: driver.Main$RefType ClassLoader> = $r10;
+
+        $r8 = new driver.Main$RefType$2;
+
+        specialinvoke $r8.<driver.Main$RefType$2: void <init>(java.lang.String,int)>("Class", 1);
+
+        $r11 = (driver.Main$RefType) $r8;
+
+        <driver.Main$RefType: driver.Main$RefType Class> = $r11;
+
+        $r9 = new driver.Main$RefType$3;
+
+        specialinvoke $r9.<driver.Main$RefType$3: void <init>(java.lang.String,int)>("Object", 2);
+
+        $r12 = (driver.Main$RefType) $r9;
+
+        <driver.Main$RefType: driver.Main$RefType Object> = $r12;
+
+        $r3 = newarray (driver.Main$RefType)[3];
+
+        $r4 = <driver.Main$RefType: driver.Main$RefType ClassLoader>;
+
+        $r3[0] = $r4;
+
+        $r5 = <driver.Main$RefType: driver.Main$RefType Class>;
+
+        $r3[1] = $r5;
+
+        $r6 = <driver.Main$RefType: driver.Main$RefType Object>;
+
+        $r3[2] = $r6;
+
+        <driver.Main$RefType: driver.Main$RefType[] $VALUES> = $r3;
+
+        return;
+    }
+}

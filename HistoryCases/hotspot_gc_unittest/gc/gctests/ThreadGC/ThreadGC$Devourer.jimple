@@ -1,0 +1,154 @@
+class ThreadGC$Devourer extends java.lang.Object implements java.lang.Runnable
+{
+    private java.lang.Object[] arr;
+    private int index;
+    final gc.gctests.ThreadGC.ThreadGC this$0;
+
+    private void <init>(gc.gctests.ThreadGC.ThreadGC)
+    {
+        gc.gctests.ThreadGC.ThreadGC r1;
+        gc.gctests.ThreadGC.ThreadGC$Devourer $r2, $r3;
+        ThreadGC$Devourer r0;
+
+        r0 := @this: ThreadGC$Devourer;
+
+        r1 := @parameter0: gc.gctests.ThreadGC.ThreadGC;
+
+        $r2 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r2.<gc.gctests.ThreadGC.ThreadGC$Devourer: gc.gctests.ThreadGC.ThreadGC this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r3.<gc.gctests.ThreadGC.ThreadGC$Devourer: java.lang.Object[] arr> = null;
+
+        return;
+    }
+
+    public void run()
+    {
+        gc.gctests.ThreadGC.ThreadGC $r2, $r4, $r6, $r8, $r9, $r13;
+        gc.gctests.ThreadGC.ThreadGC$Devourer $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29;
+        java.lang.Throwable $r14;
+        java.lang.Object[] $r1, $r3, $r11;
+        long $l1;
+        int $i0, $i2, $i3, $i4, $i5, $i6;
+        ThreadGC$Devourer r0;
+        nsk.share.gc.gp.GarbageProducer $r10;
+        gc.gctests.ThreadGC.ThreadGC$Reclaimer $r5, $r7;
+        java.lang.Object $r12;
+
+        r0 := @this: ThreadGC$Devourer;
+
+        $r15 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r1 = $r15.<gc.gctests.ThreadGC.ThreadGC$Devourer: java.lang.Object[] arr>;
+
+        if $r1 == null goto label1;
+
+        $r16 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $i6 = $r16.<gc.gctests.ThreadGC.ThreadGC$Devourer: int index>;
+
+        $r17 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r13 = $r17.<gc.gctests.ThreadGC.ThreadGC$Devourer: gc.gctests.ThreadGC.ThreadGC this$0>;
+
+        $i5 = $r13.<gc.gctests.ThreadGC.ThreadGC: int count>;
+
+        if $i6 < $i5 goto label6;
+
+     label1:
+        $r18 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r18.<gc.gctests.ThreadGC.ThreadGC$Devourer: java.lang.Object[] arr> = null;
+
+        $r19 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r2 = $r19.<gc.gctests.ThreadGC.ThreadGC$Devourer: gc.gctests.ThreadGC.ThreadGC this$0>;
+
+        $i0 = $r2.<gc.gctests.ThreadGC.ThreadGC: int count>;
+
+        $r3 = newarray (java.lang.Object)[$i0];
+
+        $r20 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r20.<gc.gctests.ThreadGC.ThreadGC$Devourer: java.lang.Object[] arr> = $r3;
+
+        $r21 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r21.<gc.gctests.ThreadGC.ThreadGC$Devourer: int index> = 0;
+
+        $r22 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r4 = $r22.<gc.gctests.ThreadGC.ThreadGC$Devourer: gc.gctests.ThreadGC.ThreadGC this$0>;
+
+        $r5 = $r4.<gc.gctests.ThreadGC.ThreadGC: gc.gctests.ThreadGC.ThreadGC$Reclaimer reclaimer>;
+
+        entermonitor $r5;
+
+     label2:
+        $r23 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r6 = $r23.<gc.gctests.ThreadGC.ThreadGC$Devourer: gc.gctests.ThreadGC.ThreadGC this$0>;
+
+        $r7 = $r6.<gc.gctests.ThreadGC.ThreadGC: gc.gctests.ThreadGC.ThreadGC$Reclaimer reclaimer>;
+
+        virtualinvoke $r7.<java.lang.Object: void notify()>();
+
+        exitmonitor $r5;
+
+     label3:
+        goto label6;
+
+     label4:
+        $r14 := @caughtexception;
+
+        exitmonitor $r5;
+
+     label5:
+        throw $r14;
+
+     label6:
+        $r24 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r11 = $r24.<gc.gctests.ThreadGC.ThreadGC$Devourer: java.lang.Object[] arr>;
+
+        $r25 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $i2 = $r25.<gc.gctests.ThreadGC.ThreadGC$Devourer: int index>;
+
+        $r26 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r8 = $r26.<gc.gctests.ThreadGC.ThreadGC$Devourer: gc.gctests.ThreadGC.ThreadGC this$0>;
+
+        $r10 = $r8.<gc.gctests.ThreadGC.ThreadGC: nsk.share.gc.gp.GarbageProducer garbageProducer>;
+
+        $r27 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r9 = $r27.<gc.gctests.ThreadGC.ThreadGC$Devourer: gc.gctests.ThreadGC.ThreadGC this$0>;
+
+        $l1 = $r9.<gc.gctests.ThreadGC.ThreadGC: long size>;
+
+        $r12 = interfaceinvoke $r10.<nsk.share.gc.gp.GarbageProducer: java.lang.Object create(long)>($l1);
+
+        $r11[$i2] = $r12;
+
+        $r28 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $i3 = $r28.<gc.gctests.ThreadGC.ThreadGC$Devourer: int index>;
+
+        $i4 = $i3 + 1;
+
+        $r29 = (gc.gctests.ThreadGC.ThreadGC$Devourer) r0;
+
+        $r29.<gc.gctests.ThreadGC.ThreadGC$Devourer: int index> = $i4;
+
+        return;
+
+        catch java.lang.Throwable from label2 to label3 with label4;
+        catch java.lang.Throwable from label4 to label5 with label4;
+    }
+}

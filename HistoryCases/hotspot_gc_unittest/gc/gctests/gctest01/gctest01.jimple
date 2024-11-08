@@ -1,0 +1,295 @@
+public class gctest01 extends nsk.share.test.TestBase
+{
+    private java.lang.String[] args;
+
+    public void <init>(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        gc.gctests.gctest01.gctest01 $r2;
+        gctest01 r0;
+
+        r0 := @this: gctest01;
+
+        r1 := @parameter0: java.lang.String[];
+
+        specialinvoke r0.<nsk.share.test.TestBase: void <init>()>();
+
+        $r2 = (gc.gctests.gctest01.gctest01) r0;
+
+        virtualinvoke $r2.<gc.gctests.gctest01.gctest01: void setArgs(java.lang.String[])>(r1);
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Integer $r34, $r37;
+        gc.gctests.gctest01.gctest01$escaper $r40;
+        gctest01 r0;
+        java.lang.StringBuilder $r6, $r22, $r23, $r31, $r32, $r35, $r38, $r42;
+        gc.gctests.gctest01.gctest01 $r43, $r44, $r45, $r46, $r48, $r49, $r50, $r51, $r53, $r54, $r55;
+        java.lang.Throwable $r47, $r52;
+        gc.gctests.gctest01.gctest01$memevil $r41;
+        java.lang.String[] $r1, $r2, $r10, $r13, $r20, $r29;
+        int $i0, $i1, i2, i3, i4, i5, i6;
+        java.lang.String $r7, $r11, $r14, $r21, $r24, $r30, $r33;
+        java.lang.NumberFormatException $r16, $r25;
+        nsk.share.TestBug $r36, $r39;
+        java.lang.InterruptedException $r15;
+        nsk.share.log.Log $r8, $r17, $r26;
+
+        r0 := @this: gctest01;
+
+        i2 = 1000;
+
+        i3 = 10;
+
+        $r43 = (gc.gctests.gctest01.gctest01) r0;
+
+        $r1 = $r43.<gc.gctests.gctest01.gctest01: java.lang.String[] args>;
+
+        $i0 = lengthof $r1;
+
+        if $i0 <= 0 goto label04;
+
+     label01:
+        $r34 = new java.lang.Integer;
+
+        $r44 = (gc.gctests.gctest01.gctest01) r0;
+
+        $r13 = $r44.<gc.gctests.gctest01.gctest01: java.lang.String[] args>;
+
+        $r14 = $r13[0];
+
+        specialinvoke $r34.<java.lang.Integer: void <init>(java.lang.String)>($r14);
+
+        i2 = virtualinvoke $r34.<java.lang.Integer: int intValue()>();
+
+     label02:
+        goto label04;
+
+     label03:
+        $r25 := @caughtexception;
+
+        $r45 = (gc.gctests.gctest01.gctest01) r0;
+
+        $r26 = $r45.<gc.gctests.gctest01.gctest01: nsk.share.log.Log log>;
+
+        interfaceinvoke $r26.<nsk.share.log.Log: void info(java.lang.Object)>("usage: gctest01 [NumberOfObjects [Iterations] ] ]");
+
+        $r36 = new nsk.share.TestBug;
+
+        $r35 = new java.lang.StringBuilder;
+
+        specialinvoke $r35.<java.lang.StringBuilder: void <init>(java.lang.String)>("Bad input to gctest01. Expected integer, got: ->");
+
+        $r46 = (gc.gctests.gctest01.gctest01) r0;
+
+        $r29 = $r46.<gc.gctests.gctest01.gctest01: java.lang.String[] args>;
+
+        $r30 = $r29[0];
+
+        $r31 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("<-");
+
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r36.<nsk.share.TestBug: void <init>(java.lang.String,java.lang.Throwable)>($r33, $r25);
+
+        $r47 = (java.lang.Throwable) $r36;
+
+        throw $r47;
+
+     label04:
+        $r48 = (gc.gctests.gctest01.gctest01) r0;
+
+        $r2 = $r48.<gc.gctests.gctest01.gctest01: java.lang.String[] args>;
+
+        $i1 = lengthof $r2;
+
+        if $i1 <= 1 goto label08;
+
+     label05:
+        $r37 = new java.lang.Integer;
+
+        $r49 = (gc.gctests.gctest01.gctest01) r0;
+
+        $r10 = $r49.<gc.gctests.gctest01.gctest01: java.lang.String[] args>;
+
+        $r11 = $r10[1];
+
+        specialinvoke $r37.<java.lang.Integer: void <init>(java.lang.String)>($r11);
+
+        i3 = virtualinvoke $r37.<java.lang.Integer: int intValue()>();
+
+     label06:
+        goto label08;
+
+     label07:
+        $r16 := @caughtexception;
+
+        $r50 = (gc.gctests.gctest01.gctest01) r0;
+
+        $r17 = $r50.<gc.gctests.gctest01.gctest01: nsk.share.log.Log log>;
+
+        interfaceinvoke $r17.<nsk.share.log.Log: void error(java.lang.Object)>("usage: gctest01 [NumberOfObjects [Iterations] ] ]");
+
+        $r39 = new nsk.share.TestBug;
+
+        $r38 = new java.lang.StringBuilder;
+
+        specialinvoke $r38.<java.lang.StringBuilder: void <init>(java.lang.String)>("Bad input to gctest01. Expected int, got: ->");
+
+        $r51 = (gc.gctests.gctest01.gctest01) r0;
+
+        $r20 = $r51.<gc.gctests.gctest01.gctest01: java.lang.String[] args>;
+
+        $r21 = $r20[1];
+
+        $r22 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("<-");
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r39.<nsk.share.TestBug: void <init>(java.lang.String,java.lang.Throwable)>($r24, $r16);
+
+        $r52 = (java.lang.Throwable) $r39;
+
+        throw $r52;
+
+     label08:
+        staticinvoke <gc.gctests.gctest01.Person: void setPopulationLimit(int)>(i2);
+
+        i4 = 0;
+
+        goto label16;
+
+     label09:
+        staticinvoke <gc.gctests.gctest01.Person: void setPopulation(int)>(0);
+
+        $r40 = new gc.gctests.gctest01.gctest01$escaper;
+
+        $r53 = (gc.gctests.gctest01.gctest01) r0;
+
+        specialinvoke $r40.<gc.gctests.gctest01.gctest01$escaper: void <init>(gc.gctests.gctest01.gctest01)>($r53);
+
+        virtualinvoke $r40.<gc.gctests.gctest01.gctest01$escaper: void setName(java.lang.String)>("Escaper");
+
+        virtualinvoke $r40.<gc.gctests.gctest01.gctest01$escaper: void start()>();
+
+        i5 = 3;
+
+        i6 = 8;
+
+        goto label11;
+
+     label10:
+        $r41 = new gc.gctests.gctest01.gctest01$memevil;
+
+        $r54 = (gc.gctests.gctest01.gctest01) r0;
+
+        specialinvoke $r41.<gc.gctests.gctest01.gctest01$memevil: void <init>(gc.gctests.gctest01.gctest01,int)>($r54, i6);
+
+        $r42 = new java.lang.StringBuilder;
+
+        specialinvoke $r42.<java.lang.StringBuilder: void <init>(java.lang.String)>("Memevil");
+
+        $r6 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i6);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r41.<gc.gctests.gctest01.gctest01$memevil: void setName(java.lang.String)>($r7);
+
+        i6 = i6 * 2;
+
+        virtualinvoke $r41.<gc.gctests.gctest01.gctest01$memevil: void start()>();
+
+        i5 = i5 + 1;
+
+        staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>();
+
+        staticinvoke <java.lang.Thread: void yield()>();
+
+     label11:
+        if i5 < 20 goto label10;
+
+     label12:
+        virtualinvoke $r40.<gc.gctests.gctest01.gctest01$escaper: void join()>();
+
+     label13:
+        goto label15;
+
+     label14:
+        $r15 := @caughtexception;
+
+        virtualinvoke $r15.<java.lang.InterruptedException: void printStackTrace()>();
+
+     label15:
+        i4 = i4 + 1;
+
+     label16:
+        if i4 < i3 goto label09;
+
+        $r55 = (gc.gctests.gctest01.gctest01) r0;
+
+        $r8 = $r55.<gc.gctests.gctest01.gctest01: nsk.share.log.Log log>;
+
+        interfaceinvoke $r8.<nsk.share.log.Log: void info(java.lang.Object)>("Test passed.");
+
+        return;
+
+        catch java.lang.NumberFormatException from label01 to label02 with label03;
+        catch java.lang.NumberFormatException from label05 to label06 with label07;
+        catch java.lang.InterruptedException from label12 to label13 with label14;
+    }
+
+    public void setArgs(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        gc.gctests.gctest01.gctest01 $r2;
+        gctest01 r0;
+
+        r0 := @this: gctest01;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = (gc.gctests.gctest01.gctest01) r0;
+
+        $r2.<gc.gctests.gctest01.gctest01: java.lang.String[] args> = r1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.gctest01.gctest01 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.gctest01.gctest01;
+
+        specialinvoke $r2.<gc.gctests.gctest01.gctest01: void <init>(java.lang.String[])>(r1);
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.log.Log access$0(gc.gctests.gctest01.gctest01)
+    {
+        nsk.share.log.Log $r1;
+        gc.gctests.gctest01.gctest01 r0;
+
+        r0 := @parameter0: gc.gctests.gctest01.gctest01;
+
+        $r1 = r0.<gc.gctests.gctest01.gctest01: nsk.share.log.Log log>;
+
+        return $r1;
+    }
+}

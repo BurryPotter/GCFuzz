@@ -1,0 +1,54 @@
+public class TestPromotionFromEdenToTenured extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestPromotionFromEdenToTenured r0;
+
+        r0 := @this: TestPromotionFromEdenToTenured;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r2;
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace $r3;
+        gc.survivorAlignment.AlignmentHelper $r4;
+        java.lang.String[] r0;
+        long $l0, $l1, l2;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.SurvivorAlignmentTestMain fromArgs(java.lang.String[])>(r0);
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.Object)>($r1);
+
+        $l0 = virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: long getExpectedMemoryUsage()>();
+
+        virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: void baselineMemoryAllocation()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r3 = <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace TENURED>;
+
+        $r4 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper getAlignmentHelper(gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)>($r3);
+
+        $l1 = virtualinvoke $r4.<gc.survivorAlignment.AlignmentHelper: long getActualMemoryUsage()>();
+
+        l2 = $l0 + $l1;
+
+        virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: void allocate()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: void verifyMemoryUsage(long)>(l2);
+
+        return;
+    }
+}

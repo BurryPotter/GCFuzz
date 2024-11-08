@@ -1,0 +1,172 @@
+class TestStressG1HumongousImpl$AllocationThread extends java.lang.Object implements java.lang.Runnable
+{
+    private final int totalObjects;
+    private final java.util.concurrent.CountDownLatch cdl;
+    private final java.util.concurrent.atomic.AtomicInteger allocationCounter;
+    final gc.stress.TestStressG1HumongousImpl this$0;
+
+    public void <init>(gc.stress.TestStressG1HumongousImpl, java.util.concurrent.CountDownLatch, int, java.util.concurrent.atomic.AtomicInteger)
+    {
+        gc.stress.TestStressG1HumongousImpl$AllocationThread $r4, $r5, $r6, $r7;
+        java.util.concurrent.CountDownLatch r2;
+        java.util.concurrent.atomic.AtomicInteger r3;
+        gc.stress.TestStressG1HumongousImpl r1;
+        TestStressG1HumongousImpl$AllocationThread r0;
+        int i0;
+
+        r0 := @this: TestStressG1HumongousImpl$AllocationThread;
+
+        r1 := @parameter0: gc.stress.TestStressG1HumongousImpl;
+
+        r2 := @parameter1: java.util.concurrent.CountDownLatch;
+
+        i0 := @parameter2: int;
+
+        r3 := @parameter3: java.util.concurrent.atomic.AtomicInteger;
+
+        $r4 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r4.<gc.stress.TestStressG1HumongousImpl$AllocationThread: gc.stress.TestStressG1HumongousImpl this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r5 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r5.<gc.stress.TestStressG1HumongousImpl$AllocationThread: int totalObjects> = i0;
+
+        $r6 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r6.<gc.stress.TestStressG1HumongousImpl$AllocationThread: java.util.concurrent.CountDownLatch cdl> = r2;
+
+        $r7 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r7.<gc.stress.TestStressG1HumongousImpl$AllocationThread: java.util.concurrent.atomic.AtomicInteger allocationCounter> = r3;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Throwable $r5;
+        gc.stress.TestStressG1HumongousImpl$AllocationThread $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27;
+        java.util.concurrent.atomic.AtomicInteger $r4, $r14;
+        TestStressG1HumongousImpl$AllocationThread r0;
+        int $i0, $i1, i2;
+        java.lang.String $r17;
+        boolean $z0;
+        java.io.PrintStream $r9, $r11;
+        java.util.concurrent.CountDownLatch $r2, $r6, $r18;
+        java.util.List $r8;
+        gc.stress.TestStressG1HumongousImpl $r1, $r3;
+        java.lang.StringBuilder $r12, $r13, $r15, $r16, $r19;
+        java.lang.OutOfMemoryError $r7;
+
+        r0 := @this: TestStressG1HumongousImpl$AllocationThread;
+
+        i2 = 0;
+
+     label1:
+        goto label3;
+
+     label2:
+        $r20 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r3 = $r20.<gc.stress.TestStressG1HumongousImpl$AllocationThread: gc.stress.TestStressG1HumongousImpl this$0>;
+
+        virtualinvoke $r3.<gc.stress.TestStressG1HumongousImpl: void createObject()>();
+
+        i2 = i2 + 1;
+
+        $r21 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r4 = $r21.<gc.stress.TestStressG1HumongousImpl$AllocationThread: java.util.concurrent.atomic.AtomicInteger allocationCounter>;
+
+        virtualinvoke $r4.<java.util.concurrent.atomic.AtomicInteger: int incrementAndGet()>();
+
+     label3:
+        $r22 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r1 = $r22.<gc.stress.TestStressG1HumongousImpl$AllocationThread: gc.stress.TestStressG1HumongousImpl this$0>;
+
+        $z0 = $r1.<gc.stress.TestStressG1HumongousImpl: boolean isRunning>;
+
+        if $z0 == 0 goto label8;
+
+        $r23 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $i0 = $r23.<gc.stress.TestStressG1HumongousImpl$AllocationThread: int totalObjects>;
+
+        if i2 < $i0 goto label2;
+
+     label4:
+        goto label8;
+
+     label5:
+        $r7 := @caughtexception;
+
+        $r8 = <gc.stress.TestStressG1HumongousImpl: java.util.List GARBAGE>;
+
+        interfaceinvoke $r8.<java.util.List: void clear()>();
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void print(java.lang.String)>("OOME was caught.");
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>(" Allocated in thread: ");
+
+        $r12 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" . Totally allocated: ");
+
+        $r24 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r14 = $r24.<gc.stress.TestStressG1HumongousImpl$AllocationThread: java.util.concurrent.atomic.AtomicInteger allocationCounter>;
+
+        $i1 = virtualinvoke $r14.<java.util.concurrent.atomic.AtomicInteger: int get()>();
+
+        $r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+     label6:
+        $r25 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r18 = $r25.<gc.stress.TestStressG1HumongousImpl$AllocationThread: java.util.concurrent.CountDownLatch cdl>;
+
+        virtualinvoke $r18.<java.util.concurrent.CountDownLatch: void countDown()>();
+
+        goto label9;
+
+     label7:
+        $r5 := @caughtexception;
+
+        $r26 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r6 = $r26.<gc.stress.TestStressG1HumongousImpl$AllocationThread: java.util.concurrent.CountDownLatch cdl>;
+
+        virtualinvoke $r6.<java.util.concurrent.CountDownLatch: void countDown()>();
+
+        throw $r5;
+
+     label8:
+        $r27 = (gc.stress.TestStressG1HumongousImpl$AllocationThread) r0;
+
+        $r2 = $r27.<gc.stress.TestStressG1HumongousImpl$AllocationThread: java.util.concurrent.CountDownLatch cdl>;
+
+        virtualinvoke $r2.<java.util.concurrent.CountDownLatch: void countDown()>();
+
+     label9:
+        return;
+
+        catch java.lang.OutOfMemoryError from label1 to label4 with label5;
+        catch java.lang.Throwable from label1 to label6 with label7;
+    }
+}

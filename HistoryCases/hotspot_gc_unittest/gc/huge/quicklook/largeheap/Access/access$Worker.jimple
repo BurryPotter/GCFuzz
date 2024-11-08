@@ -1,0 +1,508 @@
+class access$Worker extends java.lang.Object implements java.lang.Runnable
+{
+    private int arraySize;
+    private java.util.ArrayList list;
+    final gc.huge.quicklook.largeheap.Access.access this$0;
+
+    public void <init>(gc.huge.quicklook.largeheap.Access.access, int)
+    {
+        access$Worker r0;
+        gc.huge.quicklook.largeheap.Access.access r1;
+        int i0;
+        java.util.ArrayList $r3;
+        gc.huge.quicklook.largeheap.Access.access$Worker $r4, $r5, $r6;
+
+        r0 := @this: access$Worker;
+
+        r1 := @parameter0: gc.huge.quicklook.largeheap.Access.access;
+
+        i0 := @parameter1: int;
+
+        $r4 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r4.<gc.huge.quicklook.largeheap.Access.access$Worker: gc.huge.quicklook.largeheap.Access.access this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r5 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r5.<gc.huge.quicklook.largeheap.Access.access$Worker: int arraySize> = i0;
+
+        $r3 = new java.util.ArrayList;
+
+        specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+
+        $r6 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r6.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list> = $r3;
+
+        return;
+    }
+
+    public void run()
+    {
+        byte[] r56;
+        access$Worker r0;
+        byte $b15, $b17, $b18;
+        java.lang.StringBuilder $r26, $r27, $r28, $r32, $r33, $r34, $r38, $r39, $r40, $r57, $r59, $r61;
+        float[] r10;
+        long $l8, $l13, $l14, $l22, $l24;
+        gc.huge.quicklook.largeheap.Access.access$Worker $r64, $r65, $r66, $r67, $r68, $r69, $r70, $r71, $r72, $r73, $r74, $r75, $r76, $r77, $r78, $r79, $r80, $r81, $r82, $r83, $r84, $r85, $r89, $r90, $r91, $r93, $r94, $r95;
+        int[] r7;
+        long[] r8;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i9, $i10, $i11, $i12, $i16, $i19, $i20, $i21, $i23, $i25, i26, $i27, i28, $i29, $i30, $i32, $i34;
+        java.lang.Object $r2, $r44, $r50;
+        java.lang.Throwable $r51, $r53, $r86, $r87, $r88, $r92;
+        double[] r9;
+        nsk.share.test.ExecutionController $r4, $r19, $r22, $r48;
+        java.util.ArrayList $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r20, $r23, $r42, $r46, $r52;
+        java.lang.String $r29, $r35, $r41;
+        nsk.share.TestFailure $r58, $r60, $r62, $r63;
+        char[] r6;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5;
+        gc.huge.quicklook.largeheap.Access.access $r1, $r3, $r18, $r21, $r47, $r49, $r55;
+        float $f0, $f1, $f2, $f3, $f4, $f5;
+        short[] r5;
+        double $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7, $d8, $d9, $d10;
+        java.util.Iterator $r43;
+        java.lang.InterruptedException $r54;
+
+        r0 := @this: access$Worker;
+
+     label01:
+        $r64 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r1 = $r64.<gc.huge.quicklook.largeheap.Access.access$Worker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r2 = $r1.<gc.huge.quicklook.largeheap.Access.access: java.lang.Object lock>;
+
+        entermonitor $r2;
+
+     label02:
+        goto label06;
+
+     label03:
+        $r65 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r49 = $r65.<gc.huge.quicklook.largeheap.Access.access$Worker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r50 = $r49.<gc.huge.quicklook.largeheap.Access.access: java.lang.Object lock>;
+
+        virtualinvoke $r50.<java.lang.Object: void wait(long)>(100L);
+
+     label04:
+        goto label06;
+
+     label05:
+        $r54 := @caughtexception;
+
+     label06:
+        $r66 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r55 = $r66.<gc.huge.quicklook.largeheap.Access.access$Worker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $z5 = $r55.<gc.huge.quicklook.largeheap.Access.access: boolean is4GAllocated>;
+
+        if $z5 != 0 goto label07;
+
+        $r67 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r47 = $r67.<gc.huge.quicklook.largeheap.Access.access$Worker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r48 = staticinvoke <gc.huge.quicklook.largeheap.Access.access: nsk.share.test.ExecutionController access$0(gc.huge.quicklook.largeheap.Access.access)>($r47);
+
+        $z4 = interfaceinvoke $r48.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z4 != 0 goto label03;
+
+     label07:
+        exitmonitor $r2;
+
+     label08:
+        goto label25;
+
+     label09:
+        $r53 := @caughtexception;
+
+        exitmonitor $r2;
+
+     label10:
+        throw $r53;
+
+     label11:
+        $r68 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $i0 = $r68.<gc.huge.quicklook.largeheap.Access.access$Worker: int arraySize>;
+
+        r56 = newarray (byte)[$i0];
+
+        $r69 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $i1 = $r69.<gc.huge.quicklook.largeheap.Access.access$Worker: int arraySize>;
+
+        r5 = newarray (short)[$i1];
+
+        $r70 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $i2 = $r70.<gc.huge.quicklook.largeheap.Access.access$Worker: int arraySize>;
+
+        r6 = newarray (char)[$i2];
+
+        $r71 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $i3 = $r71.<gc.huge.quicklook.largeheap.Access.access$Worker: int arraySize>;
+
+        r7 = newarray (int)[$i3];
+
+        $r72 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $i4 = $r72.<gc.huge.quicklook.largeheap.Access.access$Worker: int arraySize>;
+
+        r8 = newarray (long)[$i4];
+
+        $r73 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $i5 = $r73.<gc.huge.quicklook.largeheap.Access.access$Worker: int arraySize>;
+
+        r9 = newarray (double)[$i5];
+
+        $r74 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $i6 = $r74.<gc.huge.quicklook.largeheap.Access.access$Worker: int arraySize>;
+
+        r10 = newarray (float)[$i6];
+
+        $r75 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r11 = $r75.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r11.<java.util.ArrayList: boolean add(java.lang.Object)>(r56);
+
+        $r76 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r12 = $r76.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r12.<java.util.ArrayList: boolean add(java.lang.Object)>(r5);
+
+        $r77 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r13 = $r77.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r13.<java.util.ArrayList: boolean add(java.lang.Object)>(r6);
+
+        $r78 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r14 = $r78.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r14.<java.util.ArrayList: boolean add(java.lang.Object)>(r7);
+
+        $r79 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r15 = $r79.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r15.<java.util.ArrayList: boolean add(java.lang.Object)>(r8);
+
+        $r80 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r16 = $r80.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r16.<java.util.ArrayList: boolean add(java.lang.Object)>(r9);
+
+        $r81 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r17 = $r81.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r17.<java.util.ArrayList: boolean add(java.lang.Object)>(r9);
+
+        i26 = 0;
+
+        goto label15;
+
+     label12:
+        $i7 = i26 + 42;
+
+        $l8 = (long) $i7;
+
+        r8[i26] = $l8;
+
+        $i9 = 42 * i26;
+
+        $d0 = (double) $i9;
+
+        r9[i26] = $d0;
+
+        $d1 = (double) i26;
+
+        $d2 = 0.6 * $d1;
+
+        $f0 = (float) $d2;
+
+        r10[i26] = $f0;
+
+        $i10 = i26 % 10000;
+
+        if $i10 != 0 goto label14;
+
+        $r82 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r18 = $r82.<gc.huge.quicklook.largeheap.Access.access$Worker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r19 = staticinvoke <gc.huge.quicklook.largeheap.Access.access: nsk.share.test.ExecutionController access$0(gc.huge.quicklook.largeheap.Access.access)>($r18);
+
+        $z1 = interfaceinvoke $r19.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z1 == 0 goto label14;
+
+     label13:
+        $r83 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r20 = $r83.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r20.<java.util.ArrayList: void clear()>();
+
+        return;
+
+     label14:
+        i26 = i26 + 1;
+
+     label15:
+        $r84 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $i27 = $r84.<gc.huge.quicklook.largeheap.Access.access$Worker: int arraySize>;
+
+        if i26 < $i27 goto label12;
+
+        $r85 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $i11 = $r85.<gc.huge.quicklook.largeheap.Access.access$Worker: int arraySize>;
+
+        i28 = $i11 - 1;
+
+        goto label22;
+
+     label16:
+        $l14 = r8[i28];
+
+        $i12 = i28 + 42;
+
+        $l13 = (long) $i12;
+
+        $b15 = $l14 cmp $l13;
+
+        if $b15 == 0 goto label17;
+
+        $r58 = new nsk.share.TestFailure;
+
+        $r57 = new java.lang.StringBuilder;
+
+        specialinvoke $r57.<java.lang.StringBuilder: void <init>(java.lang.String)>("The value = ");
+
+        $l22 = r8[i28];
+
+        $r38 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l22);
+
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" when expected =");
+
+        $i23 = i28 + 42;
+
+        $l24 = (long) $i23;
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l24);
+
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r58.<nsk.share.TestFailure: void <init>(java.lang.String)>($r41);
+
+        $r86 = (java.lang.Throwable) $r58;
+
+        throw $r86;
+
+     label17:
+        $d4 = r9[i28];
+
+        $i16 = 42 * i28;
+
+        $d3 = (double) $i16;
+
+        $d5 = $d4 - $d3;
+
+        $b17 = $d5 cmpl 0.001;
+
+        $i29 = (int) $b17;
+
+        if $i29 <= 0 goto label18;
+
+        $r60 = new nsk.share.TestFailure;
+
+        $r59 = new java.lang.StringBuilder;
+
+        specialinvoke $r59.<java.lang.StringBuilder: void <init>(java.lang.String)>("The value = ");
+
+        $d9 = r9[i28];
+
+        $r32 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d9);
+
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" when expected =");
+
+        $i21 = i28 + 42;
+
+        $d10 = (double) $i21;
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d10);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r60.<nsk.share.TestFailure: void <init>(java.lang.String)>($r35);
+
+        $r87 = (java.lang.Throwable) $r60;
+
+        throw $r87;
+
+     label18:
+        $f2 = r10[i28];
+
+        $d6 = (double) i28;
+
+        $d7 = 0.6 * $d6;
+
+        $f1 = (float) $d7;
+
+        $f3 = $f2 - $f1;
+
+        $d8 = (double) $f3;
+
+        $b18 = $d8 cmpl 0.001;
+
+        $i30 = (int) $b18;
+
+        if $i30 <= 0 goto label19;
+
+        $r62 = new nsk.share.TestFailure;
+
+        $r61 = new java.lang.StringBuilder;
+
+        specialinvoke $r61.<java.lang.StringBuilder: void <init>(java.lang.String)>("The value = ");
+
+        $f4 = r10[i28];
+
+        $r26 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>($f4);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" when expected =");
+
+        $i20 = i28 + 42;
+
+        $f5 = (float) $i20;
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>($f5);
+
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r62.<nsk.share.TestFailure: void <init>(java.lang.String)>($r29);
+
+        $r88 = (java.lang.Throwable) $r62;
+
+        throw $r88;
+
+     label19:
+        $i19 = i28 % 10000;
+
+        if $i19 != 0 goto label21;
+
+        $r89 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r21 = $r89.<gc.huge.quicklook.largeheap.Access.access$Worker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r22 = staticinvoke <gc.huge.quicklook.largeheap.Access.access: nsk.share.test.ExecutionController access$0(gc.huge.quicklook.largeheap.Access.access)>($r21);
+
+        $z2 = interfaceinvoke $r22.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z2 == 0 goto label21;
+
+     label20:
+        $r90 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r23 = $r90.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r23.<java.util.ArrayList: void clear()>();
+
+        return;
+
+     label21:
+        $i32 = (int) -10;
+
+        i28 = i28 + $i32;
+
+     label22:
+        if i28 > 0 goto label16;
+
+        $r91 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r42 = $r91.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        $r43 = virtualinvoke $r42.<java.util.ArrayList: java.util.Iterator iterator()>();
+
+        goto label24;
+
+     label23:
+        $r44 = interfaceinvoke $r43.<java.util.Iterator: java.lang.Object next()>();
+
+        $i25 = virtualinvoke $r44.<java.lang.Object: int hashCode()>();
+
+        $i34 = (int) -1;
+
+        if $i25 != $i34 goto label24;
+
+        $r63 = new nsk.share.TestFailure;
+
+        specialinvoke $r63.<nsk.share.TestFailure: void <init>(java.lang.String)>("Unexpected hashcode");
+
+        $r92 = (java.lang.Throwable) $r63;
+
+        throw $r92;
+
+     label24:
+        $z3 = interfaceinvoke $r43.<java.util.Iterator: boolean hasNext()>();
+
+        if $z3 != 0 goto label23;
+
+     label25:
+        $r93 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r3 = $r93.<gc.huge.quicklook.largeheap.Access.access$Worker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r4 = staticinvoke <gc.huge.quicklook.largeheap.Access.access: nsk.share.test.ExecutionController access$0(gc.huge.quicklook.largeheap.Access.access)>($r3);
+
+        $z0 = interfaceinvoke $r4.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 != 0 goto label11;
+
+        goto label27;
+
+     label26:
+        $r51 := @caughtexception;
+
+        $r94 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r52 = $r94.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r52.<java.util.ArrayList: void clear()>();
+
+        throw $r51;
+
+     label27:
+        $r95 = (gc.huge.quicklook.largeheap.Access.access$Worker) r0;
+
+        $r46 = $r95.<gc.huge.quicklook.largeheap.Access.access$Worker: java.util.ArrayList list>;
+
+        virtualinvoke $r46.<java.util.ArrayList: void clear()>();
+
+        return;
+
+        catch java.lang.InterruptedException from label03 to label04 with label05;
+        catch java.lang.Throwable from label02 to label08 with label09;
+        catch java.lang.Throwable from label09 to label10 with label09;
+        catch java.lang.Throwable from label01 to label13 with label26;
+        catch java.lang.Throwable from label14 to label20 with label26;
+        catch java.lang.Throwable from label21 to label26 with label26;
+    }
+}

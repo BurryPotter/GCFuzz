@@ -1,0 +1,1511 @@
+class FireHunter extends java.lang.Object implements java.lang.Runnable
+{
+    private static int portNumber;
+    private static int signalNumber;
+    private static java.lang.String command;
+    private static int numThreads;
+    private static boolean socketThreadNeedsRestart;
+    private int type;
+    private static int pid;
+    public static int numSignalsPosted;
+    public static int numFilesDeleted;
+
+    public static int signalsPosted()
+    {
+        int $i0;
+
+        $i0 = <FireHunter: int numSignalsPosted>;
+
+        return $i0;
+    }
+
+    public static int filesDeleted()
+    {
+        int $i0;
+
+        $i0 = <FireHunter: int numFilesDeleted>;
+
+        return $i0;
+    }
+
+    public void <init>(int)
+    {
+        int i0;
+        FireHunter r0;
+
+        r0 := @this: FireHunter;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<FireHunter: int type> = i0;
+
+        return;
+    }
+
+    public static int getPid(java.lang.Process)
+    {
+        int $i0, $i2, $i4;
+        java.lang.String $r2, $r11;
+        boolean $z0, $z1;
+        java.io.PrintStream $r6, $r8;
+        java.lang.Process r0;
+        java.lang.reflect.Field $r4;
+        java.lang.Exception $r5;
+        java.lang.Class $r1, $r3;
+        java.lang.StringBuilder $r9, $r10, $r12;
+
+        r0 := @parameter0: java.lang.Process;
+
+        $r1 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>("java.lang.UNIXProcess");
+
+        if $z0 == 0 goto label5;
+
+     label1:
+        $r3 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("pid");
+
+        $z1 = virtualinvoke $r4.<java.lang.reflect.Field: boolean isAccessible()>();
+
+        if $z1 != 0 goto label2;
+
+        virtualinvoke $r4.<java.lang.reflect.Field: void setAccessible(boolean)>(1);
+
+     label2:
+        $i0 = virtualinvoke $r4.<java.lang.reflect.Field: int getInt(java.lang.Object)>(r0);
+
+     label3:
+        return $i0;
+
+     label4:
+        $r5 := @caughtexception;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>("001");
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+
+        $r9 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Exception ");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r5);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r11);
+
+        $i2 = (int) -1;
+
+        return $i2;
+
+     label5:
+        $i4 = (int) -2;
+
+        return $i4;
+
+        catch java.lang.Exception from label1 to label3 with label4;
+    }
+
+    public static int deleteFiles()
+    {
+        int i0, i1, i2;
+        java.lang.String $r0, $r8, $r10, $r17;
+        boolean $z0;
+        java.io.PrintStream $r6, $r12, $r14;
+        FireHunter$1 $r2;
+        java.io.File $r1, r4;
+        java.lang.Exception $r11;
+        java.lang.StringBuilder $r5, $r7, $r9, $r13, $r15, $r16;
+        java.io.File[] $r3;
+
+        i1 = 0;
+
+        $r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("user.dir");
+
+        $r1 = new java.io.File;
+
+        specialinvoke $r1.<java.io.File: void <init>(java.lang.String)>($r0);
+
+        $r2 = new FireHunter$1;
+
+        specialinvoke $r2.<FireHunter$1: void <init>()>();
+
+        $r3 = virtualinvoke $r1.<java.io.File: java.io.File[] listFiles(java.io.FilenameFilter)>($r2);
+
+        i0 = lengthof $r3;
+
+        i2 = 0;
+
+     label1:
+        if i2 >= i0 goto label7;
+
+        r4 = $r3[i2];
+
+     label2:
+        $z0 = virtualinvoke r4.<java.io.File: boolean delete()>();
+
+        if $z0 != 0 goto label3;
+
+        $r6 = <java.lang.System: java.io.PrintStream err>;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Can\'t remove ");
+
+        $r8 = virtualinvoke r4.<java.io.File: java.lang.String getAbsolutePath()>();
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        goto label4;
+
+     label3:
+        i1 = i1 + 1;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r11 := @caughtexception;
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>("006");
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+
+        $r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Exception ");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r11);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+     label6:
+        i2 = i2 + 1;
+
+        goto label1;
+
+     label7:
+        return i1;
+
+        catch java.lang.Exception from label2 to label4 with label5;
+    }
+
+    public void run()
+    {
+        java.net.ServerSocket r118, $r126, $r132;
+        java.lang.StringBuilder $r12, $r13, $r20, $r22, $r26, $r28, $r29, $r30, $r31, $r34, $r35, $r37, $r41, $r42, $r47, $r48, $r52, $r53, $r58, $r59, $r63, $r64, $r69, $r70, $r75, $r76, $r77, $r78, $r82, $r83, $r84, $r89, $r90, $r91, $r92, $r99, $r100, $r120, $r121, $r123, $r125, $r129, $r130, $r131, $r133, $r134, $r135, $r136, $r137, $r138, $r139;
+        java.io.InputStreamReader $r127;
+        java.lang.Process $r96;
+        int $i0, $i1, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20, i21, $i22, $i23, $i24, $i25, i26, i27, i28, $i29, $i31, $i33, $i35, $i37;
+        java.io.PrintStream $r2, $r4, $r11, $r19, $r25, $r38, $r40, $r46, $r51, $r57, $r62, $r68, $r81, $r98, $r104, $r105, $r108, $r109, $r111, $r112, $r114, $r115, $r117;
+        java.lang.Runtime $r86, $r94;
+        java.lang.Throwable $r102, $r103, $r106, $r107, $r110, $r113;
+        java.lang.String $r8, $r14, $r15, $r16, $r17, $r21, $r23, $r27, $r32, $r36, $r43, $r44, $r49, $r54, $r55, $r60, $r65, $r66, $r71, $r79, $r85, $r93, $r95, $r101, r116, r119, $r122, $r124;
+        java.io.BufferedReader $r128;
+        boolean $z0, $z1, $z2, $z3, $z4, z5;
+        FireHunter r0;
+        java.net.Socket $r3;
+        java.lang.String[] $r9;
+        char $c2;
+        java.io.InputStream $r7;
+
+        r0 := @this: FireHunter;
+
+        $i0 = r0.<FireHunter: int type>;
+
+        tableswitch($i0)
+        {
+            case 1: goto label01;
+            case 2: goto label04;
+            case 3: goto label09;
+            case 4: goto label12;
+            default: goto label35;
+        };
+
+     label01:
+        $r94 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $r95 = <FireHunter: java.lang.String command>;
+
+        $r96 = virtualinvoke $r94.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($r95);
+
+        $r98 = <java.lang.System: java.io.PrintStream out>;
+
+        $r120 = new java.lang.StringBuilder;
+
+        specialinvoke $r120.<java.lang.StringBuilder: void <init>()>();
+
+        $r99 = virtualinvoke $r120.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Created Process: ");
+
+        $i20 = staticinvoke <FireHunter: int getPid(java.lang.Process)>($r96);
+
+        $r100 = virtualinvoke $r99.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i20);
+
+        $r101 = virtualinvoke $r100.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r98.<java.io.PrintStream: void println(java.lang.String)>($r101);
+
+        virtualinvoke $r96.<java.lang.Process: int waitFor()>();
+
+     label02:
+        goto label35;
+
+     label03:
+        $r113 := @caughtexception;
+
+        $r114 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r114.<java.io.PrintStream: void println(java.lang.String)>("002");
+
+        $r115 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r115.<java.io.PrintStream: void println(java.lang.Object)>($r113);
+
+        goto label35;
+
+     label04:
+        i21 = <FireHunter: int signalNumber>;
+
+        $r122 = new java.lang.String;
+
+        $r121 = new java.lang.StringBuilder;
+
+        specialinvoke $r121.<java.lang.StringBuilder: void <init>()>();
+
+        $r75 = virtualinvoke $r121.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("kill -");
+
+        $i14 = <FireHunter: int signalNumber>;
+
+        $r76 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i14);
+
+        $r77 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $i15 = <FireHunter: int pid>;
+
+        $r78 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i15);
+
+        $r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r122.<java.lang.String: void <init>(java.lang.String)>($r79);
+
+        r116 = $r122;
+
+     label05:
+        $i22 = <FireHunter: int signalNumber>;
+
+        if i21 == $i22 goto label06;
+
+        i21 = <FireHunter: int signalNumber>;
+
+        $r124 = new java.lang.String;
+
+        $r123 = new java.lang.StringBuilder;
+
+        specialinvoke $r123.<java.lang.StringBuilder: void <init>()>();
+
+        $r89 = virtualinvoke $r123.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("kill -");
+
+        $i18 = <FireHunter: int signalNumber>;
+
+        $r90 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i18);
+
+        $r91 = virtualinvoke $r90.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $i19 = <FireHunter: int pid>;
+
+        $r92 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i19);
+
+        $r93 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r124.<java.lang.String: void <init>(java.lang.String)>($r93);
+
+        r116 = $r124;
+
+     label06:
+        $r81 = <java.lang.System: java.io.PrintStream out>;
+
+        $r125 = new java.lang.StringBuilder;
+
+        specialinvoke $r125.<java.lang.StringBuilder: void <init>()>();
+
+        $r82 = virtualinvoke $r125.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Posting signal...(");
+
+        $r83 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r116);
+
+        $r84 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")");
+
+        $r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r81.<java.io.PrintStream: void println(java.lang.String)>($r85);
+
+        $r86 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        virtualinvoke $r86.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>(r116);
+
+        $i16 = <FireHunter: int numSignalsPosted>;
+
+        $i17 = $i16 + 1;
+
+        <FireHunter: int numSignalsPosted> = $i17;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000L);
+
+     label07:
+        goto label05;
+
+     label08:
+        $r110 := @caughtexception;
+
+        $r111 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r111.<java.io.PrintStream: void println(java.lang.String)>("003");
+
+        $r112 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r112.<java.io.PrintStream: void println(java.lang.Object)>($r110);
+
+        goto label05;
+
+     label09:
+        $r117 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r117.<java.io.PrintStream: void println(java.lang.String)>("Deleting profile files ");
+
+        $i23 = <FireHunter: int numFilesDeleted>;
+
+        $i24 = staticinvoke <FireHunter: int deleteFiles()>();
+
+        $i25 = $i23 + $i24;
+
+        <FireHunter: int numFilesDeleted> = $i25;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(30000L);
+
+     label10:
+        goto label09;
+
+     label11:
+        $r107 := @caughtexception;
+
+        $r108 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r108.<java.io.PrintStream: void println(java.lang.String)>("004");
+
+        $r109 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r109.<java.io.PrintStream: void println(java.lang.Object)>($r107);
+
+        goto label09;
+
+     label12:
+        $r126 = new java.net.ServerSocket;
+
+        $i1 = <FireHunter: int portNumber>;
+
+        specialinvoke $r126.<java.net.ServerSocket: void <init>(int)>($i1);
+
+        r118 = $r126;
+
+     label13:
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("Waiting for connection...");
+
+        $r3 = virtualinvoke r118.<java.net.ServerSocket: java.net.Socket accept()>();
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>("got connection...");
+
+     label14:
+        $r128 = new java.io.BufferedReader;
+
+        $r127 = new java.io.InputStreamReader;
+
+        $r7 = virtualinvoke $r3.<java.net.Socket: java.io.InputStream getInputStream()>();
+
+        specialinvoke $r127.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r7);
+
+        specialinvoke $r128.<java.io.BufferedReader: void <init>(java.io.Reader)>($r127);
+
+        z5 = 0;
+
+     label15:
+        if z5 != 0 goto label27;
+
+        $r8 = virtualinvoke $r128.<java.io.BufferedReader: java.lang.String readLine()>();
+
+        if $r8 == null goto label27;
+
+        $r9 = virtualinvoke $r8.<java.lang.String: java.lang.String[] split(java.lang.String)>(" ");
+
+        i26 = lengthof $r9;
+
+        i27 = 0;
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        $r129 = new java.lang.StringBuilder;
+
+        specialinvoke $r129.<java.lang.StringBuilder: void <init>()>();
+
+        $r12 = virtualinvoke $r129.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Received command ");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>($r14);
+
+     label16:
+        if i26 <= 0 goto label26;
+
+        $r15 = $r9[i27];
+
+        $c2 = virtualinvoke $r15.<java.lang.String: char charAt(int)>(0);
+
+        $i29 = (int) $c2;
+
+        if $i29 == 45 goto label17;
+
+        goto label26;
+
+     label17:
+        $r16 = $r9[i27];
+
+        $r17 = virtualinvoke $r16.<java.lang.String: java.lang.String substring(int)>(1);
+
+        $z0 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>("newPortNumber");
+
+        if $z0 == 0 goto label18;
+
+        $i31 = (int) -1;
+
+        i26 = i26 + $i31;
+
+        i27 = i27 + 1;
+
+        $r62 = <java.lang.System: java.io.PrintStream out>;
+
+        $r130 = new java.lang.StringBuilder;
+
+        specialinvoke $r130.<java.lang.StringBuilder: void <init>()>();
+
+        $r63 = virtualinvoke $r130.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Switching listner port from ");
+
+        $i10 = <FireHunter: int portNumber>;
+
+        $r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10);
+
+        $r65 = virtualinvoke $r64.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r62.<java.io.PrintStream: void print(java.lang.String)>($r65);
+
+        virtualinvoke r118.<java.net.ServerSocket: void close()>();
+
+        $r66 = $r9[i27];
+
+        $i11 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r66);
+
+        <FireHunter: int portNumber> = $i11;
+
+        $r68 = <java.lang.System: java.io.PrintStream out>;
+
+        $r131 = new java.lang.StringBuilder;
+
+        specialinvoke $r131.<java.lang.StringBuilder: void <init>()>();
+
+        $r69 = virtualinvoke $r131.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" to ");
+
+        $i12 = <FireHunter: int portNumber>;
+
+        $r70 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12);
+
+        $r71 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r68.<java.io.PrintStream: void println(java.lang.String)>($r71);
+
+        $r132 = new java.net.ServerSocket;
+
+        $i13 = <FireHunter: int portNumber>;
+
+        specialinvoke $r132.<java.net.ServerSocket: void <init>(int)>($i13);
+
+        r118 = $r132;
+
+        z5 = 1;
+
+        goto label25;
+
+     label18:
+        $z1 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>("numThreads");
+
+        if $z1 == 0 goto label19;
+
+        $r51 = <java.lang.System: java.io.PrintStream out>;
+
+        $r133 = new java.lang.StringBuilder;
+
+        specialinvoke $r133.<java.lang.StringBuilder: void <init>()>();
+
+        $r52 = virtualinvoke $r133.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Switching number of threads from ");
+
+        $i7 = <FireHunter: int numThreads>;
+
+        $r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7);
+
+        $r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r51.<java.io.PrintStream: void print(java.lang.String)>($r54);
+
+        $i33 = (int) -1;
+
+        i26 = i26 + $i33;
+
+        i27 = i27 + 1;
+
+        $r55 = $r9[i27];
+
+        $i8 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r55);
+
+        <FireHunter: int numThreads> = $i8;
+
+        $r57 = <java.lang.System: java.io.PrintStream out>;
+
+        $r134 = new java.lang.StringBuilder;
+
+        specialinvoke $r134.<java.lang.StringBuilder: void <init>()>();
+
+        $r58 = virtualinvoke $r134.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" to ");
+
+        $i9 = <FireHunter: int numThreads>;
+
+        $r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9);
+
+        $r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r57.<java.io.PrintStream: void println(java.lang.String)>($r60);
+
+        goto label25;
+
+     label19:
+        $z2 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>("signalNumber");
+
+        if $z2 == 0 goto label20;
+
+        $r40 = <java.lang.System: java.io.PrintStream out>;
+
+        $r135 = new java.lang.StringBuilder;
+
+        specialinvoke $r135.<java.lang.StringBuilder: void <init>()>();
+
+        $r41 = virtualinvoke $r135.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Switching signal number from ");
+
+        $i4 = <FireHunter: int signalNumber>;
+
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r40.<java.io.PrintStream: void print(java.lang.String)>($r43);
+
+        $i35 = (int) -1;
+
+        i26 = i26 + $i35;
+
+        i27 = i27 + 1;
+
+        $r44 = $r9[i27];
+
+        $i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r44);
+
+        <FireHunter: int signalNumber> = $i5;
+
+        $r46 = <java.lang.System: java.io.PrintStream out>;
+
+        $r136 = new java.lang.StringBuilder;
+
+        specialinvoke $r136.<java.lang.StringBuilder: void <init>()>();
+
+        $r47 = virtualinvoke $r136.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" to ");
+
+        $i6 = <FireHunter: int signalNumber>;
+
+        $r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r46.<java.io.PrintStream: void println(java.lang.String)>($r49);
+
+        goto label25;
+
+     label20:
+        $z3 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>("shutdown");
+
+        if $z3 == 0 goto label21;
+
+        $r38 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>("Shutting Down FireHunter Test");
+
+        staticinvoke <java.lang.System: void exit(int)>(0);
+
+        goto label26;
+
+     label21:
+        $z4 = virtualinvoke $r17.<java.lang.String: boolean equals(java.lang.Object)>("command");
+
+        if $z4 == 0 goto label24;
+
+        i28 = i27 + 1;
+
+        r119 = $r9[i28];
+
+        i27 = i28 + 1;
+
+     label22:
+        $i3 = lengthof $r9;
+
+        if i27 >= $i3 goto label23;
+
+        $r137 = new java.lang.StringBuilder;
+
+        specialinvoke $r137.<java.lang.StringBuilder: void <init>()>();
+
+        $r34 = virtualinvoke $r137.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r119);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r36 = $r9[i27];
+
+        $r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36);
+
+        r119 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        i27 = i27 + 1;
+
+        goto label22;
+
+     label23:
+        $r25 = <java.lang.System: java.io.PrintStream out>;
+
+        $r138 = new java.lang.StringBuilder;
+
+        specialinvoke $r138.<java.lang.StringBuilder: void <init>()>();
+
+        $r26 = virtualinvoke $r138.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Switching cmd from \"");
+
+        $r27 = <FireHunter: java.lang.String command>;
+
+        $r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r27);
+
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\" to \"");
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r119);
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\"");
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r32);
+
+        <FireHunter: java.lang.String command> = r119;
+
+        i26 = 0;
+
+        goto label25;
+
+     label24:
+        $r19 = <java.lang.System: java.io.PrintStream out>;
+
+        $r139 = new java.lang.StringBuilder;
+
+        specialinvoke $r139.<java.lang.StringBuilder: void <init>()>();
+
+        $r20 = virtualinvoke $r139.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unrecognized option");
+
+        $r21 = $r9[i27];
+
+        $r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>($r23);
+
+        staticinvoke <java.lang.System: void exit(int)>(2);
+
+     label25:
+        $i37 = (int) -1;
+
+        i26 = i26 + $i37;
+
+        i27 = i27 + 1;
+
+        goto label16;
+
+     label26:
+        goto label15;
+
+     label27:
+        virtualinvoke $r3.<java.net.Socket: void close()>();
+
+        goto label30;
+
+     label28:
+        $r106 := @caughtexception;
+
+     label29:
+        virtualinvoke $r3.<java.net.Socket: void close()>();
+
+        throw $r106;
+
+     label30:
+        goto label13;
+
+     label31:
+        $r103 := @caughtexception;
+
+        $r104 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r104.<java.io.PrintStream: void println(java.lang.String)>("007");
+
+        $r105 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r105.<java.io.PrintStream: void println(java.lang.Object)>($r103);
+
+     label32:
+        goto label35;
+
+     label33:
+        $r102 := @caughtexception;
+
+     label34:
+        throw $r102;
+
+     label35:
+        return;
+
+        catch java.lang.Throwable from label01 to label02 with label03;
+        catch java.lang.Throwable from label05 to label07 with label08;
+        catch java.lang.Throwable from label09 to label10 with label11;
+        catch java.lang.Throwable from label14 to label27 with label28;
+        catch java.lang.Throwable from label28 to label29 with label28;
+        catch java.lang.Throwable from label12 to label31 with label31;
+        catch java.lang.Throwable from label12 to label32 with label33;
+        catch java.lang.Throwable from label33 to label34 with label33;
+    }
+
+    public static void sendCmd(int, java.lang.String)
+    {
+        java.lang.Throwable $r13;
+        java.net.Socket $r1;
+        int i0;
+        java.lang.String r8, $r12;
+        java.io.PrintStream $r0, $r2, $r6, $r14, $r15;
+        java.io.PrintWriter $r3;
+        java.io.OutputStream $r4;
+        java.lang.StringBuilder $r5, $r7, $r9, $r10, $r11;
+
+        i0 := @parameter0: int;
+
+        r8 := @parameter1: java.lang.String;
+
+     label1:
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Trying to connect...");
+
+        $r1 = new java.net.Socket;
+
+        specialinvoke $r1.<java.net.Socket: void <init>(java.lang.String,int)>("localhost", i0);
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("Conncted to server");
+
+        $r3 = new java.io.PrintWriter;
+
+        $r4 = virtualinvoke $r1.<java.net.Socket: java.io.OutputStream getOutputStream()>();
+
+        specialinvoke $r3.<java.io.PrintWriter: void <init>(java.io.OutputStream,boolean)>($r4, 1);
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Sending \"");
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\" to FireHunter process on port ");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        virtualinvoke $r3.<java.io.PrintWriter: void println(java.lang.String)>(r8);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r13 := @caughtexception;
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>("007");
+
+        $r15 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.Object)>($r13);
+
+     label4:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+    }
+
+    public static void printUsage()
+    {
+        java.io.PrintStream $r0;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>(" Usage: java FireHunter <options>\n\n    Where <options> is one of the following option:\n       -numThreads -> Number of threads to create\n       -portNumber -> Port number for sending/receiving commands\n       -signalNumber -> Signal number to post to this process\n       -command      -> Command line string for creating child process\n       -newPortNumber -> Change the listening port number\n       -modify        -> Send the new options to the target FireHunter\n       -shutdown      -> Shutdown the running instance of FireHunter\n\n Note: \n   - If -shutdown is specified, other than -portNumber, all other options are ignored\n   - If -modify is specified, the commands will be sent to the target \n         process to modify the runtime arguments\n");
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.InterruptedException
+    {
+        java.lang.Thread $r12, $r21, $r94, $r95, $r97, $r98, $r99;
+        java.lang.StringBuilder $r15, $r16, $r17, $r18, $r24, $r25, $r26, $r27, $r31, $r32, $r33, $r35, $r37, $r38, $r41, $r42, $r43, $r44, $r46, $r48, $r49, $r51, $r52, $r53, $r54, $r56, $r57, $r58, $r59, $r61, $r62, $r63, $r69, $r71, $r82, $r83, $r84, $r85, $r86, $r87, $r88, $r89, $r100, $r101;
+        FireHunter$ShutDownHookThread $r90;
+        int $i0, $i1, $i2, $i3, $i4, i6, i7, i8, i9, i10, i11, i12, i13, $i14, i15, i16, $i18, $i20, $i22, $i24, $i25, $i27, $i29, $i31, $i33, $i35, $i37, $i39, $i41, $i43, $i45, $i47, $i49, $i51;
+        java.io.PrintStream $r10, $r11, $r14, $r23, $r68;
+        java.lang.Thread[] $r81;
+        java.lang.Runtime $r1;
+        java.lang.String $r19, $r28, $r36, $r39, $r47, $r64, $r65, $r66, $r70, $r72, $r73, $r74, $r75, $r76, $r77, r78, r79, r80;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, z8, z9, $z10;
+        FireHunter $r91, $r92, $r93, $r96;
+        java.lang.String[] r0;
+        char $c5;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i18 = (int) -1;
+
+        i6 = $i18;
+
+        $i20 = (int) -1;
+
+        i7 = $i20;
+
+        $i22 = (int) -1;
+
+        i8 = $i22;
+
+        $i24 = (int) -1;
+
+        i9 = $i24;
+
+        r78 = "";
+
+        z8 = 0;
+
+        z9 = 0;
+
+        i10 = lengthof r0;
+
+        i11 = 0;
+
+        $i0 = lengthof r0;
+
+        if $i0 != 1 goto label01;
+
+        $r77 = r0[0];
+
+        $z7 = virtualinvoke $r77.<java.lang.String: boolean equals(java.lang.Object)>("-help");
+
+        if $z7 == 0 goto label01;
+
+        staticinvoke <FireHunter: void printUsage()>();
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label01:
+        if i10 <= 0 goto label11;
+
+        $r64 = r0[i11];
+
+        $c5 = virtualinvoke $r64.<java.lang.String: char charAt(int)>(0);
+
+        $i25 = (int) $c5;
+
+        if $i25 == 45 goto label02;
+
+        goto label11;
+
+     label02:
+        $r65 = r0[i11];
+
+        $r66 = virtualinvoke $r65.<java.lang.String: java.lang.String substring(int)>(1);
+
+        $z0 = virtualinvoke $r66.<java.lang.String: boolean equals(java.lang.Object)>("portNumber");
+
+        if $z0 == 0 goto label03;
+
+        $i27 = (int) -1;
+
+        i10 = i10 + $i27;
+
+        i11 = i11 + 1;
+
+        $r76 = r0[i11];
+
+        i7 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r76);
+
+        goto label10;
+
+     label03:
+        $z1 = virtualinvoke $r66.<java.lang.String: boolean equals(java.lang.Object)>("numThreads");
+
+        if $z1 == 0 goto label04;
+
+        $i29 = (int) -1;
+
+        i10 = i10 + $i29;
+
+        i11 = i11 + 1;
+
+        $r75 = r0[i11];
+
+        i6 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r75);
+
+        goto label10;
+
+     label04:
+        $z2 = virtualinvoke $r66.<java.lang.String: boolean equals(java.lang.Object)>("signalNumber");
+
+        if $z2 == 0 goto label05;
+
+        $i31 = (int) -1;
+
+        i10 = i10 + $i31;
+
+        i11 = i11 + 1;
+
+        $r74 = r0[i11];
+
+        i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r74);
+
+        goto label10;
+
+     label05:
+        $z3 = virtualinvoke $r66.<java.lang.String: boolean equals(java.lang.Object)>("newPortNumber");
+
+        if $z3 == 0 goto label06;
+
+        $i33 = (int) -1;
+
+        i10 = i10 + $i33;
+
+        i11 = i11 + 1;
+
+        $r73 = r0[i11];
+
+        i8 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r73);
+
+        goto label10;
+
+     label06:
+        $z4 = virtualinvoke $r66.<java.lang.String: boolean equals(java.lang.Object)>("shutdown");
+
+        if $z4 == 0 goto label07;
+
+        z9 = 1;
+
+        goto label11;
+
+     label07:
+        $z5 = virtualinvoke $r66.<java.lang.String: boolean equals(java.lang.Object)>("modify");
+
+        if $z5 == 0 goto label08;
+
+        z8 = 1;
+
+        goto label10;
+
+     label08:
+        $z6 = virtualinvoke $r66.<java.lang.String: boolean equals(java.lang.Object)>("command");
+
+        if $z6 == 0 goto label09;
+
+        i11 = i11 + 1;
+
+        r78 = r0[i11];
+
+        goto label11;
+
+     label09:
+        $r68 = <java.lang.System: java.io.PrintStream out>;
+
+        $r82 = new java.lang.StringBuilder;
+
+        specialinvoke $r82.<java.lang.StringBuilder: void <init>()>();
+
+        $r69 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unrecognized option");
+
+        $r70 = r0[i11];
+
+        $r71 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r70);
+
+        $r72 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r68.<java.io.PrintStream: void println(java.lang.String)>($r72);
+
+        staticinvoke <FireHunter: void printUsage()>();
+
+        staticinvoke <java.lang.System: void exit(int)>(2);
+
+     label10:
+        $i35 = (int) -1;
+
+        i10 = i10 + $i35;
+
+        i11 = i11 + 1;
+
+        goto label01;
+
+     label11:
+        if z9 == 0 goto label14;
+
+        $i37 = (int) -1;
+
+        if i7 == $i37 goto label12;
+
+        staticinvoke <FireHunter: void sendCmd(int,java.lang.String)>(i7, "-shutdown");
+
+        goto label13;
+
+     label12:
+        $i4 = <FireHunter: int portNumber>;
+
+        staticinvoke <FireHunter: void sendCmd(int,java.lang.String)>($i4, "-shutdown");
+
+     label13:
+        staticinvoke <java.lang.System: void exit(int)>(0);
+
+     label14:
+        if z8 == 0 goto label22;
+
+        r79 = " ";
+
+        $i39 = (int) -1;
+
+        if i6 == $i39 goto label15;
+
+        $r83 = new java.lang.StringBuilder;
+
+        specialinvoke $r83.<java.lang.StringBuilder: void <init>()>();
+
+        $r61 = virtualinvoke $r83.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("-numThreads ");
+
+        $r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i6);
+
+        $r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        r79 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label15:
+        $i41 = (int) -1;
+
+        if i9 == $i41 goto label16;
+
+        $r84 = new java.lang.StringBuilder;
+
+        specialinvoke $r84.<java.lang.StringBuilder: void <init>()>();
+
+        $r56 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r79);
+
+        $r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" -signalNumber ");
+
+        $r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i9);
+
+        $r59 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        r79 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label16:
+        $i43 = (int) -1;
+
+        if i8 == $i43 goto label17;
+
+        $r85 = new java.lang.StringBuilder;
+
+        specialinvoke $r85.<java.lang.StringBuilder: void <init>()>();
+
+        $r51 = virtualinvoke $r85.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r79);
+
+        $r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" -newPortNumber ");
+
+        $r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i8);
+
+        $r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        r79 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label17:
+        if r78 == "" goto label19;
+
+        $r86 = new java.lang.StringBuilder;
+
+        specialinvoke $r86.<java.lang.StringBuilder: void <init>()>();
+
+        $r41 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r79);
+
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" -command ");
+
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        r79 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        i11 = i11 + 1;
+
+     label18:
+        $i3 = lengthof r0;
+
+        if i11 >= $i3 goto label19;
+
+        $r87 = new java.lang.StringBuilder;
+
+        specialinvoke $r87.<java.lang.StringBuilder: void <init>()>();
+
+        $r46 = virtualinvoke $r87.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r79);
+
+        $r47 = r0[i11];
+
+        $r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r47);
+
+        $r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        r79 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        i11 = i11 + 1;
+
+        goto label18;
+
+     label19:
+        $r39 = virtualinvoke r79.<java.lang.String: java.lang.String trim()>();
+
+        $i45 = (int) -1;
+
+        if i7 == $i45 goto label20;
+
+        staticinvoke <FireHunter: void sendCmd(int,java.lang.String)>(i7, $r39);
+
+        goto label21;
+
+     label20:
+        $i2 = <FireHunter: int portNumber>;
+
+        staticinvoke <FireHunter: void sendCmd(int,java.lang.String)>($i2, $r39);
+
+     label21:
+        staticinvoke <java.lang.System: void exit(int)>(0);
+
+     label22:
+        $i47 = (int) -1;
+
+        if i6 == $i47 goto label23;
+
+        <FireHunter: int numThreads> = i6;
+
+     label23:
+        $i49 = (int) -1;
+
+        if i9 == $i49 goto label24;
+
+        <FireHunter: int signalNumber> = i9;
+
+     label24:
+        $i51 = (int) -1;
+
+        if i8 == $i51 goto label25;
+
+        <FireHunter: int portNumber> = i8;
+
+     label25:
+        if r78 == "" goto label28;
+
+        $r88 = new java.lang.StringBuilder;
+
+        specialinvoke $r88.<java.lang.StringBuilder: void <init>()>();
+
+        $r31 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r78);
+
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        r80 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        i12 = i11 + 1;
+
+     label26:
+        $i1 = lengthof r0;
+
+        if i12 >= $i1 goto label27;
+
+        $r89 = new java.lang.StringBuilder;
+
+        specialinvoke $r89.<java.lang.StringBuilder: void <init>()>();
+
+        $r35 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r80);
+
+        $r36 = r0[i12];
+
+        $r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36);
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        r80 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        i12 = i12 + 1;
+
+        goto label26;
+
+     label27:
+        <FireHunter: java.lang.String command> = r80;
+
+     label28:
+        $r1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $r90 = new FireHunter$ShutDownHookThread;
+
+        specialinvoke $r90.<FireHunter$ShutDownHookThread: void <init>()>();
+
+        virtualinvoke $r1.<java.lang.Runtime: void addShutdownHook(java.lang.Thread)>($r90);
+
+        $r91 = new FireHunter;
+
+        specialinvoke $r91.<FireHunter: void <init>(int)>(1);
+
+        $r92 = new FireHunter;
+
+        specialinvoke $r92.<FireHunter: void <init>(int)>(2);
+
+        $r93 = new FireHunter;
+
+        specialinvoke $r93.<FireHunter: void <init>(int)>(3);
+
+        $r94 = new java.lang.Thread;
+
+        specialinvoke $r94.<java.lang.Thread: void <init>(java.lang.Runnable)>($r92);
+
+        virtualinvoke $r94.<java.lang.Thread: void start()>();
+
+        $r95 = new java.lang.Thread;
+
+        specialinvoke $r95.<java.lang.Thread: void <init>(java.lang.Runnable)>($r93);
+
+        virtualinvoke $r95.<java.lang.Thread: void start()>();
+
+        $r96 = new FireHunter;
+
+        specialinvoke $r96.<FireHunter: void <init>(int)>(4);
+
+        $r97 = new java.lang.Thread;
+
+        specialinvoke $r97.<java.lang.Thread: void <init>(java.lang.Runnable)>($r96);
+
+        virtualinvoke $r97.<java.lang.Thread: void start()>();
+
+        i13 = 0;
+
+     label29:
+        $i14 = <FireHunter: int numThreads>;
+
+        $r81 = newarray (java.lang.Thread)[$i14];
+
+        $z10 = <FireHunter: boolean socketThreadNeedsRestart>;
+
+        if $z10 == 0 goto label30;
+
+        $r98 = new java.lang.Thread;
+
+        specialinvoke $r98.<java.lang.Thread: void <init>(java.lang.Runnable)>($r96);
+
+        virtualinvoke $r98.<java.lang.Thread: void start()>();
+
+     label30:
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>("Starting threads...");
+
+        i15 = 0;
+
+     label31:
+        if i15 >= $i14 goto label32;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r99 = new java.lang.Thread;
+
+        specialinvoke $r99.<java.lang.Thread: void <init>(java.lang.Runnable)>($r91);
+
+        $r81[i15] = $r99;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r21 = $r81[i15];
+
+        virtualinvoke $r21.<java.lang.Thread: void start()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r23 = <java.lang.System: java.io.PrintStream out>;
+
+        $r100 = new java.lang.StringBuilder;
+
+        specialinvoke $r100.<java.lang.StringBuilder: void <init>()>();
+
+        $r24 = virtualinvoke $r100.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("I S:");
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i13);
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" T:");
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i15);
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>($r28);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        i15 = i15 + 1;
+
+        goto label31;
+
+     label32:
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>("Waiting for threads to finish (may take 10 secs)");
+
+        i16 = 0;
+
+     label33:
+        if i16 >= $i14 goto label34;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r12 = $r81[i16];
+
+        virtualinvoke $r12.<java.lang.Thread: void join()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        $r101 = new java.lang.StringBuilder;
+
+        specialinvoke $r101.<java.lang.StringBuilder: void <init>()>();
+
+        $r15 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("I T:");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i13);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" T:");
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i16);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r19);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        i16 = i16 + 1;
+
+        goto label33;
+
+     label34:
+        i13 = i13 + 1;
+
+        goto label29;
+    }
+
+    static int access$000()
+    {
+        int $i0;
+
+        $i0 = <FireHunter: int pid>;
+
+        return $i0;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.management.RuntimeMXBean $r0;
+        int $i0;
+        java.lang.String[] $r2;
+        java.lang.String $r1, $r3;
+
+        <FireHunter: int portNumber> = 10010;
+
+        <FireHunter: int signalNumber> = 17;
+
+        <FireHunter: java.lang.String command> = "/bin/whoami";
+
+        <FireHunter: int numThreads> = 25;
+
+        <FireHunter: boolean socketThreadNeedsRestart> = 0;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.RuntimeMXBean getRuntimeMXBean()>();
+
+        $r1 = interfaceinvoke $r0.<java.lang.management.RuntimeMXBean: java.lang.String getName()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.String: java.lang.String[] split(java.lang.String)>("@");
+
+        $r3 = $r2[0];
+
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        <FireHunter: int pid> = $i0;
+
+        <FireHunter: int numSignalsPosted> = 0;
+
+        <FireHunter: int numFilesDeleted> = 0;
+
+        return;
+    }
+}

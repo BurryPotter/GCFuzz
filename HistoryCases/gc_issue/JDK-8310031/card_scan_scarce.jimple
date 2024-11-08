@@ -1,0 +1,155 @@
+class card_scan_scarce extends java.lang.Object
+{
+    static java.lang.Object[][] allBigobjs;
+    static final int stride;
+    static int[] garbage;
+    static final int loop_count;
+
+    void <init>()
+    {
+        card_scan_scarce r0;
+
+        r0 := @this: card_scan_scarce;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int[] $r14;
+        java.lang.StringBuilder $r3, $r5, $r6, $r7, $r8;
+        java.lang.Object[] $r16, r18;
+        java.lang.String[] r0;
+        java.lang.Object[][] $r10, $r13, $r15, $r17;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, i8, i9, i10, i11, i12;
+        java.lang.String $r1, $r2, $r9;
+        java.io.PrintStream $r4, $r11;
+        java.lang.Object $r12;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = r0[0];
+
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        $r2 = r0[1];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("### bigArrLen:");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M   bigArrCount:");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        $r10 = newarray (java.lang.Object[])[$i1];
+
+        <card_scan_scarce: java.lang.Object[][] allBigobjs> = $r10;
+
+        i8 = 0;
+
+     label01:
+        if i8 >= $i1 goto label02;
+
+        $r17 = <card_scan_scarce: java.lang.Object[][] allBigobjs>;
+
+        $i4 = $i0 * 1024;
+
+        $i5 = $i4 * 1024;
+
+        $i6 = $i5 / 4;
+
+        $i7 = $i6 - 20;
+
+        $r16 = newarray (java.lang.Object)[$i7];
+
+        $r17[i8] = $r16;
+
+        i8 = i8 + 1;
+
+        goto label01;
+
+     label02:
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>("### System.gc");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        i9 = 0;
+
+     label03:
+        if i9 >= 30 goto label10;
+
+        $r12 = new java.lang.Object;
+
+        specialinvoke $r12.<java.lang.Object: void <init>()>();
+
+        i10 = 0;
+
+     label04:
+        $r13 = <card_scan_scarce: java.lang.Object[][] allBigobjs>;
+
+        $i2 = lengthof $r13;
+
+        if i10 >= $i2 goto label07;
+
+        $r15 = <card_scan_scarce: java.lang.Object[][] allBigobjs>;
+
+        r18 = $r15[i10];
+
+        i11 = 0;
+
+     label05:
+        $i3 = lengthof r18;
+
+        if i11 >= $i3 goto label06;
+
+        r18[i11] = $r12;
+
+        i11 = i11 + 2048;
+
+        goto label05;
+
+     label06:
+        i10 = i10 + 1;
+
+        goto label04;
+
+     label07:
+        i12 = 0;
+
+     label08:
+        if i12 >= 256000 goto label09;
+
+        $r14 = newarray (int)[100];
+
+        <card_scan_scarce: int[] garbage> = $r14;
+
+        i12 = i12 + 1;
+
+        goto label08;
+
+     label09:
+        i9 = i9 + 1;
+
+        goto label03;
+
+     label10:
+        return;
+    }
+}

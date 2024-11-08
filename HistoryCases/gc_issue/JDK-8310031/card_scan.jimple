@@ -1,0 +1,88 @@
+class card_scan extends java.lang.Object
+{
+    static java.lang.Object[] bigobj;
+    static final int stride;
+    static int[] garbage;
+    static final int loop_count;
+
+    void <init>()
+    {
+        card_scan r0;
+
+        r0 := @this: card_scan;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Object[] $r1, $r3;
+        java.lang.String[] r4;
+        int[] $r2;
+        int $i0, i1, i2, i3;
+        java.lang.Object $r0;
+
+        r4 := @parameter0: java.lang.String[];
+
+        i1 = 0;
+
+     label1:
+        if i1 >= 20 goto label6;
+
+        $r0 = new java.lang.Object;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        i2 = 0;
+
+     label2:
+        $r1 = <card_scan: java.lang.Object[] bigobj>;
+
+        $i0 = lengthof $r1;
+
+        if i2 >= $i0 goto label3;
+
+        $r3 = <card_scan: java.lang.Object[] bigobj>;
+
+        $r3[i2] = $r0;
+
+        i2 = i2 + 32;
+
+        goto label2;
+
+     label3:
+        i3 = 0;
+
+     label4:
+        if i3 >= 256000 goto label5;
+
+        $r2 = newarray (int)[100];
+
+        <card_scan: int[] garbage> = $r2;
+
+        i3 = i3 + 1;
+
+        goto label4;
+
+     label5:
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label6:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Object[] $r0;
+
+        $r0 = newarray (java.lang.Object)[268435436];
+
+        <card_scan: java.lang.Object[] bigobj> = $r0;
+
+        return;
+    }
+}

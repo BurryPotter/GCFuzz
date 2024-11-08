@@ -1,0 +1,405 @@
+public class TestSurvivorRatioFlag$SurvivorRatioVerifier extends java.lang.Object
+{
+    static sun.hotspot.WhiteBox wb;
+    public static final int MAX_ITERATIONS;
+    public static final int ARRAY_LENGTH;
+    public static final int CHUNK_SIZE;
+    private static int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.arguments.TestSurvivorRatioFlag$SurvivorRatioVerifier: sun.hotspot.WhiteBox wb> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestSurvivorRatioFlag$SurvivorRatioVerifier r0;
+
+        r0 := @this: TestSurvivorRatioFlag$SurvivorRatioVerifier;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+        java.util.concurrent.Callable $r4;
+        java.lang.IllegalArgumentException $r5;
+        java.lang.Integer $r2;
+        int $i0, $i1;
+        java.lang.String $r1;
+        gc.arguments.AllocationHelper $r3;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 1 goto label1;
+
+        $r5 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Expected 1 arg: <ratio>");
+
+        throw $r5;
+
+     label1:
+        $r1 = r0[0];
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r1);
+
+        $i1 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        $r3 = new gc.arguments.AllocationHelper;
+
+        $r4 = staticinvoke <TestSurvivorRatioFlag$SurvivorRatioVerifier$lambda_0__1: java.util.concurrent.Callable bootstrap$(int)>($i1);
+
+        specialinvoke $r3.<gc.arguments.AllocationHelper: void <init>(int,int,int,java.util.concurrent.Callable)>(10, 10000, 10000, $r4);
+
+        virtualinvoke $r3.<gc.arguments.AllocationHelper: void allocateMemoryAndVerify()>();
+
+        return;
+    }
+
+    public static java.lang.Void verifySurvivorRatio(int)
+    {
+        int[] $r1;
+        gc.arguments.GCTypes$YoungGCType $r0;
+        int $i0, $i1, i2;
+        java.lang.RuntimeException $r2;
+
+        i2 := @parameter0: int;
+
+        $r0 = staticinvoke <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType getYoungGCType()>();
+
+        $r1 = staticinvoke <gc.arguments.TestSurvivorRatioFlag$SurvivorRatioVerifier: int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType()>();
+
+        $i0 = virtualinvoke $r0.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        $i1 = $r1[$i0];
+
+        tableswitch($i1)
+        {
+            case 1: goto label1;
+            case 2: goto label1;
+            case 3: goto label2;
+            case 4: goto label3;
+            default: goto label4;
+        };
+
+     label1:
+        staticinvoke <gc.arguments.TestSurvivorRatioFlag$SurvivorRatioVerifier: void verifyDefNewSurvivorRatio(int)>(i2);
+
+        goto label5;
+
+     label2:
+        staticinvoke <gc.arguments.TestSurvivorRatioFlag$SurvivorRatioVerifier: void verifyPSSurvivorRatio(int)>(i2);
+
+        goto label5;
+
+     label3:
+        staticinvoke <gc.arguments.TestSurvivorRatioFlag$SurvivorRatioVerifier: void verifyG1SurvivorRatio(int)>(i2);
+
+        goto label5;
+
+     label4:
+        $r2 = new java.lang.RuntimeException;
+
+        specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>("Unexpected young GC type");
+
+        throw $r2;
+
+     label5:
+        return null;
+    }
+
+    private static void verifyDefNewSurvivorRatio(int)
+    {
+        long $l0, $l1, $l2;
+        java.lang.RuntimeException $r2;
+        int i3, i4, $i5, $i6;
+        java.lang.StringBuilder $r3, $r4, $r5, $r6;
+        java.lang.String $r7;
+        java.lang.management.MemoryUsage $r0, $r1;
+
+        i4 := @parameter0: int;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $r1 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $l1 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $l2 = $l0 / $l1;
+
+        i3 = (int) $l2;
+
+        $i5 = i3 - i4;
+
+        $i6 = staticinvoke <java.lang.Math: int abs(int)>($i5);
+
+        if $i6 <= 1 goto label1;
+
+        $r2 = new java.lang.RuntimeException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected survivor ratio is: ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", but observed ratio is: ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7);
+
+        throw $r2;
+
+     label1:
+        return;
+    }
+
+    private static void verifyPSSurvivorRatio(int)
+    {
+        long $l0, $l1, $l2, l3, $l6, $l7, $l8, $l9, $l10, $l12;
+        byte $b11;
+        int i4, $i5;
+        java.lang.String $r8;
+        java.lang.management.MemoryUsage $r0, $r1;
+        sun.hotspot.WhiteBox $r2;
+        java.lang.RuntimeException $r3;
+        java.lang.StringBuilder $r4, $r5, $r6, $r7;
+
+        i4 := @parameter0: int;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $r1 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $l1 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $l2 = 2L * $l1;
+
+        l3 = $l0 + $l2;
+
+        $i5 = i4 + 2;
+
+        $l6 = (long) $i5;
+
+        $l7 = l3 / $l6;
+
+        $r2 = <gc.arguments.TestSurvivorRatioFlag$SurvivorRatioVerifier: sun.hotspot.WhiteBox wb>;
+
+        $l8 = virtualinvoke $r2.<sun.hotspot.WhiteBox: long psHeapGenerationAlignment()>();
+
+        $l9 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignDown(long,long)>($l7, $l8);
+
+        $l10 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $b11 = $l9 cmp $l10;
+
+        if $b11 == 0 goto label1;
+
+        $r3 = new java.lang.RuntimeException;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected survivor size is: ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", but observed size is: ");
+
+        $l12 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l12);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>($r8);
+
+        throw $r3;
+
+     label1:
+        return;
+    }
+
+    private static void verifyG1SurvivorRatio(int)
+    {
+        long $l1, $l2, $l3, $l7, $l8, $l9;
+        int $i0, i4, i5, i6, i10;
+        java.lang.String $r7;
+        java.lang.management.MemoryUsage $r0;
+        double $d0, $d1, $d2, $d3;
+        sun.hotspot.WhiteBox $r1;
+        java.lang.RuntimeException $r2;
+        java.lang.StringBuilder $r3, $r4, $r5, $r6;
+
+        i5 := @parameter0: int;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $r1 = <gc.arguments.TestSurvivorRatioFlag$SurvivorRatioVerifier: sun.hotspot.WhiteBox wb>;
+
+        $i0 = virtualinvoke $r1.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        $l1 = (long) $i0;
+
+        $l2 = 104857600L / $l1;
+
+        $l3 = staticinvoke <java.lang.Math: long max(long,long)>($l2, 1L);
+
+        i4 = (int) $l3;
+
+        $d1 = (double) i4;
+
+        $d0 = (double) i5;
+
+        $d2 = $d1 / $d0;
+
+        $d3 = staticinvoke <java.lang.Math: double ceil(double)>($d2);
+
+        i6 = (int) $d3;
+
+        $l7 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $l8 = (long) $i0;
+
+        $l9 = $l7 / $l8;
+
+        i10 = (int) $l9;
+
+        if i6 >= i10 goto label1;
+
+        $r2 = new java.lang.RuntimeException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected amount of G1 survivor regions is ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i6);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", but observed ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>($r7);
+
+        throw $r2;
+
+     label1:
+        return;
+    }
+
+    static int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType()
+    {
+        gc.arguments.GCTypes$YoungGCType $r3, $r4, $r5, $r6;
+        java.lang.NoSuchFieldError $r7, $r8, $r9, $r10;
+        int[] $r0, r2;
+        gc.arguments.GCTypes$YoungGCType[] $r1;
+        int $i0, $i1, $i2, $i3, $i4;
+
+        $r0 = <gc.arguments.TestSurvivorRatioFlag$SurvivorRatioVerifier: int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType>;
+
+        if $r0 == null goto label01;
+
+        return $r0;
+
+     label01:
+        $r1 = staticinvoke <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType[] values()>();
+
+        $i0 = lengthof $r1;
+
+        r2 = newarray (int)[$i0];
+
+     label02:
+        $r3 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType DefNew>;
+
+        $i1 = virtualinvoke $r3.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i1] = 1;
+
+     label03:
+        goto label05;
+
+     label04:
+        $r10 := @caughtexception;
+
+     label05:
+        $r4 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType G1>;
+
+        $i2 = virtualinvoke $r4.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i2] = 4;
+
+     label06:
+        goto label08;
+
+     label07:
+        $r9 := @caughtexception;
+
+     label08:
+        $r5 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType PSNew>;
+
+        $i3 = virtualinvoke $r5.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i3] = 3;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r8 := @caughtexception;
+
+     label11:
+        $r6 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType ParNew>;
+
+        $i4 = virtualinvoke $r6.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i4] = 2;
+
+     label12:
+        goto label14;
+
+     label13:
+        $r7 := @caughtexception;
+
+     label14:
+        <gc.arguments.TestSurvivorRatioFlag$SurvivorRatioVerifier: int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType> = r2;
+
+        return r2;
+
+        catch java.lang.NoSuchFieldError from label02 to label03 with label04;
+        catch java.lang.NoSuchFieldError from label05 to label06 with label07;
+        catch java.lang.NoSuchFieldError from label08 to label09 with label10;
+        catch java.lang.NoSuchFieldError from label11 to label12 with label13;
+    }
+
+    private static java.lang.Object lambda$0(int) throws java.lang.Exception
+    {
+        int i0;
+        java.lang.Void $r0;
+
+        i0 := @parameter0: int;
+
+        $r0 = staticinvoke <gc.arguments.TestSurvivorRatioFlag$SurvivorRatioVerifier: java.lang.Void verifySurvivorRatio(int)>(i0);
+
+        return $r0;
+    }
+}

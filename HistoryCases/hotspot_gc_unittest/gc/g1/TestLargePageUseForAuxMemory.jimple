@@ -1,0 +1,535 @@
+public class TestLargePageUseForAuxMemory extends java.lang.Object
+{
+    static final long HEAP_REGION_SIZE;
+    static long largePageSize;
+    static long smallPageSize;
+    static long allocGranularity;
+
+    public void <init>()
+    {
+        TestLargePageUseForAuxMemory r0;
+
+        r0 := @this: TestLargePageUseForAuxMemory;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static void checkSize(jdk.test.lib.process.OutputAnalyzer, long, java.lang.String)
+    {
+        long $l0, l1;
+        byte $b2;
+        java.lang.String r1, $r2, $r10, $r16;
+        java.lang.RuntimeException $r3, $r11;
+        jdk.test.lib.process.OutputAnalyzer r0;
+        java.lang.StringBuilder $r4, $r5, $r6, $r7, $r8, $r9, $r12, $r13, $r14, $r15;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        l1 := @parameter1: long;
+
+        r1 := @parameter2: java.lang.String;
+
+        $r2 = virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String,int)>(r1, 1);
+
+        if $r2 != null goto label1;
+
+        virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: void reportDiagnosticSummary()>();
+
+        $r11 = new java.lang.RuntimeException;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("Match from \'");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' got \'null\' expected: ");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>($r16);
+
+        throw $r11;
+
+     label1:
+        $l0 = staticinvoke <gc.g1.TestLargePageUseForAuxMemory: long parseMemoryString(java.lang.String)>($r2);
+
+        $b2 = $l0 cmp l1;
+
+        if $b2 == 0 goto label2;
+
+        virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: void reportDiagnosticSummary()>();
+
+        $r3 = new java.lang.RuntimeException;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("Match from \'");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' got ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" expected: ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>($r10);
+
+        throw $r3;
+
+     label2:
+        return;
+    }
+
+    static void checkSmallTables(jdk.test.lib.process.OutputAnalyzer, long) throws java.lang.Exception
+    {
+        long l0;
+        jdk.test.lib.process.OutputAnalyzer r0;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        l0 := @parameter1: long;
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void checkSize(jdk.test.lib.process.OutputAnalyzer,long,java.lang.String)>(r0, l0, "Block Offset Table: .*page_size=([^ ]+)");
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void checkSize(jdk.test.lib.process.OutputAnalyzer,long,java.lang.String)>(r0, l0, "Card Counts Table: .*page_size=([^ ]+)");
+
+        return;
+    }
+
+    static void checkBitmaps(jdk.test.lib.process.OutputAnalyzer, long) throws java.lang.Exception
+    {
+        long l0;
+        jdk.test.lib.process.OutputAnalyzer r0;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        l0 := @parameter1: long;
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void checkSize(jdk.test.lib.process.OutputAnalyzer,long,java.lang.String)>(r0, l0, "Prev Bitmap: .*page_size=([^ ]+)");
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void checkSize(jdk.test.lib.process.OutputAnalyzer,long,java.lang.String)>(r0, l0, "Next Bitmap: .*page_size=([^ ]+)");
+
+        return;
+    }
+
+    static void testVM(java.lang.String, long, boolean, boolean) throws java.lang.Exception
+    {
+        boolean z0, z1;
+        java.lang.Process $r18, $r25;
+        jdk.test.lib.process.OutputAnalyzer $r17, $r24;
+        java.lang.StringBuilder $r0, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r13, $r14, $r20, $r21;
+        long l0, $l1, $l2, $l3, $l4;
+        java.lang.String[] $r12, $r19;
+        java.lang.String r1, $r3, $r11, $r15, $r22;
+        java.lang.ProcessBuilder $r16, $r23;
+        java.io.PrintStream $r2;
+
+        r1 := @parameter0: java.lang.String;
+
+        l0 := @parameter1: long;
+
+        z0 := @parameter2: boolean;
+
+        z1 := @parameter3: boolean;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+
+        $r4 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" heapsize ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" card table should use large pages ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z0);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("bitmaps should use large pages ");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z1);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r11);
+
+        $r12 = newarray (java.lang.String)[8];
+
+        $r12[0] = "-XX:+UseG1GC";
+
+        $r12[1] = "-XX:G1HeapRegionSize=1048576";
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xmx");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r12[2] = $r15;
+
+        $r12[3] = "-Xlog:pagesize";
+
+        $r12[4] = "-XX:+UseLargePages";
+
+        $r12[5] = "-XX:+IgnoreUnrecognizedVMOptions";
+
+        $r12[6] = "-XX:ObjectAlignmentInBytes=8";
+
+        $r12[7] = "-version";
+
+        $r16 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r12);
+
+        $r17 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r18 = virtualinvoke $r16.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r17.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r18);
+
+        if z0 == 0 goto label1;
+
+        $l3 = <gc.g1.TestLargePageUseForAuxMemory: long largePageSize>;
+
+        goto label2;
+
+     label1:
+        $l3 = <gc.g1.TestLargePageUseForAuxMemory: long smallPageSize>;
+
+     label2:
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void checkSmallTables(jdk.test.lib.process.OutputAnalyzer,long)>($r17, $l3);
+
+        if z1 == 0 goto label3;
+
+        $l4 = <gc.g1.TestLargePageUseForAuxMemory: long largePageSize>;
+
+        goto label4;
+
+     label3:
+        $l4 = <gc.g1.TestLargePageUseForAuxMemory: long smallPageSize>;
+
+     label4:
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void checkBitmaps(jdk.test.lib.process.OutputAnalyzer,long)>($r17, $l4);
+
+        virtualinvoke $r17.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r19 = newarray (java.lang.String)[8];
+
+        $r19[0] = "-XX:+UseG1GC";
+
+        $r19[1] = "-XX:G1HeapRegionSize=1048576";
+
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xmx");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r19[2] = $r22;
+
+        $r19[3] = "-Xlog:pagesize";
+
+        $r19[4] = "-XX:-UseLargePages";
+
+        $r19[5] = "-XX:+IgnoreUnrecognizedVMOptions";
+
+        $r19[6] = "-XX:ObjectAlignmentInBytes=8";
+
+        $r19[7] = "-version";
+
+        $r23 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r19);
+
+        $r24 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r25 = virtualinvoke $r23.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r24.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r25);
+
+        $l1 = <gc.g1.TestLargePageUseForAuxMemory: long smallPageSize>;
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void checkSmallTables(jdk.test.lib.process.OutputAnalyzer,long)>($r24, $l1);
+
+        $l2 = <gc.g1.TestLargePageUseForAuxMemory: long smallPageSize>;
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void checkBitmaps(jdk.test.lib.process.OutputAnalyzer,long)>($r24, $l2);
+
+        virtualinvoke $r24.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    private static long gcd(long, long)
+    {
+        byte $b0;
+        int $i4;
+        long l1, l2, l3;
+
+        l2 := @parameter0: long;
+
+        l3 := @parameter1: long;
+
+        goto label2;
+
+     label1:
+        l1 = l2;
+
+        l2 = l3 % l2;
+
+        l3 = l1;
+
+     label2:
+        $b0 = l2 cmp 0L;
+
+        $i4 = (int) $b0;
+
+        if $i4 > 0 goto label1;
+
+        return l3;
+    }
+
+    private static long lcm(long, long)
+    {
+        long l0, l1, $l2, $l3, $l4;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        $l2 = staticinvoke <gc.g1.TestLargePageUseForAuxMemory: long gcd(long,long)>(l0, l1);
+
+        $l3 = l1 / $l2;
+
+        $l4 = l0 * $l3;
+
+        return $l4;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        byte $b9, $b12;
+        java.lang.Long $r1, $r2, $r3, $r4;
+        boolean $z0;
+        long $l1, $l2, $l3, $l4, $l5, $l6, $l7, $l8, $l10, $l11, $l13, $l14, $l15, $l16, $l17, $l18, $l19, $l20, $l21, $l22, $l23, $l24, $l25, $l26, $l27, $l28, $l29, $l30, l31;
+        java.lang.String[] r7;
+        int $i0;
+        java.io.PrintStream $r5, $r6;
+        sun.hotspot.WhiteBox $r0;
+
+        r7 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $i0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: int getVMPageSize()>();
+
+        $l1 = (long) $i0;
+
+        <gc.g1.TestLargePageUseForAuxMemory: long smallPageSize> = $l1;
+
+        $l2 = virtualinvoke $r0.<sun.hotspot.WhiteBox: long getVMLargePageSize()>();
+
+        <gc.g1.TestLargePageUseForAuxMemory: long largePageSize> = $l2;
+
+        $l3 = virtualinvoke $r0.<sun.hotspot.WhiteBox: long getVMAllocationGranularity()>();
+
+        <gc.g1.TestLargePageUseForAuxMemory: long allocGranularity> = $l3;
+
+        $l4 = <gc.g1.TestLargePageUseForAuxMemory: long smallPageSize>;
+
+        $l6 = 512L * $l4;
+
+        $l5 = <gc.g1.TestLargePageUseForAuxMemory: long largePageSize>;
+
+        $l7 = staticinvoke <gc.g1.TestLargePageUseForAuxMemory: long lcm(long,long)>($l6, $l5);
+
+        $l8 = <gc.g1.TestLargePageUseForAuxMemory: long largePageSize>;
+
+        $b9 = $l8 cmp 0L;
+
+        if $b9 != 0 goto label1;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>("Skip tests because large page support does not seem to be available on this platform.");
+
+        return;
+
+     label1:
+        $l11 = <gc.g1.TestLargePageUseForAuxMemory: long largePageSize>;
+
+        $l10 = <gc.g1.TestLargePageUseForAuxMemory: long smallPageSize>;
+
+        $b12 = $l11 cmp $l10;
+
+        if $b12 != 0 goto label2;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>("Skip tests because large page support does not seem to be available on this platform.Small and large page size are the same.");
+
+        return;
+
+     label2:
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean is32bit()>();
+
+        if $z0 != 0 goto label3;
+
+        $l22 = <gc.g1.TestLargePageUseForAuxMemory: long largePageSize>;
+
+        l31 = $l22 * 512L;
+
+        $l23 = <gc.g1.TestLargePageUseForAuxMemory: long allocGranularity>;
+
+        $l24 = $l23 * 512L;
+
+        $l25 = staticinvoke <java.lang.Math: long max(long,long)>($l24, 1048576L);
+
+        $l26 = <gc.g1.TestLargePageUseForAuxMemory: long largePageSize>;
+
+        $l27 = staticinvoke <java.lang.Math: long max(long,long)>($l25, $l26);
+
+        $r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l31);
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l27);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGT(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r3, $r4, "To test we would require to use an invalid heap size");
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void testVM(java.lang.String,long,boolean,boolean)>("case1: card table and bitmap use large pages (barely)", l31, 1, 1);
+
+        $l28 = l31 + $l27;
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void testVM(java.lang.String,long,boolean,boolean)>("case2: card table and bitmap use large pages (extra slack)", $l28, 1, 1);
+
+        $l29 = l31 - $l27;
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void testVM(java.lang.String,long,boolean,boolean)>("case3: only bitmap uses large pages (barely not)", $l29, 0, 1);
+
+     label3:
+        $l13 = <gc.g1.TestLargePageUseForAuxMemory: long largePageSize>;
+
+        $l30 = $l13 * 64L;
+
+        $l14 = <gc.g1.TestLargePageUseForAuxMemory: long allocGranularity>;
+
+        $l15 = $l14 * 64L;
+
+        $l16 = staticinvoke <java.lang.Math: long max(long,long)>($l15, 1048576L);
+
+        $l17 = <gc.g1.TestLargePageUseForAuxMemory: long largePageSize>;
+
+        $l18 = staticinvoke <java.lang.Math: long max(long,long)>($l17, $l7);
+
+        $l19 = staticinvoke <java.lang.Math: long max(long,long)>($l16, $l18);
+
+        $r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l30);
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l19);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGT(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r1, $r2, "To test we would require to use an invalid heap size");
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void testVM(java.lang.String,long,boolean,boolean)>("case4: only bitmap uses large pages (barely)", $l30, 0, 1);
+
+        $l20 = $l30 + $l19;
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void testVM(java.lang.String,long,boolean,boolean)>("case5: only bitmap uses large pages (extra slack)", $l20, 0, 1);
+
+        $l21 = $l30 - $l19;
+
+        staticinvoke <gc.g1.TestLargePageUseForAuxMemory: void testVM(java.lang.String,long,boolean,boolean)>("case6: nothing uses large pages (barely not)", $l21, 0, 0);
+
+        return;
+    }
+
+    public static long parseMemoryString(java.lang.String)
+    {
+        long l0, $l3, $l4;
+        int $i1, $i2;
+        java.lang.String r0, $r5, $r6;
+        boolean $z0, $z1, $z2, $z3;
+        java.lang.IllegalArgumentException $r1;
+        java.lang.StringBuilder $r2, $r3, $r4;
+
+        r0 := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean endsWith(java.lang.String)>("B");
+
+        if $z0 == 0 goto label1;
+
+        l0 = 1L;
+
+        goto label5;
+
+     label1:
+        $z1 = virtualinvoke r0.<java.lang.String: boolean endsWith(java.lang.String)>("K");
+
+        if $z1 == 0 goto label2;
+
+        l0 = 1024L;
+
+        goto label5;
+
+     label2:
+        $z2 = virtualinvoke r0.<java.lang.String: boolean endsWith(java.lang.String)>("M");
+
+        if $z2 == 0 goto label3;
+
+        l0 = 1048576L;
+
+        goto label5;
+
+     label3:
+        $z3 = virtualinvoke r0.<java.lang.String: boolean endsWith(java.lang.String)>("G");
+
+        if $z3 == 0 goto label4;
+
+        l0 = 1073741824L;
+
+        goto label5;
+
+     label4:
+        $r1 = new java.lang.IllegalArgumentException;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected memory string \'");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'to end with either of: B, K, M, G");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r1.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r5);
+
+        throw $r1;
+
+     label5:
+        $i1 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        $i2 = $i1 - 1;
+
+        $r6 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(0, $i2);
+
+        $l3 = staticinvoke <java.lang.Long: long parseUnsignedLong(java.lang.String)>($r6);
+
+        $l4 = $l3 * l0;
+
+        return $l4;
+    }
+}

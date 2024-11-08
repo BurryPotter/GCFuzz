@@ -1,0 +1,406 @@
+public class TestHumongousThreshold extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WHITE_BOX;
+    private static final int REGION_SIZE;
+    private static final int MAX_CONTINUOUS_SIZE_CHECK;
+    private static final int NON_HUMONGOUS_STEPS;
+
+    static void <clinit>()
+    {
+        int $i0;
+        sun.hotspot.WhiteBox $r0, $r1;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.humongousObjects.TestHumongousThreshold: sun.hotspot.WhiteBox WHITE_BOX> = $r0;
+
+        $r1 = <gc.g1.humongousObjects.TestHumongousThreshold: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $i0 = virtualinvoke $r1.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        <gc.g1.humongousObjects.TestHumongousThreshold: int REGION_SIZE> = $i0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestHumongousThreshold r0;
+
+        r0 := @this: TestHumongousThreshold;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static void allocateAndCheck(int, boolean)
+    {
+        byte[] r0;
+        byte $b5;
+        boolean z0, z1, $z2, $z4, $z5;
+        java.lang.StringBuilder $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r28, $r29;
+        long $l1, $l4;
+        int i0, $i2, $i3, $i6, $i7, $i8;
+        java.lang.Boolean $r2, $r3, $r15, $r16;
+        java.lang.String $r13, $r25, $r26, $r27;
+        sun.hotspot.WhiteBox $r1, $r14;
+
+        i0 := @parameter0: int;
+
+        z1 := @parameter1: boolean;
+
+        r0 = newarray (byte)[i0];
+
+        $r1 = <gc.g1.humongousObjects.TestHumongousThreshold: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $l1 = virtualinvoke $r1.<sun.hotspot.WhiteBox: long getObjectSize(java.lang.Object)>(r0);
+
+        $i2 = <gc.g1.humongousObjects.TestHumongousThreshold: int REGION_SIZE>;
+
+        $i3 = $i2 / 2;
+
+        $l4 = (long) $i3;
+
+        $b5 = $l1 cmp $l4;
+
+        $i8 = (int) $b5;
+
+        if $i8 <= 0 goto label1;
+
+        $z5 = 1;
+
+        $z4 = 1;
+
+        goto label2;
+
+     label1:
+        $z5 = 0;
+
+        $z4 = 0;
+
+     label2:
+        z0 = $z4;
+
+        $r2 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(z1);
+
+        $r3 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z5);
+
+        $r28 = new java.lang.StringBuilder;
+
+        specialinvoke $r28.<java.lang.StringBuilder: void <init>(java.lang.String)>("Despite we expected this object to be ");
+
+        if z1 == 0 goto label3;
+
+        $r26 = "humongous";
+
+        goto label4;
+
+     label3:
+        $r26 = "non-humongous";
+
+     label4:
+        $r5 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" it appeared otherwise when we checked ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("object size - likely test bug; Allocation size = ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; Object size = ");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; region size = ");
+
+        $i6 = <gc.g1.humongousObjects.TestHumongousThreshold: int REGION_SIZE>;
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r2, $r3, $r13);
+
+        $r14 = <gc.g1.humongousObjects.TestHumongousThreshold: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $z2 = virtualinvoke $r14.<sun.hotspot.WhiteBox: boolean g1IsHumongous(java.lang.Object)>(r0);
+
+        $r15 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z2);
+
+        $r16 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(z0);
+
+        $r29 = new java.lang.StringBuilder;
+
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>("Object should be allocated as ");
+
+        if z0 == 0 goto label5;
+
+        $r27 = "humongous";
+
+        goto label6;
+
+     label5:
+        $r27 = "non-humongous";
+
+     label6:
+        $r18 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r27);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" but it wasn\'t; Allocation size = ");
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; Object size = ");
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; region size = ");
+
+        $i7 = <gc.g1.humongousObjects.TestHumongousThreshold: int REGION_SIZE>;
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7);
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r15, $r16, $r25);
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Integer $r7, $r10, $r15, $r18, $r19, $r22, $r27, $r30, $r31;
+        float $f0, $f1, f2;
+        java.lang.Object[] $r1, $r5, $r8, $r11, $r13, $r16, $r20, $r23, $r25, $r28, $r32;
+        float[] $r0;
+        java.lang.String[] r34;
+        int $i0, $i1, $i2, i3, i4, $i5, i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, i17, $i18, i19, i20, i21, i22;
+        java.lang.String $r4;
+        java.io.PrintStream $r3, $r6, $r9, $r12, $r14, $r17, $r21, $r24, $r26, $r29, $r33;
+        java.lang.Class $r2;
+
+        r34 := @parameter0: java.lang.String[];
+
+        $i0 = staticinvoke <gc.testlibrary.Helpers: int detectByteArrayAllocationOverhead()>();
+
+        $i1 = <gc.g1.humongousObjects.TestHumongousThreshold: int REGION_SIZE>;
+
+        $i2 = $i1 / 2;
+
+        i3 = $i2 - $i0;
+
+        i4 = i3 / 10;
+
+        $i5 = <gc.g1.humongousObjects.TestHumongousThreshold: int REGION_SIZE>;
+
+        i6 = $i5 - $i0;
+
+        $r0 = newarray (float)[7];
+
+        $r0[0] = 0.8F;
+
+        $r0[1] = 1.0F;
+
+        $r0[2] = 1.2F;
+
+        $r0[3] = 1.5F;
+
+        $r0[4] = 1.7F;
+
+        $r0[5] = 2.0F;
+
+        $r0[6] = 2.5F;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r2 = class "Lgc/g1/humongousObjects/TestHumongousThreshold;";
+
+        $r4 = virtualinvoke $r2.<java.lang.Class: java.lang.String getName()>();
+
+        $r1[0] = $r4;
+
+        virtualinvoke $r3.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("%s started%n", $r1);
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r5 = newarray (java.lang.Object)[1];
+
+        $i7 = <gc.g1.humongousObjects.TestHumongousThreshold: int REGION_SIZE>;
+
+        $r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i7);
+
+        $r5[0] = $r7;
+
+        virtualinvoke $r6.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Actual G1 region size %d%n", $r5);
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r8 = newarray (java.lang.Object)[1];
+
+        $r10 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        $r8[0] = $r10;
+
+        virtualinvoke $r9.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("byte[] memory overhead %d%n", $r8);
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        $r11 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r12.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Doing non-humongous allocations%n", $r11);
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        $r13 = newarray (java.lang.Object)[1];
+
+        $r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(129);
+
+        $r13[0] = $r15;
+
+        virtualinvoke $r14.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Testing allocations with byte[] with length from 0 to %d%n", $r13);
+
+        i19 = 0;
+
+        goto label2;
+
+     label1:
+        staticinvoke <gc.g1.humongousObjects.TestHumongousThreshold: void allocateAndCheck(int,boolean)>(i19, 0);
+
+        i19 = i19 + 1;
+
+     label2:
+        if i19 < 129 goto label1;
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        $r16 = newarray (java.lang.Object)[2];
+
+        $i8 = i4 * 10;
+
+        $r18 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i8);
+
+        $r16[0] = $r18;
+
+        $r19 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i4);
+
+        $r16[1] = $r19;
+
+        virtualinvoke $r17.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Testing allocations with byte[] with length from 0 to %d with step %d%n", $r16);
+
+        i20 = 0;
+
+        goto label4;
+
+     label3:
+        $i9 = i20 * i4;
+
+        staticinvoke <gc.g1.humongousObjects.TestHumongousThreshold: void allocateAndCheck(int,boolean)>($i9, 0);
+
+        i20 = i20 + 1;
+
+     label4:
+        if i20 < 10 goto label3;
+
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+
+        $r20 = newarray (java.lang.Object)[1];
+
+        $r22 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+
+        $r20[0] = $r22;
+
+        virtualinvoke $r21.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Testing allocations with byte[] of maximum non-humongous length %d%n", $r20);
+
+        staticinvoke <gc.g1.humongousObjects.TestHumongousThreshold: void allocateAndCheck(int,boolean)>(i3, 0);
+
+        $r24 = <java.lang.System: java.io.PrintStream out>;
+
+        $r23 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r24.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Doing humongous allocations%n", $r23);
+
+        $r26 = <java.lang.System: java.io.PrintStream out>;
+
+        $r25 = newarray (java.lang.Object)[1];
+
+        $i10 = i3 + 1;
+
+        $r27 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i10);
+
+        $r25[0] = $r27;
+
+        virtualinvoke $r26.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Testing with byte[] of minimum humongous object %d%n", $r25);
+
+        $i11 = i3 + 1;
+
+        staticinvoke <gc.g1.humongousObjects.TestHumongousThreshold: void allocateAndCheck(int,boolean)>($i11, 1);
+
+        $r29 = <java.lang.System: java.io.PrintStream out>;
+
+        $r28 = newarray (java.lang.Object)[2];
+
+        $i12 = i3 + 1;
+
+        $r30 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12);
+
+        $r28[0] = $r30;
+
+        $i13 = i3 + 1;
+
+        $i14 = $i13 + 129;
+
+        $r31 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i14);
+
+        $r28[1] = $r31;
+
+        virtualinvoke $r29.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Testing allocations with byte[] with length from %d to %d%n", $r28);
+
+        i21 = 0;
+
+        goto label6;
+
+     label5:
+        $i15 = i3 + 1;
+
+        $i16 = $i15 + i21;
+
+        staticinvoke <gc.g1.humongousObjects.TestHumongousThreshold: void allocateAndCheck(int,boolean)>($i16, 1);
+
+        i21 = i21 + 1;
+
+     label6:
+        if i21 < 129 goto label5;
+
+        $r33 = <java.lang.System: java.io.PrintStream out>;
+
+        $r32 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r33.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Checking that large (more than a half of region size) objects are humongous%n", $r32);
+
+        i17 = lengthof $r0;
+
+        i22 = 0;
+
+        goto label8;
+
+     label7:
+        f2 = $r0[i22];
+
+        $f0 = (float) i6;
+
+        $f1 = $f0 * f2;
+
+        $i18 = (int) $f1;
+
+        staticinvoke <gc.g1.humongousObjects.TestHumongousThreshold: void allocateAndCheck(int,boolean)>($i18, 1);
+
+        i22 = i22 + 1;
+
+     label8:
+        if i22 < i17 goto label7;
+
+        return;
+    }
+}

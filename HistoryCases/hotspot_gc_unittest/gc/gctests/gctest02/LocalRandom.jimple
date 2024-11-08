@@ -1,0 +1,34 @@
+class LocalRandom extends java.lang.Object
+{
+    public static java.util.Random rGen;
+
+    static void <clinit>()
+    {
+        <gc.gctests.gctest02.LocalRandom: java.util.Random rGen> = null;
+
+        return;
+    }
+
+    void <init>()
+    {
+        LocalRandom r0;
+
+        r0 := @this: LocalRandom;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static double random()
+    {
+        java.util.Random $r0;
+        double $d0;
+
+        $r0 = <gc.gctests.gctest02.LocalRandom: java.util.Random rGen>;
+
+        $d0 = virtualinvoke $r0.<java.util.Random: double nextDouble()>();
+
+        return $d0;
+    }
+}

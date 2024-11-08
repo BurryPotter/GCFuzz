@@ -1,0 +1,488 @@
+class Bytecode extends java.lang.Object
+{
+    public static final int IINC;
+    public static final int TABLESWITCH;
+    public static final int LOOKUPSWITCH;
+    public static final int GETSTATIC;
+    public static final int PUTSTATIC;
+    public static final int GETFIELD;
+    public static final int PUTFIELD;
+    public static final int INVOKEVIRTUAL;
+    public static final int INVOKESPECIAL;
+    public static final int INVOKESTATIC;
+    public static final int INVOKEINTERFACE;
+    public static final int NEW;
+    public static final int ANEWARRAY;
+    public static final int CHECKCAST;
+    public static final int INSTANCEOF;
+    public static final int MULTIANEWARRAY;
+    public static final int WIDE;
+    private static final int[] lengths;
+
+    static void <clinit>()
+    {
+        int[] $r0;
+
+        $r0 = newarray (int)[203];
+
+        $r0[0] = 1;
+
+        $r0[1] = 1;
+
+        $r0[2] = 1;
+
+        $r0[3] = 1;
+
+        $r0[4] = 1;
+
+        $r0[5] = 1;
+
+        $r0[6] = 1;
+
+        $r0[7] = 1;
+
+        $r0[8] = 1;
+
+        $r0[9] = 1;
+
+        $r0[10] = 1;
+
+        $r0[11] = 1;
+
+        $r0[12] = 1;
+
+        $r0[13] = 1;
+
+        $r0[14] = 1;
+
+        $r0[15] = 1;
+
+        $r0[16] = 2;
+
+        $r0[17] = 3;
+
+        $r0[18] = 2;
+
+        $r0[19] = 3;
+
+        $r0[20] = 3;
+
+        $r0[21] = 2;
+
+        $r0[22] = 2;
+
+        $r0[23] = 2;
+
+        $r0[24] = 2;
+
+        $r0[25] = 2;
+
+        $r0[26] = 1;
+
+        $r0[27] = 1;
+
+        $r0[28] = 1;
+
+        $r0[29] = 1;
+
+        $r0[30] = 1;
+
+        $r0[31] = 1;
+
+        $r0[32] = 1;
+
+        $r0[33] = 1;
+
+        $r0[34] = 1;
+
+        $r0[35] = 1;
+
+        $r0[36] = 1;
+
+        $r0[37] = 1;
+
+        $r0[38] = 1;
+
+        $r0[39] = 1;
+
+        $r0[40] = 1;
+
+        $r0[41] = 1;
+
+        $r0[42] = 1;
+
+        $r0[43] = 1;
+
+        $r0[44] = 1;
+
+        $r0[45] = 1;
+
+        $r0[46] = 1;
+
+        $r0[47] = 1;
+
+        $r0[48] = 1;
+
+        $r0[49] = 1;
+
+        $r0[50] = 1;
+
+        $r0[51] = 1;
+
+        $r0[52] = 1;
+
+        $r0[53] = 1;
+
+        $r0[54] = 2;
+
+        $r0[55] = 2;
+
+        $r0[56] = 2;
+
+        $r0[57] = 2;
+
+        $r0[58] = 2;
+
+        $r0[59] = 1;
+
+        $r0[60] = 1;
+
+        $r0[61] = 1;
+
+        $r0[62] = 1;
+
+        $r0[63] = 1;
+
+        $r0[64] = 1;
+
+        $r0[65] = 1;
+
+        $r0[66] = 1;
+
+        $r0[67] = 1;
+
+        $r0[68] = 1;
+
+        $r0[69] = 1;
+
+        $r0[70] = 1;
+
+        $r0[71] = 1;
+
+        $r0[72] = 1;
+
+        $r0[73] = 1;
+
+        $r0[74] = 1;
+
+        $r0[75] = 1;
+
+        $r0[76] = 1;
+
+        $r0[77] = 1;
+
+        $r0[78] = 1;
+
+        $r0[79] = 1;
+
+        $r0[80] = 1;
+
+        $r0[81] = 1;
+
+        $r0[82] = 1;
+
+        $r0[83] = 1;
+
+        $r0[84] = 1;
+
+        $r0[85] = 1;
+
+        $r0[86] = 1;
+
+        $r0[87] = 1;
+
+        $r0[88] = 1;
+
+        $r0[89] = 1;
+
+        $r0[90] = 1;
+
+        $r0[91] = 1;
+
+        $r0[92] = 1;
+
+        $r0[93] = 1;
+
+        $r0[94] = 1;
+
+        $r0[95] = 1;
+
+        $r0[96] = 1;
+
+        $r0[97] = 1;
+
+        $r0[98] = 1;
+
+        $r0[99] = 1;
+
+        $r0[100] = 1;
+
+        $r0[101] = 1;
+
+        $r0[102] = 1;
+
+        $r0[103] = 1;
+
+        $r0[104] = 1;
+
+        $r0[105] = 1;
+
+        $r0[106] = 1;
+
+        $r0[107] = 1;
+
+        $r0[108] = 1;
+
+        $r0[109] = 1;
+
+        $r0[110] = 1;
+
+        $r0[111] = 1;
+
+        $r0[112] = 1;
+
+        $r0[113] = 1;
+
+        $r0[114] = 1;
+
+        $r0[115] = 1;
+
+        $r0[116] = 1;
+
+        $r0[117] = 1;
+
+        $r0[118] = 1;
+
+        $r0[119] = 1;
+
+        $r0[120] = 1;
+
+        $r0[121] = 1;
+
+        $r0[122] = 1;
+
+        $r0[123] = 1;
+
+        $r0[124] = 1;
+
+        $r0[125] = 1;
+
+        $r0[126] = 1;
+
+        $r0[127] = 1;
+
+        $r0[128] = 1;
+
+        $r0[129] = 1;
+
+        $r0[130] = 1;
+
+        $r0[131] = 1;
+
+        $r0[132] = 3;
+
+        $r0[133] = 1;
+
+        $r0[134] = 1;
+
+        $r0[135] = 1;
+
+        $r0[136] = 1;
+
+        $r0[137] = 1;
+
+        $r0[138] = 1;
+
+        $r0[139] = 1;
+
+        $r0[140] = 1;
+
+        $r0[141] = 1;
+
+        $r0[142] = 1;
+
+        $r0[143] = 1;
+
+        $r0[144] = 1;
+
+        $r0[145] = 1;
+
+        $r0[146] = 1;
+
+        $r0[147] = 1;
+
+        $r0[148] = 1;
+
+        $r0[149] = 1;
+
+        $r0[150] = 1;
+
+        $r0[151] = 1;
+
+        $r0[152] = 1;
+
+        $r0[153] = 3;
+
+        $r0[154] = 3;
+
+        $r0[155] = 3;
+
+        $r0[156] = 3;
+
+        $r0[157] = 3;
+
+        $r0[158] = 3;
+
+        $r0[159] = 3;
+
+        $r0[160] = 3;
+
+        $r0[161] = 3;
+
+        $r0[162] = 3;
+
+        $r0[163] = 3;
+
+        $r0[164] = 3;
+
+        $r0[165] = 3;
+
+        $r0[166] = 3;
+
+        $r0[167] = 3;
+
+        $r0[168] = 3;
+
+        $r0[169] = 2;
+
+        $r0[170] = 99;
+
+        $r0[171] = 99;
+
+        $r0[172] = 1;
+
+        $r0[173] = 1;
+
+        $r0[174] = 1;
+
+        $r0[175] = 1;
+
+        $r0[176] = 1;
+
+        $r0[177] = 1;
+
+        $r0[178] = 3;
+
+        $r0[179] = 3;
+
+        $r0[180] = 3;
+
+        $r0[181] = 3;
+
+        $r0[182] = 3;
+
+        $r0[183] = 3;
+
+        $r0[184] = 3;
+
+        $r0[185] = 5;
+
+        $r0[186] = 5;
+
+        $r0[187] = 3;
+
+        $r0[188] = 2;
+
+        $r0[189] = 3;
+
+        $r0[190] = 1;
+
+        $r0[191] = 1;
+
+        $r0[192] = 3;
+
+        $r0[193] = 3;
+
+        $r0[194] = 1;
+
+        $r0[195] = 1;
+
+        $r0[197] = 4;
+
+        $r0[198] = 3;
+
+        $r0[199] = 3;
+
+        $r0[200] = 5;
+
+        $r0[201] = 5;
+
+        $r0[202] = 1;
+
+        <gc.stress.gcbasher.Bytecode: int[] lengths> = $r0;
+
+        return;
+    }
+
+    void <init>()
+    {
+        Bytecode r0;
+
+        r0 := @this: Bytecode;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static int getLength(int) throws java.lang.IllegalArgumentException
+    {
+        java.lang.IllegalArgumentException $r0;
+        int[] $r4, $r5;
+        int i0, $i1, $i2;
+        java.lang.StringBuilder $r1, $r2;
+        java.lang.String $r3;
+
+        i0 := @parameter0: int;
+
+        if i0 < 0 goto label1;
+
+        $r4 = <gc.stress.gcbasher.Bytecode: int[] lengths>;
+
+        $i1 = lengthof $r4;
+
+        if i0 < $i1 goto label2;
+
+     label1:
+        $r0 = new java.lang.IllegalArgumentException;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("Unknown bytecode ");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r3);
+
+        throw $r0;
+
+     label2:
+        $r5 = <gc.stress.gcbasher.Bytecode: int[] lengths>;
+
+        $i2 = $r5[i0];
+
+        return $i2;
+    }
+}

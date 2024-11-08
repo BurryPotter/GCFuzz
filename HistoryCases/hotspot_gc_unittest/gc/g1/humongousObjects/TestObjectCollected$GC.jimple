@@ -1,0 +1,128 @@
+abstract enum class TestObjectCollected$GC extends java.lang.Enum
+{
+    public static final enum gc.g1.humongousObjects.TestObjectCollected$GC YOUNG_CG;
+    public static final enum gc.g1.humongousObjects.TestObjectCollected$GC FULL_GC;
+    public static final enum gc.g1.humongousObjects.TestObjectCollected$GC CMC;
+    public static final enum gc.g1.humongousObjects.TestObjectCollected$GC FULL_GC_MEMORY_PRESSURE;
+    private static final sun.hotspot.WhiteBox WHITE_BOX;
+    private static final gc.g1.humongousObjects.TestObjectCollected$GC[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.g1.humongousObjects.TestObjectCollected$GC[] $r4;
+        sun.hotspot.WhiteBox $r9;
+        gc.g1.humongousObjects.TestObjectCollected$GC$1 $r10;
+        gc.g1.humongousObjects.TestObjectCollected$GC$2 $r11;
+        gc.g1.humongousObjects.TestObjectCollected$GC$3 $r12;
+        gc.g1.humongousObjects.TestObjectCollected$GC$4 $r13;
+        gc.g1.humongousObjects.TestObjectCollected$GC $r5, $r6, $r7, $r8, $r14, $r15, $r16, $r17;
+
+        $r10 = new gc.g1.humongousObjects.TestObjectCollected$GC$1;
+
+        specialinvoke $r10.<gc.g1.humongousObjects.TestObjectCollected$GC$1: void <init>(java.lang.String,int)>("YOUNG_CG", 0);
+
+        $r14 = (gc.g1.humongousObjects.TestObjectCollected$GC) $r10;
+
+        <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC YOUNG_CG> = $r14;
+
+        $r11 = new gc.g1.humongousObjects.TestObjectCollected$GC$2;
+
+        specialinvoke $r11.<gc.g1.humongousObjects.TestObjectCollected$GC$2: void <init>(java.lang.String,int)>("FULL_GC", 1);
+
+        $r15 = (gc.g1.humongousObjects.TestObjectCollected$GC) $r11;
+
+        <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC FULL_GC> = $r15;
+
+        $r12 = new gc.g1.humongousObjects.TestObjectCollected$GC$3;
+
+        specialinvoke $r12.<gc.g1.humongousObjects.TestObjectCollected$GC$3: void <init>(java.lang.String,int)>("CMC", 2);
+
+        $r16 = (gc.g1.humongousObjects.TestObjectCollected$GC) $r12;
+
+        <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC CMC> = $r16;
+
+        $r13 = new gc.g1.humongousObjects.TestObjectCollected$GC$4;
+
+        specialinvoke $r13.<gc.g1.humongousObjects.TestObjectCollected$GC$4: void <init>(java.lang.String,int)>("FULL_GC_MEMORY_PRESSURE", 3);
+
+        $r17 = (gc.g1.humongousObjects.TestObjectCollected$GC) $r13;
+
+        <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC FULL_GC_MEMORY_PRESSURE> = $r17;
+
+        $r4 = newarray (gc.g1.humongousObjects.TestObjectCollected$GC)[4];
+
+        $r5 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC YOUNG_CG>;
+
+        $r4[0] = $r5;
+
+        $r6 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC FULL_GC>;
+
+        $r4[1] = $r6;
+
+        $r7 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC CMC>;
+
+        $r4[2] = $r7;
+
+        $r8 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC FULL_GC_MEMORY_PRESSURE>;
+
+        $r4[3] = $r8;
+
+        <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC[] ENUM$VALUES> = $r4;
+
+        $r9 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.humongousObjects.TestObjectCollected$GC: sun.hotspot.WhiteBox WHITE_BOX> = $r9;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        TestObjectCollected$GC r0;
+        java.lang.String r1;
+
+        r0 := @this: TestObjectCollected$GC;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public abstract void provoke();
+
+    public static gc.g1.humongousObjects.TestObjectCollected$GC[] values()
+    {
+        int $i0;
+        gc.g1.humongousObjects.TestObjectCollected$GC[] $r0, $r1;
+
+        $r0 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.g1.humongousObjects.TestObjectCollected$GC)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.g1.humongousObjects.TestObjectCollected$GC valueOf(java.lang.String)
+    {
+        java.lang.String r0;
+        java.lang.Enum $r1;
+        gc.g1.humongousObjects.TestObjectCollected$GC $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/g1/humongousObjects/TestObjectCollected$GC;", r0);
+
+        $r2 = (gc.g1.humongousObjects.TestObjectCollected$GC) $r1;
+
+        return $r2;
+    }
+}

@@ -1,0 +1,429 @@
+public class BytecodeMutatorFactory extends java.lang.Object implements gc.g1.unloading.bytecode.BytecodeFactory
+{
+    private static final java.lang.String FILLER_CHARACTER;
+    private final java.nio.charset.Charset CHARACTER_SET;
+    private java.util.List offsets;
+    private byte[] templateBytecode;
+    private java.lang.String templateClassName;
+    private byte[] templateClassNameAsBytes;
+
+    public static java.lang.String padName(java.lang.String, int)
+    {
+        int i0, $i1, i2, i3;
+        java.lang.StringBuilder $r1;
+        java.lang.String r0, $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        $i1 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        i2 = i0 - $i1;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>(r0);
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_");
+
+        i3 = i3 + 1;
+
+     label2:
+        if i3 < i2 goto label1;
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r2;
+    }
+
+    public java.lang.String padName(java.lang.String)
+    {
+        BytecodeMutatorFactory r1;
+        gc.g1.unloading.bytecode.BytecodeMutatorFactory $r3;
+        int $i0;
+        java.lang.String r0, $r2;
+
+        r1 := @this: BytecodeMutatorFactory;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r3 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r1;
+
+        $i0 = virtualinvoke $r3.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: int getNameLength()>();
+
+        $r2 = staticinvoke <gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.lang.String padName(java.lang.String,int)>(r0, $i0);
+
+        return $r2;
+    }
+
+    public void <init>()
+    {
+        BytecodeMutatorFactory r0;
+        gc.g1.unloading.bytecode.BytecodeMutatorFactory $r3;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+
+        r0 := @this: BytecodeMutatorFactory;
+
+        $r1 = class "Lgc/g1/unloading/bytecode/DefaultTemplateClass;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r3 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        specialinvoke $r3.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: void <init>(java.lang.String)>($r2);
+
+        return;
+    }
+
+    public void <init>(java.lang.String)
+    {
+        byte[] $r7, $r8, $r11, $r12, $r13, $r16, $r17, $r20;
+        java.lang.Integer $r15;
+        byte $b5, $b6;
+        boolean z0;
+        gc.g1.unloading.bytecode.BytecodeMutatorFactory $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30, $r31, $r32, $r33, $r34, $r35;
+        java.util.List $r14;
+        java.nio.charset.Charset $r1, $r10;
+        int $i0, $i1, $i2, $i3, $i4, i7, i8, $i9, $i10, $i11;
+        java.lang.String r3, $r4, $r5, $r9;
+        java.util.LinkedList $r21;
+        java.io.IOException $r18;
+        java.lang.RuntimeException $r22;
+        BytecodeMutatorFactory r0;
+        java.io.InputStream $r6;
+
+        r0 := @this: BytecodeMutatorFactory;
+
+        r3 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = <java.nio.charset.StandardCharsets: java.nio.charset.Charset UTF_8>;
+
+        $r23 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r23.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.nio.charset.Charset CHARACTER_SET> = $r1;
+
+        $r21 = new java.util.LinkedList;
+
+        specialinvoke $r21.<java.util.LinkedList: void <init>()>();
+
+        $r24 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r24.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.util.List offsets> = $r21;
+
+        $r25 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r25.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.lang.String templateClassName> = r3;
+
+        $r4 = virtualinvoke r3.<java.lang.String: java.lang.String replace(char,char)>(46, 47);
+
+        $r5 = virtualinvoke $r4.<java.lang.String: java.lang.String concat(java.lang.String)>(".class");
+
+        $r6 = staticinvoke <java.lang.ClassLoader: java.io.InputStream getSystemResourceAsStream(java.lang.String)>($r5);
+
+     label01:
+        $i0 = virtualinvoke $r6.<java.io.InputStream: int available()>();
+
+        $r7 = newarray (byte)[$i0];
+
+        $r26 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r26.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateBytecode> = $r7;
+
+        $r27 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r8 = $r27.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateBytecode>;
+
+        virtualinvoke $r6.<java.io.InputStream: int read(byte[])>($r8);
+
+        virtualinvoke $r6.<java.io.InputStream: void close()>();
+
+     label02:
+        goto label04;
+
+     label03:
+        $r18 := @caughtexception;
+
+        $r22 = new java.lang.RuntimeException;
+
+        specialinvoke $r22.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r18);
+
+        throw $r22;
+
+     label04:
+        $r9 = virtualinvoke r3.<java.lang.String: java.lang.String replace(char,char)>(46, 47);
+
+        $r28 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r10 = $r28.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.nio.charset.Charset CHARACTER_SET>;
+
+        $r11 = virtualinvoke $r9.<java.lang.String: byte[] getBytes(java.nio.charset.Charset)>($r10);
+
+        $r29 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r29.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateClassNameAsBytes> = $r11;
+
+        i7 = 0;
+
+        goto label12;
+
+     label05:
+        z0 = 1;
+
+        i8 = 0;
+
+        goto label09;
+
+     label06:
+        $i3 = i7 + i8;
+
+        $r30 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r13 = $r30.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateBytecode>;
+
+        $i2 = lengthof $r13;
+
+        if $i3 >= $i2 goto label07;
+
+        $r31 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r16 = $r31.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateClassNameAsBytes>;
+
+        $b6 = $r16[i8];
+
+        $r32 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r17 = $r32.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateBytecode>;
+
+        $i4 = i7 + i8;
+
+        $b5 = $r17[$i4];
+
+        $i10 = (int) $b6;
+
+        $i11 = (int) $b5;
+
+        if $i10 == $i11 goto label08;
+
+     label07:
+        z0 = 0;
+
+        goto label10;
+
+     label08:
+        i8 = i8 + 1;
+
+     label09:
+        $r33 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r12 = $r33.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateClassNameAsBytes>;
+
+        $i1 = lengthof $r12;
+
+        if i8 < $i1 goto label06;
+
+     label10:
+        if z0 == 0 goto label11;
+
+        $r34 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r14 = $r34.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.util.List offsets>;
+
+        $r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i7);
+
+        interfaceinvoke $r14.<java.util.List: boolean add(java.lang.Object)>($r15);
+
+     label11:
+        i7 = i7 + 1;
+
+     label12:
+        $r35 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r20 = $r35.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateBytecode>;
+
+        $i9 = lengthof $r20;
+
+        if i7 < $i9 goto label05;
+
+        return;
+
+        catch java.io.IOException from label01 to label02 with label03;
+    }
+
+    public byte[] getBytecode(java.lang.String)
+    {
+        byte[] $r4, $r5, $r6, $r7, $r8;
+        java.lang.Integer $r12;
+        boolean $z0;
+        gc.g1.unloading.bytecode.BytecodeMutatorFactory $r31, $r32, $r33, $r34, $r35, $r36, $r37;
+        java.util.List $r9;
+        java.lang.StringBuilder $r15, $r16, $r17, $r19, $r20, $r22, $r23, $r24, $r25, $r26, $r27, $r29;
+        java.nio.charset.Charset $r3;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        java.lang.String r0, $r1, $r18, $r21, $r28;
+        java.util.Iterator $r10;
+        java.lang.RuntimeException $r30;
+        BytecodeMutatorFactory r2;
+        java.lang.Object $r11;
+
+        r2 := @this: BytecodeMutatorFactory;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = virtualinvoke r0.<java.lang.String: java.lang.String replace(char,char)>(46, 47);
+
+        $r31 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r2;
+
+        $r3 = $r31.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.nio.charset.Charset CHARACTER_SET>;
+
+        $r4 = virtualinvoke $r1.<java.lang.String: byte[] getBytes(java.nio.charset.Charset)>($r3);
+
+        $i1 = lengthof $r4;
+
+        $r32 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r2;
+
+        $r5 = $r32.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateClassNameAsBytes>;
+
+        $i0 = lengthof $r5;
+
+        if $i1 == $i0 goto label1;
+
+        $r30 = new java.lang.RuntimeException;
+
+        $r29 = new java.lang.StringBuilder;
+
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>("Can\'t produce bytecode with \"");
+
+        $r15 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\" substituted as class name. ");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Length of this name differs from length of \"");
+
+        $r33 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r2;
+
+        $r18 = $r33.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.lang.String templateClassName>;
+
+        $r19 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r18);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\" which equals to ");
+
+        $r34 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r2;
+
+        $r21 = $r34.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.lang.String templateClassName>;
+
+        $i5 = virtualinvoke $r21.<java.lang.String: int length()>();
+
+        $r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(". Length of \"");
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\" is ");
+
+        $i6 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r30.<java.lang.RuntimeException: void <init>(java.lang.String)>($r28);
+
+        throw $r30;
+
+     label1:
+        $r35 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r2;
+
+        $r7 = $r35.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateBytecode>;
+
+        $r36 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r2;
+
+        $r6 = $r36.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] templateBytecode>;
+
+        $i2 = lengthof $r6;
+
+        $r8 = staticinvoke <java.util.Arrays: byte[] copyOf(byte[],int)>($r7, $i2);
+
+        $r37 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r2;
+
+        $r9 = $r37.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.util.List offsets>;
+
+        $r10 = interfaceinvoke $r9.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label3;
+
+     label2:
+        $r11 = interfaceinvoke $r10.<java.util.Iterator: java.lang.Object next()>();
+
+        $r12 = (java.lang.Integer) $r11;
+
+        $i3 = virtualinvoke $r12.<java.lang.Integer: int intValue()>();
+
+        $i4 = lengthof $r4;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r4, 0, $r8, $i3, $i4);
+
+     label3:
+        $z0 = interfaceinvoke $r10.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label2;
+
+        return $r8;
+    }
+
+    public int getNameLength()
+    {
+        BytecodeMutatorFactory r0;
+        gc.g1.unloading.bytecode.BytecodeMutatorFactory $r2;
+        int $i0;
+        java.lang.String $r1;
+
+        r0 := @this: BytecodeMutatorFactory;
+
+        $r2 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r1 = $r2.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.lang.String templateClassName>;
+
+        $i0 = virtualinvoke $r1.<java.lang.String: int length()>();
+
+        return $i0;
+    }
+
+    public gc.g1.unloading.bytecode.Bytecode createBytecode(java.lang.String)
+    {
+        BytecodeMutatorFactory r0;
+        byte[] $r3;
+        gc.g1.unloading.bytecode.BytecodeMutatorFactory $r6, $r7;
+        java.lang.String r1, $r2;
+        gc.g1.unloading.bytecode.Bytecode $r5;
+
+        r0 := @this: BytecodeMutatorFactory;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r6 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r2 = virtualinvoke $r6.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: java.lang.String padName(java.lang.String)>(r1);
+
+        $r7 = (gc.g1.unloading.bytecode.BytecodeMutatorFactory) r0;
+
+        $r3 = virtualinvoke $r7.<gc.g1.unloading.bytecode.BytecodeMutatorFactory: byte[] getBytecode(java.lang.String)>($r2);
+
+        $r5 = new gc.g1.unloading.bytecode.Bytecode;
+
+        specialinvoke $r5.<gc.g1.unloading.bytecode.Bytecode: void <init>(java.lang.String,byte[])>($r2, $r3);
+
+        return $r5;
+    }
+}

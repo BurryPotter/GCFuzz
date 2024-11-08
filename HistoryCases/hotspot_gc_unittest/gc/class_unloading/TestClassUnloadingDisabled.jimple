@@ -1,0 +1,63 @@
+public class TestClassUnloadingDisabled extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestClassUnloadingDisabled r0;
+
+        r0 := @this: TestClassUnloadingDisabled;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.net.URL $r4;
+        sun.hotspot.WhiteBox $r0;
+        java.lang.String[] r7;
+        gc.class_unloading.NoPDClassLoader $r6;
+        java.security.ProtectionDomain $r2;
+        java.lang.Class $r1;
+        java.security.CodeSource $r3;
+        java.lang.String $r5;
+        boolean $z0, $z1, $z2;
+
+        r7 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $r1 = class "Lgc/class_unloading/TestClassUnloadingDisabled;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.security.ProtectionDomain getProtectionDomain()>();
+
+        $r3 = virtualinvoke $r2.<java.security.ProtectionDomain: java.security.CodeSource getCodeSource()>();
+
+        $r4 = virtualinvoke $r3.<java.security.CodeSource: java.net.URL getLocation()>();
+
+        $r5 = virtualinvoke $r4.<java.net.URL: java.lang.String getPath()>();
+
+        $z0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean isClassAlive(java.lang.String)>("ClassToLoadUnload");
+
+        staticinvoke <jdk.test.lib.Asserts: void assertFalse(boolean,java.lang.String)>($z0, "Should not be loaded yet");
+
+        $r6 = new gc.class_unloading.NoPDClassLoader;
+
+        specialinvoke $r6.<gc.class_unloading.NoPDClassLoader: void <init>(java.lang.String)>($r5);
+
+        virtualinvoke $r6.<gc.class_unloading.NoPDClassLoader: java.lang.Class loadClass(java.lang.String)>("ClassToLoadUnload");
+
+        $z1 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean isClassAlive(java.lang.String)>("ClassToLoadUnload");
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z1, "Class should be loaded");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $z2 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean isClassAlive(java.lang.String)>("ClassToLoadUnload");
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z2, "Class should not have ben unloaded");
+
+        return;
+    }
+}

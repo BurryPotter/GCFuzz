@@ -1,0 +1,332 @@
+final class HCHelper$AllocInfo extends java.lang.Object
+{
+    private long allocatedSize;
+    private long numOfAllocedObjs;
+    private java.util.ArrayList safeList;
+    private java.util.ArrayList allocList;
+    private java.util.ArrayList evacList0;
+    private java.util.ArrayList evacList1;
+    private java.util.ArrayList evacList2;
+    private java.util.ArrayList evacList3;
+    private java.util.ArrayList evacList4;
+    private java.util.ArrayList evacList5;
+    final gc.hashcode.HCHelper this$0;
+
+    void <init>(gc.hashcode.HCHelper)
+    {
+        java.util.ArrayList $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17;
+        gc.hashcode.HCHelper r1;
+        gc.hashcode.HCHelper$AllocInfo $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28;
+        HCHelper$AllocInfo r0;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        r1 := @parameter0: gc.hashcode.HCHelper;
+
+        $r18 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r18.<gc.hashcode.HCHelper$AllocInfo: gc.hashcode.HCHelper this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r19 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r19.<gc.hashcode.HCHelper$AllocInfo: long allocatedSize> = 0L;
+
+        $r20 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r20.<gc.hashcode.HCHelper$AllocInfo: long numOfAllocedObjs> = 0L;
+
+        $r10 = new java.util.ArrayList;
+
+        specialinvoke $r10.<java.util.ArrayList: void <init>()>();
+
+        $r21 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r21.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList safeList> = $r10;
+
+        $r11 = new java.util.ArrayList;
+
+        specialinvoke $r11.<java.util.ArrayList: void <init>()>();
+
+        $r22 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r22.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList allocList> = $r11;
+
+        $r12 = new java.util.ArrayList;
+
+        specialinvoke $r12.<java.util.ArrayList: void <init>()>();
+
+        $r23 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r23.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList0> = $r12;
+
+        $r13 = new java.util.ArrayList;
+
+        specialinvoke $r13.<java.util.ArrayList: void <init>()>();
+
+        $r24 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r24.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList1> = $r13;
+
+        $r14 = new java.util.ArrayList;
+
+        specialinvoke $r14.<java.util.ArrayList: void <init>()>();
+
+        $r25 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r25.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList2> = $r14;
+
+        $r15 = new java.util.ArrayList;
+
+        specialinvoke $r15.<java.util.ArrayList: void <init>()>();
+
+        $r26 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r26.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList3> = $r15;
+
+        $r16 = new java.util.ArrayList;
+
+        specialinvoke $r16.<java.util.ArrayList: void <init>()>();
+
+        $r27 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r27.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList4> = $r16;
+
+        $r17 = new java.util.ArrayList;
+
+        specialinvoke $r17.<java.util.ArrayList: void <init>()>();
+
+        $r28 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r28.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList5> = $r17;
+
+        return;
+    }
+
+    public long getAllocatedSize()
+    {
+        HCHelper$AllocInfo r0;
+        long $l0;
+        gc.hashcode.HCHelper$AllocInfo $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r1 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $l0 = $r1.<gc.hashcode.HCHelper$AllocInfo: long allocatedSize>;
+
+        return $l0;
+    }
+
+    public void setAllocatedSize(long)
+    {
+        HCHelper$AllocInfo r0;
+        long l0;
+        gc.hashcode.HCHelper$AllocInfo $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        l0 := @parameter0: long;
+
+        $r1 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r1.<gc.hashcode.HCHelper$AllocInfo: long allocatedSize> = l0;
+
+        return;
+    }
+
+    public long getNumOfAllocedObjs()
+    {
+        HCHelper$AllocInfo r0;
+        long $l0;
+        gc.hashcode.HCHelper$AllocInfo $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r1 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $l0 = $r1.<gc.hashcode.HCHelper$AllocInfo: long numOfAllocedObjs>;
+
+        return $l0;
+    }
+
+    public void setNumOfAllocedObjs(long)
+    {
+        HCHelper$AllocInfo r0;
+        long l0;
+        gc.hashcode.HCHelper$AllocInfo $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        l0 := @parameter0: long;
+
+        $r1 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r1.<gc.hashcode.HCHelper$AllocInfo: long numOfAllocedObjs> = l0;
+
+        return;
+    }
+
+    public void incNumOfAllocedObjs()
+    {
+        HCHelper$AllocInfo r0;
+        long $l0, $l1;
+        gc.hashcode.HCHelper$AllocInfo $r1, $r2;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r1 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $l0 = $r1.<gc.hashcode.HCHelper$AllocInfo: long numOfAllocedObjs>;
+
+        $l1 = $l0 + 1L;
+
+        $r2 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r2.<gc.hashcode.HCHelper$AllocInfo: long numOfAllocedObjs> = $l1;
+
+        return;
+    }
+
+    public void decNumOfAllocedObjs()
+    {
+        HCHelper$AllocInfo r0;
+        long $l0, $l1;
+        gc.hashcode.HCHelper$AllocInfo $r1, $r2;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r1 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $l0 = $r1.<gc.hashcode.HCHelper$AllocInfo: long numOfAllocedObjs>;
+
+        $l1 = $l0 - 1L;
+
+        $r2 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r2.<gc.hashcode.HCHelper$AllocInfo: long numOfAllocedObjs> = $l1;
+
+        return;
+    }
+
+    public java.util.ArrayList getSafeList()
+    {
+        HCHelper$AllocInfo r0;
+        gc.hashcode.HCHelper$AllocInfo $r2;
+        java.util.ArrayList $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r2 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r1 = $r2.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList safeList>;
+
+        return $r1;
+    }
+
+    public java.util.ArrayList getAllocList()
+    {
+        HCHelper$AllocInfo r0;
+        gc.hashcode.HCHelper$AllocInfo $r2;
+        java.util.ArrayList $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r2 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r1 = $r2.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList allocList>;
+
+        return $r1;
+    }
+
+    public java.util.ArrayList getEvacList0()
+    {
+        HCHelper$AllocInfo r0;
+        gc.hashcode.HCHelper$AllocInfo $r2;
+        java.util.ArrayList $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r2 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r1 = $r2.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList0>;
+
+        return $r1;
+    }
+
+    public java.util.ArrayList getEvacList1()
+    {
+        HCHelper$AllocInfo r0;
+        gc.hashcode.HCHelper$AllocInfo $r2;
+        java.util.ArrayList $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r2 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r1 = $r2.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList1>;
+
+        return $r1;
+    }
+
+    public java.util.ArrayList getEvacList2()
+    {
+        HCHelper$AllocInfo r0;
+        gc.hashcode.HCHelper$AllocInfo $r2;
+        java.util.ArrayList $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r2 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r1 = $r2.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList2>;
+
+        return $r1;
+    }
+
+    public java.util.ArrayList getEvacList3()
+    {
+        HCHelper$AllocInfo r0;
+        gc.hashcode.HCHelper$AllocInfo $r2;
+        java.util.ArrayList $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r2 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r1 = $r2.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList3>;
+
+        return $r1;
+    }
+
+    public java.util.ArrayList getEvacList4()
+    {
+        HCHelper$AllocInfo r0;
+        gc.hashcode.HCHelper$AllocInfo $r2;
+        java.util.ArrayList $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r2 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r1 = $r2.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList4>;
+
+        return $r1;
+    }
+
+    public java.util.ArrayList getEvacList5()
+    {
+        HCHelper$AllocInfo r0;
+        gc.hashcode.HCHelper$AllocInfo $r2;
+        java.util.ArrayList $r1;
+
+        r0 := @this: HCHelper$AllocInfo;
+
+        $r2 = (gc.hashcode.HCHelper$AllocInfo) r0;
+
+        $r1 = $r2.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList evacList5>;
+
+        return $r1;
+    }
+}

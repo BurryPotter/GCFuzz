@@ -1,0 +1,138 @@
+public class FinalizerGC02 extends java.lang.Object
+{
+    static gc.gctests.FinalizerGC02.CircularLinkedList listHolder;
+    static int count;
+
+    public void <init>()
+    {
+        FinalizerGC02 r0;
+
+        r0 := @this: FinalizerGC02;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static int returnCount()
+    {
+        int $i0;
+
+        $i0 = <gc.gctests.FinalizerGC02.FinalizerGC02: int count>;
+
+        return $i0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Throwable $r17;
+        java.lang.String[] r12;
+        int[] $r0;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String $r11;
+        java.io.PrintStream $r5;
+        nsk.share.TestFailure $r16;
+        java.lang.StringBuilder $r9, $r10, $r15;
+        gc.gctests.FinalizerGC02.CircularLinkedList $r2, $r4, $r13, $r14;
+        java.lang.OutOfMemoryError $r6;
+
+        r12 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (int)[1000];
+
+        $r13 = new gc.gctests.FinalizerGC02.CircularLinkedList;
+
+        specialinvoke $r13.<gc.gctests.FinalizerGC02.CircularLinkedList: void <init>()>();
+
+        <gc.gctests.FinalizerGC02.FinalizerGC02: gc.gctests.FinalizerGC02.CircularLinkedList listHolder> = $r13;
+
+        $r2 = <gc.gctests.FinalizerGC02.FinalizerGC02: gc.gctests.FinalizerGC02.CircularLinkedList listHolder>;
+
+        virtualinvoke $r2.<gc.gctests.FinalizerGC02.CircularLinkedList: void buildNMegList(int)>(1);
+
+     label1:
+        goto label3;
+
+     label2:
+        $r14 = new gc.gctests.FinalizerGC02.CircularLinkedList;
+
+        specialinvoke $r14.<gc.gctests.FinalizerGC02.CircularLinkedList: void <init>()>();
+
+        <gc.gctests.FinalizerGC02.FinalizerGC02: gc.gctests.FinalizerGC02.CircularLinkedList listHolder> = $r14;
+
+        $r4 = <gc.gctests.FinalizerGC02.FinalizerGC02: gc.gctests.FinalizerGC02.CircularLinkedList listHolder>;
+
+        virtualinvoke $r4.<gc.gctests.FinalizerGC02.CircularLinkedList: void buildNMegList(int)>(1);
+
+        $i1 = <gc.gctests.FinalizerGC02.FinalizerGC02: int count>;
+
+        $i2 = $i1 + 1;
+
+        <gc.gctests.FinalizerGC02.FinalizerGC02: int count> = $i2;
+
+     label3:
+        $i0 = <gc.gctests.FinalizerGC02.FinalizerGC02: int count>;
+
+        if $i0 < 5 goto label2;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r6 := @caughtexception;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r16 = new nsk.share.TestFailure;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("Test failed at ");
+
+        $i3 = <gc.gctests.FinalizerGC02.FinalizerGC02: int count>;
+
+        $r9 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("th iteration.");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r16.<nsk.share.TestFailure: void <init>(java.lang.String)>($r11);
+
+        $r17 = (java.lang.Throwable) $r16;
+
+        throw $r17;
+
+     label6:
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>("Test Passed");
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label1 to label4 with label5;
+    }
+
+    static void doComputation()
+    {
+        int $i2;
+        long l1;
+        byte $b0;
+
+        l1 = 0L;
+
+        goto label2;
+
+     label1:
+        l1 = l1 + 1L;
+
+     label2:
+        $b0 = l1 cmp 1000000L;
+
+        $i2 = (int) $b0;
+
+        if $i2 < 0 goto label1;
+
+        return;
+    }
+}

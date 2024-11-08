@@ -1,0 +1,604 @@
+public class TestMaxMinHeapFreeRatioFlags$RatioVerifier extends java.lang.Object
+{
+    private static final jdk.internal.misc.Unsafe unsafe;
+    public static final int CHUNK_SIZE;
+    public static final int ARRAY_LENGTH;
+    public static final int GC_TRIES;
+    public static final double OVERLOAD;
+    public static final double VARIANCE;
+    public static java.util.LinkedList garbage;
+
+    static void <clinit>()
+    {
+        jdk.internal.misc.Unsafe $r0;
+        int $i0, $i1;
+        java.util.LinkedList $r1;
+
+        $r0 = staticinvoke <jdk.internal.misc.Unsafe: jdk.internal.misc.Unsafe getUnsafe()>();
+
+        <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: jdk.internal.misc.Unsafe unsafe> = $r0;
+
+        $i0 = <jdk.internal.misc.Unsafe: int ARRAY_BYTE_BASE_OFFSET>;
+
+        $i1 = 1024 - $i0;
+
+        <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: int ARRAY_LENGTH> = $i1;
+
+        $r1 = new java.util.LinkedList;
+
+        specialinvoke $r1.<java.util.LinkedList: void <init>()>();
+
+        <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: java.util.LinkedList garbage> = $r1;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestMaxMinHeapFreeRatioFlags$RatioVerifier r0;
+
+        r0 := @this: TestMaxMinHeapFreeRatioFlags$RatioVerifier;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        byte[] $r12, $r14;
+        java.lang.Integer $r7, $r9;
+        byte b4, $b7, $b13, $b15, $b20, $b22, $b29, $b30;
+        long $l3, $l5, $l6, $l9, $l10, $l11, $l12, $l14, $l16, $l17, $l18, $l19, $l21, l27, l28;
+        java.lang.String $r6, $r8, $r10;
+        java.lang.RuntimeException $r23, $r24;
+        gc.arguments.GCTypes$OldGCType $r1, $r2, $r4, $r5;
+        boolean $z0;
+        java.lang.String[] r0;
+        int $i0, $i1, $i2, $i8, $i23, $i24, $i25, $i31, $i32, $i33, $i34, $i35;
+        java.lang.Boolean $r11;
+        java.util.LinkedList $r13, $r15, $r17, $r18, $r19;
+        double $d0, d1, $d2, d3, $d4, $d5, $d6, $d7, $d8, $d9, $d10, $d11;
+        java.io.PrintStream $r3;
+        java.lang.IllegalArgumentException $r22;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 3 goto label01;
+
+        $r22 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r22.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Expected 3 args: <minRatio> <maxRatio> <shrinkHeapInSteps>");
+
+        throw $r22;
+
+     label01:
+        $r1 = staticinvoke <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType getOldGCType()>();
+
+        $r2 = <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType PSOld>;
+
+        if $r1 == $r2 goto label02;
+
+        $r4 = staticinvoke <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType getOldGCType()>();
+
+        $r5 = <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType G1>;
+
+        if $r4 != $r5 goto label03;
+
+     label02:
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("Test is not applicable to parallel full GCs");
+
+        return;
+
+     label03:
+        $r6 = r0[0];
+
+        $r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r6);
+
+        $i1 = virtualinvoke $r7.<java.lang.Integer: int intValue()>();
+
+        $d0 = (double) $i1;
+
+        d1 = $d0 / 100.0;
+
+        $r8 = r0[1];
+
+        $r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r8);
+
+        $i2 = virtualinvoke $r9.<java.lang.Integer: int intValue()>();
+
+        $d2 = (double) $i2;
+
+        d3 = $d2 / 100.0;
+
+        $r10 = r0[2];
+
+        $r11 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(java.lang.String)>($r10);
+
+        $z0 = virtualinvoke $r11.<java.lang.Boolean: boolean booleanValue()>();
+
+        $l3 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getMax()>();
+
+        if $z0 == 0 goto label04;
+
+        $b30 = 10;
+
+        $b29 = 10;
+
+        goto label05;
+
+     label04:
+        $b30 = 1;
+
+        $b29 = 1;
+
+     label05:
+        b4 = $b30;
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: void forceGC(int)>($b29);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: void verifyRatio(double,double)>(d1, d3);
+
+        goto label07;
+
+     label06:
+        $r13 = <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: java.util.LinkedList garbage>;
+
+        $i8 = <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: int ARRAY_LENGTH>;
+
+        $r12 = newarray (byte)[$i8];
+
+        virtualinvoke $r13.<java.util.LinkedList: boolean add(java.lang.Object)>($r12);
+
+     label07:
+        $l5 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getCommitted()>();
+
+        $l6 = $l3 / 2L;
+
+        $b7 = $l5 cmp $l6;
+
+        $i31 = (int) $b7;
+
+        if $i31 < 0 goto label06;
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: void forceGC(int)>(b4);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: void verifyRatio(double,double)>(d1, d3);
+
+        $l9 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getCommitted()>();
+
+        $d6 = (double) $l9;
+
+        $d4 = 1.0 - d1;
+
+        $d5 = $d4 + 0.05;
+
+        $d7 = $d6 * $d5;
+
+        $l10 = (long) $d7;
+
+        $l11 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getUsed()>();
+
+        l27 = $l10 - $l11;
+
+        $l12 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getCommitted()>();
+
+        goto label09;
+
+     label08:
+        $r15 = <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: java.util.LinkedList garbage>;
+
+        $r14 = newarray (byte)[1024];
+
+        virtualinvoke $r15.<java.util.LinkedList: boolean add(java.lang.Object)>($r14);
+
+        l27 = l27 - 1024L;
+
+     label09:
+        $b13 = l27 cmp 0L;
+
+        $i32 = (int) $b13;
+
+        if $i32 > 0 goto label08;
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: void forceGC(int)>(b4);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: void verifyRatio(double,double)>(d1, d3);
+
+        $l14 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getCommitted()>();
+
+        $b15 = $l12 cmp $l14;
+
+        $i33 = (int) $b15;
+
+        if $i33 < 0 goto label10;
+
+        $r23 = new java.lang.RuntimeException;
+
+        specialinvoke $r23.<java.lang.RuntimeException: void <init>(java.lang.String)>("Heap was not expanded.");
+
+        throw $r23;
+
+     label10:
+        $l16 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getUsed()>();
+
+        $l17 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getCommitted()>();
+
+        $d10 = (double) $l17;
+
+        $d8 = 1.0 - d3;
+
+        $d9 = $d8 - 0.05;
+
+        $d11 = $d10 * $d9;
+
+        $l18 = (long) $d11;
+
+        l28 = $l16 - $l18;
+
+        $l19 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getCommitted()>();
+
+        goto label12;
+
+     label11:
+        $r19 = <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: java.util.LinkedList garbage>;
+
+        $r18 = <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: java.util.LinkedList garbage>;
+
+        $i24 = virtualinvoke $r18.<java.util.LinkedList: int size()>();
+
+        $i25 = $i24 - 1;
+
+        virtualinvoke $r19.<java.util.LinkedList: java.lang.Object remove(int)>($i25);
+
+        l28 = l28 - 1024L;
+
+     label12:
+        $b20 = l28 cmp 0L;
+
+        $i34 = (int) $b20;
+
+        if $i34 <= 0 goto label13;
+
+        $r17 = <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: java.util.LinkedList garbage>;
+
+        $i23 = virtualinvoke $r17.<java.util.LinkedList: int size()>();
+
+        if $i23 > 0 goto label11;
+
+     label13:
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: void forceGC(int)>(b4);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: void verifyRatio(double,double)>(d1, d3);
+
+        $l21 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getCommitted()>();
+
+        $b22 = $l19 cmp $l21;
+
+        $i35 = (int) $b22;
+
+        if $i35 > 0 goto label14;
+
+        $r24 = new java.lang.RuntimeException;
+
+        specialinvoke $r24.<java.lang.RuntimeException: void <init>(java.lang.String)>("Heap was not shrinked.");
+
+        throw $r24;
+
+     label14:
+        return;
+    }
+
+    public static void forceGC(int)
+    {
+        int i0, i1;
+        java.lang.InterruptedException $r0;
+
+        i0 := @parameter0: int;
+
+        i1 = 0;
+
+        goto label6;
+
+     label1:
+        staticinvoke <java.lang.System: void gc()>();
+
+     label2:
+        staticinvoke <java.lang.Thread: void sleep(long)>(10L);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r0 := @caughtexception;
+
+     label5:
+        i1 = i1 + 1;
+
+     label6:
+        if i1 < i0 goto label1;
+
+        return;
+
+        catch java.lang.InterruptedException from label2 to label3 with label4;
+    }
+
+    public static void verifyRatio(double, double)
+    {
+        byte $b0, $b1, $b4, $b7;
+        java.lang.StringBuilder $r3, $r4, $r5, $r6, $r10, $r11, $r12, $r13, $r17, $r18, $r19, $r20, $r22, $r23, $r25;
+        long $l2, $l3, $l5, $l6;
+        int $i8, $i9, $i10, $i11;
+        java.lang.String $r2, $r7, $r14, $r21;
+        double $d0, d1, d2, $d3, $d4;
+        java.io.PrintStream $r1;
+        java.lang.RuntimeException $r24, $r26;
+
+        d1 := @parameter0: double;
+
+        d2 := @parameter1: double;
+
+        $d0 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: double getHeapFreeRatio()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r22 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>(d1);
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d2);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        $d3 = d1 - $d0;
+
+        $b0 = $d3 cmpl 0.025;
+
+        $i8 = (int) $b0;
+
+        if $i8 <= 0 goto label1;
+
+        $l5 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getCommitted()>();
+
+        $l6 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getMax()>();
+
+        $b7 = $l5 cmp $l6;
+
+        $i9 = (int) $b7;
+
+        if $i9 >= 0 goto label1;
+
+        $r24 = new java.lang.RuntimeException;
+
+        $r23 = new java.lang.StringBuilder;
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>("Current heap free ratio is lower than MinHeapFreeRatio (");
+
+        $r17 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" vs ");
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d1);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(").");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r24.<java.lang.RuntimeException: void <init>(java.lang.String)>($r21);
+
+        throw $r24;
+
+     label1:
+        $d4 = $d0 - d2;
+
+        $b1 = $d4 cmpl 0.025;
+
+        $i10 = (int) $b1;
+
+        if $i10 <= 0 goto label2;
+
+        $l2 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getUsed()>();
+
+        $l3 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getInit()>();
+
+        $b4 = $l2 cmp $l3;
+
+        $i11 = (int) $b4;
+
+        if $i11 <= 0 goto label2;
+
+        $r26 = new java.lang.RuntimeException;
+
+        $r25 = new java.lang.StringBuilder;
+
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>("Current heap free ratio is higher than MaxHeapFreeRatio (");
+
+        $r10 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" vs ");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d2);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(").");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r26.<java.lang.RuntimeException: void <init>(java.lang.String)>($r14);
+
+        throw $r26;
+
+     label2:
+        return;
+    }
+
+    public static long getMax()
+    {
+        long $l0;
+        java.lang.management.MemoryUsage $r0;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getOldUsage()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getMax()>();
+
+        return $l0;
+    }
+
+    public static long getInit()
+    {
+        gc.arguments.GCTypes$OldGCType $r0, $r1;
+        long $l0, $l1, $l2, $l3, $l4, $l5;
+        java.lang.management.MemoryUsage $r2, $r3, $r4, $r5;
+
+        $r0 = staticinvoke <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType getOldGCType()>();
+
+        $r1 = <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType G1>;
+
+        if $r0 != $r1 goto label1;
+
+        $r3 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $l1 = virtualinvoke $r3.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r4 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l2 = virtualinvoke $r4.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $l3 = $l1 + $l2;
+
+        $r5 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getOldUsage()>();
+
+        $l4 = virtualinvoke $r5.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $l5 = $l3 + $l4;
+
+        return $l5;
+
+     label1:
+        $r2 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getOldUsage()>();
+
+        $l0 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getInit()>();
+
+        return $l0;
+    }
+
+    public static long getUsed()
+    {
+        gc.arguments.GCTypes$OldGCType $r0, $r1;
+        long $l0, $l1, $l2, $l3, $l4, $l5;
+        java.lang.management.MemoryUsage $r2, $r3, $r4, $r5;
+
+        $r0 = staticinvoke <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType getOldGCType()>();
+
+        $r1 = <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType G1>;
+
+        if $r0 != $r1 goto label1;
+
+        $r3 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $l1 = virtualinvoke $r3.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r4 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l2 = virtualinvoke $r4.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $l3 = $l1 + $l2;
+
+        $r5 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getOldUsage()>();
+
+        $l4 = virtualinvoke $r5.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $l5 = $l3 + $l4;
+
+        return $l5;
+
+     label1:
+        $r2 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getOldUsage()>();
+
+        $l0 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        return $l0;
+    }
+
+    public static long getCommitted()
+    {
+        gc.arguments.GCTypes$OldGCType $r0, $r1;
+        long $l0, $l1, $l2, $l3, $l4, $l5;
+        java.lang.management.MemoryUsage $r2, $r3, $r4, $r5;
+
+        $r0 = staticinvoke <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType getOldGCType()>();
+
+        $r1 = <gc.arguments.GCTypes$OldGCType: gc.arguments.GCTypes$OldGCType G1>;
+
+        if $r0 != $r1 goto label1;
+
+        $r3 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $l1 = virtualinvoke $r3.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r4 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l2 = virtualinvoke $r4.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $l3 = $l1 + $l2;
+
+        $r5 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getOldUsage()>();
+
+        $l4 = virtualinvoke $r5.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $l5 = $l3 + $l4;
+
+        return $l5;
+
+     label1:
+        $r2 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getOldUsage()>();
+
+        $l0 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        return $l0;
+    }
+
+    public static long getFree()
+    {
+        long $l0, $l1, $l2;
+
+        $l0 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getCommitted()>();
+
+        $l1 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getUsed()>();
+
+        $l2 = $l0 - $l1;
+
+        return $l2;
+    }
+
+    public static double getHeapFreeRatio()
+    {
+        long $l0, $l1;
+        double $d0, $d1, $d2;
+
+        $l0 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getFree()>();
+
+        $d0 = (double) $l0;
+
+        $l1 = staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags$RatioVerifier: long getCommitted()>();
+
+        $d1 = (double) $l1;
+
+        $d2 = $d0 / $d1;
+
+        return $d2;
+    }
+}

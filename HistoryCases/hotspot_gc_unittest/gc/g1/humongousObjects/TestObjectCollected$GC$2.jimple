@@ -1,0 +1,31 @@
+enum class TestObjectCollected$GC$2 extends gc.g1.humongousObjects.TestObjectCollected$GC
+{
+
+    void <init>(java.lang.String, int)
+    {
+        int i0;
+        java.lang.String r1;
+        TestObjectCollected$GC$2 r0;
+
+        r0 := @this: TestObjectCollected$GC$2;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<gc.g1.humongousObjects.TestObjectCollected$GC: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public void provoke()
+    {
+        TestObjectCollected$GC$2 r0;
+
+        r0 := @this: TestObjectCollected$GC$2;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+}

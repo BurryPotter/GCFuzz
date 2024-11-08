@@ -1,0 +1,391 @@
+public class TestShrinkAuxiliaryData extends java.lang.Object
+{
+    private static final int REGION_SIZE;
+    private static final java.lang.String[] initialOpts;
+    private final int hotCardTableSize;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        $r0 = newarray (java.lang.String)[11];
+
+        $r0[0] = "-XX:NewSize=16m";
+
+        $r0[1] = "-XX:MinHeapFreeRatio=10";
+
+        $r0[2] = "-XX:MaxHeapFreeRatio=11";
+
+        $r0[3] = "-XX:+UseG1GC";
+
+        $r0[4] = "-XX:G1HeapRegionSize=1048576";
+
+        $r0[5] = "-XX:-ExplicitGCInvokesConcurrent";
+
+        $r0[6] = "-Xlog:gc=debug";
+
+        $r0[7] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[8] = "-XX:+WhiteBoxAPI";
+
+        $r0[9] = "--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED";
+
+        $r0[10] = "-Xbootclasspath/a:.";
+
+        <gc.g1.TestShrinkAuxiliaryData: java.lang.String[] initialOpts> = $r0;
+
+        return;
+    }
+
+    protected void <init>(int)
+    {
+        int i0;
+        gc.g1.TestShrinkAuxiliaryData $r1;
+        TestShrinkAuxiliaryData r0;
+
+        r0 := @this: TestShrinkAuxiliaryData;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.g1.TestShrinkAuxiliaryData) r0;
+
+        $r1.<gc.g1.TestShrinkAuxiliaryData: int hotCardTableSize> = i0;
+
+        return;
+    }
+
+    protected void test() throws java.lang.Exception
+    {
+        java.lang.Integer $r17, $r18;
+        gc.g1.TestShrinkAuxiliaryData $r24, $r25, $r26, $r27, $r28, $r29;
+        boolean $z0;
+        java.lang.StringBuilder $r4, $r8, $r20, $r23;
+        java.lang.Object[] $r15;
+        java.lang.String[] $r1;
+        java.util.ArrayList $r19, $r21, $r22;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, i7;
+        java.lang.String $r5, $r9, $r11, $r14;
+        double $d0, $d1;
+        java.io.PrintStream $r16;
+        TestShrinkAuxiliaryData r2;
+        java.lang.Class $r10, $r13;
+
+        r2 := @this: TestShrinkAuxiliaryData;
+
+        $r19 = new java.util.ArrayList;
+
+        specialinvoke $r19.<java.util.ArrayList: void <init>()>();
+
+        $r1 = <gc.g1.TestShrinkAuxiliaryData: java.lang.String[] initialOpts>;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r19, $r1);
+
+        $i0 = staticinvoke <gc.g1.TestShrinkAuxiliaryData: int getMaxCacheSize()>();
+
+        $i1 = staticinvoke <java.lang.Math: int min(int,int)>(31, $i0);
+
+        $i2 = staticinvoke <java.lang.Math: int max(int,int)>(0, $i1);
+
+        $r24 = (gc.g1.TestShrinkAuxiliaryData) r2;
+
+        $i3 = $r24.<gc.g1.TestShrinkAuxiliaryData: int hotCardTableSize>;
+
+        if $i2 >= $i3 goto label1;
+
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        $r15 = newarray (java.lang.Object)[2];
+
+        $r25 = (gc.g1.TestShrinkAuxiliaryData) r2;
+
+        $i6 = $r25.<gc.g1.TestShrinkAuxiliaryData: int hotCardTableSize>;
+
+        $r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+
+        $r15[0] = $r17;
+
+        $r18 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+
+        $r15[1] = $r18;
+
+        virtualinvoke $r16.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Skiping test for %d cache size due max cache size %d", $r15);
+
+        return;
+
+     label1:
+        $r26 = (gc.g1.TestShrinkAuxiliaryData) r2;
+
+        virtualinvoke $r26.<gc.g1.TestShrinkAuxiliaryData: void printTestInfo(int)>($i2);
+
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:G1ConcRSLogCacheSize=");
+
+        $r27 = (gc.g1.TestShrinkAuxiliaryData) r2;
+
+        $i4 = $r27.<gc.g1.TestShrinkAuxiliaryData: int hotCardTableSize>;
+
+        $r4 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r19.<java.util.ArrayList: boolean add(java.lang.Object)>($r5);
+
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean is32bit()>();
+
+        if $z0 == 0 goto label2;
+
+        $r21 = new java.util.ArrayList;
+
+        specialinvoke $r21.<java.util.ArrayList: void <init>(java.util.Collection)>($r19);
+
+        $r13 = class "Lgc/g1/TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;";
+
+        $r14 = virtualinvoke $r13.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke $r21.<java.util.ArrayList: boolean add(java.lang.Object)>($r14);
+
+        $r28 = (gc.g1.TestShrinkAuxiliaryData) r2;
+
+        virtualinvoke $r28.<gc.g1.TestShrinkAuxiliaryData: void performTest(java.util.List)>($r21);
+
+        return;
+
+     label2:
+        i7 = 3;
+
+        goto label4;
+
+     label3:
+        $r22 = new java.util.ArrayList;
+
+        specialinvoke $r22.<java.util.ArrayList: void <init>(java.util.Collection)>($r19);
+
+        $r23 = new java.lang.StringBuilder;
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:ObjectAlignmentInBytes=");
+
+        $d0 = (double) i7;
+
+        $d1 = staticinvoke <java.lang.Math: double pow(double,double)>(2.0, $d0);
+
+        $i5 = (int) $d1;
+
+        $r8 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r22.<java.util.ArrayList: boolean add(java.lang.Object)>($r9);
+
+        $r10 = class "Lgc/g1/TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;";
+
+        $r11 = virtualinvoke $r10.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke $r22.<java.util.ArrayList: boolean add(java.lang.Object)>($r11);
+
+        $r29 = (gc.g1.TestShrinkAuxiliaryData) r2;
+
+        virtualinvoke $r29.<gc.g1.TestShrinkAuxiliaryData: void performTest(java.util.List)>($r22);
+
+        i7 = i7 + 1;
+
+     label4:
+        if i7 <= 8 goto label3;
+
+        return;
+    }
+
+    private void performTest(java.util.List) throws java.lang.Exception
+    {
+        java.io.PrintStream $r7, $r9;
+        java.lang.Object[] $r2;
+        java.lang.Process $r6;
+        java.lang.String[] $r1, $r3;
+        jdk.test.lib.process.OutputAnalyzer $r5;
+        TestShrinkAuxiliaryData r11;
+        java.util.List r0;
+        int $i0;
+        java.lang.ProcessBuilder $r4;
+        java.lang.String $r8, $r10;
+
+        r11 := @this: TestShrinkAuxiliaryData;
+
+        r0 := @parameter0: java.util.List;
+
+        $i0 = interfaceinvoke r0.<java.util.List: int size()>();
+
+        $r1 = newarray (java.lang.String)[$i0];
+
+        $r2 = interfaceinvoke r0.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r1);
+
+        $r3 = (java.lang.String[]) $r2;
+
+        $r4 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(boolean,java.lang.String[])>(1, $r3);
+
+        $r5 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r6 = virtualinvoke $r4.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r6);
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r8 = virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        $r9 = <java.lang.System: java.io.PrintStream err>;
+
+        $r10 = virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStderr()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    private void printTestInfo(int)
+    {
+        java.text.DecimalFormatSymbols $r1;
+        java.lang.Integer $r9, $r12;
+        java.lang.Runtime $r5, $r7, $r10;
+        java.lang.Object[] $r2;
+        long $l0, $l1, $l2, $l3, $l4, $l6, $l7, $l9, $l10, $l11, $l14;
+        int $i5, $i8, i12, $i13;
+        java.lang.String $r4, $r6, $r8, $r11, $r13;
+        double $d0, $d1;
+        java.io.PrintStream $r3;
+        java.text.DecimalFormat $r0;
+        TestShrinkAuxiliaryData r14;
+
+        r14 := @this: TestShrinkAuxiliaryData;
+
+        i12 := @parameter0: int;
+
+        $r0 = new java.text.DecimalFormat;
+
+        specialinvoke $r0.<java.text.DecimalFormat: void <init>(java.lang.String)>("000,000");
+
+        $r1 = virtualinvoke $r0.<java.text.DecimalFormat: java.text.DecimalFormatSymbols getDecimalFormatSymbols()>();
+
+        virtualinvoke $r1.<java.text.DecimalFormatSymbols: void setGroupingSeparator(char)>(32);
+
+        virtualinvoke $r0.<java.text.DecimalFormat: void setDecimalFormatSymbols(java.text.DecimalFormatSymbols)>($r1);
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r2 = newarray (java.lang.Object)[7];
+
+        $l0 = staticinvoke <gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: long getMemoryUsedByTest()>();
+
+        $r4 = virtualinvoke $r0.<java.text.DecimalFormat: java.lang.String format(long)>($l0);
+
+        $r2[0] = $r4;
+
+        $r5 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l1 = virtualinvoke $r5.<java.lang.Runtime: long maxMemory()>();
+
+        $r6 = virtualinvoke $r0.<java.text.DecimalFormat: java.lang.String format(long)>($l1);
+
+        $r2[1] = $r6;
+
+        $r7 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l2 = virtualinvoke $r7.<java.lang.Runtime: long maxMemory()>();
+
+        $l3 = staticinvoke <gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: long getMemoryUsedByTest()>();
+
+        $l4 = $l2 - $l3;
+
+        $r8 = virtualinvoke $r0.<java.text.DecimalFormat: java.lang.String format(long)>($l4);
+
+        $r2[2] = $r8;
+
+        $i5 = <jdk.internal.misc.Unsafe: int ADDRESS_SIZE>;
+
+        $r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i5);
+
+        $r2[3] = $r9;
+
+        $r10 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l6 = virtualinvoke $r10.<java.lang.Runtime: long freeMemory()>();
+
+        $l7 = staticinvoke <gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: long getMemoryUsedByTest()>();
+
+        $l10 = $l6 - $l7;
+
+        $i8 = <jdk.internal.misc.Unsafe: int ADDRESS_SIZE>;
+
+        $l9 = (long) $i8;
+
+        $l11 = $l10 / $l9;
+
+        $r11 = virtualinvoke $r0.<java.text.DecimalFormat: java.lang.String format(long)>($l11);
+
+        $r2[4] = $r11;
+
+        $r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i12);
+
+        $r2[5] = $r12;
+
+        $d0 = (double) i12;
+
+        $d1 = staticinvoke <java.lang.Math: double pow(double,double)>(2.0, $d0);
+
+        $i13 = (int) $d1;
+
+        $l14 = (long) $i13;
+
+        $r13 = virtualinvoke $r0.<java.text.DecimalFormat: java.lang.String format(long)>($l14);
+
+        $r2[6] = $r13;
+
+        virtualinvoke $r3.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Test will use %s bytes of memory of %s available%nAvailable memory is %s with %d bytes pointer size - can save %s pointers%nMax cache size: 2^%d = %s elements%n", $r2);
+
+        return;
+    }
+
+    private static int getMaxCacheSize()
+    {
+        java.lang.Runtime $r0;
+        long $l0, $l1, $l2, l3, $l6, l7;
+        byte $b4;
+        int $i5, $i8, $i9, $i10;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+        $l1 = staticinvoke <gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: long getMemoryUsedByTest()>();
+
+        $l2 = $l0 - $l1;
+
+        l3 = $l2 - 1L;
+
+        $b4 = l3 cmp 0L;
+
+        $i10 = (int) $b4;
+
+        if $i10 > 0 goto label1;
+
+        return 0;
+
+     label1:
+        $i5 = <jdk.internal.misc.Unsafe: int ADDRESS_SIZE>;
+
+        $l6 = (long) $i5;
+
+        l7 = l3 / $l6;
+
+        $i8 = staticinvoke <java.lang.Long: int numberOfLeadingZeros(long)>(l7);
+
+        $i9 = 63 - $i8;
+
+        return $i9;
+    }
+}

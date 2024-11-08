@@ -1,0 +1,165 @@
+class PromoFail extends java.lang.Object
+{
+
+    void <init>()
+    {
+        PromoFail r0;
+
+        r0 := @this: PromoFail;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Runtime $r3;
+        PromoFail$Container $r9, $r10;
+        java.lang.StringBuilder $r4, $r6, $r7, $r13, $r15, $r17, $r18;
+        java.lang.String[] r0;
+        long $l4, $l5, $l6, $l7, $l8;
+        int $i0, $i1, $i2, $i3, i9, i10, $i11, i12, i13;
+        java.lang.String $r1, $r8, $r16, $r19;
+        java.util.LinkedList $r2;
+        java.io.PrintStream $r5, $r11, $r14;
+        java.lang.NumberFormatException $r12;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 >= 1 goto label01;
+
+        $r11 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>("@ 1st argument must be size in MB.");
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label01:
+        i9 = 0;
+
+     label02:
+        $r1 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        $i2 = $i1 * 1024;
+
+        i9 = $i2 * 1024;
+
+     label03:
+        goto label05;
+
+     label04:
+        $r12 := @caughtexception;
+
+        $r14 = <java.lang.System: java.io.PrintStream err>;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+
+        $r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("@ Cannot parse the size(=");
+
+        $r16 = r0[0];
+
+        $r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")");
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r19);
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label05:
+        $r2 = new java.util.LinkedList;
+
+        specialinvoke $r2.<java.util.LinkedList: void <init>()>();
+
+        i10 = 0;
+
+     label06:
+        $i11 = i9 / 4;
+
+        if i10 >= $i11 goto label07;
+
+        $r10 = new PromoFail$Container;
+
+        specialinvoke $r10.<PromoFail$Container: void <init>(int)>(1);
+
+        virtualinvoke $r2.<java.util.LinkedList: boolean add(java.lang.Object)>($r10);
+
+        i10 = i10 + 1;
+
+        goto label06;
+
+     label07:
+        staticinvoke <java.lang.System: void gc()>();
+
+        i12 = 2;
+
+     label08:
+        if i12 >= 512 goto label11;
+
+        i13 = 0;
+
+     label09:
+        $i3 = i9 / 4;
+
+        if i13 >= $i3 goto label10;
+
+        virtualinvoke $r2.<java.util.LinkedList: java.lang.Object remove()>();
+
+        $r9 = new PromoFail$Container;
+
+        specialinvoke $r9.<PromoFail$Container: void <init>(int)>(i12);
+
+        virtualinvoke $r2.<java.util.LinkedList: boolean add(java.lang.Object)>($r9);
+
+        i13 = i13 + 1;
+
+        goto label09;
+
+     label10:
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r3 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("@ Current Used: ");
+
+        $l4 = virtualinvoke $r3.<java.lang.Runtime: long totalMemory()>();
+
+        $l5 = virtualinvoke $r3.<java.lang.Runtime: long freeMemory()>();
+
+        $l6 = $l4 - $l5;
+
+        $l7 = $l6 / 1024L;
+
+        $l8 = $l7 / 1024L;
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        i12 = i12 * 3;
+
+        goto label08;
+
+     label11:
+        return;
+
+        catch java.lang.NumberFormatException from label02 to label03 with label04;
+    }
+}

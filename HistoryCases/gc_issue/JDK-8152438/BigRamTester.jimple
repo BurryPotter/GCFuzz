@@ -1,0 +1,541 @@
+public class BigRamTester extends java.lang.Object
+{
+    private static final java.text.DateFormat DATE_FORMAT;
+    private static final long RESERVED_SPACE;
+    private static final int MAX_LIST_SIZE;
+    private static final int APPROX_BYTES_PER_RECORD;
+    private static final int TARGET_HIT_RATE;
+    private static final java.util.Random RANDOM;
+    private static long startTime;
+    private java.util.LinkedHashMap storage;
+    private long totalSum;
+    private final BigRamTester$Statistics stats;
+
+    public void <init>()
+    {
+        BigRamTester r0;
+        BigRamTester$Statistics $r1;
+
+        r0 := @this: BigRamTester;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<BigRamTester: long totalSum> = 0L;
+
+        $r1 = new BigRamTester$Statistics;
+
+        specialinvoke $r1.<BigRamTester$Statistics: void <init>()>();
+
+        r0.<BigRamTester: BigRamTester$Statistics stats> = $r1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        long $l0;
+        BigRamTester $r0;
+        java.lang.String[] r2;
+        java.lang.Exception $r1;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        <BigRamTester: long startTime> = $l0;
+
+     label1:
+        $r0 = new BigRamTester;
+
+        specialinvoke $r0.<BigRamTester: void <init>()>();
+
+        specialinvoke $r0.<BigRamTester: void go()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        virtualinvoke $r1.<java.lang.Exception: void printStackTrace()>();
+
+     label4:
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    private void go() throws java.lang.InterruptedException
+    {
+        java.io.PrintStream $r1;
+        int $i0;
+        BigRamTester r0;
+        long $l1;
+
+        r0 := @this: BigRamTester;
+
+        $i0 = specialinvoke r0.<BigRamTester: int createData()>();
+
+        specialinvoke r0.<BigRamTester: void accessCache(int)>($i0);
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $l1 = r0.<BigRamTester: long totalSum>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(long)>($l1);
+
+        return;
+    }
+
+    private void accessCache(int) throws java.lang.InterruptedException
+    {
+        java.util.Random $r0;
+        java.lang.Integer $r3, r10, $r13;
+        boolean $z0;
+        java.util.Set $r15;
+        java.util.List $r8, $r11, r18;
+        long $l4, $l7, $l8, $l9, $l10, $l11;
+        java.util.LinkedHashMap $r2, $r12, $r14;
+        int i0, $i1, $i2, i3, $i5, $i6, $i12, i13;
+        java.util.Iterator $r7, $r16;
+        BigRamTester$Statistics $r5, $r6, $r17;
+        BigRamTester r1;
+        java.lang.Object $r4, $r9;
+
+        r1 := @this: BigRamTester;
+
+        i0 := @parameter0: int;
+
+        $i1 = i0 - 1;
+
+        $i2 = $i1 / 90;
+
+        i3 = $i2 * 100;
+
+     label1:
+        $l4 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $r0 = <BigRamTester: java.util.Random RANDOM>;
+
+        $i5 = i3 + 1;
+
+        $i6 = virtualinvoke $r0.<java.util.Random: int nextInt(int)>($i5);
+
+        $r2 = r1.<BigRamTester: java.util.LinkedHashMap storage>;
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+
+        $r4 = virtualinvoke $r2.<java.util.LinkedHashMap: java.lang.Object get(java.lang.Object)>($r3);
+
+        $r8 = (java.util.List) $r4;
+
+        r18 = $r8;
+
+        if $r8 != null goto label2;
+
+        $r11 = specialinvoke r1.<BigRamTester: java.util.List createIntegers()>();
+
+        r18 = $r11;
+
+        $r12 = r1.<BigRamTester: java.util.LinkedHashMap storage>;
+
+        $r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+
+        virtualinvoke $r12.<java.util.LinkedHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r13, $r11);
+
+        $r14 = r1.<BigRamTester: java.util.LinkedHashMap storage>;
+
+        $r15 = virtualinvoke $r14.<java.util.LinkedHashMap: java.util.Set entrySet()>();
+
+        $r16 = interfaceinvoke $r15.<java.util.Set: java.util.Iterator iterator()>();
+
+        interfaceinvoke $r16.<java.util.Iterator: java.lang.Object next()>();
+
+        interfaceinvoke $r16.<java.util.Iterator: void remove()>();
+
+        $r17 = r1.<BigRamTester: BigRamTester$Statistics stats>;
+
+        virtualinvoke $r17.<BigRamTester$Statistics: void registerMiss()>();
+
+        goto label3;
+
+     label2:
+        $r5 = r1.<BigRamTester: BigRamTester$Statistics stats>;
+
+        virtualinvoke $r5.<BigRamTester$Statistics: void registerHit()>();
+
+     label3:
+        $l7 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $r6 = r1.<BigRamTester: BigRamTester$Statistics stats>;
+
+        $l8 = $l7 - $l4;
+
+        virtualinvoke $r6.<BigRamTester$Statistics: void recordTimeTaken(long)>($l8);
+
+        i13 = 0;
+
+        $r7 = interfaceinvoke r18.<java.util.List: java.util.Iterator iterator()>();
+
+     label4:
+        $z0 = interfaceinvoke $r7.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label5;
+
+        $r9 = interfaceinvoke $r7.<java.util.Iterator: java.lang.Object next()>();
+
+        r10 = (java.lang.Integer) $r9;
+
+        $i12 = virtualinvoke r10.<java.lang.Integer: int intValue()>();
+
+        i13 = i13 + $i12;
+
+        goto label4;
+
+     label5:
+        $l10 = r1.<BigRamTester: long totalSum>;
+
+        $l9 = (long) i13;
+
+        $l11 = $l10 + $l9;
+
+        r1.<BigRamTester: long totalSum> = $l11;
+
+        goto label1;
+    }
+
+    private int createData()
+    {
+        java.lang.Integer $r13;
+        byte $b8, $b14;
+        java.lang.Runtime $r0, $r8, $r10, $r18, $r22;
+        java.util.List $r11;
+        java.lang.StringBuilder $r3, $r4, $r17, $r19, $r20, $r23, $r25;
+        long $l0, $l1, $l2, $l5, $l6, $l7, $l11, $l12, $l13;
+        java.util.LinkedHashMap $r12, $r24;
+        int $i3, i4, $i9, $i10, i15, $i16, $i17;
+        java.lang.String $r5, $r21;
+        java.io.PrintStream $r2, $r9, $r14, $r16;
+        BigRamTester r6;
+
+        r6 := @this: BigRamTester;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+        $l1 = $l0 - 10737418240L;
+
+        $l2 = $l1 / 1000L;
+
+        $i3 = (int) $l2;
+
+        i4 = $i3 + 1000;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r23 = new java.lang.StringBuilder;
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Creating storage map of size = ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $r24 = new java.util.LinkedHashMap;
+
+        specialinvoke $r24.<java.util.LinkedHashMap: void <init>(int,float,boolean)>(i4, 0.75F, 1);
+
+        r6.<BigRamTester: java.util.LinkedHashMap storage> = $r24;
+
+        $r8 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l5 = virtualinvoke $r8.<java.lang.Runtime: long freeMemory()>();
+
+        i15 = 0;
+
+     label1:
+        if i15 >= 2147483647 goto label4;
+
+        $r10 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l7 = virtualinvoke $r10.<java.lang.Runtime: long freeMemory()>();
+
+        $b8 = $l7 cmp 10737418240L;
+
+        $i16 = (int) $b8;
+
+        if $i16 >= 0 goto label2;
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>("Garbage collecting...");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        $r25 = new java.lang.StringBuilder;
+
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>()>();
+
+        $r17 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Finished; memory remaining: ");
+
+        $r18 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l12 = virtualinvoke $r18.<java.lang.Runtime: long freeMemory()>();
+
+        $r19 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l12);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" bytes");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r21);
+
+        $r22 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l13 = virtualinvoke $r22.<java.lang.Runtime: long freeMemory()>();
+
+        $b14 = $l13 cmp 10737418240L;
+
+        $i17 = (int) $b14;
+
+        if $i17 >= 0 goto label2;
+
+        goto label4;
+
+     label2:
+        $r11 = specialinvoke r6.<BigRamTester: java.util.List createIntegers()>();
+
+        $r12 = r6.<BigRamTester: java.util.LinkedHashMap storage>;
+
+        $i9 = i15;
+
+        i15 = i15 + 1;
+
+        $r13 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i9);
+
+        virtualinvoke $r12.<java.util.LinkedHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r13, $r11);
+
+        $i10 = i15 % 100000;
+
+        if $i10 != 0 goto label3;
+
+        $l11 = (long) i15;
+
+        specialinvoke r6.<BigRamTester: void printMemoryUsed(long,long)>($l11, $l5);
+
+     label3:
+        goto label1;
+
+     label4:
+        $l6 = (long) i15;
+
+        specialinvoke r6.<BigRamTester: void printMemoryUsed(long,long)>($l6, $l5);
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>("DONE!");
+
+        return i15;
+    }
+
+    private void printMemoryUsed(long, long)
+    {
+        java.lang.Runtime $r0, $r12;
+        java.lang.StringBuilder $r1, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r13, $r14, $r15, $r16, $r17, $r18;
+        long l0, $l1, l2, $l3, $l4, l5, l6, $l7, $l8, $l9, $l10, $l11, $l12, $l13;
+        java.lang.String $r3, $r19;
+        java.io.PrintStream $r2;
+        BigRamTester r20;
+
+        r20 := @this: BigRamTester;
+
+        l6 := @parameter0: long;
+
+        l0 := @parameter1: long;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l1 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+        l2 = l0 - $l1;
+
+        $l3 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l4 = <BigRamTester: long startTime>;
+
+        l5 = $l3 - $l4;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = staticinvoke <BigRamTester: java.lang.String getDate()>();
+
+        $r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Created ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l6);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" keys, using ");
+
+        $l7 = l2 / 1024L;
+
+        $l8 = $l7 / 1024L;
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("MB; that\'s ");
+
+        $l9 = l2 / l6;
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" bytes per record; free memory = ");
+
+        $r12 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l10 = virtualinvoke $r12.<java.lang.Runtime: long freeMemory()>();
+
+        $l11 = $l10 / 1024L;
+
+        $l12 = $l11 / 1024L;
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l12);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("MB; reserved memory = ");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(10737418240L);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" bytes; uptime = ");
+
+        $l13 = l5 / 1000L;
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l13);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" seconds");
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r19);
+
+        return;
+    }
+
+    private java.util.List createIntegers()
+    {
+        java.util.Random $r0, $r2;
+        java.lang.Integer $r3;
+        int $i0, $i1, i2;
+        BigRamTester r4;
+        java.util.LinkedList $r1;
+
+        r4 := @this: BigRamTester;
+
+        $r0 = <BigRamTester: java.util.Random RANDOM>;
+
+        $i0 = virtualinvoke $r0.<java.util.Random: int nextInt(int)>(30);
+
+        $r1 = new java.util.LinkedList;
+
+        specialinvoke $r1.<java.util.LinkedList: void <init>()>();
+
+        i2 = 0;
+
+     label1:
+        if i2 >= $i0 goto label2;
+
+        $r2 = <BigRamTester: java.util.Random RANDOM>;
+
+        $i1 = virtualinvoke $r2.<java.util.Random: int nextInt()>();
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        virtualinvoke $r1.<java.util.LinkedList: boolean add(java.lang.Object)>($r3);
+
+        i2 = i2 + 1;
+
+        goto label1;
+
+     label2:
+        return $r1;
+    }
+
+    private static synchronized java.lang.String getDate()
+    {
+        java.util.Date $r1;
+        long $l0;
+        java.lang.StringBuilder $r0, $r4, $r5;
+        java.lang.String $r3, $r6;
+        java.text.DateFormat $r2;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = <BigRamTester: java.text.DateFormat DATE_FORMAT>;
+
+        $r1 = new java.util.Date;
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        specialinvoke $r1.<java.util.Date: void <init>(long)>($l0);
+
+        $r3 = virtualinvoke $r2.<java.text.DateFormat: java.lang.String format(java.util.Date)>($r1);
+
+        $r4 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" - ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r6;
+    }
+
+    static long access$000()
+    {
+        long $l0;
+
+        $l0 = <BigRamTester: long startTime>;
+
+        return $l0;
+    }
+
+    static java.lang.String access$300()
+    {
+        java.lang.String $r0;
+
+        $r0 = staticinvoke <BigRamTester: java.lang.String getDate()>();
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        java.text.SimpleDateFormat $r0;
+        java.util.Random $r1;
+
+        $r0 = new java.text.SimpleDateFormat;
+
+        specialinvoke $r0.<java.text.SimpleDateFormat: void <init>(java.lang.String)>("YYYY-MM-dd HH:mm:ss");
+
+        <BigRamTester: java.text.DateFormat DATE_FORMAT> = $r0;
+
+        $r1 = new java.util.Random;
+
+        specialinvoke $r1.<java.util.Random: void <init>()>();
+
+        <BigRamTester: java.util.Random RANDOM> = $r1;
+
+        return;
+    }
+}

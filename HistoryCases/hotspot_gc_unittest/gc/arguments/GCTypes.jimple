@@ -1,0 +1,199 @@
+public final class GCTypes extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        GCTypes r0;
+
+        r0 := @this: GCTypes;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static gc.arguments.GCTypes$GCType getCurrentGCType(java.lang.Class)
+    {
+        java.util.function.Predicate $r5;
+        java.util.function.Function $r3;
+        java.util.List $r0;
+        java.util.stream.Stream $r1, $r4, $r6;
+        gc.arguments.GCTypes$GCType $r9;
+        java.util.Optional $r7;
+        java.lang.Class r2;
+        java.lang.Object $r8;
+
+        r2 := @parameter0: java.lang.Class;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getGarbageCollectorMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r3 = staticinvoke <GCTypes$lambda_0__1: java.util.function.Function bootstrap$(java.lang.Class)>(r2);
+
+        $r4 = interfaceinvoke $r1.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r3);
+
+        $r5 = staticinvoke <GCTypes$nonNull__2: java.util.function.Predicate bootstrap$()>();
+
+        $r6 = interfaceinvoke $r4.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r5);
+
+        $r7 = interfaceinvoke $r6.<java.util.stream.Stream: java.util.Optional findFirst()>();
+
+        $r8 = virtualinvoke $r7.<java.util.Optional: java.lang.Object orElse(java.lang.Object)>(null);
+
+        $r9 = (gc.arguments.GCTypes$GCType) $r8;
+
+        return $r9;
+    }
+
+    private static gc.arguments.GCTypes$GCType getGCTypeByName(java.lang.Class, java.lang.String)
+    {
+        java.lang.Object[] $r1;
+        java.util.function.Predicate $r5;
+        java.util.stream.Stream $r3, $r6;
+        gc.arguments.GCTypes$GCType[] $r2;
+        gc.arguments.GCTypes$GCType $r9;
+        java.util.Optional $r7;
+        java.lang.Class r0;
+        java.lang.Object $r8;
+        java.lang.String r4;
+
+        r0 := @parameter0: java.lang.Class;
+
+        r4 := @parameter1: java.lang.String;
+
+        $r1 = virtualinvoke r0.<java.lang.Class: java.lang.Object[] getEnumConstants()>();
+
+        $r2 = (gc.arguments.GCTypes$GCType[]) $r1;
+
+        $r3 = staticinvoke <java.util.Arrays: java.util.stream.Stream stream(java.lang.Object[])>($r2);
+
+        $r5 = staticinvoke <GCTypes$lambda_2__3: java.util.function.Predicate bootstrap$(java.lang.String)>(r4);
+
+        $r6 = interfaceinvoke $r3.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r5);
+
+        $r7 = interfaceinvoke $r6.<java.util.stream.Stream: java.util.Optional findFirst()>();
+
+        $r8 = virtualinvoke $r7.<java.util.Optional: java.lang.Object orElse(java.lang.Object)>(null);
+
+        $r9 = (gc.arguments.GCTypes$GCType) $r8;
+
+        return $r9;
+    }
+
+    private static java.lang.management.GarbageCollectorMXBean getGCBeanByType(java.lang.Class)
+    {
+        java.util.function.Predicate $r3;
+        java.util.List $r0;
+        java.util.stream.Stream $r1, $r4;
+        java.lang.management.GarbageCollectorMXBean $r7;
+        java.util.Optional $r5;
+        java.lang.Class r2;
+        java.lang.Object $r6;
+
+        r2 := @parameter0: java.lang.Class;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getGarbageCollectorMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r3 = staticinvoke <GCTypes$lambda_3__4: java.util.function.Predicate bootstrap$(java.lang.Class)>(r2);
+
+        $r4 = interfaceinvoke $r1.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r3);
+
+        $r5 = interfaceinvoke $r4.<java.util.stream.Stream: java.util.Optional findFirst()>();
+
+        $r6 = virtualinvoke $r5.<java.util.Optional: java.lang.Object orElse(java.lang.Object)>(null);
+
+        $r7 = (java.lang.management.GarbageCollectorMXBean) $r6;
+
+        return $r7;
+    }
+
+    private static gc.arguments.GCTypes$GCType lambda$0(java.lang.Class, java.lang.management.GarbageCollectorMXBean)
+    {
+        java.lang.management.GarbageCollectorMXBean r1;
+        gc.arguments.GCTypes$GCType $r3;
+        java.lang.Class r0;
+        java.lang.String $r2;
+
+        r0 := @parameter0: java.lang.Class;
+
+        r1 := @parameter1: java.lang.management.GarbageCollectorMXBean;
+
+        $r2 = interfaceinvoke r1.<java.lang.management.GarbageCollectorMXBean: java.lang.String getName()>();
+
+        $r3 = staticinvoke <gc.arguments.GCTypes: gc.arguments.GCTypes$GCType getGCTypeByName(java.lang.Class,java.lang.String)>(r0, $r2);
+
+        return $r3;
+    }
+
+    private static boolean lambda$2(java.lang.String, gc.arguments.GCTypes$GCType)
+    {
+        gc.arguments.GCTypes$GCType r0;
+        java.lang.String $r1, r2;
+        boolean $z0;
+
+        r2 := @parameter0: java.lang.String;
+
+        r0 := @parameter1: gc.arguments.GCTypes$GCType;
+
+        $r1 = interfaceinvoke r0.<gc.arguments.GCTypes$GCType: java.lang.String getGCName()>();
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(r2);
+
+        return $z0;
+    }
+
+    private static boolean lambda$3(java.lang.Class, java.lang.management.GarbageCollectorMXBean)
+    {
+        java.lang.Object[] $r1;
+        java.util.function.Predicate $r5;
+        java.util.stream.Stream $r3, $r6;
+        java.lang.management.GarbageCollectorMXBean r4;
+        gc.arguments.GCTypes$GCType[] $r2;
+        java.util.Optional $r7;
+        java.lang.Class r0;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.Class;
+
+        r4 := @parameter1: java.lang.management.GarbageCollectorMXBean;
+
+        $r1 = virtualinvoke r0.<java.lang.Class: java.lang.Object[] getEnumConstants()>();
+
+        $r2 = (gc.arguments.GCTypes$GCType[]) $r1;
+
+        $r3 = staticinvoke <java.util.Arrays: java.util.stream.Stream stream(java.lang.Object[])>($r2);
+
+        $r5 = staticinvoke <GCTypes$lambda_4__5: java.util.function.Predicate bootstrap$(java.lang.management.GarbageCollectorMXBean)>(r4);
+
+        $r6 = interfaceinvoke $r3.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r5);
+
+        $r7 = interfaceinvoke $r6.<java.util.stream.Stream: java.util.Optional findFirst()>();
+
+        $z0 = virtualinvoke $r7.<java.util.Optional: boolean isPresent()>();
+
+        return $z0;
+    }
+
+    private static boolean lambda$4(java.lang.management.GarbageCollectorMXBean, gc.arguments.GCTypes$GCType)
+    {
+        java.lang.management.GarbageCollectorMXBean r2;
+        gc.arguments.GCTypes$GCType r0;
+        java.lang.String $r1, $r3;
+        boolean $z0;
+
+        r2 := @parameter0: java.lang.management.GarbageCollectorMXBean;
+
+        r0 := @parameter1: gc.arguments.GCTypes$GCType;
+
+        $r1 = interfaceinvoke r0.<gc.arguments.GCTypes$GCType: java.lang.String getGCName()>();
+
+        $r3 = interfaceinvoke r2.<java.lang.management.GarbageCollectorMXBean: java.lang.String getName()>();
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        return $z0;
+    }
+}

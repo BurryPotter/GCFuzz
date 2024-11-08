@@ -1,0 +1,131 @@
+public class SampleMe extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        SampleMe r0;
+
+        r0 := @this: SampleMe;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.memory.Array.SampleMe.SampleClass[] r0;
+        long $l2, $l3, $l4, $l7, $l8, $l9;
+        java.lang.String[] r7;
+        int $i0, $i1, $i5, $i6, i10, i11, i12, i13;
+        java.io.PrintStream $r2, $r3, $r4, $r5, $r6;
+        gc.memory.Array.SampleMe.SampleClass $r1;
+
+        r7 := @parameter0: java.lang.String[];
+
+        r0 = newarray (gc.memory.Array.SampleMe.SampleClass)[2000];
+
+        i10 = 0;
+
+        goto label3;
+
+     label1:
+        $r1 = new gc.memory.Array.SampleMe.SampleClass;
+
+        specialinvoke $r1.<gc.memory.Array.SampleMe.SampleClass: void <init>()>();
+
+        r0[i10] = $r1;
+
+        $i0 = i10 % 200;
+
+        if $i0 != 0 goto label2;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(int)>(i10);
+
+     label2:
+        i10 = i10 + 1;
+
+     label3:
+        if i10 < 2000 goto label1;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("Erasing objects");
+
+        i11 = 0;
+
+        goto label5;
+
+     label4:
+        $i1 = i11 * 2;
+
+        r0[$i1] = null;
+
+        i11 = i11 + 1;
+
+     label5:
+        if i11 < 1000 goto label4;
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>("ready to GC");
+
+        $l2 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $l3 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $l4 = $l3 - $l2;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(long)>($l4);
+
+        i12 = 0;
+
+        goto label7;
+
+     label6:
+        $i5 = i12 * 2;
+
+        $i6 = $i5 + 1;
+
+        r0[$i6] = null;
+
+        i12 = i12 + 1;
+
+     label7:
+        if i12 < 666 goto label6;
+
+        $l7 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $l8 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $l9 = $l8 - $l7;
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(long)>($l9);
+
+        i13 = 0;
+
+        goto label9;
+
+     label8:
+        r0[i13] = null;
+
+        i13 = i13 + 1;
+
+     label9:
+        if i13 < 2000 goto label8;
+
+        return;
+    }
+}

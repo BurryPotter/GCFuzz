@@ -1,0 +1,51 @@
+final class Test7190310$2 extends java.lang.Thread
+{
+
+    void <init>()
+    {
+        Test7190310$2 r0;
+
+        r0 := @this: Test7190310$2;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        java.io.PrintStream $r0;
+        int i0;
+        java.lang.Object $r2;
+        Test7190310$2 r3;
+        java.lang.ref.WeakReference $r1;
+
+        r3 := @this: Test7190310$2;
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 20 goto label4;
+
+     label2:
+        $r1 = staticinvoke <Test7190310: java.lang.ref.WeakReference access$000()>();
+
+        $r2 = virtualinvoke $r1.<java.lang.ref.WeakReference: java.lang.Object get()>();
+
+        if $r2 == null goto label3;
+
+        goto label2;
+
+     label3:
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label4:
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("wr.get() returned null");
+
+        return;
+    }
+}

@@ -1,0 +1,66 @@
+public class TestStealMarkingTask$ListOfLists extends java.lang.Object
+{
+    private test.gc.TestStealMarkingTask$ListOfLists tail;
+    private test.gc.TestStealMarkingTask$ListOfLists subList;
+
+    public void <init>(test.gc.TestStealMarkingTask$ListOfLists, int)
+    {
+        test.gc.TestStealMarkingTask$ListOfLists r1, r3, $r4, $r5, $r6;
+        TestStealMarkingTask$ListOfLists r0;
+        int i0, i1;
+
+        r0 := @this: TestStealMarkingTask$ListOfLists;
+
+        r1 := @parameter0: test.gc.TestStealMarkingTask$ListOfLists;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r5 = (test.gc.TestStealMarkingTask$ListOfLists) r0;
+
+        $r5.<test.gc.TestStealMarkingTask$ListOfLists: test.gc.TestStealMarkingTask$ListOfLists tail> = r1;
+
+        r3 = null;
+
+        i1 = 0;
+
+     label1:
+        if i1 >= i0 goto label2;
+
+        $r4 = new test.gc.TestStealMarkingTask$ListOfLists;
+
+        specialinvoke $r4.<test.gc.TestStealMarkingTask$ListOfLists: void <init>(test.gc.TestStealMarkingTask$ListOfLists)>(r3);
+
+        r3 = $r4;
+
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label2:
+        $r6 = (test.gc.TestStealMarkingTask$ListOfLists) r0;
+
+        $r6.<test.gc.TestStealMarkingTask$ListOfLists: test.gc.TestStealMarkingTask$ListOfLists subList> = r3;
+
+        return;
+    }
+
+    public void <init>(test.gc.TestStealMarkingTask$ListOfLists)
+    {
+        test.gc.TestStealMarkingTask$ListOfLists r1, $r2;
+        TestStealMarkingTask$ListOfLists r0;
+
+        r0 := @this: TestStealMarkingTask$ListOfLists;
+
+        r1 := @parameter0: test.gc.TestStealMarkingTask$ListOfLists;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = (test.gc.TestStealMarkingTask$ListOfLists) r0;
+
+        $r2.<test.gc.TestStealMarkingTask$ListOfLists: test.gc.TestStealMarkingTask$ListOfLists tail> = r1;
+
+        return;
+    }
+}

@@ -1,0 +1,750 @@
+public class Main extends java.lang.Object implements java.lang.Runnable
+{
+    private final jprtlogparser.Main$Sort sort;
+    private final java.lang.String[] logs;
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        jprtlogparser.Main $r1;
+        jprtlogparser.Main$Sort $r3;
+        int $i0, $i1;
+        java.lang.String $r2, $r4;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 0 goto label1;
+
+        $i1 = lengthof r0;
+
+        if $i1 <= 0 goto label2;
+
+        $r4 = r0[0];
+
+        $z0 = virtualinvoke $r4.<java.lang.String: boolean startsWith(java.lang.String)>("-");
+
+        if $z0 == 0 goto label2;
+
+     label1:
+        staticinvoke <jprtlogparser.Main: void printHelp()>();
+
+        goto label3;
+
+     label2:
+        $r1 = new jprtlogparser.Main;
+
+        $r2 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String,java.lang.String)>("sort", "NO");
+
+        $r3 = staticinvoke <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort valueOf(java.lang.String)>($r2);
+
+        specialinvoke $r1.<jprtlogparser.Main: void <init>(jprtlogparser.Main$Sort,java.lang.String[])>($r3, r0);
+
+        virtualinvoke $r1.<jprtlogparser.Main: void run()>();
+
+     label3:
+        return;
+    }
+
+    public transient void <init>(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        Main r0;
+        jprtlogparser.Main $r3;
+        jprtlogparser.Main$Sort $r2;
+
+        r0 := @this: Main;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort NO>;
+
+        $r3 = (jprtlogparser.Main) r0;
+
+        specialinvoke $r3.<jprtlogparser.Main: void <init>(jprtlogparser.Main$Sort,java.lang.String[])>($r2, r1);
+
+        return;
+    }
+
+    private transient void <init>(jprtlogparser.Main$Sort, java.lang.String[])
+    {
+        jprtlogparser.Main$Format $r3, $r6;
+        java.lang.String[] r4;
+        jprtlogparser.Main $r7, $r8;
+        jprtlogparser.Main$Sort r1, $r2, $r5;
+        Main r0;
+
+        r0 := @this: Main;
+
+        r1 := @parameter0: jprtlogparser.Main$Sort;
+
+        r4 := @parameter1: java.lang.String[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r7 = (jprtlogparser.Main) r0;
+
+        $r7.<jprtlogparser.Main: jprtlogparser.Main$Sort sort> = r1;
+
+        $r2 = <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort FAST>;
+
+        if r1 == $r2 goto label1;
+
+        $r5 = <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort SLOW>;
+
+        if r1 != $r5 goto label2;
+
+     label1:
+        $r3 = <jprtlogparser.Main$Format: jprtlogparser.Main$Format TIME_NAME>;
+
+        staticinvoke <jprtlogparser.Main$Test: jprtlogparser.Main$Format access$002(jprtlogparser.Main$Format)>($r3);
+
+        goto label3;
+
+     label2:
+        $r6 = <jprtlogparser.Main$Format: jprtlogparser.Main$Format NAME_TIME>;
+
+        staticinvoke <jprtlogparser.Main$Test: jprtlogparser.Main$Format access$002(jprtlogparser.Main$Format)>($r6);
+
+     label3:
+        $r8 = (jprtlogparser.Main) r0;
+
+        $r8.<jprtlogparser.Main: java.lang.String[] logs> = r4;
+
+        return;
+    }
+
+    private static void printHelp()
+    {
+        java.io.PrintStream $r0, $r2;
+        java.lang.StringBuilder $r1, $r3, $r6, $r7;
+        java.lang.Class $r4;
+        java.lang.String $r5, $r8;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Usage: ");
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("java [-Dsort=NO|NAME|FAST|SLOW] ");
+
+        $r4 = class "Ljprtlogparser/Main;";
+
+        $r5 = virtualinvoke $r4.<java.lang.Class: java.lang.String getCanonicalName()>();
+
+        $r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("http://xxx.log  my.log ...");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        return;
+    }
+
+    public static transient void print(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        jprtlogparser.Main $r0;
+        jprtlogparser.Main$Sort $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new jprtlogparser.Main;
+
+        $r2 = <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort NO>;
+
+        specialinvoke $r0.<jprtlogparser.Main: void <init>(jprtlogparser.Main$Sort,java.lang.String[])>($r2, r1);
+
+        virtualinvoke $r0.<jprtlogparser.Main: void run()>();
+
+        return;
+    }
+
+    public static transient void printSortedByName(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        jprtlogparser.Main $r0;
+        jprtlogparser.Main$Sort $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new jprtlogparser.Main;
+
+        $r2 = <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort NAME>;
+
+        specialinvoke $r0.<jprtlogparser.Main: void <init>(jprtlogparser.Main$Sort,java.lang.String[])>($r2, r1);
+
+        virtualinvoke $r0.<jprtlogparser.Main: void run()>();
+
+        return;
+    }
+
+    public static transient void printSortFastFirst(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        jprtlogparser.Main $r0;
+        jprtlogparser.Main$Sort $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new jprtlogparser.Main;
+
+        $r2 = <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort FAST>;
+
+        specialinvoke $r0.<jprtlogparser.Main: void <init>(jprtlogparser.Main$Sort,java.lang.String[])>($r2, r1);
+
+        virtualinvoke $r0.<jprtlogparser.Main: void run()>();
+
+        return;
+    }
+
+    public static transient void printSortSlowFirst(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        jprtlogparser.Main $r0;
+        jprtlogparser.Main$Sort $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new jprtlogparser.Main;
+
+        $r2 = <jprtlogparser.Main$Sort: jprtlogparser.Main$Sort SLOW>;
+
+        specialinvoke $r0.<jprtlogparser.Main: void <init>(jprtlogparser.Main$Sort,java.lang.String[])>($r2, r1);
+
+        virtualinvoke $r0.<jprtlogparser.Main: void run()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        java.io.PrintStream $r1;
+        java.lang.String[] r7;
+        jprtlogparser.Main $r10, $r11, $r12;
+        jprtlogparser.Main$Sort $r4;
+        int i0, i1;
+        java.lang.StringBuilder $r2, $r5, $r9;
+        java.lang.String $r6, r8;
+        Main r3;
+
+        r3 := @this: Main;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Yahoo: ");
+
+        $r10 = (jprtlogparser.Main) r3;
+
+        $r4 = $r10.<jprtlogparser.Main: jprtlogparser.Main$Sort sort>;
+
+        $r5 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $r11 = (jprtlogparser.Main) r3;
+
+        r7 = $r11.<jprtlogparser.Main: java.lang.String[] logs>;
+
+        i0 = lengthof r7;
+
+        i1 = 0;
+
+     label1:
+        if i1 >= i0 goto label2;
+
+        r8 = r7[i1];
+
+        $r12 = (jprtlogparser.Main) r3;
+
+        specialinvoke $r12.<jprtlogparser.Main: void print(java.lang.String)>(r8);
+
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    private void print(java.lang.String)
+    {
+        java.lang.Integer $r19;
+        jprtlogparser.Main $r55, $r56, $r57;
+        jprtlogparser.Main$Sort $r22;
+        java.util.stream.Collector $r29;
+        java.lang.Exception $r47;
+        java.util.List $r10;
+        java.util.stream.Stream $r9, $r11, $r13, $r15, $r20, $r23, $r27;
+        java.util.function.ToDoubleFunction $r28;
+        java.util.Optional $r17;
+        java.lang.StringBuilder $r2, $r4, $r5, $r35, $r36, $r40, $r41, $r42, $r43, $r44, $r49, $r53, $r54;
+        java.lang.Double $r31, $r52;
+        java.util.function.Function $r14;
+        java.util.ArrayList $r50;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.String r3, $r6, $r37, $r45;
+        double $d0;
+        java.io.PrintStream $r1, $r24, $r32, $r34, $r39, $r46, $r48;
+        java.util.function.Consumer $r12, $r25;
+        jprtlogparser.Main$TestComparator $r51;
+        java.lang.Object $r18, $r30;
+        java.util.Comparator $r16, $r58;
+        Main r8;
+
+        r8 := @this: Main;
+
+        r3 := @parameter0: java.lang.String;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r49 = new java.lang.StringBuilder;
+
+        specialinvoke $r49.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("--- ");
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" --- ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+     label1:
+        $r50 = new java.util.ArrayList;
+
+        specialinvoke $r50.<java.util.ArrayList: void <init>()>();
+
+        $r55 = (jprtlogparser.Main) r8;
+
+        $r9 = specialinvoke $r55.<jprtlogparser.Main: java.util.stream.Stream read(java.lang.String)>(r3);
+
+        $r56 = (jprtlogparser.Main) r8;
+
+        $r10 = specialinvoke $r56.<jprtlogparser.Main: java.util.List findTests(java.util.stream.Stream)>($r9);
+
+        $r11 = interfaceinvoke $r10.<java.util.List: java.util.stream.Stream stream()>();
+
+        virtualinvoke $r50.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r12 = staticinvoke <Main$add__1: java.util.function.Consumer bootstrap$(java.util.List)>($r50);
+
+        interfaceinvoke $r11.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r12);
+
+        $r13 = interfaceinvoke $r50.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r14 = staticinvoke <Main$lambda_print_0__2: java.util.function.Function bootstrap$()>();
+
+        $r15 = interfaceinvoke $r13.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r14);
+
+        $r16 = staticinvoke <Main$lambda_print_1__3: java.util.Comparator bootstrap$()>();
+
+        $r17 = interfaceinvoke $r15.<java.util.stream.Stream: java.util.Optional max(java.util.Comparator)>($r16);
+
+        $r18 = virtualinvoke $r17.<java.util.Optional: java.lang.Object get()>();
+
+        $r19 = (java.lang.Integer) $r18;
+
+        $i0 = virtualinvoke $r19.<java.lang.Integer: int intValue()>();
+
+        staticinvoke <jprtlogparser.Main$Test: int access$102(int)>($i0);
+
+        $r20 = interfaceinvoke $r50.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r51 = new jprtlogparser.Main$TestComparator;
+
+        $r57 = (jprtlogparser.Main) r8;
+
+        $r22 = $r57.<jprtlogparser.Main: jprtlogparser.Main$Sort sort>;
+
+        specialinvoke $r51.<jprtlogparser.Main$TestComparator: void <init>(jprtlogparser.Main$Sort)>($r22);
+
+        $r58 = (java.util.Comparator) $r51;
+
+        $r23 = interfaceinvoke $r20.<java.util.stream.Stream: java.util.stream.Stream sorted(java.util.Comparator)>($r58);
+
+        $r24 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r24.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r25 = staticinvoke <Main$println__4: java.util.function.Consumer bootstrap$(java.io.PrintStream)>($r24);
+
+        interfaceinvoke $r23.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r25);
+
+        $r52 = new java.lang.Double;
+
+        $r27 = interfaceinvoke $r50.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r28 = staticinvoke <Main$lambda_print_2__5: java.util.function.ToDoubleFunction bootstrap$()>();
+
+        $r29 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector summingDouble(java.util.function.ToDoubleFunction)>($r28);
+
+        $r30 = interfaceinvoke $r27.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r29);
+
+        $r31 = (java.lang.Double) $r30;
+
+        $d0 = virtualinvoke $r31.<java.lang.Double: double doubleValue()>();
+
+        specialinvoke $r52.<java.lang.Double: void <init>(double)>($d0);
+
+        $i1 = virtualinvoke $r52.<java.lang.Double: int intValue()>();
+
+        $r32 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r32.<java.io.PrintStream: void println(java.lang.String)>("SUMMARY: ");
+
+        $r34 = <java.lang.System: java.io.PrintStream out>;
+
+        $r53 = new java.lang.StringBuilder;
+
+        specialinvoke $r53.<java.lang.StringBuilder: void <init>()>();
+
+        $r35 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("   Totat tests: ");
+
+        $i2 = interfaceinvoke $r50.<java.util.List: int size()>();
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r34.<java.io.PrintStream: void println(java.lang.String)>($r37);
+
+        $r39 = <java.lang.System: java.io.PrintStream out>;
+
+        $r54 = new java.lang.StringBuilder;
+
+        specialinvoke $r54.<java.lang.StringBuilder: void <init>()>();
+
+        $r40 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("   Totat time: ");
+
+        $i3 = $i1 / 60;
+
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("m ");
+
+        $i4 = $i1 % 60;
+
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("s");
+
+        $r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>($r45);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r47 := @caughtexception;
+
+        $r48 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r47.<java.lang.Exception: void printStackTrace(java.io.PrintStream)>($r48);
+
+     label4:
+        $r46 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r46.<java.io.PrintStream: void println(java.lang.String)>("------------------ ");
+
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    private java.util.List findTests(java.util.stream.Stream)
+    {
+        java.util.ArrayList $r0, $r6;
+        jprtlogparser.Main$Test $r15, r18;
+        java.util.regex.Matcher $r10, $r11, $r14;
+        java.lang.String r9, $r12, $r13, $r16;
+        boolean $z0, $z1, $z2, $z3;
+        java.util.Iterator $r7;
+        java.util.function.Consumer $r2;
+        java.util.stream.Stream r1;
+        float $f0, $f1, $f2;
+        java.lang.Object $r8;
+        java.util.regex.Pattern $r3, $r4, $r5;
+        Main r17;
+
+        r17 := @this: Main;
+
+        r1 := @parameter0: java.util.stream.Stream;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        virtualinvoke $r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r2 = staticinvoke <Main$add__6: java.util.function.Consumer bootstrap$(java.util.List)>($r0);
+
+        interfaceinvoke r1.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r2);
+
+        $r3 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("TEST: (.*)");
+
+        $r4 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("TEST RESULT: (.*)");
+
+        $r5 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(".*: (\\d+.\\d+) seconds");
+
+        $r6 = new java.util.ArrayList;
+
+        specialinvoke $r6.<java.util.ArrayList: void <init>()>();
+
+        r18 = null;
+
+        $r7 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r7.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label6;
+
+        $r8 = interfaceinvoke $r7.<java.util.Iterator: java.lang.Object next()>();
+
+        r9 = (java.lang.String) $r8;
+
+        if r18 != null goto label3;
+
+        $r14 = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r9);
+
+        $z3 = virtualinvoke $r14.<java.util.regex.Matcher: boolean matches()>();
+
+        if $z3 == 0 goto label2;
+
+        $r15 = new jprtlogparser.Main$Test;
+
+        $r16 = virtualinvoke $r14.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        specialinvoke $r15.<jprtlogparser.Main$Test: void <init>(java.lang.String)>($r16);
+
+        r18 = $r15;
+
+     label2:
+        goto label5;
+
+     label3:
+        $r10 = virtualinvoke $r4.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r9);
+
+        $z1 = virtualinvoke $r10.<java.util.regex.Matcher: boolean matches()>();
+
+        if $z1 == 0 goto label4;
+
+        $r13 = virtualinvoke $r10.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        r18.<jprtlogparser.Main$Test: java.lang.String status> = $r13;
+
+        interfaceinvoke $r6.<java.util.List: boolean add(java.lang.Object)>(r18);
+
+        r18 = null;
+
+        goto label5;
+
+     label4:
+        $r11 = virtualinvoke $r5.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r9);
+
+        $z2 = virtualinvoke $r11.<java.util.regex.Matcher: boolean matches()>();
+
+        if $z2 == 0 goto label5;
+
+        $f0 = r18.<jprtlogparser.Main$Test: float time>;
+
+        $r12 = virtualinvoke $r11.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        $f1 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r12);
+
+        $f2 = $f0 + $f1;
+
+        r18.<jprtlogparser.Main$Test: float time> = $f2;
+
+     label5:
+        goto label1;
+
+     label6:
+        return $r6;
+    }
+
+    private java.util.stream.Stream read(java.lang.String) throws jprtlogparser.Main$BadLuckException
+    {
+        java.lang.Throwable $r3, $r9;
+        jprtlogparser.Main$BadLuckException $r6;
+        jprtlogparser.Main $r7, $r8;
+        java.util.stream.Stream $r2, $r5;
+        java.lang.String r0;
+        Main r1;
+        boolean $z0, $z1, $z2;
+
+        r1 := @this: Main;
+
+        r0 := @parameter0: java.lang.String;
+
+     label1:
+        $z0 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>("http://");
+
+        if $z0 != 0 goto label2;
+
+        $z1 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>("https://");
+
+        if $z1 != 0 goto label2;
+
+        $z2 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String)>("file://");
+
+        if $z2 == 0 goto label4;
+
+     label2:
+        $r7 = (jprtlogparser.Main) r1;
+
+        $r5 = specialinvoke $r7.<jprtlogparser.Main: java.util.stream.Stream readFromURL(java.lang.String)>(r0);
+
+     label3:
+        return $r5;
+
+     label4:
+        $r8 = (jprtlogparser.Main) r1;
+
+        $r2 = specialinvoke $r8.<jprtlogparser.Main: java.util.stream.Stream readFromFile(java.lang.String)>(r0);
+
+     label5:
+        return $r2;
+
+     label6:
+        $r3 := @caughtexception;
+
+        $r6 = new jprtlogparser.Main$BadLuckException;
+
+        specialinvoke $r6.<jprtlogparser.Main$BadLuckException: void <init>(java.lang.Throwable)>($r3);
+
+        $r9 = (java.lang.Throwable) $r6;
+
+        throw $r9;
+
+        catch java.lang.Throwable from label1 to label3 with label6;
+        catch java.lang.Throwable from label4 to label5 with label6;
+    }
+
+    private java.util.stream.Stream readFromURL(java.lang.String) throws java.net.MalformedURLException, java.io.IOException
+    {
+        java.net.URL $r0;
+        java.io.InputStreamReader $r4;
+        java.util.stream.Stream $r6;
+        java.net.URLConnection $r2;
+        java.lang.String r1;
+        java.io.BufferedReader $r3;
+        Main r7;
+        java.io.InputStream $r5;
+
+        r7 := @this: Main;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.net.URL;
+
+        specialinvoke $r0.<java.net.URL: void <init>(java.lang.String)>(r1);
+
+        $r2 = virtualinvoke $r0.<java.net.URL: java.net.URLConnection openConnection()>();
+
+        $r3 = new java.io.BufferedReader;
+
+        $r4 = new java.io.InputStreamReader;
+
+        $r5 = virtualinvoke $r2.<java.net.URLConnection: java.io.InputStream getInputStream()>();
+
+        specialinvoke $r4.<java.io.InputStreamReader: void <init>(java.io.InputStream,java.lang.String)>($r5, "UTF-8");
+
+        specialinvoke $r3.<java.io.BufferedReader: void <init>(java.io.Reader)>($r4);
+
+        $r6 = virtualinvoke $r3.<java.io.BufferedReader: java.util.stream.Stream lines()>();
+
+        return $r6;
+    }
+
+    private java.util.stream.Stream readFromFile(java.lang.String) throws java.io.IOException
+    {
+        java.util.stream.Stream $r3;
+        java.lang.String[] $r1;
+        java.lang.String r0;
+        java.nio.file.Path $r2;
+        Main r4;
+
+        r4 := @this: Main;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = newarray (java.lang.String)[0];
+
+        $r2 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>(r0, $r1);
+
+        $r3 = staticinvoke <java.nio.file.Files: java.util.stream.Stream lines(java.nio.file.Path)>($r2);
+
+        return $r3;
+    }
+
+    private static double lambda$print$2(jprtlogparser.Main$Test)
+    {
+        jprtlogparser.Main$Test r0;
+        float $f0;
+        double $d0;
+
+        r0 := @parameter0: jprtlogparser.Main$Test;
+
+        $f0 = r0.<jprtlogparser.Main$Test: float time>;
+
+        $d0 = (double) $f0;
+
+        return $d0;
+    }
+
+    private static int lambda$print$1(java.lang.Integer, java.lang.Integer)
+    {
+        int $i0, $i1, $i2;
+        java.lang.Integer r0, r1;
+
+        r0 := @parameter0: java.lang.Integer;
+
+        r1 := @parameter1: java.lang.Integer;
+
+        $i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+
+        $i1 = virtualinvoke r1.<java.lang.Integer: int intValue()>();
+
+        $i2 = $i0 - $i1;
+
+        return $i2;
+    }
+
+    private static java.lang.Integer lambda$print$0(jprtlogparser.Main$Test)
+    {
+        jprtlogparser.Main$Test r0;
+        int $i0;
+        java.lang.String $r1;
+        java.lang.Integer $r2;
+
+        r0 := @parameter0: jprtlogparser.Main$Test;
+
+        $r1 = r0.<jprtlogparser.Main$Test: java.lang.String name>;
+
+        $i0 = virtualinvoke $r1.<java.lang.String: int length()>();
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        return $r2;
+    }
+}

@@ -1,0 +1,17 @@
+class ReferenceCrasher$Referent2 extends ReferenceCrasher$Referent
+{
+
+    void <init>(int)
+    {
+        int i0;
+        ReferenceCrasher$Referent2 r0;
+
+        r0 := @this: ReferenceCrasher$Referent2;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<ReferenceCrasher$Referent: void <init>(int)>(i0);
+
+        return;
+    }
+}

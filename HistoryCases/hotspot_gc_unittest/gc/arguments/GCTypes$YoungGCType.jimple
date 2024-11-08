@@ -1,0 +1,152 @@
+public final enum class GCTypes$YoungGCType extends java.lang.Enum implements gc.arguments.GCTypes$GCType
+{
+    public static final enum gc.arguments.GCTypes$YoungGCType DefNew;
+    public static final enum gc.arguments.GCTypes$YoungGCType ParNew;
+    public static final enum gc.arguments.GCTypes$YoungGCType PSNew;
+    public static final enum gc.arguments.GCTypes$YoungGCType G1;
+    private final java.lang.String gcTypeName;
+    private static final gc.arguments.GCTypes$YoungGCType[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.arguments.GCTypes$YoungGCType $r0, $r1, $r2, $r3, $r5, $r6, $r7, $r8;
+        gc.arguments.GCTypes$YoungGCType[] $r4;
+
+        $r0 = new gc.arguments.GCTypes$YoungGCType;
+
+        specialinvoke $r0.<gc.arguments.GCTypes$YoungGCType: void <init>(java.lang.String,int,java.lang.String)>("DefNew", 0, "Copy");
+
+        <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType DefNew> = $r0;
+
+        $r1 = new gc.arguments.GCTypes$YoungGCType;
+
+        specialinvoke $r1.<gc.arguments.GCTypes$YoungGCType: void <init>(java.lang.String,int,java.lang.String)>("ParNew", 1, "ParNew");
+
+        <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType ParNew> = $r1;
+
+        $r2 = new gc.arguments.GCTypes$YoungGCType;
+
+        specialinvoke $r2.<gc.arguments.GCTypes$YoungGCType: void <init>(java.lang.String,int,java.lang.String)>("PSNew", 2, "PS Scavenge");
+
+        <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType PSNew> = $r2;
+
+        $r3 = new gc.arguments.GCTypes$YoungGCType;
+
+        specialinvoke $r3.<gc.arguments.GCTypes$YoungGCType: void <init>(java.lang.String,int,java.lang.String)>("G1", 3, "G1 Young Generation");
+
+        <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType G1> = $r3;
+
+        $r4 = newarray (gc.arguments.GCTypes$YoungGCType)[4];
+
+        $r5 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType DefNew>;
+
+        $r4[0] = $r5;
+
+        $r6 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType ParNew>;
+
+        $r4[1] = $r6;
+
+        $r7 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType PSNew>;
+
+        $r4[2] = $r7;
+
+        $r8 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType G1>;
+
+        $r4[3] = $r8;
+
+        <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType[] ENUM$VALUES> = $r4;
+
+        return;
+    }
+
+    public java.lang.String getGCName()
+    {
+        java.lang.String $r1;
+        gc.arguments.GCTypes$YoungGCType $r2;
+        GCTypes$YoungGCType r0;
+
+        r0 := @this: GCTypes$YoungGCType;
+
+        $r2 = (gc.arguments.GCTypes$YoungGCType) r0;
+
+        $r1 = $r2.<gc.arguments.GCTypes$YoungGCType: java.lang.String gcTypeName>;
+
+        return $r1;
+    }
+
+    private void <init>(java.lang.String, int, java.lang.String)
+    {
+        gc.arguments.GCTypes$YoungGCType $r3;
+        int i0;
+        java.lang.String r1, r2;
+        GCTypes$YoungGCType r0;
+
+        r0 := @this: GCTypes$YoungGCType;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r2 := @parameter2: java.lang.String;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        $r3 = (gc.arguments.GCTypes$YoungGCType) r0;
+
+        $r3.<gc.arguments.GCTypes$YoungGCType: java.lang.String gcTypeName> = r2;
+
+        return;
+    }
+
+    public static gc.arguments.GCTypes$YoungGCType getYoungGCType()
+    {
+        gc.arguments.GCTypes$YoungGCType $r1;
+        gc.arguments.GCTypes$GCType $r0;
+
+        $r0 = staticinvoke <gc.arguments.GCTypes: gc.arguments.GCTypes$GCType getCurrentGCType(java.lang.Class)>(class "Lgc/arguments/GCTypes$YoungGCType;");
+
+        $r1 = (gc.arguments.GCTypes$YoungGCType) $r0;
+
+        return $r1;
+    }
+
+    public static java.lang.management.GarbageCollectorMXBean getYoungGCBean()
+    {
+        java.lang.management.GarbageCollectorMXBean $r0;
+
+        $r0 = staticinvoke <gc.arguments.GCTypes: java.lang.management.GarbageCollectorMXBean getGCBeanByType(java.lang.Class)>(class "Lgc/arguments/GCTypes$YoungGCType;");
+
+        return $r0;
+    }
+
+    public static gc.arguments.GCTypes$YoungGCType[] values()
+    {
+        int $i0;
+        gc.arguments.GCTypes$YoungGCType[] $r0, $r1;
+
+        $r0 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.arguments.GCTypes$YoungGCType)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.arguments.GCTypes$YoungGCType valueOf(java.lang.String)
+    {
+        java.lang.String r0;
+        java.lang.Enum $r1;
+        gc.arguments.GCTypes$YoungGCType $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/arguments/GCTypes$YoungGCType;", r0);
+
+        $r2 = (gc.arguments.GCTypes$YoungGCType) $r1;
+
+        return $r2;
+    }
+}

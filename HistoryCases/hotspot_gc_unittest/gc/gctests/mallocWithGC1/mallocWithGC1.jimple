@@ -1,0 +1,181 @@
+public class mallocWithGC1 extends java.lang.Object implements nsk.share.test.Test
+{
+    private int objectSize;
+
+    static void <clinit>()
+    {
+        staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("mallocWithGC1");
+
+        return;
+    }
+
+    public void <init>()
+    {
+        mallocWithGC1 r0;
+        gc.gctests.mallocWithGC1.mallocWithGC1 $r1;
+
+        r0 := @this: mallocWithGC1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.gctests.mallocWithGC1.mallocWithGC1) r0;
+
+        $r1.<gc.gctests.mallocWithGC1.mallocWithGC1: int objectSize> = 100;
+
+        return;
+    }
+
+    public native void getMallocLock01();
+
+    public void run()
+    {
+        java.lang.Throwable $r18;
+        java.lang.Object[] r1;
+        mallocWithGC1 r3;
+        gc.gctests.mallocWithGC1.mallocWithGC1 $r14, $r15;
+        gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater $r11;
+        gc.gctests.mallocWithGC1.mallocWithGC1$cHeapEater $r12;
+        java.util.Vector $r10;
+        java.lang.Thread $r16, $r17;
+        int $i0, $i1, i2, i3;
+        java.io.PrintStream $r7;
+        java.lang.Exception $r8;
+        nsk.share.TestFailure $r13;
+        java.lang.Object $r5, $r6;
+
+        r3 := @this: mallocWithGC1;
+
+        $r10 = new java.util.Vector;
+
+        specialinvoke $r10.<java.util.Vector: void <init>(int)>(5);
+
+        r1 = newarray (java.lang.Thread)[2];
+
+        $r11 = new gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater;
+
+        $r14 = (gc.gctests.mallocWithGC1.mallocWithGC1) r3;
+
+        specialinvoke $r11.<gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater: void <init>(gc.gctests.mallocWithGC1.mallocWithGC1,java.util.Vector)>($r14, $r10);
+
+        r1[0] = $r11;
+
+        $r12 = new gc.gctests.mallocWithGC1.mallocWithGC1$cHeapEater;
+
+        $r15 = (gc.gctests.mallocWithGC1.mallocWithGC1) r3;
+
+        specialinvoke $r12.<gc.gctests.mallocWithGC1.mallocWithGC1$cHeapEater: void <init>(gc.gctests.mallocWithGC1.mallocWithGC1)>($r15);
+
+        r1[1] = $r12;
+
+     label1:
+        i2 = 0;
+
+        goto label3;
+
+     label2:
+        $r5 = r1[i2];
+
+        $r16 = (java.lang.Thread) $r5;
+
+        virtualinvoke $r16.<java.lang.Thread: void start()>();
+
+        i2 = i2 + 1;
+
+     label3:
+        $i0 = lengthof r1;
+
+        if i2 < $i0 goto label2;
+
+        i3 = 0;
+
+        goto label5;
+
+     label4:
+        $r6 = r1[i3];
+
+        $r17 = (java.lang.Thread) $r6;
+
+        virtualinvoke $r17.<java.lang.Thread: void join()>();
+
+        i3 = i3 + 1;
+
+     label5:
+        $i1 = lengthof r1;
+
+        if i3 < $i1 goto label4;
+
+     label6:
+        goto label8;
+
+     label7:
+        $r8 := @caughtexception;
+
+        $r13 = new nsk.share.TestFailure;
+
+        specialinvoke $r13.<nsk.share.TestFailure: void <init>(java.lang.String,java.lang.Throwable)>("Test Failed.", $r8);
+
+        $r18 = (java.lang.Throwable) $r13;
+
+        throw $r18;
+
+     label8:
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>("Test Passed.");
+
+        return;
+
+        catch java.lang.Exception from label1 to label6 with label7;
+    }
+
+    private nsk.share.gc.CircularLinkedList buildCircularLinkedList()
+    {
+        nsk.share.gc.CircularLinkedList $r2;
+        mallocWithGC1 r1;
+        int $i0, i1;
+        gc.gctests.mallocWithGC1.mallocWithGC1 $r3;
+
+        r1 := @this: mallocWithGC1;
+
+        $r2 = new nsk.share.gc.CircularLinkedList;
+
+        $r3 = (gc.gctests.mallocWithGC1.mallocWithGC1) r1;
+
+        $i0 = $r3.<gc.gctests.mallocWithGC1.mallocWithGC1: int objectSize>;
+
+        specialinvoke $r2.<nsk.share.gc.CircularLinkedList: void <init>(int)>($i0);
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r2.<nsk.share.gc.CircularLinkedList: void grow()>();
+
+        i1 = i1 + 1;
+
+     label2:
+        if i1 < 2000 goto label1;
+
+        return $r2;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        gc.gctests.mallocWithGC1.mallocWithGC1 $r2;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.mallocWithGC1.mallocWithGC1;
+
+        specialinvoke $r2.<gc.gctests.mallocWithGC1.mallocWithGC1: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.test.Tests: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

@@ -1,0 +1,23 @@
+public class TestAlwaysPretouch extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestAlwaysPretouch r0;
+
+        r0 := @this: TestAlwaysPretouch;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        return;
+    }
+}

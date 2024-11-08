@@ -1,0 +1,344 @@
+public class TestNoAllocationsInHRegions extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WB;
+    private static final java.util.Random RND;
+    private static final int G1_REGION_SIZE;
+    private static final int[] HUMONGOUS_SIZES;
+    private static final int ALLOC_THREAD_COUNT;
+    public static java.util.LinkedList humongousAllocations;
+    private static volatile boolean shouldStop;
+    private static volatile java.lang.Error error;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0, $r2;
+        java.util.Random $r1;
+        int[] $r3;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.util.LinkedList $r4;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.humongousObjects.TestNoAllocationsInHRegions: sun.hotspot.WhiteBox WB> = $r0;
+
+        $r1 = staticinvoke <jdk.test.lib.Utils: java.util.Random getRandomInstance()>();
+
+        <gc.g1.humongousObjects.TestNoAllocationsInHRegions: java.util.Random RND> = $r1;
+
+        $r2 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: sun.hotspot.WhiteBox WB>;
+
+        $i0 = virtualinvoke $r2.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        <gc.g1.humongousObjects.TestNoAllocationsInHRegions: int G1_REGION_SIZE> = $i0;
+
+        $r3 = newarray (int)[3];
+
+        $i1 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: int G1_REGION_SIZE>;
+
+        $i2 = $i1 / 2;
+
+        $r3[0] = $i2;
+
+        $i3 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: int G1_REGION_SIZE>;
+
+        $i4 = $i3 + 1;
+
+        $r3[1] = $i4;
+
+        $i5 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: int G1_REGION_SIZE>;
+
+        $i6 = $i5 * 2;
+
+        $i7 = $i6 + 1;
+
+        $r3[2] = $i7;
+
+        <gc.g1.humongousObjects.TestNoAllocationsInHRegions: int[] HUMONGOUS_SIZES> = $r3;
+
+        $r4 = new java.util.LinkedList;
+
+        specialinvoke $r4.<java.util.LinkedList: void <init>()>();
+
+        <gc.g1.humongousObjects.TestNoAllocationsInHRegions: java.util.LinkedList humongousAllocations> = $r4;
+
+        <gc.g1.humongousObjects.TestNoAllocationsInHRegions: boolean shouldStop> = 0;
+
+        <gc.g1.humongousObjects.TestNoAllocationsInHRegions: java.lang.Error error> = null;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestNoAllocationsInHRegions r0;
+
+        r0 := @this: TestNoAllocationsInHRegions;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r23;
+        gc.g1.humongousObjects.TestNoAllocationsInHRegions$Allocator $r48;
+        byte $b15, $b22;
+        java.lang.Thread $r49;
+        java.lang.Runtime $r10;
+        java.util.stream.Stream $r34;
+        java.lang.StringBuilder $r6, $r7, $r8, $r13, $r14, $r15, $r16, $r26, $r27, $r29, $r44, $r45, $r46;
+        java.lang.Error $r37, $r38, $r39, $r43;
+        long $l2, l3, $l5, $l6, $l8, l9, $l10, $l14, $l19, $l20, $l21;
+        java.lang.String $r1, $r2, $r9, $r17, $r30;
+        sun.hotspot.WhiteBox $r3, $r18, $r28;
+        java.lang.OutOfMemoryError $r41;
+        java.util.Random $r20;
+        java.lang.Runnable $r50;
+        int[] $r19, $r22;
+        java.lang.String[] r0;
+        int $i0, $i1, $i4, i7, $i11, i12, $i13, $i16, $i17, $i18, i23, $i24, $i25;
+        java.util.LinkedList $r21, $r47;
+        double $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7, $d8, $d9;
+        java.io.PrintStream $r5, $r12, $r25, $r36, $r42;
+        java.util.function.Consumer $r35;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 2 goto label01;
+
+        $r43 = new java.lang.Error;
+
+        specialinvoke $r43.<java.lang.Error: void <init>(java.lang.String)>("Test Bug: Expected duration (in seconds) and percent of allocated regions were not provided as command line argument");
+
+        throw $r43;
+
+     label01:
+        $r1 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        $l2 = (long) $i1;
+
+        l3 = $l2 * 1000L;
+
+        $r2 = r0[1];
+
+        $i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        $l5 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r3 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: sun.hotspot.WhiteBox WB>;
+
+        $l6 = virtualinvoke $r3.<sun.hotspot.WhiteBox: long g1NumFreeRegions()>();
+
+        $d0 = (double) $l6;
+
+        $d2 = $d0 / 100.0;
+
+        $d1 = (double) $i4;
+
+        $d3 = $d2 * $d1;
+
+        i7 = (int) $d3;
+
+        $l8 = (long) i7;
+
+        l9 = $l6 - $l8;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r44 = new java.lang.StringBuilder;
+
+        specialinvoke $r44.<java.lang.StringBuilder: void <init>(java.lang.String)>("Regions to allocate: ");
+
+        $r6 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; regions to left free: ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l9);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        $r10 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l10 = virtualinvoke $r10.<java.lang.Runtime: long freeMemory()>();
+
+        $d4 = (double) $l10;
+
+        $d6 = $d4 / 100.0;
+
+        $i11 = 100 - $i4;
+
+        $d5 = (double) $i11;
+
+        $d7 = $d6 * $d5;
+
+        $d8 = $d7 / 5.0;
+
+        $d9 = $d8 * 0.5;
+
+        i12 = (int) $d9;
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        $r45 = new java.lang.StringBuilder;
+
+        specialinvoke $r45.<java.lang.StringBuilder: void <init>(java.lang.String)>("Using ");
+
+        $i13 = i12 / 1024;
+
+        $r13 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i13);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("KB for each of ");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(5);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" allocation threads");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+        goto label05;
+
+     label02:
+        $r21 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: java.util.LinkedList humongousAllocations>;
+
+        $r22 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: int[] HUMONGOUS_SIZES>;
+
+        $r20 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: java.util.Random RND>;
+
+        $r19 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: int[] HUMONGOUS_SIZES>;
+
+        $i16 = lengthof $r19;
+
+        $i17 = virtualinvoke $r20.<java.util.Random: int nextInt(int)>($i16);
+
+        $i18 = $r22[$i17];
+
+        $r23 = newarray (byte)[$i18];
+
+        virtualinvoke $r21.<java.util.LinkedList: boolean add(java.lang.Object)>($r23);
+
+     label03:
+        goto label05;
+
+     label04:
+        $r41 := @caughtexception;
+
+        $r42 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r42.<java.io.PrintStream: void println(java.lang.String)>("Warning: OOM while allocating humongous objects - it likely means that heap is fragmented");
+
+        goto label06;
+
+     label05:
+        $r18 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: sun.hotspot.WhiteBox WB>;
+
+        $l14 = virtualinvoke $r18.<sun.hotspot.WhiteBox: long g1NumFreeRegions()>();
+
+        $b15 = $l14 cmp l9;
+
+        $i24 = (int) $b15;
+
+        if $i24 > 0 goto label02;
+
+     label06:
+        $r25 = <java.lang.System: java.io.PrintStream out>;
+
+        $r46 = new java.lang.StringBuilder;
+
+        specialinvoke $r46.<java.lang.StringBuilder: void <init>(java.lang.String)>("Initial free regions ");
+
+        $r26 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l6);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; Free regions left ");
+
+        $r28 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: sun.hotspot.WhiteBox WB>;
+
+        $l19 = virtualinvoke $r28.<sun.hotspot.WhiteBox: long g1NumFreeRegions()>();
+
+        $r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l19);
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r30);
+
+        $r47 = new java.util.LinkedList;
+
+        specialinvoke $r47.<java.util.LinkedList: void <init>()>();
+
+        i23 = 0;
+
+        goto label08;
+
+     label07:
+        $r49 = new java.lang.Thread;
+
+        $r48 = new gc.g1.humongousObjects.TestNoAllocationsInHRegions$Allocator;
+
+        specialinvoke $r48.<gc.g1.humongousObjects.TestNoAllocationsInHRegions$Allocator: void <init>(int)>(i12);
+
+        $r50 = (java.lang.Runnable) $r48;
+
+        specialinvoke $r49.<java.lang.Thread: void <init>(java.lang.Runnable)>($r50);
+
+        virtualinvoke $r47.<java.util.LinkedList: boolean add(java.lang.Object)>($r49);
+
+        i23 = i23 + 1;
+
+     label08:
+        if i23 < 5 goto label07;
+
+        $r34 = virtualinvoke $r47.<java.util.LinkedList: java.util.stream.Stream stream()>();
+
+        $r35 = staticinvoke <TestNoAllocationsInHRegions$start__1: java.util.function.Consumer bootstrap$()>();
+
+        interfaceinvoke $r34.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r35);
+
+        goto label10;
+
+     label09:
+        staticinvoke <java.lang.Thread: void yield()>();
+
+     label10:
+        $l20 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l21 = $l20 - $l5;
+
+        $b22 = $l21 cmp l3;
+
+        $i25 = (int) $b22;
+
+        if $i25 >= 0 goto label11;
+
+        $r39 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: java.lang.Error error>;
+
+        if $r39 == null goto label09;
+
+     label11:
+        <gc.g1.humongousObjects.TestNoAllocationsInHRegions: boolean shouldStop> = 1;
+
+        $r36 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r36.<java.io.PrintStream: void println(java.lang.String)>("Finished test");
+
+        $r37 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: java.lang.Error error>;
+
+        if $r37 == null goto label12;
+
+        $r38 = <gc.g1.humongousObjects.TestNoAllocationsInHRegions: java.lang.Error error>;
+
+        throw $r38;
+
+     label12:
+        return;
+
+        catch java.lang.OutOfMemoryError from label02 to label03 with label04;
+    }
+}

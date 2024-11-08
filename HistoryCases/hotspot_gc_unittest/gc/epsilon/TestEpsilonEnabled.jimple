@@ -1,0 +1,72 @@
+public class TestEpsilonEnabled extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestEpsilonEnabled r0;
+
+        r0 := @this: TestEpsilonEnabled;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.IllegalStateException $r0;
+        java.lang.String[] r1;
+        boolean $z0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $z0 = staticinvoke <gc.epsilon.TestEpsilonEnabled: boolean isEpsilonEnabled()>();
+
+        if $z0 != 0 goto label1;
+
+        $r0 = new java.lang.IllegalStateException;
+
+        specialinvoke $r0.<java.lang.IllegalStateException: void <init>(java.lang.String)>("Debug builds should have Epsilon enabled");
+
+        throw $r0;
+
+     label1:
+        return;
+    }
+
+    public static boolean isEpsilonEnabled()
+    {
+        java.util.List $r0;
+        java.util.Iterator $r1;
+        java.lang.management.GarbageCollectorMXBean r3;
+        java.lang.Object $r2;
+        java.lang.String $r4;
+        boolean $z0, $z1;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getGarbageCollectorMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        $r2 = interfaceinvoke $r1.<java.util.Iterator: java.lang.Object next()>();
+
+        r3 = (java.lang.management.GarbageCollectorMXBean) $r2;
+
+        $r4 = interfaceinvoke r3.<java.lang.management.GarbageCollectorMXBean: java.lang.String getName()>();
+
+        $z1 = virtualinvoke $r4.<java.lang.String: boolean contains(java.lang.CharSequence)>("Epsilon");
+
+        if $z1 == 0 goto label2;
+
+        return 1;
+
+     label2:
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+        return 0;
+    }
+}

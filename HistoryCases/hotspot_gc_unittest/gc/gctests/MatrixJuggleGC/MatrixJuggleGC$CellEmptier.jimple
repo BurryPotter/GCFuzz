@@ -1,0 +1,123 @@
+class MatrixJuggleGC$CellEmptier extends java.lang.Thread
+{
+    final gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0;
+
+    private void <init>(gc.gctests.MatrixJuggleGC.MatrixJuggleGC)
+    {
+        gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier $r2;
+        MatrixJuggleGC$CellEmptier r0;
+        gc.gctests.MatrixJuggleGC.MatrixJuggleGC r1;
+
+        r0 := @this: MatrixJuggleGC$CellEmptier;
+
+        r1 := @parameter0: gc.gctests.MatrixJuggleGC.MatrixJuggleGC;
+
+        $r2 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier) r0;
+
+        $r2.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier: gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0> = r1;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    private boolean keepEmptying()
+    {
+        nsk.share.gc.Matrix $r2, $r4;
+        gc.gctests.MatrixJuggleGC.MatrixJuggleGC $r1, $r3;
+        int $i0, $i1, $i2, i3, $i4, $i5;
+        gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier $r5, $r6;
+        MatrixJuggleGC$CellEmptier r0;
+
+        r0 := @this: MatrixJuggleGC$CellEmptier;
+
+        $r5 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier) r0;
+
+        $r1 = $r5.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier: gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0>;
+
+        $r2 = $r1.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC: nsk.share.gc.Matrix cm>;
+
+        $i0 = virtualinvoke $r2.<nsk.share.gc.Matrix: int returnArrayBound()>();
+
+        $i2 = $i0 + 1;
+
+        $i1 = $i0 + 1;
+
+        i3 = $i2 * $i1;
+
+        $r6 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier) r0;
+
+        $r3 = $r6.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier: gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0>;
+
+        $r4 = $r3.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC: nsk.share.gc.Matrix cm>;
+
+        $i4 = virtualinvoke $r4.<nsk.share.gc.Matrix: int getCellCount()>();
+
+        $i5 = i3 / 2;
+
+        if $i4 >= $i5 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public void run()
+    {
+        nsk.share.gc.Matrix $r2, $r7;
+        java.util.Stack $r5;
+        int $i0, $i1, $i2;
+        nsk.share.gc.IndexPair $r8;
+        gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier $r9, $r10, $r11, $r12;
+        MatrixJuggleGC$CellEmptier r0;
+        boolean $z0;
+        gc.gctests.MatrixJuggleGC.MatrixJuggleGC $r1, $r3, $r6;
+
+        r0 := @this: MatrixJuggleGC$CellEmptier;
+
+        $r9 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier) r0;
+
+        $r1 = $r9.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier: gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0>;
+
+        $r2 = $r1.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC: nsk.share.gc.Matrix cm>;
+
+        $i0 = virtualinvoke $r2.<nsk.share.gc.Matrix: int returnArrayBound()>();
+
+        goto label2;
+
+     label1:
+        $i1 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int,int)>(0, $i0);
+
+        $i2 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int,int)>(0, $i0);
+
+        $r10 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier) r0;
+
+        $r3 = $r10.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier: gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0>;
+
+        $r5 = $r3.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC: java.util.Stack emptiedLocations>;
+
+        $r8 = new nsk.share.gc.IndexPair;
+
+        specialinvoke $r8.<nsk.share.gc.IndexPair: void <init>(int,int)>($i1, $i2);
+
+        virtualinvoke $r5.<java.util.Stack: java.lang.Object push(java.lang.Object)>($r8);
+
+        $r11 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier) r0;
+
+        $r6 = $r11.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier: gc.gctests.MatrixJuggleGC.MatrixJuggleGC this$0>;
+
+        $r7 = $r6.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC: nsk.share.gc.Matrix cm>;
+
+        virtualinvoke $r7.<nsk.share.gc.Matrix: void clear(int,int)>($i1, $i2);
+
+     label2:
+        $r12 = (gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier) r0;
+
+        $z0 = virtualinvoke $r12.<gc.gctests.MatrixJuggleGC.MatrixJuggleGC$CellEmptier: boolean keepEmptying()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+}

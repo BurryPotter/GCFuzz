@@ -1,0 +1,42 @@
+class CMSGCALot$TmpClass extends java.lang.Object
+{
+    java.util.ArrayList arrayList;
+
+    void <init>(int)
+    {
+        byte[] r2;
+        CMSGCALot$TmpClass r0;
+        int i0, i1;
+        java.util.ArrayList $r1, $r3;
+
+        r0 := @this: CMSGCALot$TmpClass;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.ArrayList;
+
+        specialinvoke $r1.<java.util.ArrayList: void <init>()>();
+
+        r0.<CMSGCALot$TmpClass: java.util.ArrayList arrayList> = $r1;
+
+        i1 = 0;
+
+     label1:
+        if i1 >= i0 goto label2;
+
+        r2 = newarray (byte)[1024];
+
+        $r3 = r0.<CMSGCALot$TmpClass: java.util.ArrayList arrayList>;
+
+        virtualinvoke $r3.<java.util.ArrayList: boolean add(java.lang.Object)>(r2);
+
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+}

@@ -1,0 +1,67 @@
+class FireHunter$ShutDownHookThread extends java.lang.Thread
+{
+
+    void <init>()
+    {
+        FireHunter$ShutDownHookThread r0;
+
+        r0 := @this: FireHunter$ShutDownHookThread;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.String $r4, $r9;
+        FireHunter$ShutDownHookThread r10;
+        java.io.PrintStream $r1, $r6;
+        java.lang.StringBuilder $r0, $r2, $r3, $r5, $r7, $r8;
+
+        r10 := @this: FireHunter$ShutDownHookThread;
+
+        $i0 = <FireHunter: int numFilesDeleted>;
+
+        $i1 = staticinvoke <FireHunter: int deleteFiles()>();
+
+        $i2 = $i0 + $i1;
+
+        <FireHunter: int numFilesDeleted> = $i2;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Number of Signals Posted = ");
+
+        $i3 = <FireHunter: int numSignalsPosted>;
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r4);
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Number of Files Deleted  = ");
+
+        $i4 = <FireHunter: int numFilesDeleted>;
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        return;
+    }
+}

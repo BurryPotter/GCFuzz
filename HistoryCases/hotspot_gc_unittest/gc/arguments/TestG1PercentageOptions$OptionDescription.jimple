@@ -1,0 +1,38 @@
+final class TestG1PercentageOptions$OptionDescription extends java.lang.Object
+{
+    public final java.lang.String name;
+    public final java.lang.String[] valid;
+    public final java.lang.String[] invalid;
+
+    void <init>(java.lang.String, java.lang.String[], java.lang.String[])
+    {
+        gc.arguments.TestG1PercentageOptions$OptionDescription $r4, $r5, $r6;
+        TestG1PercentageOptions$OptionDescription r0;
+        java.lang.String[] r2, r3;
+        java.lang.String r1;
+
+        r0 := @this: TestG1PercentageOptions$OptionDescription;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String[];
+
+        r3 := @parameter2: java.lang.String[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r4 = (gc.arguments.TestG1PercentageOptions$OptionDescription) r0;
+
+        $r4.<gc.arguments.TestG1PercentageOptions$OptionDescription: java.lang.String name> = r1;
+
+        $r5 = (gc.arguments.TestG1PercentageOptions$OptionDescription) r0;
+
+        $r5.<gc.arguments.TestG1PercentageOptions$OptionDescription: java.lang.String[] valid> = r2;
+
+        $r6 = (gc.arguments.TestG1PercentageOptions$OptionDescription) r0;
+
+        $r6.<gc.arguments.TestG1PercentageOptions$OptionDescription: java.lang.String[] invalid> = r3;
+
+        return;
+    }
+}

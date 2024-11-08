@@ -1,0 +1,25 @@
+public class TestMinInitialErgonomics extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestMinInitialErgonomics r0;
+
+        r0 := @this: TestMinInitialErgonomics;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.arguments.TestMaxHeapSizeTools: void checkMinInitialErgonomics(java.lang.String)>("-XX:+UseParallelGC");
+
+        return;
+    }
+}

@@ -1,0 +1,90 @@
+class TestNewSizeThreadIncrease$GCTest extends java.lang.Object
+{
+    static final int MAX_THREADS_COUNT;
+    static gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread[] threads;
+
+    static void <clinit>()
+    {
+        gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread[] $r0;
+
+        $r0 = newarray (gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread)[4];
+
+        <gc.arguments.TestNewSizeThreadIncrease$GCTest: gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread[] threads> = $r0;
+
+        return;
+    }
+
+    void <init>()
+    {
+        TestNewSizeThreadIncrease$GCTest r0;
+
+        r0 := @this: TestNewSizeThreadIncrease$GCTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r0, $r7;
+        gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread $r1, $r4, $r6;
+        java.lang.String[] r8;
+        gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread[] $r2, $r3, $r5;
+        int i0, i1;
+
+        r8 := @parameter0: java.lang.String[];
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Creating garbage");
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r2 = <gc.arguments.TestNewSizeThreadIncrease$GCTest: gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread[] threads>;
+
+        $r1 = new gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread;
+
+        specialinvoke $r1.<gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread: void <init>()>();
+
+        $r2[i0] = $r1;
+
+        $r3 = <gc.arguments.TestNewSizeThreadIncrease$GCTest: gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread[] threads>;
+
+        $r4 = $r3[i0];
+
+        virtualinvoke $r4.<gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread: void start()>();
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 4 goto label1;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        i1 = 0;
+
+        goto label4;
+
+     label3:
+        $r5 = <gc.arguments.TestNewSizeThreadIncrease$GCTest: gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread[] threads>;
+
+        $r6 = $r5[i1];
+
+        virtualinvoke $r6.<gc.arguments.TestNewSizeThreadIncrease$GCTest$TestThread: void stopRunning()>();
+
+        i1 = i1 + 1;
+
+     label4:
+        if i1 < 4 goto label3;
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>("Done");
+
+        return;
+    }
+}

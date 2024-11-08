@@ -1,0 +1,159 @@
+class Juggle2$CopyingThread extends java.lang.Object implements java.lang.Runnable
+{
+    private nsk.share.gc.LinkedMemoryObject[] localArray;
+    private int currentIndex;
+    final gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0;
+
+    public void <init>(gc.memory.Array.ArrayJuggle.Juggle2.Juggle2)
+    {
+        gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 r1;
+        nsk.share.gc.LinkedMemoryObject $r5;
+        int $i0, $i1, i2;
+        nsk.share.gc.LinkedMemoryObject[] $r2, $r4;
+        gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread $r6, $r7, $r8, $r9;
+        Juggle2$CopyingThread r0;
+
+        r0 := @this: Juggle2$CopyingThread;
+
+        r1 := @parameter0: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2;
+
+        $r6 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r6.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r7 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r7.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: int currentIndex> = 0;
+
+        $i0 = r1.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2: int maxCopySize>;
+
+        $r2 = newarray (nsk.share.gc.LinkedMemoryObject)[$i0];
+
+        $r8 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r8.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: nsk.share.gc.LinkedMemoryObject[] localArray> = $r2;
+
+        i2 = 0;
+
+        goto label2;
+
+     label1:
+        $r9 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r4 = $r9.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: nsk.share.gc.LinkedMemoryObject[] localArray>;
+
+        $r5 = new nsk.share.gc.LinkedMemoryObject;
+
+        specialinvoke $r5.<nsk.share.gc.LinkedMemoryObject: void <init>(int)>(0);
+
+        $r4[i2] = $r5;
+
+        i2 = i2 + 1;
+
+     label2:
+        $i1 = r1.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2: int maxCopySize>;
+
+        if i2 < $i1 goto label1;
+
+        return;
+    }
+
+    public void run()
+    {
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, i10, i11;
+        gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18;
+        Juggle2$CopyingThread r0;
+        gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 $r1, $r2, $r4, $r8, $r9;
+        nsk.share.gc.LinkedMemoryObject $r6, $r7;
+        nsk.share.gc.LinkedMemoryObject[] $r3, $r5;
+
+        r0 := @this: Juggle2$CopyingThread;
+
+        $r10 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r1 = $r10.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0>;
+
+        $i0 = $r1.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2: int maxCopySize>;
+
+        $i1 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int)>($i0);
+
+        $r11 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r2 = $r11.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0>;
+
+        $i2 = $r2.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2: int arraySize>;
+
+        i10 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int)>($i2);
+
+        i11 = 0;
+
+        goto label2;
+
+     label1:
+        $r12 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r3 = $r12.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: nsk.share.gc.LinkedMemoryObject[] localArray>;
+
+        $r13 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $i3 = $r13.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: int currentIndex>;
+
+        $r7 = $r3[$i3];
+
+        $r14 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r4 = $r14.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0>;
+
+        $r5 = $r4.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2: nsk.share.gc.LinkedMemoryObject[] mainArray>;
+
+        $r6 = $r5[i10];
+
+        virtualinvoke $r7.<nsk.share.gc.LinkedMemoryObject: void setNext(nsk.share.gc.LinkedMemoryObject)>($r6);
+
+        $r15 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $i4 = $r15.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: int currentIndex>;
+
+        $i6 = $i4 + 1;
+
+        $r16 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r8 = $r16.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0>;
+
+        $i5 = $r8.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2: int maxCopySize>;
+
+        $i7 = $i6 % $i5;
+
+        $r17 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r17.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: int currentIndex> = $i7;
+
+        $i9 = i10 + 1;
+
+        $r18 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread) r0;
+
+        $r9 = $r18.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$CopyingThread: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0>;
+
+        $i8 = $r9.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2: int arraySize>;
+
+        i10 = $i9 % $i8;
+
+        i11 = i11 + 1;
+
+     label2:
+        if i11 < $i1 goto label1;
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        Juggle2$CopyingThread r0;
+
+        r0 := @this: Juggle2$CopyingThread;
+
+        return "Thread-C";
+    }
+}

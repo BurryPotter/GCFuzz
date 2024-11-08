@@ -1,0 +1,225 @@
+public final enum class WhatToKeep extends java.lang.Enum
+{
+    public static final enum gc.g1.unloading.configuration.WhatToKeep CLASSLOADER;
+    public static final enum gc.g1.unloading.configuration.WhatToKeep CLASS;
+    public static final enum gc.g1.unloading.configuration.WhatToKeep OBJECT;
+    private static int[] $SWITCH_TABLE$gc$g1$unloading$configuration$WhatToKeep;
+    private static final gc.g1.unloading.configuration.WhatToKeep[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.g1.unloading.configuration.WhatToKeep[] $r3;
+        gc.g1.unloading.configuration.WhatToKeep $r0, $r1, $r2, $r4, $r5, $r6;
+
+        $r0 = new gc.g1.unloading.configuration.WhatToKeep;
+
+        specialinvoke $r0.<gc.g1.unloading.configuration.WhatToKeep: void <init>(java.lang.String,int)>("CLASSLOADER", 0);
+
+        <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep CLASSLOADER> = $r0;
+
+        $r1 = new gc.g1.unloading.configuration.WhatToKeep;
+
+        specialinvoke $r1.<gc.g1.unloading.configuration.WhatToKeep: void <init>(java.lang.String,int)>("CLASS", 1);
+
+        <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep CLASS> = $r1;
+
+        $r2 = new gc.g1.unloading.configuration.WhatToKeep;
+
+        specialinvoke $r2.<gc.g1.unloading.configuration.WhatToKeep: void <init>(java.lang.String,int)>("OBJECT", 2);
+
+        <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep OBJECT> = $r2;
+
+        $r3 = newarray (gc.g1.unloading.configuration.WhatToKeep)[3];
+
+        $r4 = <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep CLASSLOADER>;
+
+        $r3[0] = $r4;
+
+        $r5 = <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep CLASS>;
+
+        $r3[1] = $r5;
+
+        $r6 = <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep OBJECT>;
+
+        $r3[2] = $r6;
+
+        <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep[] ENUM$VALUES> = $r3;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        WhatToKeep r0;
+        java.lang.String r1;
+
+        r0 := @this: WhatToKeep;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public java.lang.Object decideUponRefToKeep(java.lang.Class, java.lang.ClassLoader, java.lang.Object)
+    {
+        gc.g1.unloading.configuration.WhatToKeep $r6;
+        int[] $r0;
+        int $i0, $i1;
+        WhatToKeep r1;
+        java.lang.Object r2, $r5;
+        java.lang.Class r3;
+        java.lang.ClassLoader r4;
+
+        r1 := @this: WhatToKeep;
+
+        r3 := @parameter0: java.lang.Class;
+
+        r4 := @parameter1: java.lang.ClassLoader;
+
+        r2 := @parameter2: java.lang.Object;
+
+        $r0 = staticinvoke <gc.g1.unloading.configuration.WhatToKeep: int[] $SWITCH_TABLE$gc$g1$unloading$configuration$WhatToKeep()>();
+
+        $r6 = (gc.g1.unloading.configuration.WhatToKeep) r1;
+
+        $i0 = virtualinvoke $r6.<gc.g1.unloading.configuration.WhatToKeep: int ordinal()>();
+
+        $i1 = $r0[$i0];
+
+        tableswitch($i1)
+        {
+            case 1: goto label3;
+            case 2: goto label2;
+            case 3: goto label1;
+            default: goto label6;
+        };
+
+     label1:
+        return r2;
+
+     label2:
+        return r3;
+
+     label3:
+        if r4 == null goto label4;
+
+        $r5 = r4;
+
+        goto label5;
+
+     label4:
+        $r5 = r2;
+
+     label5:
+        return $r5;
+
+     label6:
+        return null;
+    }
+
+    public static gc.g1.unloading.configuration.WhatToKeep[] values()
+    {
+        int $i0;
+        gc.g1.unloading.configuration.WhatToKeep[] $r0, $r1;
+
+        $r0 = <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.g1.unloading.configuration.WhatToKeep)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.g1.unloading.configuration.WhatToKeep valueOf(java.lang.String)
+    {
+        gc.g1.unloading.configuration.WhatToKeep $r2;
+        java.lang.String r0;
+        java.lang.Enum $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/g1/unloading/configuration/WhatToKeep;", r0);
+
+        $r2 = (gc.g1.unloading.configuration.WhatToKeep) $r1;
+
+        return $r2;
+    }
+
+    static int[] $SWITCH_TABLE$gc$g1$unloading$configuration$WhatToKeep()
+    {
+        gc.g1.unloading.configuration.WhatToKeep[] $r1;
+        gc.g1.unloading.configuration.WhatToKeep $r3, $r4, $r5;
+        java.lang.NoSuchFieldError $r6, $r7, $r8;
+        int[] $r0, r2;
+        int $i0, $i1, $i2, $i3;
+
+        $r0 = <gc.g1.unloading.configuration.WhatToKeep: int[] $SWITCH_TABLE$gc$g1$unloading$configuration$WhatToKeep>;
+
+        if $r0 == null goto label01;
+
+        return $r0;
+
+     label01:
+        $r1 = staticinvoke <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep[] values()>();
+
+        $i0 = lengthof $r1;
+
+        r2 = newarray (int)[$i0];
+
+     label02:
+        $r3 = <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep CLASS>;
+
+        $i1 = virtualinvoke $r3.<gc.g1.unloading.configuration.WhatToKeep: int ordinal()>();
+
+        r2[$i1] = 2;
+
+     label03:
+        goto label05;
+
+     label04:
+        $r8 := @caughtexception;
+
+     label05:
+        $r4 = <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep CLASSLOADER>;
+
+        $i2 = virtualinvoke $r4.<gc.g1.unloading.configuration.WhatToKeep: int ordinal()>();
+
+        r2[$i2] = 1;
+
+     label06:
+        goto label08;
+
+     label07:
+        $r7 := @caughtexception;
+
+     label08:
+        $r5 = <gc.g1.unloading.configuration.WhatToKeep: gc.g1.unloading.configuration.WhatToKeep OBJECT>;
+
+        $i3 = virtualinvoke $r5.<gc.g1.unloading.configuration.WhatToKeep: int ordinal()>();
+
+        r2[$i3] = 3;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r6 := @caughtexception;
+
+     label11:
+        <gc.g1.unloading.configuration.WhatToKeep: int[] $SWITCH_TABLE$gc$g1$unloading$configuration$WhatToKeep> = r2;
+
+        return r2;
+
+        catch java.lang.NoSuchFieldError from label02 to label03 with label04;
+        catch java.lang.NoSuchFieldError from label05 to label06 with label07;
+        catch java.lang.NoSuchFieldError from label08 to label09 with label10;
+    }
+}

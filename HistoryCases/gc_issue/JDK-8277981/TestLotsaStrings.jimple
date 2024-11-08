@@ -1,0 +1,143 @@
+public class TestLotsaStrings extends java.lang.Object
+{
+    static int counter;
+    static java.util.Random r;
+    static java.lang.String[] strings;
+    static volatile java.lang.Object sink;
+
+    public void <init>()
+    {
+        TestLotsaStrings r0;
+
+        r0 := @this: TestLotsaStrings;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static java.lang.String newString()
+    {
+        int $i0, $i1, $i2, $i3;
+        java.lang.StringBuilder $r0, $r1, $r2;
+        java.lang.String $r3;
+
+        $i0 = <TestLotsaStrings: int counter>;
+
+        $i1 = $i0 + 1;
+
+        <TestLotsaStrings: int counter> = $i1;
+
+        $i2 = <TestLotsaStrings: int counter>;
+
+        if $i2 < 2000000000 goto label1;
+
+        <TestLotsaStrings: int counter> = 1000000000;
+
+     label1:
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("str");
+
+        $i3 = <TestLotsaStrings: int counter>;
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r3;
+    }
+
+    public static transient void main(java.lang.String[])
+    {
+        byte[] $r1;
+        java.lang.String[] $r0, $r2, $r4, $r6, r8;
+        java.util.Random $r3;
+        int $i0, $i1, $i2, i3, i4, i5;
+        java.lang.String $r5, $r7;
+
+        r8 := @parameter0: java.lang.String[];
+
+        i3 = 0;
+
+     label1:
+        $r0 = <TestLotsaStrings: java.lang.String[] strings>;
+
+        $i0 = lengthof $r0;
+
+        if i3 >= $i0 goto label2;
+
+        $r6 = <TestLotsaStrings: java.lang.String[] strings>;
+
+        $r7 = staticinvoke <TestLotsaStrings: java.lang.String newString()>();
+
+        $r6[i3] = $r7;
+
+        i3 = i3 + 1;
+
+        goto label1;
+
+     label2:
+        i4 = 0;
+
+     label3:
+        if i4 >= 100 goto label4;
+
+        $r3 = <TestLotsaStrings: java.util.Random r>;
+
+        $r2 = <TestLotsaStrings: java.lang.String[] strings>;
+
+        $i1 = lengthof $r2;
+
+        $i2 = virtualinvoke $r3.<java.util.Random: int nextInt(int)>($i1);
+
+        $r4 = <TestLotsaStrings: java.lang.String[] strings>;
+
+        $r5 = staticinvoke <TestLotsaStrings: java.lang.String newString()>();
+
+        $r4[$i2] = $r5;
+
+        i4 = i4 + 1;
+
+        goto label3;
+
+     label4:
+        i5 = 0;
+
+     label5:
+        if i5 >= 1024 goto label6;
+
+        $r1 = newarray (byte)[65536];
+
+        <TestLotsaStrings: java.lang.Object sink> = $r1;
+
+        i5 = i5 + 1;
+
+        goto label5;
+
+     label6:
+        goto label2;
+    }
+
+    static void <clinit>()
+    {
+        java.util.Random $r0;
+        java.lang.String[] $r1;
+
+        <TestLotsaStrings: int counter> = 1000000000;
+
+        $r0 = new java.util.Random;
+
+        specialinvoke $r0.<java.util.Random: void <init>()>();
+
+        <TestLotsaStrings: java.util.Random r> = $r0;
+
+        $r1 = newarray (java.lang.String)[1048576];
+
+        <TestLotsaStrings: java.lang.String[] strings> = $r1;
+
+        return;
+    }
+}

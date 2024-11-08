@@ -1,0 +1,309 @@
+public class TestDieWithOnError extends java.lang.Object
+{
+    static java.lang.String ON_ERR_MSG;
+
+    static void <clinit>()
+    {
+        <gc.epsilon.TestDieWithOnError: java.lang.String ON_ERR_MSG> = "Epsilon error handler message";
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestDieWithOnError r0;
+
+        r0 := @this: TestDieWithOnError;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static transient void passWith(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Process $r3;
+        java.lang.String[] r0;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+        java.lang.StringBuilder $r4, $r6;
+        java.lang.ProcessBuilder $r1;
+        java.lang.String $r5, $r7;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>(r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("OutOfMemoryError");
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("^");
+
+        $r5 = <gc.epsilon.TestDieWithOnError: java.lang.String ON_ERR_MSG>;
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldNotMatch(java.lang.String)>($r7);
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static transient void failWith(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.IllegalStateException $r8;
+        java.lang.Process $r3;
+        java.lang.String[] r0;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+        int $i0;
+        java.lang.StringBuilder $r4, $r6;
+        java.lang.ProcessBuilder $r1;
+        java.lang.String $r5, $r7;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>(r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("OutOfMemoryError");
+
+        $i0 = virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        if $i0 != 0 goto label1;
+
+        $r8 = new java.lang.IllegalStateException;
+
+        specialinvoke $r8.<java.lang.IllegalStateException: void <init>(java.lang.String)>("Should have failed with non-zero exit code");
+
+        throw $r8;
+
+     label1:
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("^");
+
+        $r5 = <gc.epsilon.TestDieWithOnError: java.lang.String ON_ERR_MSG>;
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer stdoutShouldMatch(java.lang.String)>($r7);
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.StringBuilder $r1, $r3, $r8, $r10, $r15, $r17, $r22, $r24, $r29, $r31, $r36, $r38;
+        java.lang.String[] $r0, $r7, $r14, $r21, $r28, $r35, r42;
+        java.lang.String $r2, $r4, $r6, $r9, $r11, $r13, $r16, $r18, $r20, $r23, $r25, $r27, $r30, $r32, $r34, $r37, $r39, $r41;
+        java.lang.Class $r5, $r12, $r19, $r26, $r33, $r40;
+
+        r42 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[6];
+
+        $r0[0] = "-Xmx128m";
+
+        $r0[1] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r0[2] = "-XX:+UseEpsilonGC";
+
+        $r0[3] = "-Dcount=1";
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:OnOutOfMemoryError=echo ");
+
+        $r2 = <gc.epsilon.TestDieWithOnError: java.lang.String ON_ERR_MSG>;
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[4] = $r4;
+
+        $r5 = class "Lgc/epsilon/TestDieWithOnError$Workload;";
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[5] = $r6;
+
+        staticinvoke <gc.epsilon.TestDieWithOnError: void passWith(java.lang.String[])>($r0);
+
+        $r7 = newarray (java.lang.String)[5];
+
+        $r7[0] = "-Xmx128m";
+
+        $r7[1] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r7[2] = "-XX:+UseEpsilonGC";
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:OnOutOfMemoryError=echo ");
+
+        $r9 = <gc.epsilon.TestDieWithOnError: java.lang.String ON_ERR_MSG>;
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r7[3] = $r11;
+
+        $r12 = class "Lgc/epsilon/TestDieWithOnError$Workload;";
+
+        $r13 = virtualinvoke $r12.<java.lang.Class: java.lang.String getName()>();
+
+        $r7[4] = $r13;
+
+        staticinvoke <gc.epsilon.TestDieWithOnError: void failWith(java.lang.String[])>($r7);
+
+        $r14 = newarray (java.lang.String)[6];
+
+        $r14[0] = "-Xmx128m";
+
+        $r14[1] = "-Xint";
+
+        $r14[2] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r14[3] = "-XX:+UseEpsilonGC";
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:OnOutOfMemoryError=echo ");
+
+        $r16 = <gc.epsilon.TestDieWithOnError: java.lang.String ON_ERR_MSG>;
+
+        $r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r14[4] = $r18;
+
+        $r19 = class "Lgc/epsilon/TestDieWithOnError$Workload;";
+
+        $r20 = virtualinvoke $r19.<java.lang.Class: java.lang.String getName()>();
+
+        $r14[5] = $r20;
+
+        staticinvoke <gc.epsilon.TestDieWithOnError: void failWith(java.lang.String[])>($r14);
+
+        $r21 = newarray (java.lang.String)[7];
+
+        $r21[0] = "-Xmx128m";
+
+        $r21[1] = "-Xbatch";
+
+        $r21[2] = "-Xcomp";
+
+        $r21[3] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r21[4] = "-XX:+UseEpsilonGC";
+
+        $r22 = new java.lang.StringBuilder;
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:OnOutOfMemoryError=echo ");
+
+        $r23 = <gc.epsilon.TestDieWithOnError: java.lang.String ON_ERR_MSG>;
+
+        $r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r21[5] = $r25;
+
+        $r26 = class "Lgc/epsilon/TestDieWithOnError$Workload;";
+
+        $r27 = virtualinvoke $r26.<java.lang.Class: java.lang.String getName()>();
+
+        $r21[6] = $r27;
+
+        staticinvoke <gc.epsilon.TestDieWithOnError: void failWith(java.lang.String[])>($r21);
+
+        $r28 = newarray (java.lang.String)[8];
+
+        $r28[0] = "-Xmx128m";
+
+        $r28[1] = "-Xbatch";
+
+        $r28[2] = "-Xcomp";
+
+        $r28[3] = "-XX:TieredStopAtLevel=1";
+
+        $r28[4] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r28[5] = "-XX:+UseEpsilonGC";
+
+        $r29 = new java.lang.StringBuilder;
+
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:OnOutOfMemoryError=echo ");
+
+        $r30 = <gc.epsilon.TestDieWithOnError: java.lang.String ON_ERR_MSG>;
+
+        $r31 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r30);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r28[6] = $r32;
+
+        $r33 = class "Lgc/epsilon/TestDieWithOnError$Workload;";
+
+        $r34 = virtualinvoke $r33.<java.lang.Class: java.lang.String getName()>();
+
+        $r28[7] = $r34;
+
+        staticinvoke <gc.epsilon.TestDieWithOnError: void failWith(java.lang.String[])>($r28);
+
+        $r35 = newarray (java.lang.String)[8];
+
+        $r35[0] = "-Xmx128m";
+
+        $r35[1] = "-Xbatch";
+
+        $r35[2] = "-Xcomp";
+
+        $r35[3] = "-XX:-TieredCompilation";
+
+        $r35[4] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r35[5] = "-XX:+UseEpsilonGC";
+
+        $r36 = new java.lang.StringBuilder;
+
+        specialinvoke $r36.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:OnOutOfMemoryError=echo ");
+
+        $r37 = <gc.epsilon.TestDieWithOnError: java.lang.String ON_ERR_MSG>;
+
+        $r38 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r37);
+
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r35[6] = $r39;
+
+        $r40 = class "Lgc/epsilon/TestDieWithOnError$Workload;";
+
+        $r41 = virtualinvoke $r40.<java.lang.Class: java.lang.String getName()>();
+
+        $r35[7] = $r41;
+
+        staticinvoke <gc.epsilon.TestDieWithOnError: void failWith(java.lang.String[])>($r35);
+
+        return;
+    }
+}

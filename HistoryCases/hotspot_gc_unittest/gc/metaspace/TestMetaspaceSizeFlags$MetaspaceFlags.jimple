@@ -1,0 +1,30 @@
+class TestMetaspaceSizeFlags$MetaspaceFlags extends java.lang.Object
+{
+    public long maxMetaspaceSize;
+    public long metaspaceSize;
+
+    public void <init>(long, long)
+    {
+        gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags $r1, $r2;
+        long l0, l1;
+        TestMetaspaceSizeFlags$MetaspaceFlags r0;
+
+        r0 := @this: TestMetaspaceSizeFlags$MetaspaceFlags;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags) r0;
+
+        $r1.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: long maxMetaspaceSize> = l0;
+
+        $r2 = (gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags) r0;
+
+        $r2.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: long metaspaceSize> = l1;
+
+        return;
+    }
+}

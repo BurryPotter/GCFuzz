@@ -1,0 +1,130 @@
+public class HeapUsageTest extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        java.io.PrintStream $r1, $r3;
+        java.util.HashSet $r2;
+        HeapUsageTest r0;
+        int i0;
+        java.lang.String $r4;
+
+        r0 := @this: HeapUsageTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Before ");
+
+        specialinvoke r0.<HeapUsageTest: void printHeapUsage()>();
+
+        $r2 = new java.util.HashSet;
+
+        specialinvoke $r2.<java.util.HashSet: void <init>()>();
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 10000000 goto label2;
+
+        $r4 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i0);
+
+        virtualinvoke $r2.<java.util.HashSet: boolean add(java.lang.Object)>($r4);
+
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label2:
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("After");
+
+        specialinvoke r0.<HeapUsageTest: void printHeapUsage()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.InterruptedException
+    {
+        HeapUsageTest $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new HeapUsageTest;
+
+        specialinvoke $r0.<HeapUsageTest: void <init>()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000000L);
+
+        return;
+    }
+
+    private void printHeapUsage()
+    {
+        long $l0, $l1;
+        java.lang.management.MemoryPoolMXBean r3;
+        java.lang.String $r7, $r13;
+        java.lang.management.MemoryUsage $r4;
+        boolean $z0;
+        java.io.PrintStream $r6;
+        java.util.Iterator $r1;
+        HeapUsageTest r14;
+        java.util.List $r0;
+        java.lang.Object $r2;
+        java.lang.StringBuilder $r5, $r8, $r9, $r10, $r11, $r12;
+
+        r14 := @this: HeapUsageTest;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r2 = interfaceinvoke $r1.<java.util.Iterator: java.lang.Object next()>();
+
+        r3 = (java.lang.management.MemoryPoolMXBean) $r2;
+
+        $r4 = interfaceinvoke r3.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getCollectionUsage()>();
+
+        if $r4 == null goto label2;
+
+        $l0 = virtualinvoke $r4.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $l1 = virtualinvoke $r4.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = interfaceinvoke r3.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        $r8 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" Used ");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", Max ");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r13);
+
+     label2:
+        goto label1;
+
+     label3:
+        return;
+    }
+}

@@ -1,0 +1,43 @@
+class MemoryEaterMT$Eater extends java.lang.Object implements java.lang.Runnable, nsk.share.gc.OOMStress
+{
+    final gc.gctests.MemoryEaterMT.MemoryEaterMT this$0;
+
+    private void <init>(gc.gctests.MemoryEaterMT.MemoryEaterMT)
+    {
+        gc.gctests.MemoryEaterMT.MemoryEaterMT r1;
+        MemoryEaterMT$Eater r0;
+        gc.gctests.MemoryEaterMT.MemoryEaterMT$Eater $r2;
+
+        r0 := @this: MemoryEaterMT$Eater;
+
+        r1 := @parameter0: gc.gctests.MemoryEaterMT.MemoryEaterMT;
+
+        $r2 = (gc.gctests.MemoryEaterMT.MemoryEaterMT$Eater) r0;
+
+        $r2.<gc.gctests.MemoryEaterMT.MemoryEaterMT$Eater: gc.gctests.MemoryEaterMT.MemoryEaterMT this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        MemoryEaterMT$Eater r0;
+        gc.gctests.MemoryEaterMT.MemoryEaterMT $r1;
+        nsk.share.test.ExecutionController $r2;
+        gc.gctests.MemoryEaterMT.MemoryEaterMT$Eater $r3;
+
+        r0 := @this: MemoryEaterMT$Eater;
+
+        $r3 = (gc.gctests.MemoryEaterMT.MemoryEaterMT$Eater) r0;
+
+        $r1 = $r3.<gc.gctests.MemoryEaterMT.MemoryEaterMT$Eater: gc.gctests.MemoryEaterMT.MemoryEaterMT this$0>;
+
+        $r2 = staticinvoke <gc.gctests.MemoryEaterMT.MemoryEaterMT: nsk.share.test.ExecutionController access$0(gc.gctests.MemoryEaterMT.MemoryEaterMT)>($r1);
+
+        staticinvoke <nsk.share.gc.Algorithms: void eatMemory(nsk.share.test.ExecutionController)>($r2);
+
+        return;
+    }
+}

@@ -1,0 +1,141 @@
+public class OneeFinalizerTest$GlobalSafeCounter extends java.lang.Object
+{
+    private int counter;
+    final gc.gctests.OneeFinalizerTest.OneeFinalizerTest this$0;
+
+    protected void <init>(gc.gctests.OneeFinalizerTest.OneeFinalizerTest)
+    {
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest r1;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter $r2, $r3;
+        OneeFinalizerTest$GlobalSafeCounter r0;
+
+        r0 := @this: OneeFinalizerTest$GlobalSafeCounter;
+
+        r1 := @parameter0: gc.gctests.OneeFinalizerTest.OneeFinalizerTest;
+
+        $r2 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter) r0;
+
+        $r2.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter: gc.gctests.OneeFinalizerTest.OneeFinalizerTest this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter) r0;
+
+        $r3.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter: int counter> = 0;
+
+        return;
+    }
+
+    protected final void resetCounter()
+    {
+        java.lang.Throwable $r1;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter $r2;
+        OneeFinalizerTest$GlobalSafeCounter r0;
+
+        r0 := @this: OneeFinalizerTest$GlobalSafeCounter;
+
+        entermonitor r0;
+
+     label1:
+        $r2 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter) r0;
+
+        $r2.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter: int counter> = 0;
+
+        exitmonitor r0;
+
+     label2:
+        goto label5;
+
+     label3:
+        $r1 := @caughtexception;
+
+        exitmonitor r0;
+
+     label4:
+        throw $r1;
+
+     label5:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+        catch java.lang.Throwable from label3 to label4 with label3;
+    }
+
+    protected final void increaseCounter()
+    {
+        java.lang.Throwable $r1;
+        int $i0, $i1;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter $r2, $r3;
+        OneeFinalizerTest$GlobalSafeCounter r0;
+
+        r0 := @this: OneeFinalizerTest$GlobalSafeCounter;
+
+        entermonitor r0;
+
+     label1:
+        $r2 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter) r0;
+
+        $i0 = $r2.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter: int counter>;
+
+        $i1 = $i0 + 1;
+
+        $r3 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter) r0;
+
+        $r3.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter: int counter> = $i1;
+
+        exitmonitor r0;
+
+     label2:
+        goto label5;
+
+     label3:
+        $r1 := @caughtexception;
+
+        exitmonitor r0;
+
+     label4:
+        throw $r1;
+
+     label5:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+        catch java.lang.Throwable from label3 to label4 with label3;
+    }
+
+    protected final int getCounterValue()
+    {
+        java.lang.Throwable $r1;
+        int i0;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter $r2;
+        OneeFinalizerTest$GlobalSafeCounter r0;
+
+        r0 := @this: OneeFinalizerTest$GlobalSafeCounter;
+
+        entermonitor r0;
+
+     label1:
+        $r2 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter) r0;
+
+        i0 = $r2.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter: int counter>;
+
+        exitmonitor r0;
+
+     label2:
+        goto label5;
+
+     label3:
+        $r1 := @caughtexception;
+
+        exitmonitor r0;
+
+     label4:
+        throw $r1;
+
+     label5:
+        return i0;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+        catch java.lang.Throwable from label3 to label4 with label3;
+    }
+}

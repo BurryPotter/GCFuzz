@@ -1,0 +1,59 @@
+public class TestDieDefault$Workload extends java.lang.Object
+{
+    static int COUNT;
+    static volatile java.lang.Object sink;
+
+    static void <clinit>()
+    {
+        int $i0;
+        java.lang.Integer $r0;
+
+        $r0 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String,int)>("count", 1000000000);
+
+        $i0 = virtualinvoke $r0.<java.lang.Integer: int intValue()>();
+
+        <gc.epsilon.TestDieDefault$Workload: int COUNT> = $i0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestDieDefault$Workload r0;
+
+        r0 := @this: TestDieDefault$Workload;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static transient void main(java.lang.String[])
+    {
+        int $i0, i1;
+        java.lang.Object $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        $r0 = new java.lang.Object;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        <gc.epsilon.TestDieDefault$Workload: java.lang.Object sink> = $r0;
+
+        i1 = i1 + 1;
+
+     label2:
+        $i0 = <gc.epsilon.TestDieDefault$Workload: int COUNT>;
+
+        if i1 < $i0 goto label1;
+
+        return;
+    }
+}

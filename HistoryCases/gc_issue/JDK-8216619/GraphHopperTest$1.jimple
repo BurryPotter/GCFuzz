@@ -1,0 +1,142 @@
+final class GraphHopperTest$1 extends java.lang.Object implements java.security.PrivilegedExceptionAction
+{
+    final java.nio.ByteBuffer val$buffer;
+
+    void <init>(java.nio.ByteBuffer)
+    {
+        GraphHopperTest$1 r0;
+        java.nio.ByteBuffer r1;
+
+        r0 := @this: GraphHopperTest$1;
+
+        r1 := @parameter0: java.nio.ByteBuffer;
+
+        r0.<GraphHopperTest$1: java.nio.ByteBuffer val$buffer> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public java.lang.Object run() throws java.lang.Exception
+    {
+        java.lang.Throwable $r26;
+        java.lang.Object[] $r4, $r10, $r16;
+        java.lang.NoSuchMethodException $r18;
+        java.nio.ByteBuffer $r5, $r17;
+        java.lang.String $r23, $r25;
+        java.lang.reflect.Method $r2, $r9, $r15;
+        boolean $z0;
+        java.io.PrintStream $r20, $r24;
+        GraphHopperTest$1 r3;
+        java.lang.Class[] $r1, $r8, $r14;
+        java.lang.RuntimeException $r27;
+        java.lang.reflect.Field $r12;
+        java.lang.Class $r0, $r7, $r11;
+        java.lang.Object $r6, $r13;
+        java.lang.StringBuilder $r19, $r21, $r22;
+
+        r3 := @this: GraphHopperTest$1;
+
+        $z0 = staticinvoke <GraphHopperTest: boolean jreIsMinimumJava9()>();
+
+        if $z0 == 0 goto label4;
+
+        $r11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("sun.misc.Unsafe");
+
+        $r12 = virtualinvoke $r11.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("theUnsafe");
+
+        virtualinvoke $r12.<java.lang.reflect.Field: void setAccessible(boolean)>(1);
+
+        $r13 = virtualinvoke $r12.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>(null);
+
+        $r14 = newarray (java.lang.Class)[1];
+
+        $r14[0] = class "Ljava/nio/ByteBuffer;";
+
+        $r15 = virtualinvoke $r11.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("invokeCleaner", $r14);
+
+     label1:
+        $r16 = newarray (java.lang.Object)[1];
+
+        $r17 = r3.<GraphHopperTest$1: java.nio.ByteBuffer val$buffer>;
+
+        $r16[0] = $r17;
+
+        virtualinvoke $r15.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r13, $r16);
+
+     label2:
+        return null;
+
+     label3:
+        $r26 := @caughtexception;
+
+        $r27 = new java.lang.RuntimeException;
+
+        specialinvoke $r27.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r26);
+
+        throw $r27;
+
+     label4:
+        $r0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.nio.DirectByteBuffer");
+
+     label5:
+        $r1 = newarray (java.lang.Class)[0];
+
+        $r2 = virtualinvoke $r0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("cleaner", $r1);
+
+        virtualinvoke $r2.<java.lang.reflect.Method: void setAccessible(boolean)>(1);
+
+        $r5 = r3.<GraphHopperTest$1: java.nio.ByteBuffer val$buffer>;
+
+        $r4 = newarray (java.lang.Object)[0];
+
+        $r6 = virtualinvoke $r2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r5, $r4);
+
+        if $r6 == null goto label6;
+
+        $r7 = virtualinvoke $r2.<java.lang.reflect.Method: java.lang.Class getReturnType()>();
+
+        $r8 = newarray (java.lang.Class)[0];
+
+        $r9 = virtualinvoke $r7.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("clean", $r8);
+
+        virtualinvoke $r9.<java.lang.reflect.Method: void setAccessible(boolean)>(1);
+
+        $r10 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r6, $r10);
+
+     label6:
+        goto label8;
+
+     label7:
+        $r18 := @caughtexception;
+
+        $r20 = <java.lang.System: java.io.PrintStream out>;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>()>();
+
+        $r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("NoSuchMethodException ");
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r18);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r23);
+
+        $r24 = <java.lang.System: java.io.PrintStream out>;
+
+        $r25 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("java.version");
+
+        virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r25);
+
+     label8:
+        return null;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+        catch java.lang.NoSuchMethodException from label5 to label6 with label7;
+    }
+}

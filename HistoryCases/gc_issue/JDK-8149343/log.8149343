@@ -1,0 +1,399 @@
+[0.004s][warning][gc] -XX:+PrintGCDetails is deprecated. Will use -Xlog:gc* instead.
+[0.018s][info][gc,heap] Heap region size: 1M
+[0.057s][info][gc     ] Using G1
+Speed will be 100
+Will gc in between benchmarks
+[0.851s][info][gc,start] GC(0) Pause Full (System.gc()) (0.851s)
+_next_id 0 _num_q 23 _max_num_q 23
+_next_id 1 _num_q 23 _max_num_q 23
+_next_id 2 _num_q 23 _max_num_q 23
+_next_id 3 _num_q 23 _max_num_q 23
+_next_id 4 _num_q 23 _max_num_q 23
+_next_id 5 _num_q 23 _max_num_q 23
+_next_id 6 _num_q 23 _max_num_q 23
+_next_id 7 _num_q 23 _max_num_q 23
+_next_id 8 _num_q 23 _max_num_q 23
+_next_id 9 _num_q 23 _max_num_q 23
+_next_id 10 _num_q 23 _max_num_q 23
+_next_id 11 _num_q 23 _max_num_q 23
+_next_id 12 _num_q 23 _max_num_q 23
+_next_id 13 _num_q 23 _max_num_q 23
+_next_id 14 _num_q 23 _max_num_q 23
+[0.917s][info][gc,task ] GC(0) GC Workers: 2
+[0.934s][info][gc,heap ] GC(0) Eden regions: 2->0(9)
+[0.934s][info][gc,heap ] GC(0) Survivor regions: 0->0(0)
+[0.934s][info][gc,heap ] GC(0) Old regions: 0->1
+[0.934s][info][gc,heap ] GC(0) Humongous regions: 0->0
+[0.934s][info][gc,metaspace] GC(0) Metaspace: 3261K->3261K(1056768K)
+[0.934s][info][gc          ] GC(0) Pause Full (System.gc()) 1M->0M(32M) (0.851s, 0.934s) 83.128ms
+[0.934s][info][gc,cpu      ] GC(0) User=0.10s Sys=0.00s Real=0.08s
+Caching Off Speed = 100
+======= _201_compress Starting =======
+Run 0 start. Total memory=33554432 free memory=33027864
+Loop count = 5
+3153920
+931067
+[1.582s][info][gc,start    ] GC(1) Pause Initial Mark (G1 Humongous Allocation) (1.582s)
+[1.582s][info][gc,task     ] GC(1) GC Workers: 2
+[1.611s][info][gc,phases   ] GC(1)   Evacuate Collection Set: 21.7ms
+[1.611s][info][gc,phases   ] GC(1)   Code Roots: 0.1ms
+[1.611s][info][gc,phases   ] GC(1)   Clear Card Table: 0.1ms
+[1.611s][info][gc,phases   ] GC(1)   Expand Heap After Collection: 0.0ms
+[1.611s][info][gc,phases   ] GC(1)   Free Collection Set: 0.8ms
+[1.611s][info][gc,phases   ] GC(1)   Merge Per-Thread State: 0.0ms
+[1.611s][info][gc,phases   ] GC(1)   Other: 6.8ms
+[1.611s][info][gc,heap     ] GC(1) Eden regions: 2->0(18)
+[1.611s][info][gc,heap     ] GC(1) Survivor regions: 0->1(2)
+[1.611s][info][gc,heap     ] GC(1) Old regions: 1->1
+[1.611s][info][gc,heap     ] GC(1) Humongous regions: 11->3
+[1.611s][info][gc,metaspace] GC(1) Metaspace: 3369K->3369K(1056768K)
+[1.612s][info][gc          ] GC(1) Pause Initial Mark (G1 Humongous Allocation) 12M->3M(32M) (1.582s, 1.612s) 29.972ms
+[1.612s][info][gc,cpu      ] GC(1) User=0.05s Sys=0.00s Real=0.03s
+[1.612s][info][gc          ] GC(2) Concurrent Root Region Scan (1.612s)
+[1.612s][info][gc,task     ] GC(2) GC Workers: 6
+[1.619s][info][gc          ] GC(2) Concurrent Root Region Scan (1.612s, 1.619s) 7.028ms
+[1.619s][info][gc          ] GC(2) Concurrent Mark (1.619s)
+[1.619s][info][gc,task     ] GC(2) GC Workers: 6
+2856960
+[1.635s][info][gc          ] GC(2) Concurrent Mark (1.619s, 1.635s) 15.817ms
+[1.635s][info][gc,start    ] GC(2) Pause Remark (1.635s)
+[1.657s][info][gc          ] GC(2) Pause Remark 6M->6M(32M) (1.635s, 1.657s) 21.861ms
+[1.657s][info][gc,cpu      ] GC(2) User=0.05s Sys=0.00s Real=0.02s
+[1.658s][info][gc,start    ] GC(2) Pause Cleanup (1.658s)
+[1.659s][info][gc          ] GC(2) Pause Cleanup 6M->6M(32M) (1.658s, 1.659s) 1.028ms
+[1.659s][info][gc,cpu      ] GC(2) User=0.01s Sys=0.00s Real=0.00s
+1132510
+962560
+688827
+1280000
+591635
+[2.151s][info][gc,start    ] GC(3) Pause Initial Mark (G1 Humongous Allocation) (2.151s)
+[2.151s][info][gc,task     ] GC(3) GC Workers: 2
+[2.180s][info][gc,phases   ] GC(3)   Evacuate Collection Set: 16.0ms
+[2.180s][info][gc,phases   ] GC(3)   Code Roots: 0.3ms
+[2.180s][info][gc,phases   ] GC(3)   Clear Card Table: 0.1ms
+[2.180s][info][gc,phases   ] GC(3)   Expand Heap After Collection: 0.0ms
+[2.180s][info][gc,phases   ] GC(3)   Free Collection Set: 2.6ms
+[2.180s][info][gc,phases   ] GC(3)   Merge Per-Thread State: 0.1ms
+[2.180s][info][gc,phases   ] GC(3)   Other: 10.1ms
+[2.180s][info][gc,heap     ] GC(3) Eden regions: 2->0(18)
+[2.180s][info][gc,heap     ] GC(3) Survivor regions: 1->1(3)
+[2.180s][info][gc,heap     ] GC(3) Old regions: 1->1
+[2.180s][info][gc,heap     ] GC(3) Humongous regions: 14->2
+[2.181s][info][gc,metaspace] GC(3) Metaspace: 3370K->3370K(1056768K)
+[2.181s][info][gc          ] GC(3) Pause Initial Mark (G1 Humongous Allocation) 16M->2M(32M) (2.151s, 2.181s) 29.492ms
+[2.181s][info][gc,cpu      ] GC(3) User=0.04s Sys=0.00s Real=0.02s
+[2.181s][info][gc          ] GC(4) Concurrent Root Region Scan (2.181s)
+[2.181s][info][gc,task     ] GC(4) GC Workers: 6
+1157120
+[2.192s][info][gc          ] GC(4) Concurrent Root Region Scan (2.181s, 2.192s) 11.250ms
+[2.192s][info][gc          ] GC(4) Concurrent Mark (2.192s)
+[2.192s][info][gc,task     ] GC(4) GC Workers: 6
+[2.208s][info][gc          ] GC(4) Concurrent Mark (2.192s, 2.208s) 16.300ms
+[2.209s][info][gc,start    ] GC(4) Pause Remark (2.209s)
+[2.235s][info][gc          ] GC(4) Pause Remark 4M->4M(32M) (2.209s, 2.235s) 26.639ms
+[2.236s][info][gc,cpu      ] GC(4) User=0.05s Sys=0.00s Real=0.03s
+[2.236s][info][gc,start    ] GC(4) Pause Cleanup (2.236s)
+[2.237s][info][gc          ] GC(4) Pause Cleanup 4M->4M(32M) (2.236s, 2.237s) 0.706ms
+[2.237s][info][gc,cpu      ] GC(4) User=0.00s Sys=0.00s Real=0.00s
+368657
+3153920
+931067
+[2.409s][info][gc,start    ] GC(5) Pause Initial Mark (G1 Humongous Allocation) (2.409s)
+[2.409s][info][gc,task     ] GC(5) GC Workers: 2
+[2.436s][info][gc,phases   ] GC(5)   Evacuate Collection Set: 13.1ms
+[2.436s][info][gc,phases   ] GC(5)   Code Roots: 0.1ms
+[2.436s][info][gc,phases   ] GC(5)   Clear Card Table: 0.1ms
+[2.436s][info][gc,phases   ] GC(5)   Expand Heap After Collection: 0.0ms
+[2.436s][info][gc,phases   ] GC(5)   Free Collection Set: 2.6ms
+[2.436s][info][gc,phases   ] GC(5)   Merge Per-Thread State: 0.0ms
+[2.436s][info][gc,phases   ] GC(5)   Other: 11.0ms
+[2.436s][info][gc,heap     ] GC(5) Eden regions: 2->0(18)
+[2.436s][info][gc,heap     ] GC(5) Survivor regions: 1->1(3)
+[2.436s][info][gc,heap     ] GC(5) Old regions: 1->1
+[2.436s][info][gc,heap     ] GC(5) Humongous regions: 12->0
+[2.436s][info][gc,metaspace] GC(5) Metaspace: 3370K->3370K(1056768K)
+[2.436s][info][gc          ] GC(5) Pause Initial Mark (G1 Humongous Allocation) 13M->0M(32M) (2.409s, 2.436s) 27.208ms
+[2.436s][info][gc,cpu      ] GC(5) User=0.06s Sys=0.00s Real=0.03s
+[2.436s][info][gc          ] GC(6) Concurrent Root Region Scan (2.436s)
+[2.436s][info][gc,task     ] GC(6) GC Workers: 6
+[2.441s][info][gc          ] GC(6) Concurrent Root Region Scan (2.436s, 2.441s) 5.072ms
+[2.441s][info][gc          ] GC(6) Concurrent Mark (2.441s)
+[2.441s][info][gc,task     ] GC(6) GC Workers: 6
+2856960
+[2.470s][info][gc          ] GC(6) Concurrent Mark (2.441s, 2.470s) 28.484ms
+[2.470s][info][gc,start    ] GC(6) Pause Remark (2.470s)
+[2.492s][info][gc          ] GC(6) Pause Remark 6M->6M(32M) (2.470s, 2.492s) 21.619ms
+[2.492s][info][gc,cpu      ] GC(6) User=0.03s Sys=0.00s Real=0.02s
+[2.492s][info][gc,start    ] GC(6) Pause Cleanup (2.492s)
+[2.493s][info][gc          ] GC(6) Pause Cleanup 6M->6M(32M) (2.492s, 2.493s) 0.685ms
+[2.493s][info][gc,cpu      ] GC(6) User=0.01s Sys=0.00s Real=0.00s
+1132510
+962560
+688827
+1280000
+591635
+[2.736s][info][gc,start    ] GC(7) Pause Initial Mark (G1 Humongous Allocation) (2.736s)
+[2.736s][info][gc,task     ] GC(7) GC Workers: 2
+[2.760s][info][gc,phases   ] GC(7)   Evacuate Collection Set: 11.4ms
+[2.760s][info][gc,phases   ] GC(7)   Code Roots: 0.1ms
+[2.760s][info][gc,phases   ] GC(7)   Clear Card Table: 0.1ms
+[2.760s][info][gc,phases   ] GC(7)   Expand Heap After Collection: 0.0ms
+[2.760s][info][gc,phases   ] GC(7)   Free Collection Set: 2.7ms
+[2.760s][info][gc,phases   ] GC(7)   Merge Per-Thread State: 0.1ms
+[2.760s][info][gc,phases   ] GC(7)   Other: 10.0ms
+[2.760s][info][gc,heap     ] GC(7) Eden regions: 2->0(18)
+[2.760s][info][gc,heap     ] GC(7) Survivor regions: 1->1(3)
+[2.760s][info][gc,heap     ] GC(7) Old regions: 1->1
+[2.760s][info][gc,heap     ] GC(7) Humongous regions: 14->2
+[2.760s][info][gc,metaspace] GC(7) Metaspace: 3370K->3370K(1056768K)
+[2.760s][info][gc          ] GC(7) Pause Initial Mark (G1 Humongous Allocation) 16M->2M(32M) (2.736s, 2.760s) 24.691ms
+[2.760s][info][gc,cpu      ] GC(7) User=0.03s Sys=0.00s Real=0.02s
+[2.760s][info][gc          ] GC(8) Concurrent Root Region Scan (2.760s)
+[2.760s][info][gc,task     ] GC(8) GC Workers: 6
+[2.768s][info][gc          ] GC(8) Concurrent Root Region Scan (2.760s, 2.768s) 7.425ms
+[2.768s][info][gc          ] GC(8) Concurrent Mark (2.768s)
+[2.768s][info][gc,task     ] GC(8) GC Workers: 6
+1157120
+[2.784s][info][gc          ] GC(8) Concurrent Mark (2.768s, 2.784s) 16.424ms
+[2.785s][info][gc,start    ] GC(8) Pause Remark (2.785s)
+[2.811s][info][gc          ] GC(8) Pause Remark 4M->4M(32M) (2.785s, 2.811s) 25.946ms
+[2.811s][info][gc,cpu      ] GC(8) User=0.04s Sys=0.00s Real=0.03s
+[2.811s][info][gc,start    ] GC(8) Pause Cleanup (2.811s)
+[2.812s][info][gc          ] GC(8) Pause Cleanup 4M->4M(32M) (2.811s, 2.812s) 0.996ms
+[2.812s][info][gc,cpu      ] GC(8) User=0.00s Sys=0.00s Real=0.00s
+368657
+3153920
+931067
+[2.978s][info][gc,start    ] GC(9) Pause Initial Mark (G1 Humongous Allocation) (2.978s)
+[2.978s][info][gc,task     ] GC(9) GC Workers: 2
+[2.999s][info][gc,phases   ] GC(9)   Evacuate Collection Set: 9.2ms
+[2.999s][info][gc,phases   ] GC(9)   Code Roots: 0.3ms
+[2.999s][info][gc,phases   ] GC(9)   Clear Card Table: 0.2ms
+[2.999s][info][gc,phases   ] GC(9)   Expand Heap After Collection: 0.0ms
+[2.999s][info][gc,phases   ] GC(9)   Free Collection Set: 1.4ms
+[2.999s][info][gc,phases   ] GC(9)   Merge Per-Thread State: 0.0ms
+[2.999s][info][gc,phases   ] GC(9)   Other: 10.2ms
+[2.999s][info][gc,heap     ] GC(9) Eden regions: 2->0(18)
+[2.999s][info][gc,heap     ] GC(9) Survivor regions: 1->1(3)
+[2.999s][info][gc,heap     ] GC(9) Old regions: 1->1
+[2.999s][info][gc,heap     ] GC(9) Humongous regions: 12->0
+[2.999s][info][gc,metaspace] GC(9) Metaspace: 3372K->3372K(1056768K)
+[2.999s][info][gc          ] GC(9) Pause Initial Mark (G1 Humongous Allocation) 13M->0M(32M) (2.978s, 2.999s) 21.439ms
+[2.999s][info][gc,cpu      ] GC(9) User=0.03s Sys=0.01s Real=0.02s
+[3.000s][info][gc          ] GC(10) Concurrent Root Region Scan (3.000s)
+[3.000s][info][gc,task     ] GC(10) GC Workers: 6
+[3.006s][info][gc          ] GC(10) Concurrent Root Region Scan (3.000s, 3.006s) 6.405ms
+[3.006s][info][gc          ] GC(10) Concurrent Mark (3.006s)
+[3.006s][info][gc,task     ] GC(10) GC Workers: 6
+2856960
+[3.022s][info][gc          ] GC(10) Concurrent Mark (3.006s, 3.022s) 15.874ms
+[3.022s][info][gc,start    ] GC(10) Pause Remark (3.022s)
+[3.046s][info][gc          ] GC(10) Pause Remark 6M->6M(32M) (3.022s, 3.046s) 23.637ms
+[3.046s][info][gc,cpu      ] GC(10) User=0.04s Sys=0.00s Real=0.02s
+[3.047s][info][gc,start    ] GC(10) Pause Cleanup (3.047s)
+[3.048s][info][gc          ] GC(10) Pause Cleanup 6M->6M(32M) (3.047s, 3.048s) 0.893ms
+[3.048s][info][gc,cpu      ] GC(10) User=0.00s Sys=0.00s Real=0.00s
+1132510
+962560
+688827
+1280000
+591635
+[3.296s][info][gc,start    ] GC(11) Pause Initial Mark (G1 Humongous Allocation) (3.296s)
+[3.296s][info][gc,task     ] GC(11) GC Workers: 2
+[3.322s][info][gc,phases   ] GC(11)   Evacuate Collection Set: 13.5ms
+[3.322s][info][gc,phases   ] GC(11)   Code Roots: 0.3ms
+[3.322s][info][gc,phases   ] GC(11)   Clear Card Table: 0.1ms
+[3.322s][info][gc,phases   ] GC(11)   Expand Heap After Collection: 0.0ms
+[3.322s][info][gc,phases   ] GC(11)   Free Collection Set: 2.7ms
+[3.322s][info][gc,phases   ] GC(11)   Merge Per-Thread State: 0.1ms
+[3.322s][info][gc,phases   ] GC(11)   Other: 8.8ms
+[3.322s][info][gc,heap     ] GC(11) Eden regions: 2->0(18)
+[3.322s][info][gc,heap     ] GC(11) Survivor regions: 1->1(3)
+[3.322s][info][gc,heap     ] GC(11) Old regions: 1->1
+[3.322s][info][gc,heap     ] GC(11) Humongous regions: 14->2
+[3.322s][info][gc,metaspace] GC(11) Metaspace: 3374K->3374K(1056768K)
+[3.322s][info][gc          ] GC(11) Pause Initial Mark (G1 Humongous Allocation) 16M->2M(32M) (3.296s, 3.322s) 25.684ms
+[3.322s][info][gc,cpu      ] GC(11) User=0.04s Sys=0.00s Real=0.03s
+[3.322s][info][gc          ] GC(12) Concurrent Root Region Scan (3.322s)
+[3.322s][info][gc,task     ] GC(12) GC Workers: 6
+[3.328s][info][gc          ] GC(12) Concurrent Root Region Scan (3.322s, 3.328s) 5.476ms
+[3.328s][info][gc          ] GC(12) Concurrent Mark (3.328s)
+[3.328s][info][gc,task     ] GC(12) GC Workers: 6
+1157120
+[3.343s][info][gc          ] GC(12) Concurrent Mark (3.328s, 3.343s) 15.612ms
+[3.344s][info][gc,start    ] GC(12) Pause Remark (3.344s)
+[3.368s][info][gc          ] GC(12) Pause Remark 4M->4M(32M) (3.344s, 3.368s) 24.790ms
+[3.368s][info][gc,cpu      ] GC(12) User=0.04s Sys=0.00s Real=0.02s
+[3.369s][info][gc,start    ] GC(12) Pause Cleanup (3.369s)
+[3.370s][info][gc          ] GC(12) Pause Cleanup 4M->4M(32M) (3.369s, 3.370s) 0.757ms
+[3.370s][info][gc,cpu      ] GC(12) User=0.00s Sys=0.00s Real=0.01s
+368657
+3153920
+931067
+[3.541s][info][gc,start    ] GC(13) Pause Initial Mark (G1 Humongous Allocation) (3.541s)
+[3.541s][info][gc,task     ] GC(13) GC Workers: 2
+[3.571s][info][gc,phases   ] GC(13)   Evacuate Collection Set: 16.1ms
+[3.572s][info][gc,phases   ] GC(13)   Code Roots: 0.3ms
+[3.572s][info][gc,phases   ] GC(13)   Clear Card Table: 0.1ms
+[3.572s][info][gc,phases   ] GC(13)   Expand Heap After Collection: 0.0ms
+[3.572s][info][gc,phases   ] GC(13)   Free Collection Set: 2.6ms
+[3.572s][info][gc,phases   ] GC(13)   Merge Per-Thread State: 0.1ms
+[3.572s][info][gc,phases   ] GC(13)   Other: 11.2ms
+[3.572s][info][gc,heap     ] GC(13) Eden regions: 2->0(18)
+[3.572s][info][gc,heap     ] GC(13) Survivor regions: 1->1(3)
+[3.572s][info][gc,heap     ] GC(13) Old regions: 1->1
+[3.572s][info][gc,heap     ] GC(13) Humongous regions: 12->0
+[3.572s][info][gc,metaspace] GC(13) Metaspace: 3375K->3375K(1056768K)
+[3.572s][info][gc          ] GC(13) Pause Initial Mark (G1 Humongous Allocation) 13M->0M(32M) (3.541s, 3.572s) 30.651ms
+[3.572s][info][gc,cpu      ] GC(13) User=0.05s Sys=0.00s Real=0.04s
+[3.572s][info][gc          ] GC(14) Concurrent Root Region Scan (3.572s)
+[3.572s][info][gc,task     ] GC(14) GC Workers: 6
+[3.579s][info][gc          ] GC(14) Concurrent Root Region Scan (3.572s, 3.579s) 7.288ms
+[3.579s][info][gc          ] GC(14) Concurrent Mark (3.579s)
+[3.579s][info][gc,task     ] GC(14) GC Workers: 6
+2856960
+[3.607s][info][gc          ] GC(14) Concurrent Mark (3.579s, 3.607s) 27.444ms
+[3.607s][info][gc,start    ] GC(14) Pause Remark (3.607s)
+[3.631s][info][gc          ] GC(14) Pause Remark 6M->6M(32M) (3.607s, 3.631s) 24.103ms
+[3.631s][info][gc,cpu      ] GC(14) User=0.09s Sys=0.00s Real=0.03s
+[3.631s][info][gc,start    ] GC(14) Pause Cleanup (3.631s)
+[3.632s][info][gc          ] GC(14) Pause Cleanup 6M->6M(32M) (3.631s, 3.632s) 0.562ms
+[3.632s][info][gc,cpu      ] GC(14) User=0.00s Sys=0.00s Real=0.00s
+1132510
+962560
+688827
+1280000
+591635
+[3.883s][info][gc,start    ] GC(15) Pause Initial Mark (G1 Humongous Allocation) (3.883s)
+[3.883s][info][gc,task     ] GC(15) GC Workers: 2
+[3.909s][info][gc,phases   ] GC(15)   Evacuate Collection Set: 12.4ms
+[3.909s][info][gc,phases   ] GC(15)   Code Roots: 0.2ms
+[3.909s][info][gc,phases   ] GC(15)   Clear Card Table: 0.2ms
+[3.909s][info][gc,phases   ] GC(15)   Expand Heap After Collection: 0.0ms
+[3.909s][info][gc,phases   ] GC(15)   Free Collection Set: 2.9ms
+[3.909s][info][gc,phases   ] GC(15)   Merge Per-Thread State: 0.1ms
+[3.909s][info][gc,phases   ] GC(15)   Other: 10.2ms
+[3.909s][info][gc,heap     ] GC(15) Eden regions: 3->0(16)
+[3.909s][info][gc,heap     ] GC(15) Survivor regions: 1->1(3)
+[3.909s][info][gc,heap     ] GC(15) Old regions: 1->1
+[3.909s][info][gc,heap     ] GC(15) Humongous regions: 14->2
+[3.909s][info][gc,metaspace] GC(15) Metaspace: 3384K->3384K(1056768K)
+[3.909s][info][gc          ] GC(15) Pause Initial Mark (G1 Humongous Allocation) 16M->2M(32M) (3.883s, 3.909s) 26.042ms
+[3.909s][info][gc,cpu      ] GC(15) User=0.04s Sys=0.00s Real=0.02s
+[3.909s][info][gc          ] GC(16) Concurrent Root Region Scan (3.909s)
+[3.909s][info][gc,task     ] GC(16) GC Workers: 6
+[3.914s][info][gc          ] GC(16) Concurrent Root Region Scan (3.909s, 3.914s) 4.661ms
+[3.914s][info][gc          ] GC(16) Concurrent Mark (3.914s)
+[3.914s][info][gc,task     ] GC(16) GC Workers: 6
+1157120
+[3.930s][info][gc          ] GC(16) Concurrent Mark (3.914s, 3.930s) 15.642ms
+[3.930s][info][gc,start    ] GC(16) Pause Remark (3.930s)
+[3.950s][info][gc          ] GC(16) Pause Remark 4M->4M(32M) (3.930s, 3.950s) 20.081ms
+[3.950s][info][gc,cpu      ] GC(16) User=0.03s Sys=0.00s Real=0.02s
+[3.950s][info][gc,start    ] GC(16) Pause Cleanup (3.950s)
+[3.951s][info][gc          ] GC(16) Pause Cleanup 4M->4M(32M) (3.950s, 3.951s) 0.773ms
+[3.951s][info][gc,cpu      ] GC(16) User=0.00s Sys=0.00s Real=0.00s
+368657
+3153920
+931067
+[4.118s][info][gc,start    ] GC(17) Pause Initial Mark (G1 Humongous Allocation) (4.118s)
+[4.118s][info][gc,task     ] GC(17) GC Workers: 2
+[4.148s][info][gc,phases   ] GC(17)   Evacuate Collection Set: 16.5ms
+[4.148s][info][gc,phases   ] GC(17)   Code Roots: 0.3ms
+[4.148s][info][gc,phases   ] GC(17)   Clear Card Table: 0.1ms
+[4.148s][info][gc,phases   ] GC(17)   Expand Heap After Collection: 0.0ms
+[4.148s][info][gc,phases   ] GC(17)   Free Collection Set: 2.8ms
+[4.148s][info][gc,phases   ] GC(17)   Merge Per-Thread State: 0.1ms
+[4.148s][info][gc,phases   ] GC(17)   Other: 10.8ms
+[4.148s][info][gc,heap     ] GC(17) Eden regions: 2->0(18)
+[4.148s][info][gc,heap     ] GC(17) Survivor regions: 1->1(3)
+[4.148s][info][gc,heap     ] GC(17) Old regions: 1->1
+[4.148s][info][gc,heap     ] GC(17) Humongous regions: 12->0
+[4.148s][info][gc,metaspace] GC(17) Metaspace: 3384K->3384K(1056768K)
+[4.148s][info][gc          ] GC(17) Pause Initial Mark (G1 Humongous Allocation) 13M->0M(32M) (4.118s, 4.148s) 30.873ms
+[4.148s][info][gc,cpu      ] GC(17) User=0.04s Sys=0.00s Real=0.03s
+[4.149s][info][gc          ] GC(18) Concurrent Root Region Scan (4.149s)
+[4.149s][info][gc,task     ] GC(18) GC Workers: 6
+[4.156s][info][gc          ] GC(18) Concurrent Root Region Scan (4.149s, 4.156s) 7.918ms
+[4.157s][info][gc          ] GC(18) Concurrent Mark (4.157s)
+[4.157s][info][gc,task     ] GC(18) GC Workers: 6
+2856960
+[4.172s][info][gc          ] GC(18) Concurrent Mark (4.157s, 4.172s) 15.584ms
+[4.173s][info][gc,start    ] GC(18) Pause Remark (4.173s)
+[4.199s][info][gc          ] GC(18) Pause Remark 6M->6M(32M) (4.173s, 4.199s) 25.999ms
+[4.199s][info][gc,cpu      ] GC(18) User=0.04s Sys=0.00s Real=0.02s
+[4.199s][info][gc,start    ] GC(18) Pause Cleanup (4.199s)
+[4.200s][info][gc          ] GC(18) Pause Cleanup 6M->6M(32M) (4.199s, 4.200s) 0.851ms
+[4.200s][info][gc,cpu      ] GC(18) User=0.00s Sys=0.00s Real=0.00s
+1132510
+962560
+688827
+1280000
+591635
+[4.445s][info][gc,start    ] GC(19) Pause Initial Mark (G1 Humongous Allocation) (4.445s)
+[4.445s][info][gc,task     ] GC(19) GC Workers: 2
+[4.475s][info][gc,phases   ] GC(19)   Evacuate Collection Set: 15.1ms
+[4.475s][info][gc,phases   ] GC(19)   Code Roots: 0.3ms
+[4.475s][info][gc,phases   ] GC(19)   Clear Card Table: 0.1ms
+[4.475s][info][gc,phases   ] GC(19)   Expand Heap After Collection: 0.0ms
+[4.475s][info][gc,phases   ] GC(19)   Free Collection Set: 2.6ms
+[4.475s][info][gc,phases   ] GC(19)   Merge Per-Thread State: 0.1ms
+[4.475s][info][gc,phases   ] GC(19)   Other: 11.3ms
+[4.475s][info][gc,heap     ] GC(19) Eden regions: 2->0(17)
+[4.475s][info][gc,heap     ] GC(19) Survivor regions: 1->1(3)
+[4.475s][info][gc,heap     ] GC(19) Old regions: 1->1
+[4.475s][info][gc,heap     ] GC(19) Humongous regions: 14->2
+[4.475s][info][gc,metaspace] GC(19) Metaspace: 3384K->3384K(1056768K)
+[4.475s][info][gc          ] GC(19) Pause Initial Mark (G1 Humongous Allocation) 16M->2M(32M) (4.445s, 4.475s) 29.788ms
+[4.475s][info][gc,cpu      ] GC(19) User=0.04s Sys=0.00s Real=0.03s
+[4.475s][info][gc          ] GC(20) Concurrent Root Region Scan (4.475s)
+[4.475s][info][gc,task     ] GC(20) GC Workers: 6
+1157120
+[4.482s][info][gc          ] GC(20) Concurrent Root Region Scan (4.475s, 4.482s) 7.137ms
+[4.482s][info][gc          ] GC(20) Concurrent Mark (4.482s)
+[4.483s][info][gc,task     ] GC(20) GC Workers: 6
+[4.498s][info][gc          ] GC(20) Concurrent Mark (4.482s, 4.498s) 15.574ms
+[4.498s][info][gc,start    ] GC(20) Pause Remark (4.498s)
+[4.523s][info][gc          ] GC(20) Pause Remark 4M->4M(32M) (4.498s, 4.523s) 24.154ms
+[4.523s][info][gc,cpu      ] GC(20) User=0.04s Sys=0.00s Real=0.03s
+[4.523s][info][gc,start    ] GC(20) Pause Cleanup (4.523s)
+[4.524s][info][gc          ] GC(20) Pause Cleanup 4M->4M(32M) (4.523s, 4.524s) 0.466ms
+[4.524s][info][gc,cpu      ] GC(20) User=0.00s Sys=0.00s Real=0.00s
+368657
+File output byte count = 0 checksum = 0
+
+#### IO Statistics for this Run ####
+## IO time                      : 0.092 seconds
+## No. of File opens            : 25
+## No. of Byte Reads from cache : 0
+## No. of Byte Reads from File  : 47052800
+## No. of Byte Reads from Url   : 0
+#### Cumulative Cache Stats: N 0, B 0, H 0, M 25
+#### No. of HTTP retries          : 0
+
+Run 0 end. Total memory=33554432 free memory=27891800
+======= _201_compress Finished in 3.621 secs
+requested gc
+[4.617s][info][gc,start    ] GC(21) Pause Full (System.gc()) (4.617s)
+# To suppress the following error report, specify this argument
+# after -XX: or in .hotspotrc:  SuppressErrorAt=/referenceProcessor.hpp:329
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (/export/jmasa/java/jdk9-rt-8149343/src/share/vm/gc/shared/referenceProcessor.hpp:329), pid=17455, tid=17511
+#  guarantee(_next_id < _num_q) failed: _next_id 15 _num_q 2 _max_num_q 23
+#
+# JRE version: Java(TM) SE Runtime Environment (9.0) ( build 9-internal+0-2016-03-04-112518.jmasamit.jdk9-full-test)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM ( 9.0.0-internal-jdk9-rt-8149343, mixed mode, tiered, compressed oops, g1 gc, linux-amd64)
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport %p %s %c %P" (or dumping to /export/jmasa/test/gc_test_suite.2/specjvm98/core.17455)
+#
+# An error report file with more information is saved as:
+# /export/jmasa/test/gc_test_suite.2/specjvm98/hs_err_pid17455.log
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+Current thread is 17511
+Dumping core ...
+Aborted (core dumped)

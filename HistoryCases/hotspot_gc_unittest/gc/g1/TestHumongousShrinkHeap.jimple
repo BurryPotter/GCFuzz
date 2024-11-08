@@ -1,0 +1,373 @@
+public class TestHumongousShrinkHeap extends java.lang.Object
+{
+    public static final java.lang.String MIN_FREE_RATIO_FLAG_NAME;
+    public static final java.lang.String MAX_FREE_RATIO_FLAG_NAME;
+    private static final java.util.List garbage;
+    private static final int REGION_SIZE;
+    private static final int LISTS_COUNT;
+    private static final int HUMON_SIZE;
+    private static final long TOTAL_MEMORY;
+    private static final long MAX_MEMORY;
+    private static final int HUMON_COUNT;
+
+    static void <clinit>()
+    {
+        java.lang.Runtime $r1, $r2;
+        long $l1, $l2, $l4, $l5, $l6, $l7;
+        java.util.ArrayList $r0;
+        int $i0, $i3, $i8;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        <gc.g1.TestHumongousShrinkHeap: java.util.List garbage> = $r0;
+
+        $i0 = staticinvoke <java.lang.Math: int round(float)>(943718.4F);
+
+        <gc.g1.TestHumongousShrinkHeap: int HUMON_SIZE> = $i0;
+
+        $r1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l1 = virtualinvoke $r1.<java.lang.Runtime: long totalMemory()>();
+
+        <gc.g1.TestHumongousShrinkHeap: long TOTAL_MEMORY> = $l1;
+
+        $r2 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l2 = virtualinvoke $r2.<java.lang.Runtime: long maxMemory()>();
+
+        <gc.g1.TestHumongousShrinkHeap: long MAX_MEMORY> = $l2;
+
+        $l5 = <gc.g1.TestHumongousShrinkHeap: long TOTAL_MEMORY>;
+
+        $i3 = <gc.g1.TestHumongousShrinkHeap: int HUMON_SIZE>;
+
+        $l4 = (long) $i3;
+
+        $l6 = $l5 / $l4;
+
+        $l7 = $l6 / 10L;
+
+        $i8 = (int) $l7;
+
+        <gc.g1.TestHumongousShrinkHeap: int HUMON_COUNT> = $i8;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestHumongousShrinkHeap r0;
+
+        r0 := @this: TestHumongousShrinkHeap;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Object[] $r0;
+        long $l3, $l4, $l5, $l6, $l8, $l9, $l11;
+        java.lang.String[] r12;
+        java.lang.Integer $r8;
+        java.text.NumberFormat $r1, $r4, $r6;
+        byte $b7;
+        int $i0, $i1, $i2, $i10, $i12, $i13;
+        gc.g1.TestHumongousShrinkHeap $r13;
+        java.lang.String $r3, $r5, $r7;
+        java.io.PrintStream $r2, $r10, $r11;
+
+        r12 := @parameter0: java.lang.String[];
+
+        $i0 = <gc.g1.TestHumongousShrinkHeap: int HUMON_COUNT>;
+
+        if $i0 != 0 goto label1;
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>("Skipped. Heap is too small");
+
+        return;
+
+     label1:
+        $l4 = <gc.g1.TestHumongousShrinkHeap: long TOTAL_MEMORY>;
+
+        $i1 = <gc.g1.TestHumongousShrinkHeap: int HUMON_COUNT>;
+
+        $i2 = 1048576 * $i1;
+
+        $l3 = (long) $i2;
+
+        $l6 = $l4 + $l3;
+
+        $l5 = <gc.g1.TestHumongousShrinkHeap: long MAX_MEMORY>;
+
+        $b7 = $l6 cmp $l5;
+
+        $i13 = (int) $b7;
+
+        if $i13 <= 0 goto label2;
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>("Skipped. Initial heap size is to close to max heap size.");
+
+        return;
+
+     label2:
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = newarray (java.lang.Object)[4];
+
+        $r1 = <gc.g1.MemoryUsagePrinter: java.text.NumberFormat NF>;
+
+        $l8 = <gc.g1.TestHumongousShrinkHeap: long TOTAL_MEMORY>;
+
+        $r3 = virtualinvoke $r1.<java.text.NumberFormat: java.lang.String format(long)>($l8);
+
+        $r0[0] = $r3;
+
+        $r4 = <gc.g1.MemoryUsagePrinter: java.text.NumberFormat NF>;
+
+        $l9 = <gc.g1.TestHumongousShrinkHeap: long MAX_MEMORY>;
+
+        $r5 = virtualinvoke $r4.<java.text.NumberFormat: java.lang.String format(long)>($l9);
+
+        $r0[1] = $r5;
+
+        $r6 = <gc.g1.MemoryUsagePrinter: java.text.NumberFormat NF>;
+
+        $i10 = <gc.g1.TestHumongousShrinkHeap: int HUMON_SIZE>;
+
+        $l11 = (long) $i10;
+
+        $r7 = virtualinvoke $r6.<java.text.NumberFormat: java.lang.String format(long)>($l11);
+
+        $r0[2] = $r7;
+
+        $i12 = <gc.g1.TestHumongousShrinkHeap: int HUMON_COUNT>;
+
+        $r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12);
+
+        $r0[3] = $r8;
+
+        virtualinvoke $r2.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Running with %s initial heap size of %s maximum heap size. Will allocate humongous object of %s size %d times.%n", $r0);
+
+        $r13 = new gc.g1.TestHumongousShrinkHeap;
+
+        specialinvoke $r13.<gc.g1.TestHumongousShrinkHeap: void <init>()>();
+
+        virtualinvoke $r13.<gc.g1.TestHumongousShrinkHeap: void test()>();
+
+        return;
+    }
+
+    private final void test()
+    {
+        com.sun.management.VMOption $r10, $r14;
+        TestHumongousShrinkHeap r0;
+        java.lang.Object[] $r7;
+        long $l0, $l1;
+        java.lang.management.MemoryMXBean $r1, $r3;
+        java.lang.Long $r5, $r6;
+        gc.g1.TestHumongousShrinkHeap $r17, $r18;
+        java.lang.management.PlatformManagedObject $r8, $r12;
+        java.lang.String $r11, $r15, $r16;
+        java.lang.management.MemoryUsage $r2, $r4;
+        com.sun.management.HotSpotDiagnosticMXBean $r9, $r13;
+
+        r0 := @this: TestHumongousShrinkHeap;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <gc.g1.MemoryUsagePrinter: void printMemoryUsage(java.lang.String)>("init");
+
+        $r17 = (gc.g1.TestHumongousShrinkHeap) r0;
+
+        virtualinvoke $r17.<gc.g1.TestHumongousShrinkHeap: void allocate()>();
+
+        staticinvoke <gc.g1.MemoryUsagePrinter: void printMemoryUsage(java.lang.String)>("allocated");
+
+        $r1 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r2 = interfaceinvoke $r1.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $r18 = (gc.g1.TestHumongousShrinkHeap) r0;
+
+        virtualinvoke $r18.<gc.g1.TestHumongousShrinkHeap: void free()>();
+
+        staticinvoke <gc.g1.MemoryUsagePrinter: void printMemoryUsage(java.lang.String)>("free");
+
+        $r3 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r4 = interfaceinvoke $r3.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l0 = virtualinvoke $r4.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r5 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $l1 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r7 = newarray (java.lang.Object)[4];
+
+        $r7[0] = "MinHeapFreeRatio";
+
+        $r8 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.PlatformManagedObject getPlatformMXBean(java.lang.Class)>(class "Lcom/sun/management/HotSpotDiagnosticMXBean;");
+
+        $r9 = (com.sun.management.HotSpotDiagnosticMXBean) $r8;
+
+        $r10 = interfaceinvoke $r9.<com.sun.management.HotSpotDiagnosticMXBean: com.sun.management.VMOption getVMOption(java.lang.String)>("MinHeapFreeRatio");
+
+        $r11 = virtualinvoke $r10.<com.sun.management.VMOption: java.lang.String getValue()>();
+
+        $r7[1] = $r11;
+
+        $r7[2] = "MaxHeapFreeRatio";
+
+        $r12 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.PlatformManagedObject getPlatformMXBean(java.lang.Class)>(class "Lcom/sun/management/HotSpotDiagnosticMXBean;");
+
+        $r13 = (com.sun.management.HotSpotDiagnosticMXBean) $r12;
+
+        $r14 = interfaceinvoke $r13.<com.sun.management.HotSpotDiagnosticMXBean: com.sun.management.VMOption getVMOption(java.lang.String)>("MaxHeapFreeRatio");
+
+        $r15 = virtualinvoke $r14.<com.sun.management.VMOption: java.lang.String getValue()>();
+
+        $r7[3] = $r15;
+
+        $r16 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("committed free heap size is not less than committed full heap size, heap hasn\'t been shrunk?%n%s = %s%n%s = %s", $r7);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertLessThan(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r5, $r6, $r16);
+
+        return;
+    }
+
+    private void allocate()
+    {
+        TestHumongousShrinkHeap r5;
+        java.util.ArrayList $r0;
+        java.util.List $r4;
+        int $i0, $i1, $i2, i3;
+        java.lang.StringBuilder $r1, $r2;
+        java.lang.String $r3;
+
+        r5 := @this: TestHumongousShrinkHeap;
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $i1 = <gc.g1.TestHumongousShrinkHeap: int HUMON_COUNT>;
+
+        $i0 = <gc.g1.TestHumongousShrinkHeap: int HUMON_SIZE>;
+
+        staticinvoke <gc.g1.TestHumongousShrinkHeap: void allocateList(java.util.List,int,int)>($r0, $i1, $i0);
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("allocate #");
+
+        $i2 = i3 + 1;
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.g1.MemoryUsagePrinter: void printMemoryUsage(java.lang.String)>($r3);
+
+        $r4 = <gc.g1.TestHumongousShrinkHeap: java.util.List garbage>;
+
+        interfaceinvoke $r4.<java.util.List: boolean add(java.lang.Object)>($r0);
+
+        i3 = i3 + 1;
+
+     label2:
+        if i3 < 10 goto label1;
+
+        return;
+    }
+
+    private void free()
+    {
+        TestHumongousShrinkHeap r8;
+        java.util.List $r0, $r1, $r2, $r3, $r4, r6, $r7;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.Object $r5;
+
+        r8 := @this: TestHumongousShrinkHeap;
+
+        $r1 = <gc.g1.TestHumongousShrinkHeap: java.util.List garbage>;
+
+        $r0 = <gc.g1.TestHumongousShrinkHeap: java.util.List garbage>;
+
+        $i0 = interfaceinvoke $r0.<java.util.List: int size()>();
+
+        $i1 = $i0 - 1;
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.util.List subList(int,int)>(0, $i1);
+
+        interfaceinvoke $r2.<java.util.List: void clear()>();
+
+        $r4 = <gc.g1.TestHumongousShrinkHeap: java.util.List garbage>;
+
+        $r3 = <gc.g1.TestHumongousShrinkHeap: java.util.List garbage>;
+
+        $i2 = interfaceinvoke $r3.<java.util.List: int size()>();
+
+        $i3 = $i2 - 1;
+
+        $r5 = interfaceinvoke $r4.<java.util.List: java.lang.Object get(int)>($i3);
+
+        r6 = (java.util.List) $r5;
+
+        $i4 = interfaceinvoke r6.<java.util.List: int size()>();
+
+        $i5 = $i4 - 1;
+
+        $r7 = interfaceinvoke r6.<java.util.List: java.util.List subList(int,int)>(0, $i5);
+
+        interfaceinvoke $r7.<java.util.List: void clear()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+
+    private static void allocateList(java.util.List, int, int)
+    {
+        byte[] $r1;
+        java.util.List r0;
+        int i0, i1, i2;
+
+        r0 := @parameter0: java.util.List;
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        i2 = 0;
+
+        goto label2;
+
+     label1:
+        $r1 = newarray (byte)[i1];
+
+        interfaceinvoke r0.<java.util.List: boolean add(java.lang.Object)>($r1);
+
+        i2 = i2 + 1;
+
+     label2:
+        if i2 < i0 goto label1;
+
+        return;
+    }
+}

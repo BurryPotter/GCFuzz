@@ -1,0 +1,108 @@
+public class bug2 extends java.lang.Object
+{
+    bug2 next;
+
+    public void <init>()
+    {
+        bug2 r0;
+
+        r0 := @this: bug2;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+        bug2 $r1, $r3, r11;
+        int $i0, $i1, $i2, i3, i4;
+        java.lang.String $r8, $r9;
+        java.io.PrintStream $r2, $r5;
+        java.lang.StringBuilder $r4, $r6, $r7;
+        java.lang.OutOfMemoryError $r10;
+
+        r0 := @parameter0: java.lang.String[];
+
+        i3 = 0;
+
+        i4 = 1000;
+
+        $i0 = lengthof r0;
+
+        if $i0 <= 0 goto label1;
+
+        $r9 = r0[0];
+
+        i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r9);
+
+     label1:
+        $r1 = new bug2;
+
+        specialinvoke $r1.<bug2: void <init>()>();
+
+        r11 = $r1;
+
+     label2:
+        if r11 == null goto label5;
+
+        $r3 = new bug2;
+
+        specialinvoke $r3.<bug2: void <init>()>();
+
+        $r3.<bug2: bug2 next> = r11;
+
+        r11 = $r3;
+
+        $i1 = i3 % 100000;
+
+        if $i1 == 0 goto label3;
+
+        if i3 <= 4000000 goto label4;
+
+        $i2 = i3 % i4;
+
+        if $i2 != 0 goto label4;
+
+     label3:
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+     label4:
+        i3 = i3 + 1;
+
+        goto label2;
+
+     label5:
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("OutOfMemoryError not thrown as expected.");
+
+        staticinvoke <java.lang.System: void exit(int)>(97);
+
+     label6:
+        goto label8;
+
+     label7:
+        $r10 := @caughtexception;
+
+        staticinvoke <java.lang.System: void exit(int)>(95);
+
+     label8:
+        return;
+
+        catch java.lang.OutOfMemoryError from label2 to label6 with label7;
+    }
+}

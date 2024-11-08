@@ -1,0 +1,254 @@
+public class TestMemoryMXBeans extends java.lang.Object
+{
+    static volatile java.lang.Object sink;
+
+    public void <init>()
+    {
+        TestMemoryMXBeans r0;
+
+        r0 := @this: TestMemoryMXBeans;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.IllegalStateException $r3;
+        java.lang.String[] r0;
+        long $l2, $l3, $l4, l5, $l7, $l8, $l9, l10;
+        int $i0, $i1, $i6;
+        java.lang.String $r1, $r2;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 >= 2 goto label1;
+
+        $r3 = new java.lang.IllegalStateException;
+
+        specialinvoke $r3.<java.lang.IllegalStateException: void <init>(java.lang.String)>("Should provide expected heap sizes");
+
+        throw $r3;
+
+     label1:
+        $r1 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        $l2 = (long) $i1;
+
+        $l3 = 1L * $l2;
+
+        $l4 = $l3 * 1024L;
+
+        l5 = $l4 * 1024L;
+
+        $r2 = r0[1];
+
+        $i6 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        $l7 = (long) $i6;
+
+        $l8 = 1L * $l7;
+
+        $l9 = $l8 * 1024L;
+
+        l10 = $l9 * 1024L;
+
+        staticinvoke <gc.epsilon.TestMemoryMXBeans: void testMemoryBean(long,long)>(l5, l10);
+
+        staticinvoke <gc.epsilon.TestMemoryMXBeans: void testAllocs()>();
+
+        return;
+    }
+
+    public static void testMemoryBean(long, long)
+    {
+        java.lang.IllegalStateException $r18, $r20;
+        long $l0, $l1, l2, l4;
+        java.lang.management.MemoryMXBean $r0;
+        byte $b3, $b5, $b6, $b7;
+        int $i8, $i9;
+        java.lang.String $r10, $r16;
+        java.lang.management.MemoryUsage $r1, $r2, $r3, $r4;
+        java.lang.StringBuilder $r7, $r8, $r9, $r13, $r14, $r15, $r17, $r19;
+
+        l2 := @parameter0: long;
+
+        l4 := @parameter1: long;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r1 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l0 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r2 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l1 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $r3 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getNonHeapMemoryUsage()>();
+
+        virtualinvoke $r3.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r4 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getNonHeapMemoryUsage()>();
+
+        virtualinvoke $r4.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $b3 = l2 cmp 0L;
+
+        $i8 = (int) $b3;
+
+        if $i8 <= 0 goto label1;
+
+        $b7 = $l0 cmp l2;
+
+        if $b7 == 0 goto label1;
+
+        $r18 = new java.lang.IllegalStateException;
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>(java.lang.String)>("Init heap size is wrong: ");
+
+        $r13 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" vs ");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r18.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r16);
+
+        throw $r18;
+
+     label1:
+        $b5 = l4 cmp 0L;
+
+        $i9 = (int) $b5;
+
+        if $i9 <= 0 goto label2;
+
+        $b6 = $l1 cmp l4;
+
+        if $b6 == 0 goto label2;
+
+        $r20 = new java.lang.IllegalStateException;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>("Max heap size is wrong: ");
+
+        $r7 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" vs ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l4);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r20.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r10);
+
+        throw $r20;
+
+     label2:
+        return;
+    }
+
+    public static void testAllocs()
+    {
+        java.lang.IllegalStateException $r19;
+        long $l0, $l1, l2, $l3, $l4, $l5, l6;
+        java.lang.management.MemoryMXBean $r0;
+        byte $b7, $b8;
+        int[] $r2, $r7;
+        int $i9, $i10;
+        java.lang.String $r17;
+        java.lang.management.MemoryUsage $r1, $r3, $r4, $r5, $r6, $r8;
+        java.lang.StringBuilder $r11, $r12, $r13, $r14, $r15, $r16, $r18;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r1 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        virtualinvoke $r1.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r2 = newarray (int)[1048576];
+
+        <gc.epsilon.TestMemoryMXBeans: java.lang.Object sink> = $r2;
+
+        $r3 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        virtualinvoke $r3.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r4 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l0 = virtualinvoke $r4.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r5 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l1 = virtualinvoke $r5.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        l2 = $l1 - $l0;
+
+        $r6 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l3 = virtualinvoke $r6.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r7 = newarray (int)[1048576];
+
+        <gc.epsilon.TestMemoryMXBeans: java.lang.Object sink> = $r7;
+
+        $r8 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l4 = virtualinvoke $r8.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $l5 = $l4 - $l3;
+
+        l6 = $l5 - l2;
+
+        $b7 = 4194312L cmp l6;
+
+        $i9 = (int) $b7;
+
+        if $i9 > 0 goto label1;
+
+        $b8 = l6 cmp 4194320L;
+
+        $i10 = (int) $b8;
+
+        if $i10 <= 0 goto label2;
+
+     label1:
+        $r19 = new java.lang.IllegalStateException;
+
+        $r18 = new java.lang.StringBuilder;
+
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>("Allocation did not change used space right: ");
+
+        $r11 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l6);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" should be in [");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(4194312L);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", ");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(4194320L);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r19.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r17);
+
+        throw $r19;
+
+     label2:
+        return;
+    }
+}

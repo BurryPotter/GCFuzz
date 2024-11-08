@@ -1,0 +1,119 @@
+final enum class TestHeapFreeRatio$Validation extends java.lang.Enum
+{
+    public static final enum gc.arguments.TestHeapFreeRatio$Validation VALID;
+    public static final enum gc.arguments.TestHeapFreeRatio$Validation MIN_INVALID;
+    public static final enum gc.arguments.TestHeapFreeRatio$Validation MAX_INVALID;
+    public static final enum gc.arguments.TestHeapFreeRatio$Validation OUT_OF_RANGE;
+    public static final enum gc.arguments.TestHeapFreeRatio$Validation COMBINATION_INVALID;
+    private static final gc.arguments.TestHeapFreeRatio$Validation[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.arguments.TestHeapFreeRatio$Validation $r0, $r1, $r2, $r3, $r4, $r6, $r7, $r8, $r9, $r10;
+        gc.arguments.TestHeapFreeRatio$Validation[] $r5;
+
+        $r0 = new gc.arguments.TestHeapFreeRatio$Validation;
+
+        specialinvoke $r0.<gc.arguments.TestHeapFreeRatio$Validation: void <init>(java.lang.String,int)>("VALID", 0);
+
+        <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation VALID> = $r0;
+
+        $r1 = new gc.arguments.TestHeapFreeRatio$Validation;
+
+        specialinvoke $r1.<gc.arguments.TestHeapFreeRatio$Validation: void <init>(java.lang.String,int)>("MIN_INVALID", 1);
+
+        <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation MIN_INVALID> = $r1;
+
+        $r2 = new gc.arguments.TestHeapFreeRatio$Validation;
+
+        specialinvoke $r2.<gc.arguments.TestHeapFreeRatio$Validation: void <init>(java.lang.String,int)>("MAX_INVALID", 2);
+
+        <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation MAX_INVALID> = $r2;
+
+        $r3 = new gc.arguments.TestHeapFreeRatio$Validation;
+
+        specialinvoke $r3.<gc.arguments.TestHeapFreeRatio$Validation: void <init>(java.lang.String,int)>("OUT_OF_RANGE", 3);
+
+        <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation OUT_OF_RANGE> = $r3;
+
+        $r4 = new gc.arguments.TestHeapFreeRatio$Validation;
+
+        specialinvoke $r4.<gc.arguments.TestHeapFreeRatio$Validation: void <init>(java.lang.String,int)>("COMBINATION_INVALID", 4);
+
+        <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation COMBINATION_INVALID> = $r4;
+
+        $r5 = newarray (gc.arguments.TestHeapFreeRatio$Validation)[5];
+
+        $r6 = <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation VALID>;
+
+        $r5[0] = $r6;
+
+        $r7 = <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation MIN_INVALID>;
+
+        $r5[1] = $r7;
+
+        $r8 = <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation MAX_INVALID>;
+
+        $r5[2] = $r8;
+
+        $r9 = <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation OUT_OF_RANGE>;
+
+        $r5[3] = $r9;
+
+        $r10 = <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation COMBINATION_INVALID>;
+
+        $r5[4] = $r10;
+
+        <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation[] ENUM$VALUES> = $r5;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        java.lang.String r1;
+        TestHeapFreeRatio$Validation r0;
+
+        r0 := @this: TestHeapFreeRatio$Validation;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public static gc.arguments.TestHeapFreeRatio$Validation[] values()
+    {
+        int $i0;
+        gc.arguments.TestHeapFreeRatio$Validation[] $r0, $r1;
+
+        $r0 = <gc.arguments.TestHeapFreeRatio$Validation: gc.arguments.TestHeapFreeRatio$Validation[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.arguments.TestHeapFreeRatio$Validation)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.arguments.TestHeapFreeRatio$Validation valueOf(java.lang.String)
+    {
+        gc.arguments.TestHeapFreeRatio$Validation $r2;
+        java.lang.String r0;
+        java.lang.Enum $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/arguments/TestHeapFreeRatio$Validation;", r0);
+
+        $r2 = (gc.arguments.TestHeapFreeRatio$Validation) $r1;
+
+        return $r2;
+    }
+}

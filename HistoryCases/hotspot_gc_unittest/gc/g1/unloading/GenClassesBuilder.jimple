@@ -1,0 +1,131 @@
+public class GenClassesBuilder extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        GenClassesBuilder r0;
+
+        r0 := @this: GenClassesBuilder;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Error $r14, $r19;
+        java.lang.String[] $r7, $r11, r20;
+        java.lang.String $r12, $r13, $r17;
+        java.nio.file.Path $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r8, $r9;
+        boolean $z0;
+        java.nio.file.LinkOption[] $r10;
+        java.lang.Exception $r18;
+        java.lang.StringBuilder $r15, $r16;
+
+        r20 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <gc.g1.unloading.GenClassesBuilder: java.nio.file.Path testRoot()>();
+
+        $r1 = interfaceinvoke $r0.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>("vmTestbase");
+
+        $r2 = interfaceinvoke $r1.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>("gc");
+
+        $r3 = interfaceinvoke $r2.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>("g1");
+
+        $r4 = interfaceinvoke $r3.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>("unloading");
+
+        $r5 = interfaceinvoke $r4.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>("ClassNNN.java.template");
+
+        $r6 = interfaceinvoke $r5.<java.nio.file.Path: java.nio.file.Path toAbsolutePath()>();
+
+        $r7 = newarray (java.lang.String)[0];
+
+        $r8 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>(".", $r7);
+
+        $r9 = interfaceinvoke $r8.<java.nio.file.Path: java.nio.file.Path toAbsolutePath()>();
+
+        $r10 = newarray (java.nio.file.LinkOption)[0];
+
+        $z0 = staticinvoke <java.nio.file.Files: boolean notExists(java.nio.file.Path,java.nio.file.LinkOption[])>($r6, $r10);
+
+        if $z0 == 0 goto label1;
+
+        $r14 = new java.lang.Error;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("can\'t find template file: ");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r6);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r14.<java.lang.Error: void <init>(java.lang.String)>($r17);
+
+        throw $r14;
+
+     label1:
+        $r11 = newarray (java.lang.String)[3];
+
+        $r12 = interfaceinvoke $r6.<java.nio.file.Path: java.lang.String toString()>();
+
+        $r11[0] = $r12;
+
+        $r13 = interfaceinvoke $r9.<java.nio.file.Path: java.lang.String toString()>();
+
+        $r11[1] = $r13;
+
+        $r11[2] = "1000";
+
+        staticinvoke <gc.g1.unloading.GenClassPoolJar: void main(java.lang.String[])>($r11);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r18 := @caughtexception;
+
+        $r19 = new java.lang.Error;
+
+        specialinvoke $r19.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>("can\'t generate classPool.jar", $r18);
+
+        throw $r19;
+
+     label4:
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    private static java.nio.file.Path testRoot()
+    {
+        java.nio.file.LinkOption[] $r3;
+        java.lang.String[] $r0;
+        java.lang.String $r1;
+        java.nio.file.Path $r2, r4;
+        boolean $z0;
+
+        $r1 = <jdk.test.lib.Utils: java.lang.String TEST_SRC>;
+
+        $r0 = newarray (java.lang.String)[0];
+
+        r4 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>($r1, $r0);
+
+        goto label2;
+
+     label1:
+        r4 = interfaceinvoke r4.<java.nio.file.Path: java.nio.file.Path getParent()>();
+
+     label2:
+        $r2 = interfaceinvoke r4.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>("TEST.ROOT");
+
+        $r3 = newarray (java.nio.file.LinkOption)[0];
+
+        $z0 = staticinvoke <java.nio.file.Files: boolean exists(java.nio.file.Path,java.nio.file.LinkOption[])>($r2, $r3);
+
+        if $z0 == 0 goto label1;
+
+        return r4;
+    }
+}

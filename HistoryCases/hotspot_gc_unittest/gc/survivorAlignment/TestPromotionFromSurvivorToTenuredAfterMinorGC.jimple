@@ -1,0 +1,87 @@
+public class TestPromotionFromSurvivorToTenuredAfterMinorGC extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestPromotionFromSurvivorToTenuredAfterMinorGC r0;
+
+        r0 := @this: TestPromotionFromSurvivorToTenuredAfterMinorGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace $r4, $r7;
+        java.lang.String[] r0;
+        long $l0, $l1, $l2, $l3, $l5, l6, l8;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r1;
+        byte $b4;
+        int i7, $i9;
+        java.io.PrintStream $r2;
+        gc.survivorAlignment.AlignmentHelper $r5, $r8;
+        sun.hotspot.WhiteBox $r3, $r6;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.SurvivorAlignmentTestMain fromArgs(java.lang.String[])>(r0);
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.Object)>($r1);
+
+        $l0 = virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: long getExpectedMemoryUsage()>();
+
+        virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: void baselineMemoryAllocation()>();
+
+        $r3 = <gc.survivorAlignment.SurvivorAlignmentTestMain: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r3.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        $r4 = <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace TENURED>;
+
+        $r5 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper getAlignmentHelper(gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)>($r4);
+
+        $l1 = virtualinvoke $r5.<gc.survivorAlignment.AlignmentHelper: long getActualMemoryUsage()>();
+
+        l6 = $l0 + $l1;
+
+        virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: void allocate()>();
+
+        i7 = 0;
+
+        goto label2;
+
+     label1:
+        $r6 = <gc.survivorAlignment.SurvivorAlignmentTestMain: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r6.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        i7 = i7 + 1;
+
+     label2:
+        $l3 = (long) i7;
+
+        $l2 = <gc.survivorAlignment.SurvivorAlignmentTestMain: long MAX_TENURING_THRESHOLD>;
+
+        $b4 = $l3 cmp $l2;
+
+        $i9 = (int) $b4;
+
+        if $i9 <= 0 goto label1;
+
+        $r7 = <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace SURVIVOR>;
+
+        $r8 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper getAlignmentHelper(gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)>($r7);
+
+        $l5 = virtualinvoke $r8.<gc.survivorAlignment.AlignmentHelper: long getActualMemoryUsage()>();
+
+        l8 = l6 - $l5;
+
+        virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: void verifyMemoryUsage(long)>(l8);
+
+        return;
+    }
+}

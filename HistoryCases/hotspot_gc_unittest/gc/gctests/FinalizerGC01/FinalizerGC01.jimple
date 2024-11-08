@@ -1,0 +1,125 @@
+public class FinalizerGC01 extends java.lang.Object
+{
+    private static final int NGCFAILS;
+
+    public void <init>()
+    {
+        FinalizerGC01 r0;
+
+        r0 := @this: FinalizerGC01;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r1;
+        java.lang.Throwable $r12;
+        gc.gctests.FinalizerGC01.CircularLinkedListFinal $r9;
+        java.lang.String[] r8;
+        nsk.share.TestFailure $r11;
+        int i0, i1;
+        java.lang.StringBuilder $r4, $r5, $r10;
+        java.lang.String $r6;
+        java.lang.OutOfMemoryError $r7;
+
+        r8 := @parameter0: java.lang.String[];
+
+        i0 = 0;
+
+        goto label08;
+
+     label01:
+        i1 = 0;
+
+        goto label05;
+
+     label02:
+        $r9 = new gc.gctests.FinalizerGC01.CircularLinkedListFinal;
+
+        specialinvoke $r9.<gc.gctests.FinalizerGC01.CircularLinkedListFinal: void <init>()>();
+
+        virtualinvoke $r9.<gc.gctests.FinalizerGC01.CircularLinkedListFinal: void build1MegList()>();
+
+        staticinvoke <gc.gctests.FinalizerGC01.FinalizerGC01: void doComputation()>();
+
+     label03:
+        goto label06;
+
+     label04:
+        $r7 := @caughtexception;
+
+        i1 = i1 + 1;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label05:
+        if i1 < 10 goto label02;
+
+     label06:
+        if i1 < 10 goto label07;
+
+        goto label09;
+
+     label07:
+        i0 = i0 + 1;
+
+     label08:
+        if i0 < 64 goto label01;
+
+     label09:
+        if i0 >= 64 goto label10;
+
+        $r11 = new nsk.share.TestFailure;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("Test failed on ");
+
+        $r4 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" iteration");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r11.<nsk.share.TestFailure: void <init>(java.lang.String)>($r6);
+
+        $r12 = (java.lang.Throwable) $r11;
+
+        throw $r12;
+
+     label10:
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Test Passed");
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label02 to label03 with label04;
+    }
+
+    static void doComputation()
+    {
+        int $i2;
+        long l1;
+        byte $b0;
+
+        l1 = 0L;
+
+        goto label2;
+
+     label1:
+        l1 = l1 + 1L;
+
+     label2:
+        $b0 = l1 cmp 1000000L;
+
+        $i2 = (int) $b0;
+
+        if $i2 < 0 goto label1;
+
+        return;
+    }
+}

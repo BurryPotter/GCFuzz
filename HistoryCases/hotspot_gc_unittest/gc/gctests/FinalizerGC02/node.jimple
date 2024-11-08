@@ -1,0 +1,28 @@
+class node extends java.lang.Object
+{
+    byte[] arr;
+    gc.gctests.FinalizerGC02.node next;
+    gc.gctests.FinalizerGC02.node prev;
+
+    void <init>(int)
+    {
+        node r0;
+        byte[] $r1;
+        gc.gctests.FinalizerGC02.node $r2;
+        int i0;
+
+        r0 := @this: node;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = newarray (byte)[100];
+
+        $r2 = (gc.gctests.FinalizerGC02.node) r0;
+
+        $r2.<gc.gctests.FinalizerGC02.node: byte[] arr> = $r1;
+
+        return;
+    }
+}

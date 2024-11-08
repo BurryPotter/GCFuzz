@@ -1,0 +1,231 @@
+public class TestG1ConcRefinementThreads extends java.lang.Object
+{
+    static final int AUTO_SELECT_THREADS_COUNT;
+    static final int PASSED_THREADS_COUNT;
+
+    public void <init>()
+    {
+        TestG1ConcRefinementThreads r0;
+
+        r0 := @this: TestG1ConcRefinementThreads;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r0, $r1, $r2, r7;
+        int $i1;
+        java.lang.StringBuilder $r5, $r8;
+        java.lang.String $r4, $r6;
+
+        r7 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[0];
+
+        $i1 = (int) -1;
+
+        staticinvoke <gc.arguments.TestG1ConcRefinementThreads: void runG1ConcRefinementThreadsTest(java.lang.String[],int)>($r0, $i1);
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "-XX:G1ConcRefinementThreads=0";
+
+        staticinvoke <gc.arguments.TestG1ConcRefinementThreads: void runG1ConcRefinementThreadsTest(java.lang.String[],int)>($r1, 0);
+
+        $r2 = newarray (java.lang.String)[1];
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:G1ConcRefinementThreads=");
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(11);
+
+        $r5 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r2[0] = $r6;
+
+        staticinvoke <gc.arguments.TestG1ConcRefinementThreads: void runG1ConcRefinementThreadsTest(java.lang.String[],int)>($r2, 11);
+
+        return;
+    }
+
+    private static void runG1ConcRefinementThreadsTest(java.lang.String[], int) throws java.lang.Exception
+    {
+        java.lang.Object[] $r4;
+        java.lang.Process $r8;
+        java.lang.String[] r1, $r2, $r3, $r5;
+        jdk.test.lib.process.OutputAnalyzer $r7;
+        java.util.ArrayList $r0;
+        int $i0, $i1, i2;
+        java.lang.ProcessBuilder $r6;
+        java.lang.String $r9;
+
+        r1 := @parameter0: java.lang.String[];
+
+        i2 := @parameter1: int;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $i0 = lengthof r1;
+
+        if $i0 <= 0 goto label1;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, r1);
+
+     label1:
+        $r2 = newarray (java.lang.String)[3];
+
+        $r2[0] = "-XX:+UseG1GC";
+
+        $r2[1] = "-XX:+PrintFlagsFinal";
+
+        $r2[2] = "-version";
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r2);
+
+        $i1 = interfaceinvoke $r0.<java.util.List: int size()>();
+
+        $r3 = newarray (java.lang.String)[$i1];
+
+        $r4 = interfaceinvoke $r0.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r3);
+
+        $r5 = (java.lang.String[]) $r4;
+
+        $r6 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r5);
+
+        $r7 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r8 = virtualinvoke $r6.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r8);
+
+        virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r9 = virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.arguments.TestG1ConcRefinementThreads: void checkG1ConcRefinementThreadsConsistency(java.lang.String,int)>($r9, i2);
+
+        return;
+    }
+
+    private static void checkG1ConcRefinementThreadsConsistency(java.lang.String, int)
+    {
+        java.lang.RuntimeException $r11;
+        int $i0, i1, $i3;
+        java.lang.StringBuilder $r4, $r5, $r7, $r8, $r10;
+        java.lang.String r0, $r3, $r6, $r9;
+
+        r0 := @parameter0: java.lang.String;
+
+        i1 := @parameter1: int;
+
+        $i0 = staticinvoke <gc.arguments.TestG1ConcRefinementThreads: int getIntValue(java.lang.String,java.lang.String)>("G1ConcRefinementThreads", r0);
+
+        $i3 = (int) -1;
+
+        if i1 != $i3 goto label1;
+
+        i1 = staticinvoke <gc.arguments.TestG1ConcRefinementThreads: int getIntValue(java.lang.String,java.lang.String)>("ParallelGCThreads", r0);
+
+     label1:
+        if i1 == $i0 goto label2;
+
+        $r11 = new java.lang.RuntimeException;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("Actual G1ConcRefinementThreads(");
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>($i0);
+
+        $r4 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(") is not equal to expected value(");
+
+        $r6 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i1);
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.String)>($r9);
+
+        throw $r11;
+
+     label2:
+        return;
+    }
+
+    public static int getIntValue(java.lang.String, java.lang.String)
+    {
+        java.util.regex.Matcher $r7;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String r1, $r2, $r4, r6, $r8, $r9, $r14;
+        boolean $z0;
+        java.lang.RuntimeException $r10;
+        java.lang.StringBuilder $r0, $r3, $r11, $r12, $r13;
+        java.util.regex.Pattern $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        r6 := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\s+:?=\\s+\\d+");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>($r4);
+
+        $r7 = virtualinvoke $r5.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r6);
+
+        $z0 = virtualinvoke $r7.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label1;
+
+        $r10 = new java.lang.RuntimeException;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("Could not find value for flag ");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in output string");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>($r14);
+
+        throw $r10;
+
+     label1:
+        $r8 = virtualinvoke $r7.<java.util.regex.Matcher: java.lang.String group()>();
+
+        $i0 = virtualinvoke $r8.<java.lang.String: int lastIndexOf(java.lang.String)>(" ");
+
+        $i1 = $i0 + 1;
+
+        $i2 = virtualinvoke $r8.<java.lang.String: int length()>();
+
+        $r9 = virtualinvoke $r8.<java.lang.String: java.lang.String substring(int,int)>($i1, $i2);
+
+        $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r9);
+
+        return $i3;
+    }
+}

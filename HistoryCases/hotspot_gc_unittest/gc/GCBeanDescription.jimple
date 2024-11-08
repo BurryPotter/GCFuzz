@@ -1,0 +1,31 @@
+class GCBeanDescription extends java.lang.Object
+{
+    public java.lang.String name;
+    public java.lang.String[] poolNames;
+
+    public void <init>(java.lang.String, java.lang.String[])
+    {
+        gc.GCBeanDescription $r3, $r4;
+        GCBeanDescription r0;
+        java.lang.String[] r2;
+        java.lang.String r1;
+
+        r0 := @this: GCBeanDescription;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.GCBeanDescription) r0;
+
+        $r3.<gc.GCBeanDescription: java.lang.String name> = r1;
+
+        $r4 = (gc.GCBeanDescription) r0;
+
+        $r4.<gc.GCBeanDescription: java.lang.String[] poolNames> = r2;
+
+        return;
+    }
+}

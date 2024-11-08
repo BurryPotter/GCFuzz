@@ -1,0 +1,181 @@
+public class TestConcurrentPhaseControlG1 extends java.lang.Object
+{
+    private static final java.lang.String[][] g1PhaseInfo;
+    private static final java.lang.String[] g1Options;
+    private static final java.lang.String g1Name;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19;
+        java.lang.String[][] $r0;
+
+        $r0 = newarray (java.lang.String[])[18];
+
+        $r1 = newarray (java.lang.String)[2];
+
+        $r1[0] = "IDLE";
+
+        $r0[0] = $r1;
+
+        $r2 = newarray (java.lang.String)[2];
+
+        $r2[0] = "CONCURRENT_CYCLE";
+
+        $r2[1] = "Concurrent Cycle";
+
+        $r0[1] = $r2;
+
+        $r3 = newarray (java.lang.String)[2];
+
+        $r3[0] = "IDLE";
+
+        $r0[2] = $r3;
+
+        $r4 = newarray (java.lang.String)[2];
+
+        $r4[0] = "CLEAR_CLAIMED_MARKS";
+
+        $r4[1] = "Concurrent Clear Claimed Marks";
+
+        $r0[3] = $r4;
+
+        $r5 = newarray (java.lang.String)[2];
+
+        $r5[0] = "SCAN_ROOT_REGIONS";
+
+        $r5[1] = "Concurrent Scan Root Regions";
+
+        $r0[4] = $r5;
+
+        $r6 = newarray (java.lang.String)[2];
+
+        $r6[0] = "CONCURRENT_MARK";
+
+        $r6[1] = "Concurrent Mark [^FR]";
+
+        $r0[5] = $r6;
+
+        $r7 = newarray (java.lang.String)[2];
+
+        $r7[0] = "IDLE";
+
+        $r0[6] = $r7;
+
+        $r8 = newarray (java.lang.String)[2];
+
+        $r8[0] = "MARK_FROM_ROOTS";
+
+        $r8[1] = "Concurrent Mark From Roots";
+
+        $r0[7] = $r8;
+
+        $r9 = newarray (java.lang.String)[2];
+
+        $r9[0] = "PRECLEAN";
+
+        $r9[1] = "Concurrent Preclean";
+
+        $r0[8] = $r9;
+
+        $r10 = newarray (java.lang.String)[2];
+
+        $r10[0] = "BEFORE_REMARK";
+
+        $r0[9] = $r10;
+
+        $r11 = newarray (java.lang.String)[2];
+
+        $r11[0] = "REMARK";
+
+        $r11[1] = "Pause Remark";
+
+        $r0[10] = $r11;
+
+        $r12 = newarray (java.lang.String)[2];
+
+        $r12[0] = "REBUILD_REMEMBERED_SETS";
+
+        $r12[1] = "Concurrent Rebuild Remembered Sets";
+
+        $r0[11] = $r12;
+
+        $r13 = newarray (java.lang.String)[2];
+
+        $r13[0] = "IDLE";
+
+        $r0[12] = $r13;
+
+        $r14 = newarray (java.lang.String)[2];
+
+        $r14[0] = "ANY";
+
+        $r0[13] = $r14;
+
+        $r15 = newarray (java.lang.String)[2];
+
+        $r15[0] = "MARK_FROM_ROOTS";
+
+        $r15[1] = "Concurrent Mark From Roots";
+
+        $r0[14] = $r15;
+
+        $r16 = newarray (java.lang.String)[2];
+
+        $r16[0] = "SCAN_ROOT_REGIONS";
+
+        $r16[1] = "Concurrent Scan Root Regions";
+
+        $r0[15] = $r16;
+
+        $r17 = newarray (java.lang.String)[2];
+
+        $r17[0] = "IDLE";
+
+        $r0[16] = $r17;
+
+        $r18 = newarray (java.lang.String)[2];
+
+        $r18[0] = "ANY";
+
+        $r0[17] = $r18;
+
+        <gc.concurrent_phase_control.TestConcurrentPhaseControlG1: java.lang.String[][] g1PhaseInfo> = $r0;
+
+        $r19 = newarray (java.lang.String)[2];
+
+        $r19[0] = "-XX:+UseG1GC";
+
+        $r19[1] = "-Xlog:gc,gc+marking";
+
+        <gc.concurrent_phase_control.TestConcurrentPhaseControlG1: java.lang.String[] g1Options> = $r19;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestConcurrentPhaseControlG1 r0;
+
+        r0 := @this: TestConcurrentPhaseControlG1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r1, r2;
+        java.lang.String[][] $r0;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r1 = <gc.concurrent_phase_control.TestConcurrentPhaseControlG1: java.lang.String[] g1Options>;
+
+        $r0 = <gc.concurrent_phase_control.TestConcurrentPhaseControlG1: java.lang.String[][] g1PhaseInfo>;
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void check(java.lang.String,java.lang.String[],java.lang.String[][])>("G1", $r1, $r0);
+
+        return;
+    }
+}

@@ -1,0 +1,14 @@
+public class GCDownTest$FooBar extends java.lang.Object implements GCDownTest$Foo
+{
+
+    public void <init>()
+    {
+        GCDownTest$FooBar r0;
+
+        r0 := @this: GCDownTest$FooBar;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

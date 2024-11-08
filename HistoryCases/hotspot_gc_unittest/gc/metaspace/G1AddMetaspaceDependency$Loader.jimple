@@ -1,0 +1,143 @@
+class G1AddMetaspaceDependency$Loader extends java.lang.ClassLoader
+{
+    private final java.lang.String myClass;
+    private final byte[] myBytes;
+    private final java.lang.String friendClass;
+    private final java.lang.ClassLoader friendLoader;
+
+    void <init>(java.lang.String, byte[], java.lang.String, java.lang.ClassLoader)
+    {
+        byte[] r2;
+        gc.metaspace.G1AddMetaspaceDependency$Loader $r5, $r6, $r7, $r8;
+        G1AddMetaspaceDependency$Loader r0;
+        java.lang.String r1, r3;
+        java.lang.ClassLoader r4;
+
+        r0 := @this: G1AddMetaspaceDependency$Loader;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: byte[];
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.ClassLoader;
+
+        specialinvoke r0.<java.lang.ClassLoader: void <init>()>();
+
+        $r5 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r5.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.String myClass> = r1;
+
+        $r6 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r6.<gc.metaspace.G1AddMetaspaceDependency$Loader: byte[] myBytes> = r2;
+
+        $r7 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r7.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.String friendClass> = r3;
+
+        $r8 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r8.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.ClassLoader friendLoader> = r4;
+
+        return;
+    }
+
+    void <init>(java.lang.String, byte[])
+    {
+        byte[] r2;
+        gc.metaspace.G1AddMetaspaceDependency$Loader $r3;
+        G1AddMetaspaceDependency$Loader r0;
+        java.lang.String r1;
+
+        r0 := @this: G1AddMetaspaceDependency$Loader;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: byte[];
+
+        $r3 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        specialinvoke $r3.<gc.metaspace.G1AddMetaspaceDependency$Loader: void <init>(java.lang.String,byte[],java.lang.String,java.lang.ClassLoader)>(r1, r2, null, null);
+
+        return;
+    }
+
+    public java.lang.Class loadClass(java.lang.String) throws java.lang.ClassNotFoundException
+    {
+        byte[] $r6, $r7;
+        int $i0;
+        java.lang.String r1, $r3, $r4;
+        boolean $z0, $z1;
+        gc.metaspace.G1AddMetaspaceDependency$Loader $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19;
+        G1AddMetaspaceDependency$Loader r0;
+        java.lang.Class $r2, $r5, $r8, $r10;
+        java.lang.ClassLoader $r9;
+
+        r0 := @this: G1AddMetaspaceDependency$Loader;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r11 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r2 = virtualinvoke $r11.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.Class findLoadedClass(java.lang.String)>(r1);
+
+        if $r2 == null goto label1;
+
+        return $r2;
+
+     label1:
+        $r12 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r3 = $r12.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.String friendClass>;
+
+        $z0 = virtualinvoke r1.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label2;
+
+        $r13 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r9 = $r13.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.ClassLoader friendLoader>;
+
+        $r10 = virtualinvoke $r9.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>(r1);
+
+        return $r10;
+
+     label2:
+        $r14 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r4 = $r14.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.String myClass>;
+
+        $z1 = virtualinvoke r1.<java.lang.String: boolean equals(java.lang.Object)>($r4);
+
+        if $z1 == 0 goto label3;
+
+        $r15 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r7 = $r15.<gc.metaspace.G1AddMetaspaceDependency$Loader: byte[] myBytes>;
+
+        $r16 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r6 = $r16.<gc.metaspace.G1AddMetaspaceDependency$Loader: byte[] myBytes>;
+
+        $i0 = lengthof $r6;
+
+        $r17 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r8 = virtualinvoke $r17.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.Class defineClass(java.lang.String,byte[],int,int)>(r1, $r7, 0, $i0);
+
+        $r18 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        virtualinvoke $r18.<gc.metaspace.G1AddMetaspaceDependency$Loader: void resolveClass(java.lang.Class)>($r8);
+
+        return $r8;
+
+     label3:
+        $r19 = (gc.metaspace.G1AddMetaspaceDependency$Loader) r0;
+
+        $r5 = virtualinvoke $r19.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.Class findSystemClass(java.lang.String)>(r1);
+
+        return $r5;
+    }
+}

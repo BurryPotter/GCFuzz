@@ -1,0 +1,75 @@
+final class MetaOOM$1 extends java.security.SecureClassLoader
+{
+    final byte[] val$smallClassFile;
+    final byte[] val$largeClassFile;
+
+    void <init>(java.lang.ClassLoader, byte[], byte[])
+    {
+        byte[] r1, r2;
+        MetaOOM$1 r0;
+        java.lang.ClassLoader r3;
+
+        r0 := @this: MetaOOM$1;
+
+        r3 := @parameter0: java.lang.ClassLoader;
+
+        r1 := @parameter1: byte[];
+
+        r2 := @parameter2: byte[];
+
+        r0.<MetaOOM$1: byte[] val$smallClassFile> = r1;
+
+        r0.<MetaOOM$1: byte[] val$largeClassFile> = r2;
+
+        specialinvoke r0.<java.security.SecureClassLoader: void <init>(java.lang.ClassLoader)>(r3);
+
+        return;
+    }
+
+    public java.lang.Class loadClass(java.lang.String) throws java.lang.ClassNotFoundException
+    {
+        byte[] $r3, $r4, $r6, $r7;
+        MetaOOM$1 r1;
+        int $i0, $i1, $i2, $i3;
+        java.lang.Class $r2, $r5, $r8;
+        java.lang.String r0;
+
+        r1 := @this: MetaOOM$1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $i0 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String)>("SmallClass");
+
+        if $i0 < 0 goto label1;
+
+        $r7 = r1.<MetaOOM$1: byte[] val$smallClassFile>;
+
+        $r6 = r1.<MetaOOM$1: byte[] val$smallClassFile>;
+
+        $i3 = lengthof $r6;
+
+        $r8 = virtualinvoke r1.<MetaOOM$1: java.lang.Class defineClass(java.lang.String,byte[],int,int)>(r0, $r7, 0, $i3);
+
+        return $r8;
+
+     label1:
+        $i1 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String)>("LargeClass");
+
+        if $i1 < 0 goto label2;
+
+        $r4 = r1.<MetaOOM$1: byte[] val$largeClassFile>;
+
+        $r3 = r1.<MetaOOM$1: byte[] val$largeClassFile>;
+
+        $i2 = lengthof $r3;
+
+        $r5 = virtualinvoke r1.<MetaOOM$1: java.lang.Class defineClass(java.lang.String,byte[],int,int)>(r0, $r4, 0, $i2);
+
+        return $r5;
+
+     label2:
+        $r2 = specialinvoke r1.<java.security.SecureClassLoader: java.lang.Class loadClass(java.lang.String)>(r0);
+
+        return $r2;
+    }
+}

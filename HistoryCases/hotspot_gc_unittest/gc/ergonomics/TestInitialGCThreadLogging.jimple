@@ -1,0 +1,91 @@
+public class TestInitialGCThreadLogging extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestInitialGCThreadLogging r0;
+
+        r0 := @this: TestInitialGCThreadLogging;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.ergonomics.TestInitialGCThreadLogging: void testInitialGCThreadLogging(java.lang.String,java.lang.String)>("UseConcMarkSweepGC", "GC Thread");
+
+        staticinvoke <gc.ergonomics.TestInitialGCThreadLogging: void testInitialGCThreadLogging(java.lang.String,java.lang.String)>("UseG1GC", "GC Thread");
+
+        staticinvoke <gc.ergonomics.TestInitialGCThreadLogging: void testInitialGCThreadLogging(java.lang.String,java.lang.String)>("UseParallelGC", "ParGC Thread");
+
+        return;
+    }
+
+    private static void verifyDynamicNumberOfGCThreads(jdk.test.lib.process.OutputAnalyzer, java.lang.String)
+    {
+        java.lang.String r1;
+        jdk.test.lib.process.OutputAnalyzer r0;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        r1 := @parameter1: java.lang.String;
+
+        virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>(r1);
+
+        return;
+    }
+
+    private static void testInitialGCThreadLogging(java.lang.String, java.lang.String) throws java.lang.Exception
+    {
+        java.lang.Process $r7;
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r6;
+        java.lang.StringBuilder $r1, $r3;
+        java.lang.String r2, $r4, r8;
+        java.lang.ProcessBuilder $r5;
+
+        r2 := @parameter0: java.lang.String;
+
+        r8 := @parameter1: java.lang.String;
+
+        $r0 = newarray (java.lang.String)[5];
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:+");
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[0] = $r4;
+
+        $r0[1] = "-Xmx10M";
+
+        $r0[2] = "-XX:+UseDynamicNumberOfGCThreads";
+
+        $r0[3] = "-Xlog:gc+task=trace";
+
+        $r0[4] = "-version";
+
+        $r5 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r6 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r7 = virtualinvoke $r5.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r6.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r7);
+
+        staticinvoke <gc.ergonomics.TestInitialGCThreadLogging: void verifyDynamicNumberOfGCThreads(jdk.test.lib.process.OutputAnalyzer,java.lang.String)>($r6, r8);
+
+        return;
+    }
+}

@@ -1,0 +1,25 @@
+public class TestConcurrentPhaseControlCMS extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestConcurrentPhaseControlCMS r0;
+
+        r0 := @this: TestConcurrentPhaseControlCMS;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.concurrent_phase_control.CheckUnsupported: void check(java.lang.String)>("CMS");
+
+        return;
+    }
+}

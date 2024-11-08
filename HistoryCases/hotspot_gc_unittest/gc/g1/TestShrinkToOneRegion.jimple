@@ -1,0 +1,25 @@
+public class TestShrinkToOneRegion extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestShrinkToOneRegion r0;
+
+        r0 := @this: TestShrinkToOneRegion;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+}

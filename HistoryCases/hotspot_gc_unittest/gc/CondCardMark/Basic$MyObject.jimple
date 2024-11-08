@@ -1,0 +1,15 @@
+class Basic$MyObject extends java.lang.Object
+{
+    int x;
+
+    void <init>()
+    {
+        Basic$MyObject r0;
+
+        r0 := @this: Basic$MyObject;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

@@ -1,0 +1,106 @@
+class LoadUnloadGC$Loader extends java.lang.Object implements java.lang.Runnable
+{
+    private java.lang.Class class_zero_class;
+    private java.lang.Object class_zero_object;
+    final gc.gctests.LoadUnloadGC.LoadUnloadGC this$0;
+
+    private void <init>(gc.gctests.LoadUnloadGC.LoadUnloadGC)
+    {
+        LoadUnloadGC$Loader r0;
+        gc.gctests.LoadUnloadGC.LoadUnloadGC r1;
+        gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader $r2;
+
+        r0 := @this: LoadUnloadGC$Loader;
+
+        r1 := @parameter0: gc.gctests.LoadUnloadGC.LoadUnloadGC;
+
+        $r2 = (gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader) r0;
+
+        $r2.<gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader: gc.gctests.LoadUnloadGC.LoadUnloadGC this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        LoadUnloadGC$Loader r1;
+        java.lang.InstantiationException $r7;
+        java.lang.IllegalAccessException $r5;
+        java.lang.RuntimeException $r12, $r13, $r14;
+        java.lang.Class $r2, $r3;
+        java.lang.Object $r4;
+        java.lang.ClassNotFoundException $r9;
+        gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader $r15, $r16, $r17, $r18, $r19;
+        nsk.share.classload.ClassPathNonDelegatingClassLoader $r11;
+
+        r1 := @this: LoadUnloadGC$Loader;
+
+     label1:
+        $r11 = new nsk.share.classload.ClassPathNonDelegatingClassLoader;
+
+        specialinvoke $r11.<nsk.share.classload.ClassPathNonDelegatingClassLoader: void <init>()>();
+
+        $r2 = virtualinvoke $r11.<nsk.share.classload.ClassPathNonDelegatingClassLoader: java.lang.Class loadClass(java.lang.String,boolean)>("nsk.share.gc.ClassChain", 0);
+
+        $r15 = (gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader) r1;
+
+        $r15.<gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader: java.lang.Class class_zero_class> = $r2;
+
+        $r16 = (gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader) r1;
+
+        $r3 = $r16.<gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader: java.lang.Class class_zero_class>;
+
+        $r4 = virtualinvoke $r3.<java.lang.Class: java.lang.Object newInstance()>();
+
+        $r17 = (gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader) r1;
+
+        $r17.<gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader: java.lang.Object class_zero_object> = $r4;
+
+        $r18 = (gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader) r1;
+
+        $r18.<gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader: java.lang.Class class_zero_class> = null;
+
+        $r19 = (gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader) r1;
+
+        $r19.<gc.gctests.LoadUnloadGC.LoadUnloadGC$Loader: java.lang.Object class_zero_object> = null;
+
+     label2:
+        goto label6;
+
+     label3:
+        $r9 := @caughtexception;
+
+        $r12 = new java.lang.RuntimeException;
+
+        specialinvoke $r12.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r9);
+
+        throw $r12;
+
+     label4:
+        $r7 := @caughtexception;
+
+        $r13 = new java.lang.RuntimeException;
+
+        specialinvoke $r13.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r7);
+
+        throw $r13;
+
+     label5:
+        $r5 := @caughtexception;
+
+        $r14 = new java.lang.RuntimeException;
+
+        specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r5);
+
+        throw $r14;
+
+     label6:
+        return;
+
+        catch java.lang.ClassNotFoundException from label1 to label2 with label3;
+        catch java.lang.InstantiationException from label1 to label2 with label4;
+        catch java.lang.IllegalAccessException from label1 to label2 with label5;
+    }
+}

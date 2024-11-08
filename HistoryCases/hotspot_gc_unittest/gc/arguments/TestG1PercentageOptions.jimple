@@ -1,0 +1,241 @@
+public class TestG1PercentageOptions extends java.lang.Object
+{
+    private static final java.lang.String[] defaultValid;
+    private static final java.lang.String[] defaultInvalid;
+    private static final gc.arguments.TestG1PercentageOptions$OptionDescription[] percentOptions;
+
+    static void <clinit>()
+    {
+        gc.arguments.TestG1PercentageOptions$OptionDescription[] $r2;
+        gc.arguments.TestG1PercentageOptions$OptionDescription $r3;
+        java.lang.String[] $r0, $r1, $r4, $r5;
+
+        $r0 = newarray (java.lang.String)[5];
+
+        $r0[0] = "0";
+
+        $r0[1] = "1";
+
+        $r0[2] = "50";
+
+        $r0[3] = "95";
+
+        $r0[4] = "100";
+
+        <gc.arguments.TestG1PercentageOptions: java.lang.String[] defaultValid> = $r0;
+
+        $r1 = newarray (java.lang.String)[3];
+
+        $r1[0] = "-10";
+
+        $r1[1] = "110";
+
+        $r1[2] = "bad";
+
+        <gc.arguments.TestG1PercentageOptions: java.lang.String[] defaultInvalid> = $r1;
+
+        $r2 = newarray (gc.arguments.TestG1PercentageOptions$OptionDescription)[1];
+
+        $r3 = new gc.arguments.TestG1PercentageOptions$OptionDescription;
+
+        $r5 = <gc.arguments.TestG1PercentageOptions: java.lang.String[] defaultValid>;
+
+        $r4 = <gc.arguments.TestG1PercentageOptions: java.lang.String[] defaultInvalid>;
+
+        specialinvoke $r3.<gc.arguments.TestG1PercentageOptions$OptionDescription: void <init>(java.lang.String,java.lang.String[],java.lang.String[])>("G1ConfidencePercent", $r5, $r4);
+
+        $r2[0] = $r3;
+
+        <gc.arguments.TestG1PercentageOptions: gc.arguments.TestG1PercentageOptions$OptionDescription[] percentOptions> = $r2;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestG1PercentageOptions r0;
+
+        r0 := @this: TestG1PercentageOptions;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static void check(java.lang.String, boolean) throws java.lang.Exception
+    {
+        java.lang.Process $r4;
+        java.lang.String[] $r0;
+        java.lang.String r1;
+        java.lang.ProcessBuilder $r2;
+        jdk.test.lib.process.OutputAnalyzer $r3;
+        boolean z0;
+
+        r1 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        $r0 = newarray (java.lang.String)[3];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = r1;
+
+        $r0[2] = "-version";
+
+        $r2 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r3 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r4 = virtualinvoke $r2.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r4);
+
+        if z0 == 0 goto label1;
+
+        virtualinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+     label2:
+        return;
+    }
+
+    private static void check(java.lang.String, java.lang.String, boolean) throws java.lang.Exception
+    {
+        java.lang.StringBuilder $r0, $r2, $r3, $r5;
+        java.lang.String r1, r4, $r6;
+        boolean z0;
+
+        r1 := @parameter0: java.lang.String;
+
+        r4 := @parameter1: java.lang.String;
+
+        z0 := @parameter2: boolean;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:");
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("=");
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.arguments.TestG1PercentageOptions: void check(java.lang.String,boolean)>($r6, z0);
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r2, $r4, r18;
+        gc.arguments.TestG1PercentageOptions$OptionDescription[] $r0;
+        int i0, i1, i2, i3, i4, i5;
+        java.lang.String $r3, $r5, $r7, $r9, $r11, $r13, $r15, $r17, r19, r20;
+        gc.arguments.TestG1PercentageOptions$OptionDescription r1;
+        java.lang.StringBuilder $r6, $r8, $r10, $r12, $r14, $r16;
+
+        r18 := @parameter0: java.lang.String[];
+
+        $r0 = <gc.arguments.TestG1PercentageOptions: gc.arguments.TestG1PercentageOptions$OptionDescription[] percentOptions>;
+
+        i0 = lengthof $r0;
+
+        i1 = 0;
+
+        goto label6;
+
+     label1:
+        r1 = $r0[i1];
+
+        $r2 = r1.<gc.arguments.TestG1PercentageOptions$OptionDescription: java.lang.String[] valid>;
+
+        i2 = lengthof $r2;
+
+        i3 = 0;
+
+        goto label3;
+
+     label2:
+        r19 = $r2[i3];
+
+        $r3 = r1.<gc.arguments.TestG1PercentageOptions$OptionDescription: java.lang.String name>;
+
+        staticinvoke <gc.arguments.TestG1PercentageOptions: void check(java.lang.String,java.lang.String,boolean)>($r3, r19, 1);
+
+        i3 = i3 + 1;
+
+     label3:
+        if i3 < i2 goto label2;
+
+        $r4 = r1.<gc.arguments.TestG1PercentageOptions$OptionDescription: java.lang.String[] invalid>;
+
+        i4 = lengthof $r4;
+
+        i5 = 0;
+
+        goto label5;
+
+     label4:
+        r20 = $r4[i5];
+
+        $r5 = r1.<gc.arguments.TestG1PercentageOptions$OptionDescription: java.lang.String name>;
+
+        staticinvoke <gc.arguments.TestG1PercentageOptions: void check(java.lang.String,java.lang.String,boolean)>($r5, r20, 0);
+
+        i5 = i5 + 1;
+
+     label5:
+        if i5 < i4 goto label4;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:");
+
+        $r7 = r1.<gc.arguments.TestG1PercentageOptions$OptionDescription: java.lang.String name>;
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.arguments.TestG1PercentageOptions: void check(java.lang.String,boolean)>($r9, 0);
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:+");
+
+        $r11 = r1.<gc.arguments.TestG1PercentageOptions$OptionDescription: java.lang.String name>;
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.arguments.TestG1PercentageOptions: void check(java.lang.String,boolean)>($r13, 0);
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:-");
+
+        $r15 = r1.<gc.arguments.TestG1PercentageOptions$OptionDescription: java.lang.String name>;
+
+        $r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.arguments.TestG1PercentageOptions: void check(java.lang.String,boolean)>($r17, 0);
+
+        i1 = i1 + 1;
+
+     label6:
+        if i1 < i0 goto label1;
+
+        return;
+    }
+}

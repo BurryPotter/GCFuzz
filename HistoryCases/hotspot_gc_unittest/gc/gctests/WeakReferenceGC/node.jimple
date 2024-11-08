@@ -1,0 +1,25 @@
+class node extends java.lang.Object
+{
+    byte[] arr;
+    gc.gctests.WeakReferenceGC.node next;
+    gc.gctests.WeakReferenceGC.node prev;
+
+    void <init>()
+    {
+        node r0;
+        byte[] $r1;
+        gc.gctests.WeakReferenceGC.node $r2;
+
+        r0 := @this: node;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = newarray (byte)[100];
+
+        $r2 = (gc.gctests.WeakReferenceGC.node) r0;
+
+        $r2.<gc.gctests.WeakReferenceGC.node: byte[] arr> = $r1;
+
+        return;
+    }
+}

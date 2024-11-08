@@ -1,0 +1,162 @@
+public class TestDynamicNumberOfGCThreads extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestDynamicNumberOfGCThreads r0;
+
+        r0 := @this: TestDynamicNumberOfGCThreads;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.ergonomics.TestDynamicNumberOfGCThreads: void testDynamicNumberOfGCThreads(java.lang.String)>("UseConcMarkSweepGC");
+
+        staticinvoke <gc.ergonomics.TestDynamicNumberOfGCThreads: void testDynamicNumberOfGCThreads(java.lang.String)>("UseG1GC");
+
+        staticinvoke <gc.ergonomics.TestDynamicNumberOfGCThreads: void testDynamicNumberOfGCThreads(java.lang.String)>("UseParallelGC");
+
+        return;
+    }
+
+    private static void verifyDynamicNumberOfGCThreads(jdk.test.lib.process.OutputAnalyzer)
+    {
+        jdk.test.lib.process.OutputAnalyzer r0;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("new_active_workers");
+
+        return;
+    }
+
+    private static void testDynamicNumberOfGCThreads(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.Process $r9, $r14, $r19;
+        jdk.test.lib.process.OutputAnalyzer $r8, $r13, $r18;
+        java.lang.StringBuilder $r1, $r3;
+        java.lang.String[] $r0, $r10, r11, $r15, r16;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11;
+        java.lang.String r2, $r4, $r6;
+        java.lang.ProcessBuilder $r7, $r12, $r17;
+        java.lang.Class $r5;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r0 = newarray (java.lang.String)[5];
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:+");
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[0] = $r4;
+
+        $r0[1] = "-Xmx10M";
+
+        $r0[2] = "-XX:+UseDynamicNumberOfGCThreads";
+
+        $r0[3] = "-Xlog:gc+task=trace";
+
+        $r5 = class "Lgc/ergonomics/TestDynamicNumberOfGCThreads$GCTest;";
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[4] = $r6;
+
+        $r7 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r8 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r9 = virtualinvoke $r7.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r9);
+
+        staticinvoke <gc.ergonomics.TestDynamicNumberOfGCThreads: void verifyDynamicNumberOfGCThreads(jdk.test.lib.process.OutputAnalyzer)>($r8);
+
+        $r10 = newarray (java.lang.String)[3];
+
+        $r10[0] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r10[1] = "-XX:+ForceDynamicNumberOfGCThreads";
+
+        $r10[2] = "-XX:ParallelGCThreads=1";
+
+        $i1 = lengthof $r0;
+
+        $i0 = lengthof $r10;
+
+        $i2 = $i1 + $i0;
+
+        r11 = newarray (java.lang.String)[$i2];
+
+        $i3 = lengthof $r10;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r10, 0, r11, 0, $i3);
+
+        $i5 = lengthof $r10;
+
+        $i4 = lengthof $r0;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, r11, $i5, $i4);
+
+        $r12 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>(r11);
+
+        $r13 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r14 = virtualinvoke $r12.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r13.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r14);
+
+        staticinvoke <gc.ergonomics.TestDynamicNumberOfGCThreads: void verifyDynamicNumberOfGCThreads(jdk.test.lib.process.OutputAnalyzer)>($r13);
+
+        $r15 = newarray (java.lang.String)[2];
+
+        $r15[0] = "-XX:+ParallelRefProcEnabled";
+
+        $r15[1] = "-XX:-ShowMessageBoxOnError";
+
+        $i7 = lengthof $r0;
+
+        $i6 = lengthof $r15;
+
+        $i8 = $i7 + $i6;
+
+        r16 = newarray (java.lang.String)[$i8];
+
+        $i9 = lengthof $r15;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r15, 0, r16, 0, $i9);
+
+        $i11 = lengthof $r15;
+
+        $i10 = lengthof $r0;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, r16, $i11, $i10);
+
+        $r17 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>(r16);
+
+        $r18 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r19 = virtualinvoke $r17.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r18.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r19);
+
+        staticinvoke <gc.ergonomics.TestDynamicNumberOfGCThreads: void verifyDynamicNumberOfGCThreads(jdk.test.lib.process.OutputAnalyzer)>($r18);
+
+        return;
+    }
+}

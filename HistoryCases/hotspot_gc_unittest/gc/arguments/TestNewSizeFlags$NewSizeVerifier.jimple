@@ -1,0 +1,618 @@
+public class TestNewSizeFlags$NewSizeVerifier extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WB;
+    private static final gc.arguments.GCTypes$YoungGCType YOUNG_GC_TYPE;
+    private static final long HEAP_SPACE_ALIGNMENT;
+    private static final long HEAP_ALIGNMENT;
+    private static final long PS_VIRTUAL_SPACE_ALIGNMENT;
+    public static final int ARRAY_LENGTH;
+    public static final int CHUNK_SIZE;
+    public static final int MAX_ITERATIONS;
+    public static byte[][] garbage;
+    private static int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType;
+
+    static void <clinit>()
+    {
+        gc.arguments.GCTypes$YoungGCType $r1, $r4, $r5;
+        sun.hotspot.WhiteBox $r0, $r2, $r3, $r7;
+        long $l0, $l1, $l2;
+        byte[][] $r6;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.arguments.TestNewSizeFlags$NewSizeVerifier: sun.hotspot.WhiteBox WB> = $r0;
+
+        $r1 = staticinvoke <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType getYoungGCType()>();
+
+        <gc.arguments.TestNewSizeFlags$NewSizeVerifier: gc.arguments.GCTypes$YoungGCType YOUNG_GC_TYPE> = $r1;
+
+        $r2 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: sun.hotspot.WhiteBox WB>;
+
+        $l0 = virtualinvoke $r2.<sun.hotspot.WhiteBox: long getHeapSpaceAlignment()>();
+
+        <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long HEAP_SPACE_ALIGNMENT> = $l0;
+
+        $r3 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: sun.hotspot.WhiteBox WB>;
+
+        $l1 = virtualinvoke $r3.<sun.hotspot.WhiteBox: long getHeapAlignment()>();
+
+        <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long HEAP_ALIGNMENT> = $l1;
+
+        $r5 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: gc.arguments.GCTypes$YoungGCType YOUNG_GC_TYPE>;
+
+        $r4 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType PSNew>;
+
+        if $r5 != $r4 goto label1;
+
+        $r7 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: sun.hotspot.WhiteBox WB>;
+
+        $l2 = virtualinvoke $r7.<sun.hotspot.WhiteBox: long psVirtualSpaceAlignment()>();
+
+        goto label2;
+
+     label1:
+        $l2 = 0L;
+
+     label2:
+        <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long PS_VIRTUAL_SPACE_ALIGNMENT> = $l2;
+
+        $r6 = newarray (byte[])[100];
+
+        <gc.arguments.TestNewSizeFlags$NewSizeVerifier: byte[][] garbage> = $r6;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestNewSizeFlags$NewSizeVerifier r0;
+
+        r0 := @this: TestNewSizeFlags$NewSizeVerifier;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+        long $l1, $l2, $l3, $l4;
+        java.util.concurrent.Callable $r10;
+        java.lang.Long $r2, $r4, $r6, $r8;
+        int $i0;
+        java.lang.String $r1, $r3, $r5, $r7;
+        gc.arguments.AllocationHelper $r9;
+        java.lang.IllegalArgumentException $r11;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 4 goto label1;
+
+        $r11 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r11.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Expected 4 args: <expectedNewSize> <expectedMaxNewSize> <initialHeapSize> <maxHeapSize>");
+
+        throw $r11;
+
+     label1:
+        $r1 = r0[0];
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(java.lang.String)>($r1);
+
+        $l1 = virtualinvoke $r2.<java.lang.Long: long longValue()>();
+
+        $r3 = r0[1];
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.Long valueOf(java.lang.String)>($r3);
+
+        $l2 = virtualinvoke $r4.<java.lang.Long: long longValue()>();
+
+        $r5 = r0[2];
+
+        $r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(java.lang.String)>($r5);
+
+        $l3 = virtualinvoke $r6.<java.lang.Long: long longValue()>();
+
+        $r7 = r0[3];
+
+        $r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(java.lang.String)>($r7);
+
+        $l4 = virtualinvoke $r8.<java.lang.Long: long longValue()>();
+
+        staticinvoke <gc.arguments.TestNewSizeFlags$NewSizeVerifier: java.lang.Void verifyNewSize(long,long,long,long)>($l1, $l2, $l3, $l4);
+
+        $r9 = new gc.arguments.AllocationHelper;
+
+        $r10 = staticinvoke <TestNewSizeFlags$NewSizeVerifier$lambda_0__1: java.util.concurrent.Callable bootstrap$(long,long,long,long)>($l1, $l2, $l3, $l4);
+
+        specialinvoke $r9.<gc.arguments.AllocationHelper: void <init>(int,int,int,java.util.concurrent.Callable)>(10, 100, 1024, $r10);
+
+        virtualinvoke $r9.<gc.arguments.AllocationHelper: void allocateMemoryAndVerifyNoOOME()>();
+
+        return;
+    }
+
+    public static java.lang.Void verifyNewSize(long, long, long, long)
+    {
+        byte $b11, $b12, $b13, $b14, $b15, $b16, $b17, $b18, $b19, $b20;
+        java.lang.StringBuilder $r5, $r6, $r7, $r8, $r9, $r15, $r16, $r17, $r21, $r22, $r23, $r27, $r28, $r29, $r35, $r36, $r37, $r41, $r42, $r43, $r47, $r48, $r49, $r51, $r53, $r55, $r57, $r59, $r61, $r63;
+        long l0, $l1, l2, $l3, l4, $l5, l6, $l7, $l8, $l9, $l10;
+        java.lang.String $r10, $r18, $r24, $r30, $r38, $r44, $r50;
+        java.lang.RuntimeException $r52, $r54, $r56, $r58, $r60, $r62, $r64;
+        gc.arguments.GCTypes$YoungGCType $r1, $r2, $r11, $r12, $r31, $r32;
+        int $i21, $i22, $i23, $i24, $i25;
+        java.lang.management.MemoryUsage $r0;
+
+        l0 := @parameter0: long;
+
+        l2 := @parameter1: long;
+
+        l4 := @parameter2: long;
+
+        l6 := @parameter3: long;
+
+        $l1 = staticinvoke <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long alignGenSize(long)>(l0);
+
+        $l3 = staticinvoke <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long alignGenSize(long)>(l2);
+
+        $l5 = staticinvoke <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long alignHeapSize(long)>(l4);
+
+        $l7 = staticinvoke <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long alignHeapSize(long)>(l6);
+
+        $r0 = staticinvoke <gc.arguments.TestNewSizeFlags$NewSizeVerifier: java.lang.management.MemoryUsage getYoungGenUsage()>();
+
+        $l8 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $l9 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $l10 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $b11 = l0 cmp -1L;
+
+        if $b11 == 0 goto label3;
+
+        $b17 = $l8 cmp $l1;
+
+        $i21 = (int) $b17;
+
+        if $i21 >= 0 goto label1;
+
+        $r52 = new java.lang.RuntimeException;
+
+        $r51 = new java.lang.StringBuilder;
+
+        specialinvoke $r51.<java.lang.StringBuilder: void <init>(java.lang.String)>("initial new size < NewSize value: ");
+
+        $r47 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+
+        $r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" < ");
+
+        $r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r52.<java.lang.RuntimeException: void <init>(java.lang.String)>($r50);
+
+        throw $r52;
+
+     label1:
+        $b18 = $l9 cmp $l1;
+
+        $i22 = (int) $b18;
+
+        if $i22 >= 0 goto label2;
+
+        $r54 = new java.lang.RuntimeException;
+
+        $r53 = new java.lang.StringBuilder;
+
+        specialinvoke $r53.<java.lang.StringBuilder: void <init>(java.lang.String)>("actual new size < NewSize value: ");
+
+        $r41 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" < ");
+
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r54.<java.lang.RuntimeException: void <init>(java.lang.String)>($r44);
+
+        throw $r54;
+
+     label2:
+        $r32 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: gc.arguments.GCTypes$YoungGCType YOUNG_GC_TYPE>;
+
+        $r31 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType G1>;
+
+        if $r32 == $r31 goto label3;
+
+        $b19 = $l10 cmp $l1;
+
+        $i23 = (int) $b19;
+
+        if $i23 >= 0 goto label3;
+
+        $r56 = new java.lang.RuntimeException;
+
+        $r55 = new java.lang.StringBuilder;
+
+        specialinvoke $r55.<java.lang.StringBuilder: void <init>(java.lang.String)>("max new size < NewSize value: ");
+
+        $r35 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l10);
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" < ");
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r56.<java.lang.RuntimeException: void <init>(java.lang.String)>($r38);
+
+        throw $r56;
+
+     label3:
+        $b20 = l2 cmp -1L;
+
+        if $b20 == 0 goto label7;
+
+        $b12 = $l8 cmp $l3;
+
+        $i24 = (int) $b12;
+
+        if $i24 <= 0 goto label4;
+
+        $r58 = new java.lang.RuntimeException;
+
+        $r57 = new java.lang.StringBuilder;
+
+        specialinvoke $r57.<java.lang.StringBuilder: void <init>(java.lang.String)>("initial new size > MaxNewSize value: ");
+
+        $r27 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" > ");
+
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r58.<java.lang.RuntimeException: void <init>(java.lang.String)>($r30);
+
+        throw $r58;
+
+     label4:
+        $b13 = $l9 cmp $l3;
+
+        $i25 = (int) $b13;
+
+        if $i25 <= 0 goto label5;
+
+        $r60 = new java.lang.RuntimeException;
+
+        $r59 = new java.lang.StringBuilder;
+
+        specialinvoke $r59.<java.lang.StringBuilder: void <init>(java.lang.String)>("actual new size > MaxNewSize value: ");
+
+        $r21 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" > ");
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r60.<java.lang.RuntimeException: void <init>(java.lang.String)>($r24);
+
+        throw $r60;
+
+     label5:
+        $b14 = $l5 cmp $l7;
+
+        if $b14 == 0 goto label6;
+
+        $r12 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: gc.arguments.GCTypes$YoungGCType YOUNG_GC_TYPE>;
+
+        $r11 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType G1>;
+
+        if $r12 == $r11 goto label7;
+
+        $b16 = $l10 cmp $l3;
+
+        if $b16 == 0 goto label7;
+
+        $r62 = new java.lang.RuntimeException;
+
+        $r61 = new java.lang.StringBuilder;
+
+        specialinvoke $r61.<java.lang.StringBuilder: void <init>(java.lang.String)>("max new size != MaxNewSize value: ");
+
+        $r15 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l10);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" != ");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r62.<java.lang.RuntimeException: void <init>(java.lang.String)>($r18);
+
+        throw $r62;
+
+     label6:
+        $r2 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: gc.arguments.GCTypes$YoungGCType YOUNG_GC_TYPE>;
+
+        $r1 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType G1>;
+
+        if $r2 == $r1 goto label7;
+
+        $b15 = $l10 cmp $l1;
+
+        if $b15 == 0 goto label7;
+
+        $r64 = new java.lang.RuntimeException;
+
+        $r63 = new java.lang.StringBuilder;
+
+        specialinvoke $r63.<java.lang.StringBuilder: void <init>(java.lang.String)>("max new size != NewSize for case InitialHeapSize == MaxHeapSize value: ");
+
+        $r5 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l10);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" != ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" HeapSize == ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l5);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r64.<java.lang.RuntimeException: void <init>(java.lang.String)>($r10);
+
+        throw $r64;
+
+     label7:
+        return null;
+    }
+
+    private static java.lang.management.MemoryUsage getYoungGenUsage()
+    {
+        gc.arguments.GCTypes$YoungGCType $r2, $r3;
+        long $l0, $l1, $l2, $l3, $l4, $l5, $l6, $l7, $l8, $l9, $l10, $l11, $l12, $l13;
+        java.lang.management.MemoryUsage $r0, $r1, $r4, $r5;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $r1 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $l1 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $l2 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $l3 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r3 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: gc.arguments.GCTypes$YoungGCType YOUNG_GC_TYPE>;
+
+        $r2 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType G1>;
+
+        if $r3 != $r2 goto label1;
+
+        $r5 = new java.lang.management.MemoryUsage;
+
+        $l13 = $l0 + $l2;
+
+        $l12 = $l1 + $l3;
+
+        specialinvoke $r5.<java.lang.management.MemoryUsage: void <init>(long,long,long,long)>($l13, 0L, $l12, 9223372036854775807L);
+
+        return $r5;
+
+     label1:
+        $r4 = new java.lang.management.MemoryUsage;
+
+        $l4 = $l2 * 2L;
+
+        $l6 = $l0 + $l4;
+
+        $l5 = $l3 * 2L;
+
+        $l7 = $l1 + $l5;
+
+        $l8 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $l9 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $l10 = $l9 * 2L;
+
+        $l11 = $l8 + $l10;
+
+        specialinvoke $r4.<java.lang.management.MemoryUsage: void <init>(long,long,long,long)>($l6, 0L, $l7, $l11);
+
+        return $r4;
+    }
+
+    public static long alignGenSize(long)
+    {
+        gc.arguments.GCTypes$YoungGCType $r1;
+        long l2, $l4, $l5, $l6, $l7, $l8, $l9, $l10, $l11;
+        int[] $r0;
+        int $i0, $i1, $i3;
+        sun.hotspot.WhiteBox $r2;
+        java.lang.RuntimeException $r3;
+
+        l2 := @parameter0: long;
+
+        $r0 = staticinvoke <gc.arguments.TestNewSizeFlags$NewSizeVerifier: int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType()>();
+
+        $r1 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: gc.arguments.GCTypes$YoungGCType YOUNG_GC_TYPE>;
+
+        $i0 = virtualinvoke $r1.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        $i1 = $r0[$i0];
+
+        tableswitch($i1)
+        {
+            case 1: goto label1;
+            case 2: goto label1;
+            case 3: goto label2;
+            case 4: goto label3;
+            default: goto label4;
+        };
+
+     label1:
+        $l10 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long HEAP_SPACE_ALIGNMENT>;
+
+        $l11 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignDown(long,long)>(l2, $l10);
+
+        return $l11;
+
+     label2:
+        $l6 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long HEAP_SPACE_ALIGNMENT>;
+
+        $l7 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignDown(long,long)>(l2, $l6);
+
+        $l8 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long PS_VIRTUAL_SPACE_ALIGNMENT>;
+
+        $l9 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignUp(long,long)>($l7, $l8);
+
+        return $l9;
+
+     label3:
+        $r2 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: sun.hotspot.WhiteBox WB>;
+
+        $i3 = virtualinvoke $r2.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        $l4 = (long) $i3;
+
+        $l5 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignUp(long,long)>(l2, $l4);
+
+        return $l5;
+
+     label4:
+        $r3 = new java.lang.RuntimeException;
+
+        specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>("Unexpected young GC type");
+
+        throw $r3;
+    }
+
+    public static long alignHeapSize(long)
+    {
+        long l0, $l1, $l2;
+
+        l0 := @parameter0: long;
+
+        $l1 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: long HEAP_ALIGNMENT>;
+
+        $l2 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignUp(long,long)>(l0, $l1);
+
+        return $l2;
+    }
+
+    static int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType()
+    {
+        gc.arguments.GCTypes$YoungGCType $r3, $r4, $r5, $r6;
+        java.lang.NoSuchFieldError $r7, $r8, $r9, $r10;
+        int[] $r0, r2;
+        gc.arguments.GCTypes$YoungGCType[] $r1;
+        int $i0, $i1, $i2, $i3, $i4;
+
+        $r0 = <gc.arguments.TestNewSizeFlags$NewSizeVerifier: int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType>;
+
+        if $r0 == null goto label01;
+
+        return $r0;
+
+     label01:
+        $r1 = staticinvoke <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType[] values()>();
+
+        $i0 = lengthof $r1;
+
+        r2 = newarray (int)[$i0];
+
+     label02:
+        $r3 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType DefNew>;
+
+        $i1 = virtualinvoke $r3.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i1] = 1;
+
+     label03:
+        goto label05;
+
+     label04:
+        $r10 := @caughtexception;
+
+     label05:
+        $r4 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType G1>;
+
+        $i2 = virtualinvoke $r4.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i2] = 4;
+
+     label06:
+        goto label08;
+
+     label07:
+        $r9 := @caughtexception;
+
+     label08:
+        $r5 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType PSNew>;
+
+        $i3 = virtualinvoke $r5.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i3] = 3;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r8 := @caughtexception;
+
+     label11:
+        $r6 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType ParNew>;
+
+        $i4 = virtualinvoke $r6.<gc.arguments.GCTypes$YoungGCType: int ordinal()>();
+
+        r2[$i4] = 2;
+
+     label12:
+        goto label14;
+
+     label13:
+        $r7 := @caughtexception;
+
+     label14:
+        <gc.arguments.TestNewSizeFlags$NewSizeVerifier: int[] $SWITCH_TABLE$gc$arguments$GCTypes$YoungGCType> = r2;
+
+        return r2;
+
+        catch java.lang.NoSuchFieldError from label02 to label03 with label04;
+        catch java.lang.NoSuchFieldError from label05 to label06 with label07;
+        catch java.lang.NoSuchFieldError from label08 to label09 with label10;
+        catch java.lang.NoSuchFieldError from label11 to label12 with label13;
+    }
+
+    private static java.lang.Object lambda$0(long, long, long, long) throws java.lang.Exception
+    {
+        java.lang.Void $r0;
+        long l0, l1, l2, l3;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        l2 := @parameter2: long;
+
+        l3 := @parameter3: long;
+
+        $r0 = staticinvoke <gc.arguments.TestNewSizeFlags$NewSizeVerifier: java.lang.Void verifyNewSize(long,long,long,long)>(l0, l1, l2, l3);
+
+        return $r0;
+    }
+}

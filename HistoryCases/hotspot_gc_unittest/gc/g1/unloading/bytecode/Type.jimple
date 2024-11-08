@@ -1,0 +1,474 @@
+final enum class Type extends java.lang.Enum
+{
+    public static final enum gc.g1.unloading.bytecode.Type LONG;
+    public static final enum gc.g1.unloading.bytecode.Type INT;
+    public static final enum gc.g1.unloading.bytecode.Type BOOLEAN;
+    public static final enum gc.g1.unloading.bytecode.Type OBJECT;
+    public static final enum gc.g1.unloading.bytecode.Type STRING;
+    public static final enum gc.g1.unloading.bytecode.Type DOUBLE;
+    public static final enum gc.g1.unloading.bytecode.Type DATE;
+    private static int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$Type;
+    private static final gc.g1.unloading.bytecode.Type[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.g1.unloading.bytecode.Type[] $r7;
+        gc.g1.unloading.bytecode.Type $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r8, $r9, $r10, $r11, $r12, $r13, $r14;
+
+        $r0 = new gc.g1.unloading.bytecode.Type;
+
+        specialinvoke $r0.<gc.g1.unloading.bytecode.Type: void <init>(java.lang.String,int)>("LONG", 0);
+
+        <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type LONG> = $r0;
+
+        $r1 = new gc.g1.unloading.bytecode.Type;
+
+        specialinvoke $r1.<gc.g1.unloading.bytecode.Type: void <init>(java.lang.String,int)>("INT", 1);
+
+        <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type INT> = $r1;
+
+        $r2 = new gc.g1.unloading.bytecode.Type;
+
+        specialinvoke $r2.<gc.g1.unloading.bytecode.Type: void <init>(java.lang.String,int)>("BOOLEAN", 2);
+
+        <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type BOOLEAN> = $r2;
+
+        $r3 = new gc.g1.unloading.bytecode.Type;
+
+        specialinvoke $r3.<gc.g1.unloading.bytecode.Type: void <init>(java.lang.String,int)>("OBJECT", 3);
+
+        <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type OBJECT> = $r3;
+
+        $r4 = new gc.g1.unloading.bytecode.Type;
+
+        specialinvoke $r4.<gc.g1.unloading.bytecode.Type: void <init>(java.lang.String,int)>("STRING", 4);
+
+        <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type STRING> = $r4;
+
+        $r5 = new gc.g1.unloading.bytecode.Type;
+
+        specialinvoke $r5.<gc.g1.unloading.bytecode.Type: void <init>(java.lang.String,int)>("DOUBLE", 5);
+
+        <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type DOUBLE> = $r5;
+
+        $r6 = new gc.g1.unloading.bytecode.Type;
+
+        specialinvoke $r6.<gc.g1.unloading.bytecode.Type: void <init>(java.lang.String,int)>("DATE", 6);
+
+        <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type DATE> = $r6;
+
+        $r7 = newarray (gc.g1.unloading.bytecode.Type)[7];
+
+        $r8 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type LONG>;
+
+        $r7[0] = $r8;
+
+        $r9 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type INT>;
+
+        $r7[1] = $r9;
+
+        $r10 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type BOOLEAN>;
+
+        $r7[2] = $r10;
+
+        $r11 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type OBJECT>;
+
+        $r7[3] = $r11;
+
+        $r12 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type STRING>;
+
+        $r7[4] = $r12;
+
+        $r13 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type DOUBLE>;
+
+        $r7[5] = $r13;
+
+        $r14 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type DATE>;
+
+        $r7[6] = $r14;
+
+        <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type[] ENUM$VALUES> = $r7;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        Type r0;
+        java.lang.String r1;
+
+        r0 := @this: Type;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        Type r1;
+        int[] $r0;
+        int $i0, $i1;
+        gc.g1.unloading.bytecode.Type $r2;
+
+        r1 := @this: Type;
+
+        $r0 = staticinvoke <gc.g1.unloading.bytecode.Type: int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$Type()>();
+
+        $r2 = (gc.g1.unloading.bytecode.Type) r1;
+
+        $i0 = virtualinvoke $r2.<gc.g1.unloading.bytecode.Type: int ordinal()>();
+
+        $i1 = $r0[$i0];
+
+        tableswitch($i1)
+        {
+            case 1: goto label1;
+            case 2: goto label2;
+            case 3: goto label3;
+            case 4: goto label4;
+            case 5: goto label5;
+            case 6: goto label6;
+            case 7: goto label7;
+            default: goto label8;
+        };
+
+     label1:
+        return " long ";
+
+     label2:
+        return " int ";
+
+     label3:
+        return " boolean ";
+
+     label4:
+        return " Object ";
+
+     label5:
+        return " String ";
+
+     label6:
+        return " double ";
+
+     label7:
+        return " java.util.Date ";
+
+     label8:
+        return null;
+    }
+
+    public java.lang.String init(java.util.Random)
+    {
+        java.util.Random r3;
+        long $l4;
+        int[] $r0;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String $r5, $r9, $r12, $r18, $r19;
+        double $d0;
+        boolean $z0, $z1;
+        Type r1;
+        java.lang.StringBuilder $r4, $r7, $r8, $r11, $r14, $r16, $r17, $r20, $r21, $r22, $r23, $r24;
+        gc.g1.unloading.bytecode.Type $r25;
+
+        r1 := @this: Type;
+
+        r3 := @parameter0: java.util.Random;
+
+        $r0 = staticinvoke <gc.g1.unloading.bytecode.Type: int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$Type()>();
+
+        $r25 = (gc.g1.unloading.bytecode.Type) r1;
+
+        $i0 = virtualinvoke $r25.<gc.g1.unloading.bytecode.Type: int ordinal()>();
+
+        $i1 = $r0[$i0];
+
+        tableswitch($i1)
+        {
+            case 1: goto label01;
+            case 2: goto label02;
+            case 3: goto label05;
+            case 4: goto label06;
+            case 5: goto label07;
+            case 6: goto label08;
+            case 7: goto label09;
+            default: goto label10;
+        };
+
+     label01:
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>(java.lang.String)>(" ");
+
+        $l4 = virtualinvoke r3.<java.util.Random: long nextLong()>();
+
+        $r16 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l4);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("L ");
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r18;
+
+     label02:
+        $z1 = virtualinvoke r3.<java.util.Random: boolean nextBoolean()>();
+
+        if $z1 == 0 goto label03;
+
+        $r21 = new java.lang.StringBuilder;
+
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>(java.lang.String)>(" ");
+
+        $i3 = virtualinvoke r3.<java.util.Random: int nextInt()>();
+
+        $r14 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r19 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label04;
+
+     label03:
+        $r19 = " new Object().hashCode() ";
+
+     label04:
+        return $r19;
+
+     label05:
+        $r22 = new java.lang.StringBuilder;
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>(java.lang.String)>(" ");
+
+        $z0 = virtualinvoke r3.<java.util.Random: boolean nextBoolean()>();
+
+        $r11 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z0);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r12;
+
+     label06:
+        return " new Object() ";
+
+     label07:
+        $r23 = new java.lang.StringBuilder;
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>(" \"str_bytesToReplace");
+
+        $i2 = virtualinvoke r3.<java.util.Random: int nextInt(int)>(4);
+
+        $r7 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\"");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r9;
+
+     label08:
+        $r24 = new java.lang.StringBuilder;
+
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>(java.lang.String)>(" ");
+
+        $d0 = virtualinvoke r3.<java.util.Random: double nextDouble()>();
+
+        $r4 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r5;
+
+     label09:
+        return " new java.util.Date() ";
+
+     label10:
+        return null;
+    }
+
+    public static gc.g1.unloading.bytecode.Type getRandomType(java.util.Random)
+    {
+        java.lang.Object[] $r1;
+        int $i0, $i1;
+        java.lang.Class $r0;
+        java.util.Random r3;
+        gc.g1.unloading.bytecode.Type $r4;
+        gc.g1.unloading.bytecode.Type[] r2;
+
+        r3 := @parameter0: java.util.Random;
+
+        $r0 = class "Lgc/g1/unloading/bytecode/Type;";
+
+        $r1 = virtualinvoke $r0.<java.lang.Class: java.lang.Object[] getEnumConstants()>();
+
+        r2 = (gc.g1.unloading.bytecode.Type[]) $r1;
+
+        $i0 = lengthof r2;
+
+        $i1 = virtualinvoke r3.<java.util.Random: int nextInt(int)>($i0);
+
+        $r4 = r2[$i1];
+
+        return $r4;
+    }
+
+    public static gc.g1.unloading.bytecode.Type[] values()
+    {
+        int $i0;
+        gc.g1.unloading.bytecode.Type[] $r0, $r1;
+
+        $r0 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.g1.unloading.bytecode.Type)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.g1.unloading.bytecode.Type valueOf(java.lang.String)
+    {
+        java.lang.String r0;
+        java.lang.Enum $r1;
+        gc.g1.unloading.bytecode.Type $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/g1/unloading/bytecode/Type;", r0);
+
+        $r2 = (gc.g1.unloading.bytecode.Type) $r1;
+
+        return $r2;
+    }
+
+    static int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$Type()
+    {
+        gc.g1.unloading.bytecode.Type[] $r1;
+        java.lang.NoSuchFieldError $r10, $r11, $r12, $r13, $r14, $r15, $r16;
+        int[] $r0, r2;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        gc.g1.unloading.bytecode.Type $r3, $r4, $r5, $r6, $r7, $r8, $r9;
+
+        $r0 = <gc.g1.unloading.bytecode.Type: int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$Type>;
+
+        if $r0 == null goto label01;
+
+        return $r0;
+
+     label01:
+        $r1 = staticinvoke <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type[] values()>();
+
+        $i0 = lengthof $r1;
+
+        r2 = newarray (int)[$i0];
+
+     label02:
+        $r3 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type BOOLEAN>;
+
+        $i1 = virtualinvoke $r3.<gc.g1.unloading.bytecode.Type: int ordinal()>();
+
+        r2[$i1] = 3;
+
+     label03:
+        goto label05;
+
+     label04:
+        $r16 := @caughtexception;
+
+     label05:
+        $r4 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type DATE>;
+
+        $i2 = virtualinvoke $r4.<gc.g1.unloading.bytecode.Type: int ordinal()>();
+
+        r2[$i2] = 7;
+
+     label06:
+        goto label08;
+
+     label07:
+        $r15 := @caughtexception;
+
+     label08:
+        $r5 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type DOUBLE>;
+
+        $i3 = virtualinvoke $r5.<gc.g1.unloading.bytecode.Type: int ordinal()>();
+
+        r2[$i3] = 6;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r14 := @caughtexception;
+
+     label11:
+        $r6 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type INT>;
+
+        $i4 = virtualinvoke $r6.<gc.g1.unloading.bytecode.Type: int ordinal()>();
+
+        r2[$i4] = 2;
+
+     label12:
+        goto label14;
+
+     label13:
+        $r13 := @caughtexception;
+
+     label14:
+        $r7 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type LONG>;
+
+        $i5 = virtualinvoke $r7.<gc.g1.unloading.bytecode.Type: int ordinal()>();
+
+        r2[$i5] = 1;
+
+     label15:
+        goto label17;
+
+     label16:
+        $r12 := @caughtexception;
+
+     label17:
+        $r8 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type OBJECT>;
+
+        $i6 = virtualinvoke $r8.<gc.g1.unloading.bytecode.Type: int ordinal()>();
+
+        r2[$i6] = 4;
+
+     label18:
+        goto label20;
+
+     label19:
+        $r11 := @caughtexception;
+
+     label20:
+        $r9 = <gc.g1.unloading.bytecode.Type: gc.g1.unloading.bytecode.Type STRING>;
+
+        $i7 = virtualinvoke $r9.<gc.g1.unloading.bytecode.Type: int ordinal()>();
+
+        r2[$i7] = 5;
+
+     label21:
+        goto label23;
+
+     label22:
+        $r10 := @caughtexception;
+
+     label23:
+        <gc.g1.unloading.bytecode.Type: int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$Type> = r2;
+
+        return r2;
+
+        catch java.lang.NoSuchFieldError from label02 to label03 with label04;
+        catch java.lang.NoSuchFieldError from label05 to label06 with label07;
+        catch java.lang.NoSuchFieldError from label08 to label09 with label10;
+        catch java.lang.NoSuchFieldError from label11 to label12 with label13;
+        catch java.lang.NoSuchFieldError from label14 to label15 with label16;
+        catch java.lang.NoSuchFieldError from label17 to label18 with label19;
+        catch java.lang.NoSuchFieldError from label20 to label21 with label22;
+    }
+}

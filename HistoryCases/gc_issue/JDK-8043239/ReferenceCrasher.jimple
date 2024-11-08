@@ -1,0 +1,213 @@
+public class ReferenceCrasher extends java.lang.Object
+{
+    public static ReferenceCrasher$ReferencesKeeper root;
+    public static java.lang.Object dummy;
+    public static java.lang.Object[] keeper;
+    public static java.lang.ref.ReferenceQueue reference_queue;
+
+    public void <init>()
+    {
+        ReferenceCrasher r0;
+
+        r0 := @this: ReferenceCrasher;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        byte[] $r9, $r20, $r21, $r22, $r23, $r25;
+        ReferenceCrasher$Referent3 $r14;
+        ReferenceCrasher$Referent2 $r11;
+        ReferenceCrasher$Referent1 $r3;
+        java.lang.Object[] $r5, $r6, $r24;
+        java.lang.String[] r0;
+        int $i0, $i1, i2, i3, i4, i5, i6, i7;
+        java.lang.String $r26;
+        java.io.PrintStream $r7, $r8;
+        ReferenceCrasher$ReferenceKeeper1 $r2, $r17;
+        ReferenceCrasher$ReferencesKeeper $r1, $r4, $r12, $r15, $r16, $r18;
+        ReferenceCrasher$ReferenceKeeper2 $r10;
+        ReferenceCrasher$ReferenceKeeper3 $r13, $r19;
+
+        r0 := @parameter0: java.lang.String[];
+
+        i2 = 1000000;
+
+        $i0 = lengthof r0;
+
+        if $i0 <= 0 goto label01;
+
+        $r26 = r0[0];
+
+        i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r26);
+
+     label01:
+        $r1 = new ReferenceCrasher$ReferencesKeeper;
+
+        specialinvoke $r1.<ReferenceCrasher$ReferencesKeeper: void <init>()>();
+
+        <ReferenceCrasher: ReferenceCrasher$ReferencesKeeper root> = $r1;
+
+        $r4 = <ReferenceCrasher: ReferenceCrasher$ReferencesKeeper root>;
+
+        $r2 = new ReferenceCrasher$ReferenceKeeper1;
+
+        $r3 = new ReferenceCrasher$Referent1;
+
+        specialinvoke $r3.<ReferenceCrasher$Referent1: void <init>(int)>(0);
+
+        specialinvoke $r2.<ReferenceCrasher$ReferenceKeeper1: void <init>(java.lang.Object)>($r3);
+
+        $r4.<ReferenceCrasher$ReferencesKeeper: ReferenceCrasher$ReferenceKeeper1 r1> = $r2;
+
+        i3 = 0;
+
+     label02:
+        if i3 >= i2 goto label03;
+
+        $r25 = newarray (byte)[1000];
+
+        <ReferenceCrasher: java.lang.Object dummy> = $r25;
+
+        i3 = i3 + 1;
+
+        goto label02;
+
+     label03:
+        $r5 = newarray (java.lang.Object)[1000];
+
+        <ReferenceCrasher: java.lang.Object[] keeper> = $r5;
+
+        i4 = 0;
+
+     label04:
+        $r6 = <ReferenceCrasher: java.lang.Object[] keeper>;
+
+        $i1 = lengthof $r6;
+
+        if i4 >= $i1 goto label05;
+
+        $r24 = <ReferenceCrasher: java.lang.Object[] keeper>;
+
+        $r23 = newarray (byte)[1000];
+
+        $r24[i4] = $r23;
+
+        i4 = i4 + 1;
+
+        goto label04;
+
+     label05:
+        $r7 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>("Setup done");
+
+        i5 = 0;
+
+     label06:
+        if i5 >= i2 goto label07;
+
+        $r22 = newarray (byte)[1000];
+
+        <ReferenceCrasher: java.lang.Object dummy> = $r22;
+
+        i5 = i5 + 1;
+
+        goto label06;
+
+     label07:
+        $r8 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>("Alloc done");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+        i6 = 0;
+
+     label08:
+        if i6 >= 1000 goto label09;
+
+        $r21 = newarray (byte)[1000];
+
+        <ReferenceCrasher: java.lang.Object dummy> = $r21;
+
+        i6 = i6 + 1;
+
+        goto label08;
+
+     label09:
+        $r9 = newarray (byte)[10000000];
+
+        <ReferenceCrasher: java.lang.Object dummy> = $r9;
+
+        $r12 = <ReferenceCrasher: ReferenceCrasher$ReferencesKeeper root>;
+
+        $r10 = new ReferenceCrasher$ReferenceKeeper2;
+
+        $r11 = new ReferenceCrasher$Referent2;
+
+        specialinvoke $r11.<ReferenceCrasher$Referent2: void <init>(int)>(0);
+
+        specialinvoke $r10.<ReferenceCrasher$ReferenceKeeper2: void <init>(java.lang.Object)>($r11);
+
+        $r12.<ReferenceCrasher$ReferencesKeeper: ReferenceCrasher$ReferenceKeeper2 r2> = $r10;
+
+        $r15 = <ReferenceCrasher: ReferenceCrasher$ReferencesKeeper root>;
+
+        $r13 = new ReferenceCrasher$ReferenceKeeper3;
+
+        $r14 = new ReferenceCrasher$Referent3;
+
+        specialinvoke $r14.<ReferenceCrasher$Referent3: void <init>(int)>(0);
+
+        specialinvoke $r13.<ReferenceCrasher$ReferenceKeeper3: void <init>(java.lang.Object)>($r14);
+
+        $r15.<ReferenceCrasher$ReferencesKeeper: ReferenceCrasher$ReferenceKeeper3 r3> = $r13;
+
+        $r16 = <ReferenceCrasher: ReferenceCrasher$ReferencesKeeper root>;
+
+        $r17 = $r16.<ReferenceCrasher$ReferencesKeeper: ReferenceCrasher$ReferenceKeeper1 r1>;
+
+        $r17.<ReferenceCrasher$ReferenceKeeper1: java.lang.Object referent> = null;
+
+        $r18 = <ReferenceCrasher: ReferenceCrasher$ReferencesKeeper root>;
+
+        $r19 = $r18.<ReferenceCrasher$ReferencesKeeper: ReferenceCrasher$ReferenceKeeper3 r3>;
+
+        $r19.<ReferenceCrasher$ReferenceKeeper3: java.lang.Object referent> = null;
+
+        i7 = 0;
+
+     label10:
+        if i7 >= i2 goto label11;
+
+        $r20 = newarray (byte)[1000];
+
+        <ReferenceCrasher: java.lang.Object dummy> = $r20;
+
+        i7 = i7 + 1;
+
+        goto label10;
+
+     label11:
+        staticinvoke <java.lang.Thread: void sleep(long)>(5000L);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        <ReferenceCrasher: java.lang.ref.ReferenceQueue reference_queue> = null;
+
+        return;
+    }
+}

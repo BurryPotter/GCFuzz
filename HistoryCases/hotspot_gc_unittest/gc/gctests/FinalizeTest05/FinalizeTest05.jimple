@@ -1,0 +1,282 @@
+public class FinalizeTest05 extends nsk.share.gc.GCTestBase
+{
+    private final int allocRatio;
+    private final int size;
+    private int count;
+    private nsk.share.test.ExecutionController stresser;
+
+    public void <init>()
+    {
+        FinalizeTest05 r0;
+        gc.gctests.FinalizeTest05.FinalizeTest05 $r1, $r2, $r3;
+
+        r0 := @this: FinalizeTest05;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        $r1 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        $r1.<gc.gctests.FinalizeTest05.FinalizeTest05: int allocRatio> = 5;
+
+        $r2 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        $r2.<gc.gctests.FinalizeTest05.FinalizeTest05: int size> = 2048;
+
+        $r3 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        $r3.<gc.gctests.FinalizeTest05.FinalizeTest05: int count> = 1000;
+
+        return;
+    }
+
+    private void runOne()
+    {
+        java.lang.Throwable $r24;
+        byte[] r15;
+        nsk.share.test.ExecutionController $r3;
+        gc.gctests.FinalizeTest05.FinalizeTest05 $r21, $r22, $r23;
+        java.util.ArrayList $r16;
+        FinalizeTest05 r1;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, i7, $i8;
+        java.lang.String $r9, $r13;
+        boolean $z0;
+        java.io.PrintStream $r7, $r11;
+        java.lang.Runtime $r4, $r5;
+        nsk.share.TestFailure $r20;
+        java.lang.StringBuilder $r8, $r12, $r18, $r19;
+        nsk.share.gc.FinMemoryObject $r17;
+
+        r1 := @this: FinalizeTest05;
+
+        $r16 = new java.util.ArrayList;
+
+        $r21 = (gc.gctests.FinalizeTest05.FinalizeTest05) r1;
+
+        $i0 = $r21.<gc.gctests.FinalizeTest05.FinalizeTest05: int count>;
+
+        specialinvoke $r16.<java.util.ArrayList: void <init>(int)>($i0);
+
+        i7 = 0;
+
+        goto label4;
+
+     label1:
+        $i1 = i7 % 5;
+
+        if $i1 != 0 goto label2;
+
+        $r17 = new nsk.share.gc.FinMemoryObject;
+
+        specialinvoke $r17.<nsk.share.gc.FinMemoryObject: void <init>(int)>(2048);
+
+        virtualinvoke $r16.<java.util.ArrayList: boolean add(java.lang.Object)>($r17);
+
+        goto label3;
+
+     label2:
+        $i2 = staticinvoke <nsk.share.gc.Memory: int getObjectExtraSize()>();
+
+        $i3 = 2048 - $i2;
+
+        r15 = newarray (byte)[$i3];
+
+     label3:
+        i7 = i7 + 1;
+
+     label4:
+        $r22 = (gc.gctests.FinalizeTest05.FinalizeTest05) r1;
+
+        $i8 = $r22.<gc.gctests.FinalizeTest05.FinalizeTest05: int count>;
+
+        if i7 < $i8 goto label1;
+
+        staticinvoke <nsk.share.gc.FinMemoryObject: void dumpStatistics()>();
+
+        $r23 = (gc.gctests.FinalizeTest05.FinalizeTest05) r1;
+
+        $r3 = $r23.<gc.gctests.FinalizeTest05.FinalizeTest05: nsk.share.test.ExecutionController stresser>;
+
+        staticinvoke <nsk.share.gc.Algorithms: void eatMemory(nsk.share.test.ExecutionController)>($r3);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r4 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        virtualinvoke $r4.<java.lang.Runtime: void runFinalization()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r5 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        virtualinvoke $r5.<java.lang.Runtime: void runFinalization()>();
+
+        staticinvoke <nsk.share.gc.FinMemoryObject: void dumpStatistics()>();
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r18 = new java.lang.StringBuilder;
+
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>("Allocated: ");
+
+        $i4 = staticinvoke <nsk.share.gc.FinMemoryObject: int getAllocatedCount()>();
+
+        $r8 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>("Finalized: ");
+
+        $i5 = staticinvoke <nsk.share.gc.FinMemoryObject: int getFinalizedCount()>();
+
+        $r12 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>($r13);
+
+        $i6 = staticinvoke <nsk.share.gc.FinMemoryObject: int getFinalizedCount()>();
+
+        if $i6 == 0 goto label5;
+
+        $z0 = 1;
+
+        goto label6;
+
+     label5:
+        $z0 = 0;
+
+     label6:
+        virtualinvoke $r16.<java.util.ArrayList: void clear()>();
+
+        if $z0 == 0 goto label7;
+
+        $r20 = new nsk.share.TestFailure;
+
+        specialinvoke $r20.<nsk.share.TestFailure: void <init>(java.lang.String)>("Test failed.");
+
+        $r24 = (java.lang.Throwable) $r20;
+
+        throw $r24;
+
+     label7:
+        return;
+    }
+
+    public void run()
+    {
+        nsk.share.runner.RunParams $r2, $r4, $r6;
+        nsk.share.test.ExecutionController $r5, $r19;
+        long $l0, $l1, $l2, $l3;
+        gc.gctests.FinalizeTest05.FinalizeTest05 $r17, $r18, $r20, $r21, $r22, $r23, $r24, $r25;
+        nsk.share.test.StressOptions $r3;
+        FinalizeTest05 r0;
+        int $i4, $i5;
+        java.lang.String $r13;
+        java.io.PrintStream $r8, $r14;
+        nsk.share.test.Stresser $r15;
+        java.lang.StringBuilder $r9, $r10, $r11, $r12, $r16;
+
+        r0 := @this: FinalizeTest05;
+
+        $r15 = new nsk.share.test.Stresser;
+
+        $r17 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        $r2 = $r17.<gc.gctests.FinalizeTest05.FinalizeTest05: nsk.share.runner.RunParams runParams>;
+
+        $r3 = virtualinvoke $r2.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r15.<nsk.share.test.Stresser: void <init>(nsk.share.test.StressOptions)>($r3);
+
+        $r18 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        $r19 = (nsk.share.test.ExecutionController) $r15;
+
+        $r18.<gc.gctests.FinalizeTest05.FinalizeTest05: nsk.share.test.ExecutionController stresser> = $r19;
+
+        $r20 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        $r5 = $r20.<gc.gctests.FinalizeTest05.FinalizeTest05: nsk.share.test.ExecutionController stresser>;
+
+        $r21 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        $r4 = $r21.<gc.gctests.FinalizeTest05.FinalizeTest05: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r4.<nsk.share.runner.RunParams: long getIterations()>();
+
+        interfaceinvoke $r5.<nsk.share.test.ExecutionController: void start(long)>($l0);
+
+        $r22 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        $r6 = $r22.<gc.gctests.FinalizeTest05.FinalizeTest05: nsk.share.runner.RunParams runParams>;
+
+        $l1 = virtualinvoke $r6.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $l2 = $l1 / 2048L;
+
+        $l3 = staticinvoke <java.lang.Math: long min(long,long)>($l2, 2147483647L);
+
+        $i4 = (int) $l3;
+
+        $r23 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        $r23.<gc.gctests.FinalizeTest05.FinalizeTest05: int count> = $i4;
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("Allocating ");
+
+        $r24 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        $i5 = $r24.<gc.gctests.FinalizeTest05.FinalizeTest05: int count>;
+
+        $r9 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" objects. 1 out of ");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(5);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" will have a finalizer.");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r13);
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void flush()>();
+
+        $r25 = (gc.gctests.FinalizeTest05.FinalizeTest05) r0;
+
+        virtualinvoke $r25.<gc.gctests.FinalizeTest05.FinalizeTest05: void runOne()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.FinalizeTest05.FinalizeTest05 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.FinalizeTest05.FinalizeTest05;
+
+        specialinvoke $r2.<gc.gctests.FinalizeTest05.FinalizeTest05: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

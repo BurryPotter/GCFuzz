@@ -1,0 +1,133 @@
+public class LockerTest extends nsk.share.gc.ThreadedGCTest implements nsk.share.gc.gp.GarbageProducerAware, nsk.share.gc.gp.GarbageProducer1Aware, nsk.share.gc.lock.LockersAware
+{
+    private nsk.share.gc.gp.GarbageProducer garbageProducer;
+    private nsk.share.gc.gp.GarbageProducer garbageProducer1;
+    private nsk.share.gc.lock.Lockers lockers;
+    private long objectSize;
+
+    public void <init>()
+    {
+        LockerTest r0;
+        gc.lock.LockerTest $r1;
+
+        r0 := @this: LockerTest;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r1 = (gc.lock.LockerTest) r0;
+
+        $r1.<gc.lock.LockerTest: long objectSize> = 1000L;
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.lock.LockerTest $r3;
+        int i0;
+        LockerTest r1;
+        gc.lock.LockerTest$Worker $r2;
+        java.lang.Runnable $r4;
+
+        r1 := @this: LockerTest;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.lock.LockerTest$Worker;
+
+        $r3 = (gc.lock.LockerTest) r1;
+
+        specialinvoke $r2.<gc.lock.LockerTest$Worker: void <init>(gc.lock.LockerTest)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public void setGarbageProducer(nsk.share.gc.gp.GarbageProducer)
+    {
+        LockerTest r0;
+        nsk.share.gc.gp.GarbageProducer r1;
+        gc.lock.LockerTest $r2;
+
+        r0 := @this: LockerTest;
+
+        r1 := @parameter0: nsk.share.gc.gp.GarbageProducer;
+
+        $r2 = (gc.lock.LockerTest) r0;
+
+        $r2.<gc.lock.LockerTest: nsk.share.gc.gp.GarbageProducer garbageProducer> = r1;
+
+        return;
+    }
+
+    public void setGarbageProducer1(nsk.share.gc.gp.GarbageProducer)
+    {
+        LockerTest r0;
+        nsk.share.gc.gp.GarbageProducer r1;
+        gc.lock.LockerTest $r2;
+
+        r0 := @this: LockerTest;
+
+        r1 := @parameter0: nsk.share.gc.gp.GarbageProducer;
+
+        $r2 = (gc.lock.LockerTest) r0;
+
+        $r2.<gc.lock.LockerTest: nsk.share.gc.gp.GarbageProducer garbageProducer1> = r1;
+
+        return;
+    }
+
+    public void setLockers(nsk.share.gc.lock.Lockers)
+    {
+        LockerTest r0;
+        gc.lock.LockerTest $r2;
+        nsk.share.gc.lock.Lockers r1;
+
+        r0 := @this: LockerTest;
+
+        r1 := @parameter0: nsk.share.gc.lock.Lockers;
+
+        $r2 = (gc.lock.LockerTest) r0;
+
+        $r2.<gc.lock.LockerTest: nsk.share.gc.lock.Lockers lockers> = r1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        nsk.share.runner.RunParams $r0;
+        gc.lock.LockerTest $r3;
+        nsk.share.test.Test $r4;
+        java.lang.String[] r2;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <nsk.share.runner.RunParams: nsk.share.runner.RunParams getInstance()>();
+
+        virtualinvoke $r0.<nsk.share.runner.RunParams: void setRunMemDiagThread(boolean)>(0);
+
+        $r3 = new gc.lock.LockerTest;
+
+        specialinvoke $r3.<gc.lock.LockerTest: void <init>()>();
+
+        $r4 = (nsk.share.test.Test) $r3;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r4, r2);
+
+        return;
+    }
+
+    static nsk.share.test.ExecutionController access$0(gc.lock.LockerTest)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.lock.LockerTest r0;
+
+        r0 := @parameter0: gc.lock.LockerTest;
+
+        $r1 = virtualinvoke r0.<gc.lock.LockerTest: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+}

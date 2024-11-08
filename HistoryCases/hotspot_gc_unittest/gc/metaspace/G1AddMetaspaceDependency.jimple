@@ -1,0 +1,298 @@
+public class G1AddMetaspaceDependency extends java.lang.Object
+{
+    static final java.lang.String a_name;
+    static final java.lang.String b_name;
+
+    static void <clinit>()
+    {
+        java.lang.StringBuilder $r0, $r4, $r6, $r10;
+        java.lang.Class $r1, $r7;
+        java.lang.String $r2, $r3, $r5, $r8, $r9, $r11;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r1 = class "Lgc/metaspace/G1AddMetaspaceDependency;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r2);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+
+        $r4 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$A");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        <gc.metaspace.G1AddMetaspaceDependency: java.lang.String a_name> = $r5;
+
+        $r6 = new java.lang.StringBuilder;
+
+        $r7 = class "Lgc/metaspace/G1AddMetaspaceDependency;";
+
+        $r8 = virtualinvoke $r7.<java.lang.Class: java.lang.String getName()>();
+
+        $r9 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r8);
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>($r9);
+
+        $r10 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$B");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name> = $r11;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        G1AddMetaspaceDependency r0;
+
+        r0 := @this: G1AddMetaspaceDependency;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static byte[] getClassBytes(java.lang.String)
+    {
+        java.lang.Throwable $r4, $r5, $r6, r8;
+        byte[] r2, r7;
+        java.lang.RuntimeException $r3;
+        int $i0;
+        java.lang.String r0;
+        java.io.InputStream $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        r7 = null;
+
+     label01:
+        r8 = null;
+
+     label02:
+        $r1 = staticinvoke <java.lang.ClassLoader: java.io.InputStream getSystemResourceAsStream(java.lang.String)>(r0);
+
+     label03:
+        $i0 = virtualinvoke $r1.<java.io.InputStream: int available()>();
+
+        r2 = newarray (byte)[$i0];
+
+        virtualinvoke $r1.<java.io.InputStream: int read(byte[])>(r2);
+
+        r7 = r2;
+
+     label04:
+        if $r1 == null goto label11;
+
+        virtualinvoke $r1.<java.io.InputStream: void close()>();
+
+        goto label11;
+
+     label05:
+        $r6 := @caughtexception;
+
+        r8 = $r6;
+
+        if $r1 == null goto label06;
+
+        virtualinvoke $r1.<java.io.InputStream: void close()>();
+
+     label06:
+        throw $r6;
+
+     label07:
+        $r5 := @caughtexception;
+
+        if r8 != null goto label08;
+
+        r8 = $r5;
+
+        goto label09;
+
+     label08:
+        if r8 == $r5 goto label09;
+
+        virtualinvoke r8.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r5);
+
+     label09:
+        throw r8;
+
+     label10:
+        $r4 := @caughtexception;
+
+     label11:
+        if r7 != null goto label12;
+
+        $r3 = new java.lang.RuntimeException;
+
+        specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>("Unable to load class file");
+
+        throw $r3;
+
+     label12:
+        return r7;
+
+        catch java.lang.Throwable from label03 to label04 with label05;
+        catch java.lang.Throwable from label02 to label07 with label07;
+        catch java.lang.Throwable from label01 to label10 with label10;
+    }
+
+    public static transient void main(java.lang.String[]) throws java.lang.Exception
+    {
+        byte[] $r5, $r11;
+        java.lang.String[] r12;
+        int i0;
+        java.lang.StringBuilder $r0, $r3, $r6, $r9;
+        java.lang.String $r1, $r2, $r4, $r7, $r8, $r10;
+
+        r12 := @parameter0: java.lang.String[];
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r1 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String a_name>;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".class");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <gc.metaspace.G1AddMetaspaceDependency: byte[] getClassBytes(java.lang.String)>($r4);
+
+        $r6 = new java.lang.StringBuilder;
+
+        $r7 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        $r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7);
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+
+        $r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".class");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r11 = staticinvoke <gc.metaspace.G1AddMetaspaceDependency: byte[] getClassBytes(java.lang.String)>($r10);
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        staticinvoke <gc.metaspace.G1AddMetaspaceDependency: void runTest(byte[],byte[])>($r5, $r11);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 1000 goto label1;
+
+        return;
+    }
+
+    private static void runTest(byte[], byte[]) throws java.lang.Exception
+    {
+        byte[] r1, r4;
+        java.lang.ClassLoader $r35, $r36, $r37, $r38, $r39, $r40;
+        java.lang.String $r2, $r5, $r6, $r8, $r9, $r11, $r12, $r14, $r15, $r17, $r18, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27;
+        gc.metaspace.G1AddMetaspaceDependency$Loader $r28, $r29, $r30, $r31, $r32, $r33, $r34;
+
+        r1 := @parameter0: byte[];
+
+        r4 := @parameter1: byte[];
+
+        $r28 = new gc.metaspace.G1AddMetaspaceDependency$Loader;
+
+        $r2 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String a_name>;
+
+        specialinvoke $r28.<gc.metaspace.G1AddMetaspaceDependency$Loader: void <init>(java.lang.String,byte[])>($r2, r1);
+
+        $r29 = new gc.metaspace.G1AddMetaspaceDependency$Loader;
+
+        $r6 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        $r5 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String a_name>;
+
+        $r35 = (java.lang.ClassLoader) $r28;
+
+        specialinvoke $r29.<gc.metaspace.G1AddMetaspaceDependency$Loader: void <init>(java.lang.String,byte[],java.lang.String,java.lang.ClassLoader)>($r6, r4, $r5, $r35);
+
+        $r30 = new gc.metaspace.G1AddMetaspaceDependency$Loader;
+
+        $r9 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        $r8 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String a_name>;
+
+        $r36 = (java.lang.ClassLoader) $r28;
+
+        specialinvoke $r30.<gc.metaspace.G1AddMetaspaceDependency$Loader: void <init>(java.lang.String,byte[],java.lang.String,java.lang.ClassLoader)>($r9, r4, $r8, $r36);
+
+        $r31 = new gc.metaspace.G1AddMetaspaceDependency$Loader;
+
+        $r12 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        $r11 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String a_name>;
+
+        $r37 = (java.lang.ClassLoader) $r28;
+
+        specialinvoke $r31.<gc.metaspace.G1AddMetaspaceDependency$Loader: void <init>(java.lang.String,byte[],java.lang.String,java.lang.ClassLoader)>($r12, r4, $r11, $r37);
+
+        $r32 = new gc.metaspace.G1AddMetaspaceDependency$Loader;
+
+        $r15 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        $r14 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String a_name>;
+
+        $r38 = (java.lang.ClassLoader) $r28;
+
+        specialinvoke $r32.<gc.metaspace.G1AddMetaspaceDependency$Loader: void <init>(java.lang.String,byte[],java.lang.String,java.lang.ClassLoader)>($r15, r4, $r14, $r38);
+
+        $r33 = new gc.metaspace.G1AddMetaspaceDependency$Loader;
+
+        $r18 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        $r17 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String a_name>;
+
+        $r39 = (java.lang.ClassLoader) $r28;
+
+        specialinvoke $r33.<gc.metaspace.G1AddMetaspaceDependency$Loader: void <init>(java.lang.String,byte[],java.lang.String,java.lang.ClassLoader)>($r18, r4, $r17, $r39);
+
+        $r34 = new gc.metaspace.G1AddMetaspaceDependency$Loader;
+
+        $r21 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        $r20 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String a_name>;
+
+        $r40 = (java.lang.ClassLoader) $r28;
+
+        specialinvoke $r34.<gc.metaspace.G1AddMetaspaceDependency$Loader: void <init>(java.lang.String,byte[],java.lang.String,java.lang.ClassLoader)>($r21, r4, $r20, $r40);
+
+        $r22 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        virtualinvoke $r29.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.Class loadClass(java.lang.String)>($r22);
+
+        $r23 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        virtualinvoke $r30.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.Class loadClass(java.lang.String)>($r23);
+
+        $r24 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        virtualinvoke $r31.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.Class loadClass(java.lang.String)>($r24);
+
+        $r25 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        virtualinvoke $r32.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.Class loadClass(java.lang.String)>($r25);
+
+        $r26 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        virtualinvoke $r33.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.Class loadClass(java.lang.String)>($r26);
+
+        $r27 = <gc.metaspace.G1AddMetaspaceDependency: java.lang.String b_name>;
+
+        virtualinvoke $r34.<gc.metaspace.G1AddMetaspaceDependency$Loader: java.lang.Class loadClass(java.lang.String)>($r27);
+
+        return;
+    }
+}

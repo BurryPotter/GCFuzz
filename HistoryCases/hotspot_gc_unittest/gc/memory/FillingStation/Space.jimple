@@ -1,0 +1,41 @@
+class Space extends java.lang.Object
+{
+    private gc.memory.FillingStation.Space _next;
+    private byte[] _space;
+
+    public void <init>(int, gc.memory.FillingStation.Space)
+    {
+        Space r0;
+        byte[] $r2;
+        int i0;
+        gc.memory.FillingStation.Space r1, $r3, $r4, $r5, $r6;
+
+        r0 := @this: Space;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: gc.memory.FillingStation.Space;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.memory.FillingStation.Space) r0;
+
+        $r3.<gc.memory.FillingStation.Space: gc.memory.FillingStation.Space _next> = null;
+
+        $r4 = (gc.memory.FillingStation.Space) r0;
+
+        $r4.<gc.memory.FillingStation.Space: byte[] _space> = null;
+
+        $r5 = (gc.memory.FillingStation.Space) r0;
+
+        $r5.<gc.memory.FillingStation.Space: gc.memory.FillingStation.Space _next> = r1;
+
+        $r2 = newarray (byte)[i0];
+
+        $r6 = (gc.memory.FillingStation.Space) r0;
+
+        $r6.<gc.memory.FillingStation.Space: byte[] _space> = $r2;
+
+        return;
+    }
+}

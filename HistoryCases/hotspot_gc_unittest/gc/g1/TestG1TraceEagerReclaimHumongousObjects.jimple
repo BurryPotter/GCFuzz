@@ -1,0 +1,72 @@
+public class TestG1TraceEagerReclaimHumongousObjects extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestG1TraceEagerReclaimHumongousObjects r0;
+
+        r0 := @this: TestG1TraceEagerReclaimHumongousObjects;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Process $r5;
+        java.lang.String[] $r0, r6;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+        java.lang.ProcessBuilder $r3;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+
+        r6 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[8];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-Xms128M";
+
+        $r0[2] = "-Xmx128M";
+
+        $r0[3] = "-Xmn16M";
+
+        $r0[4] = "-XX:G1HeapRegionSize=1M";
+
+        $r0[5] = "-Xlog:gc+phases=trace,gc+humongous=trace";
+
+        $r0[6] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r1 = class "Lgc/g1/TestG1TraceEagerReclaimHumongousObjects$GCWithHumongousObjectTest;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[7] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r4 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Humongous Reclaim");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Humongous Total");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Humongous Candidate");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Humongous Reclaimed");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Live humongous");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Dead humongous region");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

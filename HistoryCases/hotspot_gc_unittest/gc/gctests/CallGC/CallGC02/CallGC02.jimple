@@ -1,0 +1,106 @@
+public class CallGC02 extends nsk.share.gc.ThreadedGCTest implements nsk.share.gc.gp.GarbageProducerAware
+{
+    private nsk.share.gc.gp.GarbageProducer garbageProducer;
+    private final int objectSize;
+
+    public void <init>()
+    {
+        CallGC02 r0;
+        gc.gctests.CallGC.CallGC02.CallGC02 $r1;
+
+        r0 := @this: CallGC02;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r1 = (gc.gctests.CallGC.CallGC02.CallGC02) r0;
+
+        $r1.<gc.gctests.CallGC.CallGC02.CallGC02: int objectSize> = 100;
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.gctests.CallGC.CallGC02.CallGC02$GarbageProduction $r4;
+        java.lang.Runnable $r8, $r9, $r10;
+        gc.gctests.CallGC.CallGC02.CallGC02 $r7;
+        nsk.share.runner.GCRunner $r5;
+        nsk.share.runner.FinRunner $r6;
+        CallGC02 r3;
+        int i0, $i1;
+
+        r3 := @this: CallGC02;
+
+        i0 := @parameter0: int;
+
+        if i0 != 0 goto label1;
+
+        $r4 = new gc.gctests.CallGC.CallGC02.CallGC02$GarbageProduction;
+
+        $r7 = (gc.gctests.CallGC.CallGC02.CallGC02) r3;
+
+        specialinvoke $r4.<gc.gctests.CallGC.CallGC02.CallGC02$GarbageProduction: void <init>(gc.gctests.CallGC.CallGC02.CallGC02)>($r7);
+
+        $r8 = (java.lang.Runnable) $r4;
+
+        return $r8;
+
+     label1:
+        $i1 = i0 % 2;
+
+        if $i1 != 0 goto label2;
+
+        $r5 = new nsk.share.runner.GCRunner;
+
+        specialinvoke $r5.<nsk.share.runner.GCRunner: void <init>()>();
+
+        $r9 = (java.lang.Runnable) $r5;
+
+        return $r9;
+
+     label2:
+        $r6 = new nsk.share.runner.FinRunner;
+
+        specialinvoke $r6.<nsk.share.runner.FinRunner: void <init>()>();
+
+        $r10 = (java.lang.Runnable) $r6;
+
+        return $r10;
+    }
+
+    public final void setGarbageProducer(nsk.share.gc.gp.GarbageProducer)
+    {
+        nsk.share.gc.gp.GarbageProducer r1;
+        CallGC02 r0;
+        gc.gctests.CallGC.CallGC02.CallGC02 $r2;
+
+        r0 := @this: CallGC02;
+
+        r1 := @parameter0: nsk.share.gc.gp.GarbageProducer;
+
+        $r2 = (gc.gctests.CallGC.CallGC02.CallGC02) r0;
+
+        $r2.<gc.gctests.CallGC.CallGC02.CallGC02: nsk.share.gc.gp.GarbageProducer garbageProducer> = r1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.CallGC.CallGC02.CallGC02 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.CallGC.CallGC02.CallGC02;
+
+        specialinvoke $r2.<gc.gctests.CallGC.CallGC02.CallGC02: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

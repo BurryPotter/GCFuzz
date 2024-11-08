@@ -1,0 +1,81 @@
+class TestJNIBlockFullGC$2 extends java.lang.Thread
+{
+    private final long val$startTime;
+    private final int val$mainDuration;
+    private final int val$mainIterations;
+    private final double val$liveFrac;
+
+    void <init>(long, int, int, double)
+    {
+        long l0;
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2 $r1, $r2, $r3, $r4;
+        TestJNIBlockFullGC$2 r0;
+        int i1, i2;
+        double d0;
+
+        r0 := @this: TestJNIBlockFullGC$2;
+
+        l0 := @parameter0: long;
+
+        i1 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        d0 := @parameter3: double;
+
+        $r1 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2) r0;
+
+        $r1.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2: long val$startTime> = l0;
+
+        $r2 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2) r0;
+
+        $r2.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2: int val$mainDuration> = i1;
+
+        $r3 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2) r0;
+
+        $r3.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2: int val$mainIterations> = i2;
+
+        $r4 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2) r0;
+
+        $r4.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2: double val$liveFrac> = d0;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        long $l1, $l2, $l4;
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2 $r1, $r2, $r3, $r4;
+        TestJNIBlockFullGC$2 r0;
+        int $i0, $i3;
+        double $d0;
+
+        r0 := @this: TestJNIBlockFullGC$2;
+
+        $r1 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2) r0;
+
+        $l2 = $r1.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2: long val$startTime>;
+
+        $r2 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2) r0;
+
+        $i0 = $r2.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2: int val$mainDuration>;
+
+        $l1 = (long) $i0;
+
+        $l4 = $l2 + $l1;
+
+        $r3 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2) r0;
+
+        $i3 = $r3.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2: int val$mainIterations>;
+
+        $r4 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2) r0;
+
+        $d0 = $r4.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2: double val$liveFrac>;
+
+        staticinvoke <gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC: void runTest(long,int,double)>($l4, $i3, $d0);
+
+        return;
+    }
+}

@@ -1,0 +1,25 @@
+public class TestGCBasherWithG1 extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestGCBasherWithG1 r0;
+
+        r0 := @this: TestGCBasherWithG1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.io.IOException
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.stress.gcbasher.TestGCBasher: void main(java.lang.String[])>(r0);
+
+        return;
+    }
+}

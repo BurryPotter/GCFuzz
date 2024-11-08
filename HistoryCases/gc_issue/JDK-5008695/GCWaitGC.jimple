@@ -1,0 +1,66 @@
+public class GCWaitGC extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        GCWaitGC r0;
+
+        r0 := @this: GCWaitGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r0, r9;
+        java.io.IOException $r2;
+        java.lang.String[] r8;
+        java.lang.StringBuilder $r3, $r4, $r6;
+        java.lang.String $r5, $r7;
+        java.io.InputStream $r1;
+
+        r8 := @parameter0: java.lang.String[];
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void print(java.lang.String)>("Waiting ...");
+
+     label1:
+        $r1 = <java.lang.System: java.io.InputStream in>;
+
+        virtualinvoke $r1.<java.io.InputStream: int read()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r2 := @caughtexception;
+
+        r9 = <java.lang.System: java.io.PrintStream err>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Oops: ");
+
+        $r5 = virtualinvoke $r2.<java.io.IOException: java.lang.String toString()>();
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r9.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+     label4:
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+}

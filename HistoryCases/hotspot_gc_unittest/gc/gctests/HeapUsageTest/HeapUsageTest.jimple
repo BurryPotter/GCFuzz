@@ -1,0 +1,275 @@
+public class HeapUsageTest extends nsk.share.gc.GCTestBase
+{
+
+    public void <init>()
+    {
+        HeapUsageTest r0;
+
+        r0 := @this: HeapUsageTest;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        byte[] r13;
+        nsk.share.runner.RunParams $r7;
+        gc.gctests.HeapUsageTest.HeapUsageTest $r30, $r31, $r32;
+        int[] $r0;
+        boolean $z0;
+        gc.gctests.HeapUsageTest.HeapUsageTest$TestValue $r9, $r10, $r11, $r12, $r14, $r25;
+        java.lang.Runtime $r4;
+        nsk.share.test.Stresser $r27;
+        java.lang.StringBuilder $r21, $r22, $r23, $r28;
+        java.lang.Throwable $r17, $r33;
+        long $l13, $l14, l16;
+        gc.gctests.HeapUsageTest.HeapUsageTest$TestValue[] r1;
+        java.util.ArrayList $r26;
+        nsk.share.test.StressOptions $r8;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, i15, i17, i18, $i19, i20, i21, $i22;
+        java.lang.String $r24;
+        double $d0, $d1, $d2, d3;
+        HeapUsageTest r3;
+        nsk.share.TestFailure $r29;
+        nsk.share.log.Log $r20;
+        java.lang.OutOfMemoryError $r15, $r18;
+
+        r3 := @this: HeapUsageTest;
+
+     label01:
+        $r0 = newarray (int)[6];
+
+        $r0[0] = 512;
+
+        $r0[1] = 5;
+
+        $r0[2] = 2048;
+
+        $r0[3] = 3;
+
+        $r0[4] = 3145728;
+
+        $r0[5] = 2;
+
+        $i0 = lengthof $r0;
+
+        $i1 = $i0 / 2;
+
+        r1 = newarray (gc.gctests.HeapUsageTest.HeapUsageTest$TestValue)[$i1];
+
+        i15 = 0;
+
+        goto label03;
+
+     label02:
+        $r25 = new gc.gctests.HeapUsageTest.HeapUsageTest$TestValue;
+
+        $i4 = i15 * 2;
+
+        $i8 = $r0[$i4];
+
+        $i5 = i15 * 2;
+
+        $i6 = $i5 + 1;
+
+        $i7 = $r0[$i6];
+
+        $r30 = (gc.gctests.HeapUsageTest.HeapUsageTest) r3;
+
+        specialinvoke $r25.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: void <init>(gc.gctests.HeapUsageTest.HeapUsageTest,int,int)>($r30, $i8, $i7);
+
+        r1[i15] = $r25;
+
+        i15 = i15 + 1;
+
+     label03:
+        $i2 = lengthof $r0;
+
+        $i3 = $i2 / 2;
+
+        if i15 < $i3 goto label02;
+
+        $r4 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $r26 = new java.util.ArrayList;
+
+        specialinvoke $r26.<java.util.ArrayList: void <init>()>();
+
+        l16 = 0L;
+
+        $r27 = new nsk.share.test.Stresser;
+
+        $r31 = (gc.gctests.HeapUsageTest.HeapUsageTest) r3;
+
+        $r7 = $r31.<gc.gctests.HeapUsageTest.HeapUsageTest: nsk.share.runner.RunParams runParams>;
+
+        $r8 = virtualinvoke $r7.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r27.<nsk.share.test.Stresser: void <init>(nsk.share.test.StressOptions)>($r8);
+
+        virtualinvoke $r27.<nsk.share.test.Stresser: void start(long)>(0L);
+
+     label04:
+        i17 = 0;
+
+        i18 = 0;
+
+        goto label07;
+
+     label05:
+        $r9 = r1[i18];
+
+        $i9 = virtualinvoke $r9.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: int getIterations()>();
+
+        if $i9 <= i17 goto label06;
+
+        $r10 = r1[i18];
+
+        i17 = virtualinvoke $r10.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: int getIterations()>();
+
+     label06:
+        i18 = i18 + 1;
+
+     label07:
+        $i19 = lengthof r1;
+
+        if i18 < $i19 goto label05;
+
+     label08:
+        i20 = 0;
+
+        goto label15;
+
+     label09:
+        i21 = 0;
+
+        goto label14;
+
+     label10:
+        $r11 = r1[i21];
+
+        $i10 = virtualinvoke $r11.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: int getIterations()>();
+
+        if i20 >= $i10 goto label13;
+
+        $z0 = virtualinvoke $r27.<nsk.share.test.Stresser: boolean continueExecution()>();
+
+        if $z0 != 0 goto label12;
+
+     label11:
+        return;
+
+     label12:
+        $r12 = r1[i21];
+
+        $i11 = virtualinvoke $r12.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: int getSize()>();
+
+        r13 = newarray (byte)[$i11];
+
+        virtualinvoke $r26.<java.util.ArrayList: boolean add(java.lang.Object)>(r13);
+
+        $r14 = r1[i21];
+
+        $i12 = virtualinvoke $r14.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: int getSize()>();
+
+        $l13 = (long) $i12;
+
+        l16 = l16 + $l13;
+
+     label13:
+        i21 = i21 + 1;
+
+     label14:
+        $i22 = lengthof r1;
+
+        if i21 < $i22 goto label10;
+
+        i20 = i20 + 1;
+
+     label15:
+        if i20 < i17 goto label09;
+
+        goto label08;
+
+     label16:
+        $r18 := @caughtexception;
+
+        $l14 = virtualinvoke $r4.<java.lang.Runtime: long maxMemory()>();
+
+        $d1 = (double) l16;
+
+        $d0 = (double) $l14;
+
+        $d2 = $d1 / $d0;
+
+        d3 = $d2 * 100.0;
+
+        $r32 = (gc.gctests.HeapUsageTest.HeapUsageTest) r3;
+
+        $r20 = $r32.<gc.gctests.HeapUsageTest.HeapUsageTest: nsk.share.log.Log log>;
+
+        $r28 = new java.lang.StringBuilder;
+
+        specialinvoke $r28.<java.lang.StringBuilder: void <init>(java.lang.String)>("Heap usage percentage ( ");
+
+        $r21 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d3);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" %) ");
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d3);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r20.<nsk.share.log.Log: void info(java.lang.Object)>($r24);
+
+     label17:
+        goto label20;
+
+     label18:
+        $r17 := @caughtexception;
+
+        throw $r17;
+
+     label19:
+        $r15 := @caughtexception;
+
+        $r29 = new nsk.share.TestFailure;
+
+        specialinvoke $r29.<nsk.share.TestFailure: void <init>(java.lang.String,java.lang.Throwable)>("OutOfMemoryError thrown even though it shouldn\'t. Please investigate.", $r15);
+
+        $r33 = (java.lang.Throwable) $r29;
+
+        throw $r33;
+
+     label20:
+        return;
+
+        catch java.lang.OutOfMemoryError from label04 to label11 with label16;
+        catch java.lang.OutOfMemoryError from label12 to label16 with label16;
+        catch java.lang.Throwable from label04 to label11 with label18;
+        catch java.lang.Throwable from label12 to label17 with label18;
+        catch java.lang.OutOfMemoryError from label01 to label11 with label19;
+        catch java.lang.OutOfMemoryError from label12 to label19 with label19;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        gc.gctests.HeapUsageTest.HeapUsageTest $r2;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.HeapUsageTest.HeapUsageTest;
+
+        specialinvoke $r2.<gc.gctests.HeapUsageTest.HeapUsageTest: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

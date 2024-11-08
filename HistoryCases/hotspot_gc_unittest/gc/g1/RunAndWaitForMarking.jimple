@@ -1,0 +1,38 @@
+class RunAndWaitForMarking extends java.lang.Object
+{
+
+    void <init>()
+    {
+        RunAndWaitForMarking r0;
+
+        r0 := @this: RunAndWaitForMarking;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        java.lang.InterruptedException $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label1:
+        staticinvoke <java.lang.Thread: void sleep(long)>(200L);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r0 := @caughtexception;
+
+     label4:
+        return;
+
+        catch java.lang.InterruptedException from label1 to label2 with label3;
+    }
+}

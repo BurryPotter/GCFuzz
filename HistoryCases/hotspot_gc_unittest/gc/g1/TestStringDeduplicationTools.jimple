@@ -1,0 +1,800 @@
+class TestStringDeduplicationTools extends java.lang.Object
+{
+    private static final java.lang.String YoungGC;
+    private static final java.lang.String FullGC;
+    private static final int Xmn;
+    private static final int Xms;
+    private static final int Xmx;
+    private static final int MB;
+    private static final int StringLength;
+    private static java.lang.reflect.Field valueField;
+    private static sun.misc.Unsafe unsafe;
+    private static byte[] dummy;
+    private static final int LargeNumberOfStrings;
+    private static final int SmallNumberOfStrings;
+    private static final int MaxAgeThreshold;
+    private static final int DefaultAgeThreshold;
+    private static final int MinAgeThreshold;
+    private static final int TooLowAgeThreshold;
+    private static final int TooHighAgeThreshold;
+
+    static void <clinit>()
+    {
+        sun.misc.Unsafe $r3;
+        java.lang.RuntimeException $r8;
+        java.lang.reflect.Field $r1, $r5, $r6;
+        java.lang.Exception $r7;
+        java.lang.Class $r0, $r4;
+        java.lang.Object $r2;
+
+     label1:
+        $r0 = class "Lsun/misc/Unsafe;";
+
+        $r1 = virtualinvoke $r0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("theUnsafe");
+
+        virtualinvoke $r1.<java.lang.reflect.Field: void setAccessible(boolean)>(1);
+
+        $r2 = virtualinvoke $r1.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>(null);
+
+        $r3 = (sun.misc.Unsafe) $r2;
+
+        <gc.g1.TestStringDeduplicationTools: sun.misc.Unsafe unsafe> = $r3;
+
+        $r4 = class "Ljava/lang/String;";
+
+        $r5 = virtualinvoke $r4.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("value");
+
+        <gc.g1.TestStringDeduplicationTools: java.lang.reflect.Field valueField> = $r5;
+
+        $r6 = <gc.g1.TestStringDeduplicationTools: java.lang.reflect.Field valueField>;
+
+        virtualinvoke $r6.<java.lang.reflect.Field: void setAccessible(boolean)>(1);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r7 := @caughtexception;
+
+        $r8 = new java.lang.RuntimeException;
+
+        specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r7);
+
+        throw $r8;
+
+     label4:
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    void <init>()
+    {
+        TestStringDeduplicationTools r0;
+
+        r0 := @this: TestStringDeduplicationTools;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static java.lang.Object getValue(java.lang.String)
+    {
+        java.lang.Object $r2;
+        java.lang.String r0;
+        java.lang.RuntimeException $r4;
+        java.lang.reflect.Field $r1;
+        java.lang.Exception $r3;
+
+        r0 := @parameter0: java.lang.String;
+
+     label1:
+        $r1 = <gc.g1.TestStringDeduplicationTools: java.lang.reflect.Field valueField>;
+
+        $r2 = virtualinvoke $r1.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>(r0);
+
+     label2:
+        return $r2;
+
+     label3:
+        $r3 := @caughtexception;
+
+        $r4 = new java.lang.RuntimeException;
+
+        specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r3);
+
+        throw $r4;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    private static void doFullGc(int)
+    {
+        int i0, $i1, $i2, i3;
+        java.lang.String $r5, $r11;
+        java.io.PrintStream $r1, $r7;
+        java.lang.StringBuilder $r0, $r2, $r3, $r4, $r6, $r8, $r9, $r10;
+
+        i0 := @parameter0: int;
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>("Begin: Full GC ");
+
+        $i1 = i3 + 1;
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("End: Full GC ");
+
+        $i2 = i3 + 1;
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r11);
+
+        i3 = i3 + 1;
+
+     label2:
+        if i3 < i0 goto label1;
+
+        return;
+    }
+
+    private static void doYoungGc(int)
+    {
+        byte[] $r6;
+        int i0, $i1, $i2, i3, i4;
+        java.lang.String $r5, $r12;
+        java.io.PrintStream $r1, $r8;
+        java.lang.StringBuilder $r0, $r2, $r3, $r4, $r7, $r9, $r10, $r11;
+
+        i0 := @parameter0: int;
+
+        i3 = 0;
+
+        goto label4;
+
+     label1:
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>("Begin: Young GC ");
+
+        $i1 = i3 + 1;
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        i4 = 0;
+
+        goto label3;
+
+     label2:
+        $r6 = newarray (byte)[128];
+
+        <gc.g1.TestStringDeduplicationTools: byte[] dummy> = $r6;
+
+        i4 = i4 + 1;
+
+     label3:
+        if i4 < 409601 goto label2;
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("End: Young GC ");
+
+        $i2 = i3 + 1;
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        i3 = i3 + 1;
+
+     label4:
+        if i3 < i0 goto label1;
+
+        return;
+    }
+
+    private static void forceDeduplication(int, java.lang.String)
+    {
+        int i0, $i1;
+        java.lang.String r0;
+        boolean $z0;
+
+        i0 := @parameter0: int;
+
+        r0 := @parameter1: java.lang.String;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean equals(java.lang.Object)>("FullGC");
+
+        if $z0 == 0 goto label1;
+
+        staticinvoke <gc.g1.TestStringDeduplicationTools: void doFullGc(int)>(3);
+
+        goto label2;
+
+     label1:
+        $i1 = i0 + 3;
+
+        staticinvoke <gc.g1.TestStringDeduplicationTools: void doYoungGc(int)>($i1);
+
+     label2:
+        return;
+    }
+
+    private static java.lang.String generateString(int)
+    {
+        int i0, $i1;
+        java.lang.StringBuilder $r0, $r1, $r2, $r3;
+        java.lang.String $r4, $r5;
+
+        i0 := @parameter0: int;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(int)>(50);
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("DeduplicationTestString:");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(88);
+
+     label2:
+        $i1 = virtualinvoke $r0.<java.lang.StringBuilder: int length()>();
+
+        if $i1 < 50 goto label1;
+
+        $r5 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r5;
+    }
+
+    private static java.util.ArrayList createStrings(int, int)
+    {
+        java.io.PrintStream $r1;
+        java.lang.RuntimeException $r8;
+        java.util.ArrayList $r6;
+        int i0, i1, $i2, $i3, i4, i5;
+        java.lang.StringBuilder $r0, $r2, $r3, $r4;
+        java.lang.String $r5, $r7;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>("Creating strings: total=");
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", unique=");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $i2 = i0 % i1;
+
+        if $i2 == 0 goto label1;
+
+        $r8 = new java.lang.RuntimeException;
+
+        specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>("Total must be divisible by unique");
+
+        throw $r8;
+
+     label1:
+        $r6 = new java.util.ArrayList;
+
+        specialinvoke $r6.<java.util.ArrayList: void <init>(int)>(i0);
+
+        i4 = 0;
+
+        goto label5;
+
+     label2:
+        i5 = 0;
+
+        goto label4;
+
+     label3:
+        $r7 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.String generateString(int)>(i5);
+
+        virtualinvoke $r6.<java.util.ArrayList: boolean add(java.lang.Object)>($r7);
+
+        i5 = i5 + 1;
+
+     label4:
+        if i5 < i1 goto label3;
+
+        i4 = i4 + 1;
+
+     label5:
+        $i3 = i0 / i1;
+
+        if i4 < $i3 goto label2;
+
+        return $r6;
+    }
+
+    private static void verifyStrings(java.util.ArrayList, int)
+    {
+        boolean $z0, z1, z2, $z3;
+        java.lang.Exception $r22;
+        java.lang.StringBuilder $r7, $r9, $r10, $r11, $r12, $r13, $r16, $r18, $r19;
+        java.util.ArrayList $r0, r1;
+        int i0, $i1, $i2, $i3, i4;
+        java.lang.String $r14, $r20, r24;
+        java.io.PrintStream $r8, $r15, $r17;
+        java.util.Iterator $r2, $r5;
+        java.lang.RuntimeException $r21, $r23;
+        java.lang.Object $r3, $r4, $r6;
+
+        r1 := @parameter0: java.util.ArrayList;
+
+        i0 := @parameter1: int;
+
+        z1 = 0;
+
+        i4 = 0;
+
+        goto label12;
+
+     label01:
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>(int)>(i0);
+
+        $r2 = virtualinvoke r1.<java.util.ArrayList: java.util.Iterator iterator()>();
+
+        goto label06;
+
+     label02:
+        $r3 = interfaceinvoke $r2.<java.util.Iterator: java.lang.Object next()>();
+
+        r24 = (java.lang.String) $r3;
+
+        $r4 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>(r24);
+
+        z2 = 1;
+
+        $r5 = virtualinvoke $r0.<java.util.ArrayList: java.util.Iterator iterator()>();
+
+        goto label04;
+
+     label03:
+        $r6 = interfaceinvoke $r5.<java.util.Iterator: java.lang.Object next()>();
+
+        if $r6 != $r4 goto label04;
+
+        z2 = 0;
+
+        goto label05;
+
+     label04:
+        $z0 = interfaceinvoke $r5.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label03;
+
+     label05:
+        if z2 == 0 goto label06;
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r4);
+
+     label06:
+        $z3 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z3 != 0 goto label02;
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("Verifying strings: total=");
+
+        $i1 = virtualinvoke r1.<java.util.ArrayList: int size()>();
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", uniqueFound=");
+
+        $i2 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", uniqueExpected=");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r14);
+
+        $i3 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+        if $i3 != i0 goto label07;
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("Deduplication completed (as fast as ");
+
+        $r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" iterations)");
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20);
+
+        z1 = 1;
+
+        goto label13;
+
+     label07:
+        $r15 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>("Deduplication not completed, waiting...");
+
+     label08:
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000L);
+
+     label09:
+        goto label11;
+
+     label10:
+        $r22 := @caughtexception;
+
+        $r23 = new java.lang.RuntimeException;
+
+        specialinvoke $r23.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r22);
+
+        throw $r23;
+
+     label11:
+        i4 = i4 + 1;
+
+     label12:
+        if i4 < 10 goto label01;
+
+     label13:
+        if z1 != 0 goto label14;
+
+        $r21 = new java.lang.RuntimeException;
+
+        specialinvoke $r21.<java.lang.RuntimeException: void <init>(java.lang.String)>("String verification failed");
+
+        throw $r21;
+
+     label14:
+        return;
+
+        catch java.lang.Exception from label08 to label09 with label10;
+    }
+
+    private static transient jdk.test.lib.process.OutputAnalyzer runTest(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Object[] $r6;
+        java.lang.String[] $r0, r3, $r5, $r7;
+        java.util.ArrayList $r1;
+        int $i0;
+        java.lang.ProcessBuilder $r8;
+        java.lang.String $r12, $r14;
+        java.io.PrintStream $r11, $r13;
+        java.lang.Process $r10;
+        jdk.test.lib.process.OutputAnalyzer $r9;
+        java.util.List $r2, $r4;
+
+        r3 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[7];
+
+        $r0[0] = "-Xmn50m";
+
+        $r0[1] = "-Xms100m";
+
+        $r0[2] = "-Xmx100m";
+
+        $r0[3] = "-XX:+UseG1GC";
+
+        $r0[4] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[5] = "--add-opens=java.base/java.lang=ALL-UNNAMED";
+
+        $r0[6] = "-XX:+VerifyAfterGC";
+
+        $r1 = new java.util.ArrayList;
+
+        specialinvoke $r1.<java.util.ArrayList: void <init>()>();
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r0);
+
+        virtualinvoke $r1.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r2);
+
+        $r4 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r3);
+
+        virtualinvoke $r1.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r4);
+
+        $i0 = virtualinvoke $r1.<java.util.ArrayList: int size()>();
+
+        $r5 = newarray (java.lang.String)[$i0];
+
+        $r6 = virtualinvoke $r1.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r5);
+
+        $r7 = (java.lang.String[]) $r6;
+
+        $r8 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r7);
+
+        $r9 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r10 = virtualinvoke $r8.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r9.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r10);
+
+        $r11 = <java.lang.System: java.io.PrintStream err>;
+
+        $r12 = virtualinvoke $r9.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStderr()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        $r14 = virtualinvoke $r9.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r14);
+
+        return $r9;
+    }
+
+    public static void testYoungGC() throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "-Xlog:gc,gc+stringdedup=trace";
+
+        $r1 = staticinvoke <gc.g1.TestStringDeduplicationTools$DeduplicationTest: jdk.test.lib.process.OutputAnalyzer run(int,int,java.lang.String,java.lang.String[])>(10000, 3, "YoungGC", $r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Full GC");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Pause Young (Normal) (G1 Evacuation Pause)");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Concurrent String Deduplication");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Deduplicated:");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static void testFullGC() throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "-Xlog:gc,gc+stringdedup=trace";
+
+        $r1 = staticinvoke <gc.g1.TestStringDeduplicationTools$DeduplicationTest: jdk.test.lib.process.OutputAnalyzer run(int,int,java.lang.String,java.lang.String[])>(10000, 3, "FullGC", $r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Pause Young (Normal) (G1 Evacuation Pause)");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Full GC");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Concurrent String Deduplication");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Deduplicated:");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static void testTableResize() throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "-Xlog:gc,gc+stringdedup=trace";
+
+        $r0[1] = "-XX:+StringDeduplicationResizeALot";
+
+        $r1 = staticinvoke <gc.g1.TestStringDeduplicationTools$DeduplicationTest: jdk.test.lib.process.OutputAnalyzer run(int,int,java.lang.String,java.lang.String[])>(10000, 3, "YoungGC", $r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Concurrent String Deduplication");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Deduplicated:");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Resize Count: 0");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static void testTableRehash() throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "-Xlog:gc,gc+stringdedup=trace";
+
+        $r0[1] = "-XX:+StringDeduplicationRehashALot";
+
+        $r1 = staticinvoke <gc.g1.TestStringDeduplicationTools$DeduplicationTest: jdk.test.lib.process.OutputAnalyzer run(int,int,java.lang.String,java.lang.String[])>(10000, 3, "YoungGC", $r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Concurrent String Deduplication");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Deduplicated:");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Rehash Count: 0");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Hash Seed: 0x0");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static void testAgeThreshold() throws java.lang.Exception
+    {
+        java.lang.String[] $r0, $r2, $r4, $r6;
+        jdk.test.lib.process.OutputAnalyzer $r1, $r3, $r5, $r7;
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "-Xlog:gc,gc+stringdedup=trace";
+
+        $r1 = staticinvoke <gc.g1.TestStringDeduplicationTools$DeduplicationTest: jdk.test.lib.process.OutputAnalyzer run(int,int,java.lang.String,java.lang.String[])>(10, 15, "YoungGC", $r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Concurrent String Deduplication");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Deduplicated:");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r2 = newarray (java.lang.String)[1];
+
+        $r2[0] = "-Xlog:gc,gc+stringdedup=trace";
+
+        $r3 = staticinvoke <gc.g1.TestStringDeduplicationTools$DeduplicationTest: jdk.test.lib.process.OutputAnalyzer run(int,int,java.lang.String,java.lang.String[])>(10, 1, "YoungGC", $r2);
+
+        virtualinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Concurrent String Deduplication");
+
+        virtualinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Deduplicated:");
+
+        virtualinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r4 = newarray (java.lang.String)[0];
+
+        $r5 = staticinvoke <gc.g1.TestStringDeduplicationTools$DeduplicationTest: jdk.test.lib.process.OutputAnalyzer run(int,int,java.lang.String,java.lang.String[])>(10, 0, "YoungGC", $r4);
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("outside the allowed range");
+
+        virtualinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+        $r6 = newarray (java.lang.String)[0];
+
+        $r7 = staticinvoke <gc.g1.TestStringDeduplicationTools$DeduplicationTest: jdk.test.lib.process.OutputAnalyzer run(int,int,java.lang.String,java.lang.String[])>(10, 16, "YoungGC", $r6);
+
+        virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("outside the allowed range");
+
+        virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+        return;
+    }
+
+    public static void testPrintOptions() throws java.lang.Exception
+    {
+        java.lang.String[] $r0, $r2;
+        jdk.test.lib.process.OutputAnalyzer $r1, $r3;
+
+        $r0 = newarray (java.lang.String)[0];
+
+        $r1 = staticinvoke <gc.g1.TestStringDeduplicationTools$DeduplicationTest: jdk.test.lib.process.OutputAnalyzer run(int,int,java.lang.String,java.lang.String[])>(10, 3, "YoungGC", $r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Concurrent String Deduplication");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Deduplicated:");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r2 = newarray (java.lang.String)[1];
+
+        $r2[0] = "-Xlog:gc+stringdedup";
+
+        $r3 = staticinvoke <gc.g1.TestStringDeduplicationTools$DeduplicationTest: jdk.test.lib.process.OutputAnalyzer run(int,int,java.lang.String,java.lang.String[])>(10, 3, "YoungGC", $r2);
+
+        virtualinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Concurrent String Deduplication");
+
+        virtualinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Deduplicated:");
+
+        virtualinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static void testInterned() throws java.lang.Exception
+    {
+        jdk.test.lib.process.OutputAnalyzer $r0;
+
+        $r0 = staticinvoke <gc.g1.TestStringDeduplicationTools$InternedTest: jdk.test.lib.process.OutputAnalyzer run()>();
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

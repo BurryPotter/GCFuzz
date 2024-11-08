@@ -1,0 +1,67 @@
+public class CallGC01 extends nsk.share.gc.ThreadedGCTest
+{
+
+    public void <init>()
+    {
+        CallGC01 r0;
+
+        r0 := @this: CallGC01;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        nsk.share.runner.GCRunner $r3;
+        CallGC01 r2;
+        nsk.share.runner.FinRunner $r4;
+        int i0, $i1;
+        java.lang.Runnable $r5, $r6;
+
+        r2 := @this: CallGC01;
+
+        i0 := @parameter0: int;
+
+        $i1 = i0 % 2;
+
+        if $i1 != 0 goto label1;
+
+        $r3 = new nsk.share.runner.GCRunner;
+
+        specialinvoke $r3.<nsk.share.runner.GCRunner: void <init>()>();
+
+        $r5 = (java.lang.Runnable) $r3;
+
+        return $r5;
+
+     label1:
+        $r4 = new nsk.share.runner.FinRunner;
+
+        specialinvoke $r4.<nsk.share.runner.FinRunner: void <init>()>();
+
+        $r6 = (java.lang.Runnable) $r4;
+
+        return $r6;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.CallGC.CallGC01.CallGC01 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.CallGC.CallGC01.CallGC01;
+
+        specialinvoke $r2.<gc.gctests.CallGC.CallGC01.CallGC01: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

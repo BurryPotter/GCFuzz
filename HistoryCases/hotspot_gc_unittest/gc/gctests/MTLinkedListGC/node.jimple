@@ -1,0 +1,33 @@
+class node extends java.lang.Object
+{
+    int[] sink;
+    java.lang.String name;
+    gc.gctests.MTLinkedListGC.node prev;
+    gc.gctests.MTLinkedListGC.node next;
+
+    public void <init>(java.lang.String)
+    {
+        node r0;
+        gc.gctests.MTLinkedListGC.node $r3, $r4;
+        int[] $r2;
+        java.lang.String r1;
+
+        r0 := @this: node;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.gctests.MTLinkedListGC.node) r0;
+
+        $r3.<gc.gctests.MTLinkedListGC.node: java.lang.String name> = r1;
+
+        $r2 = newarray (int)[1000];
+
+        $r4 = (gc.gctests.MTLinkedListGC.node) r0;
+
+        $r4.<gc.gctests.MTLinkedListGC.node: int[] sink> = $r2;
+
+        return;
+    }
+}

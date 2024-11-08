@@ -1,0 +1,176 @@
+class TestMultiThreadStressRSet$Shifter extends java.lang.Thread
+{
+    final gc.stress.TestMultiThreadStressRSet boss;
+    final int sleepTime;
+    final int shift;
+
+    void <init>(gc.stress.TestMultiThreadStressRSet, int, int)
+    {
+        gc.stress.TestMultiThreadStressRSet$Shifter $r2, $r3, $r4;
+        gc.stress.TestMultiThreadStressRSet r1;
+        int i0, i1;
+        TestMultiThreadStressRSet$Shifter r0;
+
+        r0 := @this: TestMultiThreadStressRSet$Shifter;
+
+        r1 := @parameter0: gc.stress.TestMultiThreadStressRSet;
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        $r2 = (gc.stress.TestMultiThreadStressRSet$Shifter) r0;
+
+        $r2.<gc.stress.TestMultiThreadStressRSet$Shifter: gc.stress.TestMultiThreadStressRSet boss> = r1;
+
+        $r3 = (gc.stress.TestMultiThreadStressRSet$Shifter) r0;
+
+        $r3.<gc.stress.TestMultiThreadStressRSet$Shifter: int sleepTime> = i0;
+
+        $r4 = (gc.stress.TestMultiThreadStressRSet$Shifter) r0;
+
+        $r4.<gc.stress.TestMultiThreadStressRSet$Shifter: int shift> = i1;
+
+        return;
+    }
+
+    public void run()
+    {
+        gc.stress.TestMultiThreadStressRSet $r1, $r2, $r3, $r13, $r15;
+        gc.stress.TestMultiThreadStressRSet$Shifter $r16, $r17, $r18, $r19, $r20, $r21, $r22;
+        boolean $z0, $z1;
+        java.util.List $r4;
+        java.lang.Throwable $r11;
+        java.lang.Object[] r6;
+        long $l1;
+        int $i0, $i2, $i3, $i4, $i5, $i6, i7, i8;
+        java.lang.String $r14;
+        java.io.PrintStream $r8, $r9, $r12;
+        sun.hotspot.WhiteBox $r7, $r10;
+        TestMultiThreadStressRSet$Shifter r0;
+        java.lang.Object $r5;
+
+        r0 := @this: TestMultiThreadStressRSet$Shifter;
+
+     label01:
+        goto label08;
+
+     label02:
+        $r16 = (gc.stress.TestMultiThreadStressRSet$Shifter) r0;
+
+        $i0 = $r16.<gc.stress.TestMultiThreadStressRSet$Shifter: int sleepTime>;
+
+        $l1 = (long) $i0;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>($l1);
+
+        $r17 = (gc.stress.TestMultiThreadStressRSet$Shifter) r0;
+
+        $r1 = $r17.<gc.stress.TestMultiThreadStressRSet$Shifter: gc.stress.TestMultiThreadStressRSet boss>;
+
+        $i3 = $r1.<gc.stress.TestMultiThreadStressRSet: int windowStart>;
+
+        $r18 = (gc.stress.TestMultiThreadStressRSet$Shifter) r0;
+
+        $i2 = $r18.<gc.stress.TestMultiThreadStressRSet$Shifter: int shift>;
+
+        $i4 = $i3 + $i2;
+
+        $r1.<gc.stress.TestMultiThreadStressRSet: int windowStart> = $i4;
+
+        i7 = 0;
+
+        goto label06;
+
+     label03:
+        $r19 = (gc.stress.TestMultiThreadStressRSet$Shifter) r0;
+
+        $r3 = $r19.<gc.stress.TestMultiThreadStressRSet$Shifter: gc.stress.TestMultiThreadStressRSet boss>;
+
+        $r4 = $r3.<gc.stress.TestMultiThreadStressRSet: java.util.List BUFFER>;
+
+        $r5 = interfaceinvoke $r4.<java.util.List: java.lang.Object get(int)>(i7);
+
+        r6 = (java.lang.Object[]) $r5;
+
+        i8 = 0;
+
+        goto label05;
+
+     label04:
+        r6[i8] = null;
+
+        i8 = i8 + 1;
+
+     label05:
+        $i6 = lengthof r6;
+
+        if i8 < $i6 goto label04;
+
+        i7 = i7 + 1;
+
+     label06:
+        $r20 = (gc.stress.TestMultiThreadStressRSet$Shifter) r0;
+
+        $r2 = $r20.<gc.stress.TestMultiThreadStressRSet$Shifter: gc.stress.TestMultiThreadStressRSet boss>;
+
+        $i5 = $r2.<gc.stress.TestMultiThreadStressRSet: int OLD>;
+
+        if i7 < $i5 goto label03;
+
+        $r7 = <gc.stress.TestMultiThreadStressRSet: sun.hotspot.WhiteBox WB>;
+
+        $z0 = virtualinvoke $r7.<sun.hotspot.WhiteBox: boolean g1InConcurrentMark()>();
+
+        if $z0 != 0 goto label07;
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>("%% start CMC");
+
+        $r10 = <gc.stress.TestMultiThreadStressRSet: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r10.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        goto label08;
+
+     label07:
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>("%% CMC is already in progress");
+
+     label08:
+        $r21 = (gc.stress.TestMultiThreadStressRSet$Shifter) r0;
+
+        $r15 = $r21.<gc.stress.TestMultiThreadStressRSet$Shifter: gc.stress.TestMultiThreadStressRSet boss>;
+
+        $z1 = $r15.<gc.stress.TestMultiThreadStressRSet: boolean isEnough>;
+
+        if $z1 == 0 goto label02;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r11 := @caughtexception;
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r11.<java.lang.Throwable: void printStackTrace(java.io.PrintStream)>($r12);
+
+        $r22 = (gc.stress.TestMultiThreadStressRSet$Shifter) r0;
+
+        $r13 = $r22.<gc.stress.TestMultiThreadStressRSet$Shifter: gc.stress.TestMultiThreadStressRSet boss>;
+
+        $r14 = virtualinvoke $r11.<java.lang.Throwable: java.lang.String getMessage()>();
+
+        $r13.<gc.stress.TestMultiThreadStressRSet: java.lang.String errorMessage> = $r14;
+
+     label11:
+        return;
+
+        catch java.lang.Throwable from label01 to label09 with label10;
+    }
+}

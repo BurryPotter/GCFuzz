@@ -1,0 +1,588 @@
+public final class ExternalHashingTest extends java.lang.Object
+{
+    static java.util.Random rand;
+    public static volatile boolean startingGun;
+    public static volatile boolean finishHashing;
+    public static volatile boolean finishLocking;
+    private static final int BATCH_SIZE;
+    static java.util.Vector allObjects;
+    static java.util.Vector allHashes;
+    private static final long DEFAULT_DURATION;
+    public static java.lang.Object[] garbageMonger;
+
+    static void <clinit>()
+    {
+        java.util.Random $r0;
+        java.util.Vector $r1, $r2;
+
+        $r0 = new java.util.Random;
+
+        specialinvoke $r0.<java.util.Random: void <init>()>();
+
+        <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.util.Random rand> = $r0;
+
+        $r1 = new java.util.Vector;
+
+        specialinvoke $r1.<java.util.Vector: void <init>()>();
+
+        <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.util.Vector allObjects> = $r1;
+
+        $r2 = new java.util.Vector;
+
+        specialinvoke $r2.<java.util.Vector: void <init>()>();
+
+        <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.util.Vector allHashes> = $r2;
+
+        return;
+    }
+
+    private void <init>()
+    {
+        ExternalHashingTest r0;
+
+        r0 := @this: ExternalHashingTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void pause()
+    {
+        java.lang.Exception $r0;
+
+     label1:
+        staticinvoke <java.lang.Thread: void yield()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r0 := @caughtexception;
+
+        virtualinvoke $r0.<java.lang.Exception: void printStackTrace()>();
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label4:
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    private static java.lang.String getDateString()
+    {
+        java.util.Date $r1;
+        java.text.SimpleDateFormat $r0;
+        long $l0;
+        java.lang.String $r2;
+
+        $r0 = new java.text.SimpleDateFormat;
+
+        specialinvoke $r0.<java.text.SimpleDateFormat: void <init>(java.lang.String)>("MMM dd, yyyy HH:mm:ss z");
+
+        $r1 = new java.util.Date;
+
+        specialinvoke $r1.<java.util.Date: void <init>()>();
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        virtualinvoke $r1.<java.util.Date: void setTime(long)>($l0);
+
+        $r2 = virtualinvoke $r0.<java.text.SimpleDateFormat: java.lang.String format(java.util.Date)>($r1);
+
+        return $r2;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Integer $r40;
+        java.util.Vector $r36, $r38, $r45, $r63;
+        byte $b5, $b9;
+        java.lang.StringBuilder $r7, $r8, $r9, $r10, $r15, $r16, $r21, $r22, $r27, $r28, $r33, $r34, $r43, $r44, $r46, $r51, $r52, $r54, $r55, $r57, $r67, $r68, $r69, $r70, $r71, $r72, $r73;
+        long $l4, $l6, $l7, $l8, l14;
+        java.lang.String $r1, $r2, $r3, $r6, $r11, $r14, $r17, $r20, $r23, $r26, $r29, $r32, $r35, $r47, $r50, $r53, $r56, $r58;
+        java.lang.NumberFormatException $r61;
+        java.lang.RuntimeException $r64, $r65, $r66;
+        boolean $z0;
+        java.lang.String[] r0;
+        int $i0, $i1, $i2, $i3, $i10, $i11, $i12, $i13, i15, i16, i17, $i18, $i19, $i20;
+        java.io.PrintStream $r5, $r13, $r19, $r25, $r31, $r42, $r49;
+        java.lang.Object $r37, $r39;
+
+        r0 := @parameter0: java.lang.String[];
+
+        l14 = 10000L;
+
+     label01:
+        i15 = 0;
+
+        goto label05;
+
+     label02:
+        $r2 = "-stressTime";
+
+        $r1 = r0[i15];
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label04;
+
+        $i2 = i15 + 1;
+
+        $i1 = lengthof r0;
+
+        if $i2 != $i1 goto label03;
+
+        $r64 = new java.lang.RuntimeException;
+
+        specialinvoke $r64.<java.lang.RuntimeException: void <init>(java.lang.String)>("Test bug: value of -stressTime option absents");
+
+        throw $r64;
+
+     label03:
+        $i3 = i15 + 1;
+
+        $r3 = r0[$i3];
+
+        $l4 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r3);
+
+        l14 = $l4;
+
+        $b5 = $l4 cmp 0L;
+
+        $i19 = (int) $b5;
+
+        if $i19 > 0 goto label08;
+
+        $r65 = new java.lang.RuntimeException;
+
+        specialinvoke $r65.<java.lang.RuntimeException: void <init>(java.lang.String)>("Test bug: value of -stressTime option is not a positive number");
+
+        throw $r65;
+
+     label04:
+        i15 = i15 + 1;
+
+     label05:
+        $i0 = lengthof r0;
+
+        if i15 < $i0 goto label02;
+
+     label06:
+        goto label08;
+
+     label07:
+        $r61 := @caughtexception;
+
+        $r66 = new java.lang.RuntimeException;
+
+        specialinvoke $r66.<java.lang.RuntimeException: void <init>(java.lang.String,java.lang.Throwable)>("Test bug: Exception occured while parsing -stressTime option\'s value", $r61);
+
+        throw $r66;
+
+     label08:
+        $l6 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r67 = new java.lang.StringBuilder;
+
+        specialinvoke $r67.<java.lang.StringBuilder: void <init>(java.lang.String)>("[");
+
+        $r6 = staticinvoke <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.lang.String getDateString()>();
+
+        $r7 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("] Test duration is: ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l14);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r11);
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        $r68 = new java.lang.StringBuilder;
+
+        specialinvoke $r68.<java.lang.StringBuilder: void <init>(java.lang.String)>("[");
+
+        $r14 = staticinvoke <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.lang.String getDateString()>();
+
+        $r15 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("] Do munge objects...");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+        goto label12;
+
+     label09:
+        i16 = 0;
+
+        goto label11;
+
+     label10:
+        staticinvoke <gc.hashcode.ExternalHashingTest.ExternalHashingTest: void mungeObjects()>();
+
+        i16 = i16 + 1;
+
+     label11:
+        if i16 < 100 goto label10;
+
+        $r19 = <java.lang.System: java.io.PrintStream out>;
+
+        $r69 = new java.lang.StringBuilder;
+
+        specialinvoke $r69.<java.lang.StringBuilder: void <init>(java.lang.String)>("[");
+
+        $r20 = staticinvoke <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.lang.String getDateString()>();
+
+        $r21 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("] The next 100 objects are munged...");
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>($r23);
+
+     label12:
+        $l7 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l8 = $l7 - $l6;
+
+        $b9 = $l8 cmp l14;
+
+        $i20 = (int) $b9;
+
+        if $i20 < 0 goto label09;
+
+        $r25 = <java.lang.System: java.io.PrintStream out>;
+
+        $r70 = new java.lang.StringBuilder;
+
+        specialinvoke $r70.<java.lang.StringBuilder: void <init>(java.lang.String)>("[");
+
+        $r26 = staticinvoke <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.lang.String getDateString()>();
+
+        $r27 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("] Force a GC...");
+
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r29);
+
+        <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.lang.Object[] garbageMonger> = null;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r31 = <java.lang.System: java.io.PrintStream out>;
+
+        $r71 = new java.lang.StringBuilder;
+
+        specialinvoke $r71.<java.lang.StringBuilder: void <init>(java.lang.String)>("[");
+
+        $r32 = staticinvoke <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.lang.String getDateString()>();
+
+        $r33 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("] Check hash codes...");
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r35);
+
+        i17 = 0;
+
+        goto label15;
+
+     label13:
+        $r36 = <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.util.Vector allObjects>;
+
+        $r37 = virtualinvoke $r36.<java.util.Vector: java.lang.Object elementAt(int)>(i17);
+
+        $r38 = <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.util.Vector allHashes>;
+
+        $r39 = virtualinvoke $r38.<java.util.Vector: java.lang.Object elementAt(int)>(i17);
+
+        $r40 = (java.lang.Integer) $r39;
+
+        $i10 = virtualinvoke $r40.<java.lang.Integer: int intValue()>();
+
+        $i11 = virtualinvoke $r37.<java.lang.Object: int hashCode()>();
+
+        if $i11 == $i10 goto label14;
+
+        $r42 = <java.lang.System: java.io.PrintStream out>;
+
+        $r72 = new java.lang.StringBuilder;
+
+        specialinvoke $r72.<java.lang.StringBuilder: void <init>(java.lang.String)>("Inconsistent hash code found (Object ");
+
+        $r43 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i17);
+
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" out of ");
+
+        $r45 = <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.util.Vector allObjects>;
+
+        $i12 = virtualinvoke $r45.<java.util.Vector: int size()>();
+
+        $r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12);
+
+        $r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r42.<java.io.PrintStream: void println(java.lang.String)>($r47);
+
+        $r49 = <java.lang.System: java.io.PrintStream out>;
+
+        $r73 = new java.lang.StringBuilder;
+
+        specialinvoke $r73.<java.lang.StringBuilder: void <init>(java.lang.String)>("Object = ");
+
+        $r50 = virtualinvoke $r37.<java.lang.Object: java.lang.String toString()>();
+
+        $r51 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r50);
+
+        $r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; hashCode = 0x");
+
+        $i13 = virtualinvoke $r37.<java.lang.Object: int hashCode()>();
+
+        $r53 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>($i13);
+
+        $r54 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r53);
+
+        $r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; expected = 0x");
+
+        $r56 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>($i10);
+
+        $r57 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r56);
+
+        $r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.String)>($r58);
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label14:
+        i17 = i17 + 1;
+
+     label15:
+        $r63 = <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.util.Vector allObjects>;
+
+        $i18 = virtualinvoke $r63.<java.util.Vector: int size()>();
+
+        if i17 < $i18 goto label13;
+
+        staticinvoke <java.lang.System: void exit(int)>(95);
+
+        return;
+
+        catch java.lang.NumberFormatException from label01 to label06 with label07;
+    }
+
+    private static void mungeObjects()
+    {
+        java.lang.Object[] r0, $r2, $r3, $r9, $r15;
+        gc.hashcode.ExternalHashingTest.HasherThread $r20;
+        java.lang.Integer $r22;
+        java.lang.Runnable $r25, $r26;
+        java.util.Vector $r11, $r13;
+        int[] r4;
+        java.lang.Thread $r19, $r21;
+        int $i0, $i1, $i2, i3, i4;
+        java.lang.InternalError $r24;
+        boolean $z0, $z1;
+        gc.hashcode.ExternalHashingTest.LockerThread $r18;
+        java.lang.Object $r10, $r17, $r23;
+
+        <gc.hashcode.ExternalHashingTest.ExternalHashingTest: boolean startingGun> = 0;
+
+        <gc.hashcode.ExternalHashingTest.ExternalHashingTest: boolean finishHashing> = 0;
+
+        <gc.hashcode.ExternalHashingTest.ExternalHashingTest: boolean finishLocking> = 0;
+
+        r0 = newarray (java.lang.Object)[20];
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        $r17 = new java.lang.Object;
+
+        specialinvoke $r17.<java.lang.Object: void <init>()>();
+
+        r0[i3] = $r17;
+
+        i3 = i3 + 1;
+
+     label2:
+        $i0 = lengthof r0;
+
+        if i3 < $i0 goto label1;
+
+        $r2 = staticinvoke <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.lang.Object[] randomize(java.lang.Object[])>(r0);
+
+        $r3 = staticinvoke <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.lang.Object[] randomize(java.lang.Object[])>(r0);
+
+        r4 = newarray (int)[20];
+
+        $r18 = new gc.hashcode.ExternalHashingTest.LockerThread;
+
+        specialinvoke $r18.<gc.hashcode.ExternalHashingTest.LockerThread: void <init>(java.lang.Object[])>($r2);
+
+        $r19 = new java.lang.Thread;
+
+        $r25 = (java.lang.Runnable) $r18;
+
+        specialinvoke $r19.<java.lang.Thread: void <init>(java.lang.Runnable)>($r25);
+
+        $r21 = new java.lang.Thread;
+
+        $r20 = new gc.hashcode.ExternalHashingTest.HasherThread;
+
+        specialinvoke $r20.<gc.hashcode.ExternalHashingTest.HasherThread: void <init>(java.lang.Object[],int[])>($r3, r4);
+
+        $r26 = (java.lang.Runnable) $r20;
+
+        specialinvoke $r21.<java.lang.Thread: void <init>(java.lang.Runnable)>($r26);
+
+        virtualinvoke $r19.<java.lang.Thread: void start()>();
+
+        virtualinvoke $r21.<java.lang.Thread: void start()>();
+
+        <gc.hashcode.ExternalHashingTest.ExternalHashingTest: boolean startingGun> = 1;
+
+        goto label4;
+
+     label3:
+        staticinvoke <gc.hashcode.ExternalHashingTest.ExternalHashingTest: void pause()>();
+
+     label4:
+        $z1 = <gc.hashcode.ExternalHashingTest.ExternalHashingTest: boolean finishLocking>;
+
+        if $z1 == 0 goto label3;
+
+        $z0 = <gc.hashcode.ExternalHashingTest.ExternalHashingTest: boolean finishHashing>;
+
+        if $z0 == 0 goto label3;
+
+        $r9 = newarray (java.lang.Object)[20];
+
+        <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.lang.Object[] garbageMonger> = $r9;
+
+        i4 = 0;
+
+        goto label6;
+
+     label5:
+        $r11 = <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.util.Vector allObjects>;
+
+        $r10 = $r3[i4];
+
+        virtualinvoke $r11.<java.util.Vector: boolean add(java.lang.Object)>($r10);
+
+        $r13 = <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.util.Vector allHashes>;
+
+        $r22 = new java.lang.Integer;
+
+        $i1 = r4[i4];
+
+        specialinvoke $r22.<java.lang.Integer: void <init>(int)>($i1);
+
+        virtualinvoke $r13.<java.util.Vector: boolean add(java.lang.Object)>($r22);
+
+        $r15 = <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.lang.Object[] garbageMonger>;
+
+        $r23 = new java.lang.Object;
+
+        specialinvoke $r23.<java.lang.Object: void <init>()>();
+
+        $r15[i4] = $r23;
+
+        i4 = i4 + 1;
+
+     label6:
+        if i4 < 20 goto label5;
+
+        $i2 = virtualinvoke $r18.<gc.hashcode.ExternalHashingTest.LockerThread: int getCount()>();
+
+        if $i2 == 20 goto label7;
+
+        $r24 = new java.lang.InternalError;
+
+        specialinvoke $r24.<java.lang.InternalError: void <init>(java.lang.String)>("should not get here");
+
+        throw $r24;
+
+     label7:
+        return;
+    }
+
+    private static java.lang.Object[] randomize(java.lang.Object[])
+    {
+        java.lang.Object[] r1, r5;
+        java.util.Random $r3;
+        java.util.Vector $r0;
+        int $i0, $i1, $i2, $i3, $i4, $i5, i6, i7;
+        java.lang.Object $r2, $r4;
+
+        r1 := @parameter0: java.lang.Object[];
+
+        $r0 = new java.util.Vector;
+
+        specialinvoke $r0.<java.util.Vector: void <init>()>();
+
+        i6 = 0;
+
+        goto label2;
+
+     label1:
+        $r2 = r1[i6];
+
+        virtualinvoke $r0.<java.util.Vector: boolean add(java.lang.Object)>($r2);
+
+        i6 = i6 + 1;
+
+     label2:
+        $i0 = lengthof r1;
+
+        if i6 < $i0 goto label1;
+
+        $i1 = lengthof r1;
+
+        r5 = newarray (java.lang.Object)[$i1];
+
+        i7 = 0;
+
+        goto label4;
+
+     label3:
+        $r3 = <gc.hashcode.ExternalHashingTest.ExternalHashingTest: java.util.Random rand>;
+
+        $i3 = lengthof r1;
+
+        $i4 = $i3 - i7;
+
+        $i5 = virtualinvoke $r3.<java.util.Random: int nextInt(int)>($i4);
+
+        $r4 = virtualinvoke $r0.<java.util.Vector: java.lang.Object remove(int)>($i5);
+
+        r5[i7] = $r4;
+
+        i7 = i7 + 1;
+
+     label4:
+        $i2 = lengthof r1;
+
+        if i7 < $i2 goto label3;
+
+        return r5;
+    }
+}

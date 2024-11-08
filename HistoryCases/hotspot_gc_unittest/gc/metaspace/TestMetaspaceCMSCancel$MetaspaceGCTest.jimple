@@ -1,0 +1,33 @@
+class TestMetaspaceCMSCancel$MetaspaceGCTest extends java.lang.Object
+{
+
+    void <init>()
+    {
+        TestMetaspaceCMSCancel$MetaspaceGCTest r0;
+
+        r0 := @this: TestMetaspaceCMSCancel$MetaspaceGCTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        sun.hotspot.WhiteBox $r0;
+        java.lang.String[] r1;
+        boolean $z0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $z0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean metaspaceShouldConcurrentCollect()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertFalse(boolean)>($z0);
+
+        return;
+    }
+}

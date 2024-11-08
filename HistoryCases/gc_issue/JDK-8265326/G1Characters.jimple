@@ -1,0 +1,30 @@
+public class G1Characters extends java.lang.Object
+{
+    private static java.lang.Object leak;
+
+    public void <init>()
+    {
+        G1Characters r0;
+
+        r0 := @this: G1Characters;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static transient void main(java.lang.String[])
+    {
+        byte[] $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+     label1:
+        $r0 = newarray (byte)[10000000];
+
+        <G1Characters: java.lang.Object leak> = $r0;
+
+        goto label1;
+    }
+}

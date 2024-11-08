@@ -1,0 +1,193 @@
+public class PhantomReferenceTest extends nsk.share.gc.GCTestBase
+{
+
+    public void <init>()
+    {
+        PhantomReferenceTest r0;
+
+        r0 := @this: PhantomReferenceTest;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        return;
+    }
+
+    public final void run()
+    {
+        byte[] r15;
+        nsk.share.runner.RunParams $r1, $r11;
+        gc.gctests.PhantomReference.PhantomReferenceTest.PhantomReferenceTest $r26, $r27;
+        java.util.Random $r17;
+        java.lang.Integer $r21;
+        boolean $z0, $z1;
+        gc.gctests.PhantomReference.PRHelper $r23;
+        nsk.share.test.Stresser $r24;
+        java.lang.Throwable $r29;
+        nsk.share.test.ExecutionController $r28;
+        long $l0, l1;
+        java.util.HashMap $r19;
+        java.lang.ref.ReferenceQueue $r18;
+        java.util.ArrayList $r20;
+        nsk.share.test.StressOptions $r12;
+        PhantomReferenceTest r0;
+        int $i2, $i3, $i4, $i5, i6, i7;
+        gc.gctests.PhantomReference.PhantomHelper r16, $r22;
+        java.lang.String $r13;
+        double $d0, $d1, $d2;
+        nsk.share.TestFailure $r25;
+        java.lang.Object $r9;
+
+        r0 := @this: PhantomReferenceTest;
+
+        $r26 = (gc.gctests.PhantomReference.PhantomReferenceTest.PhantomReferenceTest) r0;
+
+        $r1 = $r26.<gc.gctests.PhantomReference.PhantomReferenceTest.PhantomReferenceTest: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r1.<nsk.share.runner.RunParams: long getSeed()>();
+
+        $r17 = new java.util.Random;
+
+        specialinvoke $r17.<java.util.Random: void <init>(long)>($l0);
+
+        l1 = (long) 30720;
+
+        $r18 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r18.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r19 = new java.util.HashMap;
+
+        specialinvoke $r19.<java.util.HashMap: void <init>()>();
+
+        $r20 = new java.util.ArrayList;
+
+        specialinvoke $r20.<java.util.ArrayList: void <init>()>();
+
+        i6 = 0;
+
+        goto label4;
+
+     label1:
+        $d0 = virtualinvoke $r17.<java.util.Random: double nextDouble()>();
+
+        $d1 = (double) l1;
+
+        $d2 = $d0 * $d1;
+
+        $i2 = (int) $d2;
+
+        i7 = $i2 + 2048;
+
+        r15 = newarray (byte)[i7];
+
+        $r21 = new java.lang.Integer;
+
+        $i3 = virtualinvoke r15.<java.lang.Object: int hashCode()>();
+
+        specialinvoke $r21.<java.lang.Integer: void <init>(int)>($i3);
+
+        $z0 = virtualinvoke $r19.<java.util.HashMap: boolean containsKey(java.lang.Object)>($r21);
+
+        if $z0 == 0 goto label2;
+
+        $r9 = virtualinvoke $r19.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r21);
+
+        r16 = (gc.gctests.PhantomReference.PhantomHelper) $r9;
+
+        virtualinvoke r16.<gc.gctests.PhantomReference.PhantomHelper: void increaseHashCounter()>();
+
+        virtualinvoke $r19.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r21, r16);
+
+        goto label3;
+
+     label2:
+        $r22 = new gc.gctests.PhantomReference.PhantomHelper;
+
+        $i4 = virtualinvoke r15.<java.lang.Object: int hashCode()>();
+
+        specialinvoke $r22.<gc.gctests.PhantomReference.PhantomHelper: void <init>(int)>($i4);
+
+        virtualinvoke $r19.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r21, $r22);
+
+     label3:
+        $r23 = new gc.gctests.PhantomReference.PRHelper;
+
+        specialinvoke $r23.<gc.gctests.PhantomReference.PRHelper: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>(r15, $r18);
+
+        $i5 = virtualinvoke r15.<java.lang.Object: int hashCode()>();
+
+        virtualinvoke $r23.<gc.gctests.PhantomReference.PRHelper: void setReferentHashCode(int)>($i5);
+
+        virtualinvoke $r20.<java.util.ArrayList: boolean add(java.lang.Object)>($r23);
+
+        i6 = i6 + 1;
+
+     label4:
+        if i6 < 1000 goto label1;
+
+        $r24 = new nsk.share.test.Stresser;
+
+        $r27 = (gc.gctests.PhantomReference.PhantomReferenceTest.PhantomReferenceTest) r0;
+
+        $r11 = $r27.<gc.gctests.PhantomReference.PhantomReferenceTest.PhantomReferenceTest: nsk.share.runner.RunParams runParams>;
+
+        $r12 = virtualinvoke $r11.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r24.<nsk.share.test.Stresser: void <init>(nsk.share.test.StressOptions)>($r12);
+
+        virtualinvoke $r24.<nsk.share.test.Stresser: void start(long)>(0L);
+
+        $r28 = (nsk.share.test.ExecutionController) $r24;
+
+        staticinvoke <nsk.share.gc.gp.GarbageUtils: int eatMemory(nsk.share.test.ExecutionController)>($r28);
+
+        $z1 = virtualinvoke $r24.<nsk.share.test.Stresser: boolean continueExecution()>();
+
+        if $z1 != 0 goto label5;
+
+        return;
+
+     label5:
+        $r13 = staticinvoke <gc.gctests.PhantomReference.PhantomHelper: java.lang.String checkAllHashCodes(java.lang.ref.ReferenceQueue,java.util.HashMap,long)>($r18, $r19, 30000L);
+
+        if $r13 == null goto label6;
+
+        virtualinvoke $r20.<java.util.ArrayList: void clear()>();
+
+        virtualinvoke $r19.<java.util.HashMap: void clear()>();
+
+        $r25 = new nsk.share.TestFailure;
+
+        specialinvoke $r25.<nsk.share.TestFailure: void <init>(java.lang.String)>($r13);
+
+        $r29 = (java.lang.Throwable) $r25;
+
+        throw $r29;
+
+     label6:
+        virtualinvoke $r20.<java.util.ArrayList: void clear()>();
+
+        virtualinvoke $r19.<java.util.HashMap: void clear()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.gctests.PhantomReference.PhantomReferenceTest.PhantomReferenceTest $r2;
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.PhantomReference.PhantomReferenceTest.PhantomReferenceTest;
+
+        specialinvoke $r2.<gc.gctests.PhantomReference.PhantomReferenceTest.PhantomReferenceTest: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

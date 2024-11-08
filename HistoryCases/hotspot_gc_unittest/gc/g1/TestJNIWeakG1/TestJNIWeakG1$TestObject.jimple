@@ -1,0 +1,23 @@
+final class TestJNIWeakG1$TestObject extends java.lang.Object
+{
+    public final int value;
+
+    public void <init>(int)
+    {
+        TestJNIWeakG1$TestObject r0;
+        int i0;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject $r1;
+
+        r0 := @this: TestJNIWeakG1$TestObject;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject) r0;
+
+        $r1.<gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject: int value> = i0;
+
+        return;
+    }
+}

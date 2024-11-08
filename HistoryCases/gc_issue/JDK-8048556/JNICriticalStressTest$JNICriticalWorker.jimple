@@ -1,0 +1,88 @@
+class JNICriticalStressTest$JNICriticalWorker extends java.lang.Object implements java.lang.Runnable
+{
+    private int[] prev;
+    private int count;
+
+    int[] newArray()
+    {
+        JNICriticalStressTest$JNICriticalWorker r1;
+        int[] r0;
+        int $i0, $i1, $i2, $i3, $i4, i5;
+
+        r1 := @this: JNICriticalStressTest$JNICriticalWorker;
+
+        r0 = newarray (int)[1024];
+
+        i5 = 0;
+
+     label1:
+        $i0 = lengthof r0;
+
+        if i5 >= $i0 goto label2;
+
+        $i3 = r1.<JNICriticalStressTest$JNICriticalWorker: int count>;
+
+        $i4 = $i3 + i5;
+
+        r0[i5] = $i4;
+
+        i5 = i5 + 1;
+
+        goto label1;
+
+     label2:
+        $i1 = r1.<JNICriticalStressTest$JNICriticalWorker: int count>;
+
+        $i2 = $i1 + 1;
+
+        r1.<JNICriticalStressTest$JNICriticalWorker: int count> = $i2;
+
+        return r0;
+    }
+
+    private void doStep()
+    {
+        JNICriticalStressTest$JNICriticalWorker r0;
+        int[] $r1, $r2;
+
+        r0 := @this: JNICriticalStressTest$JNICriticalWorker;
+
+        $r1 = virtualinvoke r0.<JNICriticalStressTest$JNICriticalWorker: int[] newArray()>();
+
+        $r2 = r0.<JNICriticalStressTest$JNICriticalWorker: int[] prev>;
+
+        staticinvoke <JNICriticalStressTest: void access$000(int[],int[])>($r2, $r1);
+
+        r0.<JNICriticalStressTest$JNICriticalWorker: int[] prev> = $r1;
+
+        return;
+    }
+
+    public void run()
+    {
+        JNICriticalStressTest$JNICriticalWorker r0;
+
+        r0 := @this: JNICriticalStressTest$JNICriticalWorker;
+
+     label1:
+        specialinvoke r0.<JNICriticalStressTest$JNICriticalWorker: void doStep()>();
+
+        goto label1;
+    }
+
+    void <init>()
+    {
+        JNICriticalStressTest$JNICriticalWorker r0;
+        int[] $r1;
+
+        r0 := @this: JNICriticalStressTest$JNICriticalWorker;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = virtualinvoke r0.<JNICriticalStressTest$JNICriticalWorker: int[] newArray()>();
+
+        r0.<JNICriticalStressTest$JNICriticalWorker: int[] prev> = $r1;
+
+        return;
+    }
+}

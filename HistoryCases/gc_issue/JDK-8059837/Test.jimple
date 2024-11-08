@@ -1,0 +1,262 @@
+public class Test extends java.lang.Object
+{
+    private static final int MAX_TENURING_THRESHOLD;
+    private static final int MEMORY_TO_ALLOCATE;
+    private static final int G1_HEAP_REGION_SIZE;
+    private static final int HUMONGOUS_ARRAY_LENGTH;
+    private static java.lang.Object[] garbage;
+    private static java.lang.Object temp;
+
+    public void <init>()
+    {
+        Test r0;
+
+        r0 := @this: Test;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r18, $r19, $r20;
+        byte $b4, $b6, $b8;
+        java.lang.StringBuilder $r8, $r9, $r13, $r15, $r23, $r24;
+        java.lang.Object[] $r4, $r21;
+        long $l0, l1, $l3, $l5, $l7, $l9, $l10;
+        java.lang.String[] r22;
+        java.lang.management.MemoryPoolMXBean $r0, $r1;
+        java.lang.management.GarbageCollectorMXBean $r2;
+        int $i2, i11, $i12, $i13, $i14;
+        java.lang.String $r10, $r16;
+        java.lang.management.MemoryUsage $r3, $r5, $r14;
+        java.io.PrintStream $r7, $r12, $r17;
+
+        r22 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <Test: java.lang.management.MemoryPoolMXBean getMemoryPoolBean(java.lang.String)>("survivor");
+
+        $r1 = staticinvoke <Test: java.lang.management.MemoryPoolMXBean getMemoryPoolBean(java.lang.String)>("old");
+
+        $r2 = staticinvoke <Test: java.lang.management.GarbageCollectorMXBean getYoungGCBean()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r3 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l0 = virtualinvoke $r3.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        l1 = $l0 + 16777216L;
+
+        i11 = 0;
+
+     label1:
+        $r4 = <Test: java.lang.Object[] garbage>;
+
+        $i2 = lengthof $r4;
+
+        if i11 >= $i2 goto label2;
+
+        $r21 = <Test: java.lang.Object[] garbage>;
+
+        $r20 = newarray (byte)[0];
+
+        $r21[i11] = $r20;
+
+        i11 = i11 + 1;
+
+        goto label1;
+
+     label2:
+        $l3 = interfaceinvoke $r2.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        $b4 = $l3 cmp 15L;
+
+        $i12 = (int) $b4;
+
+        if $i12 >= 0 goto label3;
+
+        $r19 = newarray (byte)[0];
+
+        <Test: java.lang.Object temp> = $r19;
+
+        <Test: java.lang.Object temp> = null;
+
+        goto label2;
+
+     label3:
+        $l5 = interfaceinvoke $r2.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        $b6 = $l5 cmp 15L;
+
+        $i13 = (int) $b6;
+
+        if $i13 > 0 goto label4;
+
+        $r18 = newarray (byte)[7549747];
+
+        <Test: java.lang.Object temp> = $r18;
+
+        goto label3;
+
+     label4:
+        $r5 = interfaceinvoke $r0.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l7 = virtualinvoke $r5.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $b8 = $l7 cmp 0L;
+
+        $i14 = (int) $b8;
+
+        if $i14 <= 0 goto label6;
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r23 = new java.lang.StringBuilder;
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Expected old regions usage: ");
+
+        $l9 = l1 + 7549747L;
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        $r24 = new java.lang.StringBuilder;
+
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>()>();
+
+        $r13 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Actual old regions usage: ");
+
+        $r14 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l10 = virtualinvoke $r14.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r15 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l10);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>("Objects were not tenured?");
+
+     label5:
+        goto label5;
+
+     label6:
+        return;
+    }
+
+    private static java.lang.management.MemoryPoolMXBean getMemoryPoolBean(java.lang.String)
+    {
+        java.util.Iterator $r1;
+        java.lang.Error $r2;
+        java.util.List $r0;
+        java.lang.management.MemoryPoolMXBean r4;
+        java.lang.Object $r3;
+        java.lang.String $r5, $r6, r7;
+        boolean $z0, $z1;
+
+        r7 := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r3 = interfaceinvoke $r1.<java.util.Iterator: java.lang.Object next()>();
+
+        r4 = (java.lang.management.MemoryPoolMXBean) $r3;
+
+        $r5 = interfaceinvoke r4.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.String: java.lang.String toLowerCase()>();
+
+        $z1 = virtualinvoke $r6.<java.lang.String: boolean contains(java.lang.CharSequence)>(r7);
+
+        if $z1 == 0 goto label2;
+
+        return r4;
+
+     label2:
+        goto label1;
+
+     label3:
+        $r2 = new java.lang.Error;
+
+        specialinvoke $r2.<java.lang.Error: void <init>(java.lang.String)>("Unable to find MemoryPoolMXBean for survivor space");
+
+        throw $r2;
+    }
+
+    private static java.lang.management.GarbageCollectorMXBean getYoungGCBean()
+    {
+        java.util.Iterator $r1;
+        java.lang.Error $r2;
+        java.util.List $r0;
+        java.lang.management.GarbageCollectorMXBean r4;
+        java.lang.Object $r3;
+        java.lang.String $r5;
+        boolean $z0, $z1;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getGarbageCollectorMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r3 = interfaceinvoke $r1.<java.util.Iterator: java.lang.Object next()>();
+
+        r4 = (java.lang.management.GarbageCollectorMXBean) $r3;
+
+        $r5 = interfaceinvoke r4.<java.lang.management.GarbageCollectorMXBean: java.lang.String getName()>();
+
+        $z1 = virtualinvoke $r5.<java.lang.String: boolean contains(java.lang.CharSequence)>("Young");
+
+        if $z1 == 0 goto label2;
+
+        return r4;
+
+     label2:
+        goto label1;
+
+     label3:
+        $r2 = new java.lang.Error;
+
+        specialinvoke $r2.<java.lang.Error: void <init>(java.lang.String)>("Unable to find GarbageCollectorMXBean fot young GC");
+
+        throw $r2;
+    }
+
+    static void <clinit>()
+    {
+        int $i0, $i1;
+        java.lang.Object[] $r0;
+
+        $i0 = <sun.misc.Unsafe: int ARRAY_BYTE_BASE_OFFSET>;
+
+        $i1 = 16777216 / $i0;
+
+        $r0 = newarray (java.lang.Object)[$i1];
+
+        <Test: java.lang.Object[] garbage> = $r0;
+
+        return;
+    }
+}

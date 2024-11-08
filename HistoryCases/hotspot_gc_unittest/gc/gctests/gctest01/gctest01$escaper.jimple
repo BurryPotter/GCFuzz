@@ -1,0 +1,58 @@
+class gctest01$escaper extends java.lang.Thread
+{
+    final gc.gctests.gctest01.gctest01 this$0;
+
+    void <init>(gc.gctests.gctest01.gctest01)
+    {
+        gctest01$escaper r0;
+        gc.gctests.gctest01.gctest01 r1;
+        gc.gctests.gctest01.gctest01$escaper $r2;
+
+        r0 := @this: gctest01$escaper;
+
+        r1 := @parameter0: gc.gctests.gctest01.gctest01;
+
+        $r2 = (gc.gctests.gctest01.gctest01$escaper) r0;
+
+        $r2.<gc.gctests.gctest01.gctest01$escaper: gc.gctests.gctest01.gctest01 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        int[] $r0;
+        java.lang.InterruptedException $r1;
+        int $i0;
+        gctest01$escaper r2;
+
+        r2 := @this: gctest01$escaper;
+
+        goto label5;
+
+     label1:
+        $r0 = newarray (int)[32];
+
+     label2:
+        staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000L);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r1 := @caughtexception;
+
+     label5:
+        $i0 = staticinvoke <gc.gctests.gctest01.ThreadTracker: int getThreadCount()>();
+
+        if $i0 > 0 goto label1;
+
+        return;
+
+        catch java.lang.InterruptedException from label2 to label3 with label4;
+    }
+}

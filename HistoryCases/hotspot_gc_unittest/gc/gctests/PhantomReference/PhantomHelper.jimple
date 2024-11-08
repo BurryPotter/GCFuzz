@@ -1,0 +1,236 @@
+public final class PhantomHelper extends java.lang.Object
+{
+    private int originalHashCode;
+    private int hashCounter;
+
+    public void <init>(int)
+    {
+        PhantomHelper r0;
+        int i0;
+        gc.gctests.PhantomReference.PhantomHelper $r1, $r2;
+
+        r0 := @this: PhantomHelper;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.gctests.PhantomReference.PhantomHelper) r0;
+
+        $r1.<gc.gctests.PhantomReference.PhantomHelper: int originalHashCode> = i0;
+
+        $r2 = (gc.gctests.PhantomReference.PhantomHelper) r0;
+
+        $r2.<gc.gctests.PhantomReference.PhantomHelper: int hashCounter> = 1;
+
+        return;
+    }
+
+    public int getOriginalHashCode()
+    {
+        int $i0;
+        gc.gctests.PhantomReference.PhantomHelper $r1;
+        PhantomHelper r0;
+
+        r0 := @this: PhantomHelper;
+
+        $r1 = (gc.gctests.PhantomReference.PhantomHelper) r0;
+
+        $i0 = $r1.<gc.gctests.PhantomReference.PhantomHelper: int originalHashCode>;
+
+        return $i0;
+    }
+
+    public void increaseHashCounter()
+    {
+        PhantomHelper r0;
+        int $i0, $i1;
+        gc.gctests.PhantomReference.PhantomHelper $r1, $r2;
+
+        r0 := @this: PhantomHelper;
+
+        $r1 = (gc.gctests.PhantomReference.PhantomHelper) r0;
+
+        $i0 = $r1.<gc.gctests.PhantomReference.PhantomHelper: int hashCounter>;
+
+        $i1 = $i0 + 1;
+
+        $r2 = (gc.gctests.PhantomReference.PhantomHelper) r0;
+
+        $r2.<gc.gctests.PhantomReference.PhantomHelper: int hashCounter> = $i1;
+
+        return;
+    }
+
+    public void decreaseHashCounter()
+    {
+        PhantomHelper r0;
+        int $i0, $i1;
+        gc.gctests.PhantomReference.PhantomHelper $r1, $r2;
+
+        r0 := @this: PhantomHelper;
+
+        $r1 = (gc.gctests.PhantomReference.PhantomHelper) r0;
+
+        $i0 = $r1.<gc.gctests.PhantomReference.PhantomHelper: int hashCounter>;
+
+        $i1 = $i0 - 1;
+
+        $r2 = (gc.gctests.PhantomReference.PhantomHelper) r0;
+
+        $r2.<gc.gctests.PhantomReference.PhantomHelper: int hashCounter> = $i1;
+
+        return;
+    }
+
+    public int getHashCounter()
+    {
+        int $i0;
+        gc.gctests.PhantomReference.PhantomHelper $r1;
+        PhantomHelper r0;
+
+        r0 := @this: PhantomHelper;
+
+        $r1 = (gc.gctests.PhantomReference.PhantomHelper) r0;
+
+        $i0 = $r1.<gc.gctests.PhantomReference.PhantomHelper: int hashCounter>;
+
+        return $i0;
+    }
+
+    public static final java.lang.String checkAllHashCodes(java.lang.ref.ReferenceQueue, java.util.HashMap, long)
+    {
+        java.util.Date $r15, $r18;
+        long $l0, l1, $l3, $l9, $l10;
+        java.util.HashMap r3;
+        java.lang.Integer $r16, $r17;
+        java.lang.ref.ReferenceQueue r1;
+        byte $b11;
+        int $i2, $i4, $i5, $i6, $i7, $i8, $i12;
+        gc.gctests.PhantomReference.PhantomHelper r10;
+        java.lang.String $r7;
+        boolean z0;
+        gc.gctests.PhantomReference.PRHelper r13;
+        java.lang.ref.Reference $r2;
+        java.lang.InterruptedException $r12;
+        java.lang.StringBuilder $r5, $r6, $r19;
+        java.lang.Object $r9;
+
+        r1 := @parameter0: java.lang.ref.ReferenceQueue;
+
+        r3 := @parameter1: java.util.HashMap;
+
+        l1 := @parameter2: long;
+
+        $r15 = new java.util.Date;
+
+        specialinvoke $r15.<java.util.Date: void <init>()>();
+
+        $l0 = virtualinvoke $r15.<java.util.Date: long getTime()>();
+
+        z0 = 1;
+
+        goto label9;
+
+     label1:
+        $r2 = virtualinvoke r1.<java.lang.ref.ReferenceQueue: java.lang.ref.Reference remove(long)>(1000L);
+
+        r13 = (gc.gctests.PhantomReference.PRHelper) $r2;
+
+        if r13 == null goto label7;
+
+        $r16 = new java.lang.Integer;
+
+        $i4 = virtualinvoke r13.<gc.gctests.PhantomReference.PRHelper: int getReferentHashCode()>();
+
+        specialinvoke $r16.<java.lang.Integer: void <init>(int)>($i4);
+
+        $r9 = virtualinvoke r3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r16);
+
+        r10 = (gc.gctests.PhantomReference.PhantomHelper) $r9;
+
+        if r10 == null goto label4;
+
+        $i5 = virtualinvoke r10.<gc.gctests.PhantomReference.PhantomHelper: int getOriginalHashCode()>();
+
+        $i6 = virtualinvoke r13.<gc.gctests.PhantomReference.PRHelper: int getReferentHashCode()>();
+
+        if $i5 != $i6 goto label5;
+
+        virtualinvoke r10.<gc.gctests.PhantomReference.PhantomHelper: void decreaseHashCounter()>();
+
+        $i7 = virtualinvoke r10.<gc.gctests.PhantomReference.PhantomHelper: int getHashCounter()>();
+
+        if $i7 != 0 goto label2;
+
+        $r17 = new java.lang.Integer;
+
+        $i8 = virtualinvoke r13.<gc.gctests.PhantomReference.PRHelper: int getReferentHashCode()>();
+
+        specialinvoke $r17.<java.lang.Integer: void <init>(int)>($i8);
+
+        virtualinvoke r3.<java.util.HashMap: java.lang.Object remove(java.lang.Object)>($r17);
+
+        goto label3;
+
+     label2:
+        virtualinvoke r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r16, r10);
+
+     label3:
+        virtualinvoke r13.<gc.gctests.PhantomReference.PRHelper: void clear()>();
+
+        goto label5;
+
+     label4:
+        return "Unmapped hash code detected. The test is faulty.";
+
+     label5:
+        goto label7;
+
+     label6:
+        $r12 := @caughtexception;
+
+     label7:
+        $r18 = new java.util.Date;
+
+        specialinvoke $r18.<java.util.Date: void <init>()>();
+
+        $l9 = virtualinvoke $r18.<java.util.Date: long getTime()>();
+
+        $l10 = $l9 - $l0;
+
+        $b11 = $l10 cmp l1;
+
+        $i12 = (int) $b11;
+
+        if $i12 <= 0 goto label8;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>("All phantom references weren\'t processed in the configured max time (");
+
+        $l3 = l1 / 1000L;
+
+        $r5 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" secs)");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r7;
+
+     label8:
+        $i2 = virtualinvoke r3.<java.util.HashMap: int size()>();
+
+        if $i2 != 0 goto label9;
+
+        z0 = 0;
+
+     label9:
+        if z0 != 0 goto label1;
+
+        return null;
+
+        catch java.lang.InterruptedException from label1 to label4 with label6;
+    }
+}

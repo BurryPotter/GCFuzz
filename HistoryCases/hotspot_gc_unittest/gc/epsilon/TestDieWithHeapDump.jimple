@@ -1,0 +1,252 @@
+public class TestDieWithHeapDump extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestDieWithHeapDump r0;
+
+        r0 := @this: TestDieWithHeapDump;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static transient void passWith(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Process $r3;
+        java.lang.String[] r0;
+        java.lang.ProcessBuilder $r1;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>(r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("OutOfMemoryError");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static transient void failWith(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.IllegalStateException $r9, $r13;
+        java.lang.String[] r0;
+        long $l1;
+        int $i0;
+        java.lang.ProcessBuilder $r1;
+        java.lang.String $r7, $r12;
+        boolean $z0;
+        java.lang.Process $r2;
+        jdk.test.lib.process.OutputAnalyzer $r3;
+        java.io.File $r8;
+        java.lang.StringBuilder $r4, $r5, $r6, $r10, $r11;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>(r0);
+
+        $r2 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        $r3 = new jdk.test.lib.process.OutputAnalyzer;
+
+        specialinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r2);
+
+        virtualinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("OutOfMemoryError");
+
+        $i0 = virtualinvoke $r3.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        if $i0 != 0 goto label1;
+
+        $r13 = new java.lang.IllegalStateException;
+
+        specialinvoke $r13.<java.lang.IllegalStateException: void <init>(java.lang.String)>("Should have failed with non-zero exit code");
+
+        throw $r13;
+
+     label1:
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("java_pid");
+
+        $l1 = virtualinvoke $r2.<java.lang.Process: long pid()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".hprof");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r8 = new java.io.File;
+
+        specialinvoke $r8.<java.io.File: void <init>(java.lang.String)>($r7);
+
+        $z0 = virtualinvoke $r8.<java.io.File: boolean exists()>();
+
+        if $z0 != 0 goto label2;
+
+        $r9 = new java.lang.IllegalStateException;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("Should have produced the heap dump at: ");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r9.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r12);
+
+        throw $r9;
+
+     label2:
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r0, $r3, $r6, $r9, $r12, $r15, r18;
+        java.lang.String $r2, $r5, $r8, $r11, $r14, $r17;
+        java.lang.Class $r1, $r4, $r7, $r10, $r13, $r16;
+
+        r18 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[6];
+
+        $r0[0] = "-Xmx128m";
+
+        $r0[1] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r0[2] = "-XX:+UseEpsilonGC";
+
+        $r0[3] = "-Dcount=1";
+
+        $r0[4] = "-XX:+HeapDumpOnOutOfMemoryError";
+
+        $r1 = class "Lgc/epsilon/TestDieWithHeapDump$Workload;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[5] = $r2;
+
+        staticinvoke <gc.epsilon.TestDieWithHeapDump: void passWith(java.lang.String[])>($r0);
+
+        $r3 = newarray (java.lang.String)[5];
+
+        $r3[0] = "-Xmx128m";
+
+        $r3[1] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r3[2] = "-XX:+UseEpsilonGC";
+
+        $r3[3] = "-XX:+HeapDumpOnOutOfMemoryError";
+
+        $r4 = class "Lgc/epsilon/TestDieWithHeapDump$Workload;";
+
+        $r5 = virtualinvoke $r4.<java.lang.Class: java.lang.String getName()>();
+
+        $r3[4] = $r5;
+
+        staticinvoke <gc.epsilon.TestDieWithHeapDump: void failWith(java.lang.String[])>($r3);
+
+        $r6 = newarray (java.lang.String)[6];
+
+        $r6[0] = "-Xmx128m";
+
+        $r6[1] = "-Xint";
+
+        $r6[2] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r6[3] = "-XX:+UseEpsilonGC";
+
+        $r6[4] = "-XX:+HeapDumpOnOutOfMemoryError";
+
+        $r7 = class "Lgc/epsilon/TestDieWithHeapDump$Workload;";
+
+        $r8 = virtualinvoke $r7.<java.lang.Class: java.lang.String getName()>();
+
+        $r6[5] = $r8;
+
+        staticinvoke <gc.epsilon.TestDieWithHeapDump: void failWith(java.lang.String[])>($r6);
+
+        $r9 = newarray (java.lang.String)[7];
+
+        $r9[0] = "-Xmx128m";
+
+        $r9[1] = "-Xbatch";
+
+        $r9[2] = "-Xcomp";
+
+        $r9[3] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r9[4] = "-XX:+UseEpsilonGC";
+
+        $r9[5] = "-XX:+HeapDumpOnOutOfMemoryError";
+
+        $r10 = class "Lgc/epsilon/TestDieWithHeapDump$Workload;";
+
+        $r11 = virtualinvoke $r10.<java.lang.Class: java.lang.String getName()>();
+
+        $r9[6] = $r11;
+
+        staticinvoke <gc.epsilon.TestDieWithHeapDump: void failWith(java.lang.String[])>($r9);
+
+        $r12 = newarray (java.lang.String)[8];
+
+        $r12[0] = "-Xmx128m";
+
+        $r12[1] = "-Xbatch";
+
+        $r12[2] = "-Xcomp";
+
+        $r12[3] = "-XX:TieredStopAtLevel=1";
+
+        $r12[4] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r12[5] = "-XX:+UseEpsilonGC";
+
+        $r12[6] = "-XX:+HeapDumpOnOutOfMemoryError";
+
+        $r13 = class "Lgc/epsilon/TestDieWithHeapDump$Workload;";
+
+        $r14 = virtualinvoke $r13.<java.lang.Class: java.lang.String getName()>();
+
+        $r12[7] = $r14;
+
+        staticinvoke <gc.epsilon.TestDieWithHeapDump: void failWith(java.lang.String[])>($r12);
+
+        $r15 = newarray (java.lang.String)[8];
+
+        $r15[0] = "-Xmx128m";
+
+        $r15[1] = "-Xbatch";
+
+        $r15[2] = "-Xcomp";
+
+        $r15[3] = "-XX:-TieredCompilation";
+
+        $r15[4] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r15[5] = "-XX:+UseEpsilonGC";
+
+        $r15[6] = "-XX:+HeapDumpOnOutOfMemoryError";
+
+        $r16 = class "Lgc/epsilon/TestDieWithHeapDump$Workload;";
+
+        $r17 = virtualinvoke $r16.<java.lang.Class: java.lang.String getName()>();
+
+        $r15[7] = $r17;
+
+        staticinvoke <gc.epsilon.TestDieWithHeapDump: void failWith(java.lang.String[])>($r15);
+
+        return;
+    }
+}

@@ -1,0 +1,231 @@
+class TestPLABResize$TestCase extends java.lang.Object
+{
+    private final int wastePct;
+    private final int chunkSize;
+    private final int parGCThreads;
+    private final int iterations;
+
+    public void <init>(int, int, int, int)
+    {
+        gc.g1.plab.TestPLABResize$TestCase $r3, $r4, $r5, $r6;
+        java.lang.IllegalArgumentException $r2;
+        TestPLABResize$TestCase r0;
+        int i0, i1, i2, i3;
+
+        r0 := @this: TestPLABResize$TestCase;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        i3 := @parameter3: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        if i0 == 0 goto label1;
+
+        if i1 == 0 goto label1;
+
+        if i2 == 0 goto label1;
+
+        if i3 != 0 goto label2;
+
+     label1:
+        $r2 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r2.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Parameters should not be 0");
+
+        throw $r2;
+
+     label2:
+        $r3 = (gc.g1.plab.TestPLABResize$TestCase) r0;
+
+        $r3.<gc.g1.plab.TestPLABResize$TestCase: int wastePct> = i0;
+
+        $r4 = (gc.g1.plab.TestPLABResize$TestCase) r0;
+
+        $r4.<gc.g1.plab.TestPLABResize$TestCase: int chunkSize> = i1;
+
+        $r5 = (gc.g1.plab.TestPLABResize$TestCase) r0;
+
+        $r5.<gc.g1.plab.TestPLABResize$TestCase: int parGCThreads> = i2;
+
+        $r6 = (gc.g1.plab.TestPLABResize$TestCase) r0;
+
+        $r6.<gc.g1.plab.TestPLABResize$TestCase: int iterations> = i3;
+
+        return;
+    }
+
+    public java.util.List toOptions()
+    {
+        java.lang.String[] $r0;
+        TestPLABResize$TestCase r2;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String $r4, $r7, $r10, $r13;
+        gc.g1.plab.TestPLABResize$TestCase $r19, $r20, $r21, $r22;
+        java.util.List $r14;
+        java.lang.StringBuilder $r3, $r6, $r9, $r12, $r15, $r16, $r17, $r18;
+
+        r2 := @this: TestPLABResize$TestCase;
+
+        $r0 = newarray (java.lang.String)[7];
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:ParallelGCThreads=");
+
+        $r19 = (gc.g1.plab.TestPLABResize$TestCase) r2;
+
+        $i0 = $r19.<gc.g1.plab.TestPLABResize$TestCase: int parGCThreads>;
+
+        $r3 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[0] = $r4;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:ParallelGCBufferWastePct=");
+
+        $r20 = (gc.g1.plab.TestPLABResize$TestCase) r2;
+
+        $i1 = $r20.<gc.g1.plab.TestPLABResize$TestCase: int wastePct>;
+
+        $r6 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[1] = $r7;
+
+        $r0[2] = "-XX:+ResizePLAB";
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Dchunk.size=");
+
+        $r21 = (gc.g1.plab.TestPLABResize$TestCase) r2;
+
+        $i2 = $r21.<gc.g1.plab.TestPLABResize$TestCase: int chunkSize>;
+
+        $r9 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[3] = $r10;
+
+        $r18 = new java.lang.StringBuilder;
+
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Diterations=");
+
+        $r22 = (gc.g1.plab.TestPLABResize$TestCase) r2;
+
+        $i3 = $r22.<gc.g1.plab.TestPLABResize$TestCase: int iterations>;
+
+        $r12 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[4] = $r13;
+
+        $r0[5] = "-XX:NewSize=16m";
+
+        $r0[6] = "-XX:MaxNewSize=16m";
+
+        $r14 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r0);
+
+        return $r14;
+    }
+
+    public void print(java.io.PrintStream)
+    {
+        TestPLABResize$TestCase r2;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String $r4, $r7, $r10, $r13;
+        java.io.PrintStream r0;
+        gc.g1.plab.TestPLABResize$TestCase $r18, $r19, $r20, $r21;
+        java.lang.StringBuilder $r3, $r6, $r9, $r12, $r14, $r15, $r16, $r17;
+
+        r2 := @this: TestPLABResize$TestCase;
+
+        r0 := @parameter0: java.io.PrintStream;
+
+        virtualinvoke r0.<java.io.PrintStream: void println(java.lang.String)>("Test case details:");
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Parallel GC buffer waste pct : ");
+
+        $r18 = (gc.g1.plab.TestPLABResize$TestCase) r2;
+
+        $i0 = $r18.<gc.g1.plab.TestPLABResize$TestCase: int wastePct>;
+
+        $r3 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r0.<java.io.PrintStream: void println(java.lang.String)>($r4);
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Chunk size : ");
+
+        $r19 = (gc.g1.plab.TestPLABResize$TestCase) r2;
+
+        $i1 = $r19.<gc.g1.plab.TestPLABResize$TestCase: int chunkSize>;
+
+        $r6 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r0.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Parallel GC threads : ");
+
+        $r20 = (gc.g1.plab.TestPLABResize$TestCase) r2;
+
+        $i2 = $r20.<gc.g1.plab.TestPLABResize$TestCase: int parGCThreads>;
+
+        $r9 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r0.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Iterations: ");
+
+        $r21 = (gc.g1.plab.TestPLABResize$TestCase) r2;
+
+        $i3 = $r21.<gc.g1.plab.TestPLABResize$TestCase: int iterations>;
+
+        $r12 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r0.<java.io.PrintStream: void println(java.lang.String)>($r13);
+
+        return;
+    }
+
+    public int getIterations()
+    {
+        int $i0;
+        TestPLABResize$TestCase r0;
+        gc.g1.plab.TestPLABResize$TestCase $r1;
+
+        r0 := @this: TestPLABResize$TestCase;
+
+        $r1 = (gc.g1.plab.TestPLABResize$TestCase) r0;
+
+        $i0 = $r1.<gc.g1.plab.TestPLABResize$TestCase: int iterations>;
+
+        return $i0;
+    }
+}

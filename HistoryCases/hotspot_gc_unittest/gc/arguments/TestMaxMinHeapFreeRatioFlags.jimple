@@ -1,0 +1,349 @@
+public class TestMaxMinHeapFreeRatioFlags extends java.lang.Object
+{
+    public static final long M;
+    public static final long MAX_HEAP_SIZE;
+    public static final long HEAP_SIZE;
+    public static final long MAX_NEW_SIZE;
+    public static final long NEW_SIZE;
+
+    public void <init>()
+    {
+        TestMaxMinHeapFreeRatioFlags r0;
+
+        r0 := @this: TestMaxMinHeapFreeRatioFlags;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.util.List $r3;
+        int $i1, $i3;
+        java.lang.String[] $r1, $r2, r4;
+        java.util.LinkedList $r5;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r5 = new java.util.LinkedList;
+
+        $r1 = newarray (java.lang.String)[2];
+
+        $r1[0] = "-XX:[^ ]*HeapFreeRatio";
+
+        $r1[1] = "-XX:\\+ExplicitGCInvokesConcurrent";
+
+        $r2 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getFilteredTestJavaOpts(java.lang.String[])>($r1);
+
+        $r3 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r2);
+
+        specialinvoke $r5.<java.util.LinkedList: void <init>(java.util.Collection)>($r3);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void negativeTest(int,boolean,int,boolean,java.util.LinkedList)>(20, 0, 10, 1, $r5);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void negativeTest(int,boolean,int,boolean,java.util.LinkedList)>(100, 1, 0, 0, $r5);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void negativeTest(int,boolean,int,boolean,java.util.LinkedList)>(101, 0, 50, 0, $r5);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void negativeTest(int,boolean,int,boolean,java.util.LinkedList)>(49, 1, 102, 1, $r5);
+
+        $i1 = (int) -1;
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void negativeTest(int,boolean,int,boolean,java.util.LinkedList)>($i1, 0, 50, 0, $r5);
+
+        $i3 = (int) -1;
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void negativeTest(int,boolean,int,boolean,java.util.LinkedList)>(50, 1, $i3, 1, $r5);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void positiveTest(int,boolean,int,boolean,boolean,java.util.LinkedList)>(10, 0, 90, 0, 1, $r5);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void positiveTest(int,boolean,int,boolean,boolean,java.util.LinkedList)>(10, 1, 80, 0, 1, $r5);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void positiveTest(int,boolean,int,boolean,boolean,java.util.LinkedList)>(20, 0, 70, 1, 1, $r5);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void positiveTest(int,boolean,int,boolean,boolean,java.util.LinkedList)>(25, 1, 65, 1, 1, $r5);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void positiveTest(int,boolean,int,boolean,boolean,java.util.LinkedList)>(40, 0, 50, 0, 1, $r5);
+
+        return;
+    }
+
+    public static void positiveTest(int, boolean, int, boolean, boolean, java.util.LinkedList) throws java.lang.Exception
+    {
+        boolean z0, z1, z2;
+        java.lang.Process $r21;
+        jdk.test.lib.process.OutputAnalyzer $r20;
+        java.lang.StringBuilder $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r22, $r23, $r24, $r25;
+        java.lang.Object[] $r17;
+        java.lang.String[] $r2, $r16, $r18;
+        int i0, i1, $i2;
+        java.lang.String $r10, $r12, $r13, $r14, $r15, $r26, $r27;
+        java.lang.ProcessBuilder $r19;
+        java.util.LinkedList $r0, r1;
+        double $d0, $d1, $d2, $d3;
+        char $c3;
+        java.lang.Class $r11;
+
+        i0 := @parameter0: int;
+
+        z0 := @parameter1: boolean;
+
+        i1 := @parameter2: int;
+
+        z1 := @parameter3: boolean;
+
+        z2 := @parameter4: boolean;
+
+        r1 := @parameter5: java.util.LinkedList;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>(java.util.Collection)>(r1);
+
+        $r2 = newarray (java.lang.String)[12];
+
+        if z0 == 0 goto label1;
+
+        $r24 = new java.lang.StringBuilder;
+
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xminf");
+
+        $d2 = (double) i0;
+
+        $d3 = $d2 / 100.0;
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d3);
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label2;
+
+     label1:
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MinHeapFreeRatio=");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r26 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label2:
+        $r2[0] = $r26;
+
+        if z1 == 0 goto label3;
+
+        $r22 = new java.lang.StringBuilder;
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xmaxf");
+
+        $d0 = (double) i1;
+
+        $d1 = $d0 / 100.0;
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d1);
+
+        $r27 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label4;
+
+     label3:
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MaxHeapFreeRatio=");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r27 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label4:
+        $r2[1] = $r27;
+
+        $r2[2] = "-Xmx209715200";
+
+        $r2[3] = "-Xms10485760";
+
+        $r2[4] = "--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED";
+
+        $r2[5] = "-XX:NewSize=5242880";
+
+        $r2[6] = "-XX:MaxNewSize=20971520";
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:");
+
+        if z2 == 0 goto label5;
+
+        $c3 = 43;
+
+        goto label6;
+
+     label5:
+        $c3 = 45;
+
+     label6:
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($c3);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ShrinkHeapInSteps");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r2[7] = $r10;
+
+        $r11 = class "Lgc/arguments/TestMaxMinHeapFreeRatioFlags$RatioVerifier;";
+
+        $r12 = virtualinvoke $r11.<java.lang.Class: java.lang.String getName()>();
+
+        $r2[8] = $r12;
+
+        $r13 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i0);
+
+        $r2[9] = $r13;
+
+        $r14 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i1);
+
+        $r2[10] = $r14;
+
+        $r15 = staticinvoke <java.lang.Boolean: java.lang.String toString(boolean)>(z2);
+
+        $r2[11] = $r15;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r2);
+
+        $i2 = virtualinvoke $r0.<java.util.LinkedList: int size()>();
+
+        $r16 = newarray (java.lang.String)[$i2];
+
+        $r17 = virtualinvoke $r0.<java.util.LinkedList: java.lang.Object[] toArray(java.lang.Object[])>($r16);
+
+        $r18 = (java.lang.String[]) $r17;
+
+        $r19 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r18);
+
+        $r20 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r21 = virtualinvoke $r19.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r20.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r21);
+
+        virtualinvoke $r20.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static void negativeTest(int, boolean, int, boolean, java.util.LinkedList) throws java.lang.Exception
+    {
+        java.lang.Object[] $r8;
+        java.lang.String[] $r2, $r7, $r9;
+        int i0, i1, $i2;
+        java.lang.ProcessBuilder $r10;
+        java.lang.String $r17, $r18;
+        java.util.LinkedList $r0, r1;
+        boolean z0, z1;
+        double $d0, $d1, $d2, $d3;
+        java.lang.Process $r12;
+        jdk.test.lib.process.OutputAnalyzer $r11;
+        java.lang.StringBuilder $r3, $r4, $r5, $r6, $r13, $r14, $r15, $r16;
+
+        i0 := @parameter0: int;
+
+        z0 := @parameter1: boolean;
+
+        i1 := @parameter2: int;
+
+        z1 := @parameter3: boolean;
+
+        r1 := @parameter4: java.util.LinkedList;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>(java.util.Collection)>(r1);
+
+        $r2 = newarray (java.lang.String)[4];
+
+        if z0 == 0 goto label1;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xminf");
+
+        $d2 = (double) i0;
+
+        $d3 = $d2 / 100.0;
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d3);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label2;
+
+     label1:
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MinHeapFreeRatio=");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r17 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label2:
+        $r2[0] = $r17;
+
+        if z1 == 0 goto label3;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xmaxf");
+
+        $d0 = (double) i1;
+
+        $d1 = $d0 / 100.0;
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d1);
+
+        $r18 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label4;
+
+     label3:
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MaxHeapFreeRatio=");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r18 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label4:
+        $r2[1] = $r18;
+
+        $r2[2] = "--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED";
+
+        $r2[3] = "-version";
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r2);
+
+        $i2 = virtualinvoke $r0.<java.util.LinkedList: int size()>();
+
+        $r7 = newarray (java.lang.String)[$i2];
+
+        $r8 = virtualinvoke $r0.<java.util.LinkedList: java.lang.Object[] toArray(java.lang.Object[])>($r7);
+
+        $r9 = (java.lang.String[]) $r8;
+
+        $r10 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r9);
+
+        $r11 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r12 = virtualinvoke $r10.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r12);
+
+        virtualinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+        virtualinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Error: Could not create the Java Virtual Machine.");
+
+        return;
+    }
+}

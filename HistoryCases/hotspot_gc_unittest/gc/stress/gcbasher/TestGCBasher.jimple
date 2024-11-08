@@ -1,0 +1,145 @@
+public class TestGCBasher extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestGCBasher r0;
+
+        r0 := @this: TestGCBasher;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static void parseClassFiles() throws java.io.IOException
+    {
+        gc.stress.gcbasher.Decompiler $r15;
+        byte[] $r14;
+        java.nio.file.FileVisitOption[] $r5;
+        gc.stress.gcbasher.ClassInfo $r16;
+        java.util.HashMap $r0;
+        java.lang.String[] $r3;
+        java.lang.Iterable $r7;
+        java.net.URI $r1;
+        java.lang.String $r11, $r13, $r17;
+        java.nio.file.Path $r4, r10, $r12;
+        boolean $z0, $z1, $z2;
+        java.util.Iterator $r8;
+        java.nio.file.FileSystem $r2;
+        java.util.stream.Stream $r6;
+        java.lang.Object $r9;
+
+        $r0 = new java.util.HashMap;
+
+        specialinvoke $r0.<java.util.HashMap: void <init>()>();
+
+        $r1 = staticinvoke <java.net.URI: java.net.URI create(java.lang.String)>("jrt:/");
+
+        $r2 = staticinvoke <java.nio.file.FileSystems: java.nio.file.FileSystem getFileSystem(java.net.URI)>($r1);
+
+        $r3 = newarray (java.lang.String)[0];
+
+        $r4 = virtualinvoke $r2.<java.nio.file.FileSystem: java.nio.file.Path getPath(java.lang.String,java.lang.String[])>("/", $r3);
+
+        $r5 = newarray (java.nio.file.FileVisitOption)[0];
+
+        $r6 = staticinvoke <java.nio.file.Files: java.util.stream.Stream walk(java.nio.file.Path,java.nio.file.FileVisitOption[])>($r4, $r5);
+
+        virtualinvoke $r6.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r7 = staticinvoke <TestGCBasher$iterator__1: java.lang.Iterable bootstrap$(java.util.stream.Stream)>($r6);
+
+        $r8 = interfaceinvoke $r7.<java.lang.Iterable: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        $r9 = interfaceinvoke $r8.<java.util.Iterator: java.lang.Object next()>();
+
+        r10 = (java.nio.file.Path) $r9;
+
+        $r11 = interfaceinvoke r10.<java.nio.file.Path: java.lang.String toString()>();
+
+        $z0 = virtualinvoke $r11.<java.lang.String: boolean endsWith(java.lang.String)>(".class");
+
+        if $z0 == 0 goto label2;
+
+        $r12 = interfaceinvoke r10.<java.nio.file.Path: java.nio.file.Path getFileName()>();
+
+        $r13 = interfaceinvoke $r12.<java.nio.file.Path: java.lang.String toString()>();
+
+        $z1 = virtualinvoke $r13.<java.lang.String: boolean equals(java.lang.Object)>("module-info.class");
+
+        if $z1 != 0 goto label2;
+
+        $r14 = staticinvoke <java.nio.file.Files: byte[] readAllBytes(java.nio.file.Path)>(r10);
+
+        $r15 = new gc.stress.gcbasher.Decompiler;
+
+        specialinvoke $r15.<gc.stress.gcbasher.Decompiler: void <init>(byte[])>($r14);
+
+        $r16 = virtualinvoke $r15.<gc.stress.gcbasher.Decompiler: gc.stress.gcbasher.ClassInfo getClassInfo()>();
+
+        $r17 = virtualinvoke $r16.<gc.stress.gcbasher.ClassInfo: java.lang.String getName()>();
+
+        virtualinvoke $r0.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r17, $r16);
+
+     label2:
+        $z2 = interfaceinvoke $r8.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 != 0 goto label1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.io.IOException
+    {
+        java.io.PrintStream $r3;
+        java.lang.String[] r0;
+        long $l1, $l2, $l3, $l4;
+        byte $b5;
+        java.lang.Long $r2;
+        int $i0, $i6;
+        java.lang.String $r1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 1 goto label1;
+
+        $r3 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("Usage: TestGCBasher <duration-ms>");
+
+        return;
+
+     label1:
+        $r1 = r0[0];
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(java.lang.String)>($r1);
+
+        $l1 = virtualinvoke $r2.<java.lang.Long: long longValue()>();
+
+        $l2 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        goto label3;
+
+     label2:
+        staticinvoke <gc.stress.gcbasher.TestGCBasher: void parseClassFiles()>();
+
+     label3:
+        $l3 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l4 = $l3 - $l2;
+
+        $b5 = $l4 cmp $l1;
+
+        $i6 = (int) $b5;
+
+        if $i6 < 0 goto label2;
+
+        return;
+    }
+}

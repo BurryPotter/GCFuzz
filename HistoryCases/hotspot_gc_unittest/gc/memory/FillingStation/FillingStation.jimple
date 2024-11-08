@@ -1,0 +1,234 @@
+public class FillingStation extends java.lang.Object
+{
+    public static final long minObjectSize;
+    public static final long freeSpaceLimit;
+    public static final long maxObjectSize;
+    public static final boolean debug;
+    static long _beforeMillis;
+    static long _afterMillis;
+    static long _freeBytes;
+    static long _totalBytes;
+    static boolean _overflow;
+
+    static void <clinit>()
+    {
+        <gc.memory.FillingStation.FillingStation: long _beforeMillis> = 0L;
+
+        <gc.memory.FillingStation.FillingStation: long _afterMillis> = 0L;
+
+        <gc.memory.FillingStation.FillingStation: long _freeBytes> = 0L;
+
+        <gc.memory.FillingStation.FillingStation: long _totalBytes> = 0L;
+
+        <gc.memory.FillingStation.FillingStation: boolean _overflow> = 0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        FillingStation r0;
+
+        r0 := @this: FillingStation;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.memory.FillingStation.FillingStation: void prologue()>();
+
+        staticinvoke <gc.memory.FillingStation.FillingStation: void fill()>();
+
+        staticinvoke <gc.memory.FillingStation.FillingStation: void epilogue()>();
+
+        return;
+    }
+
+    public static void prologue()
+    {
+        long $l0;
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        <gc.memory.FillingStation.FillingStation: long _beforeMillis> = $l0;
+
+        return;
+    }
+
+    public static void epilogue()
+    {
+        boolean $z0;
+        java.lang.StringBuilder $r0, $r3, $r4, $r6, $r7, $r9, $r11, $r14, $r15;
+        long $l0, $l1, $l2, $l3, $l4, $l5, $l6, $l7;
+        java.lang.String $r2, $r5, $r8, $r10, $r13, $r16;
+        double $d0, $d1, $d2, $d3, $d4, $d5, $d6;
+        java.io.PrintStream $r1, $r12, $r17;
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        <gc.memory.FillingStation.FillingStation: long _afterMillis> = $l0;
+
+        $z0 = <gc.memory.FillingStation.FillingStation: boolean _overflow>;
+
+        if $z0 == 0 goto label1;
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>("Overflowed!");
+
+     label1:
+        $l2 = <gc.memory.FillingStation.FillingStation: long _afterMillis>;
+
+        $l1 = <gc.memory.FillingStation.FillingStation: long _beforeMillis>;
+
+        $l3 = $l2 - $l1;
+
+        $d0 = (double) $l3;
+
+        $d3 = $d0 / 1000.0;
+
+        $l4 = <gc.memory.FillingStation.FillingStation: long _freeBytes>;
+
+        $d1 = (double) $l4;
+
+        $d4 = $d1 / 1048576.0;
+
+        $l5 = <gc.memory.FillingStation.FillingStation: long _totalBytes>;
+
+        $d2 = (double) $l5;
+
+        $d5 = $d2 / 1048576.0;
+
+        $d6 = $d4 / $d5;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>("Runtime.freeMemory()/Runtime.totalMemory: ");
+
+        $l6 = <gc.memory.FillingStation.FillingStation: long _freeBytes>;
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.String toString(long)>($l6);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $l7 = <gc.memory.FillingStation.FillingStation: long _totalBytes>;
+
+        $r5 = staticinvoke <java.lang.Long: java.lang.String toString(long)>($l7);
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = ");
+
+        $r8 = staticinvoke <java.lang.Double: java.lang.String toString(double)>($d6);
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("That took: ");
+
+        $r13 = staticinvoke <java.lang.Double: java.lang.String toString(double)>($d3);
+
+        $r14 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" seconds");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        return;
+    }
+
+    public static void fill()
+    {
+        long $l1, l2, $l3, $l5, $l6, $l9, $l10, l11;
+        java.util.Random $r5;
+        byte $b0;
+        int i4, i7, $i8, $i12;
+        java.lang.Runtime $r0;
+        gc.memory.FillingStation.Space r4, $r6;
+        java.lang.OutOfMemoryError $r3;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $r5 = new java.util.Random;
+
+        specialinvoke $r5.<java.util.Random: void <init>()>();
+
+        r4 = null;
+
+     label1:
+        l11 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+        goto label3;
+
+     label2:
+        $l1 = l11 - 64L;
+
+        l2 = $l1 / 2L;
+
+        $l3 = staticinvoke <java.lang.Math: long min(long,long)>(32768L, l2);
+
+        i4 = (int) $l3;
+
+        $l5 = (long) i4;
+
+        $l6 = staticinvoke <java.lang.Math: long max(long,long)>(4L, $l5);
+
+        i7 = (int) $l6;
+
+        $i8 = virtualinvoke $r5.<java.util.Random: int nextInt(int)>(i7);
+
+        $r6 = new gc.memory.FillingStation.Space;
+
+        specialinvoke $r6.<gc.memory.FillingStation.Space: void <init>(int,gc.memory.FillingStation.Space)>($i8, r4);
+
+        r4 = $r6;
+
+        l11 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+     label3:
+        $b0 = l11 cmp 64L;
+
+        $i12 = (int) $b0;
+
+        if $i12 > 0 goto label2;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r3 := @caughtexception;
+
+     label6:
+        $l9 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+        <gc.memory.FillingStation.FillingStation: long _freeBytes> = $l9;
+
+        $l10 = virtualinvoke $r0.<java.lang.Runtime: long totalMemory()>();
+
+        <gc.memory.FillingStation.FillingStation: long _totalBytes> = $l10;
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label1 to label4 with label5;
+    }
+}

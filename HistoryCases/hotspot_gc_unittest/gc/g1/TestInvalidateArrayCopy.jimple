@@ -1,0 +1,72 @@
+public class TestInvalidateArrayCopy extends java.lang.Object
+{
+    static final int NumIterations;
+    static java.lang.Object[] sourceArray;
+
+    static void <clinit>()
+    {
+        java.lang.Object[] $r0;
+
+        $r0 = newarray (java.lang.Object)[10];
+
+        <gc.g1.TestInvalidateArrayCopy: java.lang.Object[] sourceArray> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestInvalidateArrayCopy r0;
+
+        r0 := @this: TestInvalidateArrayCopy;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r3;
+        java.lang.Object[] r0, $r1, $r2;
+        java.lang.String[] r4;
+        int $i0, $i1, $i2, $i3, i4;
+
+        r4 := @parameter0: java.lang.String[];
+
+        i4 = 0;
+
+        goto label3;
+
+     label1:
+        r0 = newarray (java.lang.Object)[0];
+
+        $i0 = i4 % 100000;
+
+        if $i0 != 0 goto label2;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.Object)>(r0);
+
+     label2:
+        $r2 = <gc.g1.TestInvalidateArrayCopy: java.lang.Object[] sourceArray>;
+
+        $i2 = lengthof r0;
+
+        $r1 = <gc.g1.TestInvalidateArrayCopy: java.lang.Object[] sourceArray>;
+
+        $i1 = lengthof $r1;
+
+        $i3 = staticinvoke <java.lang.Math: int min(int,int)>($i2, $i1);
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r2, 0, r0, 0, $i3);
+
+        i4 = i4 + 1;
+
+     label3:
+        if i4 < 1000000 goto label1;
+
+        return;
+    }
+}

@@ -1,0 +1,147 @@
+public class ClassLoaderGenerator extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        ClassLoaderGenerator r0;
+
+        r0 := @this: ClassLoaderGenerator;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.io.IOException
+    {
+        java.lang.Error $r4;
+        java.lang.String[] r0, $r2;
+        long $l1, $l2, l3;
+        int $i0;
+        java.lang.String $r1;
+        java.nio.file.Path $r3;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 1 goto label1;
+
+        $r4 = new java.lang.Error;
+
+        specialinvoke $r4.<java.lang.Error: void <init>(java.lang.String)>("Test Bug: Expected region size wasn\'t provided as command line argument");
+
+        throw $r4;
+
+     label1:
+        $r1 = r0[0];
+
+        $l1 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r1);
+
+        $l2 = $l1 * 1024L;
+
+        l3 = $l2 * 1024L;
+
+        $r2 = newarray (java.lang.String)[0];
+
+        $r3 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>("", $r2);
+
+        staticinvoke <gc.g1.humongousObjects.ClassLoaderGenerator: void generateClassLoader(long,java.nio.file.Path)>(l3, $r3);
+
+        return;
+    }
+
+    public static void generateClassLoader(long, java.nio.file.Path) throws java.io.IOException
+    {
+        long l0, $l1, $l4, $l5;
+        int i2, $i3, i6;
+        java.lang.String $r0, $r1, $r2, $r3, $r4, $r5, $r10, $r11, $r14, $r15, $r16, $r17, $r18, $r19, $r20;
+        gc.g1.humongousObjects.G1SampleClass r21;
+        java.nio.file.Path r6;
+        gc.g1.humongousObjects.G1SampleClass[] $r8;
+        java.lang.StringBuilder $r7, $r9, $r12, $r13;
+
+        l0 := @parameter0: long;
+
+        r6 := @parameter1: java.nio.file.Path;
+
+        $r1 = "${ClassHeader}\npublic class ${ClassName} extends ${BaseClass}{\n    ${ConstructorClause}\n    ${Methods}\n    ${Fields}\n}\n";
+
+        $r0 = "    @Override\n    public Class loadClass(String fileName) throws ClassNotFoundException {\n        if (${ClassLoadFilter}) {\n            System.out.println(\"Loading class \" + fileName);\n            byte[] b = null;\n            try {\n                b = Files.readAllBytes(new File(fileName + \".class\").toPath());\n            } catch (IOException e) {\n                e.printStackTrace();\n            }\n            Class c = defineClass(fileName, b, 0, b.length);\n            resolveClass(c);\n            return c;\n        } else {\n            return super.loadClass(fileName);\n        }\n\n\n    }\n";
+
+        $r2 = virtualinvoke $r0.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${ClassLoadFilter}", "fileName.equals(\"HumongousClassLoader\")");
+
+        $r3 = virtualinvoke $r1.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${Methods}", $r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${ClassHeader}", "import java.io.File;\nimport java.io.IOException;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n");
+
+        $r5 = virtualinvoke $r4.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${ConstructorClause}", "public ${ClassName}(ClassLoader parent) { super(parent);}\n");
+
+        $l1 = l0 / 4L;
+
+        staticinvoke <gc.testlibrary.Helpers: void generateByTemplateAndCompile(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,java.nio.file.Path,java.lang.String)>("SimpleClassLoader", "ClassLoader", $r5, "public ${ClassName}(ClassLoader parent) { super(parent);}\n", $l1, r6, "SimpleClassLoaderBase");
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = staticinvoke <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass[] values()>();
+
+        i2 = lengthof $r8;
+
+        i6 = 0;
+
+        goto label3;
+
+     label1:
+        r21 = $r8[i6];
+
+        $i3 = virtualinvoke $r7.<java.lang.StringBuilder: int length()>();
+
+        if $i3 == 0 goto label2;
+
+        virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" || ");
+
+     label2:
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>("fileName.startsWith(\"");
+
+        $r10 = virtualinvoke r21.<gc.g1.humongousObjects.G1SampleClass: java.lang.String name()>();
+
+        $r11 = staticinvoke <gc.testlibrary.Helpers: java.lang.String enumNameToClassName(java.lang.String)>($r10);
+
+        $r12 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\")");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14);
+
+        i6 = i6 + 1;
+
+     label3:
+        if i6 < i2 goto label1;
+
+        $r16 = "${ClassHeader}\npublic class ${ClassName} extends ${BaseClass}{\n    ${ConstructorClause}\n    ${Methods}\n    ${Fields}\n}\n";
+
+        $r15 = "    @Override\n    public Class loadClass(String fileName) throws ClassNotFoundException {\n        if (${ClassLoadFilter}) {\n            System.out.println(\"Loading class \" + fileName);\n            byte[] b = null;\n            try {\n                b = Files.readAllBytes(new File(fileName + \".class\").toPath());\n            } catch (IOException e) {\n                e.printStackTrace();\n            }\n            Class c = defineClass(fileName, b, 0, b.length);\n            resolveClass(c);\n            return c;\n        } else {\n            return super.loadClass(fileName);\n        }\n\n\n    }\n";
+
+        $r17 = virtualinvoke $r15.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${ClassLoadFilter}", $r7);
+
+        $r18 = virtualinvoke $r16.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${Methods}", $r17);
+
+        $r19 = virtualinvoke $r18.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${ClassHeader}", "import java.io.File;\nimport java.io.IOException;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n");
+
+        $r20 = virtualinvoke $r19.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${ConstructorClause}", "public ${ClassName}(ClassLoader parent) { super(parent);}\n");
+
+        $l4 = l0 * 3L;
+
+        $l5 = $l4 / 4L;
+
+        staticinvoke <gc.testlibrary.Helpers: void generateByTemplateAndCompile(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,java.nio.file.Path,java.lang.String)>("HumongousClassLoader", "ClassLoader", $r20, "public ${ClassName}(ClassLoader parent) { super(parent);}\n", $l5, r6, "HumongousClassLoaderBase");
+
+        return;
+    }
+}

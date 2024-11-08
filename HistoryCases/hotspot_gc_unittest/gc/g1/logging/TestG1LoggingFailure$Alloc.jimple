@@ -1,0 +1,62 @@
+class TestG1LoggingFailure$Alloc extends java.lang.Object
+{
+    public static final int CHUNK;
+    public static java.util.ArrayList arr;
+
+    static void <clinit>()
+    {
+        java.util.ArrayList $r0;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        <gc.g1.logging.TestG1LoggingFailure$Alloc: java.util.ArrayList arr> = $r0;
+
+        return;
+    }
+
+    void <init>()
+    {
+        TestG1LoggingFailure$Alloc r0;
+
+        r0 := @this: TestG1LoggingFailure$Alloc;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r0, $r3;
+        java.lang.String[] r5;
+        java.lang.OutOfMemoryError $r2;
+        java.util.ArrayList $r1, $r4;
+
+        r5 := @parameter0: java.lang.String[];
+
+     label1:
+        $r1 = <gc.g1.logging.TestG1LoggingFailure$Alloc: java.util.ArrayList arr>;
+
+        $r0 = newarray (byte)[1024];
+
+        virtualinvoke $r1.<java.util.ArrayList: boolean add(java.lang.Object)>($r0);
+
+        goto label1;
+
+     label2:
+        $r2 := @caughtexception;
+
+     label3:
+        $r4 = <gc.g1.logging.TestG1LoggingFailure$Alloc: java.util.ArrayList arr>;
+
+        $r3 = newarray (byte)[1024];
+
+        virtualinvoke $r4.<java.util.ArrayList: boolean add(java.lang.Object)>($r3);
+
+        goto label3;
+
+        catch java.lang.OutOfMemoryError from label1 to label2 with label2;
+    }
+}

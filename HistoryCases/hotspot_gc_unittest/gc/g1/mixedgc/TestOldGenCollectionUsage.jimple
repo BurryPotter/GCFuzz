@@ -1,0 +1,458 @@
+public class TestOldGenCollectionUsage extends java.lang.Object
+{
+    private java.lang.String poolName;
+    private java.lang.String collectorName;
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r1;
+        gc.g1.mixedgc.TestOldGenCollectionUsage $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new gc.g1.mixedgc.TestOldGenCollectionUsage;
+
+        specialinvoke $r0.<gc.g1.mixedgc.TestOldGenCollectionUsage: void <init>()>();
+
+        virtualinvoke $r0.<gc.g1.mixedgc.TestOldGenCollectionUsage: void run()>();
+
+        return;
+    }
+
+    public void <init>()
+    {
+        java.io.PrintStream $r1;
+        gc.g1.mixedgc.TestOldGenCollectionUsage $r2, $r3;
+        TestOldGenCollectionUsage r0;
+
+        r0 := @this: TestOldGenCollectionUsage;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r0;
+
+        $r2.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String poolName> = "G1 Old Gen";
+
+        $r3 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r0;
+
+        $r3.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String collectorName> = "G1 Young Generation";
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Monitor G1 Old Gen pool with G1 Young Generation collector.");
+
+        return;
+    }
+
+    public void run()
+    {
+        byte $b3, $b6, $b7, $b9, $b12, $b13;
+        java.lang.StringBuilder $r7, $r15, $r23, $r24, $r30, $r31, $r37, $r38, $r45, $r46, $r52, $r53, $r59, $r60, $r69, $r78, $r84, $r88, $r89, $r91, $r92, $r95, $r97, $r98, $r101, $r102, $r104, $r105;
+        long $l2, $l4, $l5, $l8, $l10, $l11;
+        java.lang.management.MemoryPoolMXBean r86;
+        java.lang.String $r2, $r4, $r8, $r11, $r12, $r16, $r20, $r22, $r25, $r27, $r29, $r32, $r34, $r36, $r39, $r42, $r44, $r47, $r49, $r51, $r54, $r56, $r58, $r61, $r67, $r68, $r70, $r76, $r77, $r79, $r82, $r83, $r85;
+        java.lang.RuntimeException $r90, $r93, $r96, $r99, $r100, $r103, $r106, $r107;
+        boolean $z0, $z1, z2, z3;
+        java.util.List $r0, $r9;
+        java.lang.management.GarbageCollectorMXBean r87;
+        int $i0, $i1, i14, i15, $i16, $i17, $i18, $i19, $i20, $i21;
+        java.lang.management.MemoryUsage $r18, $r40;
+        java.io.PrintStream $r6, $r14, $r21, $r28, $r35, $r43, $r50, $r57, $r62;
+        gc.g1.mixedgc.TestOldGenCollectionUsage $r108, $r109, $r110, $r111, $r112, $r113, $r114, $r115, $r116, $r117, $r118, $r119;
+        TestOldGenCollectionUsage r3;
+        java.lang.Object $r1, $r10;
+        gc.g1.mixedgc.TestOldGenCollectionUsage$MixedGCProvoker $r94;
+
+        r3 := @this: TestOldGenCollectionUsage;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        r86 = null;
+
+        z2 = 0;
+
+        i14 = 0;
+
+        goto label03;
+
+     label01:
+        $r1 = interfaceinvoke $r0.<java.util.List: java.lang.Object get(int)>(i14);
+
+        r86 = (java.lang.management.MemoryPoolMXBean) $r1;
+
+        $r2 = interfaceinvoke r86.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        $r108 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r4 = $r108.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String poolName>;
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean contains(java.lang.CharSequence)>($r4);
+
+        if $z0 == 0 goto label02;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r88 = new java.lang.StringBuilder;
+
+        specialinvoke $r88.<java.lang.StringBuilder: void <init>(java.lang.String)>("Found pool: ");
+
+        $r7 = virtualinvoke $r88.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        z2 = 1;
+
+        goto label04;
+
+     label02:
+        i14 = i14 + 1;
+
+     label03:
+        $i0 = interfaceinvoke $r0.<java.util.List: int size()>();
+
+        if i14 < $i0 goto label01;
+
+     label04:
+        if z2 != 0 goto label05;
+
+        $r90 = new java.lang.RuntimeException;
+
+        $r89 = new java.lang.StringBuilder;
+
+        $r109 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r82 = $r109.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String poolName>;
+
+        $r83 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r82);
+
+        specialinvoke $r89.<java.lang.StringBuilder: void <init>(java.lang.String)>($r83);
+
+        $r84 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" not found, test with -XX:+UseG1GC");
+
+        $r85 = virtualinvoke $r84.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r90.<java.lang.RuntimeException: void <init>(java.lang.String)>($r85);
+
+        throw $r90;
+
+     label05:
+        $r9 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getGarbageCollectorMXBeans()>();
+
+        r87 = null;
+
+        z3 = 0;
+
+        i15 = 0;
+
+        goto label08;
+
+     label06:
+        $r10 = interfaceinvoke $r9.<java.util.List: java.lang.Object get(int)>(i15);
+
+        r87 = (java.lang.management.GarbageCollectorMXBean) $r10;
+
+        $r11 = interfaceinvoke r87.<java.lang.management.GarbageCollectorMXBean: java.lang.String getName()>();
+
+        $r110 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r12 = $r110.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String collectorName>;
+
+        $z1 = virtualinvoke $r11.<java.lang.String: boolean contains(java.lang.CharSequence)>($r12);
+
+        if $z1 == 0 goto label07;
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        $r91 = new java.lang.StringBuilder;
+
+        specialinvoke $r91.<java.lang.StringBuilder: void <init>(java.lang.String)>("Found collector: ");
+
+        $r15 = virtualinvoke $r91.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        z3 = 1;
+
+        goto label09;
+
+     label07:
+        i15 = i15 + 1;
+
+     label08:
+        $i1 = interfaceinvoke $r9.<java.util.List: int size()>();
+
+        if i15 < $i1 goto label06;
+
+     label09:
+        if z3 != 0 goto label10;
+
+        $r93 = new java.lang.RuntimeException;
+
+        $r92 = new java.lang.StringBuilder;
+
+        $r111 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r76 = $r111.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String collectorName>;
+
+        $r77 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r76);
+
+        specialinvoke $r92.<java.lang.StringBuilder: void <init>(java.lang.String)>($r77);
+
+        $r78 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" not found, test with -XX:+UseG1GC");
+
+        $r79 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r93.<java.lang.RuntimeException: void <init>(java.lang.String)>($r79);
+
+        throw $r93;
+
+     label10:
+        $r94 = new gc.g1.mixedgc.TestOldGenCollectionUsage$MixedGCProvoker;
+
+        $r112 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        specialinvoke $r94.<gc.g1.mixedgc.TestOldGenCollectionUsage$MixedGCProvoker: void <init>(gc.g1.mixedgc.TestOldGenCollectionUsage)>($r112);
+
+        virtualinvoke $r94.<gc.g1.mixedgc.TestOldGenCollectionUsage$MixedGCProvoker: void allocateOldObjects()>();
+
+        $r18 = interfaceinvoke r86.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getCollectionUsage()>();
+
+        $l2 = virtualinvoke $r18.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+
+        $r95 = new java.lang.StringBuilder;
+
+        $r113 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r20 = $r113.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String poolName>;
+
+        $r22 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r20);
+
+        specialinvoke $r95.<java.lang.StringBuilder: void <init>(java.lang.String)>($r22);
+
+        $r23 = virtualinvoke $r95.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": usage after GC = ");
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r25);
+
+        $b3 = $l2 cmp 0L;
+
+        $i16 = (int) $b3;
+
+        if $i16 <= 0 goto label11;
+
+        $r96 = new java.lang.RuntimeException;
+
+        specialinvoke $r96.<java.lang.RuntimeException: void <init>(java.lang.String)>("Premature mixed collections(s)");
+
+        throw $r96;
+
+     label11:
+        $l4 = interfaceinvoke r87.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        $r28 = <java.lang.System: java.io.PrintStream out>;
+
+        $r97 = new java.lang.StringBuilder;
+
+        $r114 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r27 = $r114.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String collectorName>;
+
+        $r29 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r27);
+
+        specialinvoke $r97.<java.lang.StringBuilder: void <init>(java.lang.String)>($r29);
+
+        $r30 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": collection count = ");
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l4);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>($r32);
+
+        $l5 = interfaceinvoke r87.<java.lang.management.GarbageCollectorMXBean: long getCollectionTime()>();
+
+        $r35 = <java.lang.System: java.io.PrintStream out>;
+
+        $r98 = new java.lang.StringBuilder;
+
+        $r115 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r34 = $r115.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String collectorName>;
+
+        $r36 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r34);
+
+        specialinvoke $r98.<java.lang.StringBuilder: void <init>(java.lang.String)>($r36);
+
+        $r37 = virtualinvoke $r98.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": collection time  = ");
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l5);
+
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r35.<java.io.PrintStream: void println(java.lang.String)>($r39);
+
+        $b6 = $l4 cmp 0L;
+
+        $i17 = (int) $b6;
+
+        if $i17 > 0 goto label12;
+
+        $r99 = new java.lang.RuntimeException;
+
+        specialinvoke $r99.<java.lang.RuntimeException: void <init>(java.lang.String)>("Collection count <= 0");
+
+        throw $r99;
+
+     label12:
+        $b7 = $l5 cmp 0L;
+
+        $i18 = (int) $b7;
+
+        if $i18 > 0 goto label13;
+
+        $r100 = new java.lang.RuntimeException;
+
+        specialinvoke $r100.<java.lang.RuntimeException: void <init>(java.lang.String)>("Collector has not run");
+
+        throw $r100;
+
+     label13:
+        virtualinvoke $r94.<gc.g1.mixedgc.TestOldGenCollectionUsage$MixedGCProvoker: void provokeMixedGC()>();
+
+        $r40 = interfaceinvoke r86.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getCollectionUsage()>();
+
+        $l8 = virtualinvoke $r40.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r43 = <java.lang.System: java.io.PrintStream out>;
+
+        $r101 = new java.lang.StringBuilder;
+
+        $r116 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r42 = $r116.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String poolName>;
+
+        $r44 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r42);
+
+        specialinvoke $r101.<java.lang.StringBuilder: void <init>(java.lang.String)>($r44);
+
+        $r45 = virtualinvoke $r101.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": usage after GC = ");
+
+        $r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+
+        $r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r43.<java.io.PrintStream: void println(java.lang.String)>($r47);
+
+        $b9 = $l8 cmp 0L;
+
+        $i19 = (int) $b9;
+
+        if $i19 > 0 goto label14;
+
+        $r103 = new java.lang.RuntimeException;
+
+        $r102 = new java.lang.StringBuilder;
+
+        $r117 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r67 = $r117.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String poolName>;
+
+        $r68 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r67);
+
+        specialinvoke $r102.<java.lang.StringBuilder: void <init>(java.lang.String)>($r68);
+
+        $r69 = virtualinvoke $r102.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" found with zero usage");
+
+        $r70 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r103.<java.lang.RuntimeException: void <init>(java.lang.String)>($r70);
+
+        throw $r103;
+
+     label14:
+        $l10 = interfaceinvoke r87.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        $r50 = <java.lang.System: java.io.PrintStream out>;
+
+        $r104 = new java.lang.StringBuilder;
+
+        $r118 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r49 = $r118.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String collectorName>;
+
+        $r51 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r49);
+
+        specialinvoke $r104.<java.lang.StringBuilder: void <init>(java.lang.String)>($r51);
+
+        $r52 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": collection count = ");
+
+        $r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l10);
+
+        $r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r50.<java.io.PrintStream: void println(java.lang.String)>($r54);
+
+        $l11 = interfaceinvoke r87.<java.lang.management.GarbageCollectorMXBean: long getCollectionTime()>();
+
+        $r57 = <java.lang.System: java.io.PrintStream out>;
+
+        $r105 = new java.lang.StringBuilder;
+
+        $r119 = (gc.g1.mixedgc.TestOldGenCollectionUsage) r3;
+
+        $r56 = $r119.<gc.g1.mixedgc.TestOldGenCollectionUsage: java.lang.String collectorName>;
+
+        $r58 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r56);
+
+        specialinvoke $r105.<java.lang.StringBuilder: void <init>(java.lang.String)>($r58);
+
+        $r59 = virtualinvoke $r105.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": collection time  = ");
+
+        $r60 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l11);
+
+        $r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r57.<java.io.PrintStream: void println(java.lang.String)>($r61);
+
+        $b12 = $l10 cmp $l4;
+
+        $i20 = (int) $b12;
+
+        if $i20 > 0 goto label15;
+
+        $r106 = new java.lang.RuntimeException;
+
+        specialinvoke $r106.<java.lang.RuntimeException: void <init>(java.lang.String)>("No new collection");
+
+        throw $r106;
+
+     label15:
+        $b13 = $l11 cmp $l5;
+
+        $i21 = (int) $b13;
+
+        if $i21 > 0 goto label16;
+
+        $r107 = new java.lang.RuntimeException;
+
+        specialinvoke $r107.<java.lang.RuntimeException: void <init>(java.lang.String)>("Collector has not run some more");
+
+        throw $r107;
+
+     label16:
+        $r62 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r62.<java.io.PrintStream: void println(java.lang.String)>("Test passed.");
+
+        return;
+    }
+}

@@ -1,0 +1,14 @@
+final class MetaOOM$SmallClass extends java.lang.Object
+{
+
+    private void <init>()
+    {
+        MetaOOM$SmallClass r0;
+
+        r0 := @this: MetaOOM$SmallClass;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

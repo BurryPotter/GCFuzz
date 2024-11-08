@@ -1,0 +1,625 @@
+public final class TestJNIWeakG1 extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WB;
+    private volatile gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject testObject;
+    private boolean resolve;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+
+        staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("TestJNIWeakG1");
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB> = $r0;
+
+        return;
+    }
+
+    private static native void registerObject(java.lang.Object);
+
+    private static native void unregisterObject();
+
+    private static native java.lang.Object getReturnedWeak();
+
+    private static native java.lang.Object getResolvedWeak();
+
+    void <init>(boolean)
+    {
+        TestJNIWeakG1 r0;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r1, $r2, $r3;
+        boolean z0;
+
+        r0 := @this: TestJNIWeakG1;
+
+        z0 := @parameter0: boolean;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r0;
+
+        $r1.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject testObject> = null;
+
+        $r2 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r0;
+
+        $r2.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: boolean resolve> = 1;
+
+        $r3 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r0;
+
+        $r3.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: boolean resolve> = z0;
+
+        return;
+    }
+
+    private java.lang.Object getObject()
+    {
+        TestJNIWeakG1 r0;
+        java.lang.Object $r1, $r2;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r3;
+        boolean $z0;
+
+        r0 := @this: TestJNIWeakG1;
+
+        $r3 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r0;
+
+        $z0 = $r3.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: boolean resolve>;
+
+        if $z0 == 0 goto label1;
+
+        $r2 = staticinvoke <gc.g1.TestJNIWeakG1.TestJNIWeakG1: java.lang.Object getResolvedWeak()>();
+
+        return $r2;
+
+     label1:
+        $r1 = staticinvoke <gc.g1.TestJNIWeakG1.TestJNIWeakG1: java.lang.Object getReturnedWeak()>();
+
+        return $r1;
+    }
+
+    private void remember(int)
+    {
+        TestJNIWeakG1 r1;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject $r2;
+        int i0;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r3;
+
+        r1 := @this: TestJNIWeakG1;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject;
+
+        specialinvoke $r2.<gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject: void <init>(int)>(i0);
+
+        staticinvoke <gc.g1.TestJNIWeakG1.TestJNIWeakG1: void registerObject(java.lang.Object)>($r2);
+
+        $r3 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        $r3.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject testObject> = $r2;
+
+        return;
+    }
+
+    private void forget()
+    {
+        TestJNIWeakG1 r0;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r1;
+
+        r0 := @this: TestJNIWeakG1;
+
+        staticinvoke <gc.g1.TestJNIWeakG1.TestJNIWeakG1: void unregisterObject()>();
+
+        $r1 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r0;
+
+        $r1.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject testObject> = null;
+
+        return;
+    }
+
+    private void gcUntilOld(java.lang.Object)
+    {
+        TestJNIWeakG1 r3;
+        java.lang.Object r0;
+        sun.hotspot.WhiteBox $r1, $r2;
+        boolean $z0;
+
+        r3 := @this: TestJNIWeakG1;
+
+        r0 := @parameter0: java.lang.Object;
+
+        goto label2;
+
+     label1:
+        $r2 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r2.<sun.hotspot.WhiteBox: void youngGC()>();
+
+     label2:
+        $r1 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        $z0 = virtualinvoke $r1.<sun.hotspot.WhiteBox: boolean isObjectInOldGen(java.lang.Object)>(r0);
+
+        if $z0 == 0 goto label1;
+
+        return;
+    }
+
+    private void checkValue(int) throws java.lang.Exception
+    {
+        TestJNIWeakG1 r0;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject r2;
+        java.lang.RuntimeException $r5, $r6;
+        int i0, $i1;
+        java.lang.Object $r1;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r7;
+
+        r0 := @this: TestJNIWeakG1;
+
+        i0 := @parameter0: int;
+
+        $r7 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r0;
+
+        $r1 = virtualinvoke $r7.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: java.lang.Object getObject()>();
+
+        if $r1 != null goto label1;
+
+        $r5 = new java.lang.RuntimeException;
+
+        specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>("Weak reference unexpectedly null");
+
+        throw $r5;
+
+     label1:
+        r2 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject) $r1;
+
+        $i1 = r2.<gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject: int value>;
+
+        if $i1 == i0 goto label2;
+
+        $r6 = new java.lang.RuntimeException;
+
+        specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>("Incorrect value");
+
+        throw $r6;
+
+     label2:
+        return;
+    }
+
+    private void checkSanity() throws java.lang.Exception
+    {
+        java.io.PrintStream $r0;
+        TestJNIWeakG1 r2;
+        java.lang.Throwable $r4, $r6;
+        sun.hotspot.WhiteBox $r1, $r3, $r5;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r7, $r8, $r9, $r10;
+
+        r2 := @this: TestJNIWeakG1;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("running checkSanity");
+
+     label1:
+        $r1 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r1.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("IDLE");
+
+     label2:
+        $r7 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r2;
+
+        virtualinvoke $r7.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void remember(int)>(5);
+
+        $r8 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r2;
+
+        virtualinvoke $r8.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkValue(int)>(5);
+
+        goto label4;
+
+     label3:
+        $r6 := @caughtexception;
+
+        $r9 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r2;
+
+        virtualinvoke $r9.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void forget()>();
+
+        throw $r6;
+
+     label4:
+        $r10 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r2;
+
+        virtualinvoke $r10.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void forget()>();
+
+        goto label6;
+
+     label5:
+        $r4 := @caughtexception;
+
+        $r5 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r5.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("ANY");
+
+        throw $r4;
+
+     label6:
+        $r3 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r3.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("ANY");
+
+        return;
+
+        catch java.lang.Throwable from label2 to label3 with label3;
+        catch java.lang.Throwable from label1 to label5 with label5;
+    }
+
+    private void checkSurvival() throws java.lang.Exception
+    {
+        java.lang.Throwable $r6, $r8;
+        java.io.PrintStream $r0;
+        TestJNIWeakG1 r1;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject $r2;
+        sun.hotspot.WhiteBox $r3, $r4, $r5, $r7;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r9, $r10, $r11, $r12, $r13, $r14, $r15;
+
+        r1 := @this: TestJNIWeakG1;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("running checkSurvival");
+
+     label1:
+        $r9 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r9.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void remember(int)>(10);
+
+        $r10 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r10.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkValue(int)>(10);
+
+        $r11 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        $r2 = $r11.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject testObject>;
+
+        $r12 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r12.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void gcUntilOld(java.lang.Object)>($r2);
+
+        $r3 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r3.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("CONCURRENT_CYCLE");
+
+        $r4 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r4.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("IDLE");
+
+        $r13 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r13.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkValue(int)>(10);
+
+        goto label3;
+
+     label2:
+        $r8 := @caughtexception;
+
+        $r14 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r14.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void forget()>();
+
+        throw $r8;
+
+     label3:
+        $r15 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r15.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void forget()>();
+
+        goto label5;
+
+     label4:
+        $r6 := @caughtexception;
+
+        $r7 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r7.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("ANY");
+
+        throw $r6;
+
+     label5:
+        $r5 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r5.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("ANY");
+
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label2;
+        catch java.lang.Throwable from label1 to label4 with label4;
+    }
+
+    private void checkClear() throws java.lang.Exception
+    {
+        java.lang.Throwable $r10, $r12;
+        java.io.PrintStream $r0;
+        TestJNIWeakG1 r1;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject $r2;
+        sun.hotspot.WhiteBox $r3, $r4, $r5, $r6, $r8, $r11;
+        java.lang.RuntimeException $r13;
+        java.lang.Object $r7;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22;
+
+        r1 := @this: TestJNIWeakG1;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("running checkClear");
+
+     label1:
+        $r14 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r14.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void remember(int)>(15);
+
+        $r15 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r15.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkValue(int)>(15);
+
+        $r16 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        $r2 = $r16.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject testObject>;
+
+        $r17 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r17.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void gcUntilOld(java.lang.Object)>($r2);
+
+        $r3 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r3.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("CONCURRENT_CYCLE");
+
+        $r4 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r4.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("IDLE");
+
+        $r18 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r18.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkValue(int)>(15);
+
+        $r19 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        $r19.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject testObject> = null;
+
+        $r5 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r5.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("CONCURRENT_CYCLE");
+
+        $r6 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r6.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("IDLE");
+
+        $r20 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        $r7 = virtualinvoke $r20.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: java.lang.Object getObject()>();
+
+        if $r7 == null goto label3;
+
+        $r13 = new java.lang.RuntimeException;
+
+        specialinvoke $r13.<java.lang.RuntimeException: void <init>(java.lang.String)>("expected clear");
+
+        throw $r13;
+
+     label2:
+        $r12 := @caughtexception;
+
+        $r21 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r21.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void forget()>();
+
+        throw $r12;
+
+     label3:
+        $r22 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r22.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void forget()>();
+
+        goto label5;
+
+     label4:
+        $r10 := @caughtexception;
+
+        $r11 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r11.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("ANY");
+
+        throw $r10;
+
+     label5:
+        $r8 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r8.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("ANY");
+
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label2;
+        catch java.lang.Throwable from label1 to label4 with label4;
+    }
+
+    private void checkShouldNotClear() throws java.lang.Exception
+    {
+        java.lang.Throwable $r11, $r13;
+        java.io.PrintStream $r0;
+        TestJNIWeakG1 r1;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject $r2;
+        sun.hotspot.WhiteBox $r3, $r4, $r6, $r8, $r12;
+        java.lang.RuntimeException $r14, $r15;
+        java.lang.Object $r5, $r7;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25;
+
+        r1 := @this: TestJNIWeakG1;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("running checkShouldNotClear");
+
+     label1:
+        $r16 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r16.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void remember(int)>(20);
+
+        $r17 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r17.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkValue(int)>(20);
+
+        $r18 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        $r2 = $r18.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject testObject>;
+
+        $r19 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r19.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void gcUntilOld(java.lang.Object)>($r2);
+
+        $r3 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r3.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("IDLE");
+
+        $r20 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r20.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkValue(int)>(20);
+
+        $r21 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        $r21.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: gc.g1.TestJNIWeakG1.TestJNIWeakG1$TestObject testObject> = null;
+
+        $r4 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r4.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("BEFORE_REMARK");
+
+        $r22 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        $r5 = virtualinvoke $r22.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: java.lang.Object getObject()>();
+
+        if $r5 != null goto label2;
+
+        $r14 = new java.lang.RuntimeException;
+
+        specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>("unexpected clear during mark");
+
+        throw $r14;
+
+     label2:
+        $r6 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r6.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("IDLE");
+
+        $r23 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        $r7 = virtualinvoke $r23.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: java.lang.Object getObject()>();
+
+        if $r7 != null goto label3;
+
+        $r15 = new java.lang.RuntimeException;
+
+        specialinvoke $r15.<java.lang.RuntimeException: void <init>(java.lang.String)>("cleared jweak for live object");
+
+        throw $r15;
+
+     label3:
+        staticinvoke <java.lang.ref.Reference: void reachabilityFence(java.lang.Object)>($r5);
+
+        goto label5;
+
+     label4:
+        $r13 := @caughtexception;
+
+        $r24 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r24.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void forget()>();
+
+        throw $r13;
+
+     label5:
+        $r25 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r1;
+
+        virtualinvoke $r25.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void forget()>();
+
+        goto label7;
+
+     label6:
+        $r11 := @caughtexception;
+
+        $r12 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r12.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("ANY");
+
+        throw $r11;
+
+     label7:
+        $r8 = <gc.g1.TestJNIWeakG1.TestJNIWeakG1: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r8.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("ANY");
+
+        return;
+
+        catch java.lang.Throwable from label1 to label4 with label4;
+        catch java.lang.Throwable from label1 to label6 with label6;
+    }
+
+    private void check() throws java.lang.Exception
+    {
+        TestJNIWeakG1 r0;
+        java.io.PrintStream $r1;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r2, $r3, $r4, $r5;
+
+        r0 := @this: TestJNIWeakG1;
+
+        $r2 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r0;
+
+        virtualinvoke $r2.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkSanity()>();
+
+        $r3 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r0;
+
+        virtualinvoke $r3.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkSurvival()>();
+
+        $r4 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r0;
+
+        virtualinvoke $r4.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkClear()>();
+
+        $r5 = (gc.g1.TestJNIWeakG1.TestJNIWeakG1) r0;
+
+        virtualinvoke $r5.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void checkShouldNotClear()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Check passed");
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r0, $r2;
+        gc.g1.TestJNIWeakG1.TestJNIWeakG1 $r1, $r3;
+        java.lang.String[] r4;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Check with jweak resolved");
+
+        $r1 = new gc.g1.TestJNIWeakG1.TestJNIWeakG1;
+
+        specialinvoke $r1.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void <init>(boolean)>(1);
+
+        virtualinvoke $r1.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void check()>();
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("Check with jweak returned");
+
+        $r3 = new gc.g1.TestJNIWeakG1.TestJNIWeakG1;
+
+        specialinvoke $r3.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void <init>(boolean)>(0);
+
+        virtualinvoke $r3.<gc.g1.TestJNIWeakG1.TestJNIWeakG1: void check()>();
+
+        return;
+    }
+}

@@ -1,0 +1,33 @@
+public class Linear4 extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Linear4 r0;
+
+        r0 := @this: Linear4;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.memory.UniThread.Linear3.Linear3 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.memory.UniThread.Linear3.Linear3;
+
+        specialinvoke $r2.<gc.memory.UniThread.Linear3.Linear3: void <init>(int,int)>(10000, 100);
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

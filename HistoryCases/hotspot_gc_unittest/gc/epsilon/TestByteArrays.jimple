@@ -1,0 +1,213 @@
+public class TestByteArrays extends java.lang.Object
+{
+    static long SEED;
+    static int COUNT;
+    static byte[][] arr;
+
+    static void <clinit>()
+    {
+        java.lang.Long $r0;
+        int $i2;
+        long $l0, $l1;
+        java.lang.Integer $r1;
+
+        $l0 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $r0 = staticinvoke <java.lang.Long: java.lang.Long getLong(java.lang.String,long)>("seed", $l0);
+
+        $l1 = virtualinvoke $r0.<java.lang.Long: long longValue()>();
+
+        <gc.epsilon.TestByteArrays: long SEED> = $l1;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String,int)>("count", 3000);
+
+        $i2 = virtualinvoke $r1.<java.lang.Integer: int intValue()>();
+
+        <gc.epsilon.TestByteArrays: int COUNT> = $i2;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestByteArrays r0;
+
+        r0 := @this: TestByteArrays;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        byte[] $r2, $r5, r21;
+        java.lang.IllegalStateException $r25, $r27;
+        java.util.Random $r22, $r23;
+        byte $b7, b12, b15;
+        byte[][] $r1, $r3, $r4, $r7;
+        java.lang.StringBuilder $r10, $r11, $r12, $r16, $r17, $r18, $r24, $r26;
+        long $l0, $l8;
+        java.lang.String[] r20;
+        int $i1, $i2, $i3, $i4, $i5, $i6, $i9, $i10, $i11, $i13, $i14, $i16, $i17, i18, i19, i20, i21, $i22, $i23, $i24, $i25;
+        java.lang.String $r13, $r19;
+
+        r20 := @parameter0: java.lang.String[];
+
+        $r22 = new java.util.Random;
+
+        $l0 = <gc.epsilon.TestByteArrays: long SEED>;
+
+        specialinvoke $r22.<java.util.Random: void <init>(long)>($l0);
+
+        $i1 = <gc.epsilon.TestByteArrays: int COUNT>;
+
+        $i2 = $i1 * 100;
+
+        $r1 = newarray (byte[])[$i2];
+
+        <gc.epsilon.TestByteArrays: byte[][] arr> = $r1;
+
+        i18 = 0;
+
+        goto label04;
+
+     label01:
+        $r3 = <gc.epsilon.TestByteArrays: byte[][] arr>;
+
+        $i4 = i18 * 100;
+
+        $r2 = newarray (byte)[$i4];
+
+        $r3[i18] = $r2;
+
+        i19 = 0;
+
+        goto label03;
+
+     label02:
+        $r4 = <gc.epsilon.TestByteArrays: byte[][] arr>;
+
+        $r5 = $r4[i18];
+
+        $i5 = virtualinvoke $r22.<java.util.Random: int nextInt(int)>(255);
+
+        $i6 = $i5 & 255;
+
+        $b7 = (byte) $i6;
+
+        $r5[i19] = $b7;
+
+        i19 = i19 + 1;
+
+     label03:
+        if i19 < i18 goto label02;
+
+        i18 = i18 + 1;
+
+     label04:
+        $i3 = <gc.epsilon.TestByteArrays: int COUNT>;
+
+        if i18 < $i3 goto label01;
+
+        $r23 = new java.util.Random;
+
+        $l8 = <gc.epsilon.TestByteArrays: long SEED>;
+
+        specialinvoke $r23.<java.util.Random: void <init>(long)>($l8);
+
+        i20 = 0;
+
+        goto label10;
+
+     label05:
+        $r7 = <gc.epsilon.TestByteArrays: byte[][] arr>;
+
+        r21 = $r7[i20];
+
+        $i11 = lengthof r21;
+
+        $i10 = i20 * 100;
+
+        if $i11 == $i10 goto label06;
+
+        $r25 = new java.lang.IllegalStateException;
+
+        $r24 = new java.lang.StringBuilder;
+
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>(java.lang.String)>("Failure: length = ");
+
+        $i16 = lengthof r21;
+
+        $r16 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i16);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", need = ");
+
+        $i17 = i20 * 100;
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i17);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r25.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r19);
+
+        throw $r25;
+
+     label06:
+        i21 = 0;
+
+        goto label09;
+
+     label07:
+        b12 = r21[i21];
+
+        $i13 = virtualinvoke $r23.<java.util.Random: int nextInt(int)>(255);
+
+        $i14 = $i13 & 255;
+
+        b15 = (byte) $i14;
+
+        $i22 = (int) b12;
+
+        $i23 = (int) b15;
+
+        if $i22 == $i23 goto label08;
+
+        $r27 = new java.lang.IllegalStateException;
+
+        $r26 = new java.lang.StringBuilder;
+
+        specialinvoke $r26.<java.lang.StringBuilder: void <init>(java.lang.String)>("Failure: expected = ");
+
+        $i24 = (int) b15;
+
+        $r10 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i24);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", actual = ");
+
+        $i25 = (int) b12;
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i25);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r27.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r13);
+
+        throw $r27;
+
+     label08:
+        i21 = i21 + 1;
+
+     label09:
+        if i21 < i20 goto label07;
+
+        i20 = i20 + 1;
+
+     label10:
+        $i9 = <gc.epsilon.TestByteArrays: int COUNT>;
+
+        if i20 < $i9 goto label05;
+
+        return;
+    }
+}

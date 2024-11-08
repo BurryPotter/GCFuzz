@@ -1,0 +1,94 @@
+abstract enum class TestHeapCounters$MemoryCounter extends java.lang.Enum
+{
+    public static final enum gc.g1.humongousObjects.TestHeapCounters$MemoryCounter MX_BEAN_COUNTER;
+    public static final enum gc.g1.humongousObjects.TestHeapCounters$MemoryCounter RUNTIME_COUNTER;
+    private static final gc.g1.humongousObjects.TestHeapCounters$MemoryCounter[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.g1.humongousObjects.TestHeapCounters$MemoryCounter $r3, $r4, $r7, $r8;
+        gc.g1.humongousObjects.TestHeapCounters$MemoryCounter[] $r2;
+        gc.g1.humongousObjects.TestHeapCounters$MemoryCounter$2 $r6;
+        gc.g1.humongousObjects.TestHeapCounters$MemoryCounter$1 $r5;
+
+        $r5 = new gc.g1.humongousObjects.TestHeapCounters$MemoryCounter$1;
+
+        specialinvoke $r5.<gc.g1.humongousObjects.TestHeapCounters$MemoryCounter$1: void <init>(java.lang.String,int)>("MX_BEAN_COUNTER", 0);
+
+        $r7 = (gc.g1.humongousObjects.TestHeapCounters$MemoryCounter) $r5;
+
+        <gc.g1.humongousObjects.TestHeapCounters$MemoryCounter: gc.g1.humongousObjects.TestHeapCounters$MemoryCounter MX_BEAN_COUNTER> = $r7;
+
+        $r6 = new gc.g1.humongousObjects.TestHeapCounters$MemoryCounter$2;
+
+        specialinvoke $r6.<gc.g1.humongousObjects.TestHeapCounters$MemoryCounter$2: void <init>(java.lang.String,int)>("RUNTIME_COUNTER", 1);
+
+        $r8 = (gc.g1.humongousObjects.TestHeapCounters$MemoryCounter) $r6;
+
+        <gc.g1.humongousObjects.TestHeapCounters$MemoryCounter: gc.g1.humongousObjects.TestHeapCounters$MemoryCounter RUNTIME_COUNTER> = $r8;
+
+        $r2 = newarray (gc.g1.humongousObjects.TestHeapCounters$MemoryCounter)[2];
+
+        $r3 = <gc.g1.humongousObjects.TestHeapCounters$MemoryCounter: gc.g1.humongousObjects.TestHeapCounters$MemoryCounter MX_BEAN_COUNTER>;
+
+        $r2[0] = $r3;
+
+        $r4 = <gc.g1.humongousObjects.TestHeapCounters$MemoryCounter: gc.g1.humongousObjects.TestHeapCounters$MemoryCounter RUNTIME_COUNTER>;
+
+        $r2[1] = $r4;
+
+        <gc.g1.humongousObjects.TestHeapCounters$MemoryCounter: gc.g1.humongousObjects.TestHeapCounters$MemoryCounter[] ENUM$VALUES> = $r2;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        java.lang.String r1;
+        TestHeapCounters$MemoryCounter r0;
+
+        r0 := @this: TestHeapCounters$MemoryCounter;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public abstract long getUsedMemory();
+
+    public static gc.g1.humongousObjects.TestHeapCounters$MemoryCounter[] values()
+    {
+        int $i0;
+        gc.g1.humongousObjects.TestHeapCounters$MemoryCounter[] $r0, $r1;
+
+        $r0 = <gc.g1.humongousObjects.TestHeapCounters$MemoryCounter: gc.g1.humongousObjects.TestHeapCounters$MemoryCounter[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.g1.humongousObjects.TestHeapCounters$MemoryCounter)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.g1.humongousObjects.TestHeapCounters$MemoryCounter valueOf(java.lang.String)
+    {
+        gc.g1.humongousObjects.TestHeapCounters$MemoryCounter $r2;
+        java.lang.String r0;
+        java.lang.Enum $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/g1/humongousObjects/TestHeapCounters$MemoryCounter;", r0);
+
+        $r2 = (gc.g1.humongousObjects.TestHeapCounters$MemoryCounter) $r1;
+
+        return $r2;
+    }
+}

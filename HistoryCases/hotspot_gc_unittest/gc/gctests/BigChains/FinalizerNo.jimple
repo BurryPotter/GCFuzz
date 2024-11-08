@@ -1,0 +1,14 @@
+class FinalizerNo extends gc.gctests.BigChains.BaseClass
+{
+
+    void <init>()
+    {
+        FinalizerNo r0;
+
+        r0 := @this: FinalizerNo;
+
+        specialinvoke r0.<gc.gctests.BigChains.BaseClass: void <init>()>();
+
+        return;
+    }
+}

@@ -1,0 +1,53 @@
+class GenClassPoolJar$ClassRenamer extends java.lang.Object
+{
+    private final java.lang.String newName;
+
+    public void <init>(ClassVisitor, java.lang.String)
+    {
+        GenClassPoolJar$ClassRenamer r1;
+        java.lang.Error $r0;
+        ClassVisitor r2;
+        java.lang.String r3;
+
+        r1 := @this: GenClassPoolJar$ClassRenamer;
+
+        r2 := @parameter0: ClassVisitor;
+
+        r3 := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problems: \n\tThe type jdk.internal.org.objectweb.asm.ClassReader is not accessible\n\tThe type jdk.internal.org.objectweb.asm.ClassVisitor is not accessible\n\tThe type jdk.internal.org.objectweb.asm.ClassWriter is not accessible\n\tThe type jdk.internal.org.objectweb.asm.Opcodes is not accessible\n\tClassReader cannot be resolved to a type\n\tClassReader cannot be resolved to a type\n\tClassWriter cannot be resolved to a type\n\tClassWriter cannot be resolved to a type\n\tClassWriter cannot be resolved to a variable\n\tClassVisitor cannot be resolved to a type\n\tClassVisitor cannot be resolved to a type\n\tOpcodes cannot be resolved to a type\n\tClassVisitor cannot be resolved to a type\n\tASM4 cannot be resolved to a variable\n\tThe method visit(int, int, String, String, String, String[]) of type GenClassPoolJar.ClassRenamer must override or implement a supertype method\n\tcv cannot be resolved\n");
+
+        throw $r0;
+    }
+
+    public void visit(int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String[])
+    {
+        java.lang.Error $r0;
+        java.lang.String[] r5;
+        GenClassPoolJar$ClassRenamer r1;
+        int i0, i1;
+        java.lang.String r2, r3, r4;
+
+        r1 := @this: GenClassPoolJar$ClassRenamer;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        r2 := @parameter2: java.lang.String;
+
+        r3 := @parameter3: java.lang.String;
+
+        r4 := @parameter4: java.lang.String;
+
+        r5 := @parameter5: java.lang.String[];
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problems: \n\tThe method visit(int, int, String, String, String, String[]) of type GenClassPoolJar.ClassRenamer must override or implement a supertype method\n\tcv cannot be resolved\n");
+
+        throw $r0;
+    }
+}

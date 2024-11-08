@@ -1,0 +1,121 @@
+public class TestPrintRegionRememberedSetInfo extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestPrintRegionRememberedSetInfo r0;
+
+        r0 := @this: TestPrintRegionRememberedSetInfo;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.lang.String runTest(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.Object[] $r7;
+        java.lang.Process $r11;
+        java.lang.String[] $r1, $r6, $r8;
+        jdk.test.lib.process.OutputAnalyzer $r10;
+        java.util.ArrayList $r0;
+        java.util.List $r2;
+        java.lang.Class $r4;
+        java.lang.String r3, $r5, $r12;
+        java.lang.ProcessBuilder $r9;
+
+        r3 := @parameter0: java.lang.String;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = newarray (java.lang.String)[6];
+
+        $r1[0] = "-XX:+UseG1GC";
+
+        $r1[1] = "-Xmx10m";
+
+        $r1[2] = "-XX:+ExplicitGCInvokesConcurrent";
+
+        $r1[3] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r1[4] = "-XX:G1HeapRegionSize=1M";
+
+        $r1[5] = "-XX:InitiatingHeapOccupancyPercent=0";
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r1);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r2);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>(r3);
+
+        $r4 = class "Lgc/g1/RunAndWaitForMarking;";
+
+        $r5 = virtualinvoke $r4.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r5);
+
+        $r6 = newarray (java.lang.String)[0];
+
+        $r7 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r6);
+
+        $r8 = (java.lang.String[]) $r7;
+
+        $r9 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r8);
+
+        $r10 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r11 = virtualinvoke $r9.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r11);
+
+        virtualinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r12 = virtualinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        return $r12;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r4;
+        java.lang.RuntimeException $r5, $r6;
+        int $i0, $i1, $i3, $i5;
+        java.lang.String $r0, $r1;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <gc.g1.TestPrintRegionRememberedSetInfo: java.lang.String runTest(java.lang.String)>("-Xlog:gc+liveness=trace");
+
+        $i0 = virtualinvoke $r0.<java.lang.String: int indexOf(java.lang.String)>("PHASE");
+
+        $i3 = (int) -1;
+
+        if $i0 != $i3 goto label1;
+
+        $r5 = new java.lang.RuntimeException;
+
+        specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>("Unexpected output from -XX:+PrintRegionLivenessInfo found.");
+
+        throw $r5;
+
+     label1:
+        $r1 = staticinvoke <gc.g1.TestPrintRegionRememberedSetInfo: java.lang.String runTest(java.lang.String)>("-Xlog:gc+liveness");
+
+        $i1 = virtualinvoke $r1.<java.lang.String: int indexOf(java.lang.String)>("remset");
+
+        $i5 = (int) -1;
+
+        if $i1 == $i5 goto label2;
+
+        $r6 = new java.lang.RuntimeException;
+
+        specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>("Should find remembered set information in output.");
+
+        throw $r6;
+
+     label2:
+        return;
+    }
+}

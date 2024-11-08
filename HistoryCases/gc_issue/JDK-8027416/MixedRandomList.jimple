@@ -1,0 +1,191 @@
+public class MixedRandomList extends java.lang.Object
+{
+    private static final int DEFAULT_NUMBEROFTHREADS;
+    private static final int DEFAULT_OBJECTSIZE;
+    private static int numberOfThreads;
+    private static int objectSize;
+    private static long numLive;
+
+    public void <init>()
+    {
+        MixedRandomList r0;
+
+        r0 := @this: MixedRandomList;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        long $l3, $l4, $l5, $l11;
+        java.lang.Thread $r1;
+        int $i0, $i1, $i2, $i6, $i7, $i8, $i9, $i10, i12, $i13;
+        java.lang.String $r3, $r4, $r5;
+        double $d0, $d1;
+        java.lang.InterruptedException $r6;
+        MixedRandomList$GarbageProducer $r2;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 <= 0 goto label1;
+
+        $r3 = r0[0];
+
+        $i7 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        <MixedRandomList: int objectSize> = $i7;
+
+        $i8 = lengthof r0;
+
+        if $i8 <= 1 goto label1;
+
+        $r4 = r0[1];
+
+        $i9 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r4);
+
+        <MixedRandomList: int numberOfThreads> = $i9;
+
+        $i10 = lengthof r0;
+
+        if $i10 <= 2 goto label1;
+
+        $r5 = r0[2];
+
+        $l11 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r5);
+
+        <MixedRandomList: long numLive> = $l11;
+
+     label1:
+        i12 = 0;
+
+     label2:
+        $i13 = <MixedRandomList: int numberOfThreads>;
+
+        if i12 >= $i13 goto label3;
+
+        $r1 = new java.lang.Thread;
+
+        $r2 = new MixedRandomList$GarbageProducer;
+
+        $i1 = i12 + 1;
+
+        $d0 = (double) $i1;
+
+        $d1 = staticinvoke <java.lang.Math: double pow(double,double)>(50.0, $d0);
+
+        $i6 = (int) $d1;
+
+        $l4 = <MixedRandomList: long numLive>;
+
+        $i2 = <MixedRandomList: int numberOfThreads>;
+
+        $l3 = (long) $i2;
+
+        $l5 = $l4 / $l3;
+
+        specialinvoke $r2.<MixedRandomList$GarbageProducer: void <init>(int,long)>($i6, $l5);
+
+        specialinvoke $r1.<java.lang.Thread: void <init>(java.lang.Runnable)>($r2);
+
+        virtualinvoke $r1.<java.lang.Thread: void start()>();
+
+        i12 = i12 + 1;
+
+        goto label2;
+
+     label3:
+        staticinvoke <java.lang.Thread: void sleep(long)>(1200000L);
+
+     label4:
+        goto label6;
+
+     label5:
+        $r6 := @caughtexception;
+
+        virtualinvoke $r6.<java.lang.InterruptedException: void printStackTrace()>();
+
+     label6:
+        staticinvoke <java.lang.System: void exit(int)>(0);
+
+        return;
+
+        catch java.lang.InterruptedException from label3 to label4 with label5;
+    }
+
+    private static char[] getCharArray(int)
+    {
+        int i0, i1;
+        char[] r0;
+
+        i0 := @parameter0: int;
+
+        r0 = newarray (char)[i0];
+
+        i1 = 0;
+
+     label1:
+        if i1 >= i0 goto label2;
+
+        r0[i1] = 97;
+
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label2:
+        return r0;
+    }
+
+    static int access$000()
+    {
+        int $i0;
+
+        $i0 = <MixedRandomList: int objectSize>;
+
+        return $i0;
+    }
+
+    static char[] access$100(int)
+    {
+        int i0;
+        char[] $r0;
+
+        i0 := @parameter0: int;
+
+        $r0 = staticinvoke <MixedRandomList: char[] getCharArray(int)>(i0);
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Runtime $r0;
+        int $i1;
+        long $l0, $l2, $l3, $l4;
+
+        <MixedRandomList: int numberOfThreads> = 1;
+
+        <MixedRandomList: int objectSize> = 100;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long maxMemory()>();
+
+        $i1 = <MixedRandomList: int objectSize>;
+
+        $l2 = (long) $i1;
+
+        $l3 = $l0 / $l2;
+
+        $l4 = $l3 / 5L;
+
+        <MixedRandomList: long numLive> = $l4;
+
+        return;
+    }
+}

@@ -1,0 +1,88 @@
+public class TestNoEagerReclaimOfHumongousRegions extends java.lang.Object
+{
+    static gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef humongous_reference_holder;
+
+    public void <init>()
+    {
+        TestNoEagerReclaimOfHumongousRegions r0;
+
+        r0 := @this: TestNoEagerReclaimOfHumongousRegions;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.InterruptedException
+    {
+        byte[] $r3, $r4, $r7;
+        sun.hotspot.WhiteBox $r0;
+        gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef $r2, $r5, $r6;
+        java.lang.String[] r8;
+        int i0;
+        java.util.LinkedList $r1;
+        boolean $z0;
+
+        r8 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $r1 = new java.util.LinkedList;
+
+        specialinvoke $r1.<java.util.LinkedList: void <init>()>();
+
+        $r2 = new gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef;
+
+        $r3 = newarray (byte)[1048576];
+
+        specialinvoke $r2.<gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef: void <init>(byte[])>($r3);
+
+        <gc.g1.TestNoEagerReclaimOfHumongousRegions: gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef humongous_reference_holder> = $r2;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r4 = newarray (byte)[400000];
+
+        virtualinvoke $r1.<java.util.LinkedList: boolean add(java.lang.Object)>($r4);
+
+        $r5 = new gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef;
+
+        $r6 = <gc.g1.TestNoEagerReclaimOfHumongousRegions: gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef humongous_reference_holder>;
+
+        $r7 = virtualinvoke $r6.<gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef: byte[] ref()>();
+
+        specialinvoke $r5.<gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef: void <init>(byte[])>($r7);
+
+        virtualinvoke $r1.<java.util.LinkedList: boolean add(java.lang.Object)>($r5);
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 32 goto label1;
+
+        virtualinvoke $r1.<java.util.LinkedList: void clear()>();
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        goto label4;
+
+     label3:
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+     label4:
+        $z0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1InConcurrentMark()>();
+
+        if $z0 != 0 goto label3;
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        return;
+    }
+}

@@ -1,0 +1,130 @@
+class Person extends java.lang.Object
+{
+    java.lang.String name;
+    int ssid;
+    int age;
+    int[] buf;
+    int bufsz;
+    static int populationLimit;
+    static int currentPopulation;
+
+    public void <init>(java.lang.String, int, int, int) throws gc.gctests.gctest01.PopulationException
+    {
+        java.lang.Throwable $r5;
+        gc.gctests.gctest01.Person $r6, $r7, $r8, $r9, $r10;
+        gc.gctests.gctest01.PopulationException $r4;
+        int[] $r2;
+        int $i0, $i1, i2, i3, i4;
+        java.lang.String r1;
+        Person r0;
+
+        r0 := @this: Person;
+
+        r1 := @parameter0: java.lang.String;
+
+        i2 := @parameter1: int;
+
+        i3 := @parameter2: int;
+
+        i4 := @parameter3: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        staticinvoke <gc.gctests.gctest01.Person: void incr()>();
+
+        $i0 = staticinvoke <gc.gctests.gctest01.Person: int getPopulation()>();
+
+        $i1 = staticinvoke <gc.gctests.gctest01.Person: int getPopulationLimit()>();
+
+        if $i0 <= $i1 goto label1;
+
+        $r4 = new gc.gctests.gctest01.PopulationException;
+
+        specialinvoke $r4.<gc.gctests.gctest01.PopulationException: void <init>()>();
+
+        $r5 = (java.lang.Throwable) $r4;
+
+        throw $r5;
+
+     label1:
+        $r6 = (gc.gctests.gctest01.Person) r0;
+
+        $r6.<gc.gctests.gctest01.Person: java.lang.String name> = r1;
+
+        $r7 = (gc.gctests.gctest01.Person) r0;
+
+        $r7.<gc.gctests.gctest01.Person: int ssid> = i2;
+
+        $r8 = (gc.gctests.gctest01.Person) r0;
+
+        $r8.<gc.gctests.gctest01.Person: int age> = i3;
+
+        if i4 <= 0 goto label2;
+
+        $r9 = (gc.gctests.gctest01.Person) r0;
+
+        $r9.<gc.gctests.gctest01.Person: int bufsz> = i4;
+
+        $r2 = newarray (int)[i4];
+
+        $r10 = (gc.gctests.gctest01.Person) r0;
+
+        $r10.<gc.gctests.gctest01.Person: int[] buf> = $r2;
+
+     label2:
+        return;
+    }
+
+    static synchronized void incr()
+    {
+        int $i0, $i1;
+
+        $i0 = <gc.gctests.gctest01.Person: int currentPopulation>;
+
+        $i1 = $i0 + 1;
+
+        <gc.gctests.gctest01.Person: int currentPopulation> = $i1;
+
+        return;
+    }
+
+    static synchronized int getPopulation()
+    {
+        int $i0;
+
+        $i0 = <gc.gctests.gctest01.Person: int currentPopulation>;
+
+        return $i0;
+    }
+
+    static synchronized void setPopulation(int)
+    {
+        int i0;
+
+        i0 := @parameter0: int;
+
+        <gc.gctests.gctest01.Person: int currentPopulation> = i0;
+
+        return;
+    }
+
+    static synchronized void setPopulationLimit(int)
+    {
+        int i0;
+
+        i0 := @parameter0: int;
+
+        <gc.gctests.gctest01.Person: int populationLimit> = i0;
+
+        return;
+    }
+
+    static synchronized int getPopulationLimit()
+    {
+        int $i0;
+
+        $i0 = <gc.gctests.gctest01.Person: int populationLimit>;
+
+        return $i0;
+    }
+}

@@ -1,0 +1,170 @@
+public class TestVerifyBeforeAndAfterGCFlags extends java.lang.Object
+{
+    public static final java.lang.String VERIFY_BEFORE_GC_PATTERN;
+    public static final java.lang.String VERIFY_BEFORE_GC_CORRUPTED_PATTERN;
+    public static final java.lang.String VERIFY_AFTER_GC_PATTERN;
+    public static final java.lang.String VERIFY_AFTER_GC_CORRUPTED_PATTERN;
+
+    public void <init>()
+    {
+        TestVerifyBeforeAndAfterGCFlags r0;
+
+        r0 := @this: TestVerifyBeforeAndAfterGCFlags;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r0, $r1, r2;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[5];
+
+        $r0[0] = "-Xlog:gc+verify=debug";
+
+        $r0[1] = "-XX:+UseGCLogFileRotation";
+
+        $r0[2] = "-XX:-DisplayVMOutput";
+
+        $r0[3] = "VerifyBeforeGC";
+
+        $r0[4] = "VerifyAfterGC";
+
+        $r1 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getFilteredTestJavaOpts(java.lang.String[])>($r0);
+
+        staticinvoke <gc.arguments.TestVerifyBeforeAndAfterGCFlags: void testVerifyFlags(boolean,boolean,java.lang.String[])>(0, 0, $r1);
+
+        staticinvoke <gc.arguments.TestVerifyBeforeAndAfterGCFlags: void testVerifyFlags(boolean,boolean,java.lang.String[])>(1, 1, $r1);
+
+        staticinvoke <gc.arguments.TestVerifyBeforeAndAfterGCFlags: void testVerifyFlags(boolean,boolean,java.lang.String[])>(1, 0, $r1);
+
+        staticinvoke <gc.arguments.TestVerifyBeforeAndAfterGCFlags: void testVerifyFlags(boolean,boolean,java.lang.String[])>(0, 1, $r1);
+
+        return;
+    }
+
+    public static void testVerifyFlags(boolean, boolean, java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Object[] $r5;
+        java.lang.String[] r1, $r4, $r6, $r10;
+        java.util.ArrayList $r0;
+        int $i0, $i1;
+        java.lang.String $r3, $r11, $r12;
+        java.lang.ProcessBuilder $r7;
+        boolean z0, z1;
+        java.lang.Process $r9;
+        jdk.test.lib.process.OutputAnalyzer $r8;
+        java.lang.Class $r2;
+
+        z0 := @parameter0: boolean;
+
+        z1 := @parameter1: boolean;
+
+        r1 := @parameter2: java.lang.String[];
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        if r1 == null goto label1;
+
+        $i1 = lengthof r1;
+
+        if $i1 <= 0 goto label1;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, r1);
+
+     label1:
+        $r10 = newarray (java.lang.String)[8];
+
+        $r10[0] = "-Xlog:gc+verify=debug";
+
+        $r10[1] = "-Xmx5m";
+
+        $r10[2] = "-Xms5m";
+
+        $r10[3] = "-Xmn3m";
+
+        $r10[4] = "-XX:+UnlockDiagnosticVMOptions";
+
+        if z0 == 0 goto label2;
+
+        $r11 = "-XX:+VerifyBeforeGC";
+
+        goto label3;
+
+     label2:
+        $r11 = "-XX:-VerifyBeforeGC";
+
+     label3:
+        $r10[5] = $r11;
+
+        if z1 == 0 goto label4;
+
+        $r12 = "-XX:+VerifyAfterGC";
+
+        goto label5;
+
+     label4:
+        $r12 = "-XX:-VerifyAfterGC";
+
+     label5:
+        $r10[6] = $r12;
+
+        $r2 = class "Lgc/arguments/TestVerifyBeforeAndAfterGCFlags$GarbageProducer;";
+
+        $r3 = virtualinvoke $r2.<java.lang.Class: java.lang.String getName()>();
+
+        $r10[7] = $r3;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r10);
+
+        $i0 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+        $r4 = newarray (java.lang.String)[$i0];
+
+        $r5 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r4);
+
+        $r6 = (java.lang.String[]) $r5;
+
+        $r7 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r6);
+
+        $r8 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r9 = virtualinvoke $r7.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r9);
+
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotMatch(java.lang.String)>("VerifyBeforeGC:(?!\\[Verifying[^]]+\\])");
+
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotMatch(java.lang.String)>("VerifyAfterGC:(?!\\[Verifying[^]]+\\])");
+
+        if z0 == 0 goto label6;
+
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>("Verifying Before GC");
+
+        goto label7;
+
+     label6:
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotMatch(java.lang.String)>("Verifying Before GC");
+
+     label7:
+        if z1 == 0 goto label8;
+
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>("Verifying After GC");
+
+        goto label9;
+
+     label8:
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotMatch(java.lang.String)>("Verifying After GC");
+
+     label9:
+        return;
+    }
+}

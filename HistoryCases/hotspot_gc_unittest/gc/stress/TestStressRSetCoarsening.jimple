@@ -1,0 +1,1056 @@
+public class TestStressRSetCoarsening extends java.lang.Object
+{
+    private static final long KB;
+    private static final long MB;
+    private static final sun.hotspot.WhiteBox WB;
+    public final gc.stress.ObjStorage storage;
+    public final int K;
+    public final int N;
+    public final int regionCount;
+    public final float heapFractionToAllocate;
+    public final int regsToRefresh;
+    public final long start;
+    public final long finishAt;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.stress.TestStressRSetCoarsening: sun.hotspot.WhiteBox WB> = $r0;
+
+        return;
+    }
+
+    public static transient void main(java.lang.String[]) throws java.lang.InterruptedException
+    {
+        gc.stress.TestStressRSetCoarsening $r4;
+        java.lang.String[] r0;
+        java.lang.IllegalArgumentException $r5;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.StringBuilder $r6, $r7;
+        java.lang.String $r1, $r2, $r3, $r8;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 3 goto label1;
+
+        $r5 = new java.lang.IllegalArgumentException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Wrong number of arguments ");
+
+        $i4 = lengthof r0;
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r8);
+
+        throw $r5;
+
+     label1:
+        $r1 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        $r2 = r0[1];
+
+        $i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        $r3 = r0[2];
+
+        $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        $r4 = new gc.stress.TestStressRSetCoarsening;
+
+        specialinvoke $r4.<gc.stress.TestStressRSetCoarsening: void <init>(int,int,int)>($i1, $i2, $i3);
+
+        virtualinvoke $r4.<gc.stress.TestStressRSetCoarsening: void go()>();
+
+        return;
+    }
+
+    void <init>(int, int, int)
+    {
+        byte $b36, $b45;
+        gc.stress.ObjStorage $r64, $r66, $r78;
+        java.lang.StringBuilder $r6, $r11, $r16, $r17, $r21, $r22, $r26, $r27, $r31, $r35, $r36, $r46, $r50, $r54, $r55, $r56, $r57, $r61, $r67, $r68, $r69, $r70, $r71, $r72, $r73, $r74, $r75, $r76, $r77;
+        java.lang.Object[] $r39, $r41, $r65;
+        long $l2, $l5, $l6, $l7, l9, $l10, $l11, $l12, l13, $l14, $l17, l18, l19, $l21, $l22, $l23, $l25, $l28, $l29, $l30, $l31, $l34, $l35, $l43, $l44, $l47, $l48, l49, l51;
+        int i0, i1, i3, $i4, $i8, $i15, $i16, $i20, $i24, $i26, $i27, $i32, $i33, $i37, $i38, $i39, $i40, $i41, $i42, $i46, i50, $i53, $i54, $i55;
+        java.io.PrintStream $r3, $r5, $r8, $r10, $r13, $r15, $r20, $r25, $r30, $r34, $r43, $r45, $r49, $r53, $r60;
+        TestStressRSetCoarsening r0;
+        java.lang.Runtime $r2;
+        java.lang.String $r7, $r12, $r18, $r23, $r28, $r32, $r37, $r47, $r51, $r58, $r62;
+        sun.hotspot.WhiteBox $r1, $r38, $r40, $r42;
+        gc.stress.TestStressRSetCoarsening $r79, $r80, $r81, $r82, $r83, $r84, $r85, $r86, $r87, $r88, $r89, $r90, $r91, $r92, $r93, $r94, $r95, $r96, $r97, $r98, $r99, $r100;
+        boolean $z0;
+        float $f0, $f1;
+
+        r0 := @this: TestStressRSetCoarsening;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i3 := @parameter2: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r79 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $r79.<gc.stress.TestStressRSetCoarsening: float heapFractionToAllocate> = 0.9F;
+
+        $r80 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $r80.<gc.stress.TestStressRSetCoarsening: int K> = i0;
+
+        $r81 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $r81.<gc.stress.TestStressRSetCoarsening: int regsToRefresh> = i1;
+
+        $l2 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r82 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $r82.<gc.stress.TestStressRSetCoarsening: long start> = $l2;
+
+        $r83 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $l6 = $r83.<gc.stress.TestStressRSetCoarsening: long start>;
+
+        $i4 = i3 * 900;
+
+        $l5 = (long) $i4;
+
+        $l7 = $l6 + $l5;
+
+        $r84 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $r84.<gc.stress.TestStressRSetCoarsening: long finishAt> = $l7;
+
+        $r1 = <gc.stress.TestStressRSetCoarsening: sun.hotspot.WhiteBox WB>;
+
+        $i8 = virtualinvoke $r1.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        l9 = (long) $i8;
+
+        $r2 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l10 = virtualinvoke $r2.<java.lang.Runtime: long totalMemory()>();
+
+        $l11 = virtualinvoke $r2.<java.lang.Runtime: long freeMemory()>();
+
+        l49 = $l10 - $l11;
+
+        $l12 = virtualinvoke $r2.<java.lang.Runtime: long maxMemory()>();
+
+        l13 = $l12 - l49;
+
+        $l14 = l13 / l9;
+
+        $f0 = (float) $l14;
+
+        $f1 = $f0 * 0.9F;
+
+        $i15 = (int) $f1;
+
+        $r85 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $r85.<gc.stress.TestStressRSetCoarsening: int regionCount> = $i15;
+
+        $r86 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i16 = $r86.<gc.stress.TestStressRSetCoarsening: int regionCount>;
+
+        $l17 = (long) $i16;
+
+        l18 = $l17 * l9;
+
+        l19 = l13 - l18;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("%% Test parameters");
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r67 = new java.lang.StringBuilder;
+
+        specialinvoke $r67.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   Objects per region              : ");
+
+        $r87 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i20 = $r87.<gc.stress.TestStressRSetCoarsening: int K>;
+
+        $r6 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i20);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>("%%   Heap fraction to allocate       : 90%");
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        $r68 = new java.lang.StringBuilder;
+
+        specialinvoke $r68.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   Regions to refresh to provoke GC: ");
+
+        $r11 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>("%% Memory");
+
+        $r15 = <java.lang.System: java.io.PrintStream out>;
+
+        $r69 = new java.lang.StringBuilder;
+
+        specialinvoke $r69.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   used          :        ");
+
+        $l21 = l49 / 1048576L;
+
+        $r16 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l21);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r18);
+
+        $r20 = <java.lang.System: java.io.PrintStream out>;
+
+        $r70 = new java.lang.StringBuilder;
+
+        specialinvoke $r70.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   available     :        ");
+
+        $l22 = l13 / 1048576L;
+
+        $r21 = virtualinvoke $r70.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l22);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r23);
+
+        $r25 = <java.lang.System: java.io.PrintStream out>;
+
+        $r71 = new java.lang.StringBuilder;
+
+        specialinvoke $r71.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   to allocate   :        ");
+
+        $l23 = l18 / 1048576L;
+
+        $r26 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l23);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r28);
+
+        $r30 = <java.lang.System: java.io.PrintStream out>;
+
+        $r72 = new java.lang.StringBuilder;
+
+        specialinvoke $r72.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%     (in regs)   :        ");
+
+        $r88 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i24 = $r88.<gc.stress.TestStressRSetCoarsening: int regionCount>;
+
+        $r31 = virtualinvoke $r72.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i24);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>($r32);
+
+        $r34 = <java.lang.System: java.io.PrintStream out>;
+
+        $r73 = new java.lang.StringBuilder;
+
+        specialinvoke $r73.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   G1 Region Size:        ");
+
+        $l25 = l9 / 1048576L;
+
+        $r35 = virtualinvoke $r73.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l25);
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r34.<java.io.PrintStream: void println(java.lang.String)>($r37);
+
+        $r38 = <gc.stress.TestStressRSetCoarsening: sun.hotspot.WhiteBox WB>;
+
+        $i26 = virtualinvoke $r38.<sun.hotspot.WhiteBox: int getHeapOopSize()>();
+
+        $r89 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i27 = $r89.<gc.stress.TestStressRSetCoarsening: int K>;
+
+        $l28 = (long) $i27;
+
+        $l30 = l9 / $l28;
+
+        $l29 = (long) $i26;
+
+        $l31 = $l30 / $l29;
+
+        $i32 = (int) $l31;
+
+        i50 = $i32 - 5;
+
+        $r40 = <gc.stress.TestStressRSetCoarsening: sun.hotspot.WhiteBox WB>;
+
+        $r39 = newarray (java.lang.Object)[i50];
+
+        l51 = virtualinvoke $r40.<sun.hotspot.WhiteBox: long getObjectSize(java.lang.Object)>($r39);
+
+        goto label2;
+
+     label1:
+        $i53 = (int) -1;
+
+        i50 = i50 + $i53;
+
+        $r42 = <gc.stress.TestStressRSetCoarsening: sun.hotspot.WhiteBox WB>;
+
+        $r41 = newarray (java.lang.Object)[i50];
+
+        l51 = virtualinvoke $r42.<sun.hotspot.WhiteBox: long getObjectSize(java.lang.Object)>($r41);
+
+     label2:
+        $r90 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i33 = $r90.<gc.stress.TestStressRSetCoarsening: int K>;
+
+        $l34 = (long) $i33;
+
+        $l35 = $l34 * l51;
+
+        $b36 = $l35 cmp l9;
+
+        $i54 = (int) $b36;
+
+        if $i54 > 0 goto label1;
+
+        $r91 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $r91.<gc.stress.TestStressRSetCoarsening: int N> = i50;
+
+        $r43 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r43.<java.io.PrintStream: void println(java.lang.String)>("%% Objects");
+
+        $r45 = <java.lang.System: java.io.PrintStream out>;
+
+        $r74 = new java.lang.StringBuilder;
+
+        specialinvoke $r74.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   N (array length)      : ");
+
+        $r92 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i37 = $r92.<gc.stress.TestStressRSetCoarsening: int N>;
+
+        $r46 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i37);
+
+        $r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r45.<java.io.PrintStream: void println(java.lang.String)>($r47);
+
+        $r49 = <java.lang.System: java.io.PrintStream out>;
+
+        $r75 = new java.lang.StringBuilder;
+
+        specialinvoke $r75.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   K (objects in regions): ");
+
+        $r93 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i38 = $r93.<gc.stress.TestStressRSetCoarsening: int K>;
+
+        $r50 = virtualinvoke $r75.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i38);
+
+        $r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r49.<java.io.PrintStream: void println(java.lang.String)>($r51);
+
+        $r53 = <java.lang.System: java.io.PrintStream out>;
+
+        $r76 = new java.lang.StringBuilder;
+
+        specialinvoke $r76.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   Object size           : ");
+
+        $r54 = virtualinvoke $r76.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l51);
+
+        $r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  (sizeOf(new Object[");
+
+        $r94 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i39 = $r94.<gc.stress.TestStressRSetCoarsening: int N>;
+
+        $r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i39);
+
+        $r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("])");
+
+        $r58 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r53.<java.io.PrintStream: void println(java.lang.String)>($r58);
+
+        $r60 = <java.lang.System: java.io.PrintStream out>;
+
+        $r77 = new java.lang.StringBuilder;
+
+        specialinvoke $r77.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   Reference size        : ");
+
+        $r61 = virtualinvoke $r77.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i26);
+
+        $r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r60.<java.io.PrintStream: void println(java.lang.String)>($r62);
+
+        $r78 = new gc.stress.ObjStorage;
+
+        $r95 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i41 = $r95.<gc.stress.TestStressRSetCoarsening: int regionCount>;
+
+        $r96 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i40 = $r96.<gc.stress.TestStressRSetCoarsening: int K>;
+
+        $i42 = $i41 * $i40;
+
+        specialinvoke $r78.<gc.stress.ObjStorage: void <init>(int)>($i42);
+
+        $r97 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $r97.<gc.stress.TestStressRSetCoarsening: gc.stress.ObjStorage storage> = $r78;
+
+        goto label4;
+
+     label3:
+        $r98 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $r66 = $r98.<gc.stress.TestStressRSetCoarsening: gc.stress.ObjStorage storage>;
+
+        $r99 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i46 = $r99.<gc.stress.TestStressRSetCoarsening: int N>;
+
+        $r65 = newarray (java.lang.Object)[$i46];
+
+        virtualinvoke $r66.<gc.stress.ObjStorage: void addArray(java.lang.Object[])>($r65);
+
+        $l47 = virtualinvoke $r2.<java.lang.Runtime: long totalMemory()>();
+
+        $l48 = virtualinvoke $r2.<java.lang.Runtime: long freeMemory()>();
+
+        l49 = $l47 - $l48;
+
+     label4:
+        $r100 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $r64 = $r100.<gc.stress.TestStressRSetCoarsening: gc.stress.ObjStorage storage>;
+
+        $z0 = virtualinvoke $r64.<gc.stress.ObjStorage: boolean isFull()>();
+
+        if $z0 != 0 goto label5;
+
+        $l43 = virtualinvoke $r2.<java.lang.Runtime: long maxMemory()>();
+
+        $l44 = $l43 - l49;
+
+        $b45 = $l44 cmp l19;
+
+        $i55 = (int) $b45;
+
+        if $i55 > 0 goto label3;
+
+     label5:
+        return;
+    }
+
+    public void go() throws java.lang.InterruptedException
+    {
+        byte $b35, $b60, b61;
+        java.lang.Long $r1, $r3;
+        gc.stress.ObjStorage $r22, $r25, $r26, $r29;
+        java.lang.StringBuilder $r8, $r9, $r10, $r11, $r12, $r13, $r17, $r18, $r19, $r35, $r36, $r41, $r42, $r49, $r50, $r52, $r53;
+        java.lang.Object[] $r23, $r27, $r28, $r47, r48;
+        long $l33, $l34, $l50, $l51, $l52, $l53, $l54, $l55;
+        int[] $r4, r5;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, i20, i21, $i22, $i23, $i24, $i25, $i26, $i27, $i28, $i29, $i30, $i31, $i32, $i36, $i37, $i38, $i39, $i40, $i41, $i42, $i43, $i44, $i45, $i46, $i47, $i48, $i49, i56, i57, i58, i59, i62, $i63, i64, i65, i66, i67, $i68, i69, $i70;
+        java.io.PrintStream $r7, $r16, $r32, $r34, $r39, $r44, $r46;
+        TestStressRSetCoarsening r21;
+        java.lang.Runtime $r40;
+        java.lang.String $r14, $r20, $r37, $r43;
+        sun.hotspot.WhiteBox $r0, $r2, $r30, $r31;
+        gc.stress.TestStressRSetCoarsening $r54, $r55, $r56, $r57, $r58, $r59, $r60, $r61, $r62, $r63, $r64, $r65, $r66, $r67, $r68, $r69, $r70, $r71, $r72, $r73;
+        java.util.concurrent.TimeoutException $r45, $r51;
+        boolean $z0;
+        float $f0, $f1, f2, $f3;
+
+        r21 := @this: TestStressRSetCoarsening;
+
+        $r0 = <gc.stress.TestStressRSetCoarsening: sun.hotspot.WhiteBox WB>;
+
+        $r1 = virtualinvoke $r0.<sun.hotspot.WhiteBox: java.lang.Long getIntxVMFlag(java.lang.String)>("G1RSetSparseRegionEntries");
+
+        $i0 = virtualinvoke $r1.<java.lang.Long: int intValue()>();
+
+        $r2 = <gc.stress.TestStressRSetCoarsening: sun.hotspot.WhiteBox WB>;
+
+        $r3 = virtualinvoke $r2.<sun.hotspot.WhiteBox: java.lang.Long getIntxVMFlag(java.lang.String)>("G1RSetRegionEntries");
+
+        $i1 = virtualinvoke $r3.<java.lang.Long: int intValue()>();
+
+        $r4 = newarray (int)[11];
+
+        $i2 = $i0 / 2;
+
+        $r4[1] = $i2;
+
+        $r4[3] = $i0;
+
+        $i3 = $i0 + $i1;
+
+        $i4 = $i3 / 2;
+
+        $r4[4] = $i4;
+
+        $r4[6] = $i1;
+
+        $i5 = $i1 + 10;
+
+        $r4[7] = $i5;
+
+        $i6 = $i0 + 1;
+
+        $r4[8] = $i6;
+
+        $i7 = $i0 / 2;
+
+        $r4[9] = $i7;
+
+        $i8 = lengthof $r4;
+
+        r5 = newarray (int)[$i8];
+
+        r5[0] = 0;
+
+        i56 = 1;
+
+        goto label02;
+
+     label01:
+        $i10 = i56 - 1;
+
+        $i15 = r5[$i10];
+
+        $i13 = $r4[i56];
+
+        $i11 = i56 - 1;
+
+        $i12 = $r4[$i11];
+
+        $i14 = $i13 - $i12;
+
+        $i16 = staticinvoke <java.lang.Math: int abs(int)>($i14);
+
+        $i17 = $i15 + $i16;
+
+        r5[i56] = $i17;
+
+        i56 = i56 + 1;
+
+     label02:
+        $i9 = lengthof $r4;
+
+        if i56 < $i9 goto label01;
+
+     label03:
+        i57 = 1;
+
+        goto label31;
+
+     label04:
+        $i19 = i57 - 1;
+
+        i20 = $r4[$i19];
+
+        i21 = $r4[i57];
+
+        $i22 = i57 - 1;
+
+        $i23 = r5[$i22];
+
+        $f1 = (float) $i23;
+
+        $i24 = lengthof r5;
+
+        $i25 = $i24 - 1;
+
+        $i26 = r5[$i25];
+
+        $f0 = (float) $i26;
+
+        f2 = $f1 / $f0;
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r49 = new java.lang.StringBuilder;
+
+        specialinvoke $r49.<java.lang.StringBuilder: void <init>(java.lang.String)>("%% step ");
+
+        $r8 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i57);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" out of ");
+
+        $i27 = lengthof $r4;
+
+        $i28 = $i27 - 1;
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i28);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" (~");
+
+        $f3 = 100.0F * f2;
+
+        $i29 = (int) $f3;
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i29);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("% done)");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r14);
+
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        $r50 = new java.lang.StringBuilder;
+
+        specialinvoke $r50.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%      ");
+
+        $r17 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i20);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  --> ");
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i21);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r20);
+
+        i58 = 0;
+
+        goto label17;
+
+     label05:
+        if i21 <= i20 goto label06;
+
+        $r54 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $r25 = $r54.<gc.stress.TestStressRSetCoarsening: gc.stress.ObjStorage storage>;
+
+        $r55 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i36 = $r55.<gc.stress.TestStressRSetCoarsening: int K>;
+
+        $i37 = i58 * $i36;
+
+        $r47 = virtualinvoke $r25.<gc.stress.ObjStorage: java.lang.Object[] getArrayAt(int)>($i37);
+
+        goto label07;
+
+     label06:
+        $r47 = null;
+
+     label07:
+        r48 = $r47;
+
+        i59 = 0;
+
+        goto label16;
+
+     label08:
+        if i58 != i59 goto label09;
+
+        goto label15;
+
+     label09:
+        if i21 <= i20 goto label10;
+
+        $b60 = 1;
+
+        goto label11;
+
+     label10:
+        $b60 = -1;
+
+     label11:
+        b61 = $b60;
+
+        i62 = i20;
+
+        goto label14;
+
+     label12:
+        $r56 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $r22 = $r56.<gc.stress.TestStressRSetCoarsening: gc.stress.ObjStorage storage>;
+
+        $r57 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i31 = virtualinvoke $r57.<gc.stress.TestStressRSetCoarsening: int getY(int,int,int)>(i58, i59, i62);
+
+        $r23 = virtualinvoke $r22.<gc.stress.ObjStorage: java.lang.Object[] getArrayAt(int)>($i31);
+
+        $r58 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i32 = virtualinvoke $r58.<gc.stress.TestStressRSetCoarsening: int getX(int,int,int)>(i58, i59, i62);
+
+        $r23[$i32] = r48;
+
+        $l33 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r59 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $l34 = $r59.<gc.stress.TestStressRSetCoarsening: long finishAt>;
+
+        $b35 = $l33 cmp $l34;
+
+        $i70 = (int) $b35;
+
+        if $i70 <= 0 goto label13;
+
+        $r51 = new java.util.concurrent.TimeoutException;
+
+        specialinvoke $r51.<java.util.concurrent.TimeoutException: void <init>()>();
+
+        throw $r51;
+
+     label13:
+        i62 = i62 + b61;
+
+     label14:
+        if i62 != i21 goto label12;
+
+     label15:
+        i59 = i59 + 1;
+
+     label16:
+        $r60 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i63 = $r60.<gc.stress.TestStressRSetCoarsening: int regionCount>;
+
+        if i59 < $i63 goto label08;
+
+        i58 = i58 + 1;
+
+     label17:
+        $r61 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i30 = $r61.<gc.stress.TestStressRSetCoarsening: int regionCount>;
+
+        if i58 < $i30 goto label05;
+
+        if i20 <= i21 goto label20;
+
+        $r30 = <gc.stress.TestStressRSetCoarsening: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r30.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        goto label19;
+
+     label18:
+        staticinvoke <java.lang.Thread: void sleep(long)>(1L);
+
+     label19:
+        $r31 = <gc.stress.TestStressRSetCoarsening: sun.hotspot.WhiteBox WB>;
+
+        $z0 = virtualinvoke $r31.<sun.hotspot.WhiteBox: boolean g1InConcurrentMark()>();
+
+        if $z0 != 0 goto label18;
+
+     label20:
+        $r62 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i38 = $r62.<gc.stress.TestStressRSetCoarsening: int regsToRefresh>;
+
+        i64 = i57 * $i38;
+
+        goto label30;
+
+     label21:
+        $r63 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i42 = $r63.<gc.stress.TestStressRSetCoarsening: int regionCount>;
+
+        i65 = i64 % $i42;
+
+        i66 = 0;
+
+        goto label27;
+
+     label22:
+        if i65 != i66 goto label23;
+
+        goto label26;
+
+     label23:
+        i67 = 0;
+
+        goto label25;
+
+     label24:
+        $r64 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $r26 = $r64.<gc.stress.TestStressRSetCoarsening: gc.stress.ObjStorage storage>;
+
+        $r65 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i43 = virtualinvoke $r65.<gc.stress.TestStressRSetCoarsening: int getY(int,int,int)>(i65, i66, i67);
+
+        $r27 = virtualinvoke $r26.<gc.stress.ObjStorage: java.lang.Object[] getArrayAt(int)>($i43);
+
+        $r66 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i44 = virtualinvoke $r66.<gc.stress.TestStressRSetCoarsening: int getX(int,int,int)>(i65, i66, i67);
+
+        $r27[$i44] = null;
+
+        i67 = i67 + 1;
+
+     label25:
+        if i67 <= i21 goto label24;
+
+     label26:
+        i66 = i66 + 1;
+
+     label27:
+        $r67 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i68 = $r67.<gc.stress.TestStressRSetCoarsening: int regionCount>;
+
+        if i66 < $i68 goto label22;
+
+        i69 = 0;
+
+        goto label29;
+
+     label28:
+        $r68 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $r29 = $r68.<gc.stress.TestStressRSetCoarsening: gc.stress.ObjStorage storage>;
+
+        $r69 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i46 = $r69.<gc.stress.TestStressRSetCoarsening: int K>;
+
+        $i47 = i65 * $i46;
+
+        $i49 = $i47 + i69;
+
+        $r70 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i48 = $r70.<gc.stress.TestStressRSetCoarsening: int N>;
+
+        $r28 = newarray (java.lang.Object)[$i48];
+
+        virtualinvoke $r29.<gc.stress.ObjStorage: void setArrayAt(int,java.lang.Object[])>($i49, $r28);
+
+        i69 = i69 + 1;
+
+     label29:
+        $r71 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i45 = $r71.<gc.stress.TestStressRSetCoarsening: int K>;
+
+        if i69 < $i45 goto label28;
+
+        i64 = i64 + 1;
+
+     label30:
+        $i40 = i57 + 1;
+
+        $r72 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $i39 = $r72.<gc.stress.TestStressRSetCoarsening: int regsToRefresh>;
+
+        $i41 = $i40 * $i39;
+
+        if i64 < $i41 goto label21;
+
+        i57 = i57 + 1;
+
+     label31:
+        $i18 = lengthof $r4;
+
+        if i57 < $i18 goto label04;
+
+     label32:
+        goto label34;
+
+     label33:
+        $r45 := @caughtexception;
+
+        $r46 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r46.<java.io.PrintStream: void println(java.lang.String)>("%% TIMEOUT!!!");
+
+     label34:
+        $l50 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r32 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r32.<java.io.PrintStream: void println(java.lang.String)>("%% Summary");
+
+        $r34 = <java.lang.System: java.io.PrintStream out>;
+
+        $r52 = new java.lang.StringBuilder;
+
+        specialinvoke $r52.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   Time spent          : ");
+
+        $r73 = (gc.stress.TestStressRSetCoarsening) r21;
+
+        $l51 = $r73.<gc.stress.TestStressRSetCoarsening: long start>;
+
+        $l52 = $l50 - $l51;
+
+        $l53 = $l52 / 1000L;
+
+        $r35 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l53);
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" seconds");
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r34.<java.io.PrintStream: void println(java.lang.String)>($r37);
+
+        $r39 = <java.lang.System: java.io.PrintStream out>;
+
+        $r53 = new java.lang.StringBuilder;
+
+        specialinvoke $r53.<java.lang.StringBuilder: void <init>(java.lang.String)>("%%   Free memory left    : ");
+
+        $r40 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l54 = virtualinvoke $r40.<java.lang.Runtime: long freeMemory()>();
+
+        $l55 = $l54 / 1024L;
+
+        $r41 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l55);
+
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("K");
+
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>($r43);
+
+        $r44 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r44.<java.io.PrintStream: void println(java.lang.String)>("%% Test passed");
+
+        return;
+
+        catch java.util.concurrent.TimeoutException from label03 to label32 with label33;
+    }
+
+    private int getX(int, int, int)
+    {
+        gc.stress.TestStressRSetCoarsening $r1, $r2;
+        TestStressRSetCoarsening r0;
+        int i0, $i1, i2, $i3, $i4, $i5, $i6, i7;
+
+        r0 := @this: TestStressRSetCoarsening;
+
+        i2 := @parameter0: int;
+
+        i7 := @parameter1: int;
+
+        i0 := @parameter2: int;
+
+        $r1 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i1 = $r1.<gc.stress.TestStressRSetCoarsening: int regionCount>;
+
+        $i3 = i0 * $i1;
+
+        $i5 = $i3 + i2;
+
+        $r2 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i4 = $r2.<gc.stress.TestStressRSetCoarsening: int N>;
+
+        $i6 = $i5 % $i4;
+
+        return $i6;
+    }
+
+    private int getY(int, int, int)
+    {
+        gc.stress.TestStressRSetCoarsening $r1, $r2, $r3, $r4, $r5;
+        TestStressRSetCoarsening r0;
+        int i0, $i1, i2, $i3, $i4, $i5, i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14;
+
+        r0 := @this: TestStressRSetCoarsening;
+
+        i2 := @parameter0: int;
+
+        i6 := @parameter1: int;
+
+        i0 := @parameter2: int;
+
+        $r1 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i1 = $r1.<gc.stress.TestStressRSetCoarsening: int regionCount>;
+
+        $i3 = i0 * $i1;
+
+        $i5 = $i3 + i2;
+
+        $r2 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i4 = $r2.<gc.stress.TestStressRSetCoarsening: int N>;
+
+        $i9 = $i5 / $i4;
+
+        $r3 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i7 = $r3.<gc.stress.TestStressRSetCoarsening: int K>;
+
+        $i8 = i6 * $i7;
+
+        $i13 = $i9 + $i8;
+
+        $r4 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i11 = $r4.<gc.stress.TestStressRSetCoarsening: int regionCount>;
+
+        $r5 = (gc.stress.TestStressRSetCoarsening) r0;
+
+        $i10 = $r5.<gc.stress.TestStressRSetCoarsening: int K>;
+
+        $i12 = $i11 * $i10;
+
+        $i14 = $i13 % $i12;
+
+        return $i14;
+    }
+}

@@ -1,0 +1,153 @@
+public class JumbleGC002 extends nsk.share.gc.ThreadedGCTest
+{
+    static final double PART_OF_HEAP;
+    static final int ARRAY_MAX_LENGTH;
+    static final int INTERNAL_ITERATIONS;
+    static final int EACH_NODE_SIZE;
+    static final long PRIMITIVE_ARRAYS_SIZE;
+
+    public void <init>()
+    {
+        JumbleGC002 r0;
+
+        r0 := @this: JumbleGC002;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        nsk.share.runner.RunParams $r2;
+        gc.gctests.JumbleGC002.JumbleGC002 $r13, $r14, $r15;
+        java.lang.Runnable $r16;
+        byte b6, b7, b8;
+        java.lang.Runtime $r0;
+        gc.gctests.JumbleGC002.JumbleGC002$Eater $r12;
+        JumbleGC002 r1;
+        java.lang.StringBuilder $r5, $r6, $r7, $r8, $r11;
+        long $l0, l2;
+        int $i1, i3, $i4, $i5;
+        java.lang.String $r9;
+        double $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7, $d8;
+        nsk.share.log.Log $r4;
+
+        r1 := @this: JumbleGC002;
+
+        i3 := @parameter0: int;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long maxMemory()>();
+
+        $d0 = (double) $l0;
+
+        $d1 = $d0 * 0.1;
+
+        $r13 = (gc.gctests.JumbleGC002.JumbleGC002) r1;
+
+        $r2 = $r13.<gc.gctests.JumbleGC002.JumbleGC002: nsk.share.runner.RunParams runParams>;
+
+        $i1 = virtualinvoke $r2.<nsk.share.runner.RunParams: int getNumberOfThreads()>();
+
+        $d2 = (double) $i1;
+
+        $d3 = $d1 / $d2;
+
+        l2 = (long) $d3;
+
+        if i3 != 0 goto label1;
+
+        b6 = 1;
+
+        b8 = 1;
+
+        b7 = 1;
+
+        goto label2;
+
+     label1:
+        b6 = 8;
+
+        b8 = 8;
+
+        b7 = 8;
+
+     label2:
+        $d5 = (double) l2;
+
+        $d4 = (double) b7;
+
+        $d6 = $d5 / $d4;
+
+        $d8 = $d6 - 200.0;
+
+        $d7 = $d8 / 21.0;
+
+        $i5 = (int) $d7;
+
+        $i4 = staticinvoke <java.lang.Math: int max(int,int)>(1, $i5);
+
+        $r14 = (gc.gctests.JumbleGC002.JumbleGC002) r1;
+
+        $r4 = $r14.<gc.gctests.JumbleGC002.JumbleGC002: nsk.share.log.Log log>;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("Thread ");
+
+        $r5 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" has a tree with ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" node(s).");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r4.<nsk.share.log.Log: void debug(java.lang.Object)>($r9);
+
+        $r12 = new gc.gctests.JumbleGC002.JumbleGC002$Eater;
+
+        $r15 = (gc.gctests.JumbleGC002.JumbleGC002) r1;
+
+        specialinvoke $r12.<gc.gctests.JumbleGC002.JumbleGC002$Eater: void <init>(gc.gctests.JumbleGC002.JumbleGC002,int,int,int)>($r15, i3, b8, $i4);
+
+        $r16 = (java.lang.Runnable) $r12;
+
+        return $r16;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.JumbleGC002.JumbleGC002 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.JumbleGC002.JumbleGC002;
+
+        specialinvoke $r2.<gc.gctests.JumbleGC002.JumbleGC002: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.test.ExecutionController access$0(gc.gctests.JumbleGC002.JumbleGC002)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.JumbleGC002.JumbleGC002 r0;
+
+        r0 := @parameter0: gc.gctests.JumbleGC002.JumbleGC002;
+
+        $r1 = virtualinvoke r0.<gc.gctests.JumbleGC002.JumbleGC002: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+}

@@ -1,0 +1,34 @@
+enum class TestObjectCollected$GC$4 extends gc.g1.humongousObjects.TestObjectCollected$GC
+{
+
+    void <init>(java.lang.String, int)
+    {
+        int i0;
+        TestObjectCollected$GC$4 r0;
+        java.lang.String r1;
+
+        r0 := @this: TestObjectCollected$GC$4;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<gc.g1.humongousObjects.TestObjectCollected$GC: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public void provoke()
+    {
+        sun.hotspot.WhiteBox $r0;
+        TestObjectCollected$GC$4 r1;
+
+        r1 := @this: TestObjectCollected$GC$4;
+
+        $r0 = <gc.g1.humongousObjects.TestObjectCollected$GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        return;
+    }
+}

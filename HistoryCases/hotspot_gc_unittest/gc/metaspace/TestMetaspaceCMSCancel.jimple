@@ -1,0 +1,64 @@
+public class TestMetaspaceCMSCancel extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestMetaspaceCMSCancel r0;
+
+        r0 := @this: TestMetaspaceCMSCancel;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Process $r5;
+        java.lang.String[] $r0, r6;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+        java.lang.ProcessBuilder $r3;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+
+        r6 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[9];
+
+        $r0[0] = "-Xbootclasspath/a:.";
+
+        $r0[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[2] = "-XX:+WhiteBoxAPI";
+
+        $r0[3] = "-XX:+UseConcMarkSweepGC";
+
+        $r0[4] = "-XX:MetaspaceSize=2m";
+
+        $r0[5] = "-XX:CMSWaitDuration=5000";
+
+        $r0[6] = "-XX:-ExplicitGCInvokesConcurrent";
+
+        $r0[7] = "-Xlog:gc*=debug";
+
+        $r1 = class "Lgc/metaspace/TestMetaspaceCMSCancel$MetaspaceGCTest;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[8] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r4 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Concurrent Reset");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

@@ -1,0 +1,120 @@
+public class FinalizeTest04 extends nsk.share.gc.GCTestBase
+{
+    private int objectSize;
+    private int objectCount;
+    private nsk.share.test.ExecutionController stresser;
+
+    public void <init>()
+    {
+        gc.gctests.FinalizeTest04.FinalizeTest04 $r1, $r2;
+        FinalizeTest04 r0;
+
+        r0 := @this: FinalizeTest04;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        $r1 = (gc.gctests.FinalizeTest04.FinalizeTest04) r0;
+
+        $r1.<gc.gctests.FinalizeTest04.FinalizeTest04: int objectSize> = 100;
+
+        $r2 = (gc.gctests.FinalizeTest04.FinalizeTest04) r0;
+
+        $r2.<gc.gctests.FinalizeTest04.FinalizeTest04: int objectCount> = 100;
+
+        return;
+    }
+
+    public void run()
+    {
+        nsk.share.runner.RunParams $r2, $r4;
+        nsk.share.test.ExecutionController $r5, $r7, $r12;
+        long $l0;
+        nsk.share.test.StressOptions $r3;
+        int $i1, $i2, i3;
+        FinalizeTest04 r0;
+        gc.gctests.FinalizeTest04.FinalizeTest04$FinMemoryObject2 $r9;
+        nsk.share.test.Stresser $r8;
+        gc.gctests.FinalizeTest04.FinalizeTest04 $r10, $r11, $r13, $r14, $r15, $r16, $r17, $r18;
+
+        r0 := @this: FinalizeTest04;
+
+        $r8 = new nsk.share.test.Stresser;
+
+        $r10 = (gc.gctests.FinalizeTest04.FinalizeTest04) r0;
+
+        $r2 = $r10.<gc.gctests.FinalizeTest04.FinalizeTest04: nsk.share.runner.RunParams runParams>;
+
+        $r3 = virtualinvoke $r2.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r8.<nsk.share.test.Stresser: void <init>(nsk.share.test.StressOptions)>($r3);
+
+        $r11 = (gc.gctests.FinalizeTest04.FinalizeTest04) r0;
+
+        $r12 = (nsk.share.test.ExecutionController) $r8;
+
+        $r11.<gc.gctests.FinalizeTest04.FinalizeTest04: nsk.share.test.ExecutionController stresser> = $r12;
+
+        $r13 = (gc.gctests.FinalizeTest04.FinalizeTest04) r0;
+
+        $r5 = $r13.<gc.gctests.FinalizeTest04.FinalizeTest04: nsk.share.test.ExecutionController stresser>;
+
+        $r14 = (gc.gctests.FinalizeTest04.FinalizeTest04) r0;
+
+        $r4 = $r14.<gc.gctests.FinalizeTest04.FinalizeTest04: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r4.<nsk.share.runner.RunParams: long getIterations()>();
+
+        interfaceinvoke $r5.<nsk.share.test.ExecutionController: void start(long)>($l0);
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        $r9 = new gc.gctests.FinalizeTest04.FinalizeTest04$FinMemoryObject2;
+
+        $r15 = (gc.gctests.FinalizeTest04.FinalizeTest04) r0;
+
+        $i2 = $r15.<gc.gctests.FinalizeTest04.FinalizeTest04: int objectSize>;
+
+        $r16 = (gc.gctests.FinalizeTest04.FinalizeTest04) r0;
+
+        specialinvoke $r9.<gc.gctests.FinalizeTest04.FinalizeTest04$FinMemoryObject2: void <init>(gc.gctests.FinalizeTest04.FinalizeTest04,int)>($r16, $i2);
+
+        i3 = i3 + 1;
+
+     label2:
+        $r17 = (gc.gctests.FinalizeTest04.FinalizeTest04) r0;
+
+        $i1 = $r17.<gc.gctests.FinalizeTest04.FinalizeTest04: int objectCount>;
+
+        if i3 < $i1 goto label1;
+
+        $r18 = (gc.gctests.FinalizeTest04.FinalizeTest04) r0;
+
+        $r7 = $r18.<gc.gctests.FinalizeTest04.FinalizeTest04: nsk.share.test.ExecutionController stresser>;
+
+        staticinvoke <nsk.share.gc.Algorithms: void eatMemory(nsk.share.test.ExecutionController)>($r7);
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.gctests.FinalizeTest04.FinalizeTest04 $r2;
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.FinalizeTest04.FinalizeTest04;
+
+        specialinvoke $r2.<gc.gctests.FinalizeTest04.FinalizeTest04: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

@@ -1,0 +1,123 @@
+public class Main extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Main r0;
+
+        r0 := @this: Main;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        byte[] $r5;
+        java.lang.management.MemoryType $r17, $r18;
+        long $l0, $l1;
+        java.lang.String[] r19;
+        java.util.ArrayList $r0;
+        java.lang.management.MemoryPoolMXBean r16, r20;
+        int i2;
+        java.lang.String $r14;
+        java.lang.management.MemoryUsage $r9, $r12;
+        boolean $z0, $z1;
+        java.io.PrintStream $r3, $r7;
+        java.util.Iterator $r2;
+        javax.management.ObjectName $r4;
+        java.util.List $r1;
+        java.lang.StringBuilder $r6, $r8, $r10, $r11, $r13;
+        java.lang.Object $r15;
+
+        r19 := @parameter0: java.lang.String[];
+
+        r20 = null;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r15 = interfaceinvoke $r2.<java.util.Iterator: java.lang.Object next()>();
+
+        r16 = (java.lang.management.MemoryPoolMXBean) $r15;
+
+        $r17 = interfaceinvoke r16.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryType getType()>();
+
+        $r18 = <java.lang.management.MemoryType: java.lang.management.MemoryType HEAP>;
+
+        if $r17 != $r18 goto label2;
+
+        $z1 = interfaceinvoke r16.<java.lang.management.MemoryPoolMXBean: boolean isUsageThresholdSupported()>();
+
+        if $z1 == 0 goto label2;
+
+        r20 = r16;
+
+     label2:
+        goto label1;
+
+     label3:
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r4 = interfaceinvoke r20.<java.lang.management.MemoryPoolMXBean: javax.management.ObjectName getObjectName()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.Object)>($r4);
+
+        i2 = 0;
+
+     label4:
+        if i2 >= 5 goto label5;
+
+        $r5 = newarray (byte)[52428800];
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>($r5);
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Collection usage = ");
+
+        $r9 = interfaceinvoke r20.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getCollectionUsage()>();
+
+        $l0 = virtualinvoke $r9.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", usage = ");
+
+        $r12 = interfaceinvoke r20.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l1 = virtualinvoke $r12.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r14);
+
+        i2 = i2 + 1;
+
+        goto label4;
+
+     label5:
+        return;
+    }
+}

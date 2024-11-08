@@ -1,0 +1,93 @@
+public class RememberedSet extends nsk.share.gc.ThreadedGCTest
+{
+    private nsk.share.test.ExecutionController stresser;
+
+    public void <init>()
+    {
+        RememberedSet r0;
+
+        r0 := @this: RememberedSet;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        int i0;
+        gc.gctests.RememberedSet.RememberedSet$Worker $r2;
+        RememberedSet r1;
+        java.lang.Runnable $r4;
+        gc.gctests.RememberedSet.RememberedSet $r3;
+
+        r1 := @this: RememberedSet;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.RememberedSet.RememberedSet$Worker;
+
+        $r3 = (gc.gctests.RememberedSet.RememberedSet) r1;
+
+        specialinvoke $r2.<gc.gctests.RememberedSet.RememberedSet$Worker: void <init>(gc.gctests.RememberedSet.RememberedSet)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.RememberedSet.RememberedSet $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.RememberedSet.RememberedSet;
+
+        specialinvoke $r2.<gc.gctests.RememberedSet.RememberedSet: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.runner.RunParams access$0(gc.gctests.RememberedSet.RememberedSet)
+    {
+        nsk.share.runner.RunParams $r1;
+        gc.gctests.RememberedSet.RememberedSet r0;
+
+        r0 := @parameter0: gc.gctests.RememberedSet.RememberedSet;
+
+        $r1 = r0.<gc.gctests.RememberedSet.RememberedSet: nsk.share.runner.RunParams runParams>;
+
+        return $r1;
+    }
+
+    static nsk.share.test.ExecutionController access$1(gc.gctests.RememberedSet.RememberedSet)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.RememberedSet.RememberedSet r0;
+
+        r0 := @parameter0: gc.gctests.RememberedSet.RememberedSet;
+
+        $r1 = virtualinvoke r0.<gc.gctests.RememberedSet.RememberedSet: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+
+    static nsk.share.log.Log access$2(gc.gctests.RememberedSet.RememberedSet)
+    {
+        nsk.share.log.Log $r1;
+        gc.gctests.RememberedSet.RememberedSet r0;
+
+        r0 := @parameter0: gc.gctests.RememberedSet.RememberedSet;
+
+        $r1 = r0.<gc.gctests.RememberedSet.RememberedSet: nsk.share.log.Log log>;
+
+        return $r1;
+    }
+}

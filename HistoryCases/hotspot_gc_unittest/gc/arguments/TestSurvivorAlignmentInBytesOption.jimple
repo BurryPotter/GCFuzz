@@ -1,0 +1,204 @@
+public class TestSurvivorAlignmentInBytesOption extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestSurvivorAlignmentInBytesOption r0;
+
+        r0 := @this: TestSurvivorAlignmentInBytesOption;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Throwable
+    {
+        jdk.test.lib.process.ExitCode $r5, $r13, $r21, $r29, $r39;
+        java.lang.Integer $r7, $r15, $r23, $r31, $r41, $r44, $r49;
+        java.lang.Object[] $r1, $r9, $r17, $r25, $r33, $r35, $r43;
+        java.lang.String[] $r3, $r4, $r11, $r12, $r19, $r20, $r27, $r28, $r37, $r38, $r47, r51;
+        int i0;
+        java.lang.String $r0, $r2, $r6, $r8, $r10, $r14, $r16, $r18, $r22, $r24, $r26, $r30, $r32, $r34, $r36, $r40, $r42, $r45, $r46, $r48, $r50;
+
+        r51 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String getExperimentalOptionErrorMessage(java.lang.String)>("SurvivorAlignmentInBytes");
+
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r1[0] = "SurvivorAlignmentInBytes";
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("JVM option \'%s\' is experimental.%nJVM startup should fail without -XX:+UnlockExperimentalVMOptions option", $r1);
+
+        $r3 = newarray (java.lang.String)[1];
+
+        $r3[0] = $r0;
+
+        $r5 = <jdk.test.lib.process.ExitCode: jdk.test.lib.process.ExitCode FAIL>;
+
+        $r4 = newarray (java.lang.String)[3];
+
+        $r4[0] = "-XX:-UnlockExperimentalVMOptions";
+
+        $r6 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareBooleanFlag(java.lang.String,boolean)>("UnlockExperimentalVMOptions", 0);
+
+        $r4[1] = $r6;
+
+        $r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(64);
+
+        $r8 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareNumericFlag(java.lang.String,java.lang.Number)>("SurvivorAlignmentInBytes", $r7);
+
+        $r4[2] = $r8;
+
+        staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: void verifyJVMStartup(java.lang.String[],java.lang.String[],java.lang.String,java.lang.String,jdk.test.lib.process.ExitCode,boolean,java.lang.String[])>($r3, null, $r2, $r2, $r5, 0, $r4);
+
+        $r9 = newarray (java.lang.Object)[1];
+
+        $r9[0] = "SurvivorAlignmentInBytes";
+
+        $r10 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("JVM option \'%s\' is experimental.%nJVM startup should pass with -XX:+UnlockExperimentalVMOptions option", $r9);
+
+        $r11 = newarray (java.lang.String)[1];
+
+        $r11[0] = $r0;
+
+        $r13 = <jdk.test.lib.process.ExitCode: jdk.test.lib.process.ExitCode OK>;
+
+        $r12 = newarray (java.lang.String)[2];
+
+        $r14 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareBooleanFlag(java.lang.String,boolean)>("UnlockExperimentalVMOptions", 1);
+
+        $r12[0] = $r14;
+
+        $r15 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(64);
+
+        $r16 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareNumericFlag(java.lang.String,java.lang.Number)>("SurvivorAlignmentInBytes", $r15);
+
+        $r12[1] = $r16;
+
+        staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: void verifyJVMStartup(java.lang.String[],java.lang.String[],java.lang.String,java.lang.String,jdk.test.lib.process.ExitCode,boolean,java.lang.String[])>(null, $r11, $r10, "There should be no warnings when use with -XX:+UnlockExperimentalVMOptions option", $r13, 0, $r12);
+
+        $r17 = newarray (java.lang.Object)[1];
+
+        $r17[0] = "SurvivorAlignmentInBytes";
+
+        $r18 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("JVM startup should fail with \'%s\' option value lower than ObjectAlignmentInBytes", $r17);
+
+        $r19 = newarray (java.lang.String)[1];
+
+        $r19[0] = ".*SurvivorAlignmentInBytes.*must be greater than or equal to ObjectAlignmentInBytes.*";
+
+        $r21 = <jdk.test.lib.process.ExitCode: jdk.test.lib.process.ExitCode FAIL>;
+
+        $r20 = newarray (java.lang.String)[2];
+
+        $r22 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareBooleanFlag(java.lang.String,boolean)>("UnlockExperimentalVMOptions", 1);
+
+        $r20[0] = $r22;
+
+        $r23 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(2);
+
+        $r24 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareNumericFlag(java.lang.String,java.lang.Number)>("SurvivorAlignmentInBytes", $r23);
+
+        $r20[1] = $r24;
+
+        staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: void verifyJVMStartup(java.lang.String[],java.lang.String[],java.lang.String,java.lang.String,jdk.test.lib.process.ExitCode,boolean,java.lang.String[])>($r19, null, $r18, $r18, $r21, 0, $r20);
+
+        $r25 = newarray (java.lang.Object)[1];
+
+        $r25[0] = "SurvivorAlignmentInBytes";
+
+        $r26 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("JVM startup should fail with \'%s\' option value is not a power of 2", $r25);
+
+        $r27 = newarray (java.lang.String)[1];
+
+        $r27[0] = ".*SurvivorAlignmentInBytes.*must be power of 2.*";
+
+        $r29 = <jdk.test.lib.process.ExitCode: jdk.test.lib.process.ExitCode FAIL>;
+
+        $r28 = newarray (java.lang.String)[2];
+
+        $r30 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareBooleanFlag(java.lang.String,boolean)>("UnlockExperimentalVMOptions", 1);
+
+        $r28[0] = $r30;
+
+        $r31 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(127);
+
+        $r32 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareNumericFlag(java.lang.String,java.lang.Number)>("SurvivorAlignmentInBytes", $r31);
+
+        $r28[1] = $r32;
+
+        staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: void verifyJVMStartup(java.lang.String[],java.lang.String[],java.lang.String,java.lang.String,jdk.test.lib.process.ExitCode,boolean,java.lang.String[])>($r27, null, $r26, $r26, $r29, 0, $r28);
+
+        $r33 = newarray (java.lang.Object)[1];
+
+        $r33[0] = "SurvivorAlignmentInBytes";
+
+        $r34 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("JVM startup should pass with correct \'%s\' option value", $r33);
+
+        $r35 = newarray (java.lang.Object)[1];
+
+        $r35[0] = "SurvivorAlignmentInBytes";
+
+        $r36 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("There should be no warnings when use correct \'%s\' option value", $r35);
+
+        $r37 = newarray (java.lang.String)[1];
+
+        $r37[0] = ".*SurvivorAlignmentInBytes.*";
+
+        $r39 = <jdk.test.lib.process.ExitCode: jdk.test.lib.process.ExitCode OK>;
+
+        $r38 = newarray (java.lang.String)[2];
+
+        $r40 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareBooleanFlag(java.lang.String,boolean)>("UnlockExperimentalVMOptions", 1);
+
+        $r38[0] = $r40;
+
+        $r41 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(128);
+
+        $r42 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareNumericFlag(java.lang.String,java.lang.Number)>("SurvivorAlignmentInBytes", $r41);
+
+        $r38[1] = $r42;
+
+        staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: void verifyJVMStartup(java.lang.String[],java.lang.String[],java.lang.String,java.lang.String,jdk.test.lib.process.ExitCode,boolean,java.lang.String[])>(null, $r37, $r34, $r36, $r39, 0, $r38);
+
+        i0 = 32;
+
+        goto label2;
+
+     label1:
+        $r43 = newarray (java.lang.Object)[2];
+
+        $r43[0] = "SurvivorAlignmentInBytes";
+
+        $r44 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        $r43[1] = $r44;
+
+        $r45 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("JVM startup should pass with \'%s\' = %d", $r43);
+
+        $r46 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>(i0);
+
+        $r47 = newarray (java.lang.String)[2];
+
+        $r48 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareBooleanFlag(java.lang.String,boolean)>("UnlockExperimentalVMOptions", 1);
+
+        $r47[0] = $r48;
+
+        $r49 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        $r50 = staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: java.lang.String prepareNumericFlag(java.lang.String,java.lang.Number)>("SurvivorAlignmentInBytes", $r49);
+
+        $r47[1] = $r50;
+
+        staticinvoke <jdk.test.lib.cli.CommandLineOptionTest: void verifyOptionValue(java.lang.String,java.lang.String,java.lang.String,java.lang.String[])>("SurvivorAlignmentInBytes", $r46, $r45, $r47);
+
+        i0 = i0 * 2;
+
+     label2:
+        if i0 <= 128 goto label1;
+
+        return;
+    }
+}

@@ -1,0 +1,105 @@
+class MethodInfo extends java.lang.Object
+{
+    private java.lang.String name;
+    private java.lang.String descriptor;
+    private int codeLength;
+    private int codeStart;
+
+    public void <init>(java.lang.String, java.lang.String, int, int)
+    {
+        gc.stress.gcbasher.MethodInfo $r3, $r4, $r5, $r6;
+        int i0, i1;
+        MethodInfo r0;
+        java.lang.String r1, r2;
+
+        r0 := @this: MethodInfo;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        i0 := @parameter2: int;
+
+        i1 := @parameter3: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.stress.gcbasher.MethodInfo) r0;
+
+        $r3.<gc.stress.gcbasher.MethodInfo: java.lang.String name> = r1;
+
+        $r4 = (gc.stress.gcbasher.MethodInfo) r0;
+
+        $r4.<gc.stress.gcbasher.MethodInfo: java.lang.String descriptor> = r2;
+
+        $r5 = (gc.stress.gcbasher.MethodInfo) r0;
+
+        $r5.<gc.stress.gcbasher.MethodInfo: int codeLength> = i0;
+
+        $r6 = (gc.stress.gcbasher.MethodInfo) r0;
+
+        $r6.<gc.stress.gcbasher.MethodInfo: int codeStart> = i1;
+
+        return;
+    }
+
+    public java.lang.String getName()
+    {
+        gc.stress.gcbasher.MethodInfo $r2;
+        MethodInfo r0;
+        java.lang.String $r1;
+
+        r0 := @this: MethodInfo;
+
+        $r2 = (gc.stress.gcbasher.MethodInfo) r0;
+
+        $r1 = $r2.<gc.stress.gcbasher.MethodInfo: java.lang.String name>;
+
+        return $r1;
+    }
+
+    public java.lang.String getDescriptor()
+    {
+        gc.stress.gcbasher.MethodInfo $r2;
+        MethodInfo r0;
+        java.lang.String $r1;
+
+        r0 := @this: MethodInfo;
+
+        $r2 = (gc.stress.gcbasher.MethodInfo) r0;
+
+        $r1 = $r2.<gc.stress.gcbasher.MethodInfo: java.lang.String descriptor>;
+
+        return $r1;
+    }
+
+    public int getCodeLength()
+    {
+        int $i0;
+        gc.stress.gcbasher.MethodInfo $r1;
+        MethodInfo r0;
+
+        r0 := @this: MethodInfo;
+
+        $r1 = (gc.stress.gcbasher.MethodInfo) r0;
+
+        $i0 = $r1.<gc.stress.gcbasher.MethodInfo: int codeLength>;
+
+        return $i0;
+    }
+
+    public int getCodeStart()
+    {
+        int $i0;
+        gc.stress.gcbasher.MethodInfo $r1;
+        MethodInfo r0;
+
+        r0 := @this: MethodInfo;
+
+        $r1 = (gc.stress.gcbasher.MethodInfo) r0;
+
+        $i0 = $r1.<gc.stress.gcbasher.MethodInfo: int codeStart>;
+
+        return $i0;
+    }
+}

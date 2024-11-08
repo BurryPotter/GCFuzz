@@ -1,0 +1,183 @@
+class Churn4$ThreadObject extends java.lang.Object implements java.lang.Runnable
+{
+    private nsk.share.gc.MemoryObject[] objectArray;
+    int allocationMod;
+    int allocationModulus;
+    final gc.memory.Churn.Churn4.Churn4 this$0;
+
+    public void <init>(gc.memory.Churn.Churn4.Churn4)
+    {
+        java.lang.Object[] $r4, $r6;
+        Churn4$ThreadObject r0;
+        nsk.share.gc.MemoryObject[] $r2;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, i10, $i11;
+        nsk.share.gc.FinMemoryObject1 $r8;
+        gc.memory.Churn.Churn4.Churn4$ThreadObject $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20;
+        gc.memory.Churn.Churn4.Churn4 r1;
+        nsk.share.gc.FinMemoryObject $r7;
+
+        r0 := @this: Churn4$ThreadObject;
+
+        r1 := @parameter0: gc.memory.Churn.Churn4.Churn4;
+
+        $r9 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r9.<gc.memory.Churn.Churn4.Churn4$ThreadObject: gc.memory.Churn.Churn4.Churn4 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $i0 = r1.<gc.memory.Churn.Churn4.Churn4: int sizeOfArray>;
+
+        $r2 = newarray (nsk.share.gc.MemoryObject)[$i0];
+
+        $r10 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r10.<gc.memory.Churn.Churn4.Churn4$ThreadObject: nsk.share.gc.MemoryObject[] objectArray> = $r2;
+
+        $r11 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r11.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationMod> = 0;
+
+        $r12 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r12.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationModulus> = 10;
+
+        i10 = 0;
+
+        goto label4;
+
+     label1:
+        $r13 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $i1 = $r13.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationMod>;
+
+        if $i1 != 0 goto label2;
+
+        $r14 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r6 = $r14.<gc.memory.Churn.Churn4.Churn4$ThreadObject: nsk.share.gc.MemoryObject[] objectArray>;
+
+        $r7 = new nsk.share.gc.FinMemoryObject;
+
+        $i9 = r1.<gc.memory.Churn.Churn4.Churn4: int multiplier>;
+
+        specialinvoke $r7.<nsk.share.gc.FinMemoryObject: void <init>(int)>($i9);
+
+        $r6[i10] = $r7;
+
+        goto label3;
+
+     label2:
+        $r15 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r4 = $r15.<gc.memory.Churn.Churn4.Churn4$ThreadObject: nsk.share.gc.MemoryObject[] objectArray>;
+
+        $r8 = new nsk.share.gc.FinMemoryObject1;
+
+        $i2 = r1.<gc.memory.Churn.Churn4.Churn4: int multiplier>;
+
+        $i3 = $i2 * i10;
+
+        specialinvoke $r8.<nsk.share.gc.FinMemoryObject1: void <init>(int)>($i3);
+
+        $r4[i10] = $r8;
+
+     label3:
+        $r16 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $i4 = $r16.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationMod>;
+
+        $i5 = $i4 + 1;
+
+        $r17 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r17.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationMod> = $i5;
+
+        $r18 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $i7 = $r18.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationMod>;
+
+        $r19 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $i6 = $r19.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationModulus>;
+
+        $i8 = $i7 % $i6;
+
+        $r20 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r20.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationMod> = $i8;
+
+        i10 = i10 + 1;
+
+     label4:
+        $i11 = r1.<gc.memory.Churn.Churn4.Churn4: int sizeOfArray>;
+
+        if i10 < $i11 goto label1;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Object[] $r4;
+        Churn4$ThreadObject r0;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8;
+        nsk.share.gc.FinMemoryObject1 $r5;
+        gc.memory.Churn.Churn4.Churn4$ThreadObject $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13;
+        gc.memory.Churn.Churn4.Churn4 $r1, $r3;
+
+        r0 := @this: Churn4$ThreadObject;
+
+        $r6 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r1 = $r6.<gc.memory.Churn.Churn4.Churn4$ThreadObject: gc.memory.Churn.Churn4.Churn4 this$0>;
+
+        $i0 = $r1.<gc.memory.Churn.Churn4.Churn4: int sizeOfArray>;
+
+        $i1 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int)>($i0);
+
+        $r7 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r4 = $r7.<gc.memory.Churn.Churn4.Churn4$ThreadObject: nsk.share.gc.MemoryObject[] objectArray>;
+
+        $r5 = new nsk.share.gc.FinMemoryObject1;
+
+        $r8 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r3 = $r8.<gc.memory.Churn.Churn4.Churn4$ThreadObject: gc.memory.Churn.Churn4.Churn4 this$0>;
+
+        $i2 = $r3.<gc.memory.Churn.Churn4.Churn4: int multiplier>;
+
+        $i3 = $i2 * $i1;
+
+        specialinvoke $r5.<nsk.share.gc.FinMemoryObject1: void <init>(int)>($i3);
+
+        $r4[$i1] = $r5;
+
+        $r9 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $i4 = $r9.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationMod>;
+
+        $i5 = $i4 + 1;
+
+        $r10 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r10.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationMod> = $i5;
+
+        $r11 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $i7 = $r11.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationMod>;
+
+        $r12 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $i6 = $r12.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationModulus>;
+
+        $i8 = $i7 % $i6;
+
+        $r13 = (gc.memory.Churn.Churn4.Churn4$ThreadObject) r0;
+
+        $r13.<gc.memory.Churn.Churn4.Churn4$ThreadObject: int allocationMod> = $i8;
+
+        return;
+    }
+}

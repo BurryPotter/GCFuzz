@@ -1,0 +1,79 @@
+public class StringIntern extends nsk.share.gc.ThreadedGCTest
+{
+    private int maxLength;
+    private int checkCount;
+
+    public void <init>()
+    {
+        StringIntern r0;
+        gc.gctests.StringIntern.StringIntern $r1, $r2;
+
+        r0 := @this: StringIntern;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r1 = (gc.gctests.StringIntern.StringIntern) r0;
+
+        $r1.<gc.gctests.StringIntern.StringIntern: int maxLength> = 1000;
+
+        $r2 = (gc.gctests.StringIntern.StringIntern) r0;
+
+        $r2.<gc.gctests.StringIntern.StringIntern: int checkCount> = 100;
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.gctests.StringIntern.StringIntern$StringGenerator $r2;
+        int i0;
+        StringIntern r1;
+        java.lang.Runnable $r4;
+        gc.gctests.StringIntern.StringIntern $r3;
+
+        r1 := @this: StringIntern;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.StringIntern.StringIntern$StringGenerator;
+
+        $r3 = (gc.gctests.StringIntern.StringIntern) r1;
+
+        specialinvoke $r2.<gc.gctests.StringIntern.StringIntern$StringGenerator: void <init>(gc.gctests.StringIntern.StringIntern)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.StringIntern.StringIntern $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.StringIntern.StringIntern;
+
+        specialinvoke $r2.<gc.gctests.StringIntern.StringIntern: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.log.Log access$0(gc.gctests.StringIntern.StringIntern)
+    {
+        nsk.share.log.Log $r1;
+        gc.gctests.StringIntern.StringIntern r0;
+
+        r0 := @parameter0: gc.gctests.StringIntern.StringIntern;
+
+        $r1 = r0.<gc.gctests.StringIntern.StringIntern: nsk.share.log.Log log>;
+
+        return $r1;
+    }
+}

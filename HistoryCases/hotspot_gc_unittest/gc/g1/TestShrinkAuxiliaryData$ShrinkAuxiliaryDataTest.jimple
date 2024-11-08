@@ -1,0 +1,563 @@
+class TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest extends java.lang.Object
+{
+    private final java.util.List garbage;
+    private static final int REGIONS_TO_ALLOCATE;
+    private static final int NUM_OBJECTS_PER_REGION;
+    private static final int NUM_LINKS;
+
+    void <init>()
+    {
+        TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest r0;
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest $r3;
+        java.util.ArrayList $r2;
+
+        r0 := @this: TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = new java.util.ArrayList;
+
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+
+        $r3 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        $r3.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: java.util.List garbage> = $r2;
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.io.IOException
+    {
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest $r0;
+        java.lang.String[] r1;
+        boolean $z0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;
+
+        specialinvoke $r0.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: void <init>()>();
+
+        $z0 = virtualinvoke $r0.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: boolean checkEnvApplicability()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+
+     label1:
+        virtualinvoke $r0.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: void test()>();
+
+        return;
+    }
+
+    protected boolean checkEnvApplicability()
+    {
+        java.lang.Object[] $r10, $r15;
+        long $l1, $l3;
+        java.lang.Integer $r12, $r17;
+        byte $b2;
+        java.lang.Long $r14;
+        int $i0, $i4;
+        java.lang.String $r8;
+        java.io.PrintStream $r2, $r11, $r16;
+        TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest r18;
+        java.lang.Runtime $r9, $r13;
+        sun.hotspot.WhiteBox $r0;
+        java.lang.StringBuilder $r3, $r4, $r5, $r6, $r7, $r19;
+
+        r18 := @this: TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $i0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: int getVMPageSize()>();
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>("Page size = ");
+
+        $r3 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" region size = ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(1048576);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" aux data ~= ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(31457);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        if $i0 < 31457 goto label1;
+
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        $r15 = newarray (java.lang.Object)[1];
+
+        $r17 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        $r15[0] = $r17;
+
+        virtualinvoke $r16.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Skipping test for too large page size = %d", $r15);
+
+        return 0;
+
+     label1:
+        $r9 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l1 = virtualinvoke $r9.<java.lang.Runtime: long maxMemory()>();
+
+        $b2 = 104857600L cmp $l1;
+
+        $i4 = (int) $b2;
+
+        if $i4 <= 0 goto label2;
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        $r10 = newarray (java.lang.Object)[2];
+
+        $r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(104857600);
+
+        $r10[0] = $r12;
+
+        $r13 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l3 = virtualinvoke $r13.<java.lang.Runtime: long maxMemory()>();
+
+        $r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        $r10[1] = $r14;
+
+        virtualinvoke $r11.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Skipping test for too low available memory. Need %d, available %d", $r10);
+
+        return 0;
+
+     label2:
+        return 1;
+    }
+
+    public void test() throws java.io.IOException
+    {
+        java.lang.Float $r9, $r21, $r41, $r42, $r44, $r45;
+        byte $b18;
+        java.lang.Long $r11, $r12, $r23, $r24, $r25, $r26, $r28, $r29, $r35, $r36, $r39, $r40;
+        java.lang.Object[] $r7, $r19, $r27, $r31, $r33, $r37, $r43;
+        long $l0, $l1, $l2, $l3, $l4, $l5, $l6, $l7, $l8, $l9, $l10, $l11, $l12, $l13, $l14, $l15, $l16, $l17, l19, l20;
+        java.lang.String $r30, $r46;
+        sun.hotspot.WhiteBox $r3, $r4, $r5, $r10, $r15, $r17, $r18, $r22;
+        java.lang.management.MemoryMXBean $r1, $r13;
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest $r47, $r48, $r49, $r50;
+        float $f0, $f1, f2, $f3, $f4, f5;
+        int $i21;
+        java.lang.management.MemoryUsage $r2, $r6, $r14, $r16;
+        java.io.PrintStream $r8, $r20, $r32, $r34, $r38;
+        TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest r0;
+
+        r0 := @this: TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;
+
+        $r47 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        virtualinvoke $r47.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: void allocate()>();
+
+        $r48 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        virtualinvoke $r48.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: void link()>();
+
+        $r49 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        virtualinvoke $r49.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: void mutate()>();
+
+        $r1 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r2 = interfaceinvoke $r1.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $r3 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $l0 = virtualinvoke $r3.<sun.hotspot.WhiteBox: long g1NumMaxRegions()>();
+
+        $r4 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $l1 = virtualinvoke $r4.<sun.hotspot.WhiteBox: long g1NumFreeRegions()>();
+
+        l19 = $l0 - $l1;
+
+        $r5 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $r6 = virtualinvoke $r5.<sun.hotspot.WhiteBox: java.lang.management.MemoryUsage g1AuxiliaryMemoryUsage()>();
+
+        $l2 = virtualinvoke $r6.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $f1 = (float) $l2;
+
+        $f0 = (float) l19;
+
+        f2 = $f1 / $f0;
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = newarray (java.lang.Object)[3];
+
+        $r9 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>(f2);
+
+        $r7[0] = $r9;
+
+        $r10 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $l3 = virtualinvoke $r10.<sun.hotspot.WhiteBox: long g1NumMaxRegions()>();
+
+        $r11 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        $r7[1] = $r11;
+
+        $r12 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l19);
+
+        $r7[2] = $r12;
+
+        virtualinvoke $r8.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Full aux data  ratio= %f, regions max= %d, used= %d\n", $r7);
+
+        $r50 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        virtualinvoke $r50.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: void deallocate()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r13 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r14 = interfaceinvoke $r13.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $r15 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $r16 = virtualinvoke $r15.<sun.hotspot.WhiteBox: java.lang.management.MemoryUsage g1AuxiliaryMemoryUsage()>();
+
+        $r17 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $l4 = virtualinvoke $r17.<sun.hotspot.WhiteBox: long g1NumMaxRegions()>();
+
+        $r18 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $l5 = virtualinvoke $r18.<sun.hotspot.WhiteBox: long g1NumFreeRegions()>();
+
+        l20 = $l4 - $l5;
+
+        $l6 = virtualinvoke $r16.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $f4 = (float) $l6;
+
+        $f3 = (float) l20;
+
+        f5 = $f4 / $f3;
+
+        $r20 = <java.lang.System: java.io.PrintStream out>;
+
+        $r19 = newarray (java.lang.Object)[3];
+
+        $r21 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>(f5);
+
+        $r19[0] = $r21;
+
+        $r22 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $l7 = virtualinvoke $r22.<sun.hotspot.WhiteBox: long g1NumMaxRegions()>();
+
+        $r23 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l7);
+
+        $r19[1] = $r23;
+
+        $r24 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l20);
+
+        $r19[2] = $r24;
+
+        virtualinvoke $r20.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Free aux data ratio= %f, regions max= %d, used= %d\n", $r19);
+
+        $l8 = virtualinvoke $r14.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r25 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l8);
+
+        $l9 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r26 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l9);
+
+        $r27 = newarray (java.lang.Object)[2];
+
+        $l10 = virtualinvoke $r14.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r28 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l10);
+
+        $r27[0] = $r28;
+
+        $l11 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r29 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l11);
+
+        $r27[1] = $r29;
+
+        $r30 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("heap decommit failed - full > free: %d > %d", $r27);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertLessThanOrEqual(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r25, $r26, $r30);
+
+        $r32 = <java.lang.System: java.io.PrintStream out>;
+
+        $r31 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r32.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("State               used   committed\n", $r31);
+
+        $r34 = <java.lang.System: java.io.PrintStream out>;
+
+        $r33 = newarray (java.lang.Object)[2];
+
+        $l12 = virtualinvoke $r6.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r35 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l12);
+
+        $r33[0] = $r35;
+
+        $l13 = virtualinvoke $r6.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r36 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l13);
+
+        $r33[1] = $r36;
+
+        virtualinvoke $r34.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Full aux data: %10d %10d\n", $r33);
+
+        $r38 = <java.lang.System: java.io.PrintStream out>;
+
+        $r37 = newarray (java.lang.Object)[2];
+
+        $l14 = virtualinvoke $r16.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r39 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l14);
+
+        $r37[0] = $r39;
+
+        $l15 = virtualinvoke $r16.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r40 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l15);
+
+        $r37[1] = $r40;
+
+        virtualinvoke $r38.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Free aux data: %10d %10d\n", $r37);
+
+        $l16 = virtualinvoke $r14.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $l17 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $b18 = $l16 cmp $l17;
+
+        $i21 = (int) $b18;
+
+        if $i21 >= 0 goto label1;
+
+        $r41 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>(f5);
+
+        $r42 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>(f2);
+
+        $r43 = newarray (java.lang.Object)[2];
+
+        $r44 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>(f5);
+
+        $r43[0] = $r44;
+
+        $r45 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>(f2);
+
+        $r43[1] = $r45;
+
+        $r46 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("auxiliary data decommit failed - full > free: %f > %f", $r43);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertLessThanOrEqual(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r41, $r42, $r46);
+
+     label1:
+        return;
+    }
+
+    private void allocate()
+    {
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject $r3;
+        TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest r1;
+        java.util.List $r2;
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest $r4, $r5;
+        int i0, i1;
+
+        r1 := @this: TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;
+
+        i0 = 0;
+
+        goto label4;
+
+     label1:
+        i1 = 0;
+
+        goto label3;
+
+     label2:
+        $r3 = new gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject;
+
+        $r4 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r1;
+
+        specialinvoke $r3.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: void <init>(gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest,int)>($r4, 104857);
+
+        $r5 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r1;
+
+        $r2 = $r5.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: java.util.List garbage>;
+
+        interfaceinvoke $r2.<java.util.List: boolean add(java.lang.Object)>($r3);
+
+        i1 = i1 + 1;
+
+     label3:
+        if i1 < 10 goto label2;
+
+        i0 = i0 + 1;
+
+     label4:
+        if i0 < 100 goto label1;
+
+        return;
+    }
+
+    private void link()
+    {
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest $r8, $r9, $r10;
+        int $i0, i1, $i2, $i3, $i4, $i5, i6, i7;
+        double $d0, $d1, $d2, $d3;
+        TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest r0;
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject $r4, $r7;
+        java.util.List $r1, $r2, $r5;
+        java.lang.Object $r3, $r6;
+
+        r0 := @this: TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;
+
+        i6 = 0;
+
+        goto label4;
+
+     label1:
+        i1 = i6 / 10;
+
+        i7 = 0;
+
+        goto label3;
+
+     label2:
+        $d0 = staticinvoke <java.lang.Math: double random()>();
+
+        $d1 = $d0 * 100.0;
+
+        $i2 = (int) $d1;
+
+        if $i2 == i1 goto label2;
+
+        $r8 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        $r2 = $r8.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: java.util.List garbage>;
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(i6);
+
+        $r4 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) $r3;
+
+        $r9 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        $r5 = $r9.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: java.util.List garbage>;
+
+        $i3 = $i2 * 10;
+
+        $d2 = staticinvoke <java.lang.Math: double random()>();
+
+        $d3 = $d2 * 10.0;
+
+        $i4 = (int) $d3;
+
+        $i5 = $i3 + $i4;
+
+        $r6 = interfaceinvoke $r5.<java.util.List: java.lang.Object get(int)>($i5);
+
+        $r7 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) $r6;
+
+        virtualinvoke $r4.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: void addRef(gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject)>($r7);
+
+        i7 = i7 + 1;
+
+     label3:
+        if i7 < 20 goto label2;
+
+        i6 = i6 + 1;
+
+     label4:
+        $r10 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        $r1 = $r10.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: java.util.List garbage>;
+
+        $i0 = interfaceinvoke $r1.<java.util.List: int size()>();
+
+        if i6 < $i0 goto label1;
+
+        return;
+    }
+
+    private void mutate()
+    {
+        TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest r0;
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject $r4;
+        java.util.List $r1, $r2;
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest $r5, $r6;
+        int $i0, i1;
+        java.lang.Object $r3;
+
+        r0 := @this: TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        $r5 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        $r2 = $r5.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: java.util.List garbage>;
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(i1);
+
+        $r4 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) $r3;
+
+        virtualinvoke $r4.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: void mutate()>();
+
+        i1 = i1 + 1;
+
+     label2:
+        $r6 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        $r1 = $r6.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: java.util.List garbage>;
+
+        $i0 = interfaceinvoke $r1.<java.util.List: int size()>();
+
+        if i1 < $i0 goto label1;
+
+        return;
+    }
+
+    private void deallocate()
+    {
+        TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest r0;
+        java.util.List $r1;
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest $r2;
+
+        r0 := @this: TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;
+
+        $r2 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest) r0;
+
+        $r1 = $r2.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest: java.util.List garbage>;
+
+        interfaceinvoke $r1.<java.util.List: void clear()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+
+    static long getMemoryUsedByTest()
+    {
+        return 104857600L;
+    }
+}

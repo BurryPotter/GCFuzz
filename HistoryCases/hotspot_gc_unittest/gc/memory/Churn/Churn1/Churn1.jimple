@@ -1,0 +1,117 @@
+public class Churn1 extends nsk.share.gc.ThreadedGCTest
+{
+    private int multiplier;
+    private int sizeOfArray;
+
+    public void <init>()
+    {
+        Churn1 r0;
+        gc.memory.Churn.Churn1.Churn1 $r1;
+
+        r0 := @this: Churn1;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r1 = (gc.memory.Churn.Churn1.Churn1) r0;
+
+        $r1.<gc.memory.Churn.Churn1.Churn1: int multiplier> = 10;
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        Churn1 r1;
+        gc.memory.Churn.Churn1.Churn1 $r3;
+        int i0;
+        gc.memory.Churn.Churn1.Churn1$ThreadObject $r2;
+        java.lang.Runnable $r4;
+
+        r1 := @this: Churn1;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.memory.Churn.Churn1.Churn1$ThreadObject;
+
+        $r3 = (gc.memory.Churn.Churn1.Churn1) r1;
+
+        specialinvoke $r2.<gc.memory.Churn.Churn1.Churn1$ThreadObject: void <init>(gc.memory.Churn.Churn1.Churn1)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public void run()
+    {
+        nsk.share.runner.RunParams $r1, $r2;
+        long $l0, $l1, $l3, $l5, $l6, $l7;
+        int $i2, $i4, $i8;
+        double $d0, $d1, $d2;
+        Churn1 r0;
+        gc.memory.Churn.Churn1.Churn1 $r3, $r4, $r5, $r6;
+
+        r0 := @this: Churn1;
+
+        $r3 = (gc.memory.Churn.Churn1.Churn1) r0;
+
+        $r1 = $r3.<gc.memory.Churn.Churn1.Churn1: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r1.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $l1 = $l0 * 2L;
+
+        $r4 = (gc.memory.Churn.Churn1.Churn1) r0;
+
+        $r2 = $r4.<gc.memory.Churn.Churn1.Churn1: nsk.share.runner.RunParams runParams>;
+
+        $i2 = virtualinvoke $r2.<nsk.share.runner.RunParams: int getNumberOfThreads()>();
+
+        $l3 = (long) $i2;
+
+        $l6 = $l1 / $l3;
+
+        $r5 = (gc.memory.Churn.Churn1.Churn1) r0;
+
+        $i4 = $r5.<gc.memory.Churn.Churn1.Churn1: int multiplier>;
+
+        $l5 = (long) $i4;
+
+        $l7 = $l6 / $l5;
+
+        $d0 = (double) $l7;
+
+        $d1 = staticinvoke <java.lang.Math: double sqrt(double)>($d0);
+
+        $d2 = staticinvoke <java.lang.Math: double min(double,double)>($d1, 2.147483647E9);
+
+        $i8 = (int) $d2;
+
+        $r6 = (gc.memory.Churn.Churn1.Churn1) r0;
+
+        $r6.<gc.memory.Churn.Churn1.Churn1: int sizeOfArray> = $i8;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void run()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.memory.Churn.Churn1.Churn1 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.memory.Churn.Churn1.Churn1;
+
+        specialinvoke $r2.<gc.memory.Churn.Churn1.Churn1: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

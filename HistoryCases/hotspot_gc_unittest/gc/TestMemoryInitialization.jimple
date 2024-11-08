@@ -1,0 +1,54 @@
+public class TestMemoryInitialization extends java.lang.Object
+{
+    static final int LOOP_LENGTH;
+    static final int CHUNK_SIZE;
+    public static byte[] buffer;
+
+    public void <init>()
+    {
+        TestMemoryInitialization r0;
+
+        r0 := @this: TestMemoryInitialization;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r0;
+        int i0, i1;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        i0 = 0;
+
+        goto label4;
+
+     label1:
+        i1 = 0;
+
+        goto label3;
+
+     label2:
+        $r0 = newarray (byte)[1500000];
+
+        <gc.TestMemoryInitialization: byte[] buffer> = $r0;
+
+        <gc.TestMemoryInitialization: byte[] buffer> = null;
+
+        i1 = i1 + 1;
+
+     label3:
+        if i1 < 10 goto label2;
+
+        i0 = i0 + 1;
+
+     label4:
+        if i0 < 10 goto label1;
+
+        return;
+    }
+}

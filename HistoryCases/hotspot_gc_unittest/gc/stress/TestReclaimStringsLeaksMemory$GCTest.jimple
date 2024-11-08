@@ -1,0 +1,66 @@
+class TestReclaimStringsLeaksMemory$GCTest extends java.lang.Object
+{
+    public static final java.lang.String BaseName;
+    public static volatile java.lang.String lastString;
+
+    void <init>()
+    {
+        TestReclaimStringsLeaksMemory$GCTest r0;
+
+        r0 := @this: TestReclaimStringsLeaksMemory$GCTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r4;
+        int $i0, i1, i2;
+        java.lang.StringBuilder $r0, $r1;
+        java.lang.String $r2, $r3;
+
+        r4 := @parameter0: java.lang.String[];
+
+        i1 = 0;
+
+        goto label4;
+
+     label1:
+        i2 = 0;
+
+        goto label3;
+
+     label2:
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>("SomeRandomBaseString");
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.String: java.lang.String intern()>();
+
+        <gc.stress.TestReclaimStringsLeaksMemory$GCTest: java.lang.String lastString> = $r3;
+
+        i2 = i2 + 1;
+
+     label3:
+        if i2 < 1000000 goto label2;
+
+        i1 = i1 + 1;
+
+        $i0 = i1 % 5;
+
+        if $i0 != 0 goto label4;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label4:
+        if i1 < 20 goto label1;
+
+        return;
+    }
+}

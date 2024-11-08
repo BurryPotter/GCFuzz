@@ -1,0 +1,95 @@
+class bufreq extends java.lang.Object
+{
+    int bufsz;
+    int life;
+    gc.gctests.gctest04.bufreq next;
+
+    void <init>(int, int)
+    {
+        bufreq r0;
+        int i0, i1;
+        gc.gctests.gctest04.bufreq $r1, $r2, $r3;
+
+        r0 := @this: bufreq;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.gctests.gctest04.bufreq) r0;
+
+        $r1.<gc.gctests.gctest04.bufreq: int bufsz> = i0;
+
+        $r2 = (gc.gctests.gctest04.bufreq) r0;
+
+        $r2.<gc.gctests.gctest04.bufreq: int life> = i1;
+
+        $r3 = (gc.gctests.gctest04.bufreq) r0;
+
+        $r3.<gc.gctests.gctest04.bufreq: gc.gctests.gctest04.bufreq next> = null;
+
+        return;
+    }
+
+    public void setnext(gc.gctests.gctest04.bufreq)
+    {
+        bufreq r0;
+        gc.gctests.gctest04.bufreq r1, $r2;
+
+        r0 := @this: bufreq;
+
+        r1 := @parameter0: gc.gctests.gctest04.bufreq;
+
+        $r2 = (gc.gctests.gctest04.bufreq) r0;
+
+        $r2.<gc.gctests.gctest04.bufreq: gc.gctests.gctest04.bufreq next> = r1;
+
+        return;
+    }
+
+    public gc.gctests.gctest04.bufreq getnext()
+    {
+        bufreq r0;
+        gc.gctests.gctest04.bufreq $r1, $r2;
+
+        r0 := @this: bufreq;
+
+        $r2 = (gc.gctests.gctest04.bufreq) r0;
+
+        $r1 = $r2.<gc.gctests.gctest04.bufreq: gc.gctests.gctest04.bufreq next>;
+
+        return $r1;
+    }
+
+    public int getsize()
+    {
+        bufreq r0;
+        int $i0;
+        gc.gctests.gctest04.bufreq $r1;
+
+        r0 := @this: bufreq;
+
+        $r1 = (gc.gctests.gctest04.bufreq) r0;
+
+        $i0 = $r1.<gc.gctests.gctest04.bufreq: int bufsz>;
+
+        return $i0;
+    }
+
+    public int livetime()
+    {
+        bufreq r0;
+        int $i0;
+        gc.gctests.gctest04.bufreq $r1;
+
+        r0 := @this: bufreq;
+
+        $r1 = (gc.gctests.gctest04.bufreq) r0;
+
+        $i0 = $r1.<gc.gctests.gctest04.bufreq: int life>;
+
+        return $i0;
+    }
+}

@@ -1,0 +1,98 @@
+class Yellowthread extends java.lang.Thread
+{
+    gc.gctests.gctest03.Tree optree;
+    int key;
+
+    void <init>(gc.gctests.gctest03.Tree, int)
+    {
+        int i0;
+        gc.gctests.gctest03.Tree r1;
+        gc.gctests.gctest03.Yellowthread $r2, $r3;
+        Yellowthread r0;
+
+        r0 := @this: Yellowthread;
+
+        r1 := @parameter0: gc.gctests.gctest03.Tree;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        $r2 = (gc.gctests.gctest03.Yellowthread) r0;
+
+        $r2.<gc.gctests.gctest03.Yellowthread: gc.gctests.gctest03.Tree optree> = r1;
+
+        $r3 = (gc.gctests.gctest03.Yellowthread) r0;
+
+        $r3.<gc.gctests.gctest03.Yellowthread: int key> = i0;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Throwable $r3;
+        gc.gctests.gctest03.Yellowthread $r6, $r7;
+        gc.gctests.gctest03.DataNode $r5;
+        byte $b0;
+        java.lang.InterruptedException $r2;
+        int i1, $i2, $i3, $i4;
+        gc.gctests.gctest03.Tree $r1;
+        Yellowthread r0;
+        double $d0;
+
+        r0 := @this: Yellowthread;
+
+        i1 = 1;
+
+     label1:
+        $r5 = new gc.gctests.gctest03.DataNode;
+
+        $r6 = (gc.gctests.gctest03.Yellowthread) r0;
+
+        $i2 = $r6.<gc.gctests.gctest03.Yellowthread: int key>;
+
+        $i3 = $i2 * i1;
+
+        specialinvoke $r5.<gc.gctests.gctest03.DataNode: void <init>(int)>($i3);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r3 := @caughtexception;
+
+        return;
+
+     label4:
+        $r7 = (gc.gctests.gctest03.Yellowthread) r0;
+
+        $r1 = $r7.<gc.gctests.gctest03.Yellowthread: gc.gctests.gctest03.Tree optree>;
+
+        virtualinvoke $r1.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode search(gc.gctests.gctest03.DataNode)>($r5);
+
+        i1 = i1 + 1;
+
+        $d0 = staticinvoke <nsk.share.test.LocalRandom: double random()>();
+
+        $b0 = $d0 cmpg 0.668;
+
+        $i4 = (int) $b0;
+
+        if $i4 >= 0 goto label1;
+
+     label5:
+        staticinvoke <gc.gctests.gctest03.Yellowthread: void sleep(long)>(5L);
+
+     label6:
+        goto label1;
+
+     label7:
+        $r2 := @caughtexception;
+
+        goto label1;
+
+        catch gc.gctests.gctest03.DataNodeException from label1 to label2 with label3;
+        catch java.lang.InterruptedException from label5 to label6 with label7;
+    }
+}

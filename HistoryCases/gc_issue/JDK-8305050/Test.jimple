@@ -1,0 +1,31 @@
+public class Test extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Test r0;
+
+        r0 := @this: Test;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r2;
+        java.lang.Object[][][] r0;
+        java.lang.NullPointerException $r1;
+
+        r2 := @parameter0: java.lang.String[];
+
+        r0 = newmultiarray (java.lang.Object)[1024][1024][128];
+
+        $r1 = new java.lang.NullPointerException;
+
+        specialinvoke $r1.<java.lang.NullPointerException: void <init>(java.lang.String)>("NPE!");
+
+        throw $r1;
+    }
+}

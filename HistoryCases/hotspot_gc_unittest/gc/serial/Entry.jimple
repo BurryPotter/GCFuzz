@@ -1,0 +1,33 @@
+class Entry extends java.lang.Object
+{
+    public gc.serial.Entry previous;
+    public byte[] payload;
+
+    void <init>(int, gc.serial.Entry)
+    {
+        byte[] $r1;
+        Entry r0;
+        int i0;
+        gc.serial.Entry r2, $r3, $r4;
+
+        r0 := @this: Entry;
+
+        i0 := @parameter0: int;
+
+        r2 := @parameter1: gc.serial.Entry;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = newarray (byte)[i0];
+
+        $r3 = (gc.serial.Entry) r0;
+
+        $r3.<gc.serial.Entry: byte[] payload> = $r1;
+
+        $r4 = (gc.serial.Entry) r0;
+
+        $r4.<gc.serial.Entry: gc.serial.Entry previous> = r2;
+
+        return;
+    }
+}

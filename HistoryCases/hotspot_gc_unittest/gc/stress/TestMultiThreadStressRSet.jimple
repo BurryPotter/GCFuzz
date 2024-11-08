@@ -1,0 +1,755 @@
+public class TestMultiThreadStressRSet extends java.lang.Object
+{
+    private static final java.util.Random RND;
+    private static final sun.hotspot.WhiteBox WB;
+    private static final int REF_SIZE;
+    private static final int REGION_SIZE;
+    private static final int STORAGE_REGIONS;
+    private static final int OBJ_SIZE;
+    private static final int BUFFER_YOUNG_REGIONS;
+    private static final int BUFFER_OLD_REGIONS;
+    private final int N;
+    private final java.util.List STORAGE;
+    private final java.util.List BUFFER;
+    private final int BUF_ARR_LEN;
+    private final int YOUNG;
+    private final int OLD;
+    private int windowStart;
+    private final int windowSize;
+    private int counter;
+    private volatile java.lang.String errorMessage;
+    private volatile boolean isEnough;
+
+    static void <clinit>()
+    {
+        int $i0, $i1;
+        java.util.Random $r0;
+        sun.hotspot.WhiteBox $r1, $r2, $r3;
+
+        $r0 = new java.util.Random;
+
+        specialinvoke $r0.<java.util.Random: void <init>(long)>(4062240L);
+
+        <gc.stress.TestMultiThreadStressRSet: java.util.Random RND> = $r0;
+
+        $r1 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.stress.TestMultiThreadStressRSet: sun.hotspot.WhiteBox WB> = $r1;
+
+        $r2 = <gc.stress.TestMultiThreadStressRSet: sun.hotspot.WhiteBox WB>;
+
+        $i0 = virtualinvoke $r2.<sun.hotspot.WhiteBox: int getHeapOopSize()>();
+
+        <gc.stress.TestMultiThreadStressRSet: int REF_SIZE> = $i0;
+
+        $r3 = <gc.stress.TestMultiThreadStressRSet: sun.hotspot.WhiteBox WB>;
+
+        $i1 = virtualinvoke $r3.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        <gc.stress.TestMultiThreadStressRSet: int REGION_SIZE> = $i1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.stress.TestMultiThreadStressRSet $r3;
+        java.lang.String[] r0;
+        long $l1, $l3;
+        java.lang.IllegalArgumentException $r4;
+        int $i0, $i2, $i4;
+        java.lang.StringBuilder $r5, $r6;
+        java.lang.String $r1, $r2, $r7;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 2 goto label1;
+
+        $r4 = new java.lang.IllegalArgumentException;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("TEST BUG: wrong arg count ");
+
+        $i4 = lengthof r0;
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r4.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r7);
+
+        throw $r4;
+
+     label1:
+        $r1 = r0[0];
+
+        $l1 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r1);
+
+        $r2 = r0[1];
+
+        $i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        $r3 = new gc.stress.TestMultiThreadStressRSet;
+
+        specialinvoke $r3.<gc.stress.TestMultiThreadStressRSet: void <init>()>();
+
+        $l3 = $l1 * 1000L;
+
+        virtualinvoke $r3.<gc.stress.TestMultiThreadStressRSet: void test(long,int)>($l3, $i2);
+
+        return;
+    }
+
+    public void <init>()
+    {
+        byte[] $r2, $r4;
+        gc.stress.TestMultiThreadStressRSet $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30;
+        java.util.List $r3, $r5, $r8;
+        java.lang.Object[] $r7;
+        java.util.ArrayList $r9, $r10;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20, $i21, $i22, $i23, $i24, $i25, $i26, $i27, $i28, i29, i30, i31;
+        TestMultiThreadStressRSet r0;
+
+        r0 := @this: TestMultiThreadStressRSet;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $i0 = <gc.stress.TestMultiThreadStressRSet: int REF_SIZE>;
+
+        $i1 = 512 / $i0;
+
+        $i2 = 100 * $i1;
+
+        $r11 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r11.<gc.stress.TestMultiThreadStressRSet: int BUF_ARR_LEN> = $i2;
+
+        $r12 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r12.<gc.stress.TestMultiThreadStressRSet: int counter> = 0;
+
+        $r13 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r13.<gc.stress.TestMultiThreadStressRSet: java.lang.String errorMessage> = null;
+
+        $r14 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r14.<gc.stress.TestMultiThreadStressRSet: boolean isEnough> = 0;
+
+        $i3 = <gc.stress.TestMultiThreadStressRSet: int REGION_SIZE>;
+
+        $i4 = $i3 - 1;
+
+        $i5 = $i4 * 20;
+
+        $i6 = $i5 / 1024;
+
+        $i7 = $i6 + 1;
+
+        $r15 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r15.<gc.stress.TestMultiThreadStressRSet: int N> = $i7;
+
+        $r9 = new java.util.ArrayList;
+
+        $r16 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i8 = $r16.<gc.stress.TestMultiThreadStressRSet: int N>;
+
+        specialinvoke $r9.<java.util.ArrayList: void <init>(int)>($i8);
+
+        $r17 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r17.<gc.stress.TestMultiThreadStressRSet: java.util.List STORAGE> = $r9;
+
+        i29 = 0;
+
+        goto label2;
+
+     label1:
+        $r18 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r3 = $r18.<gc.stress.TestMultiThreadStressRSet: java.util.List STORAGE>;
+
+        $r2 = newarray (byte)[1004];
+
+        interfaceinvoke $r3.<java.util.List: boolean add(java.lang.Object)>($r2);
+
+        i29 = i29 + 1;
+
+     label2:
+        $r19 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i9 = $r19.<gc.stress.TestMultiThreadStressRSet: int N>;
+
+        $i10 = $i9 - 1;
+
+        if i29 < $i10 goto label1;
+
+        $r20 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r5 = $r20.<gc.stress.TestMultiThreadStressRSet: java.util.List STORAGE>;
+
+        $i11 = <gc.stress.TestMultiThreadStressRSet: int REGION_SIZE>;
+
+        $i12 = $i11 / 2;
+
+        $i13 = $i12 + 100;
+
+        $r4 = newarray (byte)[$i13];
+
+        interfaceinvoke $r5.<java.util.List: boolean add(java.lang.Object)>($r4);
+
+        $r21 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r21.<gc.stress.TestMultiThreadStressRSet: int windowStart> = 0;
+
+        $i14 = <gc.stress.TestMultiThreadStressRSet: int REGION_SIZE>;
+
+        $i15 = $i14 / 1024;
+
+        $r22 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r22.<gc.stress.TestMultiThreadStressRSet: int windowSize> = $i15;
+
+        $r10 = new java.util.ArrayList;
+
+        specialinvoke $r10.<java.util.ArrayList: void <init>()>();
+
+        $r23 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r23.<gc.stress.TestMultiThreadStressRSet: java.util.List BUFFER> = $r10;
+
+        $i17 = <gc.stress.TestMultiThreadStressRSet: int REF_SIZE>;
+
+        $r24 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i16 = $r24.<gc.stress.TestMultiThreadStressRSet: int BUF_ARR_LEN>;
+
+        $i18 = $i17 * $i16;
+
+        i30 = 20 + $i18;
+
+        $i19 = <gc.stress.TestMultiThreadStressRSet: int REGION_SIZE>;
+
+        $i20 = $i19 * 40;
+
+        $i21 = $i20 / i30;
+
+        $r25 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r25.<gc.stress.TestMultiThreadStressRSet: int OLD> = $i21;
+
+        $i22 = <gc.stress.TestMultiThreadStressRSet: int REGION_SIZE>;
+
+        $i23 = $i22 * 60;
+
+        $i24 = $i23 / i30;
+
+        $r26 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r26.<gc.stress.TestMultiThreadStressRSet: int YOUNG> = $i24;
+
+        i31 = 0;
+
+        goto label4;
+
+     label3:
+        $r27 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r8 = $r27.<gc.stress.TestMultiThreadStressRSet: java.util.List BUFFER>;
+
+        $r28 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i28 = $r28.<gc.stress.TestMultiThreadStressRSet: int BUF_ARR_LEN>;
+
+        $r7 = newarray (java.lang.Object)[$i28];
+
+        interfaceinvoke $r8.<java.util.List: boolean add(java.lang.Object)>($r7);
+
+        i31 = i31 + 1;
+
+     label4:
+        $r29 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i26 = $r29.<gc.stress.TestMultiThreadStressRSet: int OLD>;
+
+        $r30 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i25 = $r30.<gc.stress.TestMultiThreadStressRSet: int YOUNG>;
+
+        $i27 = $i26 + $i25;
+
+        if i31 < $i27 goto label3;
+
+        return;
+    }
+
+    public void test(long, int)
+    {
+        gc.stress.TestMultiThreadStressRSet $r33, $r34, $r35, $r36, $r37, $r38, $r39, $r40, $r41, $r42, $r43;
+        gc.stress.TestMultiThreadStressRSet$Shifter $r29;
+        byte $b1, $b9;
+        java.lang.StringBuilder $r3, $r4, $r8, $r23, $r27, $r28, $r31;
+        java.lang.Throwable $r16, $r17;
+        gc.stress.TestMultiThreadStressRSet$Worker $r30;
+        long l0, $l3, $l4, l5, $l8;
+        int i2, $i6, $i7, i10, $i11, $i12, $i13;
+        java.lang.String $r5, $r9, $r14, $r15, $r20, $r24, $r25;
+        double $d0, $d1;
+        java.io.PrintStream $r2, $r7, $r18, $r19, $r21;
+        java.lang.RuntimeException $r32;
+        java.lang.IllegalArgumentException $r26;
+        TestMultiThreadStressRSet r11;
+
+        r11 := @this: TestMultiThreadStressRSet;
+
+        l0 := @parameter0: long;
+
+        i2 := @parameter1: int;
+
+        $b1 = l0 cmp 0L;
+
+        $i12 = (int) $b1;
+
+        if $i12 <= 0 goto label01;
+
+        if i2 > 0 goto label02;
+
+     label01:
+        $r26 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r26.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("TEST BUG: be positive!");
+
+        throw $r26;
+
+     label02:
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r27 = new java.lang.StringBuilder;
+
+        specialinvoke $r27.<java.lang.StringBuilder: void <init>(java.lang.String)>("%% Time to work: ");
+
+        $l3 = l0 / 1000L;
+
+        $r3 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("s");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r28 = new java.lang.StringBuilder;
+
+        specialinvoke $r28.<java.lang.StringBuilder: void <init>(java.lang.String)>("%% Number of threads: ");
+
+        $r8 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        $l4 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        l5 = $l4 + l0;
+
+        $r29 = new gc.stress.TestMultiThreadStressRSet$Shifter;
+
+        $r33 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        $i6 = $r33.<gc.stress.TestMultiThreadStressRSet: int windowSize>;
+
+        $d0 = (double) $i6;
+
+        $d1 = $d0 * 0.9;
+
+        $i7 = (int) $d1;
+
+        $r34 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        specialinvoke $r29.<gc.stress.TestMultiThreadStressRSet$Shifter: void <init>(gc.stress.TestMultiThreadStressRSet,int,int)>($r34, 1000, $i7);
+
+        virtualinvoke $r29.<gc.stress.TestMultiThreadStressRSet$Shifter: void start()>();
+
+        i10 = 0;
+
+        goto label04;
+
+     label03:
+        $r30 = new gc.stress.TestMultiThreadStressRSet$Worker;
+
+        $r35 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        specialinvoke $r30.<gc.stress.TestMultiThreadStressRSet$Worker: void <init>(gc.stress.TestMultiThreadStressRSet,int)>($r35, 100);
+
+        virtualinvoke $r30.<gc.stress.TestMultiThreadStressRSet$Worker: void start()>();
+
+        i10 = i10 + 1;
+
+     label04:
+        if i10 < i2 goto label03;
+
+     label05:
+        goto label07;
+
+     label06:
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+     label07:
+        $l8 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $b9 = $l8 cmp l5;
+
+        $i13 = (int) $b9;
+
+        if $i13 >= 0 goto label12;
+
+        $r36 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        $r15 = $r36.<gc.stress.TestMultiThreadStressRSet: java.lang.String errorMessage>;
+
+        if $r15 == null goto label06;
+
+     label08:
+        goto label12;
+
+     label09:
+        $r17 := @caughtexception;
+
+        $r18 = <java.lang.System: java.io.PrintStream err>;
+
+        staticinvoke <gc.stress.TestMultiThreadStressRSet: void printAllStackTraces(java.io.PrintStream)>($r18);
+
+        $r19 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r17.<java.lang.Throwable: void printStackTrace(java.io.PrintStream)>($r19);
+
+        $r20 = virtualinvoke $r17.<java.lang.Throwable: java.lang.String getMessage()>();
+
+        $r37 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        $r37.<gc.stress.TestMultiThreadStressRSet: java.lang.String errorMessage> = $r20;
+
+     label10:
+        $r38 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        $r38.<gc.stress.TestMultiThreadStressRSet: boolean isEnough> = 1;
+
+        goto label13;
+
+     label11:
+        $r16 := @caughtexception;
+
+        $r39 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        $r39.<gc.stress.TestMultiThreadStressRSet: boolean isEnough> = 1;
+
+        throw $r16;
+
+     label12:
+        $r40 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        $r40.<gc.stress.TestMultiThreadStressRSet: boolean isEnough> = 1;
+
+     label13:
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+
+        $r31 = new java.lang.StringBuilder;
+
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>(java.lang.String)>("%% Total work cycles: ");
+
+        $r41 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        $i11 = $r41.<gc.stress.TestMultiThreadStressRSet: int counter>;
+
+        $r23 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i11);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r24);
+
+        $r42 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        $r25 = $r42.<gc.stress.TestMultiThreadStressRSet: java.lang.String errorMessage>;
+
+        if $r25 == null goto label14;
+
+        $r32 = new java.lang.RuntimeException;
+
+        $r43 = (gc.stress.TestMultiThreadStressRSet) r11;
+
+        $r14 = $r43.<gc.stress.TestMultiThreadStressRSet: java.lang.String errorMessage>;
+
+        specialinvoke $r32.<java.lang.RuntimeException: void <init>(java.lang.String)>($r14);
+
+        throw $r32;
+
+     label14:
+        return;
+
+        catch java.lang.Throwable from label05 to label08 with label09;
+        catch java.lang.Throwable from label05 to label10 with label11;
+    }
+
+    private java.lang.Object[] getFromBuffer()
+    {
+        java.lang.Throwable $r7;
+        java.lang.Object[] $r2, $r5, $r6;
+        gc.stress.TestMultiThreadStressRSet $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17;
+        int $i0, $i1, $i2, $i3, i4, $i5, $i6, $i7, $i8, $i9, $i10;
+        TestMultiThreadStressRSet r0;
+        java.util.List $r1, $r3;
+        java.lang.Object $r4;
+
+        r0 := @this: TestMultiThreadStressRSet;
+
+        $r8 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i3 = $r8.<gc.stress.TestMultiThreadStressRSet: int counter>;
+
+        $r9 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i1 = $r9.<gc.stress.TestMultiThreadStressRSet: int OLD>;
+
+        $r10 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i0 = $r10.<gc.stress.TestMultiThreadStressRSet: int YOUNG>;
+
+        $i2 = $i1 + $i0;
+
+        i4 = $i3 % $i2;
+
+        $r11 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r1 = $r11.<gc.stress.TestMultiThreadStressRSet: java.util.List BUFFER>;
+
+        entermonitor $r1;
+
+     label1:
+        $r12 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i5 = $r12.<gc.stress.TestMultiThreadStressRSet: int OLD>;
+
+        if i4 >= $i5 goto label5;
+
+        $r13 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i6 = $r13.<gc.stress.TestMultiThreadStressRSet: int counter>;
+
+        $i10 = $i6 % 100;
+
+        $r14 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i7 = $r14.<gc.stress.TestMultiThreadStressRSet: int counter>;
+
+        $i8 = $i7 / 100;
+
+        $i9 = $i8 % 100;
+
+        if $i10 != $i9 goto label3;
+
+        $r15 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r6 = virtualinvoke $r15.<gc.stress.TestMultiThreadStressRSet: java.lang.Object[] replaceInBuffer(int)>(i4);
+
+        exitmonitor $r1;
+
+     label2:
+        return $r6;
+
+     label3:
+        $r16 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r3 = $r16.<gc.stress.TestMultiThreadStressRSet: java.util.List BUFFER>;
+
+        $r4 = interfaceinvoke $r3.<java.util.List: java.lang.Object get(int)>(i4);
+
+        $r5 = (java.lang.Object[]) $r4;
+
+        exitmonitor $r1;
+
+     label4:
+        return $r5;
+
+     label5:
+        $r17 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r2 = virtualinvoke $r17.<gc.stress.TestMultiThreadStressRSet: java.lang.Object[] replaceInBuffer(int)>(i4);
+
+        exitmonitor $r1;
+
+     label6:
+        return $r2;
+
+     label7:
+        $r7 := @caughtexception;
+
+        exitmonitor $r1;
+
+     label8:
+        throw $r7;
+
+        catch java.lang.Throwable from label1 to label2 with label7;
+        catch java.lang.Throwable from label3 to label4 with label7;
+        catch java.lang.Throwable from label5 to label6 with label7;
+        catch java.lang.Throwable from label7 to label8 with label7;
+    }
+
+    private java.lang.Object[] replaceInBuffer(int)
+    {
+        java.util.List $r2;
+        java.lang.Object[] r1;
+        gc.stress.TestMultiThreadStressRSet $r3, $r4;
+        int $i0, i1;
+        TestMultiThreadStressRSet r0;
+
+        r0 := @this: TestMultiThreadStressRSet;
+
+        i1 := @parameter0: int;
+
+        $r3 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i0 = $r3.<gc.stress.TestMultiThreadStressRSet: int BUF_ARR_LEN>;
+
+        r1 = newarray (java.lang.Object)[$i0];
+
+        $r4 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r2 = $r4.<gc.stress.TestMultiThreadStressRSet: java.util.List BUFFER>;
+
+        interfaceinvoke $r2.<java.util.List: java.lang.Object set(int,java.lang.Object)>(i1, r1);
+
+        return r1;
+    }
+
+    private java.lang.Object getRandomObject()
+    {
+        gc.stress.TestMultiThreadStressRSet $r4, $r5, $r6, $r7;
+        java.util.Random $r1;
+        TestMultiThreadStressRSet r0;
+        java.util.List $r2;
+        int $i0, $i1, $i2, $i3, $i4, i5;
+        java.lang.Object $r3;
+
+        r0 := @this: TestMultiThreadStressRSet;
+
+        $r4 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i1 = $r4.<gc.stress.TestMultiThreadStressRSet: int windowStart>;
+
+        $r1 = <gc.stress.TestMultiThreadStressRSet: java.util.Random RND>;
+
+        $r5 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i0 = $r5.<gc.stress.TestMultiThreadStressRSet: int windowSize>;
+
+        $i2 = virtualinvoke $r1.<java.util.Random: int nextInt(int)>($i0);
+
+        $i4 = $i1 + $i2;
+
+        $r6 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $i3 = $r6.<gc.stress.TestMultiThreadStressRSet: int N>;
+
+        i5 = $i4 % $i3;
+
+        $r7 = (gc.stress.TestMultiThreadStressRSet) r0;
+
+        $r2 = $r7.<gc.stress.TestMultiThreadStressRSet: java.util.List STORAGE>;
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(i5);
+
+        return $r3;
+    }
+
+    private static void printAllStackTraces(java.io.PrintStream)
+    {
+        java.util.Map $r0;
+        java.lang.Thread r4;
+        int i0, i1;
+        java.lang.StackTraceElement r15;
+        java.lang.String $r7, $r8, $r12, $r18;
+        boolean $z0;
+        java.io.PrintStream r5;
+        java.util.Iterator $r2;
+        java.lang.Thread$State $r10;
+        java.util.Set $r1;
+        java.lang.StackTraceElement[] $r14;
+        java.lang.Object $r3, $r13;
+        java.lang.StringBuilder $r6, $r9, $r11, $r16, $r17;
+
+        r5 := @parameter0: java.io.PrintStream;
+
+        $r0 = staticinvoke <java.lang.Thread: java.util.Map getAllStackTraces()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.Map: java.util.Set keySet()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.Set: java.util.Iterator iterator()>();
+
+        goto label4;
+
+     label1:
+        $r3 = interfaceinvoke $r2.<java.util.Iterator: java.lang.Object next()>();
+
+        r4 = (java.lang.Thread) $r3;
+
+        $r6 = new java.lang.StringBuilder;
+
+        $r7 = virtualinvoke r4.<java.lang.Thread: java.lang.String toString()>();
+
+        $r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7);
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+
+        $r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r10 = virtualinvoke r4.<java.lang.Thread: java.lang.Thread$State getState()>();
+
+        $r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r10);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r5.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        $r13 = interfaceinvoke $r0.<java.util.Map: java.lang.Object get(java.lang.Object)>(r4);
+
+        $r14 = (java.lang.StackTraceElement[]) $r13;
+
+        i0 = lengthof $r14;
+
+        i1 = 0;
+
+        goto label3;
+
+     label2:
+        r15 = $r14[i1];
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("\tat ");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r15);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r5.<java.io.PrintStream: void println(java.lang.String)>($r18);
+
+        i1 = i1 + 1;
+
+     label3:
+        if i1 < i0 goto label2;
+
+     label4:
+        $z0 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+}

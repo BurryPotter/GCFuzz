@@ -1,0 +1,55 @@
+class CSLocker extends java.lang.Thread
+{
+
+    static void <clinit>()
+    {
+        staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("TestCSLocker");
+
+        return;
+    }
+
+    void <init>()
+    {
+        CSLocker r0;
+
+        r0 := @this: CSLocker;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        int[] r0;
+        CSLocker r1;
+        java.lang.RuntimeException $r3;
+        gc.cslocker.CSLocker $r4;
+        boolean $z0;
+
+        r1 := @this: CSLocker;
+
+        r0 = newarray (int)[10];
+
+        r0[0] = 1;
+
+        $r4 = (gc.cslocker.CSLocker) r1;
+
+        $z0 = virtualinvoke $r4.<gc.cslocker.CSLocker: boolean lock(int[])>(r0);
+
+        if $z0 != 0 goto label1;
+
+        $r3 = new java.lang.RuntimeException;
+
+        specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>("failed to acquire CSLock");
+
+        throw $r3;
+
+     label1:
+        return;
+    }
+
+    native boolean lock(int[]);
+
+    native void unlock();
+}

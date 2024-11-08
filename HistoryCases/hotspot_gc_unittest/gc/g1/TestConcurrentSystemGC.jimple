@@ -1,0 +1,54 @@
+public class TestConcurrentSystemGC extends java.lang.Object
+{
+    public static java.util.List memory;
+
+    public void <init>()
+    {
+        TestConcurrentSystemGC r0;
+
+        r0 := @this: TestConcurrentSystemGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.util.List $r2;
+        char[] $r1;
+        java.lang.String[] r4;
+        java.lang.OutOfMemoryError $r3;
+        java.util.ArrayList $r0;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        <gc.g1.TestConcurrentSystemGC: java.util.List memory> = $r0;
+
+     label1:
+        $r2 = <gc.g1.TestConcurrentSystemGC: java.util.List memory>;
+
+        $r1 = newarray (char)[131072];
+
+        interfaceinvoke $r2.<java.util.List: boolean add(java.lang.Object)>($r1);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        goto label1;
+
+     label2:
+        $r3 := @caughtexception;
+
+        <gc.g1.TestConcurrentSystemGC: java.util.List memory> = null;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label1 to label2 with label2;
+    }
+}

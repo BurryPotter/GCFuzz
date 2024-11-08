@@ -1,0 +1,25 @@
+class TreeNode extends java.lang.Object
+{
+    public TreeNode left;
+    public TreeNode right;
+    public java.lang.Integer val;
+    public static int nodes;
+
+    void <init>()
+    {
+        TreeNode r0;
+
+        r0 := @this: TreeNode;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        <TreeNode: int nodes> = 0;
+
+        return;
+    }
+}

@@ -1,0 +1,182 @@
+public class TestPLABSizeBounds extends java.lang.Object
+{
+    public static final int M;
+
+    public void <init>()
+    {
+        TestPLABSizeBounds r0;
+
+        r0 := @this: TestPLABSizeBounds;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void runTest(int, int, boolean) throws java.lang.Exception
+    {
+        java.lang.Object[] $r13;
+        java.lang.String[] $r12, $r14;
+        java.util.ArrayList $r0;
+        int i0, i1;
+        java.lang.String $r3, $r6, $r9, $r11;
+        java.lang.ProcessBuilder $r15;
+        boolean z0;
+        java.lang.Process $r17;
+        jdk.test.lib.process.OutputAnalyzer $r16;
+        java.lang.StringBuilder $r1, $r2, $r4, $r5, $r7, $r8;
+        java.lang.Class $r10;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        z0 := @parameter2: boolean;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>("-XX:+UseG1GC");
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>("-Xmx256M");
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:G1HeapRegionSize=");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r3);
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:YoungPLABSize=");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r6);
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:OldPLABSize=");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r9);
+
+        $r10 = class "Lgc/g1/TestPLABSizeBounds$GCTest;";
+
+        $r11 = virtualinvoke $r10.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r11);
+
+        $r12 = newarray (java.lang.String)[0];
+
+        $r13 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r12);
+
+        $r14 = (java.lang.String[]) $r13;
+
+        $r15 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r14);
+
+        $r16 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r17 = virtualinvoke $r15.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r16.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r17);
+
+        if z0 == 0 goto label1;
+
+        virtualinvoke $r16.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r16.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+     label2:
+        return;
+    }
+
+    public static void runRegionTest(int) throws java.lang.Exception
+    {
+        byte $b11, $b12, $b13;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9;
+        boolean $z0;
+
+        i0 := @parameter0: int;
+
+        i1 = i0 * 1048576;
+
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean is32bit()>();
+
+        if $z0 == 0 goto label1;
+
+        $b13 = 4;
+
+        $b12 = 4;
+
+        $b11 = 4;
+
+        goto label2;
+
+     label1:
+        $b13 = 8;
+
+        $b12 = 8;
+
+        $b11 = 8;
+
+     label2:
+        $i2 = i1 / $b12;
+
+        $i3 = $i2 / 2;
+
+        $i4 = $i3 - 1;
+
+        staticinvoke <gc.g1.TestPLABSizeBounds: void runTest(int,int,boolean)>(i1, $i4, 1);
+
+        $i5 = i1 / $b11;
+
+        $i6 = $i5 / 2;
+
+        staticinvoke <gc.g1.TestPLABSizeBounds: void runTest(int,int,boolean)>(i1, $i6, 1);
+
+        $i7 = i1 / $b13;
+
+        $i8 = $i7 / 2;
+
+        $i9 = $i8 + 1;
+
+        staticinvoke <gc.g1.TestPLABSizeBounds: void runTest(int,int,boolean)>(i1, $i9, 0);
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.g1.TestPLABSizeBounds: void runRegionTest(int)>(1);
+
+        staticinvoke <gc.g1.TestPLABSizeBounds: void runRegionTest(int)>(2);
+
+        staticinvoke <gc.g1.TestPLABSizeBounds: void runRegionTest(int)>(4);
+
+        staticinvoke <gc.g1.TestPLABSizeBounds: void runRegionTest(int)>(8);
+
+        staticinvoke <gc.g1.TestPLABSizeBounds: void runRegionTest(int)>(16);
+
+        staticinvoke <gc.g1.TestPLABSizeBounds: void runRegionTest(int)>(32);
+
+        return;
+    }
+}

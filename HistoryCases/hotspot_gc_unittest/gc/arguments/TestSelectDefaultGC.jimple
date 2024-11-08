@@ -1,0 +1,150 @@
+public class TestSelectDefaultGC extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestSelectDefaultGC r0;
+
+        r0 := @this: TestSelectDefaultGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void assertVMOption(jdk.test.lib.process.OutputAnalyzer, java.lang.String, boolean)
+    {
+        jdk.test.lib.process.OutputAnalyzer r0;
+        java.lang.StringBuilder $r1, $r3, $r4, $r5, $r6;
+        java.lang.String r2, $r7;
+        boolean z0;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        r2 := @parameter1: java.lang.String;
+
+        z0 := @parameter2: boolean;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>(" ");
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" .*=.* ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>($r7);
+
+        return;
+    }
+
+    public static void testDefaultGC(boolean) throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        java.lang.String $r4, $r8, $r12, $r13;
+        java.lang.ProcessBuilder $r9;
+        boolean z0, $z1;
+        java.lang.Process $r11;
+        jdk.test.lib.process.OutputAnalyzer $r10;
+        java.lang.StringBuilder $r1, $r2, $r3, $r5, $r6, $r7;
+
+        z0 := @parameter0: boolean;
+
+        $r0 = newarray (java.lang.String)[4];
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:");
+
+        if z0 == 0 goto label1;
+
+        $r12 = "+";
+
+        goto label2;
+
+     label1:
+        $r12 = "-";
+
+     label2:
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("AlwaysActAsServerClassMachine");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[0] = $r4;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:");
+
+        if z0 == 0 goto label3;
+
+        $r13 = "-";
+
+        goto label4;
+
+     label3:
+        $r13 = "+";
+
+     label4:
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("NeverActAsServerClassMachine");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[1] = $r8;
+
+        $r0[2] = "-XX:+PrintFlagsFinal";
+
+        $r0[3] = "-version";
+
+        $r9 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r10 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r11 = virtualinvoke $r9.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r11);
+
+        virtualinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        staticinvoke <gc.arguments.TestSelectDefaultGC: void assertVMOption(jdk.test.lib.process.OutputAnalyzer,java.lang.String,boolean)>($r10, "UseG1GC", z0);
+
+        if z0 == 0 goto label5;
+
+        $z1 = 0;
+
+        goto label6;
+
+     label5:
+        $z1 = 1;
+
+     label6:
+        staticinvoke <gc.arguments.TestSelectDefaultGC: void assertVMOption(jdk.test.lib.process.OutputAnalyzer,java.lang.String,boolean)>($r10, "UseSerialGC", $z1);
+
+        staticinvoke <gc.arguments.TestSelectDefaultGC: void assertVMOption(jdk.test.lib.process.OutputAnalyzer,java.lang.String,boolean)>($r10, "UseConcMarkSweepGC", 0);
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.arguments.TestSelectDefaultGC: void testDefaultGC(boolean)>(0);
+
+        staticinvoke <gc.arguments.TestSelectDefaultGC: void testDefaultGC(boolean)>(1);
+
+        return;
+    }
+}

@@ -1,0 +1,70 @@
+public class TestPrintGCDetailsVerbose extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestPrintGCDetailsVerbose r0;
+
+        r0 := @this: TestPrintGCDetailsVerbose;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r2;
+        byte[] $r0;
+        java.lang.String[] r3;
+        byte[][] r4;
+        int $i0, i1, i2;
+        java.lang.OutOfMemoryError $r1;
+
+        r3 := @parameter0: java.lang.String[];
+
+        i1 = 0;
+
+        goto label8;
+
+     label1:
+        r4 = newarray (byte[])[100000];
+
+     label2:
+        i2 = 0;
+
+        goto label4;
+
+     label3:
+        $r0 = newarray (byte)[100000];
+
+        r4[i2] = $r0;
+
+        i2 = i2 + 1;
+
+     label4:
+        $i0 = lengthof r4;
+
+        if i2 < $i0 goto label3;
+
+     label5:
+        goto label7;
+
+     label6:
+        $r1 := @caughtexception;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("OOM!");
+
+     label7:
+        i1 = i1 + 1;
+
+     label8:
+        if i1 <= 10 goto label1;
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label2 to label5 with label6;
+    }
+}

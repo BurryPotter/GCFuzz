@@ -1,0 +1,152 @@
+class RememberedSet$PointerUtils extends java.lang.Object
+{
+    private static jdk.internal.misc.Unsafe unsafe;
+    private static long fieldOffset;
+    private static gc.gctests.RememberedSet.RememberedSet$PointerUtils instance;
+    private static boolean compressedRef;
+    private java.lang.Object obj;
+    private java.lang.Object obj0;
+
+    static void <clinit>()
+    {
+        long $l0, $l1, $l2, $l3, $l4;
+        int i5, $i6;
+        jdk.internal.misc.Unsafe $r1, $r3, $r6, $r8;
+        java.io.PrintStream $r9;
+        java.lang.RuntimeException $r11;
+        java.lang.reflect.Field $r4, $r7;
+        java.lang.Exception $r10;
+        java.lang.Class $r2, $r5;
+        gc.gctests.RememberedSet.RememberedSet$PointerUtils $r0;
+
+        $r0 = new gc.gctests.RememberedSet.RememberedSet$PointerUtils;
+
+        specialinvoke $r0.<gc.gctests.RememberedSet.RememberedSet$PointerUtils: void <init>()>();
+
+        <gc.gctests.RememberedSet.RememberedSet$PointerUtils: gc.gctests.RememberedSet.RememberedSet$PointerUtils instance> = $r0;
+
+        <gc.gctests.RememberedSet.RememberedSet$PointerUtils: boolean compressedRef> = 0;
+
+     label1:
+        $r1 = staticinvoke <jdk.internal.misc.Unsafe: jdk.internal.misc.Unsafe getUnsafe()>();
+
+        <gc.gctests.RememberedSet.RememberedSet$PointerUtils: jdk.internal.misc.Unsafe unsafe> = $r1;
+
+        $r3 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: jdk.internal.misc.Unsafe unsafe>;
+
+        $r2 = class "Lgc/gctests/RememberedSet/RememberedSet$PointerUtils;";
+
+        $r4 = virtualinvoke $r2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("obj");
+
+        $l0 = virtualinvoke $r3.<jdk.internal.misc.Unsafe: long objectFieldOffset(java.lang.reflect.Field)>($r4);
+
+        <gc.gctests.RememberedSet.RememberedSet$PointerUtils: long fieldOffset> = $l0;
+
+        $r6 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: jdk.internal.misc.Unsafe unsafe>;
+
+        $r5 = class "Lgc/gctests/RememberedSet/RememberedSet$PointerUtils;";
+
+        $r7 = virtualinvoke $r5.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("obj0");
+
+        $l1 = virtualinvoke $r6.<jdk.internal.misc.Unsafe: long objectFieldOffset(java.lang.reflect.Field)>($r7);
+
+        $l2 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: long fieldOffset>;
+
+        $l3 = $l2 - $l1;
+
+        $l4 = staticinvoke <java.lang.Math: long abs(long)>($l3);
+
+        i5 = (int) $l4;
+
+        $r8 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: jdk.internal.misc.Unsafe unsafe>;
+
+        $i6 = virtualinvoke $r8.<jdk.internal.misc.Unsafe: int addressSize()>();
+
+        if i5 == $i6 goto label4;
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>("Compressed oops detected");
+
+        <gc.gctests.RememberedSet.RememberedSet$PointerUtils: boolean compressedRef> = 1;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r10 := @caughtexception;
+
+        $r11 = new java.lang.RuntimeException;
+
+        specialinvoke $r11.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r10);
+
+        throw $r11;
+
+     label4:
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    void <init>()
+    {
+        RememberedSet$PointerUtils r0;
+
+        r0 := @this: RememberedSet$PointerUtils;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static synchronized long toAddress(java.lang.Object)
+    {
+        jdk.internal.misc.Unsafe $r3, $r4, $r6;
+        long $l0, $l3, l4;
+        int $i1, $i2;
+        java.lang.Object r0;
+        gc.gctests.RememberedSet.RememberedSet$PointerUtils $r1, $r2, $r5;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.Object;
+
+        $r1 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: gc.gctests.RememberedSet.RememberedSet$PointerUtils instance>;
+
+        $r1.<gc.gctests.RememberedSet.RememberedSet$PointerUtils: java.lang.Object obj> = r0;
+
+        $z0 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: boolean compressedRef>;
+
+        if $z0 != 0 goto label1;
+
+        $r4 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: jdk.internal.misc.Unsafe unsafe>;
+
+        $i2 = virtualinvoke $r4.<jdk.internal.misc.Unsafe: int addressSize()>();
+
+        if $i2 != 4 goto label2;
+
+     label1:
+        $r3 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: jdk.internal.misc.Unsafe unsafe>;
+
+        $r2 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: gc.gctests.RememberedSet.RememberedSet$PointerUtils instance>;
+
+        $l0 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: long fieldOffset>;
+
+        $i1 = virtualinvoke $r3.<jdk.internal.misc.Unsafe: int getInt(java.lang.Object,long)>($r2, $l0);
+
+        l4 = (long) $i1;
+
+        goto label3;
+
+     label2:
+        $r6 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: jdk.internal.misc.Unsafe unsafe>;
+
+        $r5 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: gc.gctests.RememberedSet.RememberedSet$PointerUtils instance>;
+
+        $l3 = <gc.gctests.RememberedSet.RememberedSet$PointerUtils: long fieldOffset>;
+
+        l4 = virtualinvoke $r6.<jdk.internal.misc.Unsafe: long getLong(java.lang.Object,long)>($r5, $l3);
+
+     label3:
+        return l4;
+    }
+}

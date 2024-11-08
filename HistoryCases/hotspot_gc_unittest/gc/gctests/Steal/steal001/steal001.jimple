@@ -1,0 +1,104 @@
+public class steal001 extends nsk.share.gc.ThreadedGCTest
+{
+    public static final java.util.concurrent.ThreadLocalRandom threadLocalRandom;
+    static final int INTERNAL_ITERATIONS;
+    static final int TREES;
+    static final int NODES;
+
+    static void <clinit>()
+    {
+        java.util.concurrent.ThreadLocalRandom $r0;
+
+        $r0 = staticinvoke <java.util.concurrent.ThreadLocalRandom: java.util.concurrent.ThreadLocalRandom current()>();
+
+        <gc.gctests.Steal.steal001.steal001: java.util.concurrent.ThreadLocalRandom threadLocalRandom> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        steal001 r0;
+
+        r0 := @this: steal001;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.gctests.Steal.steal001.steal001$Eater $r3;
+        java.lang.Runtime $r0;
+        long $l0, $l1;
+        gc.gctests.Steal.steal001.steal001 $r4;
+        java.lang.Runnable $r5;
+        int $i2, i3, i4;
+        steal001 r2;
+        double d0, $d1, $d2;
+
+        r2 := @this: steal001;
+
+        i3 := @parameter0: int;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long maxMemory()>();
+
+        $l1 = $l0 / 50L;
+
+        d0 = (double) $l1;
+
+        $d1 = d0 / 500.0;
+
+        $d2 = $d1 - 20.0;
+
+        i4 = (int) $d2;
+
+        $i2 = staticinvoke <java.lang.Math: int max(int,int)>(1, i4);
+
+        $r3 = new gc.gctests.Steal.steal001.steal001$Eater;
+
+        $r4 = (gc.gctests.Steal.steal001.steal001) r2;
+
+        specialinvoke $r3.<gc.gctests.Steal.steal001.steal001$Eater: void <init>(gc.gctests.Steal.steal001.steal001,int)>($r4, $i2);
+
+        $r5 = (java.lang.Runnable) $r3;
+
+        return $r5;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.Steal.steal001.steal001 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        staticinvoke <nsk.share.gc.gp.GarbageUtils: nsk.share.gc.gp.GarbageProducers getGarbageProducers()>();
+
+        $r2 = new gc.gctests.Steal.steal001.steal001;
+
+        specialinvoke $r2.<gc.gctests.Steal.steal001.steal001: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.test.ExecutionController access$0(gc.gctests.Steal.steal001.steal001)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.Steal.steal001.steal001 r0;
+
+        r0 := @parameter0: gc.gctests.Steal.steal001.steal001;
+
+        $r1 = virtualinvoke r0.<gc.gctests.Steal.steal001.steal001: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+}

@@ -1,0 +1,25 @@
+public class TestStringDeduplicationYoungGC extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestStringDeduplicationYoungGC r0;
+
+        r0 := @this: TestStringDeduplicationYoungGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.g1.TestStringDeduplicationTools: void testYoungGC()>();
+
+        return;
+    }
+}

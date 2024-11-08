@@ -1,0 +1,1266 @@
+public class SurvivorAlignmentTestMain extends java.lang.Object
+{
+    public static final sun.hotspot.WhiteBox WHITE_BOX;
+    public static final long MAX_TENURING_THRESHOLD;
+    private static final java.util.regex.Pattern SIZE_REGEX;
+    private static final java.lang.String DEF_NEW_EDEN;
+    private static final java.lang.String DEF_NEW_SURVIVOR;
+    private static final java.lang.String PAR_NEW_EDEN;
+    private static final java.lang.String PAR_NEW_SURVIVOR;
+    private static final java.lang.String PS_EDEN;
+    private static final java.lang.String PS_SURVIVOR;
+    private static final java.lang.String G1_EDEN;
+    private static final java.lang.String G1_SURVIVOR;
+    private static final java.lang.String SERIAL_TENURED;
+    private static final java.lang.String CMS_TENURED;
+    private static final java.lang.String PS_TENURED;
+    private static final java.lang.String G1_TENURED;
+    private static final long G1_HEAP_REGION_SIZE;
+    private static final long CMS_MIN_FREE_CHUNK_SIZE;
+    private static final gc.survivorAlignment.AlignmentHelper EDEN_SPACE_HELPER;
+    private static final gc.survivorAlignment.AlignmentHelper SURVIVOR_SPACE_HELPER;
+    private static final gc.survivorAlignment.AlignmentHelper TENURED_SPACE_HELPER;
+    private final long memoryToFill;
+    private final long objectSize;
+    private final long actualObjectSize;
+    private final java.lang.Object[] garbage;
+    private final gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace testedSpace;
+    private long[] baselinedThreadMemoryUsage;
+    private long[] threadIds;
+    private static int[] $SWITCH_TABLE$gc$survivorAlignment$SurvivorAlignmentTestMain$HeapSpace;
+
+    static void <clinit>()
+    {
+        java.lang.Long $r2, $r4, $r6, $r9, $r11, $r13;
+        long $l0, $l1, $l3, $l4, $l6, $l7, $l8, $l9, $l10, $l11, $l12, $l13, $l14, $l15, $l16, $l17, $l18, $l19, $l20, $l21, $l22, $l23;
+        java.lang.management.MemoryPoolMXBean r17;
+        java.lang.String $r18;
+        sun.hotspot.WhiteBox $r0, $r1, $r8;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7, $z8, $z9, $z10, $z11, $z12;
+        java.util.List $r14;
+        java.util.Optional $r3, $r10;
+        java.util.regex.Pattern $r7;
+        int $i2, $i5;
+        gc.survivorAlignment.AlignmentHelper $r19, $r20, $r21, $r23, $r25, $r27, r28, r29, r30, $r31, $r32, $r33;
+        java.util.Iterator $r15;
+        java.lang.Object $r5, $r12, $r16, $r22, $r24, $r26;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain: sun.hotspot.WhiteBox WHITE_BOX> = $r0;
+
+        $r1 = <gc.survivorAlignment.SurvivorAlignmentTestMain: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $r2 = virtualinvoke $r1.<sun.hotspot.WhiteBox: java.lang.Long getIntxVMFlag(java.lang.String)>("MaxTenuringThreshold");
+
+        $r3 = staticinvoke <java.util.Optional: java.util.Optional ofNullable(java.lang.Object)>($r2);
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(15L);
+
+        $r5 = virtualinvoke $r3.<java.util.Optional: java.lang.Object orElse(java.lang.Object)>($r4);
+
+        $r6 = (java.lang.Long) $r5;
+
+        $l0 = virtualinvoke $r6.<java.lang.Long: long longValue()>();
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain: long MAX_TENURING_THRESHOLD> = $l0;
+
+        $r7 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("(?<size>[0-9]+)(?<multiplier>[GMKgmk])?");
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain: java.util.regex.Pattern SIZE_REGEX> = $r7;
+
+        $r8 = <gc.survivorAlignment.SurvivorAlignmentTestMain: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $r9 = virtualinvoke $r8.<sun.hotspot.WhiteBox: java.lang.Long getUintxVMFlag(java.lang.String)>("G1HeapRegionSize");
+
+        $r10 = staticinvoke <java.util.Optional: java.util.Optional ofNullable(java.lang.Object)>($r9);
+
+        $r11 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(-1L);
+
+        $r12 = virtualinvoke $r10.<java.util.Optional: java.lang.Object orElse(java.lang.Object)>($r11);
+
+        $r13 = (java.lang.Long) $r12;
+
+        $l1 = virtualinvoke $r13.<java.lang.Long: long longValue()>();
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain: long G1_HEAP_REGION_SIZE> = $l1;
+
+        $i2 = <jdk.internal.misc.Unsafe: int ADDRESS_SIZE>;
+
+        $l3 = (long) $i2;
+
+        $l4 = 3L * $l3;
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain: long CMS_MIN_FREE_CHUNK_SIZE> = $l4;
+
+        r28 = null;
+
+        r29 = null;
+
+        r30 = null;
+
+        $r14 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r15 = interfaceinvoke $r14.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label20;
+
+     label01:
+        $r16 = interfaceinvoke $r15.<java.util.Iterator: java.lang.Object next()>();
+
+        r17 = (java.lang.management.MemoryPoolMXBean) $r16;
+
+        $r18 = interfaceinvoke r17.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        $i5 = virtualinvoke $r18.<java.lang.String: int hashCode()>();
+
+        lookupswitch($i5)
+        {
+            case -1859132000: goto label02;
+            case -1450910372: goto label03;
+            case -1413076983: goto label04;
+            case -1286435475: goto label05;
+            case -1263789970: goto label06;
+            case -258349692: goto label07;
+            case 780515393: goto label08;
+            case 1012036889: goto label09;
+            case 1440398043: goto label10;
+            case 1489835691: goto label11;
+            case 1895444338: goto label12;
+            case 1982951546: goto label13;
+            default: goto label20;
+        };
+
+     label02:
+        $z11 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("CMS Old Gen");
+
+        if $z11 != 0 goto label19;
+
+        goto label20;
+
+     label03:
+        $z10 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("Survivor Space");
+
+        if $z10 != 0 goto label16;
+
+        goto label20;
+
+     label04:
+        $z9 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("Tenured Gen");
+
+        if $z9 != 0 goto label18;
+
+        goto label20;
+
+     label05:
+        $z8 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("Par Eden Space");
+
+        if $z8 != 0 goto label14;
+
+        goto label20;
+
+     label06:
+        $z7 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("Eden Space");
+
+        if $z7 != 0 goto label14;
+
+        goto label20;
+
+     label07:
+        $z6 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("G1 Eden Space");
+
+        if $z6 != 0 goto label15;
+
+        goto label20;
+
+     label08:
+        $z5 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("G1 Old Gen");
+
+        if $z5 != 0 goto label18;
+
+        goto label20;
+
+     label09:
+        $z4 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("PS Survivor Space");
+
+        if $z4 != 0 goto label16;
+
+        goto label20;
+
+     label10:
+        $z3 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("Par Survivor Space");
+
+        if $z3 != 0 goto label16;
+
+        goto label20;
+
+     label11:
+        $z2 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("PS Eden Space");
+
+        if $z2 != 0 goto label14;
+
+        goto label20;
+
+     label12:
+        $z1 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("G1 Survivor Space");
+
+        if $z1 != 0 goto label17;
+
+        goto label20;
+
+     label13:
+        $z0 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>("PS Old Gen");
+
+        if $z0 != 0 goto label18;
+
+        goto label20;
+
+     label14:
+        staticinvoke <jdk.test.lib.Asserts: void assertNull(java.lang.Object,java.lang.String)>(r28, "Only one bean for eden space is expected.");
+
+        $r31 = new gc.survivorAlignment.AlignmentHelper;
+
+        $l15 = <gc.survivorAlignment.AlignmentHelper: long OBJECT_ALIGNMENT_IN_BYTES>;
+
+        $l16 = <gc.survivorAlignment.AlignmentHelper: long OBJECT_ALIGNMENT_IN_BYTES>;
+
+        $l17 = <gc.survivorAlignment.AlignmentHelper: long MIN_OBJECT_SIZE>;
+
+        specialinvoke $r31.<gc.survivorAlignment.AlignmentHelper: void <init>(long,long,long,java.lang.management.MemoryPoolMXBean)>($l15, $l16, $l17, r17);
+
+        r28 = $r31;
+
+        goto label20;
+
+     label15:
+        staticinvoke <jdk.test.lib.Asserts: void assertNull(java.lang.Object,java.lang.String)>(r28, "Only one bean for eden space is expected.");
+
+        $r20 = new gc.survivorAlignment.AlignmentHelper;
+
+        $l11 = <gc.survivorAlignment.SurvivorAlignmentTestMain: long G1_HEAP_REGION_SIZE>;
+
+        $l10 = <gc.survivorAlignment.AlignmentHelper: long OBJECT_ALIGNMENT_IN_BYTES>;
+
+        $l9 = <gc.survivorAlignment.AlignmentHelper: long MIN_OBJECT_SIZE>;
+
+        specialinvoke $r20.<gc.survivorAlignment.AlignmentHelper: void <init>(long,long,long,java.lang.management.MemoryPoolMXBean)>($l11, $l10, $l9, r17);
+
+        r28 = $r20;
+
+        goto label20;
+
+     label16:
+        staticinvoke <jdk.test.lib.Asserts: void assertNull(java.lang.Object,java.lang.String)>(r29, "Only one bean for survivor space is expected.");
+
+        $r32 = new gc.survivorAlignment.AlignmentHelper;
+
+        $l18 = <gc.survivorAlignment.AlignmentHelper: long OBJECT_ALIGNMENT_IN_BYTES>;
+
+        $l19 = <gc.survivorAlignment.AlignmentHelper: long SURVIVOR_ALIGNMENT_IN_BYTES>;
+
+        $l20 = <gc.survivorAlignment.AlignmentHelper: long MIN_OBJECT_SIZE>;
+
+        specialinvoke $r32.<gc.survivorAlignment.AlignmentHelper: void <init>(long,long,long,java.lang.management.MemoryPoolMXBean)>($l18, $l19, $l20, r17);
+
+        r29 = $r32;
+
+        goto label20;
+
+     label17:
+        staticinvoke <jdk.test.lib.Asserts: void assertNull(java.lang.Object,java.lang.String)>(r29, "Only one bean for survivor space is expected.");
+
+        $r19 = new gc.survivorAlignment.AlignmentHelper;
+
+        $l8 = <gc.survivorAlignment.SurvivorAlignmentTestMain: long G1_HEAP_REGION_SIZE>;
+
+        $l7 = <gc.survivorAlignment.AlignmentHelper: long SURVIVOR_ALIGNMENT_IN_BYTES>;
+
+        $l6 = <gc.survivorAlignment.AlignmentHelper: long MIN_OBJECT_SIZE>;
+
+        specialinvoke $r19.<gc.survivorAlignment.AlignmentHelper: void <init>(long,long,long,java.lang.management.MemoryPoolMXBean)>($l8, $l7, $l6, r17);
+
+        r29 = $r19;
+
+        goto label20;
+
+     label18:
+        staticinvoke <jdk.test.lib.Asserts: void assertNull(java.lang.Object,java.lang.String)>(r30, "Only one bean for tenured space is expected.");
+
+        $r33 = new gc.survivorAlignment.AlignmentHelper;
+
+        $l21 = <gc.survivorAlignment.AlignmentHelper: long OBJECT_ALIGNMENT_IN_BYTES>;
+
+        $l22 = <gc.survivorAlignment.AlignmentHelper: long OBJECT_ALIGNMENT_IN_BYTES>;
+
+        $l23 = <gc.survivorAlignment.AlignmentHelper: long MIN_OBJECT_SIZE>;
+
+        specialinvoke $r33.<gc.survivorAlignment.AlignmentHelper: void <init>(long,long,long,java.lang.management.MemoryPoolMXBean)>($l21, $l22, $l23, r17);
+
+        r30 = $r33;
+
+        goto label20;
+
+     label19:
+        staticinvoke <jdk.test.lib.Asserts: void assertNull(java.lang.Object,java.lang.String)>(r30, "Only one bean for tenured space is expected.");
+
+        $r21 = new gc.survivorAlignment.AlignmentHelper;
+
+        $l14 = <gc.survivorAlignment.AlignmentHelper: long OBJECT_ALIGNMENT_IN_BYTES>;
+
+        $l13 = <gc.survivorAlignment.AlignmentHelper: long OBJECT_ALIGNMENT_IN_BYTES>;
+
+        $l12 = <gc.survivorAlignment.SurvivorAlignmentTestMain: long CMS_MIN_FREE_CHUNK_SIZE>;
+
+        specialinvoke $r21.<gc.survivorAlignment.AlignmentHelper: void <init>(long,long,long,java.lang.management.MemoryPoolMXBean)>($l14, $l13, $l12, r17);
+
+        r30 = $r21;
+
+     label20:
+        $z12 = interfaceinvoke $r15.<java.util.Iterator: boolean hasNext()>();
+
+        if $z12 != 0 goto label01;
+
+        $r22 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object,java.lang.String)>(r28, "AlignmentHelper for eden space should be initialized.");
+
+        $r23 = (gc.survivorAlignment.AlignmentHelper) $r22;
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper EDEN_SPACE_HELPER> = $r23;
+
+        $r24 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object,java.lang.String)>(r29, "AlignmentHelper for survivor space should be initialized.");
+
+        $r25 = (gc.survivorAlignment.AlignmentHelper) $r24;
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper SURVIVOR_SPACE_HELPER> = $r25;
+
+        $r26 = staticinvoke <java.util.Objects: java.lang.Object requireNonNull(java.lang.Object,java.lang.String)>(r30, "AlignmentHelper for tenured space should be initialized.");
+
+        $r27 = (gc.survivorAlignment.AlignmentHelper) $r26;
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper TENURED_SPACE_HELPER> = $r27;
+
+        return;
+    }
+
+    public static gc.survivorAlignment.SurvivorAlignmentTestMain fromArgs(java.lang.String[])
+    {
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace $r6;
+        java.lang.String[] r0;
+        long $l1, $l2, $l3, $l4;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r7;
+        java.lang.Integer $r1, $r2;
+        int $i0;
+        java.lang.String $r3, $r4, $r5;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(3);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object,java.lang.String)>($r1, $r2, "Expected three arguments: memory size, object size and tested heap space name.");
+
+        $r3 = r0[0];
+
+        $l1 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: long parseSize(java.lang.String)>($r3);
+
+        $r4 = r0[1];
+
+        $l2 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: long parseSize(java.lang.String)>($r4);
+
+        $l3 = <gc.survivorAlignment.AlignmentHelper: long MIN_ARRAY_SIZE>;
+
+        $l4 = staticinvoke <java.lang.Math: long max(long,long)>($l2, $l3);
+
+        $r5 = r0[2];
+
+        $r6 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace valueOf(java.lang.String)>($r5);
+
+        $r7 = new gc.survivorAlignment.SurvivorAlignmentTestMain;
+
+        specialinvoke $r7.<gc.survivorAlignment.SurvivorAlignmentTestMain: void <init>(long,long,gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)>($l1, $l4, $r6);
+
+        return $r7;
+    }
+
+    private static long parseSize(java.lang.String)
+    {
+        long $l0, l2;
+        java.util.regex.Matcher $r2;
+        java.lang.Long $r4;
+        int $i1;
+        java.lang.String r0, $r3, $r5, $r6, $r7;
+        java.util.regex.Pattern $r1;
+        boolean $z0, $z1, $z2, $z3;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = <gc.survivorAlignment.SurvivorAlignmentTestMain: java.util.regex.Pattern SIZE_REGEX>;
+
+        $r2 = virtualinvoke $r1.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r0);
+
+        $z0 = virtualinvoke $r2.<java.util.regex.Matcher: boolean matches()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z0, "sizeString should have following format \"[0-9]+([MBK])?\"");
+
+        $r3 = virtualinvoke $r2.<java.util.regex.Matcher: java.lang.String group(java.lang.String)>("size");
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.Long valueOf(java.lang.String)>($r3);
+
+        $l0 = virtualinvoke $r4.<java.lang.Long: long longValue()>();
+
+        l2 = $l0;
+
+        $r5 = virtualinvoke $r2.<java.util.regex.Matcher: java.lang.String group(java.lang.String)>("multiplier");
+
+        if $r5 == null goto label7;
+
+        $r6 = virtualinvoke $r2.<java.util.regex.Matcher: java.lang.String group(java.lang.String)>("multiplier");
+
+        $r7 = virtualinvoke $r6.<java.lang.String: java.lang.String toLowerCase()>();
+
+        $i1 = virtualinvoke $r7.<java.lang.String: int hashCode()>();
+
+        lookupswitch($i1)
+        {
+            case 103: goto label1;
+            case 107: goto label2;
+            case 109: goto label3;
+            default: goto label7;
+        };
+
+     label1:
+        $z3 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>("g");
+
+        if $z3 != 0 goto label4;
+
+        goto label7;
+
+     label2:
+        $z2 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>("k");
+
+        if $z2 != 0 goto label6;
+
+        goto label7;
+
+     label3:
+        $z1 = virtualinvoke $r7.<java.lang.String: boolean equals(java.lang.Object)>("m");
+
+        if $z1 != 0 goto label5;
+
+        goto label7;
+
+     label4:
+        l2 = $l0 * 1024L;
+
+     label5:
+        l2 = l2 * 1024L;
+
+     label6:
+        l2 = l2 * 1024L;
+
+     label7:
+        return l2;
+    }
+
+    private void <init>(long, long, gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)
+    {
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace r1;
+        java.lang.Object[] $r3;
+        long l0, l1, $l2, $l3, $l4;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12;
+        int $i5;
+        SurvivorAlignmentTestMain r0;
+        gc.survivorAlignment.AlignmentHelper r2;
+
+        r0 := @this: SurvivorAlignmentTestMain;
+
+        l1 := @parameter0: long;
+
+        l0 := @parameter1: long;
+
+        r1 := @parameter2: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r4 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r4.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] baselinedThreadMemoryUsage> = null;
+
+        $r5 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r5.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] threadIds> = null;
+
+        $r6 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r6.<gc.survivorAlignment.SurvivorAlignmentTestMain: long objectSize> = l0;
+
+        $r7 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r7.<gc.survivorAlignment.SurvivorAlignmentTestMain: long memoryToFill> = l1;
+
+        $r8 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r8.<gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace testedSpace> = r1;
+
+        r2 = <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper EDEN_SPACE_HELPER>;
+
+        $r9 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $l2 = $r9.<gc.survivorAlignment.SurvivorAlignmentTestMain: long objectSize>;
+
+        $l3 = virtualinvoke r2.<gc.survivorAlignment.AlignmentHelper: long getObjectSizeInThisSpace(long)>($l2);
+
+        $r10 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r10.<gc.survivorAlignment.SurvivorAlignmentTestMain: long actualObjectSize> = $l3;
+
+        $r11 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $l4 = $r11.<gc.survivorAlignment.SurvivorAlignmentTestMain: long objectSize>;
+
+        $i5 = virtualinvoke r2.<gc.survivorAlignment.AlignmentHelper: int getObjectsCount(long,long)>(l1, $l4);
+
+        $r3 = newarray (java.lang.Object)[$i5];
+
+        $r12 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r12.<gc.survivorAlignment.SurvivorAlignmentTestMain: java.lang.Object[] garbage> = $r3;
+
+        return;
+    }
+
+    public void allocate()
+    {
+        byte[] $r2;
+        java.lang.Object[] $r1, $r3;
+        long $l1, $l2, $l3;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r4, $r5, $r6;
+        int $i0, $i4, $i5, $i6, i7;
+        SurvivorAlignmentTestMain r0;
+
+        r0 := @this: SurvivorAlignmentTestMain;
+
+        $r4 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $l2 = $r4.<gc.survivorAlignment.SurvivorAlignmentTestMain: long objectSize>;
+
+        $i0 = <jdk.internal.misc.Unsafe: int ARRAY_BYTE_BASE_OFFSET>;
+
+        $l1 = (long) $i0;
+
+        $l3 = $l2 - $l1;
+
+        $i4 = (int) $l3;
+
+        $i5 = staticinvoke <java.lang.Math: int max(int,int)>($i4, 0);
+
+        i7 = 0;
+
+        goto label2;
+
+     label1:
+        $r5 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r3 = $r5.<gc.survivorAlignment.SurvivorAlignmentTestMain: java.lang.Object[] garbage>;
+
+        $r2 = newarray (byte)[$i5];
+
+        $r3[i7] = $r2;
+
+        i7 = i7 + 1;
+
+     label2:
+        $r6 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r1 = $r6.<gc.survivorAlignment.SurvivorAlignmentTestMain: java.lang.Object[] garbage>;
+
+        $i6 = lengthof $r1;
+
+        if i7 < $i6 goto label1;
+
+        return;
+    }
+
+    public void release()
+    {
+        java.lang.Object[] $r1, $r2;
+        int $i0, i1;
+        SurvivorAlignmentTestMain r0;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r3, $r4;
+
+        r0 := @this: SurvivorAlignmentTestMain;
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        $r3 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r2 = $r3.<gc.survivorAlignment.SurvivorAlignmentTestMain: java.lang.Object[] garbage>;
+
+        $r2[i1] = null;
+
+        i1 = i1 + 1;
+
+     label2:
+        $r4 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r1 = $r4.<gc.survivorAlignment.SurvivorAlignmentTestMain: java.lang.Object[] garbage>;
+
+        $i0 = lengthof $r1;
+
+        if i1 < $i0 goto label1;
+
+        return;
+    }
+
+    public long getExpectedMemoryUsage()
+    {
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace $r1;
+        gc.survivorAlignment.AlignmentHelper $r2;
+        java.lang.Object[] $r3;
+        long $l1, $l2;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r4, $r5, $r6;
+        int $i0;
+        SurvivorAlignmentTestMain r0;
+
+        r0 := @this: SurvivorAlignmentTestMain;
+
+        $r4 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r1 = $r4.<gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace testedSpace>;
+
+        $r2 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper getAlignmentHelper(gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)>($r1);
+
+        $r5 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $l1 = $r5.<gc.survivorAlignment.SurvivorAlignmentTestMain: long objectSize>;
+
+        $r6 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r3 = $r6.<gc.survivorAlignment.SurvivorAlignmentTestMain: java.lang.Object[] garbage>;
+
+        $i0 = lengthof $r3;
+
+        $l2 = virtualinvoke $r2.<gc.survivorAlignment.AlignmentHelper: long getExpectedMemoryUsage(long,int)>($l1, $i0);
+
+        return $l2;
+    }
+
+    public void verifyMemoryUsage(long)
+    {
+        byte $b10;
+        java.lang.Long $r41, $r42;
+        java.lang.StringBuilder $r6, $r11, $r15, $r19, $r23, $r27, $r31, $r35, $r39, $r44, $r47, $r48, $r49, $r50, $r51, $r52, $r53, $r54, $r55, $r56;
+        java.lang.Object[] $r10;
+        long $l0, l1, $l2, $l3, $l4, $l6, $l7, $l8, $l9;
+        java.lang.String $r7, $r12, $r16, $r20, $r24, $r28, $r32, $r36, $r40, $r45;
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace $r1, $r5;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r57, $r58, $r59, $r60, $r61, $r62, $r63;
+        SurvivorAlignmentTestMain r0;
+        boolean $z0;
+        int $i5, $i11;
+        gc.survivorAlignment.AlignmentHelper $r2;
+        java.io.PrintStream $r4, $r9, $r14, $r18, $r22, $r26, $r30, $r34, $r38, $r46;
+
+        r0 := @this: SurvivorAlignmentTestMain;
+
+        l1 := @parameter0: long;
+
+        $r57 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r1 = $r57.<gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace testedSpace>;
+
+        $r2 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper getAlignmentHelper(gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)>($r1);
+
+        $l0 = virtualinvoke $r2.<gc.survivorAlignment.AlignmentHelper: long getActualMemoryUsage()>();
+
+        $r58 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $z0 = virtualinvoke $r58.<gc.survivorAlignment.SurvivorAlignmentTestMain: boolean areOtherThreadsAllocatedMemory()>();
+
+        $l2 = $l0 - l1;
+
+        $l3 = staticinvoke <java.lang.Math: long abs(long)>($l2);
+
+        $l4 = virtualinvoke $r2.<gc.survivorAlignment.AlignmentHelper: long getAllowedMemoryUsageDeviation(long)>(l1);
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r47 = new java.lang.StringBuilder;
+
+        specialinvoke $r47.<java.lang.StringBuilder: void <init>(java.lang.String)>("Verifying memory usage in space: ");
+
+        $r59 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r5 = $r59.<gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace testedSpace>;
+
+        $r6 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r48 = new java.lang.StringBuilder;
+
+        specialinvoke $r48.<java.lang.StringBuilder: void <init>(java.lang.String)>("Allocated objects count: ");
+
+        $r60 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r10 = $r60.<gc.survivorAlignment.SurvivorAlignmentTestMain: java.lang.Object[] garbage>;
+
+        $i5 = lengthof $r10;
+
+        $r11 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        $r49 = new java.lang.StringBuilder;
+
+        specialinvoke $r49.<java.lang.StringBuilder: void <init>(java.lang.String)>("Desired object size: ");
+
+        $r61 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $l6 = $r61.<gc.survivorAlignment.SurvivorAlignmentTestMain: long objectSize>;
+
+        $r15 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l6);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        $r18 = <java.lang.System: java.io.PrintStream out>;
+
+        $r50 = new java.lang.StringBuilder;
+
+        specialinvoke $r50.<java.lang.StringBuilder: void <init>(java.lang.String)>("Actual object size: ");
+
+        $r62 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $l7 = $r62.<gc.survivorAlignment.SurvivorAlignmentTestMain: long actualObjectSize>;
+
+        $r19 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l7);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>($r20);
+
+        $r22 = <java.lang.System: java.io.PrintStream out>;
+
+        $r51 = new java.lang.StringBuilder;
+
+        specialinvoke $r51.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected object size in space: ");
+
+        $r63 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $l8 = $r63.<gc.survivorAlignment.SurvivorAlignmentTestMain: long objectSize>;
+
+        $l9 = virtualinvoke $r2.<gc.survivorAlignment.AlignmentHelper: long getObjectSizeInThisSpace(long)>($l8);
+
+        $r23 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r24);
+
+        $r26 = <java.lang.System: java.io.PrintStream out>;
+
+        $r52 = new java.lang.StringBuilder;
+
+        specialinvoke $r52.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected memory usage: ");
+
+        $r27 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r28);
+
+        $r30 = <java.lang.System: java.io.PrintStream out>;
+
+        $r53 = new java.lang.StringBuilder;
+
+        specialinvoke $r53.<java.lang.StringBuilder: void <init>(java.lang.String)>("Actual memory usage: ");
+
+        $r31 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>($r32);
+
+        $r34 = <java.lang.System: java.io.PrintStream out>;
+
+        $r54 = new java.lang.StringBuilder;
+
+        specialinvoke $r54.<java.lang.StringBuilder: void <init>(java.lang.String)>("Memory usage diff: ");
+
+        $r35 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r34.<java.io.PrintStream: void println(java.lang.String)>($r36);
+
+        $r38 = <java.lang.System: java.io.PrintStream out>;
+
+        $r55 = new java.lang.StringBuilder;
+
+        specialinvoke $r55.<java.lang.StringBuilder: void <init>(java.lang.String)>("Max allowed usage diff: ");
+
+        $r39 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l4);
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>($r40);
+
+        $b10 = $l3 cmp $l4;
+
+        $i11 = (int) $b10;
+
+        if $i11 <= 0 goto label1;
+
+        if $z0 == 0 goto label1;
+
+        $r46 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r46.<java.io.PrintStream: void println(java.lang.String)>("Memory usage diff is incorrect, but it seems like someone else allocated objects");
+
+        return;
+
+     label1:
+        $r41 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        $r42 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l4);
+
+        $r56 = new java.lang.StringBuilder;
+
+        specialinvoke $r56.<java.lang.StringBuilder: void <init>(java.lang.String)>("Actual memory usage should not deviate from expected for more then ");
+
+        $r44 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l4);
+
+        $r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertLTE(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r41, $r42, $r45);
+
+        return;
+    }
+
+    public void baselineMemoryAllocation()
+    {
+        com.sun.management.ThreadMXBean r1;
+        java.lang.management.ThreadMXBean $r0;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r6, $r7, $r8;
+        long[] $r3, $r4, $r5;
+        SurvivorAlignmentTestMain r2;
+
+        r2 := @this: SurvivorAlignmentTestMain;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.ThreadMXBean getThreadMXBean()>();
+
+        r1 = (com.sun.management.ThreadMXBean) $r0;
+
+        $r3 = interfaceinvoke r1.<com.sun.management.ThreadMXBean: long[] getAllThreadIds()>();
+
+        $r6 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r2;
+
+        $r6.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] threadIds> = $r3;
+
+        $r7 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r2;
+
+        $r4 = $r7.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] threadIds>;
+
+        $r5 = interfaceinvoke r1.<com.sun.management.ThreadMXBean: long[] getThreadAllocatedBytes(long[])>($r4);
+
+        $r8 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r2;
+
+        $r8.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] baselinedThreadMemoryUsage> = $r5;
+
+        return;
+    }
+
+    public boolean areOtherThreadsAllocatedMemory()
+    {
+        com.sun.management.ThreadMXBean r3;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28;
+        java.lang.management.ThreadInfo $r16;
+        byte $b8, $b11;
+        java.lang.Long $r10, $r12, $r13;
+        java.lang.Thread $r19;
+        SurvivorAlignmentTestMain r0;
+        boolean z0;
+        java.lang.Object[] $r7;
+        long $l0, $l1, $l2, $l3, $l4, $l5, $l6, $l7, $l9, $l10;
+        long[] $r1, $r4, $r5, $r8, $r11, $r14, $r17, $r18, $r20;
+        int i12, $i13, $i14;
+        java.io.PrintStream $r6, $r9, $r15;
+        java.lang.management.ThreadMXBean $r2;
+
+        r0 := @this: SurvivorAlignmentTestMain;
+
+        $r21 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r1 = $r21.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] baselinedThreadMemoryUsage>;
+
+        if $r1 != null goto label1;
+
+        return 0;
+
+     label1:
+        $r2 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.ThreadMXBean getThreadMXBean()>();
+
+        r3 = (com.sun.management.ThreadMXBean) $r2;
+
+        $r22 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r4 = $r22.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] threadIds>;
+
+        $r5 = interfaceinvoke r3.<com.sun.management.ThreadMXBean: long[] getThreadAllocatedBytes(long[])>($r4);
+
+        z0 = 0;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>("Verifying amount of memory allocated by threads:");
+
+        i12 = 0;
+
+        goto label4;
+
+     label2:
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = newarray (java.lang.Object)[3];
+
+        $r23 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r8 = $r23.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] threadIds>;
+
+        $l0 = $r8[i12];
+
+        $r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r7[0] = $r10;
+
+        $r24 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r11 = $r24.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] baselinedThreadMemoryUsage>;
+
+        $l1 = $r11[i12];
+
+        $r12 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r7[1] = $r12;
+
+        $l2 = $r5[i12];
+
+        $r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $r7[2] = $r13;
+
+        virtualinvoke $r9.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("Thread %d%nbaseline allocation: %d%ncurrent allocation:%d%n", $r7);
+
+        $r15 = <java.lang.System: java.io.PrintStream out>;
+
+        $r25 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r14 = $r25.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] threadIds>;
+
+        $l3 = $r14[i12];
+
+        $r16 = interfaceinvoke r3.<com.sun.management.ThreadMXBean: java.lang.management.ThreadInfo getThreadInfo(long)>($l3);
+
+        virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.Object)>($r16);
+
+        $l5 = $r5[i12];
+
+        $r26 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r17 = $r26.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] baselinedThreadMemoryUsage>;
+
+        $l4 = $r17[i12];
+
+        $l6 = $l5 - $l4;
+
+        $l7 = staticinvoke <java.lang.Math: long abs(long)>($l6);
+
+        $b8 = $l7 cmp 0L;
+
+        $i14 = (int) $b8;
+
+        if $i14 <= 0 goto label3;
+
+        $r27 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r18 = $r27.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] threadIds>;
+
+        $l9 = $r18[i12];
+
+        $r19 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>();
+
+        $l10 = virtualinvoke $r19.<java.lang.Thread: long getId()>();
+
+        $b11 = $l9 cmp $l10;
+
+        if $b11 == 0 goto label3;
+
+        z0 = 1;
+
+     label3:
+        i12 = i12 + 1;
+
+     label4:
+        $r28 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r0;
+
+        $r20 = $r28.<gc.survivorAlignment.SurvivorAlignmentTestMain: long[] threadIds>;
+
+        $i13 = lengthof $r20;
+
+        if i12 < $i13 goto label2;
+
+        return z0;
+    }
+
+    public java.lang.String toString()
+    {
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace r17;
+        java.lang.Object[] $r1, $r3, $r7, $r10, $r11, $r14, $r18;
+        long $l0, $l1;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r23, $r24, $r25;
+        java.lang.Integer $r12;
+        java.lang.Long $r5, $r8;
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace[] $r16;
+        int $i2, i3, i4;
+        java.lang.String $r2, $r6, $r9, $r13, $r15, $r20, $r21;
+        SurvivorAlignmentTestMain r4;
+        gc.survivorAlignment.AlignmentHelper $r19;
+        java.lang.StringBuilder $r22;
+
+        r4 := @this: SurvivorAlignmentTestMain;
+
+        $r22 = new java.lang.StringBuilder;
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("SurvivorAlignmentTestMain info:%n", $r1);
+
+        virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r3 = newarray (java.lang.Object)[1];
+
+        $r23 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r4;
+
+        $l0 = $r23.<gc.survivorAlignment.SurvivorAlignmentTestMain: long objectSize>;
+
+        $r5 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r3[0] = $r5;
+
+        $r6 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Desired object size: %d%n", $r3);
+
+        virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r7 = newarray (java.lang.Object)[1];
+
+        $r24 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r4;
+
+        $l1 = $r24.<gc.survivorAlignment.SurvivorAlignmentTestMain: long memoryToFill>;
+
+        $r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r7[0] = $r8;
+
+        $r9 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Memory to fill: %d%n", $r7);
+
+        virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r10 = newarray (java.lang.Object)[1];
+
+        $r25 = (gc.survivorAlignment.SurvivorAlignmentTestMain) r4;
+
+        $r11 = $r25.<gc.survivorAlignment.SurvivorAlignmentTestMain: java.lang.Object[] garbage>;
+
+        $i2 = lengthof $r11;
+
+        $r12 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+
+        $r10[0] = $r12;
+
+        $r13 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Objects to be allocated: %d%n", $r10);
+
+        virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+
+        $r14 = newarray (java.lang.Object)[0];
+
+        $r15 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Alignment helpers to be used: %n", $r14);
+
+        virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15);
+
+        $r16 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace[] values()>();
+
+        i3 = lengthof $r16;
+
+        i4 = 0;
+
+        goto label2;
+
+     label1:
+        r17 = $r16[i4];
+
+        $r18 = newarray (java.lang.Object)[2];
+
+        $r18[0] = r17;
+
+        $r19 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper getAlignmentHelper(gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)>(r17);
+
+        $r18[1] = $r19;
+
+        $r20 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("For space %s:%n%s%n", $r18);
+
+        virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+
+        i4 = i4 + 1;
+
+     label2:
+        if i4 < i3 goto label1;
+
+        $r21 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r21;
+    }
+
+    public static gc.survivorAlignment.AlignmentHelper getAlignmentHelper(gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)
+    {
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace r1;
+        gc.survivorAlignment.AlignmentHelper $r2, $r3, $r4;
+        java.lang.Error $r5;
+        int[] $r0;
+        int $i0, $i1;
+        java.lang.StringBuilder $r6, $r7;
+        java.lang.String $r8;
+
+        r1 := @parameter0: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace;
+
+        $r0 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: int[] $SWITCH_TABLE$gc$survivorAlignment$SurvivorAlignmentTestMain$HeapSpace()>();
+
+        $i0 = virtualinvoke r1.<gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: int ordinal()>();
+
+        $i1 = $r0[$i0];
+
+        tableswitch($i1)
+        {
+            case 1: goto label1;
+            case 2: goto label2;
+            case 3: goto label3;
+            default: goto label4;
+        };
+
+     label1:
+        $r4 = <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper EDEN_SPACE_HELPER>;
+
+        return $r4;
+
+     label2:
+        $r3 = <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper SURVIVOR_SPACE_HELPER>;
+
+        return $r3;
+
+     label3:
+        $r2 = <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.AlignmentHelper TENURED_SPACE_HELPER>;
+
+        return $r2;
+
+     label4:
+        $r5 = new java.lang.Error;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Unexpected heap space: ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r1);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<java.lang.Error: void <init>(java.lang.String)>($r8);
+
+        throw $r5;
+    }
+
+    static int[] $SWITCH_TABLE$gc$survivorAlignment$SurvivorAlignmentTestMain$HeapSpace()
+    {
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace $r3, $r4, $r5;
+        java.lang.NoSuchFieldError $r6, $r7, $r8;
+        int[] $r0, r2;
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace[] $r1;
+        int $i0, $i1, $i2, $i3;
+
+        $r0 = <gc.survivorAlignment.SurvivorAlignmentTestMain: int[] $SWITCH_TABLE$gc$survivorAlignment$SurvivorAlignmentTestMain$HeapSpace>;
+
+        if $r0 == null goto label01;
+
+        return $r0;
+
+     label01:
+        $r1 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace[] values()>();
+
+        $i0 = lengthof $r1;
+
+        r2 = newarray (int)[$i0];
+
+     label02:
+        $r3 = <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace EDEN>;
+
+        $i1 = virtualinvoke $r3.<gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: int ordinal()>();
+
+        r2[$i1] = 1;
+
+     label03:
+        goto label05;
+
+     label04:
+        $r8 := @caughtexception;
+
+     label05:
+        $r4 = <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace SURVIVOR>;
+
+        $i2 = virtualinvoke $r4.<gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: int ordinal()>();
+
+        r2[$i2] = 2;
+
+     label06:
+        goto label08;
+
+     label07:
+        $r7 := @caughtexception;
+
+     label08:
+        $r5 = <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace TENURED>;
+
+        $i3 = virtualinvoke $r5.<gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: int ordinal()>();
+
+        r2[$i3] = 3;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r6 := @caughtexception;
+
+     label11:
+        <gc.survivorAlignment.SurvivorAlignmentTestMain: int[] $SWITCH_TABLE$gc$survivorAlignment$SurvivorAlignmentTestMain$HeapSpace> = r2;
+
+        return r2;
+
+        catch java.lang.NoSuchFieldError from label02 to label03 with label04;
+        catch java.lang.NoSuchFieldError from label05 to label06 with label07;
+        catch java.lang.NoSuchFieldError from label08 to label09 with label10;
+    }
+}

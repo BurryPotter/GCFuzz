@@ -1,0 +1,46 @@
+public class TestG1 extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestG1 r0;
+
+        r0 := @this: TestG1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Process $r3;
+        java.lang.String[] $r0, r4;
+        java.lang.ProcessBuilder $r1;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-version";
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("deprecated");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("error");
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

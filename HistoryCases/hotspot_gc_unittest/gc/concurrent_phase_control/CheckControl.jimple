@@ -1,0 +1,449 @@
+public final class CheckControl extends java.lang.Object
+{
+    private static final java.lang.String requestPrefix;
+    private static final java.lang.String reachedPrefix;
+
+    public void <init>()
+    {
+        CheckControl r0;
+
+        r0 := @this: CheckControl;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void check(java.lang.String, java.lang.String[], java.lang.String[][]) throws java.lang.Exception
+    {
+        java.lang.String[] r1, $r2, r5;
+        int $i0, $i1, i2;
+        java.lang.String $r3, r4, $r6;
+        java.lang.String[][] r0;
+
+        r4 := @parameter0: java.lang.String;
+
+        r5 := @parameter1: java.lang.String[];
+
+        r0 := @parameter2: java.lang.String[][];
+
+        $i0 = lengthof r0;
+
+        r1 = newarray (java.lang.String)[$i0];
+
+        i2 = 0;
+
+        goto label2;
+
+     label1:
+        $r2 = r0[i2];
+
+        $r3 = $r2[0];
+
+        r1[i2] = $r3;
+
+        i2 = i2 + 1;
+
+     label2:
+        $i1 = lengthof r0;
+
+        if i2 < $i1 goto label1;
+
+        $r6 = staticinvoke <gc.concurrent_phase_control.CheckControl: java.lang.String executeTest(java.lang.String,java.lang.String[],java.lang.String[])>(r4, r5, r1);
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void checkPhaseControl(java.lang.String,java.lang.String[][])>($r6, r0);
+
+        return;
+    }
+
+    private static void fail(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.RuntimeException $r0;
+        java.lang.String r1;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.RuntimeException;
+
+        specialinvoke $r0.<java.lang.RuntimeException: void <init>(java.lang.String)>(r1);
+
+        throw $r0;
+    }
+
+    private static java.lang.String executeTest(java.lang.String, java.lang.String[], java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Object[] $r8;
+        java.lang.String[] $r1, r3, r6, $r7, r9;
+        java.util.ArrayList $r2;
+        int $i0;
+        java.lang.String $r5, $r13, r16, $r18;
+        java.lang.ProcessBuilder $r10;
+        java.io.PrintStream $r0, $r14;
+        java.lang.Process $r12;
+        jdk.test.lib.process.OutputAnalyzer $r11;
+        java.lang.Class $r4;
+        java.lang.StringBuilder $r15, $r17;
+
+        r16 := @parameter0: java.lang.String;
+
+        r3 := @parameter1: java.lang.String[];
+
+        r6 := @parameter2: java.lang.String[];
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("\n---------- Testing ---------");
+
+        $r1 = newarray (java.lang.String)[3];
+
+        $r1[0] = "-Xbootclasspath/a:.";
+
+        $r1[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r1[2] = "-XX:+WhiteBoxAPI";
+
+        $r2 = new java.util.ArrayList;
+
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r2, $r1);
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r2, r3);
+
+        $r4 = class "Lgc/concurrent_phase_control/CheckControl$Executor;";
+
+        $r5 = virtualinvoke $r4.<java.lang.Class: java.lang.String getName()>();
+
+        interfaceinvoke $r2.<java.util.List: boolean add(java.lang.Object)>($r5);
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r2, r6);
+
+        $i0 = interfaceinvoke $r2.<java.util.List: int size()>();
+
+        $r7 = newarray (java.lang.String)[$i0];
+
+        $r8 = interfaceinvoke $r2.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r7);
+
+        r9 = (java.lang.String[]) $r8;
+
+        $r10 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>(r9);
+
+        $r11 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r12 = virtualinvoke $r10.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r12);
+
+        $r13 = virtualinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>($r13);
+
+        virtualinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("Using ");
+
+        $r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r16);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>($r18);
+
+        return $r13;
+    }
+
+    private static void checkPhaseControl(java.lang.String, java.lang.String[][]) throws java.lang.Exception
+    {
+        java.util.regex.Matcher $r2, $r4, $r17, $r46, $r51;
+        java.lang.StringBuilder $r11, $r14, $r19, $r20, $r21, $r24, $r27, $r30, $r33, $r36, $r39, $r43, $r48, $r52, $r53, $r54, $r55, $r56, $r57, $r58, $r59, $r60, $r61, $r62;
+        java.lang.String r1, r7, r8, $r12, $r15, $r22, $r25, $r28, $r31, $r34, $r37, $r40, r41, $r44, $r49;
+        java.lang.String[][] r5;
+        boolean $z0, $z1, $z2, $z3, $z4, z5;
+        java.util.regex.Pattern $r0, $r3, $r16, $r45, $r50;
+        java.lang.String[] r6;
+        int i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, i12, i13, i14, $i15, $i16, $i18, $i20;
+        java.io.PrintStream $r10;
+
+        r1 := @parameter0: java.lang.String;
+
+        r5 := @parameter1: java.lang.String[][];
+
+        $r0 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("Requesting concurrent phase: ");
+
+        $r2 = virtualinvoke $r0.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r1);
+
+        $r3 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("Reached concurrent phase: ");
+
+        $r4 = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r1);
+
+        r41 = null;
+
+        $i18 = (int) -1;
+
+        i12 = $i18;
+
+        i13 = 0;
+
+        i0 = lengthof r5;
+
+        i14 = 0;
+
+        goto label15;
+
+     label01:
+        r6 = r5[i14];
+
+        r7 = r6[0];
+
+        r8 = r6[1];
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        $r52 = new java.lang.StringBuilder;
+
+        specialinvoke $r52.<java.lang.StringBuilder: void <init>(java.lang.String)>("Checking phase ");
+
+        $r11 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        $z0 = virtualinvoke $r2.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label02;
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>("Didn\'t find next phase request");
+
+        goto label05;
+
+     label02:
+        if i13 == 0 goto label03;
+
+        $i10 = virtualinvoke $r2.<java.util.regex.Matcher: int start()>();
+
+        $i11 = virtualinvoke $r4.<java.util.regex.Matcher: int end()>();
+
+        if $i10 >= $i11 goto label03;
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>("Next request before previous reached");
+
+        goto label05;
+
+     label03:
+        $z1 = virtualinvoke $r4.<java.util.regex.Matcher: boolean find()>();
+
+        if $z1 != 0 goto label04;
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>("Didn\'t find next phase reached");
+
+        goto label05;
+
+     label04:
+        $i1 = virtualinvoke $r4.<java.util.regex.Matcher: int start()>();
+
+        $i2 = virtualinvoke $r2.<java.util.regex.Matcher: int end()>();
+
+        if $i1 > $i2 goto label05;
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>("Next request/reached misordered");
+
+     label05:
+        $r53 = new java.lang.StringBuilder;
+
+        specialinvoke $r53.<java.lang.StringBuilder: void <init>(java.lang.String)>("Requesting concurrent phase: ");
+
+        $r43 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7);
+
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r45 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>($r44);
+
+        $r46 = virtualinvoke $r45.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r1);
+
+        $z3 = virtualinvoke $r46.<java.util.regex.Matcher: boolean find(int)>(i13);
+
+        if $z3 != 0 goto label06;
+
+        $r54 = new java.lang.StringBuilder;
+
+        specialinvoke $r54.<java.lang.StringBuilder: void <init>(java.lang.String)>("Didn\'t find request for ");
+
+        $r39 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7);
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>($r40);
+
+        goto label07;
+
+     label06:
+        $i3 = virtualinvoke $r46.<java.util.regex.Matcher: int start()>();
+
+        $i4 = virtualinvoke $r2.<java.util.regex.Matcher: int start()>();
+
+        if $i3 == $i4 goto label07;
+
+        $r55 = new java.lang.StringBuilder;
+
+        specialinvoke $r55.<java.lang.StringBuilder: void <init>(java.lang.String)>("Request mis-positioned for ");
+
+        $r36 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7);
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>($r37);
+
+     label07:
+        $r56 = new java.lang.StringBuilder;
+
+        specialinvoke $r56.<java.lang.StringBuilder: void <init>(java.lang.String)>("Reached concurrent phase: ");
+
+        $r48 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7);
+
+        $r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r50 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>($r49);
+
+        $r51 = virtualinvoke $r50.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r1);
+
+        $z4 = virtualinvoke $r51.<java.util.regex.Matcher: boolean find(int)>(i13);
+
+        if $z4 != 0 goto label08;
+
+        $r57 = new java.lang.StringBuilder;
+
+        specialinvoke $r57.<java.lang.StringBuilder: void <init>(java.lang.String)>("Didn\'t find reached for ");
+
+        $r33 = virtualinvoke $r57.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7);
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>($r34);
+
+        goto label09;
+
+     label08:
+        $i5 = virtualinvoke $r51.<java.util.regex.Matcher: int start()>();
+
+        $i6 = virtualinvoke $r4.<java.util.regex.Matcher: int start()>();
+
+        if $i5 == $i6 goto label09;
+
+        $r58 = new java.lang.StringBuilder;
+
+        specialinvoke $r58.<java.lang.StringBuilder: void <init>(java.lang.String)>("Reached mis-positioned for ");
+
+        $r30 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r7);
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>($r31);
+
+     label09:
+        if r41 == null goto label10;
+
+        $i9 = virtualinvoke $r51.<java.util.regex.Matcher: int start()>();
+
+        if i12 < $i9 goto label10;
+
+        $r59 = new java.lang.StringBuilder;
+
+        specialinvoke $r59.<java.lang.StringBuilder: void <init>(java.lang.String)>("Log message after next reached message: ");
+
+        $r27 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r41);
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>($r28);
+
+     label10:
+        z5 = 1;
+
+        if r8 == null goto label13;
+
+        $r60 = new java.lang.StringBuilder;
+
+        specialinvoke $r60.<java.lang.StringBuilder: void <init>(java.lang.String)>("GC\\(\\d+\\)\\s+");
+
+        $r14 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r16 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>($r15);
+
+        $r17 = virtualinvoke $r16.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r1);
+
+        $i7 = virtualinvoke $r46.<java.util.regex.Matcher: int end()>();
+
+        $z2 = virtualinvoke $r17.<java.util.regex.Matcher: boolean find(int)>($i7);
+
+        if $z2 != 0 goto label11;
+
+        $r61 = new java.lang.StringBuilder;
+
+        specialinvoke $r61.<java.lang.StringBuilder: void <init>(java.lang.String)>("Didn\'t find message ");
+
+        $r24 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>($r25);
+
+     label11:
+        if r41 == null goto label12;
+
+        $i8 = virtualinvoke $r17.<java.util.regex.Matcher: int start()>();
+
+        if i12 < $i8 goto label12;
+
+        $r62 = new java.lang.StringBuilder;
+
+        specialinvoke $r62.<java.lang.StringBuilder: void <init>(java.lang.String)>("Log messages out of order: ");
+
+        $r19 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r41);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" should preceed ");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <gc.concurrent_phase_control.CheckControl: void fail(java.lang.String)>($r22);
+
+     label12:
+        $i15 = virtualinvoke $r51.<java.util.regex.Matcher: int end()>();
+
+        $i16 = virtualinvoke $r17.<java.util.regex.Matcher: int start()>();
+
+        if $i15 > $i16 goto label13;
+
+        z5 = 0;
+
+        r41 = r8;
+
+        i12 = virtualinvoke $r17.<java.util.regex.Matcher: int end()>();
+
+     label13:
+        if z5 == 0 goto label14;
+
+        r41 = null;
+
+        $i20 = (int) -1;
+
+        i12 = $i20;
+
+     label14:
+        i13 = virtualinvoke $r51.<java.util.regex.Matcher: int end()>();
+
+        i14 = i14 + 1;
+
+     label15:
+        if i14 < i0 goto label01;
+
+        return;
+    }
+}

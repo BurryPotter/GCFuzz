@@ -1,0 +1,240 @@
+public class TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier extends java.lang.Object
+{
+    static final sun.hotspot.WhiteBox wb;
+    static final jdk.internal.misc.Unsafe unsafe;
+    public static final int CHUNK_SIZE;
+    public static final int ARRAY_LENGTH;
+
+    static void <clinit>()
+    {
+        jdk.internal.misc.Unsafe $r1;
+        int $i0, $i1;
+        sun.hotspot.WhiteBox $r0;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.arguments.TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier: sun.hotspot.WhiteBox wb> = $r0;
+
+        $r1 = staticinvoke <jdk.internal.misc.Unsafe: jdk.internal.misc.Unsafe getUnsafe()>();
+
+        <gc.arguments.TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier: jdk.internal.misc.Unsafe unsafe> = $r1;
+
+        $i0 = <jdk.internal.misc.Unsafe: int ARRAY_BYTE_BASE_OFFSET>;
+
+        $i1 = 1024 - $i0;
+
+        <gc.arguments.TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier: int ARRAY_LENGTH> = $i1;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier r0;
+
+        r0 := @this: TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        gc.arguments.GCTypes$YoungGCType $r1, $r2;
+        java.lang.String[] r0;
+        long $l2;
+        java.lang.Integer $r4;
+        int $i0, $i1;
+        java.lang.String $r3, $r8;
+        double $d0, $d1, $d2, $d3;
+        java.io.PrintStream $r6, $r9;
+        java.lang.IllegalArgumentException $r10;
+        java.lang.StringBuilder $r5, $r7;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 1 goto label1;
+
+        $r10 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r10.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Expected 1 arg: <ratio>");
+
+        throw $r10;
+
+     label1:
+        $r1 = staticinvoke <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType getYoungGCType()>();
+
+        $r2 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType PSNew>;
+
+        if $r1 != $r2 goto label2;
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>("Unsupported GC");
+
+        return;
+
+     label2:
+        $r3 = r0[0];
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r3);
+
+        $i1 = virtualinvoke $r4.<java.lang.Integer: int intValue()>();
+
+        $l2 = staticinvoke <gc.arguments.TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier: long getMaxSurvivorSize()>();
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("Max survivor size: ");
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        $d0 = (double) $i1;
+
+        $d1 = $d0 - 0.25;
+
+        staticinvoke <gc.arguments.TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier: void allocateMemory(double,long)>($d1, $l2);
+
+        $d2 = (double) $i1;
+
+        $d3 = $d2 + 0.25;
+
+        staticinvoke <gc.arguments.TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier: void allocateMemory(double,long)>($d3, $l2);
+
+        return;
+    }
+
+    public static void allocateMemory(double, long) throws java.lang.Exception
+    {
+        byte[] $r3;
+        long l0, l1, $l2, $l5, $l6, $l7;
+        java.lang.management.GarbageCollectorMXBean $r0;
+        byte $b8;
+        int i3, $i4, $i9, $i10;
+        gc.arguments.AllocationHelper $r5;
+        double d0, $d1, $d2, $d3;
+        java.io.PrintStream $r2, $r4;
+
+        d0 := @parameter0: double;
+
+        l0 := @parameter1: long;
+
+        $r0 = staticinvoke <gc.arguments.GCTypes$YoungGCType: java.lang.management.GarbageCollectorMXBean getYoungGCBean()>();
+
+        $d2 = (double) l0;
+
+        $d1 = d0 / 100.0;
+
+        $d3 = $d2 * $d1;
+
+        l1 = (long) $d3;
+
+        $l2 = l1 / 1024L;
+
+        i3 = (int) $l2;
+
+        $r5 = new gc.arguments.AllocationHelper;
+
+        $i4 = <gc.arguments.TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier: int ARRAY_LENGTH>;
+
+        specialinvoke $r5.<gc.arguments.AllocationHelper: void <init>(int,int,int,java.util.concurrent.Callable)>(1, i3, $i4, null);
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("Start test");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $l5 = interfaceinvoke $r0.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        virtualinvoke $r5.<gc.arguments.AllocationHelper: void allocateMemoryAndVerify()>();
+
+        goto label2;
+
+     label1:
+        $i9 = <gc.arguments.TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier: int ARRAY_LENGTH>;
+
+        $r3 = newarray (byte)[$i9];
+
+     label2:
+        $l6 = interfaceinvoke $r0.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        $l7 = $l5 + 30L;
+
+        $b8 = $l6 cmp $l7;
+
+        $i10 = (int) $b8;
+
+        if $i10 <= 0 goto label1;
+
+        virtualinvoke $r5.<gc.arguments.AllocationHelper: void release()>();
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>("End test");
+
+        return;
+    }
+
+    public static long getMaxSurvivorSize()
+    {
+        gc.arguments.GCTypes$YoungGCType $r0, $r1;
+        long $l0, $l2, $l3, $l4, $l6, $l8, $l9;
+        int $i1, i5, $i7;
+        java.lang.management.MemoryUsage $r2;
+        double $d0, $d1, $d2;
+        sun.hotspot.WhiteBox $r3, $r4;
+
+        $r0 = staticinvoke <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType getYoungGCType()>();
+
+        $r1 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType G1>;
+
+        if $r0 != $r1 goto label1;
+
+        $r3 = <gc.arguments.TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier: sun.hotspot.WhiteBox wb>;
+
+        $i1 = virtualinvoke $r3.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        $l2 = (long) $i1;
+
+        $l3 = 41943040L / $l2;
+
+        $l4 = staticinvoke <java.lang.Math: long max(long,long)>($l3, 1L);
+
+        i5 = (int) $l4;
+
+        $d0 = (double) i5;
+
+        $d1 = $d0 / 8.0;
+
+        $d2 = staticinvoke <java.lang.Math: double ceil(double)>($d1);
+
+        $l6 = (long) $d2;
+
+        $r4 = <gc.arguments.TestTargetSurvivorRatioFlag$TargetSurvivorRatioVerifier: sun.hotspot.WhiteBox wb>;
+
+        $i7 = virtualinvoke $r4.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        $l8 = (long) $i7;
+
+        $l9 = $l6 * $l8;
+
+        return $l9;
+
+     label1:
+        $r2 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l0 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getMax()>();
+
+        return $l0;
+    }
+}

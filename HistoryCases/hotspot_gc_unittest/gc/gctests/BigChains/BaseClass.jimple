@@ -1,0 +1,15 @@
+class BaseClass extends java.lang.Object
+{
+    public gc.gctests.BigChains.BaseClass next;
+
+    void <init>()
+    {
+        BaseClass r0;
+
+        r0 := @this: BaseClass;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

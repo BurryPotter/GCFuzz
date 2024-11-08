@@ -1,0 +1,79 @@
+public class TestCSLocker extends java.lang.Thread
+{
+    static int timeout;
+
+    static void <clinit>()
+    {
+        <gc.cslocker.TestCSLocker: int timeout> = 5000;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestCSLocker r0;
+
+        r0 := @this: TestCSLocker;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r2;
+        long $l0, $l1, $l3, $l4;
+        java.lang.String[] r3;
+        byte $b5;
+        gc.cslocker.GarbageProducer $r4;
+        int $i2, $i6;
+        gc.cslocker.CSLocker $r5;
+
+        r3 := @parameter0: java.lang.String[];
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r4 = new gc.cslocker.GarbageProducer;
+
+        specialinvoke $r4.<gc.cslocker.GarbageProducer: void <init>(int,int)>(1000000, 10);
+
+        virtualinvoke $r4.<gc.cslocker.GarbageProducer: void start()>();
+
+        $r5 = new gc.cslocker.CSLocker;
+
+        specialinvoke $r5.<gc.cslocker.CSLocker: void <init>()>();
+
+        virtualinvoke $r5.<gc.cslocker.CSLocker: void start()>();
+
+        goto label2;
+
+     label1:
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("sleeping...");
+
+        staticinvoke <gc.cslocker.TestCSLocker: void sleep(long)>(1000L);
+
+     label2:
+        $l1 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $i2 = <gc.cslocker.TestCSLocker: int timeout>;
+
+        $l3 = (long) $i2;
+
+        $l4 = $l0 + $l3;
+
+        $b5 = $l1 cmp $l4;
+
+        $i6 = (int) $b5;
+
+        if $i6 < 0 goto label1;
+
+        virtualinvoke $r5.<gc.cslocker.CSLocker: void unlock()>();
+
+        virtualinvoke $r4.<gc.cslocker.GarbageProducer: void interrupt()>();
+
+        return;
+    }
+}

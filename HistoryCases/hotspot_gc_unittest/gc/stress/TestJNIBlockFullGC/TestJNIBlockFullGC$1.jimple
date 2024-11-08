@@ -1,0 +1,68 @@
+class TestJNIBlockFullGC$1 extends java.lang.Thread
+{
+    private final long val$warmupStartTime;
+    private final int val$warmupDuration;
+    private final int val$warmupIterations;
+
+    void <init>(long, int, int)
+    {
+        TestJNIBlockFullGC$1 r0;
+        int i1, i2;
+        long l0;
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1 $r1, $r2, $r3;
+
+        r0 := @this: TestJNIBlockFullGC$1;
+
+        l0 := @parameter0: long;
+
+        i1 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        $r1 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1) r0;
+
+        $r1.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1: long val$warmupStartTime> = l0;
+
+        $r2 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1) r0;
+
+        $r2.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1: int val$warmupDuration> = i1;
+
+        $r3 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1) r0;
+
+        $r3.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1: int val$warmupIterations> = i2;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        long $l1, $l2, $l4;
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1 $r1, $r2, $r3;
+        TestJNIBlockFullGC$1 r0;
+        int $i0, $i3;
+
+        r0 := @this: TestJNIBlockFullGC$1;
+
+        $r1 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1) r0;
+
+        $l2 = $r1.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1: long val$warmupStartTime>;
+
+        $r2 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1) r0;
+
+        $i0 = $r2.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1: int val$warmupDuration>;
+
+        $l1 = (long) $i0;
+
+        $l4 = $l2 + $l1;
+
+        $r3 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1) r0;
+
+        $i3 = $r3.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1: int val$warmupIterations>;
+
+        staticinvoke <gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC: void warmUp(long,int)>($l4, $i3);
+
+        return;
+    }
+}

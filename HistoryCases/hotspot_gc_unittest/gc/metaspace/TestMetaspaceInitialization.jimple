@@ -1,0 +1,54 @@
+public class TestMetaspaceInitialization extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestMetaspaceInitialization r0;
+
+        r0 := @this: TestMetaspaceInitialization;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private void test()
+    {
+        gc.metaspace.TestMetaspaceInitialization $r5;
+        TestMetaspaceInitialization r2;
+        java.util.ArrayList $r3;
+        gc.metaspace.TestMetaspaceInitialization$Internal $r4;
+
+        r2 := @this: TestMetaspaceInitialization;
+
+        $r3 = new java.util.ArrayList;
+
+        specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+
+        $r4 = new gc.metaspace.TestMetaspaceInitialization$Internal;
+
+        $r5 = (gc.metaspace.TestMetaspaceInitialization) r2;
+
+        specialinvoke $r4.<gc.metaspace.TestMetaspaceInitialization$Internal: void <init>(gc.metaspace.TestMetaspaceInitialization,int)>($r5, 17);
+
+        virtualinvoke $r3.<java.util.ArrayList: boolean add(java.lang.Object)>($r4);
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.metaspace.TestMetaspaceInitialization $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new gc.metaspace.TestMetaspaceInitialization;
+
+        specialinvoke $r0.<gc.metaspace.TestMetaspaceInitialization: void <init>()>();
+
+        virtualinvoke $r0.<gc.metaspace.TestMetaspaceInitialization: void test()>();
+
+        return;
+    }
+}

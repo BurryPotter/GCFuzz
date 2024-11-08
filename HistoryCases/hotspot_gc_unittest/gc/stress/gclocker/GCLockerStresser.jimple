@@ -1,0 +1,42 @@
+class GCLockerStresser extends gc.stress.gclocker.Exitable implements java.lang.Runnable
+{
+
+    void <init>()
+    {
+        GCLockerStresser r0;
+
+        r0 := @this: GCLockerStresser;
+
+        specialinvoke r0.<gc.stress.gclocker.Exitable: void <init>()>();
+
+        return;
+    }
+
+    static native void fillWithRandomValues(byte[]);
+
+    public void run()
+    {
+        byte[] r0;
+        GCLockerStresser r1;
+        gc.stress.gclocker.GCLockerStresser $r2;
+        boolean $z0;
+
+        r1 := @this: GCLockerStresser;
+
+        r0 = newarray (byte)[1048576];
+
+        goto label2;
+
+     label1:
+        staticinvoke <gc.stress.gclocker.GCLockerStresser: void fillWithRandomValues(byte[])>(r0);
+
+     label2:
+        $r2 = (gc.stress.gclocker.GCLockerStresser) r1;
+
+        $z0 = virtualinvoke $r2.<gc.stress.gclocker.GCLockerStresser: boolean shouldExit()>();
+
+        if $z0 == 0 goto label1;
+
+        return;
+    }
+}

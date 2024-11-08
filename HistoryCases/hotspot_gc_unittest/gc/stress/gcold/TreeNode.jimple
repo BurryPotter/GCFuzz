@@ -1,0 +1,17 @@
+class TreeNode extends java.lang.Object
+{
+    public gc.stress.gcold.TreeNode left;
+    public gc.stress.gcold.TreeNode right;
+    public int val;
+
+    void <init>()
+    {
+        TreeNode r0;
+
+        r0 := @this: TreeNode;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

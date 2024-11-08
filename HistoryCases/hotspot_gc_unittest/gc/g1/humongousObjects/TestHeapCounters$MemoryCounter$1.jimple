@@ -1,0 +1,38 @@
+enum class TestHeapCounters$MemoryCounter$1 extends gc.g1.humongousObjects.TestHeapCounters$MemoryCounter
+{
+
+    void <init>(java.lang.String, int)
+    {
+        int i0;
+        TestHeapCounters$MemoryCounter$1 r0;
+        java.lang.String r1;
+
+        r0 := @this: TestHeapCounters$MemoryCounter$1;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<gc.g1.humongousObjects.TestHeapCounters$MemoryCounter: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public long getUsedMemory()
+    {
+        java.lang.management.MemoryMXBean $r0;
+        long $l0;
+        TestHeapCounters$MemoryCounter$1 r2;
+        java.lang.management.MemoryUsage $r1;
+
+        r2 := @this: TestHeapCounters$MemoryCounter$1;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r1 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l0 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        return $l0;
+    }
+}

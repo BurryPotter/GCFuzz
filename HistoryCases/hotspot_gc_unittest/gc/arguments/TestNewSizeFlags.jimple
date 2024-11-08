@@ -1,0 +1,333 @@
+public class TestNewSizeFlags extends java.lang.Object
+{
+    public static final long M;
+
+    public void <init>()
+    {
+        TestNewSizeFlags r0;
+
+        r0 := @this: TestNewSizeFlags;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.util.List $r3;
+        java.lang.String[] $r1, $r2, r4;
+        java.util.LinkedList $r0;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.LinkedList;
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "(-Xm[nsx][^ ]+)|(-XX:(Max)?((New)|(Heap))((Size)|(Ratio))=[^ ]+)";
+
+        $r2 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getFilteredTestJavaOpts(java.lang.String[])>($r1);
+
+        $r3 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r2);
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>(java.util.Collection)>($r3);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testNewSizeFlags(long,long,long,long,java.util.LinkedList,boolean)>(20971520L, 10485760L, 31457280L, 41943040L, $r0, 0);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testNewSizeFlags(long,long,long,long,java.util.LinkedList,boolean)>(10485760L, 20971520L, 31457280L, 83886080L, $r0, 0);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testNewSizeFlags(long,long,long,long,java.util.LinkedList,boolean)>(-1L, 20971520L, 31457280L, 41943040L, $r0, 0);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testNewSizeFlags(long,long,long,long,java.util.LinkedList,boolean)>(10485760L, -1L, 31457280L, 41943040L, $r0, 0);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testNewSizeFlags(long,long,long,long,java.util.LinkedList,boolean)>(20971520L, 20971520L, 31457280L, 41943040L, $r0, 0);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testNewSizeFlags(long,long,long,long,java.util.LinkedList,boolean)>(20971520L, 31457280L, 41943040L, 52428800L, $r0, 0);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testNewSizeFlags(long,long,long,long,java.util.LinkedList,boolean)>(31457280L, 104857600L, 157286400L, 209715200L, $r0, 0);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testNewSizeFlags(long,long,long,long,java.util.LinkedList,boolean)>(20971520L, 31457280L, 134217728L, 134217728L, $r0, 0);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testXmnFlags(long,long,long,java.util.LinkedList,boolean)>(0L, 31457280L, 41943040L, $r0, 1);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testXmnFlags(long,long,long,java.util.LinkedList,boolean)>(20971520L, 31457280L, 41943040L, $r0, 0);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testXmnFlags(long,long,long,java.util.LinkedList,boolean)>(52428800L, 73400320L, 104857600L, $r0, 0);
+
+        return;
+    }
+
+    public static void testNewSizeFlags(long, long, long, long, java.util.LinkedList, boolean) throws java.lang.Exception
+    {
+        long l0, l1, l3, l4, $l5;
+        byte $b2;
+        int $i6;
+        java.util.LinkedList r0;
+        boolean z0;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        l3 := @parameter2: long;
+
+        l4 := @parameter3: long;
+
+        r0 := @parameter4: java.util.LinkedList;
+
+        z0 := @parameter5: boolean;
+
+        $b2 = l1 cmp 0L;
+
+        $i6 = (int) $b2;
+
+        if $i6 < 0 goto label1;
+
+        $l5 = staticinvoke <java.lang.Math: long max(long,long)>(l1, l0);
+
+        goto label2;
+
+     label1:
+        $l5 = l1;
+
+     label2:
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testVMOptions(long,long,long,long,long,long,java.util.LinkedList,boolean)>(l0, l1, l3, l4, l0, $l5, r0, z0);
+
+        return;
+    }
+
+    public static void testXmnFlags(long, long, long, java.util.LinkedList, boolean) throws java.lang.Exception
+    {
+        long l0, l1, l2;
+        java.lang.StringBuilder $r2, $r3;
+        java.lang.String $r4;
+        java.util.LinkedList $r0, r1;
+        boolean z0;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        l2 := @parameter2: long;
+
+        r1 := @parameter3: java.util.LinkedList;
+
+        z0 := @parameter4: boolean;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>(java.util.Collection)>(r1);
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xmn");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r0.<java.util.LinkedList: boolean add(java.lang.Object)>($r4);
+
+        staticinvoke <gc.arguments.TestNewSizeFlags: void testVMOptions(long,long,long,long,long,long,java.util.LinkedList,boolean)>(-1L, -1L, l1, l2, l0, l0, $r0, z0);
+
+        return;
+    }
+
+    public static void testVMOptions(long, long, long, long, long, long, java.util.LinkedList, boolean) throws java.lang.Exception
+    {
+        long l0, l1, l2, l3, l4, l5;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+        java.util.LinkedList r0;
+        boolean z0;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        l2 := @parameter2: long;
+
+        l3 := @parameter3: long;
+
+        l4 := @parameter4: long;
+
+        l5 := @parameter5: long;
+
+        r0 := @parameter6: java.util.LinkedList;
+
+        z0 := @parameter7: boolean;
+
+        $r1 = staticinvoke <gc.arguments.TestNewSizeFlags: jdk.test.lib.process.OutputAnalyzer startVM(java.util.LinkedList,long,long,long,long,long,long)>(r0, l0, l1, l2, l3, l4, l5);
+
+        if z0 == 0 goto label1;
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>("(Error occurred during initialization of VM)|(Error: Could not create the Java Virtual Machine.)");
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+     label2:
+        return;
+    }
+
+    private static jdk.test.lib.process.OutputAnalyzer startVM(java.util.LinkedList, long, long, long, long, long, long) throws java.lang.Exception, java.io.IOException
+    {
+        byte $b1, $b3;
+        java.lang.Process $r21;
+        java.util.function.Predicate $r15;
+        jdk.test.lib.process.OutputAnalyzer $r33;
+        java.lang.StringBuilder $r4, $r7, $r23, $r25, $r29, $r30, $r31, $r32;
+        java.lang.Object[] $r17;
+        java.lang.String[] $r2, $r16, $r18;
+        long l0, l2, l4, l5, l6, l7;
+        int $i8, $i9, $i10;
+        java.lang.String $r5, $r8, $r10, $r11, $r12, $r13, $r14, $r26, $r27;
+        java.lang.ProcessBuilder $r19;
+        java.util.LinkedList r1, $r28;
+        java.lang.Class $r9;
+
+        r1 := @parameter0: java.util.LinkedList;
+
+        l0 := @parameter1: long;
+
+        l2 := @parameter2: long;
+
+        l5 := @parameter3: long;
+
+        l4 := @parameter4: long;
+
+        l6 := @parameter5: long;
+
+        l7 := @parameter6: long;
+
+        $r28 = new java.util.LinkedList;
+
+        specialinvoke $r28.<java.util.LinkedList: void <init>(java.util.Collection)>(r1);
+
+        $r2 = newarray (java.lang.String)[14];
+
+        $r2[0] = "-Xbootclasspath/a:.";
+
+        $r2[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r2[2] = "-XX:+WhiteBoxAPI";
+
+        $b1 = l0 cmp 0L;
+
+        $i9 = (int) $b1;
+
+        if $i9 < 0 goto label1;
+
+        $r29 = new java.lang.StringBuilder;
+
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:NewSize=");
+
+        $r25 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label2;
+
+     label1:
+        $r26 = "";
+
+     label2:
+        $r2[3] = $r26;
+
+        $b3 = l2 cmp 0L;
+
+        $i10 = (int) $b3;
+
+        if $i10 < 0 goto label3;
+
+        $r30 = new java.lang.StringBuilder;
+
+        specialinvoke $r30.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MaxNewSize=");
+
+        $r23 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+
+        $r27 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label4;
+
+     label3:
+        $r27 = "";
+
+     label4:
+        $r2[4] = $r27;
+
+        $r31 = new java.lang.StringBuilder;
+
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xmx");
+
+        $r4 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l4);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r2[5] = $r5;
+
+        $r32 = new java.lang.StringBuilder;
+
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xms");
+
+        $r7 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l5);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r2[6] = $r8;
+
+        $r2[7] = "-XX:GCLockerEdenExpansionPercent=0";
+
+        $r2[8] = "-XX:-UseLargePages";
+
+        $r9 = class "Lgc/arguments/TestNewSizeFlags$NewSizeVerifier;";
+
+        $r10 = virtualinvoke $r9.<java.lang.Class: java.lang.String getName()>();
+
+        $r2[9] = $r10;
+
+        $r11 = staticinvoke <java.lang.Long: java.lang.String toString(long)>(l6);
+
+        $r2[10] = $r11;
+
+        $r12 = staticinvoke <java.lang.Long: java.lang.String toString(long)>(l7);
+
+        $r2[11] = $r12;
+
+        $r13 = staticinvoke <java.lang.Long: java.lang.String toString(long)>(l5);
+
+        $r2[12] = $r13;
+
+        $r14 = staticinvoke <java.lang.Long: java.lang.String toString(long)>(l4);
+
+        $r2[13] = $r14;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r28, $r2);
+
+        $r15 = staticinvoke <TestNewSizeFlags$isEmpty__1: java.util.function.Predicate bootstrap$()>();
+
+        virtualinvoke $r28.<java.util.LinkedList: boolean removeIf(java.util.function.Predicate)>($r15);
+
+        $i8 = virtualinvoke $r28.<java.util.LinkedList: int size()>();
+
+        $r16 = newarray (java.lang.String)[$i8];
+
+        $r17 = virtualinvoke $r28.<java.util.LinkedList: java.lang.Object[] toArray(java.lang.Object[])>($r16);
+
+        $r18 = (java.lang.String[]) $r17;
+
+        $r19 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r18);
+
+        $r33 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r21 = virtualinvoke $r19.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r33.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r21);
+
+        return $r33;
+    }
+}

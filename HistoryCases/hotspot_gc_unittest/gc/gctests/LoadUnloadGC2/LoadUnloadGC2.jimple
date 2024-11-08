@@ -1,0 +1,116 @@
+public class LoadUnloadGC2 extends nsk.share.gc.GCTestBase
+{
+
+    public void <init>()
+    {
+        LoadUnloadGC2 r0;
+
+        r0 := @this: LoadUnloadGC2;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Throwable $r9;
+        nsk.share.runner.RunParams $r2;
+        gc.gctests.LoadUnloadGC2.LoadUnloadGC2 $r13, $r14;
+        nsk.share.test.ExecutionController $r15;
+        long $l0;
+        nsk.share.test.StressOptions $r3;
+        java.lang.String $r8;
+        nsk.share.gc.gp.GarbageProducer $r16;
+        nsk.share.gc.gp.classload.GeneratedClassProducer $r11;
+        LoadUnloadGC2 r1;
+        boolean $z0;
+        nsk.share.test.Stresser $r10;
+        nsk.share.log.Log $r6;
+        java.lang.StringBuilder $r7, $r12;
+
+        r1 := @this: LoadUnloadGC2;
+
+        $r10 = new nsk.share.test.Stresser;
+
+        $r13 = (gc.gctests.LoadUnloadGC2.LoadUnloadGC2) r1;
+
+        $r2 = $r13.<gc.gctests.LoadUnloadGC2.LoadUnloadGC2: nsk.share.runner.RunParams runParams>;
+
+        $r3 = virtualinvoke $r2.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r10.<nsk.share.test.Stresser: void <init>(nsk.share.test.StressOptions)>($r3);
+
+        virtualinvoke $r10.<nsk.share.test.Stresser: void start(long)>(500000L);
+
+     label1:
+        goto label3;
+
+     label2:
+        $r11 = new nsk.share.gc.gp.classload.GeneratedClassProducer;
+
+        specialinvoke $r11.<nsk.share.gc.gp.classload.GeneratedClassProducer: void <init>()>();
+
+        $r14 = (gc.gctests.LoadUnloadGC2.LoadUnloadGC2) r1;
+
+        $r6 = $r14.<gc.gctests.LoadUnloadGC2.LoadUnloadGC2: nsk.share.log.Log log>;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("Iteration: ");
+
+        $l0 = virtualinvoke $r10.<nsk.share.test.Stresser: long getIteration()>();
+
+        $r7 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r6.<nsk.share.log.Log: void info(java.lang.Object)>($r8);
+
+        $r15 = (nsk.share.test.ExecutionController) $r10;
+
+        $r16 = (nsk.share.gc.gp.GarbageProducer) $r11;
+
+        staticinvoke <nsk.share.gc.gp.GarbageUtils: int eatMemory(nsk.share.test.ExecutionController,nsk.share.gc.gp.GarbageProducer,long)>($r15, $r16, 0L);
+
+     label3:
+        $z0 = virtualinvoke $r10.<nsk.share.test.Stresser: boolean iteration()>();
+
+        if $z0 != 0 goto label2;
+
+        goto label5;
+
+     label4:
+        $r9 := @caughtexception;
+
+        virtualinvoke $r10.<nsk.share.test.Stresser: void finish()>();
+
+        throw $r9;
+
+     label5:
+        virtualinvoke $r10.<nsk.share.test.Stresser: void finish()>();
+
+        return;
+
+        catch java.lang.Throwable from label1 to label4 with label4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        gc.gctests.LoadUnloadGC2.LoadUnloadGC2 $r2;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.LoadUnloadGC2.LoadUnloadGC2;
+
+        specialinvoke $r2.<gc.gctests.LoadUnloadGC2.LoadUnloadGC2: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.test.Tests: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

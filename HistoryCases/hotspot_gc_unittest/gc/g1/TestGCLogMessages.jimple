@@ -1,0 +1,930 @@
+public class TestGCLogMessages extends java.lang.Object
+{
+    private gc.g1.TestGCLogMessages$LogMessageWithLevel[] allLogMessages;
+    gc.g1.TestGCLogMessages$LogMessageWithLevel[] exhFailureMessages;
+
+    public void <init>()
+    {
+        java.lang.Object[] $r1;
+        gc.g1.TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly $r142;
+        gc.g1.TestGCLogMessages $r147, $r148, $r149, $r150, $r151, $r152, $r153, $r154, $r155, $r156, $r157, $r158, $r159, $r160, $r161, $r162, $r163, $r164, $r165, $r166, $r167, $r168, $r169, $r170, $r171, $r172, $r173, $r174, $r175, $r176, $r177, $r178, $r179, $r180, $r181, $r182, $r183, $r184, $r185, $r186, $r187, $r188, $r189, $r190, $r191, $r192, $r194, $r195, $r196, $r197;
+        TestGCLogMessages r0;
+        gc.g1.TestGCLogMessages$Level $r3, $r5, $r7, $r9, $r11, $r13, $r15, $r17, $r19, $r21, $r23, $r25, $r27, $r29, $r31, $r33, $r35, $r37, $r39, $r41, $r43, $r45, $r47, $r49, $r51, $r53, $r55, $r57, $r59, $r61, $r63, $r65, $r67, $r69, $r71, $r73, $r75, $r77, $r79, $r81, $r83, $r85, $r87, $r89, $r91, $r94, $r96, $r98;
+        gc.g1.TestGCLogMessages$LogMessageWithLevel[] $r92, $r193;
+        gc.g1.TestGCLogMessages$LogMessageWithLevel $r99, $r100, $r101, $r102, $r103, $r104, $r105, $r106, $r107, $r108, $r109, $r110, $r111, $r112, $r113, $r114, $r115, $r116, $r117, $r118, $r119, $r120, $r121, $r122, $r123, $r124, $r125, $r126, $r127, $r128, $r129, $r130, $r131, $r132, $r133, $r134, $r135, $r136, $r137, $r138, $r139, $r140, $r141, $r143, $r144, $r145, $r146;
+
+        r0 := @this: TestGCLogMessages;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = newarray (gc.g1.TestGCLogMessages$LogMessageWithLevel)[45];
+
+        $r99 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r3 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level INFO>;
+
+        $r147 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r99.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r147, "Pre Evacuate Collection Set", $r3);
+
+        $r1[0] = $r99;
+
+        $r100 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r5 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level INFO>;
+
+        $r148 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r100.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r148, "Evacuate Collection Set", $r5);
+
+        $r1[1] = $r100;
+
+        $r101 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r7 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level INFO>;
+
+        $r149 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r101.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r149, "Post Evacuate Collection Set", $r7);
+
+        $r1[2] = $r101;
+
+        $r102 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r9 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level INFO>;
+
+        $r150 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r102.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r150, "Other", $r9);
+
+        $r1[3] = $r102;
+
+        $r103 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r11 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r151 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r103.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r151, "Update RS", $r11);
+
+        $r1[4] = $r103;
+
+        $r104 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r13 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r152 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r104.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r152, "Processed Buffers", $r13);
+
+        $r1[5] = $r104;
+
+        $r105 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r15 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r153 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r105.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r153, "Scanned Cards", $r15);
+
+        $r1[6] = $r105;
+
+        $r106 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r17 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r154 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r106.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r154, "Skipped Cards", $r17);
+
+        $r1[7] = $r106;
+
+        $r107 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r19 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r155 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r107.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r155, "Scan HCC", $r19);
+
+        $r1[8] = $r107;
+
+        $r108 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r21 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r156 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r108.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r156, "Scan RS", $r21);
+
+        $r1[9] = $r108;
+
+        $r109 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r23 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r157 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r109.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r157, "Scanned Cards", $r23);
+
+        $r1[10] = $r109;
+
+        $r110 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r25 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r158 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r110.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r158, "Claimed Cards", $r25);
+
+        $r1[11] = $r110;
+
+        $r111 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r27 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r159 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r111.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r159, "Skipped Cards", $r27);
+
+        $r1[12] = $r111;
+
+        $r112 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r29 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r160 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r112.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r160, "Thread Roots", $r29);
+
+        $r1[13] = $r112;
+
+        $r113 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r31 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r161 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r113.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r161, "StringTable Roots", $r31);
+
+        $r1[14] = $r113;
+
+        $r114 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r33 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r162 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r114.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r162, "Universe Roots", $r33);
+
+        $r1[15] = $r114;
+
+        $r115 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r35 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r163 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r115.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r163, "JNI Handles Roots", $r35);
+
+        $r1[16] = $r115;
+
+        $r116 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r37 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r164 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r116.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r164, "ObjectSynchronizer Roots", $r37);
+
+        $r1[17] = $r116;
+
+        $r117 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r39 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r165 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r117.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r165, "Management Roots", $r39);
+
+        $r1[18] = $r117;
+
+        $r118 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r41 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r166 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r118.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r166, "SystemDictionary Roots", $r41);
+
+        $r1[19] = $r118;
+
+        $r119 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r43 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r167 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r119.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r167, "CLDG Roots", $r43);
+
+        $r1[20] = $r119;
+
+        $r120 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r45 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r168 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r120.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r168, "JVMTI Roots", $r45);
+
+        $r1[21] = $r120;
+
+        $r121 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r47 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r169 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r121.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r169, "SATB Filtering", $r47);
+
+        $r1[22] = $r121;
+
+        $r122 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r49 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r170 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r122.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r170, "CM RefProcessor Roots", $r49);
+
+        $r1[23] = $r122;
+
+        $r123 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r51 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r171 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r123.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r171, "Wait For Strong CLD", $r51);
+
+        $r1[24] = $r123;
+
+        $r124 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r53 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r172 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r124.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r172, "Weak CLD Roots", $r53);
+
+        $r1[25] = $r124;
+
+        $r125 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r55 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r173 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r125.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r173, "Redirty Cards", $r55);
+
+        $r1[26] = $r125;
+
+        $r126 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r57 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r174 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r126.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r174, "Parallel Redirty", $r57);
+
+        $r1[27] = $r126;
+
+        $r127 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r59 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r175 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r127.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r175, "Redirtied Cards", $r59);
+
+        $r1[28] = $r127;
+
+        $r128 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r61 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r176 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r128.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r176, "Code Roots Purge", $r61);
+
+        $r1[29] = $r128;
+
+        $r129 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r63 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r177 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r129.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r177, "String Dedup Fixup", $r63);
+
+        $r1[30] = $r129;
+
+        $r130 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r65 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r178 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r130.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r178, "Expand Heap After Collection", $r65);
+
+        $r1[31] = $r130;
+
+        $r131 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r67 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r179 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r131.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r179, "Free Collection Set", $r67);
+
+        $r1[32] = $r131;
+
+        $r132 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r69 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r180 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r132.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r180, "Free Collection Set Serial", $r69);
+
+        $r1[33] = $r132;
+
+        $r133 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r71 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r181 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r133.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r181, "Young Free Collection Set", $r71);
+
+        $r1[34] = $r133;
+
+        $r134 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r73 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r182 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r134.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r182, "Non-Young Free Collection Set", $r73);
+
+        $r1[35] = $r134;
+
+        $r135 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r75 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r183 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r135.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r183, "Humongous Reclaim", $r75);
+
+        $r1[36] = $r135;
+
+        $r136 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r77 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r184 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r136.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r184, "Humongous Register", $r77);
+
+        $r1[37] = $r136;
+
+        $r137 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r79 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r185 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r137.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r185, "Merge Per-Thread State", $r79);
+
+        $r1[38] = $r137;
+
+        $r138 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r81 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r186 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r138.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r186, "Prepare TLABs", $r81);
+
+        $r1[39] = $r138;
+
+        $r139 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r83 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r187 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r139.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r187, "Resize TLABs", $r83);
+
+        $r1[40] = $r139;
+
+        $r140 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r85 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r188 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r140.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r188, "Reference Processing", $r85);
+
+        $r1[41] = $r140;
+
+        $r141 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r87 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r189 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r141.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r189, "Weak Processing", $r87);
+
+        $r1[42] = $r141;
+
+        $r142 = new gc.g1.TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly;
+
+        $r89 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r190 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r142.<gc.g1.TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r190, "DerivedPointerTable Update", $r89);
+
+        $r1[43] = $r142;
+
+        $r143 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r91 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r191 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r143.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r191, "Start New Collection Set", $r91);
+
+        $r1[44] = $r143;
+
+        $r192 = (gc.g1.TestGCLogMessages) r0;
+
+        $r193 = (gc.g1.TestGCLogMessages$LogMessageWithLevel[]) $r1;
+
+        $r192.<gc.g1.TestGCLogMessages: gc.g1.TestGCLogMessages$LogMessageWithLevel[] allLogMessages> = $r193;
+
+        $r92 = newarray (gc.g1.TestGCLogMessages$LogMessageWithLevel)[3];
+
+        $r144 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r94 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r194 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r144.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r194, "Evacuation Failure", $r94);
+
+        $r92[0] = $r144;
+
+        $r145 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r96 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r195 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r145.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r195, "Recalculate Used", $r96);
+
+        $r92[1] = $r145;
+
+        $r146 = new gc.g1.TestGCLogMessages$LogMessageWithLevel;
+
+        $r98 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r196 = (gc.g1.TestGCLogMessages) r0;
+
+        specialinvoke $r146.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>($r196, "Remove Self Forwards", $r98);
+
+        $r92[2] = $r146;
+
+        $r197 = (gc.g1.TestGCLogMessages) r0;
+
+        $r197.<gc.g1.TestGCLogMessages: gc.g1.TestGCLogMessages$LogMessageWithLevel[] exhFailureMessages> = $r92;
+
+        return;
+    }
+
+    void checkMessagesAtLevel(jdk.test.lib.process.OutputAnalyzer, gc.g1.TestGCLogMessages$LogMessageWithLevel[], gc.g1.TestGCLogMessages$Level) throws java.lang.Exception
+    {
+        TestGCLogMessages r13;
+        gc.g1.TestGCLogMessages$Level r2, $r3, $r7;
+        gc.g1.TestGCLogMessages$LogMessageWithLevel r1;
+        int i0, i1;
+        java.lang.String $r5, $r10, $r12;
+        boolean $z0, $z1;
+        jdk.test.lib.process.OutputAnalyzer r4;
+        gc.g1.TestGCLogMessages$LogMessageWithLevel[] r0;
+        java.lang.StringBuilder $r6, $r8, $r9, $r11;
+
+        r13 := @this: TestGCLogMessages;
+
+        r4 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        r0 := @parameter1: gc.g1.TestGCLogMessages$LogMessageWithLevel[];
+
+        r2 := @parameter2: gc.g1.TestGCLogMessages$Level;
+
+        i0 = lengthof r0;
+
+        i1 = 0;
+
+        goto label5;
+
+     label1:
+        r1 = r0[i1];
+
+        $r3 = r1.<gc.g1.TestGCLogMessages$LogMessageWithLevel: gc.g1.TestGCLogMessages$Level level>;
+
+        $z0 = virtualinvoke r2.<gc.g1.TestGCLogMessages$Level: boolean lessThan(gc.g1.TestGCLogMessages$Level)>($r3);
+
+        if $z0 != 0 goto label2;
+
+        $z1 = virtualinvoke r1.<gc.g1.TestGCLogMessages$LogMessageWithLevel: boolean isAvailable()>();
+
+        if $z1 != 0 goto label3;
+
+     label2:
+        $r5 = r1.<gc.g1.TestGCLogMessages$LogMessageWithLevel: java.lang.String message>;
+
+        virtualinvoke r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>($r5);
+
+        goto label4;
+
+     label3:
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("\\[");
+
+        $r7 = r1.<gc.g1.TestGCLogMessages$LogMessageWithLevel: gc.g1.TestGCLogMessages$Level level>;
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".*");
+
+        $r10 = r1.<gc.g1.TestGCLogMessages$LogMessageWithLevel: java.lang.String message>;
+
+        $r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>($r12);
+
+     label4:
+        i1 = i1 + 1;
+
+     label5:
+        if i1 < i0 goto label1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r4;
+        gc.g1.TestGCLogMessages $r0, $r1, $r2, $r3;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = new gc.g1.TestGCLogMessages;
+
+        specialinvoke $r0.<gc.g1.TestGCLogMessages: void <init>()>();
+
+        virtualinvoke $r0.<gc.g1.TestGCLogMessages: void testNormalLogs()>();
+
+        $r1 = new gc.g1.TestGCLogMessages;
+
+        specialinvoke $r1.<gc.g1.TestGCLogMessages: void <init>()>();
+
+        virtualinvoke $r1.<gc.g1.TestGCLogMessages: void testWithToSpaceExhaustionLogs()>();
+
+        $r2 = new gc.g1.TestGCLogMessages;
+
+        specialinvoke $r2.<gc.g1.TestGCLogMessages: void <init>()>();
+
+        virtualinvoke $r2.<gc.g1.TestGCLogMessages: void testWithInitialMark()>();
+
+        $r3 = new gc.g1.TestGCLogMessages;
+
+        specialinvoke $r3.<gc.g1.TestGCLogMessages: void <init>()>();
+
+        virtualinvoke $r3.<gc.g1.TestGCLogMessages: void testExpandHeap()>();
+
+        return;
+    }
+
+    private void testNormalLogs() throws java.lang.Exception
+    {
+        TestGCLogMessages r6;
+        gc.g1.TestGCLogMessages$Level $r7, $r15, $r23;
+        java.lang.String[] $r0, $r9, $r17;
+        gc.g1.TestGCLogMessages $r28, $r29, $r30, $r31, $r32, $r33;
+        java.lang.String $r2, $r11, $r19;
+        java.lang.ProcessBuilder $r3, $r12, $r20;
+        java.lang.Process $r5, $r14, $r22;
+        jdk.test.lib.process.OutputAnalyzer $r25, $r26, $r27;
+        gc.g1.TestGCLogMessages$LogMessageWithLevel[] $r8, $r16, $r24;
+        java.lang.Class $r1, $r10, $r18;
+
+        r6 := @this: TestGCLogMessages;
+
+        $r0 = newarray (java.lang.String)[3];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-Xmx10M";
+
+        $r1 = class "Lgc/g1/TestGCLogMessages$GCTest;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[2] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r25 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r25.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        $r28 = (gc.g1.TestGCLogMessages) r6;
+
+        $r8 = $r28.<gc.g1.TestGCLogMessages: gc.g1.TestGCLogMessages$LogMessageWithLevel[] allLogMessages>;
+
+        $r7 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level OFF>;
+
+        $r29 = (gc.g1.TestGCLogMessages) r6;
+
+        virtualinvoke $r29.<gc.g1.TestGCLogMessages: void checkMessagesAtLevel(jdk.test.lib.process.OutputAnalyzer,gc.g1.TestGCLogMessages$LogMessageWithLevel[],gc.g1.TestGCLogMessages$Level)>($r25, $r8, $r7);
+
+        virtualinvoke $r25.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r9 = newarray (java.lang.String)[5];
+
+        $r9[0] = "-XX:+UseG1GC";
+
+        $r9[1] = "-XX:+UseStringDeduplication";
+
+        $r9[2] = "-Xmx10M";
+
+        $r9[3] = "-Xlog:gc+phases=debug";
+
+        $r10 = class "Lgc/g1/TestGCLogMessages$GCTest;";
+
+        $r11 = virtualinvoke $r10.<java.lang.Class: java.lang.String getName()>();
+
+        $r9[4] = $r11;
+
+        $r12 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r9);
+
+        $r26 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r14 = virtualinvoke $r12.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r26.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r14);
+
+        $r30 = (gc.g1.TestGCLogMessages) r6;
+
+        $r16 = $r30.<gc.g1.TestGCLogMessages: gc.g1.TestGCLogMessages$LogMessageWithLevel[] allLogMessages>;
+
+        $r15 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r31 = (gc.g1.TestGCLogMessages) r6;
+
+        virtualinvoke $r31.<gc.g1.TestGCLogMessages: void checkMessagesAtLevel(jdk.test.lib.process.OutputAnalyzer,gc.g1.TestGCLogMessages$LogMessageWithLevel[],gc.g1.TestGCLogMessages$Level)>($r26, $r16, $r15);
+
+        $r17 = newarray (java.lang.String)[5];
+
+        $r17[0] = "-XX:+UseG1GC";
+
+        $r17[1] = "-XX:+UseStringDeduplication";
+
+        $r17[2] = "-Xmx10M";
+
+        $r17[3] = "-Xlog:gc+phases=trace";
+
+        $r18 = class "Lgc/g1/TestGCLogMessages$GCTest;";
+
+        $r19 = virtualinvoke $r18.<java.lang.Class: java.lang.String getName()>();
+
+        $r17[4] = $r19;
+
+        $r20 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r17);
+
+        $r27 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r22 = virtualinvoke $r20.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r27.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r22);
+
+        $r32 = (gc.g1.TestGCLogMessages) r6;
+
+        $r24 = $r32.<gc.g1.TestGCLogMessages: gc.g1.TestGCLogMessages$LogMessageWithLevel[] allLogMessages>;
+
+        $r23 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r33 = (gc.g1.TestGCLogMessages) r6;
+
+        virtualinvoke $r33.<gc.g1.TestGCLogMessages: void checkMessagesAtLevel(jdk.test.lib.process.OutputAnalyzer,gc.g1.TestGCLogMessages$LogMessageWithLevel[],gc.g1.TestGCLogMessages$Level)>($r27, $r24, $r23);
+
+        virtualinvoke $r27.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    private void testWithToSpaceExhaustionLogs() throws java.lang.Exception
+    {
+        TestGCLogMessages r6;
+        gc.g1.TestGCLogMessages$Level $r7, $r15;
+        java.lang.String[] $r0, $r9;
+        gc.g1.TestGCLogMessages $r19, $r20, $r21, $r22;
+        java.lang.String $r2, $r11;
+        java.lang.ProcessBuilder $r3, $r12;
+        java.lang.Process $r5, $r14;
+        jdk.test.lib.process.OutputAnalyzer $r17, $r18;
+        gc.g1.TestGCLogMessages$LogMessageWithLevel[] $r8, $r16;
+        java.lang.Class $r1, $r10;
+
+        r6 := @this: TestGCLogMessages;
+
+        $r0 = newarray (java.lang.String)[5];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-Xmx32M";
+
+        $r0[2] = "-Xmn16M";
+
+        $r0[3] = "-Xlog:gc+phases=debug";
+
+        $r1 = class "Lgc/g1/TestGCLogMessages$GCTestWithToSpaceExhaustion;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[4] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r17 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r17.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        $r19 = (gc.g1.TestGCLogMessages) r6;
+
+        $r8 = $r19.<gc.g1.TestGCLogMessages: gc.g1.TestGCLogMessages$LogMessageWithLevel[] exhFailureMessages>;
+
+        $r7 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r20 = (gc.g1.TestGCLogMessages) r6;
+
+        virtualinvoke $r20.<gc.g1.TestGCLogMessages: void checkMessagesAtLevel(jdk.test.lib.process.OutputAnalyzer,gc.g1.TestGCLogMessages$LogMessageWithLevel[],gc.g1.TestGCLogMessages$Level)>($r17, $r8, $r7);
+
+        virtualinvoke $r17.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r9 = newarray (java.lang.String)[5];
+
+        $r9[0] = "-XX:+UseG1GC";
+
+        $r9[1] = "-Xmx32M";
+
+        $r9[2] = "-Xmn16M";
+
+        $r9[3] = "-Xlog:gc+phases=trace";
+
+        $r10 = class "Lgc/g1/TestGCLogMessages$GCTestWithToSpaceExhaustion;";
+
+        $r11 = virtualinvoke $r10.<java.lang.Class: java.lang.String getName()>();
+
+        $r9[4] = $r11;
+
+        $r12 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r9);
+
+        $r18 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r14 = virtualinvoke $r12.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r18.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r14);
+
+        $r21 = (gc.g1.TestGCLogMessages) r6;
+
+        $r16 = $r21.<gc.g1.TestGCLogMessages: gc.g1.TestGCLogMessages$LogMessageWithLevel[] exhFailureMessages>;
+
+        $r15 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r22 = (gc.g1.TestGCLogMessages) r6;
+
+        virtualinvoke $r22.<gc.g1.TestGCLogMessages: void checkMessagesAtLevel(jdk.test.lib.process.OutputAnalyzer,gc.g1.TestGCLogMessages$LogMessageWithLevel[],gc.g1.TestGCLogMessages$Level)>($r18, $r16, $r15);
+
+        virtualinvoke $r18.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    private void testWithInitialMark() throws java.lang.Exception
+    {
+        TestGCLogMessages r6;
+        java.lang.Process $r5;
+        java.lang.String[] $r0;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+        java.lang.ProcessBuilder $r3;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+
+        r6 := @this: TestGCLogMessages;
+
+        $r0 = newarray (java.lang.String)[7];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-Xmx10M";
+
+        $r0[2] = "-Xbootclasspath/a:.";
+
+        $r0[3] = "-Xlog:gc*=debug";
+
+        $r0[4] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[5] = "-XX:+WhiteBoxAPI";
+
+        $r1 = class "Lgc/g1/TestGCLogMessages$GCTestWithInitialMark;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[6] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r4 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Clear Claimed Marks");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    private void testExpandHeap() throws java.lang.Exception
+    {
+        TestGCLogMessages r6;
+        java.lang.Process $r5;
+        java.lang.String[] $r0;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+        java.lang.ProcessBuilder $r3;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+
+        r6 := @this: TestGCLogMessages;
+
+        $r0 = newarray (java.lang.String)[7];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-Xmx10M";
+
+        $r0[2] = "-Xbootclasspath/a:.";
+
+        $r0[3] = "-Xlog:gc+ergo+heap=debug";
+
+        $r0[4] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[5] = "-XX:+WhiteBoxAPI";
+
+        $r1 = class "Lgc/g1/TestGCLogMessages$GCTest;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[6] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r4 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Expand the heap. requested expansion amount: ");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("B expansion amount: ");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

@@ -1,0 +1,106 @@
+class TestHumongousCodeCacheRootsHelper extends java.lang.Object
+{
+    static final int n;
+    static final int[] AA;
+    static final int[] BB;
+
+    static void <clinit>()
+    {
+        int[] $r0, $r1;
+
+        $r0 = newarray (int)[1000000];
+
+        <gc.g1.TestHumongousCodeCacheRootsHelper: int[] AA> = $r0;
+
+        $r1 = newarray (int)[1000000];
+
+        <gc.g1.TestHumongousCodeCacheRootsHelper: int[] BB> = $r1;
+
+        return;
+    }
+
+    void <init>()
+    {
+        TestHumongousCodeCacheRootsHelper r0;
+
+        r0 := @this: TestHumongousCodeCacheRootsHelper;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r5;
+        sun.hotspot.WhiteBox $r2;
+        java.lang.String[] r7;
+        int[] $r0, $r1, $r3, $r4;
+        java.lang.InterruptedException $r6;
+        int i0, i1;
+
+        r7 := @parameter0: java.lang.String[];
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r0 = <gc.g1.TestHumongousCodeCacheRootsHelper: int[] AA>;
+
+        $r0[i0] = 0;
+
+        $r1 = <gc.g1.TestHumongousCodeCacheRootsHelper: int[] BB>;
+
+        $r1[i0] = 0;
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 1000000 goto label1;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r2 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        virtualinvoke $r2.<sun.hotspot.WhiteBox: void deoptimizeAll()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label3:
+        staticinvoke <java.lang.Thread: void sleep(long)>(5000L);
+
+     label4:
+        goto label6;
+
+     label5:
+        $r6 := @caughtexception;
+
+     label6:
+        i1 = 0;
+
+        goto label8;
+
+     label7:
+        $r3 = <gc.g1.TestHumongousCodeCacheRootsHelper: int[] AA>;
+
+        $r3[i1] = 1;
+
+        $r4 = <gc.g1.TestHumongousCodeCacheRootsHelper: int[] BB>;
+
+        $r4[i1] = 10;
+
+        i1 = i1 + 1;
+
+     label8:
+        if i1 < 1000000 goto label7;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println()>();
+
+        return;
+
+        catch java.lang.InterruptedException from label3 to label4 with label5;
+    }
+}

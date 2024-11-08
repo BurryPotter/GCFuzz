@@ -1,0 +1,84 @@
+final enum class Main$Format extends java.lang.Enum
+{
+    public static final enum jprtlogparser.Main$Format NAME_TIME;
+    public static final enum jprtlogparser.Main$Format TIME_NAME;
+    private static final jprtlogparser.Main$Format[] $VALUES;
+
+    public static jprtlogparser.Main$Format[] values()
+    {
+        java.lang.Object $r1;
+        jprtlogparser.Main$Format[] $r0, $r2;
+
+        $r0 = <jprtlogparser.Main$Format: jprtlogparser.Main$Format[] $VALUES>;
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Object clone()>();
+
+        $r2 = (jprtlogparser.Main$Format[]) $r1;
+
+        return $r2;
+    }
+
+    public static jprtlogparser.Main$Format valueOf(java.lang.String)
+    {
+        jprtlogparser.Main$Format $r2;
+        java.lang.String r0;
+        java.lang.Enum $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Ljprtlogparser/Main$Format;", r0);
+
+        $r2 = (jprtlogparser.Main$Format) $r1;
+
+        return $r2;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        java.lang.String r1;
+        Main$Format r0;
+
+        r0 := @this: Main$Format;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        jprtlogparser.Main$Format $r0, $r1, $r3, $r4;
+        jprtlogparser.Main$Format[] $r2;
+
+        $r0 = new jprtlogparser.Main$Format;
+
+        specialinvoke $r0.<jprtlogparser.Main$Format: void <init>(java.lang.String,int)>("NAME_TIME", 0);
+
+        <jprtlogparser.Main$Format: jprtlogparser.Main$Format NAME_TIME> = $r0;
+
+        $r1 = new jprtlogparser.Main$Format;
+
+        specialinvoke $r1.<jprtlogparser.Main$Format: void <init>(java.lang.String,int)>("TIME_NAME", 1);
+
+        <jprtlogparser.Main$Format: jprtlogparser.Main$Format TIME_NAME> = $r1;
+
+        $r2 = newarray (jprtlogparser.Main$Format)[2];
+
+        $r3 = <jprtlogparser.Main$Format: jprtlogparser.Main$Format NAME_TIME>;
+
+        $r2[0] = $r3;
+
+        $r4 = <jprtlogparser.Main$Format: jprtlogparser.Main$Format TIME_NAME>;
+
+        $r2[1] = $r4;
+
+        <jprtlogparser.Main$Format: jprtlogparser.Main$Format[] $VALUES> = $r2;
+
+        return;
+    }
+}

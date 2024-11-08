@@ -1,0 +1,25 @@
+class Reclaimer extends java.lang.Thread
+{
+
+    void <init>()
+    {
+        Reclaimer r0;
+
+        r0 := @this: Reclaimer;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        Reclaimer r0;
+
+        r0 := @this: Reclaimer;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+}

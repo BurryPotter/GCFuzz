@@ -1,0 +1,102 @@
+public class TestCapacityUntilGCWrapAround extends java.lang.Object
+{
+    private static long MB;
+    private static long GB;
+    private static long MAX_UINT;
+
+    static void <clinit>()
+    {
+        long $l0, $l1, $l2, $l3, $l4;
+
+        <gc.metaspace.TestCapacityUntilGCWrapAround: long MB> = 1048576L;
+
+        $l0 = <gc.metaspace.TestCapacityUntilGCWrapAround: long MB>;
+
+        $l1 = 1024L * $l0;
+
+        <gc.metaspace.TestCapacityUntilGCWrapAround: long GB> = $l1;
+
+        $l2 = <gc.metaspace.TestCapacityUntilGCWrapAround: long GB>;
+
+        $l3 = 4L * $l2;
+
+        $l4 = $l3 - 1L;
+
+        <gc.metaspace.TestCapacityUntilGCWrapAround: long MAX_UINT> = $l4;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestCapacityUntilGCWrapAround r0;
+
+        r0 := @this: TestCapacityUntilGCWrapAround;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        long $l0, $l1, $l2, $l3;
+        java.lang.String[] r13;
+        java.lang.Long $r1, $r2, $r8, $r9;
+        java.lang.String $r7, $r12;
+        boolean $z0;
+        sun.hotspot.WhiteBox $r0;
+        java.lang.StringBuilder $r3, $r4, $r5, $r6, $r10, $r11;
+
+        r13 := @parameter0: java.lang.String[];
+
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean is32bit()>();
+
+        if $z0 == 0 goto label1;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $l0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: long metaspaceCapacityUntilGC()>();
+
+        $l1 = <gc.metaspace.TestCapacityUntilGCWrapAround: long MAX_UINT>;
+
+        $l2 = virtualinvoke $r0.<sun.hotspot.WhiteBox: long incMetaspaceCapacityUntilGC(long)>($l1);
+
+        $r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("Increasing with MAX_UINT should not cause wrap around: ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" < ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGTE(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r1, $r2, $r7);
+
+        $r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $l3 = <gc.metaspace.TestCapacityUntilGCWrapAround: long MAX_UINT>;
+
+        $r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("Increasing with MAX_UINT should not cause value larger than MAX_UINT:");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertLTE(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r8, $r9, $r12);
+
+     label1:
+        return;
+    }
+}

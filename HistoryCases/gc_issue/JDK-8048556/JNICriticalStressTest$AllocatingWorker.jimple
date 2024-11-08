@@ -1,0 +1,77 @@
+class JNICriticalStressTest$AllocatingWorker extends java.lang.Object implements java.lang.Runnable
+{
+    private final java.lang.Object[] array;
+    private int arrayIndex;
+
+    private void <init>()
+    {
+        java.lang.Object[] $r1;
+        JNICriticalStressTest$AllocatingWorker r0;
+
+        r0 := @this: JNICriticalStressTest$AllocatingWorker;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = newarray (java.lang.Object)[4];
+
+        r0.<JNICriticalStressTest$AllocatingWorker: java.lang.Object[] array> = $r1;
+
+        r0.<JNICriticalStressTest$AllocatingWorker: int arrayIndex> = 0;
+
+        return;
+    }
+
+    private void doStep()
+    {
+        java.lang.Object[] $r2;
+        java.util.Map $r0;
+        int $i0, $i1, $i2, $i3;
+        JNICriticalStressTest$AllocatingWorker r1;
+
+        r1 := @this: JNICriticalStressTest$AllocatingWorker;
+
+        $r0 = staticinvoke <JNICriticalStressTest: java.util.Map populateMap(int)>(1024);
+
+        $r2 = r1.<JNICriticalStressTest$AllocatingWorker: java.lang.Object[] array>;
+
+        $i0 = r1.<JNICriticalStressTest$AllocatingWorker: int arrayIndex>;
+
+        $r2[$i0] = $r0;
+
+        $i1 = r1.<JNICriticalStressTest$AllocatingWorker: int arrayIndex>;
+
+        $i2 = $i1 + 1;
+
+        $i3 = $i2 % 4;
+
+        r1.<JNICriticalStressTest$AllocatingWorker: int arrayIndex> = $i3;
+
+        return;
+    }
+
+    public void run()
+    {
+        JNICriticalStressTest$AllocatingWorker r0;
+
+        r0 := @this: JNICriticalStressTest$AllocatingWorker;
+
+     label1:
+        specialinvoke r0.<JNICriticalStressTest$AllocatingWorker: void doStep()>();
+
+        goto label1;
+    }
+
+    void <init>(JNICriticalStressTest$1)
+    {
+        JNICriticalStressTest$AllocatingWorker r0;
+        JNICriticalStressTest$1 r1;
+
+        r0 := @this: JNICriticalStressTest$AllocatingWorker;
+
+        r1 := @parameter0: JNICriticalStressTest$1;
+
+        specialinvoke r0.<JNICriticalStressTest$AllocatingWorker: void <init>()>();
+
+        return;
+    }
+}

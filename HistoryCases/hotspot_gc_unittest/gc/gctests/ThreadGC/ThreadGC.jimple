@@ -1,0 +1,182 @@
+public class ThreadGC extends nsk.share.gc.ThreadedGCTest implements nsk.share.gc.gp.GarbageProducerAware, nsk.share.gc.gp.MemoryStrategyAware
+{
+    private nsk.share.gc.gp.GarbageProducer garbageProducer;
+    private nsk.share.gc.gp.MemoryStrategy memoryStrategy;
+    private gc.gctests.ThreadGC.ThreadGC$Reclaimer reclaimer;
+    private int count;
+    private long size;
+
+    public void <init>()
+    {
+        ThreadGC r0;
+
+        r0 := @this: ThreadGC;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.gctests.ThreadGC.ThreadGC $r6, $r8, $r9, $r10;
+        gc.gctests.ThreadGC.ThreadGC$Devourer $r4;
+        java.lang.Runnable $r7, $r11;
+        gc.gctests.ThreadGC.ThreadGC$Reclaimer $r2, $r5;
+        ThreadGC r0;
+        int i0;
+
+        r0 := @this: ThreadGC;
+
+        i0 := @parameter0: int;
+
+        if i0 != 0 goto label1;
+
+        $r4 = new gc.gctests.ThreadGC.ThreadGC$Devourer;
+
+        $r6 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        specialinvoke $r4.<gc.gctests.ThreadGC.ThreadGC$Devourer: void <init>(gc.gctests.ThreadGC.ThreadGC)>($r6);
+
+        $r7 = (java.lang.Runnable) $r4;
+
+        return $r7;
+
+     label1:
+        if i0 != 1 goto label2;
+
+        $r5 = new gc.gctests.ThreadGC.ThreadGC$Reclaimer;
+
+        $r8 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        specialinvoke $r5.<gc.gctests.ThreadGC.ThreadGC$Reclaimer: void <init>(gc.gctests.ThreadGC.ThreadGC)>($r8);
+
+        $r9 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r9.<gc.gctests.ThreadGC.ThreadGC: gc.gctests.ThreadGC.ThreadGC$Reclaimer reclaimer> = $r5;
+
+        $r10 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r2 = $r10.<gc.gctests.ThreadGC.ThreadGC: gc.gctests.ThreadGC.ThreadGC$Reclaimer reclaimer>;
+
+        $r11 = (java.lang.Runnable) $r2;
+
+        return $r11;
+
+     label2:
+        return null;
+    }
+
+    public void run()
+    {
+        gc.gctests.ThreadGC.ThreadGC $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13;
+        nsk.share.runner.RunParams $r1, $r3, $r5;
+        long $l0, $l1, $l2, $l5;
+        int $i3, $i4;
+        ThreadGC r0;
+        nsk.share.gc.gp.MemoryStrategy $r2, $r4;
+
+        r0 := @this: ThreadGC;
+
+        $r6 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r1 = $r6.<gc.gctests.ThreadGC.ThreadGC: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r1.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $r7 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r2 = $r7.<gc.gctests.ThreadGC.ThreadGC: nsk.share.gc.gp.MemoryStrategy memoryStrategy>;
+
+        $l1 = staticinvoke <nsk.share.gc.gp.GarbageUtils: long getArraySize(long,nsk.share.gc.gp.MemoryStrategy)>($l0, $r2);
+
+        $r8 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r8.<gc.gctests.ThreadGC.ThreadGC: long size> = $l1;
+
+        $r9 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r3 = $r9.<gc.gctests.ThreadGC.ThreadGC: nsk.share.runner.RunParams runParams>;
+
+        $l2 = virtualinvoke $r3.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $r10 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r4 = $r10.<gc.gctests.ThreadGC.ThreadGC: nsk.share.gc.gp.MemoryStrategy memoryStrategy>;
+
+        $i3 = staticinvoke <nsk.share.gc.gp.GarbageUtils: int getArrayCount(long,nsk.share.gc.gp.MemoryStrategy)>($l2, $r4);
+
+        $r11 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r11.<gc.gctests.ThreadGC.ThreadGC: int count> = $i3;
+
+        $r12 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r5 = $r12.<gc.gctests.ThreadGC.ThreadGC: nsk.share.runner.RunParams runParams>;
+
+        $r13 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $i4 = $r13.<gc.gctests.ThreadGC.ThreadGC: int count>;
+
+        $l5 = (long) $i4;
+
+        virtualinvoke $r5.<nsk.share.runner.RunParams: void setIterations(long)>($l5);
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void run()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.gctests.ThreadGC.ThreadGC $r2;
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.ThreadGC.ThreadGC;
+
+        specialinvoke $r2.<gc.gctests.ThreadGC.ThreadGC: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    public void setGarbageProducer(nsk.share.gc.gp.GarbageProducer)
+    {
+        gc.gctests.ThreadGC.ThreadGC $r2;
+        nsk.share.gc.gp.GarbageProducer r1;
+        ThreadGC r0;
+
+        r0 := @this: ThreadGC;
+
+        r1 := @parameter0: nsk.share.gc.gp.GarbageProducer;
+
+        $r2 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r2.<gc.gctests.ThreadGC.ThreadGC: nsk.share.gc.gp.GarbageProducer garbageProducer> = r1;
+
+        return;
+    }
+
+    public void setMemoryStrategy(nsk.share.gc.gp.MemoryStrategy)
+    {
+        gc.gctests.ThreadGC.ThreadGC $r2;
+        ThreadGC r0;
+        nsk.share.gc.gp.MemoryStrategy r1;
+
+        r0 := @this: ThreadGC;
+
+        r1 := @parameter0: nsk.share.gc.gp.MemoryStrategy;
+
+        $r2 = (gc.gctests.ThreadGC.ThreadGC) r0;
+
+        $r2.<gc.gctests.ThreadGC.ThreadGC: nsk.share.gc.gp.MemoryStrategy memoryStrategy> = r1;
+
+        return;
+    }
+}

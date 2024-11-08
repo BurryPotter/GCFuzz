@@ -1,0 +1,34 @@
+enum class TestHumongousClassLoader$GC$3 extends gc.g1.humongousObjects.TestHumongousClassLoader$GC
+{
+
+    void <init>(java.lang.String, int)
+    {
+        TestHumongousClassLoader$GC$3 r0;
+        int i0;
+        java.lang.String r1;
+
+        r0 := @this: TestHumongousClassLoader$GC$3;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<gc.g1.humongousObjects.TestHumongousClassLoader$GC: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public void provoke()
+    {
+        TestHumongousClassLoader$GC$3 r1;
+        sun.hotspot.WhiteBox $r0;
+
+        r1 := @this: TestHumongousClassLoader$GC$3;
+
+        $r0 = <gc.g1.humongousObjects.TestHumongousClassLoader$GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        return;
+    }
+}

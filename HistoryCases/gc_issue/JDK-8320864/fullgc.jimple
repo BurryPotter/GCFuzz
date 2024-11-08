@@ -1,0 +1,77 @@
+class fullgc extends java.lang.Object
+{
+    static final int arr_len;
+    static final int num_gc;
+    static java.lang.Object[] objs;
+
+    void <init>()
+    {
+        fullgc r0;
+
+        r0 := @this: fullgc;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static transient void main(java.lang.String[])
+    {
+        java.lang.Object[] $r1;
+        int $i0, $i1, i2, i3;
+        java.lang.Object $r0;
+        java.lang.String[] r2;
+
+        r2 := @parameter0: java.lang.String[];
+
+        i2 = 0;
+
+     label1:
+        if i2 >= 4 goto label5;
+
+        i3 = 0;
+
+     label2:
+        if i3 >= 10000000 goto label4;
+
+        $i0 = i3 + i2;
+
+        $i1 = $i0 % 2;
+
+        if $i1 != 0 goto label3;
+
+        $r1 = <fullgc: java.lang.Object[] objs>;
+
+        $r0 = new java.lang.Object;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r1[i3] = $r0;
+
+     label3:
+        i3 = i3 + 1;
+
+        goto label2;
+
+     label4:
+        staticinvoke <java.lang.System: void gc()>();
+
+        i2 = i2 + 1;
+
+        goto label1;
+
+     label5:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Object[] $r0;
+
+        $r0 = newarray (java.lang.Object)[10000000];
+
+        <fullgc: java.lang.Object[] objs> = $r0;
+
+        return;
+    }
+}

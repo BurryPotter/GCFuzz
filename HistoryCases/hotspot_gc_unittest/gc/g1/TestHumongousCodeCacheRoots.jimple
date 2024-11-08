@@ -1,0 +1,196 @@
+public class TestHumongousCodeCacheRoots extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestHumongousCodeCacheRoots r0;
+
+        r0 := @this: TestHumongousCodeCacheRoots;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static jdk.test.lib.process.OutputAnalyzer runWhiteBoxTest(java.lang.String[], java.lang.String, java.lang.String[], boolean) throws java.lang.Exception
+    {
+        java.lang.Object[] $r17;
+        java.lang.String[] $r1, r3, r5, r11, $r16, $r18;
+        java.util.ArrayList $r0;
+        int $i0;
+        java.lang.String $r2, r4, $r6, $r7, $r8, $r10;
+        java.lang.ProcessBuilder $r19;
+        boolean z0;
+        java.lang.Process $r21;
+        java.lang.RuntimeException $r9;
+        jdk.test.lib.process.OutputAnalyzer $r20;
+        java.util.List $r12, $r13, $r14, $r15;
+
+        r3 := @parameter0: java.lang.String[];
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.String[];
+
+        z0 := @parameter3: boolean;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = newarray (java.lang.String)[5];
+
+        $r1[0] = "-Xbootclasspath/a:.";
+
+        $r1[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r1[2] = "-XX:+WhiteBoxAPI";
+
+        $r1[3] = "-cp";
+
+        $r2 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("java.class.path");
+
+        $r1[4] = $r2;
+
+        if z0 == 0 goto label2;
+
+        r11 = newarray (java.lang.String)[0];
+
+        $r6 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("test.java.opts");
+
+        if $r6 == null goto label1;
+
+        $r7 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("test.java.opts");
+
+        $i0 = virtualinvoke $r7.<java.lang.String: int length()>();
+
+        if $i0 == 0 goto label1;
+
+        $r8 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("test.java.opts");
+
+        r11 = virtualinvoke $r8.<java.lang.String: java.lang.String[] split(java.lang.String)>(" ");
+
+     label1:
+        $r12 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r11);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r12);
+
+     label2:
+        $r13 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r3);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r13);
+
+        $r14 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r1);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r14);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>(r4);
+
+        $r15 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r5);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r15);
+
+        $r16 = newarray (java.lang.String)[0];
+
+        $r17 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r16);
+
+        $r18 = (java.lang.String[]) $r17;
+
+        $r19 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r18);
+
+        $r20 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r21 = virtualinvoke $r19.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r20.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r21);
+
+     label3:
+        virtualinvoke $r20.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+     label4:
+        goto label6;
+
+     label5:
+        $r9 := @caughtexception;
+
+        $r10 = virtualinvoke $r20.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String)>("Unrecognized option: -client");
+
+        if $r10 != null goto label6;
+
+        throw $r9;
+
+     label6:
+        return $r20;
+
+        catch java.lang.RuntimeException from label3 to label4 with label5;
+    }
+
+    public static void runTest(java.lang.String, java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Object[] $r5;
+        java.lang.String[] r2, $r4, $r7, $r9;
+        java.util.ArrayList $r0;
+        java.util.List $r3;
+        java.lang.Class $r6;
+        java.lang.String r1, $r8;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String[];
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>(r1);
+
+        $r3 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r2);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r3);
+
+        $r4 = newarray (java.lang.String)[0];
+
+        $r5 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r4);
+
+        $r7 = (java.lang.String[]) $r5;
+
+        $r6 = class "Lgc/g1/TestHumongousCodeCacheRootsHelper;";
+
+        $r8 = virtualinvoke $r6.<java.lang.Class: java.lang.String getName()>();
+
+        $r9 = newarray (java.lang.String)[0];
+
+        staticinvoke <gc.g1.TestHumongousCodeCacheRoots: jdk.test.lib.process.OutputAnalyzer runWhiteBoxTest(java.lang.String[],java.lang.String,java.lang.String[],boolean)>($r7, $r8, $r9, 0);
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r0, r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[7];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-XX:G1HeapRegionSize=1M";
+
+        $r0[2] = "-Xmx100M";
+
+        $r0[3] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[4] = "-XX:InitiatingHeapOccupancyPercent=1";
+
+        $r0[5] = "-XX:+G1VerifyHeapRegionCodeRoots";
+
+        $r0[6] = "-XX:+VerifyAfterGC";
+
+        staticinvoke <gc.g1.TestHumongousCodeCacheRoots: void runTest(java.lang.String,java.lang.String[])>("-client", $r0);
+
+        staticinvoke <gc.g1.TestHumongousCodeCacheRoots: void runTest(java.lang.String,java.lang.String[])>("-server", $r0);
+
+        return;
+    }
+}

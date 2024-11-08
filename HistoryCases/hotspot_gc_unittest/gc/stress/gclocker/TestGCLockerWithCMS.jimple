@@ -1,0 +1,31 @@
+public class TestGCLockerWithCMS extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestGCLockerWithCMS r0;
+
+        r0 := @this: TestGCLockerWithCMS;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] $r0, r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "2";
+
+        $r0[1] = "CMS Old Gen";
+
+        staticinvoke <gc.stress.gclocker.TestGCLocker: void main(java.lang.String[])>($r0);
+
+        return;
+    }
+}

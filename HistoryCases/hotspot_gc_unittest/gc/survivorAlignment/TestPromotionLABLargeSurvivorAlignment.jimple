@@ -1,0 +1,56 @@
+public class TestPromotionLABLargeSurvivorAlignment extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestPromotionLABLargeSurvivorAlignment r0;
+
+        r0 := @this: TestPromotionLABLargeSurvivorAlignment;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] $r1;
+        java.lang.Object[] r0;
+        int $i0, i1, i2;
+        java.lang.String[] r2;
+
+        r2 := @parameter0: java.lang.String[];
+
+        r0 = newarray (java.lang.Object)[1000000];
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        $r1 = newarray (byte)[0];
+
+        r0[i1] = $r1;
+
+        i1 = i1 + 1;
+
+     label2:
+        $i0 = lengthof r0;
+
+        if i1 < $i0 goto label1;
+
+        i2 = 0;
+
+        goto label4;
+
+     label3:
+        staticinvoke <java.lang.System: void gc()>();
+
+        i2 = i2 + 1;
+
+     label4:
+        if i2 < 2 goto label3;
+
+        return;
+    }
+}

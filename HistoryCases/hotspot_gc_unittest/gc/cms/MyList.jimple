@@ -1,0 +1,26 @@
+class MyList extends java.util.LinkedList
+{
+    int[] a;
+
+    void <init>(int)
+    {
+        int[] $r1;
+        gc.cms.MyList $r2;
+        MyList r0;
+        int i0;
+
+        r0 := @this: MyList;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.util.LinkedList: void <init>()>();
+
+        $r1 = newarray (int)[i0];
+
+        $r2 = (gc.cms.MyList) r0;
+
+        $r2.<gc.cms.MyList: int[] a> = $r1;
+
+        return;
+    }
+}

@@ -1,0 +1,160 @@
+public class JmxLoop extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        JmxLoop r0;
+
+        r0 := @this: JmxLoop;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        boolean $z0;
+        java.lang.Exception $r36;
+        java.util.List $r18;
+        java.lang.StringBuilder $r2, $r4, $r5, $r7, $r9, $r10, $r12, $r14, $r15, $r26, $r28, $r29, $r31, $r33, $r34;
+        long $l1, $l2;
+        java.lang.String[] r37;
+        java.lang.management.MemoryPoolMXBean r21;
+        int $i0;
+        java.lang.String $r6, $r11, $r16, $r25, $r30, $r35;
+        java.lang.management.MemoryUsage $r22, $r23;
+        java.io.PrintStream $r0, $r3, $r8, $r13, $r17, $r24, $r27, $r32;
+        java.util.Iterator $r19;
+        java.lang.Object $r20;
+        java.lang.management.ClassLoadingMXBean $r1;
+
+        r37 := @parameter0: java.lang.String[];
+
+     label1:
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("JMX Class Loading Info");
+
+        $r1 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.ClassLoadingMXBean getClassLoadingMXBean()>();
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("loaded class count \t\t\t");
+
+        $i0 = interfaceinvoke $r1.<java.lang.management.ClassLoadingMXBean: int getLoadedClassCount()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>()>();
+
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("total loaded class count \t\t");
+
+        $l1 = interfaceinvoke $r1.<java.lang.management.ClassLoadingMXBean: long getTotalLoadedClassCount()>();
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r11);
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("unloaded class count \t\t\t");
+
+        $l2 = interfaceinvoke $r1.<java.lang.management.ClassLoadingMXBean: long getUnloadedClassCount()>();
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>("JMX Memory Pool Info");
+
+        $r18 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r19 = interfaceinvoke $r18.<java.util.List: java.util.Iterator iterator()>();
+
+     label2:
+        $z0 = interfaceinvoke $r19.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r20 = interfaceinvoke $r19.<java.util.Iterator: java.lang.Object next()>();
+
+        r21 = (java.lang.management.MemoryPoolMXBean) $r20;
+
+        $r22 = interfaceinvoke r21.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $r23 = interfaceinvoke r21.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getPeakUsage()>();
+
+        $r24 = <java.lang.System: java.io.PrintStream out>;
+
+        $r25 = interfaceinvoke r21.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        virtualinvoke $r24.<java.io.PrintStream: void println(java.lang.String)>($r25);
+
+        $r27 = <java.lang.System: java.io.PrintStream out>;
+
+        $r26 = new java.lang.StringBuilder;
+
+        specialinvoke $r26.<java.lang.StringBuilder: void <init>()>();
+
+        $r28 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("currentUsage\n");
+
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r22);
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r30);
+
+        $r32 = <java.lang.System: java.io.PrintStream out>;
+
+        $r31 = new java.lang.StringBuilder;
+
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>()>();
+
+        $r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("peakUsage\n");
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r23);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r32.<java.io.PrintStream: void println(java.lang.String)>($r35);
+
+        goto label2;
+
+     label3:
+        staticinvoke <java.lang.Thread: void sleep(long)>(15000L);
+
+        goto label1;
+
+     label4:
+        $r36 := @caughtexception;
+
+        virtualinvoke $r36.<java.lang.Exception: void printStackTrace()>();
+
+        return;
+
+        catch java.lang.Exception from label1 to label4 with label4;
+    }
+}

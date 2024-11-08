@@ -1,0 +1,30 @@
+class LargePagesTest$Dummy extends java.lang.Object
+{
+    final gc.memory.LargePagesTest.LargePagesTest this$0;
+
+    void <init>(gc.memory.LargePagesTest.LargePagesTest)
+    {
+        gc.memory.LargePagesTest.LargePagesTest$Dummy $r2;
+        int $i0, $i1;
+        gc.memory.LargePagesTest.LargePagesTest r1;
+        LargePagesTest$Dummy r0;
+
+        r0 := @this: LargePagesTest$Dummy;
+
+        r1 := @parameter0: gc.memory.LargePagesTest.LargePagesTest;
+
+        $r2 = (gc.memory.LargePagesTest.LargePagesTest$Dummy) r0;
+
+        $r2.<gc.memory.LargePagesTest.LargePagesTest$Dummy: gc.memory.LargePagesTest.LargePagesTest this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $i0 = <gc.memory.LargePagesTest.LargePagesTest: int cnt>;
+
+        $i1 = $i0 + 1;
+
+        <gc.memory.LargePagesTest.LargePagesTest: int cnt> = $i1;
+
+        return;
+    }
+}

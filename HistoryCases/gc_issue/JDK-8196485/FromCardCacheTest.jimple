@@ -1,0 +1,647 @@
+public class FromCardCacheTest extends java.lang.Object
+{
+    private static int nArrays;
+    private static int arraySize;
+    private static int byteArraySize;
+    private static final long heapBase;
+    private static final sun.misc.Unsafe UNSAFE;
+    static java.lang.Object[] addrArray;
+    static final long baseOffset;
+    static final int pageSize;
+
+    public void <init>()
+    {
+        FromCardCacheTest r0;
+
+        r0 := @this: FromCardCacheTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        java.lang.Exception $r0;
+        boolean $z0;
+
+        r1 := @parameter0: java.lang.String[];
+
+     label1:
+        $z0 = staticinvoke <FromCardCacheTest: boolean runTest()>();
+
+        if $z0 == 0 goto label5;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label2:
+        staticinvoke <java.lang.Thread: void sleep(long)>(2000L);
+
+     label3:
+        goto label1;
+
+     label4:
+        $r0 := @caughtexception;
+
+        goto label1;
+
+     label5:
+        return;
+
+        catch java.lang.Exception from label2 to label3 with label4;
+    }
+
+    public static boolean runTest()
+    {
+        byte[] $r11, $r14;
+        byte $b6, $b8, $b29;
+        java.lang.Long $r23, $r30;
+        java.lang.Exception $r49, $r50;
+        java.lang.StringBuilder $r19, $r20, $r25, $r26, $r32, $r33, $r34, $r54;
+        java.lang.Object[] $r4, $r5, $r6, $r13, $r15, $r16, $r21, $r22, $r27, $r28, $r36, $r37, $r42;
+        long $l0, $l3, $l4, $l5, $l7, $l13, $l15, $l16, $l18, $l20, $l21, $l22, $l23, $l27, $l28;
+        java.lang.String $r24, $r31, $r35, $r47, $r48;
+        boolean $z0, $z1, $z2;
+        java.util.List $r0;
+        java.lang.Object[][] r3, r53;
+        java.lang.management.GarbageCollectorMXBean r46, r51, r52;
+        int $i1, $i2, $i9, $i10, i11, $i12, $i14, $i17, $i19, $i24, i25, i26, $i30, $i32, $i33, $i34;
+        java.io.PrintStream $r2, $r7, $r8, $r9, $r10, $r12, $r18, $r38, $r39, $r40, $r41, $r43, $r44;
+        java.util.Iterator $r1;
+        java.lang.Object $r29, $r45;
+
+        r51 = null;
+
+        r52 = null;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getGarbageCollectorMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label01:
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label04;
+
+        $r45 = interfaceinvoke $r1.<java.util.Iterator: java.lang.Object next()>();
+
+        r46 = (java.lang.management.GarbageCollectorMXBean) $r45;
+
+        $r47 = interfaceinvoke r46.<java.lang.management.GarbageCollectorMXBean: java.lang.String getName()>();
+
+        $z1 = virtualinvoke $r47.<java.lang.String: boolean equals(java.lang.Object)>("G1 Old Generation");
+
+        if $z1 == 0 goto label02;
+
+        r51 = r46;
+
+     label02:
+        $r48 = interfaceinvoke r46.<java.lang.management.GarbageCollectorMXBean: java.lang.String getName()>();
+
+        $z2 = virtualinvoke $r48.<java.lang.String: boolean equals(java.lang.Object)>("G1 Young Generation");
+
+        if $z2 == 0 goto label03;
+
+        r52 = r46;
+
+     label03:
+        goto label01;
+
+     label04:
+        if r51 != null goto label05;
+
+        $r44 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r44.<java.io.PrintStream: void println(java.lang.String)>("G1 oldGc = null");
+
+        return 0;
+
+     label05:
+        if r52 != null goto label06;
+
+        $r43 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r43.<java.io.PrintStream: void println(java.lang.String)>("G1 youngGc = null");
+
+        return 0;
+
+     label06:
+        $l0 = interfaceinvoke r51.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("Running test");
+
+        $i1 = <FromCardCacheTest: int nArrays>;
+
+        r3 = newarray (java.lang.Object[])[$i1];
+
+        i25 = 0;
+
+     label07:
+        $i2 = <FromCardCacheTest: int nArrays>;
+
+        if i25 >= $i2 goto label08;
+
+        $i24 = <FromCardCacheTest: int arraySize>;
+
+        $r42 = newarray (java.lang.Object)[$i24];
+
+        r3[i25] = $r42;
+
+        i25 = i25 + 1;
+
+        goto label07;
+
+     label08:
+        r53 = newarray (java.lang.Object[])[1];
+
+        $r4 = staticinvoke <FromCardCacheTest: java.lang.Object[] findArray(java.lang.Object[][],boolean,boolean)>(r3, 1, 1);
+
+        r53[0] = $r4;
+
+        $r5 = staticinvoke <FromCardCacheTest: java.lang.Object[] findArray(java.lang.Object[][],boolean,boolean)>(r3, 0, 0);
+
+        $r6 = r53[0];
+
+        if $r6 != null goto label09;
+
+        $r41 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r41.<java.io.PrintStream: void println(java.lang.String)>("Array with card -1 not found. Trying again.");
+
+        return 1;
+
+     label09:
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>("Found an array with card -1.");
+
+        if $r5 != null goto label10;
+
+        $r40 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r40.<java.io.PrintStream: void println(java.lang.String)>("otherArray = null.");
+
+        return 1;
+
+     label10:
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>("Modifying the last card in the array...");
+
+        interfaceinvoke r52.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        i26 = 0;
+
+     label11:
+        if i26 >= 10 goto label17;
+
+        $l7 = interfaceinvoke r51.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        $b8 = $l7 cmp $l0;
+
+        $i30 = (int) $b8;
+
+        if $i30 <= 0 goto label12;
+
+        $r39 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>("Old gc done. Trying again.");
+
+        return 1;
+
+     label12:
+        $i9 = <FromCardCacheTest: int arraySize>;
+
+        $i10 = $i9 - i26;
+
+        i11 = $i10 - 1;
+
+        $r15 = r53[0];
+
+        $r13 = newarray (java.lang.Object)[1];
+
+        $i12 = <FromCardCacheTest: int byteArraySize>;
+
+        $r14 = newarray (byte)[$i12];
+
+        $r13[0] = $r14;
+
+        $r15[i11] = $r13;
+
+        $r16 = r53[0];
+
+        $l13 = staticinvoke <FromCardCacheTest: long getAddress(java.lang.Object)>($r16);
+
+        $i14 = 4 * i11;
+
+        $l15 = (long) $i14;
+
+        $l16 = $l13 + $l15;
+
+        $i17 = staticinvoke <FromCardCacheTest: int getCard32Bit(long)>($l16);
+
+        $r18 = <java.lang.System: java.io.PrintStream out>;
+
+        $r54 = new java.lang.StringBuilder;
+
+        specialinvoke $r54.<java.lang.StringBuilder: void <init>()>();
+
+        $r19 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i11);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r21 = newarray (java.lang.Object)[1];
+
+        $r22 = r53[0];
+
+        $l18 = staticinvoke <FromCardCacheTest: long getAddress(java.lang.Object)>($r22);
+
+        $l21 = $l18 + 16L;
+
+        $i19 = 4 * i11;
+
+        $l20 = (long) $i19;
+
+        $l22 = $l21 + $l20;
+
+        $r23 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l22);
+
+        $r21[0] = $r23;
+
+        $r24 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("0x%016x", $r21);
+
+        $r25 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24);
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" set to ");
+
+        $r27 = newarray (java.lang.Object)[1];
+
+        $r28 = r53[0];
+
+        $r29 = $r28[i11];
+
+        $l23 = staticinvoke <FromCardCacheTest: long getAddress(java.lang.Object)>($r29);
+
+        $r30 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l23);
+
+        $r27[0] = $r30;
+
+        $r31 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("0x%016x", $r27);
+
+        $r32 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r31);
+
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", card: ");
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i17);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>($r35);
+
+        $i32 = (int) -1;
+
+        if $i17 == $i32 goto label13;
+
+        $r36 = staticinvoke <FromCardCacheTest: java.lang.Object[] findArray(java.lang.Object[][],boolean,boolean)>(r3, 1, 1);
+
+        r53[0] = $r36;
+
+        $r37 = r53[0];
+
+        if $r37 != null goto label13;
+
+        $r38 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r38.<java.io.PrintStream: void println(java.lang.String)>("Array with card -1 not found. Trying again.");
+
+        return 1;
+
+     label13:
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+     label14:
+        goto label16;
+
+     label15:
+        $r50 := @caughtexception;
+
+     label16:
+        i26 = i26 + 1;
+
+        goto label11;
+
+     label17:
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>("Producting garbage to run gc.");
+
+        $l3 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l4 = interfaceinvoke r51.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+     label18:
+        $l27 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l28 = $l27 - $l3;
+
+        $b29 = $l28 cmp 60000L;
+
+        $i33 = (int) $b29;
+
+        if $i33 >= 0 goto label23;
+
+        $l5 = interfaceinvoke r51.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        $b6 = $l5 cmp $l4;
+
+        $i34 = (int) $b6;
+
+        if $i34 <= 0 goto label19;
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>("Old gc done. Trying again.");
+
+        return 1;
+
+     label19:
+        $r11 = newarray (byte)[30000];
+
+        $r5[0] = $r11;
+
+        $r5[0] = null;
+
+     label20:
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+     label21:
+        goto label18;
+
+     label22:
+        $r49 := @caughtexception;
+
+        goto label18;
+
+     label23:
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>("The crash didn\'t reproduce. Trying again.");
+
+        return 1;
+
+        catch java.lang.Exception from label13 to label14 with label15;
+        catch java.lang.Exception from label20 to label21 with label22;
+    }
+
+    private static java.lang.Object[] findArray(java.lang.Object[][], boolean, boolean)
+    {
+        java.lang.Long $r11, $r16;
+        boolean z0, z1;
+        java.lang.StringBuilder $r7, $r8, $r9, $r13, $r14, $r18, $r19, $r20, $r22;
+        java.lang.Object[] $r1, $r2, $r3, $r4, $r10, $r15;
+        long $l1, $l4, l5;
+        java.lang.Object[][] r0;
+        int $i0, $i2, $i3, $i6, i7, $i9, $i11;
+        java.lang.String $r12, $r17, $r21;
+        java.io.PrintStream $r6;
+
+        r0 := @parameter0: java.lang.Object[][];
+
+        z1 := @parameter1: boolean;
+
+        z0 := @parameter2: boolean;
+
+        i7 = 0;
+
+     label1:
+        $i0 = lengthof r0;
+
+        if i7 >= $i0 goto label7;
+
+        $r1 = r0[i7];
+
+        if $r1 != null goto label2;
+
+        goto label6;
+
+     label2:
+        $r2 = r0[i7];
+
+        $l1 = staticinvoke <FromCardCacheTest: long getAddress(java.lang.Object)>($r2);
+
+        $r3 = r0[i7];
+
+        $i2 = lengthof $r3;
+
+        $i3 = 4 * $i2;
+
+        $l4 = (long) $i3;
+
+        l5 = $l1 + $l4;
+
+        $i6 = staticinvoke <FromCardCacheTest: int getCard32Bit(long)>(l5);
+
+        if z0 == 0 goto label3;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r22 = new java.lang.StringBuilder;
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("array ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", startAddress: ");
+
+        $r10 = newarray (java.lang.Object)[1];
+
+        $r11 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r10[0] = $r11;
+
+        $r12 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("0x%016x", $r10);
+
+        $r13 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", lastCardAddress: ");
+
+        $r15 = newarray (java.lang.Object)[1];
+
+        $r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+
+        $r15[0] = $r16;
+
+        $r17 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("0x%016x", $r15);
+
+        $r18 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", card: ");
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r21);
+
+     label3:
+        if z1 == 0 goto label4;
+
+        $i9 = (int) -1;
+
+        if $i6 == $i9 goto label5;
+
+     label4:
+        if z1 != 0 goto label6;
+
+        $i11 = (int) -1;
+
+        if $i6 == $i11 goto label6;
+
+     label5:
+        $r4 = r0[i7];
+
+        r0[i7] = null;
+
+        return $r4;
+
+     label6:
+        i7 = i7 + 1;
+
+        goto label1;
+
+     label7:
+        return null;
+    }
+
+    public static long getAddress(java.lang.Object)
+    {
+        sun.misc.Unsafe $r3;
+        java.lang.Object[] $r1, $r2, $r4;
+        long $l0, $l3, $l5, $l6, $l7, l8;
+        int $i1, $i2, $i4;
+        java.lang.Object r0;
+
+        r0 := @parameter0: java.lang.Object;
+
+        $r1 = <FromCardCacheTest: java.lang.Object[] addrArray>;
+
+        $r1[0] = r0;
+
+        $r3 = <FromCardCacheTest: sun.misc.Unsafe UNSAFE>;
+
+        $r2 = <FromCardCacheTest: java.lang.Object[] addrArray>;
+
+        $l0 = <FromCardCacheTest: long baseOffset>;
+
+        $i1 = virtualinvoke $r3.<sun.misc.Unsafe: int getInt(java.lang.Object,long)>($r2, $l0);
+
+        $i2 = $i1 << 3;
+
+        $l3 = (long) $i2;
+
+        $l6 = $l3 + 2199011721216L;
+
+        $i4 = <FromCardCacheTest: int pageSize>;
+
+        $l5 = (long) $i4;
+
+        $l7 = $l6 - $l5;
+
+        l8 = $l7 + 1048576L;
+
+        $r4 = <FromCardCacheTest: java.lang.Object[] addrArray>;
+
+        $r4[0] = null;
+
+        return l8;
+    }
+
+    public static int getCard32Bit(long)
+    {
+        int i2;
+        long l0, $l1;
+
+        l0 := @parameter0: long;
+
+        $l1 = l0 >> 9;
+
+        i2 = (int) $l1;
+
+        return i2;
+    }
+
+    static void <clinit>()
+    {
+        sun.misc.Unsafe $r3, $r5, $r6;
+        java.lang.Object[] $r4;
+        java.lang.Error $r8;
+        long $l1;
+        java.lang.ReflectiveOperationException $r7;
+        java.lang.reflect.Field $r1;
+        int $i0, $i2;
+        java.lang.Class $r0;
+        java.lang.Object $r2;
+
+        <FromCardCacheTest: int nArrays> = 24;
+
+        <FromCardCacheTest: int arraySize> = 131068;
+
+        <FromCardCacheTest: int byteArraySize> = 524270;
+
+     label1:
+        $r0 = class "Lsun/misc/Unsafe;";
+
+        $r1 = virtualinvoke $r0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("theUnsafe");
+
+        virtualinvoke $r1.<java.lang.reflect.Field: void setAccessible(boolean)>(1);
+
+        $r2 = virtualinvoke $r1.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>(null);
+
+        $r3 = (sun.misc.Unsafe) $r2;
+
+        <FromCardCacheTest: sun.misc.Unsafe UNSAFE> = $r3;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r7 := @caughtexception;
+
+        $r8 = new java.lang.Error;
+
+        specialinvoke $r8.<java.lang.Error: void <init>(java.lang.Throwable)>($r7);
+
+        throw $r8;
+
+     label4:
+        $r4 = newarray (java.lang.Object)[1];
+
+        $r4[0] = null;
+
+        <FromCardCacheTest: java.lang.Object[] addrArray> = $r4;
+
+        $r5 = <FromCardCacheTest: sun.misc.Unsafe UNSAFE>;
+
+        $i0 = virtualinvoke $r5.<sun.misc.Unsafe: int arrayBaseOffset(java.lang.Class)>(class "[Ljava/lang/Object;");
+
+        $l1 = (long) $i0;
+
+        <FromCardCacheTest: long baseOffset> = $l1;
+
+        $r6 = <FromCardCacheTest: sun.misc.Unsafe UNSAFE>;
+
+        $i2 = virtualinvoke $r6.<sun.misc.Unsafe: int pageSize()>();
+
+        <FromCardCacheTest: int pageSize> = $i2;
+
+        return;
+
+        catch java.lang.IllegalAccessException from label1 to label2 with label3;
+        catch java.lang.NoSuchFieldException from label1 to label2 with label3;
+    }
+}

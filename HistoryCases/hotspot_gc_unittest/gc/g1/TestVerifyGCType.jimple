@@ -1,0 +1,476 @@
+public class TestVerifyGCType extends java.lang.Object
+{
+    public static final java.lang.String VERIFY_TAG;
+    public static final java.lang.String VERIFY_BEFORE;
+    public static final java.lang.String VERIFY_DURING;
+    public static final java.lang.String VERIFY_AFTER;
+
+    public void <init>()
+    {
+        TestVerifyGCType r0;
+
+        r0 := @this: TestVerifyGCType;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.g1.TestVerifyGCType: void testAllVerificationEnabled()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void testAllExplicitlyEnabled()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void testFullAndRemark()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void testConcurrentMark()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void testBadVerificationType()>();
+
+        return;
+    }
+
+    private static void testAllVerificationEnabled() throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+        java.lang.String $r2, $r3, $r4, $r5, $r6, $r7, $r8;
+
+        $r0 = newarray (java.lang.String)[0];
+
+        $r1 = staticinvoke <gc.g1.TestVerifyGCType: jdk.test.lib.process.OutputAnalyzer testWithVerificationType(java.lang.String[])>($r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r2 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Normal)", 1, 0, 1, $r2);
+
+        $r3 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Concurrent Start)", 1, 0, 1, $r3);
+
+        $r4 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Mixed)", 1, 0, 1, $r4);
+
+        $r5 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Prepare Mixed)", 1, 0, 1, $r5);
+
+        $r6 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Remark", 0, 1, 0, $r6);
+
+        $r7 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Cleanup", 0, 1, 0, $r7);
+
+        $r8 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Full", 1, 1, 1, $r8);
+
+        return;
+    }
+
+    private static void testAllExplicitlyEnabled() throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+        java.lang.String $r2, $r3, $r4, $r5, $r6, $r7, $r8;
+
+        $r0 = newarray (java.lang.String)[6];
+
+        $r0[0] = "young-normal";
+
+        $r0[1] = "concurrent-start";
+
+        $r0[2] = "mixed";
+
+        $r0[3] = "remark";
+
+        $r0[4] = "cleanup";
+
+        $r0[5] = "full";
+
+        $r1 = staticinvoke <gc.g1.TestVerifyGCType: jdk.test.lib.process.OutputAnalyzer testWithVerificationType(java.lang.String[])>($r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r2 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Normal)", 1, 0, 1, $r2);
+
+        $r3 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Concurrent Start)", 1, 0, 1, $r3);
+
+        $r4 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Mixed)", 1, 0, 1, $r4);
+
+        $r5 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Prepare Mixed)", 1, 0, 1, $r5);
+
+        $r6 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Remark", 0, 1, 0, $r6);
+
+        $r7 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Cleanup", 0, 1, 0, $r7);
+
+        $r8 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Full", 1, 1, 1, $r8);
+
+        return;
+    }
+
+    private static void testFullAndRemark() throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+        java.lang.String $r2, $r3, $r4, $r5, $r6, $r7, $r8;
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "remark";
+
+        $r0[1] = "full";
+
+        $r1 = staticinvoke <gc.g1.TestVerifyGCType: jdk.test.lib.process.OutputAnalyzer testWithVerificationType(java.lang.String[])>($r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r2 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Normal)", 0, 0, 0, $r2);
+
+        $r3 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Concurrent Start)", 0, 0, 0, $r3);
+
+        $r4 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Mixed)", 0, 0, 0, $r4);
+
+        $r5 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Prepare Mixed)", 0, 0, 0, $r5);
+
+        $r6 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Remark", 0, 1, 0, $r6);
+
+        $r7 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Cleanup", 0, 0, 0, $r7);
+
+        $r8 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Full", 1, 1, 1, $r8);
+
+        return;
+    }
+
+    private static void testConcurrentMark() throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+        java.lang.String $r2, $r3, $r4, $r5, $r6, $r7, $r8;
+
+        $r0 = newarray (java.lang.String)[3];
+
+        $r0[0] = "concurrent-start";
+
+        $r0[1] = "cleanup";
+
+        $r0[2] = "remark";
+
+        $r1 = staticinvoke <gc.g1.TestVerifyGCType: jdk.test.lib.process.OutputAnalyzer testWithVerificationType(java.lang.String[])>($r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r2 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Normal)", 0, 0, 0, $r2);
+
+        $r3 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Concurrent Start)", 1, 0, 1, $r3);
+
+        $r4 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Mixed)", 0, 0, 0, $r4);
+
+        $r5 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Prepare Mixed)", 0, 0, 0, $r5);
+
+        $r6 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Remark", 0, 1, 0, $r6);
+
+        $r7 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Cleanup", 0, 1, 0, $r7);
+
+        $r8 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Full", 0, 0, 0, $r8);
+
+        return;
+    }
+
+    private static void testBadVerificationType() throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+        java.lang.String $r2, $r3, $r4, $r5, $r6, $r7, $r8;
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "old";
+
+        $r1 = staticinvoke <gc.g1.TestVerifyGCType: jdk.test.lib.process.OutputAnalyzer testWithVerificationType(java.lang.String[])>($r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>("VerifyGCType: \'.*\' is unknown. Available types are: young-normal, concurrent-start, mixed, remark, cleanup and full");
+
+        $r2 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Normal)", 1, 0, 1, $r2);
+
+        $r3 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Concurrent Start)", 1, 0, 1, $r3);
+
+        $r4 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Mixed)", 1, 0, 1, $r4);
+
+        $r5 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Young (Prepare Mixed)", 1, 0, 1, $r5);
+
+        $r6 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Remark", 0, 1, 0, $r6);
+
+        $r7 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Cleanup", 0, 1, 0, $r7);
+
+        $r8 = virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyCollection(java.lang.String,boolean,boolean,boolean,java.lang.String)>("Pause Full", 1, 1, 1, $r8);
+
+        return;
+    }
+
+    private static jdk.test.lib.process.OutputAnalyzer testWithVerificationType(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Object[] $r9;
+        java.lang.String[] $r1, r2, $r8, $r10;
+        java.util.ArrayList $r0;
+        int i0, $i1, i2;
+        java.lang.String $r5, $r7, r14;
+        java.lang.ProcessBuilder $r11;
+        java.lang.Process $r13;
+        jdk.test.lib.process.OutputAnalyzer $r12;
+        java.lang.StringBuilder $r3, $r4;
+        java.lang.Class $r6;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = newarray (java.lang.String)[12];
+
+        $r1[0] = "-Xbootclasspath/a:.";
+
+        $r1[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r1[2] = "-XX:+UseG1GC";
+
+        $r1[3] = "-XX:+WhiteBoxAPI";
+
+        $r1[4] = "-Xlog:gc,gc+start,gc+verify=info";
+
+        $r1[5] = "-Xms16m";
+
+        $r1[6] = "-Xmx16m";
+
+        $r1[7] = "-XX:ParallelGCThreads=1";
+
+        $r1[8] = "-XX:G1HeapWastePercent=1";
+
+        $r1[9] = "-XX:+VerifyBeforeGC";
+
+        $r1[10] = "-XX:+VerifyAfterGC";
+
+        $r1[11] = "-XX:+VerifyDuringGC";
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r1);
+
+        i0 = lengthof r2;
+
+        i2 = 0;
+
+        goto label2;
+
+     label1:
+        r14 = r2[i2];
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:VerifyGCType=");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r14);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r5);
+
+        i2 = i2 + 1;
+
+     label2:
+        if i2 < i0 goto label1;
+
+        $r6 = class "Lgc/g1/TestVerifyGCType$TriggerGCs;";
+
+        $r7 = virtualinvoke $r6.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r7);
+
+        $i1 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+        $r8 = newarray (java.lang.String)[$i1];
+
+        $r9 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r8);
+
+        $r10 = (java.lang.String[]) $r9;
+
+        $r11 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r10);
+
+        $r12 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r13 = virtualinvoke $r11.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r12.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r13);
+
+        return $r12;
+    }
+
+    private static void verifyCollection(java.lang.String, boolean, boolean, boolean, java.lang.String)
+    {
+        gc.g1.TestVerifyGCType$CollectionInfo $r2;
+        java.lang.StringBuilder $r3, $r4, $r5, $r6;
+        java.lang.String r0, r1, $r7;
+        boolean z0, z1, z2, $z3;
+
+        r0 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        z1 := @parameter2: boolean;
+
+        z2 := @parameter3: boolean;
+
+        r1 := @parameter4: java.lang.String;
+
+        $r2 = staticinvoke <gc.g1.TestVerifyGCType$CollectionInfo: gc.g1.TestVerifyGCType$CollectionInfo parseFirst(java.lang.String,java.lang.String)>(r0, r1);
+
+        if $r2 == null goto label1;
+
+        $z3 = 1;
+
+        goto label2;
+
+     label1:
+        $z3 = 0;
+
+     label2:
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected GC not found: ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z3, $r7);
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyType(gc.g1.TestVerifyGCType$CollectionInfo,boolean,java.lang.String)>($r2, z0, "Verifying Before GC");
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyType(gc.g1.TestVerifyGCType$CollectionInfo,boolean,java.lang.String)>($r2, z1, "Verifying During GC");
+
+        staticinvoke <gc.g1.TestVerifyGCType: void verifyType(gc.g1.TestVerifyGCType$CollectionInfo,boolean,java.lang.String)>($r2, z2, "Verifying After GC");
+
+        return;
+    }
+
+    private static void verifyType(gc.g1.TestVerifyGCType$CollectionInfo, boolean, java.lang.String)
+    {
+        gc.g1.TestVerifyGCType$CollectionInfo r0;
+        java.lang.StringBuilder $r2, $r4, $r6, $r8;
+        java.lang.String r1, $r3, $r5, $r7, $r9;
+        boolean z0, $z1, $z2;
+
+        r0 := @parameter0: gc.g1.TestVerifyGCType$CollectionInfo;
+
+        z0 := @parameter1: boolean;
+
+        r1 := @parameter2: java.lang.String;
+
+        if z0 == 0 goto label1;
+
+        $z2 = virtualinvoke r0.<gc.g1.TestVerifyGCType$CollectionInfo: boolean containsVerification(java.lang.String)>(r1);
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Missing expected verification for: ");
+
+        $r7 = virtualinvoke r0.<gc.g1.TestVerifyGCType$CollectionInfo: java.lang.String getName()>();
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z2, $r9);
+
+        goto label2;
+
+     label1:
+        $z1 = virtualinvoke r0.<gc.g1.TestVerifyGCType$CollectionInfo: boolean containsVerification(java.lang.String)>(r1);
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("Found unexpected verification for: ");
+
+        $r3 = virtualinvoke r0.<gc.g1.TestVerifyGCType$CollectionInfo: java.lang.String getName()>();
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertFalse(boolean,java.lang.String)>($z1, $r5);
+
+     label2:
+        return;
+    }
+}

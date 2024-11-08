@@ -1,0 +1,40 @@
+class mallocWithGC2$cHeapEater extends java.lang.Thread
+{
+    final gc.gctests.mallocWithGC2.mallocWithGC2 this$0;
+
+    private void <init>(gc.gctests.mallocWithGC2.mallocWithGC2)
+    {
+        gc.gctests.mallocWithGC2.mallocWithGC2$cHeapEater $r2;
+        gc.gctests.mallocWithGC2.mallocWithGC2 r1;
+        mallocWithGC2$cHeapEater r0;
+
+        r0 := @this: mallocWithGC2$cHeapEater;
+
+        r1 := @parameter0: gc.gctests.mallocWithGC2.mallocWithGC2;
+
+        $r2 = (gc.gctests.mallocWithGC2.mallocWithGC2$cHeapEater) r0;
+
+        $r2.<gc.gctests.mallocWithGC2.mallocWithGC2$cHeapEater: gc.gctests.mallocWithGC2.mallocWithGC2 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        gc.gctests.mallocWithGC2.mallocWithGC2$cHeapEater $r2;
+        gc.gctests.mallocWithGC2.mallocWithGC2 $r1;
+        mallocWithGC2$cHeapEater r0;
+
+        r0 := @this: mallocWithGC2$cHeapEater;
+
+        $r2 = (gc.gctests.mallocWithGC2.mallocWithGC2$cHeapEater) r0;
+
+        $r1 = $r2.<gc.gctests.mallocWithGC2.mallocWithGC2$cHeapEater: gc.gctests.mallocWithGC2.mallocWithGC2 this$0>;
+
+        virtualinvoke $r1.<gc.gctests.mallocWithGC2.mallocWithGC2: void getMallocLock02()>();
+
+        return;
+    }
+}

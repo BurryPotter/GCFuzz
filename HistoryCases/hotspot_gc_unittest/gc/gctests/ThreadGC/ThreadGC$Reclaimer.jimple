@@ -1,0 +1,74 @@
+class ThreadGC$Reclaimer extends java.lang.Object implements java.lang.Runnable
+{
+    private long waitTime;
+    final gc.gctests.ThreadGC.ThreadGC this$0;
+
+    private void <init>(gc.gctests.ThreadGC.ThreadGC)
+    {
+        gc.gctests.ThreadGC.ThreadGC r1;
+        ThreadGC$Reclaimer r0;
+        gc.gctests.ThreadGC.ThreadGC$Reclaimer $r2, $r3;
+
+        r0 := @this: ThreadGC$Reclaimer;
+
+        r1 := @parameter0: gc.gctests.ThreadGC.ThreadGC;
+
+        $r2 = (gc.gctests.ThreadGC.ThreadGC$Reclaimer) r0;
+
+        $r2.<gc.gctests.ThreadGC.ThreadGC$Reclaimer: gc.gctests.ThreadGC.ThreadGC this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.gctests.ThreadGC.ThreadGC$Reclaimer) r0;
+
+        $r3.<gc.gctests.ThreadGC.ThreadGC$Reclaimer: long waitTime> = 1000L;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Throwable $r2;
+        java.lang.InterruptedException $r1;
+        ThreadGC$Reclaimer r0;
+        long $l0;
+        gc.gctests.ThreadGC.ThreadGC$Reclaimer $r3;
+
+        r0 := @this: ThreadGC$Reclaimer;
+
+     label1:
+        entermonitor r0;
+
+     label2:
+        $r3 = (gc.gctests.ThreadGC.ThreadGC$Reclaimer) r0;
+
+        $l0 = $r3.<gc.gctests.ThreadGC.ThreadGC$Reclaimer: long waitTime>;
+
+        virtualinvoke r0.<java.lang.Object: void wait(long)>($l0);
+
+        exitmonitor r0;
+
+     label3:
+        goto label7;
+
+     label4:
+        $r2 := @caughtexception;
+
+        exitmonitor r0;
+
+     label5:
+        throw $r2;
+
+     label6:
+        $r1 := @caughtexception;
+
+     label7:
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+
+        catch java.lang.Throwable from label2 to label3 with label4;
+        catch java.lang.Throwable from label4 to label5 with label4;
+        catch java.lang.InterruptedException from label1 to label6 with label6;
+    }
+}

@@ -1,0 +1,43 @@
+class ClassOne extends java.lang.Object
+{
+    gc.gctests.ClassDeallocGC.ClassTwo class_two;
+
+    public void <init>()
+    {
+        ClassOne r0;
+        gc.gctests.ClassDeallocGC.ClassOne $r3;
+        gc.gctests.ClassDeallocGC.ClassTwo $r2;
+
+        r0 := @this: ClassOne;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = new gc.gctests.ClassDeallocGC.ClassTwo;
+
+        specialinvoke $r2.<gc.gctests.ClassDeallocGC.ClassTwo: void <init>()>();
+
+        $r3 = (gc.gctests.ClassDeallocGC.ClassOne) r0;
+
+        $r3.<gc.gctests.ClassDeallocGC.ClassOne: gc.gctests.ClassDeallocGC.ClassTwo class_two> = $r2;
+
+        return;
+    }
+
+    public int getCounter()
+    {
+        ClassOne r0;
+        int $i0;
+        gc.gctests.ClassDeallocGC.ClassOne $r2;
+        gc.gctests.ClassDeallocGC.ClassTwo $r1;
+
+        r0 := @this: ClassOne;
+
+        $r2 = (gc.gctests.ClassDeallocGC.ClassOne) r0;
+
+        $r1 = $r2.<gc.gctests.ClassDeallocGC.ClassOne: gc.gctests.ClassDeallocGC.ClassTwo class_two>;
+
+        $i0 = virtualinvoke $r1.<gc.gctests.ClassDeallocGC.ClassTwo: int getCounter()>();
+
+        return $i0;
+    }
+}

@@ -1,0 +1,181 @@
+public class Main extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Main r0;
+
+        r0 := @this: Main;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.net.URL $r28, r33, r34;
+        java.net.URL[] $r5, $r6;
+        java.net.URLClassLoader $r7, r32;
+        java.util.concurrent.atomic.AtomicInteger r19;
+        java.lang.reflect.Method $r16;
+        boolean $z0;
+        java.lang.ref.PhantomReference $r14;
+        java.lang.Exception $r30;
+        java.lang.StringBuilder $r20, $r22, $r23, $r24, $r25;
+        java.lang.ClassLoader $r4;
+        java.lang.Object[] $r17;
+        java.lang.String[] r0;
+        java.lang.ref.ReferenceQueue $r13;
+        int $i0, $i1, i2, i3, i4;
+        java.lang.String $r1, $r26, $r27, $r29;
+        java.lang.ref.WeakReference $r11;
+        java.util.WeakHashMap $r10;
+        java.io.PrintStream $r21, $r31;
+        java.lang.Class[] $r15;
+        driver.Main$RefType $r2;
+        java.lang.Class $r3, $r8;
+        java.lang.Object $r9, $r12, $r18;
+
+        r0 := @parameter0: java.lang.String[];
+
+     label1:
+        $r1 = r0[0];
+
+        $r2 = staticinvoke <driver.Main$RefType: driver.Main$RefType valueOf(java.lang.String)>($r1);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r30 := @caughtexception;
+
+        $r31 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>("Expected argument: \'ClassLoader\' or \'Class\' or \'Object\'");
+
+        return;
+
+     label4:
+        $r3 = class "Ldriver/Main;";
+
+        $r4 = virtualinvoke $r3.<java.lang.Class: java.lang.ClassLoader getClassLoader()>();
+
+        r32 = (java.net.URLClassLoader) $r4;
+
+        r33 = null;
+
+        $r5 = virtualinvoke r32.<java.net.URLClassLoader: java.net.URL[] getURLs()>();
+
+        i2 = lengthof $r5;
+
+        i3 = 0;
+
+     label5:
+        if i3 >= i2 goto label7;
+
+        r34 = $r5[i3];
+
+        $r27 = virtualinvoke r34.<java.net.URL: java.lang.String toString()>();
+
+        $z0 = virtualinvoke $r27.<java.lang.String: boolean contains(java.lang.CharSequence)>("memLeakTestDriver");
+
+        if $z0 == 0 goto label6;
+
+        $r28 = new java.net.URL;
+
+        $r29 = virtualinvoke $r27.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("memLeakTestDriver", "memLeakTest");
+
+        specialinvoke $r28.<java.net.URL: void <init>(java.lang.String)>($r29);
+
+        r33 = $r28;
+
+     label6:
+        i3 = i3 + 1;
+
+        goto label5;
+
+     label7:
+        $r6 = newarray (java.net.URL)[1];
+
+        $r6[0] = r33;
+
+        $r7 = staticinvoke <java.net.URLClassLoader: java.net.URLClassLoader newInstance(java.net.URL[],java.lang.ClassLoader)>($r6, r32);
+
+        $r8 = virtualinvoke $r7.<java.net.URLClassLoader: java.lang.Class loadClass(java.lang.String)>("test.Test");
+
+        $r9 = virtualinvoke $r8.<java.lang.Class: java.lang.Object newInstance()>();
+
+        $r10 = new java.util.WeakHashMap;
+
+        specialinvoke $r10.<java.util.WeakHashMap: void <init>()>();
+
+        $r11 = new java.lang.ref.WeakReference;
+
+        specialinvoke $r11.<java.lang.ref.WeakReference: void <init>(java.lang.Object)>($r8);
+
+        interfaceinvoke $r10.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r7, $r11);
+
+        $r12 = virtualinvoke $r2.<driver.Main$RefType: java.lang.Object get(java.net.URLClassLoader,java.lang.Class,java.lang.Object)>($r7, $r8, $r9);
+
+        $r13 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r13.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r14 = new java.lang.ref.PhantomReference;
+
+        specialinvoke $r14.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r12, $r13);
+
+        $r15 = newarray (java.lang.Class)[0];
+
+        $r16 = virtualinvoke $r8.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getProblemCount", $r15);
+
+        $r17 = newarray (java.lang.Object)[0];
+
+        $r18 = virtualinvoke $r16.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $r17);
+
+        r19 = (java.util.concurrent.atomic.AtomicInteger) $r18;
+
+        i4 = 0;
+
+     label8:
+        $i0 = virtualinvoke r19.<java.util.concurrent.atomic.AtomicInteger: int get()>();
+
+        if $i0 == 0 goto label9;
+
+        if i4 >= 50 goto label9;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r21 = <java.lang.System: java.io.PrintStream err>;
+
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>()>();
+
+        $r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("GC ");
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $i1 = virtualinvoke r19.<java.util.concurrent.atomic.AtomicInteger: int get()>();
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r26);
+
+        i4 = i4 + 1;
+
+        goto label8;
+
+     label9:
+        virtualinvoke $r14.<java.lang.Object: java.lang.String toString()>();
+
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+}

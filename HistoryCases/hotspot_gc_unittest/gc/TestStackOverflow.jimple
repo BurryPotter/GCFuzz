@@ -1,0 +1,90 @@
+public class TestStackOverflow extends java.lang.Object
+{
+    static final int LOOP_LENGTH;
+    static final int LOGGING_STEP;
+
+    public void <init>()
+    {
+        TestStackOverflow r0;
+
+        r0 := @this: TestStackOverflow;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r1, $r3, $r5;
+        java.lang.StackOverflowError $r2;
+        java.lang.Object[] $r0, r7;
+        java.lang.String[] r6;
+        int $i0, i1;
+        java.lang.OutOfMemoryError $r4;
+
+        r6 := @parameter0: java.lang.String[];
+
+        r7 = null;
+
+        i1 = 0;
+
+        goto label7;
+
+     label1:
+        $i0 = i1 % 10000;
+
+        if $i0 != 0 goto label2;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(int)>(i1);
+
+     label2:
+        $r0 = newarray (java.lang.Object)[5];
+
+        $r0[0] = r7;
+
+        $r0[1] = r7;
+
+        $r0[2] = r7;
+
+        $r0[3] = r7;
+
+        $r0[4] = r7;
+
+        r7 = $r0;
+
+     label3:
+        goto label6;
+
+     label4:
+        $r4 := @caughtexception;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>("Caught OutOfMemoryError.");
+
+        return;
+
+     label5:
+        $r2 := @caughtexception;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("Caught StackOverflowError.");
+
+        return;
+
+     label6:
+        i1 = i1 + 1;
+
+     label7:
+        if i1 < 1000000 goto label1;
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label2 to label3 with label4;
+        catch java.lang.StackOverflowError from label2 to label3 with label5;
+    }
+}

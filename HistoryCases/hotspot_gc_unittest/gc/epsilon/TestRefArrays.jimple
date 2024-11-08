@@ -1,0 +1,203 @@
+public class TestRefArrays extends java.lang.Object
+{
+    static long SEED;
+    static int COUNT;
+    static gc.epsilon.TestRefArrays$MyObject[][] arr;
+
+    static void <clinit>()
+    {
+        java.lang.Long $r0;
+        int $i2;
+        long $l0, $l1;
+        java.lang.Integer $r1;
+
+        $l0 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $r0 = staticinvoke <java.lang.Long: java.lang.Long getLong(java.lang.String,long)>("seed", $l0);
+
+        $l1 = virtualinvoke $r0.<java.lang.Long: long longValue()>();
+
+        <gc.epsilon.TestRefArrays: long SEED> = $l1;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String,int)>("count", 1000);
+
+        $i2 = virtualinvoke $r1.<java.lang.Integer: int intValue()>();
+
+        <gc.epsilon.TestRefArrays: int COUNT> = $i2;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestRefArrays r0;
+
+        r0 := @this: TestRefArrays;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.IllegalStateException $r10, $r16;
+        gc.epsilon.TestRefArrays$MyObject[] $r2, $r6, r23;
+        java.util.Random $r0, $r7;
+        gc.epsilon.TestRefArrays$MyObject[][] $r1, $r3, $r4, $r8;
+        java.lang.StringBuilder $r11, $r12, $r13, $r14, $r17, $r18, $r19, $r20;
+        long $l0, $l6;
+        java.lang.String[] r22;
+        int $i1, $i2, $i3, $i4, $i5, $i7, $i8, $i9, $i10, $i11, $i12, $i13, i14, i15, i16, i17;
+        java.lang.String $r15, $r21;
+        gc.epsilon.TestRefArrays$MyObject $r5, $r9;
+
+        r22 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.Random;
+
+        $l0 = <gc.epsilon.TestRefArrays: long SEED>;
+
+        specialinvoke $r0.<java.util.Random: void <init>(long)>($l0);
+
+        $i1 = <gc.epsilon.TestRefArrays: int COUNT>;
+
+        $i2 = $i1 * 100;
+
+        $r1 = newarray (gc.epsilon.TestRefArrays$MyObject[])[$i2];
+
+        <gc.epsilon.TestRefArrays: gc.epsilon.TestRefArrays$MyObject[][] arr> = $r1;
+
+        i14 = 0;
+
+        goto label04;
+
+     label01:
+        $r3 = <gc.epsilon.TestRefArrays: gc.epsilon.TestRefArrays$MyObject[][] arr>;
+
+        $i4 = i14 * 100;
+
+        $r2 = newarray (gc.epsilon.TestRefArrays$MyObject)[$i4];
+
+        $r3[i14] = $r2;
+
+        i15 = 0;
+
+        goto label03;
+
+     label02:
+        $r4 = <gc.epsilon.TestRefArrays: gc.epsilon.TestRefArrays$MyObject[][] arr>;
+
+        $r6 = $r4[i14];
+
+        $r5 = new gc.epsilon.TestRefArrays$MyObject;
+
+        $i5 = virtualinvoke $r0.<java.util.Random: int nextInt()>();
+
+        specialinvoke $r5.<gc.epsilon.TestRefArrays$MyObject: void <init>(int)>($i5);
+
+        $r6[i15] = $r5;
+
+        i15 = i15 + 1;
+
+     label03:
+        if i15 < i14 goto label02;
+
+        i14 = i14 + 1;
+
+     label04:
+        $i3 = <gc.epsilon.TestRefArrays: int COUNT>;
+
+        if i14 < $i3 goto label01;
+
+        $r7 = new java.util.Random;
+
+        $l6 = <gc.epsilon.TestRefArrays: long SEED>;
+
+        specialinvoke $r7.<java.util.Random: void <init>(long)>($l6);
+
+        i16 = 0;
+
+        goto label10;
+
+     label05:
+        $r8 = <gc.epsilon.TestRefArrays: gc.epsilon.TestRefArrays$MyObject[][] arr>;
+
+        r23 = $r8[i16];
+
+        $i9 = lengthof r23;
+
+        $i8 = i16 * 100;
+
+        if $i9 == $i8 goto label06;
+
+        $r16 = new java.lang.IllegalStateException;
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>(java.lang.String)>("Failure: length = ");
+
+        $i12 = lengthof r23;
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", need = ");
+
+        $i13 = i16 * 100;
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i13);
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r16.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r21);
+
+        throw $r16;
+
+     label06:
+        i17 = 0;
+
+        goto label09;
+
+     label07:
+        $r9 = r23[i17];
+
+        $i10 = virtualinvoke $r9.<gc.epsilon.TestRefArrays$MyObject: int id()>();
+
+        $i11 = virtualinvoke $r7.<java.util.Random: int nextInt()>();
+
+        if $i10 == $i11 goto label08;
+
+        $r10 = new java.lang.IllegalStateException;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("Failure: expected = ");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i11);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", actual = ");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r15);
+
+        throw $r10;
+
+     label08:
+        i17 = i17 + 1;
+
+     label09:
+        if i17 < i16 goto label07;
+
+        i16 = i16 + 1;
+
+     label10:
+        $i7 = <gc.epsilon.TestRefArrays: int COUNT>;
+
+        if i16 < $i7 goto label05;
+
+        return;
+    }
+}

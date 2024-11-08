@@ -1,0 +1,90 @@
+class Leak3 extends java.lang.Object
+{
+
+    void <init>()
+    {
+        Leak3 r0;
+
+        r0 := @this: Leak3;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        long $l0, $l1, $l3, $l4, l5, $l6, $l7, l8, l9;
+        java.lang.String[] r11;
+        byte $b2;
+        java.lang.String $r10;
+        java.io.PrintStream $r6;
+        java.util.concurrent.atomic.AtomicLong $r1, $r2, $r3, $r4;
+        Leak3$Resource $r0;
+        java.lang.StringBuilder $r5, $r7, $r8, $r9;
+
+        r11 := @parameter0: java.lang.String[];
+
+        l9 = 0L;
+
+     label1:
+        $r0 = new Leak3$Resource;
+
+        specialinvoke $r0.<Leak3$Resource: void <init>()>();
+
+        $l0 = l9 + 1L;
+
+        l9 = $l0;
+
+        $l1 = $l0 % 10L;
+
+        $b2 = $l1 cmp 0L;
+
+        if $b2 != 0 goto label2;
+
+        $r1 = <Leak3$Resource: java.util.concurrent.atomic.AtomicLong births>;
+
+        $l3 = virtualinvoke $r1.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $r2 = <Leak3$Resource: java.util.concurrent.atomic.AtomicLong deaths>;
+
+        $l4 = virtualinvoke $r2.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        l5 = $l3 - $l4;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <java.lang.System: void runFinalization()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(3000L);
+
+        $r3 = <Leak3$Resource: java.util.concurrent.atomic.AtomicLong births>;
+
+        $l6 = virtualinvoke $r3.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $r4 = <Leak3$Resource: java.util.concurrent.atomic.AtomicLong deaths>;
+
+        $l7 = virtualinvoke $r4.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        l8 = $l6 - $l7;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l5);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ==> ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+     label2:
+        goto label1;
+    }
+}

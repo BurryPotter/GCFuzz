@@ -1,0 +1,45 @@
+class TestcaseData$InternalParsedNode extends java.lang.Object
+{
+    public java.lang.String id;
+    public final java.util.ArrayList connectedTo;
+    public final java.util.ArrayList connectedFrom;
+    public final java.util.List referencesTypes;
+    public boolean isHumongous;
+
+    private void <init>()
+    {
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode $r7, $r8, $r9;
+        TestcaseData$InternalParsedNode r0;
+        java.util.ArrayList $r4, $r5, $r6;
+
+        r0 := @this: TestcaseData$InternalParsedNode;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r4 = new java.util.ArrayList;
+
+        specialinvoke $r4.<java.util.ArrayList: void <init>()>();
+
+        $r7 = (gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode) r0;
+
+        $r7.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: java.util.ArrayList connectedTo> = $r4;
+
+        $r5 = new java.util.ArrayList;
+
+        specialinvoke $r5.<java.util.ArrayList: void <init>()>();
+
+        $r8 = (gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode) r0;
+
+        $r8.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: java.util.ArrayList connectedFrom> = $r5;
+
+        $r6 = new java.util.ArrayList;
+
+        specialinvoke $r6.<java.util.ArrayList: void <init>()>();
+
+        $r9 = (gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode) r0;
+
+        $r9.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$InternalParsedNode: java.util.List referencesTypes> = $r6;
+
+        return;
+    }
+}

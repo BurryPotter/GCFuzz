@@ -1,0 +1,227 @@
+public class TestHumongousNonArrayAllocation extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WB;
+    private static final java.lang.String CLASS_NAME_PREFIX;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+        java.lang.StringBuilder $r1, $r5;
+        java.lang.Class $r2;
+        java.lang.String $r3, $r4, $r6;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.humongousObjects.TestHumongousNonArrayAllocation: sun.hotspot.WhiteBox WB> = $r0;
+
+        $r1 = new java.lang.StringBuilder;
+
+        $r2 = class "Lgc/g1/humongousObjects/TestHumongousNonArrayAllocation;";
+
+        $r3 = virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r4 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r3);
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r4);
+
+        $r5 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        <gc.g1.humongousObjects.TestHumongousNonArrayAllocation: java.lang.String CLASS_NAME_PREFIX> = $r6;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestHumongousNonArrayAllocation r0;
+
+        r0 := @this: TestHumongousNonArrayAllocation;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException, java.io.IOException
+    {
+        java.net.URL $r10;
+        java.net.URL[] $r8;
+        java.net.URLClassLoader $r36;
+        byte $b5;
+        java.nio.file.attribute.FileAttribute[] $r5;
+        java.lang.Long $r18, $r19, $r22, $r24;
+        java.net.URI $r9;
+        gc.g1.humongousObjects.G1SampleClass $r2;
+        java.nio.file.Path $r4, $r7;
+        boolean $z0, $z2, $z3;
+        java.lang.Throwable $r32;
+        java.lang.Object[] $r20, $r28;
+        java.lang.Error $r35;
+        java.lang.String[] r0, $r3;
+        long $l1, $l4, $l6, $l7, $l8, $l9;
+        java.lang.AssertionError $r37;
+        int $i0, $i2, $i3, $i10;
+        java.lang.Boolean $r26, $r27;
+        java.lang.String $r1, $r6, $r12, $r21, $r25, $r29, $r30, $r34;
+        sun.hotspot.WhiteBox $r15, $r16, $r17, $r23;
+        java.lang.Class $r13;
+        java.lang.Object $r14;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 1 goto label1;
+
+        $r35 = new java.lang.Error;
+
+        specialinvoke $r35.<java.lang.Error: void <init>(java.lang.String)>("Test Bug: Expected class name wasn\'t provided as command line argument");
+
+        throw $r35;
+
+     label1:
+        $r1 = r0[0];
+
+        $r2 = staticinvoke <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass valueOf(java.lang.String)>($r1);
+
+        $r3 = newarray (java.lang.String)[0];
+
+        $r4 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>("", $r3);
+
+        $r6 = <gc.g1.humongousObjects.TestHumongousNonArrayAllocation: java.lang.String CLASS_NAME_PREFIX>;
+
+        $r5 = newarray (java.nio.file.attribute.FileAttribute)[0];
+
+        $r7 = staticinvoke <java.nio.file.Files: java.nio.file.Path createTempDirectory(java.nio.file.Path,java.lang.String,java.nio.file.attribute.FileAttribute[])>($r4, $r6, $r5);
+
+        $r8 = newarray (java.net.URL)[1];
+
+        $r9 = interfaceinvoke $r7.<java.nio.file.Path: java.net.URI toUri()>();
+
+        $r10 = virtualinvoke $r9.<java.net.URI: java.net.URL toURL()>();
+
+        $r8[0] = $r10;
+
+        $r36 = new java.net.URLClassLoader;
+
+        specialinvoke $r36.<java.net.URLClassLoader: void <init>(java.net.URL[])>($r8);
+
+     label2:
+        $r12 = <gc.g1.humongousObjects.TestHumongousNonArrayAllocation: java.lang.String CLASS_NAME_PREFIX>;
+
+        $r13 = virtualinvoke $r2.<gc.g1.humongousObjects.G1SampleClass: java.lang.Class getCls(java.lang.ClassLoader,java.nio.file.Path,java.lang.String)>($r36, $r7, $r12);
+
+        $r14 = virtualinvoke $r13.<java.lang.Class: java.lang.Object newInstance()>();
+
+     label3:
+        goto label5;
+
+     label4:
+        $r32 := @caughtexception;
+
+        $r37 = new java.lang.AssertionError;
+
+        specialinvoke $r37.<java.lang.AssertionError: void <init>(java.lang.String,java.lang.Throwable)>("Test Bug: Cannot create object of provided class", $r32);
+
+        throw $r37;
+
+     label5:
+        $r15 = <gc.g1.humongousObjects.TestHumongousNonArrayAllocation: sun.hotspot.WhiteBox WB>;
+
+        $z0 = virtualinvoke $r15.<sun.hotspot.WhiteBox: boolean g1IsHumongous(java.lang.Object)>($r14);
+
+        $l1 = virtualinvoke $r2.<gc.g1.humongousObjects.G1SampleClass: long expectedInstanceSize()>();
+
+        $r16 = <gc.g1.humongousObjects.TestHumongousNonArrayAllocation: sun.hotspot.WhiteBox WB>;
+
+        $i2 = virtualinvoke $r16.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        $i3 = $i2 / 2;
+
+        $l4 = (long) $i3;
+
+        $b5 = $l1 cmp $l4;
+
+        $i10 = (int) $b5;
+
+        if $i10 <= 0 goto label6;
+
+        $z3 = 1;
+
+        $z2 = 1;
+
+        goto label7;
+
+     label6:
+        $z3 = 0;
+
+        $z2 = 0;
+
+     label7:
+        $r17 = <gc.g1.humongousObjects.TestHumongousNonArrayAllocation: sun.hotspot.WhiteBox WB>;
+
+        $l6 = virtualinvoke $r17.<sun.hotspot.WhiteBox: long getObjectSize(java.lang.Object)>($r14);
+
+        $r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l6);
+
+        $l7 = virtualinvoke $r2.<gc.g1.humongousObjects.G1SampleClass: long expectedInstanceSize()>();
+
+        $r19 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l7);
+
+        $r20 = newarray (java.lang.Object)[3];
+
+        $r21 = virtualinvoke $r2.<gc.g1.humongousObjects.G1SampleClass: java.lang.String name()>();
+
+        $r20[0] = $r21;
+
+        $l8 = virtualinvoke $r2.<gc.g1.humongousObjects.G1SampleClass: long expectedInstanceSize()>();
+
+        $r22 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l8);
+
+        $r20[1] = $r22;
+
+        $r23 = <gc.g1.humongousObjects.TestHumongousNonArrayAllocation: sun.hotspot.WhiteBox WB>;
+
+        $l9 = virtualinvoke $r23.<sun.hotspot.WhiteBox: long getObjectSize(java.lang.Object)>($r14);
+
+        $r24 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l9);
+
+        $r20[2] = $r24;
+
+        $r25 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Test Bug: Object of class %s is expected to take %d bytes but it takes %d.", $r20);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r18, $r19, $r25);
+
+        $r26 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        $r27 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z2);
+
+        $r28 = newarray (java.lang.Object)[2];
+
+        $r29 = virtualinvoke $r2.<gc.g1.humongousObjects.G1SampleClass: java.lang.String name()>();
+
+        $r28[0] = $r29;
+
+        if $z3 == 0 goto label8;
+
+        $r34 = "";
+
+        goto label9;
+
+     label8:
+        $r34 = "non-";
+
+     label9:
+        $r28[1] = $r34;
+
+        $r30 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Object of class %s is expected to be %shumongous but it is not", $r28);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r26, $r27, $r30);
+
+        return;
+
+        catch java.lang.Throwable from label2 to label3 with label4;
+    }
+}

@@ -1,0 +1,37 @@
+class TestHumongousAllocNearlyFullRegion$HumongousObjectAllocator extends java.lang.Object
+{
+
+    void <init>()
+    {
+        TestHumongousAllocNearlyFullRegion$HumongousObjectAllocator r0;
+
+        r0 := @this: TestHumongousAllocNearlyFullRegion$HumongousObjectAllocator;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int i0;
+        java.lang.String[] r1;
+        long[] $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r0 = newarray (long)[131069];
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 224 goto label1;
+
+        return;
+    }
+}

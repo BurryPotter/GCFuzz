@@ -1,0 +1,151 @@
+class CircularLinkedList extends java.lang.Object
+{
+    private gc.gctests.MTLinkedListGC.node Root;
+    private final int MAXNODES;
+
+    void <init>()
+    {
+        CircularLinkedList r0;
+        gc.gctests.MTLinkedListGC.CircularLinkedList $r1;
+
+        r0 := @this: CircularLinkedList;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r1.<gc.gctests.MTLinkedListGC.CircularLinkedList: int MAXNODES> = 100000;
+
+        return;
+    }
+
+    synchronized void addElement(java.lang.String)
+    {
+        gc.gctests.MTLinkedListGC.node $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14;
+        int $i0;
+        java.lang.String r2;
+        gc.gctests.MTLinkedListGC.CircularLinkedList $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25;
+        CircularLinkedList r0;
+
+        r0 := @this: CircularLinkedList;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r15 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $i0 = virtualinvoke $r15.<gc.gctests.MTLinkedListGC.CircularLinkedList: int elementCount()>();
+
+        if $i0 < 100000 goto label1;
+
+        return;
+
+     label1:
+        $r14 = new gc.gctests.MTLinkedListGC.node;
+
+        specialinvoke $r14.<gc.gctests.MTLinkedListGC.node: void <init>(java.lang.String)>(r2);
+
+        $r16 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r3 = $r16.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        if $r3 != null goto label2;
+
+        $r17 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r17.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root> = $r14;
+
+        $r18 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r11 = $r18.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        $r19 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r10 = $r19.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        $r11.<gc.gctests.MTLinkedListGC.node: gc.gctests.MTLinkedListGC.node next> = $r10;
+
+        $r20 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r13 = $r20.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        $r21 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r12 = $r21.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        $r13.<gc.gctests.MTLinkedListGC.node: gc.gctests.MTLinkedListGC.node prev> = $r12;
+
+        goto label3;
+
+     label2:
+        $r22 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r4 = $r22.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        $r5 = $r4.<gc.gctests.MTLinkedListGC.node: gc.gctests.MTLinkedListGC.node next>;
+
+        $r14.<gc.gctests.MTLinkedListGC.node: gc.gctests.MTLinkedListGC.node next> = $r5;
+
+        $r23 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r6 = $r23.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        $r7 = $r6.<gc.gctests.MTLinkedListGC.node: gc.gctests.MTLinkedListGC.node next>;
+
+        $r7.<gc.gctests.MTLinkedListGC.node: gc.gctests.MTLinkedListGC.node prev> = $r14;
+
+        $r24 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r8 = $r24.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        $r8.<gc.gctests.MTLinkedListGC.node: gc.gctests.MTLinkedListGC.node next> = $r14;
+
+        $r25 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r9 = $r25.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        $r14.<gc.gctests.MTLinkedListGC.node: gc.gctests.MTLinkedListGC.node prev> = $r9;
+
+     label3:
+        return;
+    }
+
+    private synchronized int elementCount()
+    {
+        gc.gctests.MTLinkedListGC.CircularLinkedList $r5, $r6, $r7;
+        gc.gctests.MTLinkedListGC.node $r1, $r2, $r3, r4;
+        CircularLinkedList r0;
+        int i0;
+
+        r0 := @this: CircularLinkedList;
+
+        $r5 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r1 = $r5.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        if $r1 != null goto label1;
+
+        return 0;
+
+     label1:
+        $r6 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        r4 = $r6.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        i0 = 0;
+
+     label2:
+        $r3 = r4.<gc.gctests.MTLinkedListGC.node: gc.gctests.MTLinkedListGC.node prev>;
+
+        r4 = $r3;
+
+        i0 = i0 + 1;
+
+        $r7 = (gc.gctests.MTLinkedListGC.CircularLinkedList) r0;
+
+        $r2 = $r7.<gc.gctests.MTLinkedListGC.CircularLinkedList: gc.gctests.MTLinkedListGC.node Root>;
+
+        if $r3 != $r2 goto label2;
+
+        return i0;
+    }
+}

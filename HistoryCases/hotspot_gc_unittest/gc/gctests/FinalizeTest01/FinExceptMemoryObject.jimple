@@ -1,0 +1,33 @@
+class FinExceptMemoryObject extends nsk.share.gc.FinMemoryObject
+{
+
+    public void <init>(int)
+    {
+        int i0;
+        FinExceptMemoryObject r0;
+
+        r0 := @this: FinExceptMemoryObject;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<nsk.share.gc.FinMemoryObject: void <init>(int)>(i0);
+
+        return;
+    }
+
+    protected void finalize()
+    {
+        FinExceptMemoryObject r0;
+        java.lang.RuntimeException $r1;
+
+        r0 := @this: FinExceptMemoryObject;
+
+        specialinvoke r0.<nsk.share.gc.FinMemoryObject: void finalize()>();
+
+        $r1 = new java.lang.RuntimeException;
+
+        specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>("Exception in finalizer");
+
+        throw $r1;
+    }
+}

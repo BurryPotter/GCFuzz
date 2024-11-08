@@ -1,0 +1,420 @@
+public class TestStealMarkingTask extends java.lang.Object
+{
+    private static final long MB;
+    private int listLength;
+    private int sublistLength;
+    private int empty2nonemptySublistRation;
+    private int iterations;
+    private test.gc.TestStealMarkingTask$ListOfLists listList;
+
+    public void <init>()
+    {
+        TestStealMarkingTask r0;
+
+        r0 := @this: TestStealMarkingTask;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        test.gc.TestStealMarkingTask $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new test.gc.TestStealMarkingTask;
+
+        specialinvoke $r0.<test.gc.TestStealMarkingTask: void <init>()>();
+
+        specialinvoke $r0.<test.gc.TestStealMarkingTask: void parseCmdLine(java.lang.String[])>(r1);
+
+        virtualinvoke $r0.<test.gc.TestStealMarkingTask: void buildListOfLists()>();
+
+        specialinvoke $r0.<test.gc.TestStealMarkingTask: void run()>();
+
+        return;
+    }
+
+    private void run()
+    {
+        long $l2, $l3, $l4;
+        TestStealMarkingTask r0;
+        int $i0, $i1;
+        java.lang.String $r5;
+        test.gc.TestStealMarkingTask $r7, $r8, $r9, $r10, $r11;
+        java.lang.StringBuilder $r2, $r3, $r4, $r6;
+
+        r0 := @this: TestStealMarkingTask;
+
+     label1:
+        $r7 = (test.gc.TestStealMarkingTask) r0;
+
+        $i0 = $r7.<test.gc.TestStealMarkingTask: int iterations>;
+
+        $i1 = $i0 - 1;
+
+        $r8 = (test.gc.TestStealMarkingTask) r0;
+
+        $r8.<test.gc.TestStealMarkingTask: int iterations> = $i1;
+
+        if $i0 <= 0 goto label2;
+
+        $r9 = (test.gc.TestStealMarkingTask) r0;
+
+        specialinvoke $r9.<test.gc.TestStealMarkingTask: void message(java.lang.String)>("Calling System.gc()");
+
+        $l2 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $l3 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r10 = (test.gc.TestStealMarkingTask) r0;
+
+        specialinvoke $r10.<test.gc.TestStealMarkingTask: void heapStats()>();
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Full GC duration: ");
+
+        $l4 = $l3 - $l2;
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l4);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r11 = (test.gc.TestStealMarkingTask) r0;
+
+        specialinvoke $r11.<test.gc.TestStealMarkingTask: void message(java.lang.String)>($r5);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    public void buildListOfLists()
+    {
+        test.gc.TestStealMarkingTask$ListOfLists $r8, r10, $r12;
+        TestStealMarkingTask r0;
+        int $i0, $i1, $i2, $i3, $i4, i5, $i6;
+        java.lang.String $r6;
+        test.gc.TestStealMarkingTask $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24;
+        java.lang.StringBuilder $r2, $r3, $r4, $r5, $r11;
+        java.lang.OutOfMemoryError $r9;
+
+        r0 := @this: TestStealMarkingTask;
+
+     label1:
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Building list of length ");
+
+        $r13 = (test.gc.TestStealMarkingTask) r0;
+
+        $i0 = $r13.<test.gc.TestStealMarkingTask: int listLength>;
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" holding sub-lists of length ");
+
+        $r14 = (test.gc.TestStealMarkingTask) r0;
+
+        $i1 = $r14.<test.gc.TestStealMarkingTask: int sublistLength>;
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r15 = (test.gc.TestStealMarkingTask) r0;
+
+        specialinvoke $r15.<test.gc.TestStealMarkingTask: void message(java.lang.String)>($r6);
+
+        $r16 = (test.gc.TestStealMarkingTask) r0;
+
+        specialinvoke $r16.<test.gc.TestStealMarkingTask: void heapStats()>();
+
+        r10 = null;
+
+        i5 = 0;
+
+     label2:
+        $r17 = (test.gc.TestStealMarkingTask) r0;
+
+        $i2 = $r17.<test.gc.TestStealMarkingTask: int listLength>;
+
+        if i5 >= $i2 goto label5;
+
+        $r12 = new test.gc.TestStealMarkingTask$ListOfLists;
+
+        $r8 = r10;
+
+        $r18 = (test.gc.TestStealMarkingTask) r0;
+
+        $i3 = $r18.<test.gc.TestStealMarkingTask: int empty2nonemptySublistRation>;
+
+        $i4 = i5 % $i3;
+
+        if $i4 != 0 goto label3;
+
+        $r19 = (test.gc.TestStealMarkingTask) r0;
+
+        $i6 = $r19.<test.gc.TestStealMarkingTask: int sublistLength>;
+
+        goto label4;
+
+     label3:
+        $i6 = 0;
+
+     label4:
+        specialinvoke $r12.<test.gc.TestStealMarkingTask$ListOfLists: void <init>(test.gc.TestStealMarkingTask$ListOfLists,int)>($r8, $i6);
+
+        r10 = $r12;
+
+        i5 = i5 + 1;
+
+        goto label2;
+
+     label5:
+        $r20 = (test.gc.TestStealMarkingTask) r0;
+
+        $r20.<test.gc.TestStealMarkingTask: test.gc.TestStealMarkingTask$ListOfLists listList> = r10;
+
+        $r21 = (test.gc.TestStealMarkingTask) r0;
+
+        specialinvoke $r21.<test.gc.TestStealMarkingTask: void message(java.lang.String)>("done");
+
+        $r22 = (test.gc.TestStealMarkingTask) r0;
+
+        specialinvoke $r22.<test.gc.TestStealMarkingTask: void heapStats()>();
+
+     label6:
+        goto label8;
+
+     label7:
+        $r9 := @caughtexception;
+
+        $r23 = (test.gc.TestStealMarkingTask) r0;
+
+        $r23.<test.gc.TestStealMarkingTask: test.gc.TestStealMarkingTask$ListOfLists listList> = null;
+
+        $r24 = (test.gc.TestStealMarkingTask) r0;
+
+        specialinvoke $r24.<test.gc.TestStealMarkingTask: void message(java.lang.String)>("OutOfMemory: please reduce list lengths");
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label8:
+        return;
+
+        catch java.lang.OutOfMemoryError from label1 to label6 with label7;
+    }
+
+    private void heapStats()
+    {
+        long $l0, $l1, $l2, $l3;
+        TestStealMarkingTask r2;
+        java.lang.String $r11;
+        java.lang.Runtime $r0, $r1;
+        test.gc.TestStealMarkingTask $r13, $r14;
+        float $f0, $f1, $f2, $f3, $f4;
+        java.lang.StringBuilder $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r12;
+
+        r2 := @this: TestStealMarkingTask;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+        $r1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l1 = virtualinvoke $r1.<java.lang.Runtime: long maxMemory()>();
+
+        $f1 = (float) $l0;
+
+        $f0 = (float) $l1;
+
+        $f2 = $f1 / $f0;
+
+        $f3 = $f2 * 100.0F;
+
+        $r13 = (test.gc.TestStealMarkingTask) r2;
+
+        $f4 = specialinvoke $r13.<test.gc.TestStealMarkingTask: float round(float)>($f3);
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+
+        $r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Heap stats: free:");
+
+        $l2 = $l0 / 1048576L;
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" MB (");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>($f4);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" %)  max:");
+
+        $l3 = $l1 / 1048576L;
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" MB");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r14 = (test.gc.TestStealMarkingTask) r2;
+
+        specialinvoke $r14.<test.gc.TestStealMarkingTask: void message(java.lang.String)>($r11);
+
+        return;
+    }
+
+    private float round(float)
+    {
+        TestStealMarkingTask r0;
+        int $i0;
+        float f0, $f1, $f2, $f3;
+
+        r0 := @this: TestStealMarkingTask;
+
+        f0 := @parameter0: float;
+
+        $f1 = f0 * 10.0F;
+
+        $i0 = staticinvoke <java.lang.Math: int round(float)>($f1);
+
+        $f2 = (float) $i0;
+
+        $f3 = $f2 / 10.0F;
+
+        return $f3;
+    }
+
+    private void parseCmdLine(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        TestStealMarkingTask r1;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.String $r2, $r3, $r4, $r5, $r9, $r12;
+        test.gc.TestStealMarkingTask $r14, $r15, $r16, $r17, $r18, $r19, $r20;
+        java.lang.StringBuilder $r7, $r10, $r11, $r13;
+        java.lang.Class $r8;
+
+        r1 := @this: TestStealMarkingTask;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 4 goto label1;
+
+        $r14 = (test.gc.TestStealMarkingTask) r1;
+
+        specialinvoke $r14.<test.gc.TestStealMarkingTask: void message()>();
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("usage: java ");
+
+        $r8 = class "Ltest/gc/TestStealMarkingTask;";
+
+        $r9 = virtualinvoke $r8.<java.lang.Class: java.lang.String getName()>();
+
+        $r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" <test iterations> <list length, e.g. 10000> <sublist length, e.g. 10000> <ratio #empty : #non-empty sublists, e.g. 2>");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r15 = (test.gc.TestStealMarkingTask) r1;
+
+        specialinvoke $r15.<test.gc.TestStealMarkingTask: void message(java.lang.String)>($r12);
+
+        $r16 = (test.gc.TestStealMarkingTask) r1;
+
+        specialinvoke $r16.<test.gc.TestStealMarkingTask: void message()>();
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label1:
+        $r2 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        $r17 = (test.gc.TestStealMarkingTask) r1;
+
+        $r17.<test.gc.TestStealMarkingTask: int iterations> = $i1;
+
+        $r3 = r0[1];
+
+        $i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        $r18 = (test.gc.TestStealMarkingTask) r1;
+
+        $r18.<test.gc.TestStealMarkingTask: int listLength> = $i2;
+
+        $r4 = r0[2];
+
+        $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r4);
+
+        $r19 = (test.gc.TestStealMarkingTask) r1;
+
+        $r19.<test.gc.TestStealMarkingTask: int sublistLength> = $i3;
+
+        $r5 = r0[3];
+
+        $i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r5);
+
+        $r20 = (test.gc.TestStealMarkingTask) r1;
+
+        $r20.<test.gc.TestStealMarkingTask: int empty2nonemptySublistRation> = $i4;
+
+        return;
+    }
+
+    private void message(java.lang.String)
+    {
+        java.io.PrintStream $r1;
+        java.lang.String r0;
+        TestStealMarkingTask r2;
+
+        r2 := @this: TestStealMarkingTask;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(r0);
+
+        return;
+    }
+
+    private void message()
+    {
+        java.io.PrintStream $r0;
+        TestStealMarkingTask r1;
+
+        r1 := @this: TestStealMarkingTask;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println()>();
+
+        return;
+    }
+}

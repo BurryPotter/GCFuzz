@@ -1,0 +1,125 @@
+public class TestSmallHeap extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestSmallHeap r0;
+
+        r0 := @this: TestSmallHeap;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        int $i0, $i1;
+        sun.hotspot.WhiteBox $r0;
+        long l2;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $i0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: int getVMPageSize()>();
+
+        $i1 = $i0 * 512;
+
+        l2 = (long) $i1;
+
+        staticinvoke <gc.TestSmallHeap: void verifySmallHeapSize(java.lang.String,long)>("-XX:+UseParallelGC", l2);
+
+        staticinvoke <gc.TestSmallHeap: void verifySmallHeapSize(java.lang.String,long)>("-XX:+UseSerialGC", l2);
+
+        staticinvoke <gc.TestSmallHeap: void verifySmallHeapSize(java.lang.String,long)>("-XX:+UseG1GC", l2);
+
+        staticinvoke <gc.TestSmallHeap: void verifySmallHeapSize(java.lang.String,long)>("-XX:+UseConcMarkSweepGC", l2);
+
+        return;
+    }
+
+    private static void verifySmallHeapSize(java.lang.String, long) throws java.lang.Exception
+    {
+        java.lang.Object[] $r8;
+        java.lang.String[] $r7, $r9;
+        long $l0, $l1, $l2, l3;
+        java.lang.Long $r15, $r16, $r17, $r18;
+        java.lang.String r1, $r4, $r6, $r13, $r14;
+        java.lang.ProcessBuilder $r10;
+        java.util.LinkedList $r0;
+        java.lang.Process $r12;
+        jdk.test.lib.process.OutputAnalyzer $r11;
+        java.lang.StringBuilder $r2, $r3;
+        java.lang.Class $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        l3 := @parameter1: long;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>()>();
+
+        virtualinvoke $r0.<java.util.LinkedList: boolean add(java.lang.Object)>(r1);
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xmx");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(4194304L);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r0.<java.util.LinkedList: boolean add(java.lang.Object)>($r4);
+
+        virtualinvoke $r0.<java.util.LinkedList: boolean add(java.lang.Object)>("-XX:+PrintFlagsFinal");
+
+        $r5 = class "Lgc/VerifyHeapSize;";
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke $r0.<java.util.LinkedList: boolean add(java.lang.Object)>($r6);
+
+        $r7 = newarray (java.lang.String)[0];
+
+        $r8 = virtualinvoke $r0.<java.util.LinkedList: java.lang.Object[] toArray(java.lang.Object[])>($r7);
+
+        $r9 = (java.lang.String[]) $r8;
+
+        $r10 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r9);
+
+        $r11 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r12 = virtualinvoke $r10.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r12);
+
+        virtualinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $l0 = staticinvoke <java.lang.Math: long max(long,long)>(l3, 4194304L);
+
+        $r13 = virtualinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String,int)>("MaxHeapSize.+=\\s+(\\d+)", 1);
+
+        $l1 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r13);
+
+        $r14 = virtualinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String,int)>("Actual heap size: (\\d+)", 1);
+
+        $l2 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r14);
+
+        $r15 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r15, $r16);
+
+        $r17 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertLessThanOrEqual(java.lang.Comparable,java.lang.Comparable)>($r17, $r18);
+
+        return;
+    }
+}

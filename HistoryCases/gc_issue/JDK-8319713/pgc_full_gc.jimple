@@ -1,0 +1,61 @@
+class pgc_full_gc extends java.lang.Object
+{
+    static int num_obj;
+    static pgc_full_gc$MyObject[] obj_arr;
+
+    void <init>()
+    {
+        pgc_full_gc r0;
+
+        r0 := @this: pgc_full_gc;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        pgc_full_gc$MyObject $r1;
+        pgc_full_gc$MyObject[] $r0, $r2;
+        int $i0, $i1, i2;
+        java.lang.String[] r3;
+
+        r3 := @parameter0: java.lang.String[];
+
+        $i0 = <pgc_full_gc: int num_obj>;
+
+        $r0 = newarray (pgc_full_gc$MyObject)[$i0];
+
+        <pgc_full_gc: pgc_full_gc$MyObject[] obj_arr> = $r0;
+
+        i2 = 0;
+
+     label1:
+        $i1 = <pgc_full_gc: int num_obj>;
+
+        if i2 >= $i1 goto label2;
+
+        $r2 = <pgc_full_gc: pgc_full_gc$MyObject[] obj_arr>;
+
+        $r1 = new pgc_full_gc$MyObject;
+
+        specialinvoke $r1.<pgc_full_gc$MyObject: void <init>()>();
+
+        $r2[i2] = $r1;
+
+        i2 = i2 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        <pgc_full_gc: int num_obj> = 80000000;
+
+        return;
+    }
+}

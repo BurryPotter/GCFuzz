@@ -1,0 +1,5 @@
+public interface  BytecodeFactory extends java.lang.Object
+{
+
+    public abstract gc.g1.unloading.bytecode.Bytecode createBytecode(java.lang.String);
+}

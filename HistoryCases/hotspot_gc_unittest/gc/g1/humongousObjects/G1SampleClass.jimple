@@ -1,0 +1,199 @@
+public abstract enum class G1SampleClass extends java.lang.Enum
+{
+    public static final enum gc.g1.humongousObjects.G1SampleClass LARGEST_NON_HUMONGOUS;
+    public static final enum gc.g1.humongousObjects.G1SampleClass SMALLEST_HUMONGOUS;
+    public static final enum gc.g1.humongousObjects.G1SampleClass ONE_REGION_HUMONGOUS;
+    public static final enum gc.g1.humongousObjects.G1SampleClass TWO_REGION_HUMONGOUS;
+    public static final enum gc.g1.humongousObjects.G1SampleClass MORE_THAN_TWO_REGION_HUMONGOUS;
+    private static final long G1_REGION_SIZE;
+    private static final long HALF_G1_REGION_SIZE;
+    private static final gc.g1.humongousObjects.G1SampleClass[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        long $l1, $l2, $l3;
+        int $i0;
+        gc.g1.humongousObjects.G1SampleClass $r6, $r7, $r8, $r9, $r10, $r17, $r18, $r19, $r20, $r21;
+        gc.g1.humongousObjects.G1SampleClass[] $r5;
+        sun.hotspot.WhiteBox $r11;
+        gc.g1.humongousObjects.G1SampleClass$5 $r16;
+        gc.g1.humongousObjects.G1SampleClass$4 $r15;
+        gc.g1.humongousObjects.G1SampleClass$3 $r14;
+        gc.g1.humongousObjects.G1SampleClass$2 $r13;
+        gc.g1.humongousObjects.G1SampleClass$1 $r12;
+
+        $r12 = new gc.g1.humongousObjects.G1SampleClass$1;
+
+        specialinvoke $r12.<gc.g1.humongousObjects.G1SampleClass$1: void <init>(java.lang.String,int)>("LARGEST_NON_HUMONGOUS", 0);
+
+        $r17 = (gc.g1.humongousObjects.G1SampleClass) $r12;
+
+        <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass LARGEST_NON_HUMONGOUS> = $r17;
+
+        $r13 = new gc.g1.humongousObjects.G1SampleClass$2;
+
+        specialinvoke $r13.<gc.g1.humongousObjects.G1SampleClass$2: void <init>(java.lang.String,int)>("SMALLEST_HUMONGOUS", 1);
+
+        $r18 = (gc.g1.humongousObjects.G1SampleClass) $r13;
+
+        <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass SMALLEST_HUMONGOUS> = $r18;
+
+        $r14 = new gc.g1.humongousObjects.G1SampleClass$3;
+
+        specialinvoke $r14.<gc.g1.humongousObjects.G1SampleClass$3: void <init>(java.lang.String,int)>("ONE_REGION_HUMONGOUS", 2);
+
+        $r19 = (gc.g1.humongousObjects.G1SampleClass) $r14;
+
+        <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass ONE_REGION_HUMONGOUS> = $r19;
+
+        $r15 = new gc.g1.humongousObjects.G1SampleClass$4;
+
+        specialinvoke $r15.<gc.g1.humongousObjects.G1SampleClass$4: void <init>(java.lang.String,int)>("TWO_REGION_HUMONGOUS", 3);
+
+        $r20 = (gc.g1.humongousObjects.G1SampleClass) $r15;
+
+        <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass TWO_REGION_HUMONGOUS> = $r20;
+
+        $r16 = new gc.g1.humongousObjects.G1SampleClass$5;
+
+        specialinvoke $r16.<gc.g1.humongousObjects.G1SampleClass$5: void <init>(java.lang.String,int)>("MORE_THAN_TWO_REGION_HUMONGOUS", 4);
+
+        $r21 = (gc.g1.humongousObjects.G1SampleClass) $r16;
+
+        <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass MORE_THAN_TWO_REGION_HUMONGOUS> = $r21;
+
+        $r5 = newarray (gc.g1.humongousObjects.G1SampleClass)[5];
+
+        $r6 = <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass LARGEST_NON_HUMONGOUS>;
+
+        $r5[0] = $r6;
+
+        $r7 = <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass SMALLEST_HUMONGOUS>;
+
+        $r5[1] = $r7;
+
+        $r8 = <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass ONE_REGION_HUMONGOUS>;
+
+        $r5[2] = $r8;
+
+        $r9 = <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass TWO_REGION_HUMONGOUS>;
+
+        $r5[3] = $r9;
+
+        $r10 = <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass MORE_THAN_TWO_REGION_HUMONGOUS>;
+
+        $r5[4] = $r10;
+
+        <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass[] ENUM$VALUES> = $r5;
+
+        $r11 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $i0 = virtualinvoke $r11.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        $l1 = (long) $i0;
+
+        <gc.g1.humongousObjects.G1SampleClass: long G1_REGION_SIZE> = $l1;
+
+        $l2 = <gc.g1.humongousObjects.G1SampleClass: long G1_REGION_SIZE>;
+
+        $l3 = $l2 / 2L;
+
+        <gc.g1.humongousObjects.G1SampleClass: long HALF_G1_REGION_SIZE> = $l3;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        G1SampleClass r0;
+        java.lang.String r1;
+
+        r0 := @this: G1SampleClass;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public java.lang.Class getCls(java.lang.ClassLoader, java.nio.file.Path, java.lang.String) throws java.io.IOException, java.lang.ClassNotFoundException
+    {
+        long $l0;
+        G1SampleClass r2;
+        java.lang.StringBuilder $r6, $r11;
+        java.lang.Class $r10;
+        java.lang.ClassLoader r0;
+        java.lang.String $r3, $r4, $r5, $r7, r9;
+        gc.g1.humongousObjects.G1SampleClass $r12, $r13;
+        java.nio.file.Path r8;
+
+        r2 := @this: G1SampleClass;
+
+        r0 := @parameter0: java.lang.ClassLoader;
+
+        r8 := @parameter1: java.nio.file.Path;
+
+        r9 := @parameter2: java.lang.String;
+
+        $r11 = new java.lang.StringBuilder;
+
+        $r12 = (gc.g1.humongousObjects.G1SampleClass) r2;
+
+        $r3 = virtualinvoke $r12.<gc.g1.humongousObjects.G1SampleClass: java.lang.String name()>();
+
+        $r4 = staticinvoke <gc.testlibrary.Helpers: java.lang.String enumNameToClassName(java.lang.String)>($r3);
+
+        $r5 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r4);
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>($r5);
+
+        $r6 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Class");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r13 = (gc.g1.humongousObjects.G1SampleClass) r2;
+
+        $l0 = virtualinvoke $r13.<gc.g1.humongousObjects.G1SampleClass: long expectedInstanceSize()>();
+
+        $r10 = staticinvoke <gc.testlibrary.Helpers: java.lang.Class generateCompileAndLoad(java.lang.ClassLoader,java.lang.String,long,java.nio.file.Path,java.lang.String)>(r0, $r7, $l0, r8, r9);
+
+        return $r10;
+    }
+
+    public abstract long expectedInstanceSize();
+
+    public static gc.g1.humongousObjects.G1SampleClass[] values()
+    {
+        int $i0;
+        gc.g1.humongousObjects.G1SampleClass[] $r0, $r1;
+
+        $r0 = <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.g1.humongousObjects.G1SampleClass)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.g1.humongousObjects.G1SampleClass valueOf(java.lang.String)
+    {
+        java.lang.String r0;
+        java.lang.Enum $r1;
+        gc.g1.humongousObjects.G1SampleClass $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/g1/humongousObjects/G1SampleClass;", r0);
+
+        $r2 = (gc.g1.humongousObjects.G1SampleClass) $r1;
+
+        return $r2;
+    }
+}

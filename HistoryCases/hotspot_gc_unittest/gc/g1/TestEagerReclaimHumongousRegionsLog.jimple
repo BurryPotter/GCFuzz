@@ -1,0 +1,307 @@
+public class TestEagerReclaimHumongousRegionsLog extends java.lang.Object
+{
+    private static final java.lang.String LogSeparator;
+
+    public void <init>()
+    {
+        TestEagerReclaimHumongousRegionsLog r0;
+
+        r0 := @this: TestEagerReclaimHumongousRegionsLog;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void runTest() throws java.lang.Exception
+    {
+        java.lang.Integer $r41, $r42, $r43, $r44, $r45, $r46, $r47, $r48, $r49, $r50;
+        java.util.stream.Stream $r10, $r12, $r14;
+        java.lang.StringBuilder $r18, $r19, $r20, $r29, $r31, $r32, $r33, $r34, $r35, $r36, $r37, $r38, $r39, $r51, $r52, $r53, $r54, $r55;
+        java.lang.Object[] $r16;
+        java.lang.String $r2, $r7, $r8, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r40, $r56;
+        java.util.function.IntFunction $r15;
+        boolean $z0;
+        java.lang.Process $r5;
+        java.util.function.Predicate $r11;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+        java.lang.String[] $r0, $r9, r17;
+        java.util.function.Function $r13;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, i15, $i16;
+        java.lang.ProcessBuilder $r3;
+        java.io.PrintStream $r6, $r30;
+        java.lang.Class $r1;
+
+        $r0 = newarray (java.lang.String)[10];
+
+        $r0[0] = "-Xbootclasspath/a:.";
+
+        $r0[1] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r0[2] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[3] = "-XX:+WhiteBoxAPI";
+
+        $r0[4] = "-XX:+UseG1GC";
+
+        $r0[5] = "-XX:G1HeapRegionSize=1M";
+
+        $r0[6] = "-Xms128M";
+
+        $r0[7] = "-Xmx128M";
+
+        $r0[8] = "-Xlog:gc+phases=trace,gc+heap=info";
+
+        $r1 = class "Lgc/g1/TestEagerReclaimHumongousRegionsLog$GCTest;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[9] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r4 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        $r8 = virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        $r9 = virtualinvoke $r8.<java.lang.String: java.lang.String[] split(java.lang.String)>("\\R");
+
+        $r10 = staticinvoke <java.util.Arrays: java.util.stream.Stream stream(java.lang.Object[])>($r9);
+
+        $r11 = staticinvoke <TestEagerReclaimHumongousRegionsLog$lambda_0__1: java.util.function.Predicate bootstrap$()>();
+
+        $r12 = interfaceinvoke $r10.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r11);
+
+        $r13 = staticinvoke <TestEagerReclaimHumongousRegionsLog$lambda_1__2: java.util.function.Function bootstrap$()>();
+
+        $r14 = interfaceinvoke $r12.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r13);
+
+        $r15 = staticinvoke <TestEagerReclaimHumongousRegionsLog$lambda_2__3: java.util.function.IntFunction bootstrap$()>();
+
+        $r16 = interfaceinvoke $r14.<java.util.stream.Stream: java.lang.Object[] toArray(java.util.function.IntFunction)>($r15);
+
+        r17 = (java.lang.String[]) $r16;
+
+        $i0 = lengthof r17;
+
+        $i1 = $i0 % 6;
+
+        if $i1 != 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        $r18 = new java.lang.StringBuilder;
+
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>("There seems to be an unexpected amount of log messages (total: ");
+
+        $i2 = lengthof r17;
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(") per GC");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z0, $r21);
+
+        i15 = 0;
+
+        goto label5;
+
+     label3:
+        $i3 = i15 + 1;
+
+        $r22 = r17[$i3];
+
+        $i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r22);
+
+        $i5 = i15 + 2;
+
+        $r23 = r17[$i5];
+
+        $i6 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r23);
+
+        $i7 = i15 + 4;
+
+        $r24 = r17[$i7];
+
+        $i8 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r24);
+
+        $i9 = i15 + 5;
+
+        $r25 = r17[$i9];
+
+        $r26 = virtualinvoke $r25.<java.lang.String: java.lang.String substring(int,int)>(0, 1);
+
+        $i10 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r26);
+
+        $i11 = i15 + 5;
+
+        $r27 = r17[$i11];
+
+        $r28 = virtualinvoke $r27.<java.lang.String: java.lang.String substring(int,int)>(3, 4);
+
+        $i12 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r28);
+
+        $r30 = <java.lang.System: java.io.PrintStream out>;
+
+        $r29 = new java.lang.StringBuilder;
+
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>("total ");
+
+        $r31 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" candidate ");
+
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" reclaimed ");
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8);
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" before ");
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i10);
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" after ");
+
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i12);
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>($r40);
+
+        $r41 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+
+        $r42 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object,java.lang.String)>($r41, $r42, "Not all humonguous objects are candidates");
+
+        $r43 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i8);
+
+        $r44 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertLTE(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r43, $r44, "The number of reclaimed objects must be less or equal than the number of candidates");
+
+        if $i8 <= 0 goto label4;
+
+        $r45 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i12);
+
+        $r46 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i10);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertLT(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r45, $r46, "Number of regions after must be smaller than before.");
+
+        $r47 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i8);
+
+        $r48 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i6);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object,java.lang.String)>($r47, $r48, "Must have reclaimed all candidates.");
+
+        $i13 = $i10 - $i12;
+
+        $r49 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i13);
+
+        $r50 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i8);
+
+        $r51 = new java.lang.StringBuilder;
+
+        specialinvoke $r51.<java.lang.StringBuilder: void <init>(java.lang.String)>("Number of regions reclaimed (");
+
+        $i14 = $i10 - $i12;
+
+        $r52 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i14);
+
+        $r53 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(") must be larger than number of objects reclaimed (");
+
+        $r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8);
+
+        $r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")");
+
+        $r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGT(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r49, $r50, $r56);
+
+     label4:
+        i15 = i15 + 6;
+
+     label5:
+        $i16 = lengthof r17;
+
+        if i15 < $i16 goto label3;
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.g1.TestEagerReclaimHumongousRegionsLog: void runTest()>();
+
+        return;
+    }
+
+    private static boolean lambda$0(java.lang.String)
+    {
+        java.lang.String r0;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean contains(java.lang.CharSequence)>("Humongous");
+
+        return $z0;
+    }
+
+    private static java.lang.String lambda$1(java.lang.String)
+    {
+        int $i0, $i1, $i2;
+        java.lang.String r0, $r1, $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $i0 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String)>(": ");
+
+        $r1 = ": ";
+
+        $i1 = virtualinvoke $r1.<java.lang.String: int length()>();
+
+        $i2 = $i0 + $i1;
+
+        $r2 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int)>($i2);
+
+        return $r2;
+    }
+
+    private static java.lang.String[] lambda$2(int)
+    {
+        int i0;
+        java.lang.String[] $r0;
+
+        i0 := @parameter0: int;
+
+        $r0 = newarray (java.lang.String)[i0];
+
+        return $r0;
+    }
+}

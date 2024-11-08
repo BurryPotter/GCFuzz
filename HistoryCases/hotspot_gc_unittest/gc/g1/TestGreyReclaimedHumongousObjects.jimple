@@ -1,0 +1,200 @@
+public class TestGreyReclaimedHumongousObjects extends java.lang.Object
+{
+    private static final long MAX_MEMORY;
+    private static final int OLD_COUNT;
+    private static final int THREAD_COUNT;
+    private static final java.lang.String THREAD_NAME;
+
+    static void <clinit>()
+    {
+        long $l0;
+        java.lang.Runtime $r0;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long maxMemory()>();
+
+        <gc.g1.TestGreyReclaimedHumongousObjects: long MAX_MEMORY> = $l0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestGreyReclaimedHumongousObjects r0;
+
+        r0 := @this: TestGreyReclaimedHumongousObjects;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        com.sun.management.VMOption $r19;
+        java.lang.Runnable $r43;
+        gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory $r40;
+        java.util.concurrent.ThreadFactory $r42;
+        boolean $z0;
+        java.lang.StringBuilder $r4, $r5, $r12, $r13, $r17, $r29, $r30, $r31, $r34, $r36, $r37, $r38;
+        long $l0, $l6, l7;
+        java.lang.String[] r7;
+        int $i1, $i2, $i3, $i4, $i5, i8;
+        java.lang.management.PlatformManagedObject $r0;
+        java.lang.String $r6, $r8, $r9, $r14, $r18, $r20, $r32;
+        java.util.concurrent.ExecutorService $r22;
+        gc.g1.TestGreyReclaimedHumongousObjects$Runner $r41;
+        java.io.PrintStream $r3, $r11, $r16, $r23, $r26;
+        java.lang.RuntimeException $r35, $r39;
+        java.util.concurrent.TimeUnit $r25;
+        com.sun.management.HotSpotDiagnosticMXBean r1;
+
+        r7 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.PlatformManagedObject getPlatformMXBean(java.lang.Class)>(class "Lcom/sun/management/HotSpotDiagnosticMXBean;");
+
+        r1 = (com.sun.management.HotSpotDiagnosticMXBean) $r0;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r34 = new java.lang.StringBuilder;
+
+        specialinvoke $r34.<java.lang.StringBuilder: void <init>(java.lang.String)>("Max memory= ");
+
+        $l0 = <gc.g1.TestGreyReclaimedHumongousObjects: long MAX_MEMORY>;
+
+        $r4 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" bytes");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $i1 = lengthof r7;
+
+        if $i1 == 2 goto label1;
+
+        $r35 = new java.lang.RuntimeException;
+
+        specialinvoke $r35.<java.lang.RuntimeException: void <init>(java.lang.String)>("Object size argument must be supplied");
+
+        throw $r35;
+
+     label1:
+        $r8 = r7[0];
+
+        $i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r8);
+
+        $r9 = r7[1];
+
+        $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r9);
+
+        l7 = (long) $i3;
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        $r36 = new java.lang.StringBuilder;
+
+        specialinvoke $r36.<java.lang.StringBuilder: void <init>(java.lang.String)>("Objects size= ");
+
+        $r12 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" bytes");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>($r14);
+
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        $r37 = new java.lang.StringBuilder;
+
+        specialinvoke $r37.<java.lang.StringBuilder: void <init>(java.lang.String)>("Seconds to run=");
+
+        $r17 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l7);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r18);
+
+        $r19 = interfaceinvoke r1.<com.sun.management.HotSpotDiagnosticMXBean: com.sun.management.VMOption getVMOption(java.lang.String)>("G1HeapRegionSize");
+
+        $r20 = virtualinvoke $r19.<com.sun.management.VMOption: java.lang.String getValue()>();
+
+        $i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r20);
+
+        $i5 = $i4 / 2;
+
+        if $i2 >= $i5 goto label2;
+
+        $r39 = new java.lang.RuntimeException;
+
+        $r38 = new java.lang.StringBuilder;
+
+        specialinvoke $r38.<java.lang.StringBuilder: void <init>(java.lang.String)>("Object size ");
+
+        $r29 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" is not humongous with region size ");
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r39.<java.lang.RuntimeException: void <init>(java.lang.String)>($r32);
+
+        throw $r39;
+
+     label2:
+        $r40 = new gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory;
+
+        specialinvoke $r40.<gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory: void <init>()>();
+
+        $r42 = (java.util.concurrent.ThreadFactory) $r40;
+
+        $r22 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newFixedThreadPool(int,java.util.concurrent.ThreadFactory)>(12, $r42);
+
+        $r23 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>("Starting 12 threads");
+
+        i8 = 0;
+
+        goto label4;
+
+     label3:
+        $r41 = new gc.g1.TestGreyReclaimedHumongousObjects$Runner;
+
+        specialinvoke $r41.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: void <init>(int)>($i2);
+
+        $r43 = (java.lang.Runnable) $r41;
+
+        interfaceinvoke $r22.<java.util.concurrent.ExecutorService: void execute(java.lang.Runnable)>($r43);
+
+        i8 = i8 + 1;
+
+     label4:
+        if i8 < 12 goto label3;
+
+        $l6 = l7 * 1000L;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>($l6);
+
+        interfaceinvoke $r22.<java.util.concurrent.ExecutorService: java.util.List shutdownNow()>();
+
+        $r25 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+
+        $z0 = interfaceinvoke $r22.<java.util.concurrent.ExecutorService: boolean awaitTermination(long,java.util.concurrent.TimeUnit)>(10L, $r25);
+
+        if $z0 != 0 goto label5;
+
+        $r26 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>("Thread pool did not terminate after 10 seconds after shutdown");
+
+     label5:
+        return;
+    }
+}

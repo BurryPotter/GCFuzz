@@ -1,0 +1,76 @@
+public class TestUseNUMAInterleaving extends java.lang.Object
+{
+    private static final java.lang.String NUMA_FLAG_PATTERN;
+
+    public void <init>()
+    {
+        TestUseNUMAInterleaving r0;
+
+        r0 := @this: TestUseNUMAInterleaving;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r5, $r7, $r9;
+        java.lang.Process $r3;
+        java.lang.String[] $r0, r11;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+        java.lang.ProcessBuilder $r1;
+        java.lang.String $r4, $r6, $r8, $r10;
+        boolean $z0;
+
+        r11 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[3];
+
+        $r0[0] = "-XX:+UseNUMA";
+
+        $r0[1] = "-XX:+PrintFlagsFinal";
+
+        $r0[2] = "-version";
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(boolean,java.lang.String[])>(1, $r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        $r4 = virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String,int)>("\\bUseNUMA\\b.*?=.*?([a-z]+)", 1);
+
+        $z0 = staticinvoke <java.lang.Boolean: boolean parseBoolean(java.lang.String)>($r4);
+
+        if $z0 == 0 goto label1;
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>("\\bUseNUMAInterleaving\\b.*?=.*?true");
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r10 = virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        goto label2;
+
+     label1:
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String)>("\\bUseNUMA\\b.*?=.*?([a-z]+)");
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r8 = virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String,int)>("\\bUseNUMA\\b.*?=.*?([a-z]+)", 1);
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+     label2:
+        return;
+    }
+}

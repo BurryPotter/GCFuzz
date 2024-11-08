@@ -1,0 +1,248 @@
+class DataNode extends java.lang.Object
+{
+    int key;
+    int[] buf;
+    static int dataNodeCount;
+    static int dataNodeLimit;
+
+    static void <clinit>()
+    {
+        <gc.gctests.gctest03.DataNode: int dataNodeCount> = 0;
+
+        return;
+    }
+
+    static synchronized void incDataNodeCount()
+    {
+        int $i0, $i1;
+
+        $i0 = <gc.gctests.gctest03.DataNode: int dataNodeCount>;
+
+        $i1 = $i0 + 1;
+
+        <gc.gctests.gctest03.DataNode: int dataNodeCount> = $i1;
+
+        return;
+    }
+
+    static synchronized int getDataNodeCount()
+    {
+        int $i0;
+
+        $i0 = <gc.gctests.gctest03.DataNode: int dataNodeCount>;
+
+        return $i0;
+    }
+
+    static synchronized void setDataNodeLimit(int)
+    {
+        int i0;
+
+        i0 := @parameter0: int;
+
+        <gc.gctests.gctest03.DataNode: int dataNodeLimit> = i0;
+
+        return;
+    }
+
+    static synchronized int getDataNodeLimit()
+    {
+        int $i0;
+
+        $i0 = <gc.gctests.gctest03.DataNode: int dataNodeLimit>;
+
+        return $i0;
+    }
+
+    static synchronized void clearDataNodeCount()
+    {
+        <gc.gctests.gctest03.DataNode: int dataNodeCount> = 0;
+
+        return;
+    }
+
+    void <init>(int) throws gc.gctests.gctest03.DataNodeException
+    {
+        java.lang.Throwable $r13;
+        gc.gctests.gctest03.DataNodeException $r11;
+        int[] $r1;
+        DataNode r0;
+        java.lang.Thread $r6;
+        int $i0, $i1, i2;
+        java.lang.String $r7, $r8, $r10;
+        java.io.PrintStream $r5;
+        gc.gctests.gctest03.DataNode $r14, $r15;
+        java.lang.StringBuilder $r9, $r12;
+        java.lang.OutOfMemoryError $r3;
+
+        r0 := @this: DataNode;
+
+        i2 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        staticinvoke <gc.gctests.gctest03.DataNode: void incDataNodeCount()>();
+
+        $i0 = staticinvoke <gc.gctests.gctest03.DataNode: int getDataNodeCount()>();
+
+        $i1 = staticinvoke <gc.gctests.gctest03.DataNode: int getDataNodeLimit()>();
+
+        if $i0 <= $i1 goto label1;
+
+        $r11 = new gc.gctests.gctest03.DataNodeException;
+
+        specialinvoke $r11.<gc.gctests.gctest03.DataNodeException: void <init>()>();
+
+        $r13 = (java.lang.Throwable) $r11;
+
+        throw $r13;
+
+     label1:
+        $r14 = (gc.gctests.gctest03.DataNode) r0;
+
+        $r14.<gc.gctests.gctest03.DataNode: int key> = i2;
+
+     label2:
+        $r1 = newarray (int)[i2];
+
+        $r15 = (gc.gctests.gctest03.DataNode) r0;
+
+        $r15.<gc.gctests.gctest03.DataNode: int[] buf> = $r1;
+
+     label3:
+        goto label5;
+
+     label4:
+        $r3 := @caughtexception;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r12 = new java.lang.StringBuilder;
+
+        $r6 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.Thread: java.lang.String getName()>();
+
+        $r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7);
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+
+        $r9 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" : outofmemory");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+     label5:
+        return;
+
+        catch java.lang.OutOfMemoryError from label2 to label3 with label4;
+    }
+
+    public void print()
+    {
+        java.io.PrintStream $r1;
+        DataNode r0;
+        int $i0;
+        gc.gctests.gctest03.DataNode $r2;
+
+        r0 := @this: DataNode;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r2 = (gc.gctests.gctest03.DataNode) r0;
+
+        $i0 = $r2.<gc.gctests.gctest03.DataNode: int key>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(int)>($i0);
+
+        return;
+    }
+
+    public boolean equals(gc.gctests.gctest03.DataNode)
+    {
+        DataNode r1;
+        int $i0, $i1;
+        gc.gctests.gctest03.DataNode r0, $r2;
+
+        r1 := @this: DataNode;
+
+        r0 := @parameter0: gc.gctests.gctest03.DataNode;
+
+        $i0 = virtualinvoke r0.<gc.gctests.gctest03.DataNode: int getkey()>();
+
+        $r2 = (gc.gctests.gctest03.DataNode) r1;
+
+        $i1 = $r2.<gc.gctests.gctest03.DataNode: int key>;
+
+        if $i1 != $i0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public boolean large(gc.gctests.gctest03.DataNode)
+    {
+        DataNode r1;
+        int $i0, $i1;
+        gc.gctests.gctest03.DataNode r0, $r2;
+
+        r1 := @this: DataNode;
+
+        r0 := @parameter0: gc.gctests.gctest03.DataNode;
+
+        $i0 = virtualinvoke r0.<gc.gctests.gctest03.DataNode: int getkey()>();
+
+        $r2 = (gc.gctests.gctest03.DataNode) r1;
+
+        $i1 = $r2.<gc.gctests.gctest03.DataNode: int key>;
+
+        if $i1 <= $i0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public boolean less(gc.gctests.gctest03.DataNode)
+    {
+        DataNode r1;
+        int $i0, $i1;
+        gc.gctests.gctest03.DataNode r0, $r2;
+
+        r1 := @this: DataNode;
+
+        r0 := @parameter0: gc.gctests.gctest03.DataNode;
+
+        $i0 = virtualinvoke r0.<gc.gctests.gctest03.DataNode: int getkey()>();
+
+        $r2 = (gc.gctests.gctest03.DataNode) r1;
+
+        $i1 = $r2.<gc.gctests.gctest03.DataNode: int key>;
+
+        if $i1 >= $i0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public int getkey()
+    {
+        int $i0;
+        gc.gctests.gctest03.DataNode $r1;
+        DataNode r0;
+
+        r0 := @this: DataNode;
+
+        $r1 = (gc.gctests.gctest03.DataNode) r0;
+
+        $i0 = $r1.<gc.gctests.gctest03.DataNode: int key>;
+
+        return $i0;
+    }
+}

@@ -1,0 +1,95 @@
+public class Bytecode extends java.lang.Object
+{
+    private java.lang.String className;
+    private byte[] bytecode;
+
+    public java.lang.String getClassName()
+    {
+        Bytecode r0;
+        java.lang.String $r1;
+        gc.g1.unloading.bytecode.Bytecode $r2;
+
+        r0 := @this: Bytecode;
+
+        $r2 = (gc.g1.unloading.bytecode.Bytecode) r0;
+
+        $r1 = $r2.<gc.g1.unloading.bytecode.Bytecode: java.lang.String className>;
+
+        return $r1;
+    }
+
+    public void setClassName(java.lang.String)
+    {
+        Bytecode r0;
+        java.lang.String r1;
+        gc.g1.unloading.bytecode.Bytecode $r2;
+
+        r0 := @this: Bytecode;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = (gc.g1.unloading.bytecode.Bytecode) r0;
+
+        $r2.<gc.g1.unloading.bytecode.Bytecode: java.lang.String className> = r1;
+
+        return;
+    }
+
+    public byte[] getBytecode()
+    {
+        byte[] $r1;
+        Bytecode r0;
+        gc.g1.unloading.bytecode.Bytecode $r2;
+
+        r0 := @this: Bytecode;
+
+        $r2 = (gc.g1.unloading.bytecode.Bytecode) r0;
+
+        $r1 = $r2.<gc.g1.unloading.bytecode.Bytecode: byte[] bytecode>;
+
+        return $r1;
+    }
+
+    public void setBytecode(byte[])
+    {
+        byte[] r1;
+        Bytecode r0;
+        gc.g1.unloading.bytecode.Bytecode $r2;
+
+        r0 := @this: Bytecode;
+
+        r1 := @parameter0: byte[];
+
+        $r2 = (gc.g1.unloading.bytecode.Bytecode) r0;
+
+        $r2.<gc.g1.unloading.bytecode.Bytecode: byte[] bytecode> = r1;
+
+        return;
+    }
+
+    public void <init>(java.lang.String, byte[])
+    {
+        byte[] r2;
+        Bytecode r0;
+        java.lang.String r1;
+        gc.g1.unloading.bytecode.Bytecode $r3, $r4;
+
+        r0 := @this: Bytecode;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: byte[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.g1.unloading.bytecode.Bytecode) r0;
+
+        $r3.<gc.g1.unloading.bytecode.Bytecode: java.lang.String className> = r1;
+
+        $r4 = (gc.g1.unloading.bytecode.Bytecode) r0;
+
+        $r4.<gc.g1.unloading.bytecode.Bytecode: byte[] bytecode> = r2;
+
+        return;
+    }
+}

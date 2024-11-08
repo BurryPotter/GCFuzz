@@ -1,0 +1,181 @@
+public class MemoryConsumer extends java.lang.Object
+{
+    private int capacity;
+    private int chunk;
+    private java.lang.Object[] array;
+    private int index;
+
+    public void <init>(int, int)
+    {
+        java.lang.Object[] $r1;
+        java.lang.IllegalArgumentException $r4, $r5;
+        MemoryConsumer r0;
+        int i0, i1, $i2;
+        gc.g1.plab.lib.MemoryConsumer $r6, $r7, $r8, $r9, $r10;
+
+        r0 := @this: MemoryConsumer;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        if i0 > 0 goto label1;
+
+        $r4 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r4.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Items number should be greater than 0.");
+
+        throw $r4;
+
+     label1:
+        if i1 > 0 goto label2;
+
+        $r5 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r5.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Chunk size should be greater than 0.");
+
+        throw $r5;
+
+     label2:
+        $r6 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $r6.<gc.g1.plab.lib.MemoryConsumer: int capacity> = i0;
+
+        $r7 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $r7.<gc.g1.plab.lib.MemoryConsumer: int chunk> = i1;
+
+        $r8 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $r8.<gc.g1.plab.lib.MemoryConsumer: int index> = 0;
+
+        $r9 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $i2 = $r9.<gc.g1.plab.lib.MemoryConsumer: int capacity>;
+
+        $r1 = newarray (java.lang.Object)[$i2];
+
+        $r10 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $r10.<gc.g1.plab.lib.MemoryConsumer: java.lang.Object[] array> = $r1;
+
+        return;
+    }
+
+    private void store(java.lang.Object)
+    {
+        java.lang.Object[] $r1, $r3;
+        int $i0, $i1, $i2, $i3, $i4;
+        gc.g1.plab.lib.MemoryConsumer $r6, $r7, $r8, $r9, $r10, $r11;
+        java.lang.RuntimeException $r5;
+        MemoryConsumer r0;
+        java.lang.Object r2;
+
+        r0 := @this: MemoryConsumer;
+
+        r2 := @parameter0: java.lang.Object;
+
+        $r6 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $r1 = $r6.<gc.g1.plab.lib.MemoryConsumer: java.lang.Object[] array>;
+
+        if $r1 != null goto label1;
+
+        $r5 = new java.lang.RuntimeException;
+
+        specialinvoke $r5.<java.lang.RuntimeException: void <init>(java.lang.String)>("Capacity should be set before storing");
+
+        throw $r5;
+
+     label1:
+        $r7 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $r3 = $r7.<gc.g1.plab.lib.MemoryConsumer: java.lang.Object[] array>;
+
+        $r8 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $i1 = $r8.<gc.g1.plab.lib.MemoryConsumer: int index>;
+
+        $r9 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $i0 = $r9.<gc.g1.plab.lib.MemoryConsumer: int capacity>;
+
+        $i2 = $i1 % $i0;
+
+        $r3[$i2] = r2;
+
+        $r10 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $i3 = $r10.<gc.g1.plab.lib.MemoryConsumer: int index>;
+
+        $i4 = $i3 + 1;
+
+        $r11 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $r11.<gc.g1.plab.lib.MemoryConsumer: int index> = $i4;
+
+        return;
+    }
+
+    public void consume(long)
+    {
+        byte[] $r1;
+        long l0, $l4, l5;
+        byte $b1;
+        MemoryConsumer r0;
+        int $i2, $i3, $i6;
+        gc.g1.plab.lib.MemoryConsumer $r2, $r3, $r4;
+
+        r0 := @this: MemoryConsumer;
+
+        l0 := @parameter0: long;
+
+        l5 = 0L;
+
+        goto label2;
+
+     label1:
+        $r2 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $i2 = $r2.<gc.g1.plab.lib.MemoryConsumer: int chunk>;
+
+        $r1 = newarray (byte)[$i2];
+
+        $r3 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        virtualinvoke $r3.<gc.g1.plab.lib.MemoryConsumer: void store(java.lang.Object)>($r1);
+
+        $r4 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $i3 = $r4.<gc.g1.plab.lib.MemoryConsumer: int chunk>;
+
+        $l4 = (long) $i3;
+
+        l5 = l5 + $l4;
+
+     label2:
+        $b1 = l5 cmp l0;
+
+        $i6 = (int) $b1;
+
+        if $i6 < 0 goto label1;
+
+        return;
+    }
+
+    public void clear()
+    {
+        gc.g1.plab.lib.MemoryConsumer $r1;
+        MemoryConsumer r0;
+
+        r0 := @this: MemoryConsumer;
+
+        $r1 = (gc.g1.plab.lib.MemoryConsumer) r0;
+
+        $r1.<gc.g1.plab.lib.MemoryConsumer: java.lang.Object[] array> = null;
+
+        return;
+    }
+}

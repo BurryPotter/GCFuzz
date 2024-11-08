@@ -1,0 +1,158 @@
+public class nativeGC03 extends nsk.share.gc.GCTestBase
+{
+    private java.lang.Object[] listHolder;
+
+    static void <clinit>()
+    {
+        staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("nativeGC03");
+
+        return;
+    }
+
+    public void <init>()
+    {
+        nativeGC03 r0;
+
+        r0 := @this: nativeGC03;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        return;
+    }
+
+    public native void nativeMethod03(java.lang.Object[]);
+
+    private void fillArray()
+    {
+        gc.gctests.nativeGC03.nativeGC03 $r3, $r4;
+        nsk.share.gc.CircularLinkedList $r2;
+        java.lang.Object[] $r1;
+        int i0;
+        nativeGC03 r0;
+
+        r0 := @this: nativeGC03;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r3 = (gc.gctests.nativeGC03.nativeGC03) r0;
+
+        $r1 = $r3.<gc.gctests.nativeGC03.nativeGC03: java.lang.Object[] listHolder>;
+
+        $r4 = (gc.gctests.nativeGC03.nativeGC03) r0;
+
+        $r2 = virtualinvoke $r4.<gc.gctests.nativeGC03.nativeGC03: nsk.share.gc.CircularLinkedList buildBigCircularLinkedList()>();
+
+        $r1[i0] = $r2;
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 5 goto label1;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.io.PrintStream $r3;
+        java.lang.Throwable $r11;
+        java.lang.Object[] $r1, $r2;
+        nativeGC03 r0;
+        nsk.share.TestFailure $r6;
+        gc.gctests.nativeGC03.nativeGC03 $r7, $r8, $r9, $r10;
+        java.lang.OutOfMemoryError $r4;
+
+        r0 := @this: nativeGC03;
+
+        $r1 = newarray (java.lang.Object)[5];
+
+        $r7 = (gc.gctests.nativeGC03.nativeGC03) r0;
+
+        $r7.<gc.gctests.nativeGC03.nativeGC03: java.lang.Object[] listHolder> = $r1;
+
+        $r8 = (gc.gctests.nativeGC03.nativeGC03) r0;
+
+        virtualinvoke $r8.<gc.gctests.nativeGC03.nativeGC03: void fillArray()>();
+
+     label1:
+        $r9 = (gc.gctests.nativeGC03.nativeGC03) r0;
+
+        $r2 = $r9.<gc.gctests.nativeGC03.nativeGC03: java.lang.Object[] listHolder>;
+
+        $r10 = (gc.gctests.nativeGC03.nativeGC03) r0;
+
+        virtualinvoke $r10.<gc.gctests.nativeGC03.nativeGC03: void nativeMethod03(java.lang.Object[])>($r2);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r4 := @caughtexception;
+
+        $r6 = new nsk.share.TestFailure;
+
+        specialinvoke $r6.<nsk.share.TestFailure: void <init>(java.lang.String)>("Test Failed");
+
+        $r11 = (java.lang.Throwable) $r6;
+
+        throw $r11;
+
+     label4:
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("Test Passed");
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label1 to label2 with label3;
+    }
+
+    private nsk.share.gc.CircularLinkedList buildBigCircularLinkedList()
+    {
+        int i0;
+        nativeGC03 r1;
+        nsk.share.gc.CircularLinkedList $r0;
+
+        r1 := @this: nativeGC03;
+
+        $r0 = new nsk.share.gc.CircularLinkedList;
+
+        specialinvoke $r0.<nsk.share.gc.CircularLinkedList: void <init>(int)>(100);
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r0.<nsk.share.gc.CircularLinkedList: void grow()>();
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 10000 goto label1;
+
+        return $r0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.gctests.nativeGC03.nativeGC03 $r2;
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.nativeGC03.nativeGC03;
+
+        specialinvoke $r2.<gc.gctests.nativeGC03.nativeGC03: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.test.Tests: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

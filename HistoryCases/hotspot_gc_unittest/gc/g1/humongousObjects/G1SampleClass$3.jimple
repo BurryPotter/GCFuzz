@@ -1,0 +1,32 @@
+enum class G1SampleClass$3 extends gc.g1.humongousObjects.G1SampleClass
+{
+
+    void <init>(java.lang.String, int)
+    {
+        int i0;
+        G1SampleClass$3 r0;
+        java.lang.String r1;
+
+        r0 := @this: G1SampleClass$3;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<gc.g1.humongousObjects.G1SampleClass: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public long expectedInstanceSize()
+    {
+        long $l0;
+        G1SampleClass$3 r0;
+
+        r0 := @this: G1SampleClass$3;
+
+        $l0 = <gc.g1.humongousObjects.G1SampleClass: long G1_REGION_SIZE>;
+
+        return $l0;
+    }
+}

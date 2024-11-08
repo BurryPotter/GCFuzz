@@ -1,0 +1,154 @@
+public class CheckUnsupported extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WB;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.concurrent_phase_control.CheckUnsupported: sun.hotspot.WhiteBox WB> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        CheckUnsupported r0;
+
+        r0 := @this: CheckUnsupported;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void check(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.IllegalStateException $r28;
+        boolean $z0, z1;
+        java.lang.Exception $r20;
+        java.lang.StringBuilder $r5, $r8, $r11, $r13, $r16, $r18, $r22, $r24, $r26;
+        java.lang.String[] $r2;
+        int $i0;
+        java.lang.String r6, $r7, $r9, $r12, $r14, $r17, $r19, $r23, $r25, $r27;
+        sun.hotspot.WhiteBox $r0, $r1, $r3;
+        java.lang.RuntimeException $r4, $r10, $r15, $r21;
+
+        r6 := @parameter0: java.lang.String;
+
+        $r0 = <gc.concurrent_phase_control.CheckUnsupported: sun.hotspot.WhiteBox WB>;
+
+        $z0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean supportsConcurrentGCPhaseControl()>();
+
+        if $z0 == 0 goto label1;
+
+        $r15 = new java.lang.RuntimeException;
+
+        $r16 = new java.lang.StringBuilder;
+
+        $r17 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r6);
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>($r17);
+
+        $r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" unexpectedly supports phase control");
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r15.<java.lang.RuntimeException: void <init>(java.lang.String)>($r19);
+
+        throw $r15;
+
+     label1:
+        $r1 = <gc.concurrent_phase_control.CheckUnsupported: sun.hotspot.WhiteBox WB>;
+
+        $r2 = virtualinvoke $r1.<sun.hotspot.WhiteBox: java.lang.String[] getConcurrentGCPhases()>();
+
+        $i0 = lengthof $r2;
+
+        if $i0 <= 0 goto label2;
+
+        $r10 = new java.lang.RuntimeException;
+
+        $r11 = new java.lang.StringBuilder;
+
+        $r12 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r6);
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>($r12);
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" unexpectedly has non-empty phases");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>($r14);
+
+        throw $r10;
+
+     label2:
+        z1 = 0;
+
+     label3:
+        $r3 = <gc.concurrent_phase_control.CheckUnsupported: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r3.<sun.hotspot.WhiteBox: void requestConcurrentGCPhase(java.lang.String)>("UNKNOWN PHASE");
+
+     label4:
+        goto label7;
+
+     label5:
+        $r28 := @caughtexception;
+
+        z1 = 1;
+
+        goto label7;
+
+     label6:
+        $r20 := @caughtexception;
+
+        $r21 = new java.lang.RuntimeException;
+
+        $r22 = new java.lang.StringBuilder;
+
+        $r23 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r6);
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>(java.lang.String)>($r23);
+
+        $r24 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": Unexpected exception when requesting phase: ");
+
+        $r25 = virtualinvoke $r20.<java.lang.Exception: java.lang.String toString()>();
+
+        $r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r25);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r21.<java.lang.RuntimeException: void <init>(java.lang.String)>($r27);
+
+        throw $r21;
+
+     label7:
+        if z1 != 0 goto label8;
+
+        $r4 = new java.lang.RuntimeException;
+
+        $r5 = new java.lang.StringBuilder;
+
+        $r7 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r6);
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>($r7);
+
+        $r8 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": No exception when requesting phase");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>($r9);
+
+        throw $r4;
+
+     label8:
+        return;
+
+        catch java.lang.IllegalStateException from label3 to label4 with label5;
+        catch java.lang.Exception from label3 to label4 with label6;
+    }
+}

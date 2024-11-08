@@ -1,0 +1,102 @@
+public class DenseParOld extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        DenseParOld r0;
+
+        r0 := @this: DenseParOld;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r6;
+        java.lang.Integer $r2, $r3, $r4, $r5;
+        int i0, i1, i2, i3;
+        java.lang.Integer[] r0, r1;
+
+        r6 := @parameter0: java.lang.String[];
+
+        r0 = newarray (java.lang.Integer)[10000000];
+
+        r1 = newarray (java.lang.Integer)[10000000];
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 10 goto label8;
+
+        i1 = 0;
+
+     label2:
+        if i1 >= 10000000 goto label3;
+
+        $r4 = new java.lang.Integer;
+
+        specialinvoke $r4.<java.lang.Integer: void <init>(int)>(i1);
+
+        r0[i1] = $r4;
+
+        $r5 = new java.lang.Integer;
+
+        specialinvoke $r5.<java.lang.Integer: void <init>(int)>(1);
+
+        r1[i1] = $r5;
+
+        i1 = i1 + 1;
+
+        goto label2;
+
+     label3:
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        i2 = 0;
+
+     label4:
+        if i2 >= 10000000 goto label5;
+
+        $r3 = r1[i2];
+
+        r0[i2] = $r3;
+
+        i2 = i2 + 1;
+
+        goto label4;
+
+     label5:
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        i3 = 0;
+
+     label6:
+        if i3 >= 10000000 goto label7;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(1);
+
+        r1[i3] = $r2;
+
+        i3 = i3 + 1;
+
+        goto label6;
+
+     label7:
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label8:
+        return;
+    }
+}

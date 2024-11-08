@@ -1,0 +1,696 @@
+public class TestObjectGraphAfterGC extends java.lang.Object
+{
+    private static final int simpleAllocationSize;
+
+    public void <init>()
+    {
+        TestObjectGraphAfterGC r0;
+
+        r0 := @this: TestObjectGraphAfterGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r5;
+        java.lang.Error $r12;
+        java.lang.String[] r0;
+        java.util.function.Consumer $r11;
+        java.util.List $r9;
+        java.util.stream.Stream $r10;
+        gc.g1.humongousObjects.objectGraphTest.GC $r3;
+        int $i0;
+        java.lang.StringBuilder $r4, $r7;
+        java.lang.String $r1, $r2, $r6, $r8;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 >= 1 goto label1;
+
+        $r12 = new java.lang.Error;
+
+        specialinvoke $r12.<java.lang.Error: void <init>(java.lang.String)>("Expected gc name wasn\'t provided as command line argument");
+
+        throw $r12;
+
+     label1:
+        $r1 = r0[0];
+
+        $r2 = virtualinvoke $r1.<java.lang.String: java.lang.String toUpperCase()>();
+
+        $r3 = staticinvoke <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC valueOf(java.lang.String)>($r2);
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("Testing ");
+
+        $r6 = virtualinvoke $r3.<gc.g1.humongousObjects.objectGraphTest.GC: java.lang.String name()>();
+
+        $r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        $r9 = staticinvoke <gc.g1.humongousObjects.objectGraphTest.TestcaseData: java.util.List getPregeneratedTestcases()>();
+
+        $r10 = interfaceinvoke $r9.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r11 = staticinvoke <TestObjectGraphAfterGC$lambda_0__1: java.util.function.Consumer bootstrap$(gc.g1.humongousObjects.objectGraphTest.GC)>($r3);
+
+        interfaceinvoke $r10.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r11);
+
+        return;
+    }
+
+    private static void doTesting(java.lang.String, java.lang.Runnable, java.util.function.Consumer, java.lang.String, java.util.List, java.util.List) throws java.io.IOException
+    {
+        java.util.function.Consumer r3;
+        java.util.List r5, r6;
+        java.util.Set $r1;
+        java.lang.String r0, r4;
+        java.lang.Runnable r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.Runnable;
+
+        r3 := @parameter2: java.util.function.Consumer;
+
+        r4 := @parameter3: java.lang.String;
+
+        r5 := @parameter4: java.util.List;
+
+        r6 := @parameter5: java.util.List;
+
+        $r1 = staticinvoke <gc.g1.humongousObjects.objectGraphTest.TestObjectGraphAfterGC: java.util.Set allocateObjectGraph(java.lang.String)>(r0);
+
+        interfaceinvoke r2.<java.lang.Runnable: void run()>();
+
+        staticinvoke <gc.g1.humongousObjects.objectGraphTest.TestObjectGraphAfterGC: void checkResults(java.util.Set,java.util.function.Consumer)>($r1, r3);
+
+        staticinvoke <gc.g1.humongousObjects.objectGraphTest.TestObjectGraphAfterGC: void checkGCLog(java.lang.String,java.util.List,java.util.List)>(r4, r5, r6);
+
+        return;
+    }
+
+    private static java.util.Set allocateObjectGraph(java.lang.String)
+    {
+        java.util.stream.Collector $r28;
+        java.util.function.Predicate $r5, $r7, $r9, $r11;
+        java.util.Set $r30;
+        java.util.List $r14;
+        java.util.stream.Stream $r21, $r23, $r25, $r27;
+        java.util.HashMap $r0, $r4;
+        java.util.function.Function $r26;
+        java.lang.ref.ReferenceQueue $r19;
+        java.util.HashSet $r1, $r2, $r3, $r17, $r20;
+        java.util.function.BiConsumer $r6, $r8, $r10, $r12;
+        int $i0;
+        java.lang.String r13;
+        sun.hotspot.WhiteBox $r15;
+        java.util.function.Consumer $r16, $r18, $r22, $r24;
+        java.lang.Object $r29;
+
+        r13 := @parameter0: java.lang.String;
+
+        $r0 = new java.util.HashMap;
+
+        specialinvoke $r0.<java.util.HashMap: void <init>()>();
+
+        $r1 = new java.util.HashSet;
+
+        specialinvoke $r1.<java.util.HashSet: void <init>()>();
+
+        $r2 = new java.util.HashSet;
+
+        specialinvoke $r2.<java.util.HashSet: void <init>()>();
+
+        $r3 = new java.util.HashSet;
+
+        specialinvoke $r3.<java.util.HashSet: void <init>()>();
+
+        $r4 = new java.util.HashMap;
+
+        specialinvoke $r4.<java.util.HashMap: void <init>()>();
+
+        $r5 = staticinvoke <TestObjectGraphAfterGC$lambda_1__2: java.util.function.Predicate bootstrap$()>();
+
+        $r6 = staticinvoke <TestObjectGraphAfterGC$lambda_2__3: java.util.function.BiConsumer bootstrap$(java.util.Map)>($r0);
+
+        interfaceinvoke $r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r5, $r6);
+
+        $r7 = staticinvoke <TestObjectGraphAfterGC$lambda_3__4: java.util.function.Predicate bootstrap$()>();
+
+        $r8 = staticinvoke <TestObjectGraphAfterGC$lambda_4__5: java.util.function.BiConsumer bootstrap$(java.util.Set)>($r1);
+
+        interfaceinvoke $r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r7, $r8);
+
+        $r9 = staticinvoke <TestObjectGraphAfterGC$lambda_5__6: java.util.function.Predicate bootstrap$()>();
+
+        $r10 = staticinvoke <TestObjectGraphAfterGC$lambda_6__7: java.util.function.BiConsumer bootstrap$(java.util.Set)>($r2);
+
+        interfaceinvoke $r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r9, $r10);
+
+        $r11 = staticinvoke <TestObjectGraphAfterGC$lambda_8__8: java.util.function.Predicate bootstrap$()>();
+
+        $r12 = staticinvoke <TestObjectGraphAfterGC$lambda_9__9: java.util.function.BiConsumer bootstrap$(java.util.Set)>($r3);
+
+        interfaceinvoke $r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r11, $r12);
+
+        $r14 = staticinvoke <gc.g1.humongousObjects.objectGraphTest.TestcaseData: java.util.List parse(java.lang.String)>(r13);
+
+        $r15 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $i0 = virtualinvoke $r15.<sun.hotspot.WhiteBox: int g1RegionSize()>();
+
+        staticinvoke <gc.g1.humongousObjects.objectGraphTest.ObjectGraph: java.lang.Object[] generateObjectNodes(java.util.List,java.util.Map,int,int)>($r14, $r4, $i0, 1024);
+
+        virtualinvoke $r1.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r16 = staticinvoke <TestObjectGraphAfterGC$add__10: java.util.function.Consumer bootstrap$(java.util.Set)>($r1);
+
+        staticinvoke <gc.g1.humongousObjects.objectGraphTest.ObjectGraph: void propagateTransitiveProperty(java.util.Set,java.util.function.Consumer)>($r1, $r16);
+
+        $r17 = new java.util.HashSet;
+
+        specialinvoke $r17.<java.util.HashSet: void <init>()>();
+
+        virtualinvoke $r17.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r18 = staticinvoke <TestObjectGraphAfterGC$add__11: java.util.function.Consumer bootstrap$(java.util.Set)>($r17);
+
+        staticinvoke <gc.g1.humongousObjects.objectGraphTest.ObjectGraph: void propagateTransitiveProperty(java.util.Set,java.util.function.Consumer)>($r2, $r18);
+
+        $r19 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r19.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r20 = new java.util.HashSet;
+
+        specialinvoke $r20.<java.util.HashSet: void <init>()>();
+
+        $r21 = interfaceinvoke $r3.<java.util.Set: java.util.stream.Stream stream()>();
+
+        $r22 = staticinvoke <TestObjectGraphAfterGC$lambda_13__12: java.util.function.Consumer bootstrap$(java.util.Set,java.lang.ref.ReferenceQueue)>($r20, $r19);
+
+        interfaceinvoke $r21.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r22);
+
+        $r23 = interfaceinvoke $r2.<java.util.Set: java.util.stream.Stream stream()>();
+
+        $r24 = staticinvoke <TestObjectGraphAfterGC$lambda_14__13: java.util.function.Consumer bootstrap$(java.util.Set,java.lang.ref.ReferenceQueue)>($r20, $r19);
+
+        interfaceinvoke $r23.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r24);
+
+        $r25 = interfaceinvoke $r20.<java.util.Set: java.util.stream.Stream stream()>();
+
+        $r26 = staticinvoke <TestObjectGraphAfterGC$lambda_15__14: java.util.function.Function bootstrap$(java.lang.String,java.util.Map,java.util.Set,java.util.Set)>(r13, $r0, $r17, $r1);
+
+        $r27 = interfaceinvoke $r25.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r26);
+
+        $r28 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toSet()>();
+
+        $r29 = interfaceinvoke $r27.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r28);
+
+        $r30 = (java.util.Set) $r29;
+
+        return $r30;
+    }
+
+    private static void checkResults(java.util.Set, java.util.function.Consumer)
+    {
+        java.util.function.Consumer r2, $r3;
+        java.util.stream.Stream $r1;
+        java.util.Set r0;
+
+        r0 := @parameter0: java.util.Set;
+
+        r2 := @parameter1: java.util.function.Consumer;
+
+        $r1 = interfaceinvoke r0.<java.util.Set: java.util.stream.Stream stream()>();
+
+        virtualinvoke r2.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r3 = staticinvoke <TestObjectGraphAfterGC$accept__15: java.util.function.Consumer bootstrap$(java.util.function.Consumer)>(r2);
+
+        interfaceinvoke $r1.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r3);
+
+        return;
+    }
+
+    private static void checkGCLog(java.lang.String, java.util.List, java.util.List) throws java.io.IOException
+    {
+        byte[] $r4;
+        jdk.test.lib.process.OutputAnalyzer $r5;
+        java.io.File $r2;
+        java.util.function.Consumer $r8, $r11;
+        java.util.List r6, r9;
+        java.util.stream.Stream $r7, $r10;
+        java.lang.String r0, $r1;
+        java.nio.file.Path $r3;
+
+        r0 := @parameter0: java.lang.String;
+
+        r6 := @parameter1: java.util.List;
+
+        r9 := @parameter2: java.util.List;
+
+        if r0 != null goto label1;
+
+        return;
+
+     label1:
+        $r1 = new java.lang.String;
+
+        $r2 = new java.io.File;
+
+        specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>(r0);
+
+        $r3 = virtualinvoke $r2.<java.io.File: java.nio.file.Path toPath()>();
+
+        $r4 = staticinvoke <java.nio.file.Files: byte[] readAllBytes(java.nio.file.Path)>($r3);
+
+        specialinvoke $r1.<java.lang.String: void <init>(byte[])>($r4);
+
+        $r5 = new jdk.test.lib.process.OutputAnalyzer;
+
+        specialinvoke $r5.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.String,java.lang.String)>($r1, "");
+
+        $r7 = interfaceinvoke r6.<java.util.List: java.util.stream.Stream stream()>();
+
+        virtualinvoke $r5.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r8 = staticinvoke <TestObjectGraphAfterGC$shouldContain__16: java.util.function.Consumer bootstrap$(jdk.test.lib.process.OutputAnalyzer)>($r5);
+
+        interfaceinvoke $r7.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r8);
+
+        $r10 = interfaceinvoke r9.<java.util.List: java.util.stream.Stream stream()>();
+
+        virtualinvoke $r5.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r11 = staticinvoke <TestObjectGraphAfterGC$shouldNotContain__17: java.util.function.Consumer bootstrap$(jdk.test.lib.process.OutputAnalyzer)>($r5);
+
+        interfaceinvoke $r10.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r11);
+
+        return;
+    }
+
+    private static void lambda$0(gc.g1.humongousObjects.objectGraphTest.GC, java.lang.String)
+    {
+        java.lang.Error $r15;
+        java.lang.Runnable $r6;
+        java.lang.String r2, $r4, $r9, $r10, $r18, $r21;
+        java.io.PrintStream $r1, $r13;
+        java.io.IOException $r14;
+        java.util.function.Consumer $r7;
+        java.util.List $r11, $r12;
+        gc.g1.humongousObjects.objectGraphTest.GC r5;
+        java.lang.StringBuilder $r0, $r3, $r16, $r19, $r20;
+        java.lang.Class $r8, $r17;
+
+        r5 := @parameter0: gc.g1.humongousObjects.objectGraphTest.GC;
+
+        r2 := @parameter1: java.lang.String;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>("Testcase: ");
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r4);
+
+     label1:
+        $r6 = virtualinvoke r5.<gc.g1.humongousObjects.objectGraphTest.GC: java.lang.Runnable get()>();
+
+        $r7 = virtualinvoke r5.<gc.g1.humongousObjects.objectGraphTest.GC: java.util.function.Consumer getChecker()>();
+
+        $r8 = class "Lgc/g1/humongousObjects/objectGraphTest/TestObjectGraphAfterGC;";
+
+        $r9 = virtualinvoke $r8.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r10 = virtualinvoke r5.<gc.g1.humongousObjects.objectGraphTest.GC: java.lang.String getGcLogName(java.lang.String)>($r9);
+
+        $r11 = virtualinvoke r5.<gc.g1.humongousObjects.objectGraphTest.GC: java.util.List shouldContain()>();
+
+        $r12 = virtualinvoke r5.<gc.g1.humongousObjects.objectGraphTest.GC: java.util.List shouldNotContain()>();
+
+        staticinvoke <gc.g1.humongousObjects.objectGraphTest.TestObjectGraphAfterGC: void doTesting(java.lang.String,java.lang.Runnable,java.util.function.Consumer,java.lang.String,java.util.List,java.util.List)>(r2, $r6, $r7, $r10, $r11, $r12);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r14 := @caughtexception;
+
+        $r15 = new java.lang.Error;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("Problems trying to find or open ");
+
+        $r17 = class "Lgc/g1/humongousObjects/objectGraphTest/TestObjectGraphAfterGC;";
+
+        $r18 = virtualinvoke $r17.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r19 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r18);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".gc.log");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r15.<java.lang.Error: void <init>(java.lang.String,java.lang.Throwable)>($r21, $r14);
+
+        throw $r15;
+
+     label4:
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>(" Passed");
+
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    private static boolean lambda$1(gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode)
+    {
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode r0;
+
+        r0 := @parameter0: gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode;
+
+        return 1;
+    }
+
+    private static void lambda$2(java.util.Map, gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode, java.lang.Object[][])
+    {
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode r2;
+        java.lang.Object[] $r6;
+        java.lang.Integer $r4;
+        java.lang.Object[][] r1;
+        java.util.Map r0;
+        int $i0;
+        java.lang.String $r3, $r5;
+
+        r0 := @parameter0: java.util.Map;
+
+        r2 := @parameter1: gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode;
+
+        r1 := @parameter2: java.lang.Object[][];
+
+        $r3 = r2.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: java.lang.String id>;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r3);
+
+        $i0 = virtualinvoke $r4.<java.lang.Integer: int intValue()>();
+
+        $r6 = r1[$i0];
+
+        $r5 = r2.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: java.lang.String id>;
+
+        interfaceinvoke r0.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r6, $r5);
+
+        return;
+    }
+
+    private static boolean lambda$3(gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode)
+    {
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode r0;
+        boolean $z0;
+
+        r0 := @parameter0: gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode;
+
+        $z0 = r0.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: boolean isHumongous>;
+
+        return $z0;
+    }
+
+    private static void lambda$4(java.util.Set, gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode, java.lang.Object[][])
+    {
+        java.lang.Object[][] r1;
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode r2;
+        java.lang.Object[] $r5;
+        int $i0;
+        java.util.Set r0;
+        java.lang.String $r3;
+        java.lang.Integer $r4;
+
+        r0 := @parameter0: java.util.Set;
+
+        r2 := @parameter1: gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode;
+
+        r1 := @parameter2: java.lang.Object[][];
+
+        $r3 = r2.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: java.lang.String id>;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r3);
+
+        $i0 = virtualinvoke $r4.<java.lang.Integer: int intValue()>();
+
+        $r5 = r1[$i0];
+
+        interfaceinvoke r0.<java.util.Set: boolean add(java.lang.Object)>($r5);
+
+        return;
+    }
+
+    private static boolean lambda$5(gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode)
+    {
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode r0;
+        java.util.List $r1;
+        java.util.stream.Stream $r2;
+        java.util.function.Predicate $r3;
+        boolean $z0;
+
+        r0 := @parameter0: gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode;
+
+        $r1 = virtualinvoke r0.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: java.util.List getReferencesTypes()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r3 = staticinvoke <TestObjectGraphAfterGC$lambda_7__18: java.util.function.Predicate bootstrap$()>();
+
+        $z0 = interfaceinvoke $r2.<java.util.stream.Stream: boolean anyMatch(java.util.function.Predicate)>($r3);
+
+        return $z0;
+    }
+
+    private static void lambda$6(java.util.Set, gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode, java.lang.Object[][])
+    {
+        java.lang.Object[][] r1;
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode r2;
+        java.lang.Object[] $r5;
+        int $i0;
+        java.util.Set r0;
+        java.lang.String $r3;
+        java.lang.Integer $r4;
+
+        r0 := @parameter0: java.util.Set;
+
+        r2 := @parameter1: gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode;
+
+        r1 := @parameter2: java.lang.Object[][];
+
+        $r3 = r2.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: java.lang.String id>;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r3);
+
+        $i0 = virtualinvoke $r4.<java.lang.Integer: int intValue()>();
+
+        $r5 = r1[$i0];
+
+        interfaceinvoke r0.<java.util.Set: boolean add(java.lang.Object)>($r5);
+
+        return;
+    }
+
+    private static boolean lambda$8(gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode)
+    {
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode r0;
+        java.util.List $r1;
+        java.util.stream.Stream $r2;
+        java.util.function.Predicate $r3;
+        boolean $z0;
+
+        r0 := @parameter0: gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode;
+
+        $r1 = virtualinvoke r0.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: java.util.List getReferencesTypes()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r3 = staticinvoke <TestObjectGraphAfterGC$lambda_10__19: java.util.function.Predicate bootstrap$()>();
+
+        $z0 = interfaceinvoke $r2.<java.util.stream.Stream: boolean anyMatch(java.util.function.Predicate)>($r3);
+
+        return $z0;
+    }
+
+    private static void lambda$9(java.util.Set, gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode, java.lang.Object[][])
+    {
+        java.lang.Object[][] r1;
+        gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode r2;
+        java.lang.Object[] $r5;
+        int $i0;
+        java.util.Set r0;
+        java.lang.String $r3;
+        java.lang.Integer $r4;
+
+        r0 := @parameter0: java.util.Set;
+
+        r2 := @parameter1: gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode;
+
+        r1 := @parameter2: java.lang.Object[][];
+
+        $r3 = r2.<gc.g1.humongousObjects.objectGraphTest.TestcaseData$FinalParsedNode: java.lang.String id>;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r3);
+
+        $i0 = virtualinvoke $r4.<java.lang.Integer: int intValue()>();
+
+        $r5 = r1[$i0];
+
+        interfaceinvoke r0.<java.util.Set: boolean add(java.lang.Object)>($r5);
+
+        return;
+    }
+
+    private static void lambda$13(java.util.Set, java.lang.ref.ReferenceQueue, java.lang.Object[])
+    {
+        java.lang.Object[] r2;
+        java.util.Set r0;
+        java.lang.ref.WeakReference $r1;
+        java.lang.ref.ReferenceQueue r3;
+
+        r0 := @parameter0: java.util.Set;
+
+        r3 := @parameter1: java.lang.ref.ReferenceQueue;
+
+        r2 := @parameter2: java.lang.Object[];
+
+        $r1 = new java.lang.ref.WeakReference;
+
+        specialinvoke $r1.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>(r2, r3);
+
+        interfaceinvoke r0.<java.util.Set: boolean add(java.lang.Object)>($r1);
+
+        return;
+    }
+
+    private static void lambda$14(java.util.Set, java.lang.ref.ReferenceQueue, java.lang.Object[])
+    {
+        java.lang.Object[] r2;
+        java.util.Set r0;
+        java.lang.ref.SoftReference $r1;
+        java.lang.ref.ReferenceQueue r3;
+
+        r0 := @parameter0: java.util.Set;
+
+        r3 := @parameter1: java.lang.ref.ReferenceQueue;
+
+        r2 := @parameter2: java.lang.Object[];
+
+        $r1 = new java.lang.ref.SoftReference;
+
+        specialinvoke $r1.<java.lang.ref.SoftReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>(r2, r3);
+
+        interfaceinvoke r0.<java.util.Set: boolean add(java.lang.Object)>($r1);
+
+        return;
+    }
+
+    private static gc.g1.humongousObjects.objectGraphTest.ReferenceInfo lambda$15(java.lang.String, java.util.Map, java.util.Set, java.util.Set, java.lang.ref.Reference)
+    {
+        java.util.Set r6, r9;
+        gc.g1.humongousObjects.objectGraphTest.ReferenceInfo $r0;
+        java.lang.ref.Reference r1;
+        java.util.Map r3;
+        java.lang.Object $r4, $r5, $r8, $r10;
+        java.lang.String r2, $r7;
+        boolean $z0, $z1;
+
+        r2 := @parameter0: java.lang.String;
+
+        r3 := @parameter1: java.util.Map;
+
+        r6 := @parameter2: java.util.Set;
+
+        r9 := @parameter3: java.util.Set;
+
+        r1 := @parameter4: java.lang.ref.Reference;
+
+        $r0 = new gc.g1.humongousObjects.objectGraphTest.ReferenceInfo;
+
+        $r4 = virtualinvoke r1.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        $r5 = interfaceinvoke r3.<java.util.Map: java.lang.Object get(java.lang.Object)>($r4);
+
+        $r7 = (java.lang.String) $r5;
+
+        $r8 = virtualinvoke r1.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        $z0 = interfaceinvoke r6.<java.util.Set: boolean contains(java.lang.Object)>($r8);
+
+        $r10 = virtualinvoke r1.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        $z1 = interfaceinvoke r9.<java.util.Set: boolean contains(java.lang.Object)>($r10);
+
+        specialinvoke $r0.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: void <init>(java.lang.ref.Reference,java.lang.String,java.lang.String,boolean,boolean)>(r1, r2, $r7, $z0, $z1);
+
+        return $r0;
+    }
+
+    private static boolean lambda$7(gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType)
+    {
+        gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType r0, $r1;
+        boolean $z0;
+
+        r0 := @parameter0: gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType;
+
+        $r1 = <gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType: gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType SOFT>;
+
+        if r0 != $r1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    private static boolean lambda$10(gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType)
+    {
+        gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType r0, $r1;
+        boolean $z0;
+
+        r0 := @parameter0: gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType;
+
+        $r1 = <gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType: gc.g1.humongousObjects.objectGraphTest.ObjectGraph$ReferenceType WEAK>;
+
+        if r0 != $r1 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+}

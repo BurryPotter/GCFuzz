@@ -1,0 +1,203 @@
+public final class AppPLABResize extends java.lang.Object
+{
+    private static final long MEM_ALLOC_WORDS;
+    private static final int ITERATIONS;
+    private static final long CHUNK;
+    private static final sun.hotspot.WhiteBox WHITE_BOX;
+
+    static void <clinit>()
+    {
+        java.lang.Long $r1;
+        int $i0;
+        long $l1;
+        sun.hotspot.WhiteBox $r2;
+        java.lang.Integer $r0;
+
+        $r0 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String)>("iterations");
+
+        $i0 = virtualinvoke $r0.<java.lang.Integer: int intValue()>();
+
+        <gc.g1.plab.lib.AppPLABResize: int ITERATIONS> = $i0;
+
+        $r1 = staticinvoke <java.lang.Long: java.lang.Long getLong(java.lang.String)>("chunk.size");
+
+        $l1 = virtualinvoke $r1.<java.lang.Long: long longValue()>();
+
+        <gc.g1.plab.lib.AppPLABResize: long CHUNK> = $l1;
+
+        $r2 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.plab.lib.AppPLABResize: sun.hotspot.WhiteBox WHITE_BOX> = $r2;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        AppPLABResize r0;
+
+        r0 := @this: AppPLABResize;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        long $l1, $l4, $l5, $l6, $l9, $l10, $l11, $l12, $l13, $l14;
+        java.lang.String[] r2;
+        byte $b2;
+        int $i0, $i3, $i7, $i8;
+        boolean $z0;
+        sun.hotspot.WhiteBox $r1;
+        java.lang.IllegalArgumentException $r0;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $i0 = <gc.g1.plab.lib.AppPLABResize: int ITERATIONS>;
+
+        if $i0 == 0 goto label1;
+
+        $l1 = <gc.g1.plab.lib.AppPLABResize: long CHUNK>;
+
+        $b2 = $l1 cmp 0L;
+
+        if $b2 != 0 goto label2;
+
+     label1:
+        $r0 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Properties should be set");
+
+        throw $r0;
+
+     label2:
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean is32bit()>();
+
+        if $z0 == 0 goto label3;
+
+        $l14 = 4L;
+
+        goto label4;
+
+     label3:
+        $l14 = 8L;
+
+     label4:
+        $l11 = $l14 * 32768L;
+
+        $l5 = $l11 / 2L;
+
+        $i3 = <gc.g1.plab.lib.AppPLABResize: int ITERATIONS>;
+
+        $l4 = (long) $i3;
+
+        $l12 = $l5 / $l4;
+
+        $r1 = <gc.g1.plab.lib.AppPLABResize: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r1.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        staticinvoke <gc.g1.plab.lib.AppPLABResize: void iterateAllocation(long,long)>($l11, 0L);
+
+        $l6 = neg $l12;
+
+        staticinvoke <gc.g1.plab.lib.AppPLABResize: void iterateAllocation(long,long)>($l11, $l6);
+
+        $i7 = <gc.g1.plab.lib.AppPLABResize: int ITERATIONS>;
+
+        $i8 = $i7 - 2;
+
+        $l9 = (long) $i8;
+
+        $l10 = $l12 * $l9;
+
+        $l13 = $l11 - $l10;
+
+        staticinvoke <gc.g1.plab.lib.AppPLABResize: void iterateAllocation(long,long)>($l13, $l12);
+
+        return;
+    }
+
+    private static void iterateAllocation(long, long)
+    {
+        long l0, l2, $l3, $l4, $l7, $l10, $l11, $l12, $l13, $l14, l17;
+        byte $b1;
+        int $i5, $i6, $i8, $i9, $i15, i16, i18, $i19;
+        gc.g1.plab.lib.MemoryConsumer $r2;
+        sun.hotspot.WhiteBox $r1;
+
+        l2 := @parameter0: long;
+
+        l0 := @parameter1: long;
+
+        $b1 = l0 cmp 0L;
+
+        $i19 = (int) $b1;
+
+        if $i19 <= 0 goto label1;
+
+        $i9 = <gc.g1.plab.lib.AppPLABResize: int ITERATIONS>;
+
+        $l10 = (long) $i9;
+
+        $l11 = l0 * $l10;
+
+        $l13 = l2 + $l11;
+
+        $l12 = <gc.g1.plab.lib.AppPLABResize: long CHUNK>;
+
+        $l14 = $l13 / $l12;
+
+        $i15 = (int) $l14;
+
+        i16 = $i15 + 1;
+
+        goto label2;
+
+     label1:
+        $l3 = <gc.g1.plab.lib.AppPLABResize: long CHUNK>;
+
+        $l4 = l2 / $l3;
+
+        $i5 = (int) $l4;
+
+        i16 = $i5 + 1;
+
+     label2:
+        l17 = l2;
+
+        i18 = 0;
+
+        goto label4;
+
+     label3:
+        $r2 = new gc.g1.plab.lib.MemoryConsumer;
+
+        $l7 = <gc.g1.plab.lib.AppPLABResize: long CHUNK>;
+
+        $i8 = (int) $l7;
+
+        specialinvoke $r2.<gc.g1.plab.lib.MemoryConsumer: void <init>(int,int)>(i16, $i8);
+
+        virtualinvoke $r2.<gc.g1.plab.lib.MemoryConsumer: void consume(long)>(l17);
+
+        $r1 = <gc.g1.plab.lib.AppPLABResize: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r1.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        virtualinvoke $r2.<gc.g1.plab.lib.MemoryConsumer: void clear()>();
+
+        l17 = l17 + l0;
+
+        i18 = i18 + 1;
+
+     label4:
+        $i6 = <gc.g1.plab.lib.AppPLABResize: int ITERATIONS>;
+
+        if i18 < $i6 goto label3;
+
+        return;
+    }
+}

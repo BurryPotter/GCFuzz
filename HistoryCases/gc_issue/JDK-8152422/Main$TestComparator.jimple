@@ -1,0 +1,129 @@
+class Main$TestComparator extends java.lang.Object implements java.util.Comparator
+{
+    jprtlogparser.Main$Sort sort;
+
+    void <init>(jprtlogparser.Main$Sort)
+    {
+        Main$TestComparator r0;
+        jprtlogparser.Main$TestComparator $r2;
+        jprtlogparser.Main$Sort r1;
+
+        r0 := @this: Main$TestComparator;
+
+        r1 := @parameter0: jprtlogparser.Main$Sort;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = (jprtlogparser.Main$TestComparator) r0;
+
+        $r2.<jprtlogparser.Main$TestComparator: jprtlogparser.Main$Sort sort> = r1;
+
+        return;
+    }
+
+    public int compare(jprtlogparser.Main$Test, jprtlogparser.Main$Test)
+    {
+        java.lang.Float $r6, $r8, $r11, $r12;
+        Main$TestComparator r0;
+        jprtlogparser.Main$Sort $r1;
+        jprtlogparser.Main$Test r4, r5;
+        int[] $r2;
+        int $i0, $i1, $i2, $i3, $i4, $i6;
+        java.lang.String $r9, $r10;
+        jprtlogparser.Main$TestComparator $r13;
+        float $f0, $f1, $f2, $f3;
+
+        r0 := @this: Main$TestComparator;
+
+        r5 := @parameter0: jprtlogparser.Main$Test;
+
+        r4 := @parameter1: jprtlogparser.Main$Test;
+
+        $r2 = <jprtlogparser.Main$1: int[] $SwitchMap$jprtlogparser$Main$Sort>;
+
+        $r13 = (jprtlogparser.Main$TestComparator) r0;
+
+        $r1 = $r13.<jprtlogparser.Main$TestComparator: jprtlogparser.Main$Sort sort>;
+
+        $i0 = virtualinvoke $r1.<jprtlogparser.Main$Sort: int ordinal()>();
+
+        $i1 = $r2[$i0];
+
+        tableswitch($i1)
+        {
+            case 1: goto label1;
+            case 2: goto label2;
+            case 3: goto label3;
+            default: goto label4;
+        };
+
+     label1:
+        $r10 = r5.<jprtlogparser.Main$Test: java.lang.String name>;
+
+        $r9 = r4.<jprtlogparser.Main$Test: java.lang.String name>;
+
+        $i4 = virtualinvoke $r10.<java.lang.String: int compareTo(java.lang.String)>($r9);
+
+        return $i4;
+
+     label2:
+        $r11 = new java.lang.Float;
+
+        $f2 = r5.<jprtlogparser.Main$Test: float time>;
+
+        specialinvoke $r11.<java.lang.Float: void <init>(float)>($f2);
+
+        $f3 = r4.<jprtlogparser.Main$Test: float time>;
+
+        $r8 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f3);
+
+        $i3 = virtualinvoke $r11.<java.lang.Float: int compareTo(java.lang.Float)>($r8);
+
+        return $i3;
+
+     label3:
+        $r12 = new java.lang.Float;
+
+        $f0 = r4.<jprtlogparser.Main$Test: float time>;
+
+        specialinvoke $r12.<java.lang.Float: void <init>(float)>($f0);
+
+        $f1 = r5.<jprtlogparser.Main$Test: float time>;
+
+        $r6 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f1);
+
+        $i2 = virtualinvoke $r12.<java.lang.Float: int compareTo(java.lang.Float)>($r6);
+
+        return $i2;
+
+     label4:
+        $i6 = (int) -1;
+
+        return $i6;
+    }
+
+    public volatile int compare(java.lang.Object, java.lang.Object)
+    {
+        jprtlogparser.Main$Test $r3, $r4;
+        jprtlogparser.Main$TestComparator $r5;
+        int $i0;
+        Main$TestComparator r0;
+        java.lang.Object r1, r2;
+
+        r0 := @this: Main$TestComparator;
+
+        r1 := @parameter0: java.lang.Object;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $r4 = (jprtlogparser.Main$Test) r1;
+
+        $r3 = (jprtlogparser.Main$Test) r2;
+
+        $r5 = (jprtlogparser.Main$TestComparator) r0;
+
+        $i0 = virtualinvoke $r5.<jprtlogparser.Main$TestComparator: int compare(jprtlogparser.Main$Test,jprtlogparser.Main$Test)>($r4, $r3);
+
+        return $i0;
+    }
+}

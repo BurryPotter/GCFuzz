@@ -1,0 +1,42 @@
+class phantom001$Test$Referent extends java.lang.Object
+{
+    final gc.gctests.PhantomReference.phantom001.phantom001$Test this$1;
+
+    public void <init>(gc.gctests.PhantomReference.phantom001.phantom001$Test)
+    {
+        gc.gctests.PhantomReference.phantom001.phantom001$Test r1;
+        phantom001$Test$Referent r0;
+        gc.gctests.PhantomReference.phantom001.phantom001$Test$Referent $r2;
+
+        r0 := @this: phantom001$Test$Referent;
+
+        r1 := @parameter0: gc.gctests.PhantomReference.phantom001.phantom001$Test;
+
+        $r2 = (gc.gctests.PhantomReference.phantom001.phantom001$Test$Referent) r0;
+
+        $r2.<gc.gctests.PhantomReference.phantom001.phantom001$Test$Referent: gc.gctests.PhantomReference.phantom001.phantom001$Test this$1> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r1.<gc.gctests.PhantomReference.phantom001.phantom001$Test: boolean finalized> = 0;
+
+        return;
+    }
+
+    protected void finalize()
+    {
+        gc.gctests.PhantomReference.phantom001.phantom001$Test $r1;
+        phantom001$Test$Referent r0;
+        gc.gctests.PhantomReference.phantom001.phantom001$Test$Referent $r2;
+
+        r0 := @this: phantom001$Test$Referent;
+
+        $r2 = (gc.gctests.PhantomReference.phantom001.phantom001$Test$Referent) r0;
+
+        $r1 = $r2.<gc.gctests.PhantomReference.phantom001.phantom001$Test$Referent: gc.gctests.PhantomReference.phantom001.phantom001$Test this$1>;
+
+        $r1.<gc.gctests.PhantomReference.phantom001.phantom001$Test: boolean finalized> = 1;
+
+        return;
+    }
+}

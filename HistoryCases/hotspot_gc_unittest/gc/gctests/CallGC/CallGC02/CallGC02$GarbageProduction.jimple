@@ -1,0 +1,43 @@
+class CallGC02$GarbageProduction extends java.lang.Object implements java.lang.Runnable
+{
+    final gc.gctests.CallGC.CallGC02.CallGC02 this$0;
+
+    private void <init>(gc.gctests.CallGC.CallGC02.CallGC02)
+    {
+        gc.gctests.CallGC.CallGC02.CallGC02$GarbageProduction $r2;
+        CallGC02$GarbageProduction r0;
+        gc.gctests.CallGC.CallGC02.CallGC02 r1;
+
+        r0 := @this: CallGC02$GarbageProduction;
+
+        r1 := @parameter0: gc.gctests.CallGC.CallGC02.CallGC02;
+
+        $r2 = (gc.gctests.CallGC.CallGC02.CallGC02$GarbageProduction) r0;
+
+        $r2.<gc.gctests.CallGC.CallGC02.CallGC02$GarbageProduction: gc.gctests.CallGC.CallGC02.CallGC02 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        nsk.share.gc.gp.GarbageProducer $r2;
+        gc.gctests.CallGC.CallGC02.CallGC02$GarbageProduction $r3;
+        CallGC02$GarbageProduction r0;
+        gc.gctests.CallGC.CallGC02.CallGC02 $r1;
+
+        r0 := @this: CallGC02$GarbageProduction;
+
+        $r3 = (gc.gctests.CallGC.CallGC02.CallGC02$GarbageProduction) r0;
+
+        $r1 = $r3.<gc.gctests.CallGC.CallGC02.CallGC02$GarbageProduction: gc.gctests.CallGC.CallGC02.CallGC02 this$0>;
+
+        $r2 = $r1.<gc.gctests.CallGC.CallGC02.CallGC02: nsk.share.gc.gp.GarbageProducer garbageProducer>;
+
+        interfaceinvoke $r2.<nsk.share.gc.gp.GarbageProducer: java.lang.Object create(long)>(100L);
+
+        return;
+    }
+}

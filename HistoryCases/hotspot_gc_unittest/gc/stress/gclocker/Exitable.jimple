@@ -1,0 +1,49 @@
+class Exitable extends java.lang.Object
+{
+    private volatile boolean shouldExit;
+
+    void <init>()
+    {
+        Exitable r0;
+        gc.stress.gclocker.Exitable $r1;
+
+        r0 := @this: Exitable;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.stress.gclocker.Exitable) r0;
+
+        $r1.<gc.stress.gclocker.Exitable: boolean shouldExit> = 0;
+
+        return;
+    }
+
+    protected boolean shouldExit()
+    {
+        Exitable r0;
+        gc.stress.gclocker.Exitable $r1;
+        boolean $z0;
+
+        r0 := @this: Exitable;
+
+        $r1 = (gc.stress.gclocker.Exitable) r0;
+
+        $z0 = $r1.<gc.stress.gclocker.Exitable: boolean shouldExit>;
+
+        return $z0;
+    }
+
+    public void exit()
+    {
+        Exitable r0;
+        gc.stress.gclocker.Exitable $r1;
+
+        r0 := @this: Exitable;
+
+        $r1 = (gc.stress.gclocker.Exitable) r0;
+
+        $r1.<gc.stress.gclocker.Exitable: boolean shouldExit> = 1;
+
+        return;
+    }
+}

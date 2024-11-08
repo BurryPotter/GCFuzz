@@ -1,0 +1,205 @@
+public class TestG1HeapRegionSize extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestG1HeapRegionSize r0;
+
+        r0 := @this: TestG1HeapRegionSize;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static void checkG1HeapRegionSize(java.lang.String[], int, int) throws java.lang.Exception
+    {
+        java.lang.Object[] $r4;
+        java.lang.String[] r1, $r3, $r5;
+        java.util.ArrayList $r0;
+        int i0, $i1, i2;
+        java.lang.ProcessBuilder $r6;
+        java.lang.String $r9, $r15;
+        java.lang.Process $r8;
+        java.lang.RuntimeException $r10;
+        jdk.test.lib.process.OutputAnalyzer $r7;
+        java.util.List $r2;
+        java.lang.StringBuilder $r11, $r12, $r13, $r14;
+
+        r1 := @parameter0: java.lang.String[];
+
+        i2 := @parameter1: int;
+
+        i0 := @parameter2: int;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r1);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r2);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>("-XX:+UseG1GC");
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>("-XX:+PrintFlagsFinal");
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>("-version");
+
+        $r3 = newarray (java.lang.String)[0];
+
+        $r4 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r3);
+
+        $r5 = (java.lang.String[]) $r4;
+
+        $r6 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r5);
+
+        $r7 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r8 = virtualinvoke $r6.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r8);
+
+        virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(i0);
+
+        if i0 != 0 goto label1;
+
+        $r9 = virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        $i1 = staticinvoke <gc.arguments.TestG1HeapRegionSize: int getFlagValue(java.lang.String,java.lang.String)>("G1HeapRegionSize", $r9);
+
+        if $i1 == i2 goto label1;
+
+        $r10 = new java.lang.RuntimeException;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("Wrong value for G1HeapRegionSize. Expected ");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" but got ");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>($r15);
+
+        throw $r10;
+
+     label1:
+        return;
+    }
+
+    private static int getFlagValue(java.lang.String, java.lang.String)
+    {
+        java.util.regex.Matcher $r7;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String r1, $r2, $r4, r6, $r8, $r9, $r14;
+        boolean $z0;
+        java.lang.RuntimeException $r10;
+        java.lang.StringBuilder $r0, $r3, $r11, $r12, $r13;
+        java.util.regex.Pattern $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        r6 := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\s+:?=\\s+\\d+");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>($r4);
+
+        $r7 = virtualinvoke $r5.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r6);
+
+        $z0 = virtualinvoke $r7.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label1;
+
+        $r10 = new java.lang.RuntimeException;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("Could not find value for flag ");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in output string");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>($r14);
+
+        throw $r10;
+
+     label1:
+        $r8 = virtualinvoke $r7.<java.util.regex.Matcher: java.lang.String group()>();
+
+        $i0 = virtualinvoke $r8.<java.lang.String: int lastIndexOf(java.lang.String)>(" ");
+
+        $i1 = $i0 + 1;
+
+        $i2 = virtualinvoke $r8.<java.lang.String: int length()>();
+
+        $r9 = virtualinvoke $r8.<java.lang.String: java.lang.String substring(int,int)>($i1, $i2);
+
+        $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r9);
+
+        return $i3;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r0, $r1, $r2, $r3, $r4, r5;
+
+        r5 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "-Xmx64m";
+
+        staticinvoke <gc.arguments.TestG1HeapRegionSize: void checkG1HeapRegionSize(java.lang.String[],int,int)>($r0, 1048576, 0);
+
+        $r1 = newarray (java.lang.String)[2];
+
+        $r1[0] = "-Xmx64m";
+
+        $r1[1] = "-XX:G1HeapRegionSize=2m";
+
+        staticinvoke <gc.arguments.TestG1HeapRegionSize: void checkG1HeapRegionSize(java.lang.String[],int,int)>($r1, 2097152, 0);
+
+        $r2 = newarray (java.lang.String)[2];
+
+        $r2[0] = "-Xmx64m";
+
+        $r2[1] = "-XX:G1HeapRegionSize=3m";
+
+        staticinvoke <gc.arguments.TestG1HeapRegionSize: void checkG1HeapRegionSize(java.lang.String[],int,int)>($r2, 2097152, 0);
+
+        $r3 = newarray (java.lang.String)[2];
+
+        $r3[0] = "-Xmx256m";
+
+        $r3[1] = "-XX:G1HeapRegionSize=32m";
+
+        staticinvoke <gc.arguments.TestG1HeapRegionSize: void checkG1HeapRegionSize(java.lang.String[],int,int)>($r3, 33554432, 0);
+
+        $r4 = newarray (java.lang.String)[2];
+
+        $r4[0] = "-Xmx256m";
+
+        $r4[1] = "-XX:G1HeapRegionSize=64m";
+
+        staticinvoke <gc.arguments.TestG1HeapRegionSize: void checkG1HeapRegionSize(java.lang.String[],int,int)>($r4, 33554432, 1);
+
+        return;
+    }
+}

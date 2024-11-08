@@ -1,0 +1,57 @@
+public class TestThrowableOom extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestThrowableOom r0;
+
+        r0 := @this: TestThrowableOom;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static TestThrowableOom$ThrowOom memoryEater()
+    {
+        TestThrowableOom$ThrowOom $r0, $r1, r2;
+        int i0;
+
+        $r0 = new TestThrowableOom$ThrowOom;
+
+        specialinvoke $r0.<TestThrowableOom$ThrowOom: void <init>()>();
+
+        r2 = $r0;
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 2147483647 goto label2;
+
+        $r1 = new TestThrowableOom$ThrowOom;
+
+        specialinvoke $r1.<TestThrowableOom$ThrowOom: void <init>()>();
+
+        r2.<TestThrowableOom$ThrowOom: TestThrowableOom$ThrowOom next> = $r1;
+
+        r2 = r2.<TestThrowableOom$ThrowOom: TestThrowableOom$ThrowOom next>;
+
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label2:
+        return r2;
+    }
+
+    public static transient void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <TestThrowableOom: TestThrowableOom$ThrowOom memoryEater()>();
+
+        return;
+    }
+}

@@ -1,0 +1,43 @@
+class treeNode extends java.lang.Object
+{
+    static int memorySinkSize;
+    int info;
+    gc.gctests.JumbleGC.treeNode left;
+    gc.gctests.JumbleGC.treeNode right;
+    int[] memory_sink;
+
+    static void <clinit>()
+    {
+        <gc.gctests.JumbleGC.treeNode: int memorySinkSize> = 100;
+
+        return;
+    }
+
+    public void <init>(int)
+    {
+        int[] $r1;
+        int i0, $i1;
+        gc.gctests.JumbleGC.treeNode $r2, $r3;
+        treeNode r0;
+
+        r0 := @this: treeNode;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = (gc.gctests.JumbleGC.treeNode) r0;
+
+        $r2.<gc.gctests.JumbleGC.treeNode: int info> = i0;
+
+        $i1 = <gc.gctests.JumbleGC.treeNode: int memorySinkSize>;
+
+        $r1 = newarray (int)[$i1];
+
+        $r3 = (gc.gctests.JumbleGC.treeNode) r0;
+
+        $r3.<gc.gctests.JumbleGC.treeNode: int[] memory_sink> = $r1;
+
+        return;
+    }
+}

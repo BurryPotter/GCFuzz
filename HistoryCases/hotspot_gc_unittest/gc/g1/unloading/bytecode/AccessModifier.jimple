@@ -1,0 +1,257 @@
+final enum class AccessModifier extends java.lang.Enum
+{
+    public static final enum gc.g1.unloading.bytecode.AccessModifier PRIVATE;
+    public static final enum gc.g1.unloading.bytecode.AccessModifier PROTECTED;
+    public static final enum gc.g1.unloading.bytecode.AccessModifier PACKAGE;
+    public static final enum gc.g1.unloading.bytecode.AccessModifier PUBLIC;
+    private static int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$AccessModifier;
+    private static final gc.g1.unloading.bytecode.AccessModifier[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.g1.unloading.bytecode.AccessModifier[] $r4;
+        gc.g1.unloading.bytecode.AccessModifier $r0, $r1, $r2, $r3, $r5, $r6, $r7, $r8;
+
+        $r0 = new gc.g1.unloading.bytecode.AccessModifier;
+
+        specialinvoke $r0.<gc.g1.unloading.bytecode.AccessModifier: void <init>(java.lang.String,int)>("PRIVATE", 0);
+
+        <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PRIVATE> = $r0;
+
+        $r1 = new gc.g1.unloading.bytecode.AccessModifier;
+
+        specialinvoke $r1.<gc.g1.unloading.bytecode.AccessModifier: void <init>(java.lang.String,int)>("PROTECTED", 1);
+
+        <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PROTECTED> = $r1;
+
+        $r2 = new gc.g1.unloading.bytecode.AccessModifier;
+
+        specialinvoke $r2.<gc.g1.unloading.bytecode.AccessModifier: void <init>(java.lang.String,int)>("PACKAGE", 2);
+
+        <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PACKAGE> = $r2;
+
+        $r3 = new gc.g1.unloading.bytecode.AccessModifier;
+
+        specialinvoke $r3.<gc.g1.unloading.bytecode.AccessModifier: void <init>(java.lang.String,int)>("PUBLIC", 3);
+
+        <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PUBLIC> = $r3;
+
+        $r4 = newarray (gc.g1.unloading.bytecode.AccessModifier)[4];
+
+        $r5 = <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PRIVATE>;
+
+        $r4[0] = $r5;
+
+        $r6 = <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PROTECTED>;
+
+        $r4[1] = $r6;
+
+        $r7 = <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PACKAGE>;
+
+        $r4[2] = $r7;
+
+        $r8 = <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PUBLIC>;
+
+        $r4[3] = $r8;
+
+        <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier[] ENUM$VALUES> = $r4;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        java.lang.String r1;
+        AccessModifier r0;
+
+        r0 := @this: AccessModifier;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        AccessModifier r1;
+        int[] $r0;
+        int $i0, $i1;
+        gc.g1.unloading.bytecode.AccessModifier $r2;
+
+        r1 := @this: AccessModifier;
+
+        $r0 = staticinvoke <gc.g1.unloading.bytecode.AccessModifier: int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$AccessModifier()>();
+
+        $r2 = (gc.g1.unloading.bytecode.AccessModifier) r1;
+
+        $i0 = virtualinvoke $r2.<gc.g1.unloading.bytecode.AccessModifier: int ordinal()>();
+
+        $i1 = $r0[$i0];
+
+        tableswitch($i1)
+        {
+            case 1: goto label1;
+            case 2: goto label2;
+            case 3: goto label3;
+            default: goto label4;
+        };
+
+     label1:
+        return " private ";
+
+     label2:
+        return " protected ";
+
+     label3:
+        return " ";
+
+     label4:
+        return " public ";
+    }
+
+    public static gc.g1.unloading.bytecode.AccessModifier getRandomAccessModifier(java.util.Random)
+    {
+        java.lang.Object[] $r1;
+        gc.g1.unloading.bytecode.AccessModifier[] r2;
+        int $i0, $i1;
+        gc.g1.unloading.bytecode.AccessModifier $r4;
+        java.lang.Class $r0;
+        java.util.Random r3;
+
+        r3 := @parameter0: java.util.Random;
+
+        $r0 = class "Lgc/g1/unloading/bytecode/AccessModifier;";
+
+        $r1 = virtualinvoke $r0.<java.lang.Class: java.lang.Object[] getEnumConstants()>();
+
+        r2 = (gc.g1.unloading.bytecode.AccessModifier[]) $r1;
+
+        $i0 = lengthof r2;
+
+        $i1 = virtualinvoke r3.<java.util.Random: int nextInt(int)>($i0);
+
+        $r4 = r2[$i1];
+
+        return $r4;
+    }
+
+    public static gc.g1.unloading.bytecode.AccessModifier[] values()
+    {
+        int $i0;
+        gc.g1.unloading.bytecode.AccessModifier[] $r0, $r1;
+
+        $r0 = <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.g1.unloading.bytecode.AccessModifier)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.g1.unloading.bytecode.AccessModifier valueOf(java.lang.String)
+    {
+        gc.g1.unloading.bytecode.AccessModifier $r2;
+        java.lang.String r0;
+        java.lang.Enum $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/g1/unloading/bytecode/AccessModifier;", r0);
+
+        $r2 = (gc.g1.unloading.bytecode.AccessModifier) $r1;
+
+        return $r2;
+    }
+
+    static int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$AccessModifier()
+    {
+        java.lang.NoSuchFieldError $r7, $r8, $r9, $r10;
+        int[] $r0, r2;
+        int $i0, $i1, $i2, $i3, $i4;
+        gc.g1.unloading.bytecode.AccessModifier $r3, $r4, $r5, $r6;
+        gc.g1.unloading.bytecode.AccessModifier[] $r1;
+
+        $r0 = <gc.g1.unloading.bytecode.AccessModifier: int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$AccessModifier>;
+
+        if $r0 == null goto label01;
+
+        return $r0;
+
+     label01:
+        $r1 = staticinvoke <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier[] values()>();
+
+        $i0 = lengthof $r1;
+
+        r2 = newarray (int)[$i0];
+
+     label02:
+        $r3 = <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PACKAGE>;
+
+        $i1 = virtualinvoke $r3.<gc.g1.unloading.bytecode.AccessModifier: int ordinal()>();
+
+        r2[$i1] = 3;
+
+     label03:
+        goto label05;
+
+     label04:
+        $r10 := @caughtexception;
+
+     label05:
+        $r4 = <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PRIVATE>;
+
+        $i2 = virtualinvoke $r4.<gc.g1.unloading.bytecode.AccessModifier: int ordinal()>();
+
+        r2[$i2] = 1;
+
+     label06:
+        goto label08;
+
+     label07:
+        $r9 := @caughtexception;
+
+     label08:
+        $r5 = <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PROTECTED>;
+
+        $i3 = virtualinvoke $r5.<gc.g1.unloading.bytecode.AccessModifier: int ordinal()>();
+
+        r2[$i3] = 2;
+
+     label09:
+        goto label11;
+
+     label10:
+        $r8 := @caughtexception;
+
+     label11:
+        $r6 = <gc.g1.unloading.bytecode.AccessModifier: gc.g1.unloading.bytecode.AccessModifier PUBLIC>;
+
+        $i4 = virtualinvoke $r6.<gc.g1.unloading.bytecode.AccessModifier: int ordinal()>();
+
+        r2[$i4] = 4;
+
+     label12:
+        goto label14;
+
+     label13:
+        $r7 := @caughtexception;
+
+     label14:
+        <gc.g1.unloading.bytecode.AccessModifier: int[] $SWITCH_TABLE$gc$g1$unloading$bytecode$AccessModifier> = r2;
+
+        return r2;
+
+        catch java.lang.NoSuchFieldError from label02 to label03 with label04;
+        catch java.lang.NoSuchFieldError from label05 to label06 with label07;
+        catch java.lang.NoSuchFieldError from label08 to label09 with label10;
+        catch java.lang.NoSuchFieldError from label11 to label12 with label13;
+    }
+}

@@ -1,0 +1,210 @@
+public class WeakReferenceTest extends nsk.share.gc.GCTestBase
+{
+
+    public void <init>()
+    {
+        WeakReferenceTest r0;
+
+        r0 := @this: WeakReferenceTest;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        byte[] r21;
+        nsk.share.runner.RunParams $r2;
+        gc.gctests.WeakReference.WeakReferenceTest $r28, $r30;
+        java.util.Random $r22;
+        byte $b3, $b6;
+        java.lang.Runtime $r0;
+        java.lang.StringBuilder $r13, $r14, $r15, $r16, $r25;
+        java.lang.Throwable $r18, $r29, $r31;
+        long $l0, $l1, l2, $l5, l8, l9, l11;
+        java.util.ArrayList $r23;
+        int $i4, $i7, i10, i12, $i13, $i14, $i15;
+        java.lang.String $r12, $r17;
+        java.lang.ref.WeakReference r7, $r24;
+        double $d0, $d1, $d2, $d3, $d4;
+        WeakReferenceTest r1;
+        nsk.share.TestFailure $r26, $r27;
+        java.lang.Object $r6, $r8;
+        nsk.share.log.Log $r9;
+        java.lang.OutOfMemoryError $r19;
+
+        r1 := @this: WeakReferenceTest;
+
+        l8 = 0L;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $r28 = (gc.gctests.WeakReference.WeakReferenceTest) r1;
+
+        $r2 = $r28.<gc.gctests.WeakReference.WeakReferenceTest: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r2.<nsk.share.runner.RunParams: long getSeed()>();
+
+        $l1 = virtualinvoke $r0.<java.lang.Runtime: long maxMemory()>();
+
+        $d0 = (double) $l1;
+
+        $d1 = $d0 * 0.45;
+
+        l9 = (long) $d1;
+
+        $r22 = new java.util.Random;
+
+        specialinvoke $r22.<java.util.Random: void <init>(long)>($l0);
+
+        l2 = (long) 30720;
+
+        $r23 = new java.util.ArrayList;
+
+        specialinvoke $r23.<java.util.ArrayList: void <init>()>();
+
+     label01:
+        goto label03;
+
+     label02:
+        $d2 = virtualinvoke $r22.<java.util.Random: double nextDouble()>();
+
+        $d3 = (double) l2;
+
+        $d4 = $d2 * $d3;
+
+        $i4 = (int) $d4;
+
+        i10 = $i4 + 2048;
+
+        r21 = newarray (byte)[i10];
+
+        $r24 = new java.lang.ref.WeakReference;
+
+        specialinvoke $r24.<java.lang.ref.WeakReference: void <init>(java.lang.Object)>(r21);
+
+        virtualinvoke $r23.<java.util.ArrayList: boolean add(java.lang.Object)>($r24);
+
+        $l5 = (long) i10;
+
+        l8 = l8 + $l5;
+
+     label03:
+        $b3 = l8 cmp l9;
+
+        $i14 = (int) $b3;
+
+        if $i14 < 0 goto label02;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        l11 = 0L;
+
+        i12 = 0;
+
+        goto label06;
+
+     label04:
+        $r6 = virtualinvoke $r23.<java.util.ArrayList: java.lang.Object get(int)>(i12);
+
+        r7 = (java.lang.ref.WeakReference) $r6;
+
+        $r8 = virtualinvoke r7.<java.lang.ref.WeakReference: java.lang.Object get()>();
+
+        if $r8 == null goto label05;
+
+        l11 = l11 + 1L;
+
+     label05:
+        i12 = i12 + 1;
+
+     label06:
+        $i13 = virtualinvoke $r23.<java.util.ArrayList: int size()>();
+
+        if i12 < $i13 goto label04;
+
+        $b6 = l11 cmp 0L;
+
+        $i15 = (int) $b6;
+
+        if $i15 <= 0 goto label07;
+
+        $r26 = new nsk.share.TestFailure;
+
+        $r25 = new java.lang.StringBuilder;
+
+        $r12 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>(l11);
+
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>($r12);
+
+        $r13 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" out of ");
+
+        $i7 = virtualinvoke $r23.<java.util.ArrayList: int size()>();
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" WeakReferences was not ");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("null after the GC had run");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r26.<nsk.share.TestFailure: void <init>(java.lang.String)>($r17);
+
+        $r29 = (java.lang.Throwable) $r26;
+
+        throw $r29;
+
+     label07:
+        $r30 = (gc.gctests.WeakReference.WeakReferenceTest) r1;
+
+        $r9 = $r30.<gc.gctests.WeakReference.WeakReferenceTest: nsk.share.log.Log log>;
+
+        interfaceinvoke $r9.<nsk.share.log.Log: void info(java.lang.Object)>("All WeakReferences was cleared after the GC had run");
+
+     label08:
+        goto label11;
+
+     label09:
+        $r19 := @caughtexception;
+
+        $r27 = new nsk.share.TestFailure;
+
+        specialinvoke $r27.<nsk.share.TestFailure: void <init>(java.lang.String)>("OutOfMemoryException was thrown. This should not happen during the execution of this test.");
+
+        $r31 = (java.lang.Throwable) $r27;
+
+        throw $r31;
+
+     label10:
+        $r18 := @caughtexception;
+
+        throw $r18;
+
+     label11:
+        return;
+
+        catch java.lang.OutOfMemoryError from label01 to label08 with label09;
+        catch java.lang.Throwable from label01 to label10 with label10;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.gctests.WeakReference.WeakReferenceTest $r2;
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.WeakReference.WeakReferenceTest;
+
+        specialinvoke $r2.<gc.gctests.WeakReference.WeakReferenceTest: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

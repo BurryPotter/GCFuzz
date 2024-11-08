@@ -1,0 +1,179 @@
+public class A extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        A r0;
+
+        r0 := @this: A;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <A: void main1()>();
+
+        staticinvoke <A: void main2()>();
+
+        return;
+    }
+
+    private static void main1() throws java.lang.Exception
+    {
+        java.io.PrintStream $r4, $r6;
+        A$MyPhantomReference $r2;
+        java.lang.ref.ReferenceQueue $r0;
+        java.lang.ref.Reference $r3;
+        int $i0, i1;
+        java.lang.Object $r1;
+        java.lang.StringBuilder $r5, $r7, $r8;
+        java.lang.String $r9;
+
+        $r0 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r0.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r1 = new java.lang.Object;
+
+        specialinvoke $r1.<java.lang.Object: void <init>()>();
+
+        $r2 = new A$MyPhantomReference;
+
+        specialinvoke $r2.<A$MyPhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r1, $r0);
+
+        i1 = 0;
+
+     label1:
+        $r3 = virtualinvoke $r0.<java.lang.ref.ReferenceQueue: java.lang.ref.Reference poll()>();
+
+        if $r3 != null goto label2;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Attempt ");
+
+        $i0 = i1;
+
+        i1 = i1 + 1;
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        staticinvoke <A: void eatMemory()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <java.lang.System: void runFinalization()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(300L);
+
+        goto label1;
+
+     label2:
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>("main1 successfully finished");
+
+        return;
+    }
+
+    private static void main2() throws java.lang.Exception
+    {
+        java.io.PrintStream $r4, $r6;
+        A$MyPhantomReference $r2;
+        java.lang.ref.ReferenceQueue $r0;
+        java.lang.ref.Reference $r3;
+        int $i0, i1;
+        java.lang.Object $r1;
+        java.lang.StringBuilder $r5, $r7, $r8;
+        java.lang.String $r9;
+
+        $r0 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r0.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r1 = new java.lang.Object;
+
+        specialinvoke $r1.<java.lang.Object: void <init>()>();
+
+        $r2 = new A$MyPhantomReference;
+
+        specialinvoke $r2.<A$MyPhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r1, $r0);
+
+        i1 = 0;
+
+     label1:
+        $r3 = virtualinvoke $r0.<java.lang.ref.ReferenceQueue: java.lang.ref.Reference poll()>();
+
+        if $r3 != null goto label2;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Attempt ");
+
+        $i0 = i1;
+
+        i1 = i1 + 1;
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        staticinvoke <A: void eatMemory()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <java.lang.System: void runFinalization()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(300L);
+
+        goto label1;
+
+     label2:
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>("main2 successfully finished");
+
+        return;
+    }
+
+    private static void eatMemory()
+    {
+        int i0;
+        byte[] r0;
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 3000 goto label2;
+
+        r0 = newarray (byte)[1024];
+
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+}

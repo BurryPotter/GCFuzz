@@ -1,0 +1,24 @@
+class GcPointerCheckTest$Test$PointerHelper extends java.lang.Object
+{
+    public gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test$PointerHelper next;
+    final gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test this$1;
+
+    private void <init>(gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test)
+    {
+        GcPointerCheckTest$Test$PointerHelper r0;
+        gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test$PointerHelper $r2;
+        gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test r1;
+
+        r0 := @this: GcPointerCheckTest$Test$PointerHelper;
+
+        r1 := @parameter0: gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test;
+
+        $r2 = (gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test$PointerHelper) r0;
+
+        $r2.<gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test$PointerHelper: gc.gctests.GcPointerCheckTest.GcPointerCheckTest$Test this$1> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

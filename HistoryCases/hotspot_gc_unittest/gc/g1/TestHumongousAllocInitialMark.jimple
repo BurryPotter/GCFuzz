@@ -1,0 +1,65 @@
+public class TestHumongousAllocInitialMark extends java.lang.Object
+{
+    private static final int heapSize;
+    private static final int heapRegionSize;
+    private static final int initiatingHeapOccupancyPercent;
+
+    public void <init>()
+    {
+        TestHumongousAllocInitialMark r0;
+
+        r0 := @this: TestHumongousAllocInitialMark;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Process $r5;
+        java.lang.String[] $r0, r6;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+        java.lang.ProcessBuilder $r3;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+
+        r6 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[7];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-Xms224m";
+
+        $r0[2] = "-Xmx224m";
+
+        $r0[3] = "-XX:G1HeapRegionSize=1m";
+
+        $r0[4] = "-XX:InitiatingHeapOccupancyPercent=50";
+
+        $r0[5] = "-Xlog:gc";
+
+        $r1 = class "Lgc/g1/TestHumongousAllocInitialMark$HumongousObjectAllocator;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[6] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r4 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Pause Young (Concurrent Start) (G1 Humongous Allocation)");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Full GC");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

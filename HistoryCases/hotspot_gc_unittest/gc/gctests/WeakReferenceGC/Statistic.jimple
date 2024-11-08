@@ -1,0 +1,30 @@
+class Statistic extends java.lang.Object
+{
+    int iterations;
+    int numEnqueued;
+
+    void <init>(int, int)
+    {
+        Statistic r0;
+        gc.gctests.WeakReferenceGC.Statistic $r1, $r2;
+        int i0, i1;
+
+        r0 := @this: Statistic;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.gctests.WeakReferenceGC.Statistic) r0;
+
+        $r1.<gc.gctests.WeakReferenceGC.Statistic: int iterations> = i0;
+
+        $r2 = (gc.gctests.WeakReferenceGC.Statistic) r0;
+
+        $r2.<gc.gctests.WeakReferenceGC.Statistic: int numEnqueued> = i1;
+
+        return;
+    }
+}

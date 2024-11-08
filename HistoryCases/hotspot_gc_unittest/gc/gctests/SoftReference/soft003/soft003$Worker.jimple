@@ -1,0 +1,228 @@
+class soft003$Worker extends java.lang.Object implements java.lang.Runnable
+{
+    private int arrayLength;
+    private int objectSize;
+    private java.lang.ref.Reference[] references;
+    final gc.gctests.SoftReference.soft003.soft003 this$0;
+
+    void <init>(gc.gctests.SoftReference.soft003.soft003)
+    {
+        gc.gctests.SoftReference.soft003.soft003 r1;
+        gc.gctests.SoftReference.soft003.soft003$Worker $r2, $r3;
+        soft003$Worker r0;
+
+        r0 := @this: soft003$Worker;
+
+        r1 := @parameter0: gc.gctests.SoftReference.soft003.soft003;
+
+        $r2 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $r2.<gc.gctests.SoftReference.soft003.soft003$Worker: gc.gctests.SoftReference.soft003.soft003 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $r3.<gc.gctests.SoftReference.soft003.soft003$Worker: int objectSize> = 100;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.ref.Reference[] $r3, $r8;
+        boolean $z0;
+        gc.gctests.SoftReference.soft003.soft003$Worker $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26;
+        soft003$Worker r0;
+        java.lang.ref.Reference $r9;
+        gc.gctests.SoftReference.soft003.soft003 $r4, $r6;
+        java.lang.StringBuilder $r13, $r17;
+        java.lang.Throwable $r27;
+        nsk.share.gc.MemoryObject $r15;
+        nsk.share.test.ExecutionController $r5, $r7;
+        int $i0, $i1, $i2, i3, i4, i5, $i6;
+        java.lang.String $r14;
+        java.lang.ref.SoftReference $r16;
+        nsk.share.TestFailure $r18;
+        java.lang.Object $r10;
+
+        r0 := @this: soft003$Worker;
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        $r19 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $r3 = $r19.<gc.gctests.SoftReference.soft003.soft003$Worker: java.lang.ref.Reference[] references>;
+
+        $r16 = new java.lang.ref.SoftReference;
+
+        $r15 = new nsk.share.gc.MemoryObject;
+
+        $r20 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $i1 = $r20.<gc.gctests.SoftReference.soft003.soft003$Worker: int objectSize>;
+
+        $i2 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int)>($i1);
+
+        specialinvoke $r15.<nsk.share.gc.MemoryObject: void <init>(int)>($i2);
+
+        specialinvoke $r16.<java.lang.ref.SoftReference: void <init>(java.lang.Object)>($r15);
+
+        $r3[i3] = $r16;
+
+        i3 = i3 + 1;
+
+     label2:
+        $r21 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $i0 = $r21.<gc.gctests.SoftReference.soft003.soft003$Worker: int arrayLength>;
+
+        if i3 < $i0 goto label1;
+
+        $r22 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $r4 = $r22.<gc.gctests.SoftReference.soft003.soft003$Worker: gc.gctests.SoftReference.soft003.soft003 this$0>;
+
+        $r5 = staticinvoke <gc.gctests.SoftReference.soft003.soft003: nsk.share.test.ExecutionController access$0(gc.gctests.SoftReference.soft003.soft003)>($r4);
+
+        staticinvoke <nsk.share.gc.Algorithms: void eatMemory(nsk.share.test.ExecutionController)>($r5);
+
+        $r23 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $r6 = $r23.<gc.gctests.SoftReference.soft003.soft003$Worker: gc.gctests.SoftReference.soft003.soft003 this$0>;
+
+        $r7 = staticinvoke <gc.gctests.SoftReference.soft003.soft003: nsk.share.test.ExecutionController access$0(gc.gctests.SoftReference.soft003.soft003)>($r6);
+
+        $z0 = interfaceinvoke $r7.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 != 0 goto label3;
+
+        return;
+
+     label3:
+        i4 = 0;
+
+        i5 = 0;
+
+        goto label6;
+
+     label4:
+        $r24 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $r8 = $r24.<gc.gctests.SoftReference.soft003.soft003$Worker: java.lang.ref.Reference[] references>;
+
+        $r9 = $r8[i5];
+
+        $r10 = virtualinvoke $r9.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        if $r10 == null goto label5;
+
+        i4 = i4 + 1;
+
+     label5:
+        i5 = i5 + 1;
+
+     label6:
+        $r25 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $i6 = $r25.<gc.gctests.SoftReference.soft003.soft003$Worker: int arrayLength>;
+
+        if i5 < $i6 goto label4;
+
+        if i4 == 0 goto label7;
+
+        $r26 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $r26.<gc.gctests.SoftReference.soft003.soft003$Worker: java.lang.ref.Reference[] references> = null;
+
+        $r18 = new nsk.share.TestFailure;
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>(java.lang.String)>("Some of the references have been not cleared: ");
+
+        $r13 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r18.<nsk.share.TestFailure: void <init>(java.lang.String)>($r14);
+
+        $r27 = (java.lang.Throwable) $r18;
+
+        throw $r27;
+
+     label7:
+        return;
+    }
+
+    public void Worker()
+    {
+        nsk.share.runner.RunParams $r2;
+        java.lang.ref.Reference[] $r7;
+        long $l0, $l4;
+        int $i1, $i2, $i3, $i5, $i6, $i7;
+        java.lang.String $r6;
+        java.io.PrintStream $r4;
+        gc.gctests.SoftReference.soft003.soft003$Worker $r9, $r10, $r11, $r12, $r13, $r14;
+        soft003$Worker r0;
+        gc.gctests.SoftReference.soft003.soft003 $r1;
+        java.lang.StringBuilder $r5, $r8;
+
+        r0 := @this: soft003$Worker;
+
+        $r9 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $r1 = $r9.<gc.gctests.SoftReference.soft003.soft003$Worker: gc.gctests.SoftReference.soft003.soft003 this$0>;
+
+        $r2 = staticinvoke <gc.gctests.SoftReference.soft003.soft003: nsk.share.runner.RunParams access$1(gc.gctests.SoftReference.soft003.soft003)>($r1);
+
+        $l0 = virtualinvoke $r2.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $i1 = staticinvoke <nsk.share.gc.Memory: int getReferenceSize()>();
+
+        $r10 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $i2 = $r10.<gc.gctests.SoftReference.soft003.soft003$Worker: int objectSize>;
+
+        $i3 = $i1 + $i2;
+
+        $l4 = (long) $i3;
+
+        $i5 = staticinvoke <nsk.share.gc.Memory: int getArrayLength(long,long)>($l0, $l4);
+
+        $r11 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $r11.<gc.gctests.SoftReference.soft003.soft003$Worker: int arrayLength> = $i5;
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("Array size: ");
+
+        $r12 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $i6 = $r12.<gc.gctests.SoftReference.soft003.soft003$Worker: int arrayLength>;
+
+        $r5 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $r13 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $i7 = $r13.<gc.gctests.SoftReference.soft003.soft003$Worker: int arrayLength>;
+
+        $r7 = newarray (java.lang.ref.Reference)[$i7];
+
+        $r14 = (gc.gctests.SoftReference.soft003.soft003$Worker) r0;
+
+        $r14.<gc.gctests.SoftReference.soft003.soft003$Worker: java.lang.ref.Reference[] references> = $r7;
+
+        return;
+    }
+}

@@ -1,0 +1,811 @@
+public final class HCHelper extends java.lang.Object
+{
+    public static final int EVAC_LIST_0;
+    public static final int EVAC_LIST_1;
+    public static final int EVAC_LIST_2;
+    public static final int EVAC_LIST_3;
+    public static final int EVAC_LIST_4;
+    public static final int EVAC_LIST_5;
+    public static final double EVAC_SIZE_0;
+    public static final double EVAC_SIZE_1;
+    public static final double EVAC_SIZE_2;
+    public static final double EVAC_SIZE_3;
+    public static final double EVAC_SIZE_4;
+    public static final double EVAC_SIZE_5;
+    private int minSize;
+    private int maxSize;
+    private double percentToFill;
+    private int allocTrigSize;
+    private gc.hashcode.HCHelper$AllocInfo ai;
+    private java.util.Random rnd;
+    private long sizeLimit0;
+    private long sizeLimit1;
+    private long sizeLimit2;
+    private long sizeLimit3;
+    private long sizeLimit4;
+    private long sizeLimit5;
+
+    public void <init>(int, int, long, double, int)
+    {
+        long l3;
+        java.util.Random $r4;
+        int i0, i1, i2;
+        double d0;
+        gc.hashcode.HCHelper $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17;
+        gc.hashcode.HCHelper$AllocInfo $r3;
+        HCHelper r0;
+
+        r0 := @this: HCHelper;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        l3 := @parameter2: long;
+
+        d0 := @parameter3: double;
+
+        i2 := @parameter4: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r5 = (gc.hashcode.HCHelper) r0;
+
+        $r5.<gc.hashcode.HCHelper: int minSize> = i0;
+
+        $r6 = (gc.hashcode.HCHelper) r0;
+
+        $r6.<gc.hashcode.HCHelper: int maxSize> = i1;
+
+        $r7 = (gc.hashcode.HCHelper) r0;
+
+        $r7.<gc.hashcode.HCHelper: double percentToFill> = d0;
+
+        $r8 = (gc.hashcode.HCHelper) r0;
+
+        $r8.<gc.hashcode.HCHelper: int allocTrigSize> = i2;
+
+        $r3 = new gc.hashcode.HCHelper$AllocInfo;
+
+        $r9 = (gc.hashcode.HCHelper) r0;
+
+        specialinvoke $r3.<gc.hashcode.HCHelper$AllocInfo: void <init>(gc.hashcode.HCHelper)>($r9);
+
+        $r10 = (gc.hashcode.HCHelper) r0;
+
+        $r10.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai> = $r3;
+
+        $r4 = new java.util.Random;
+
+        specialinvoke $r4.<java.util.Random: void <init>(long)>(l3);
+
+        $r11 = (gc.hashcode.HCHelper) r0;
+
+        $r11.<gc.hashcode.HCHelper: java.util.Random rnd> = $r4;
+
+        $r12 = (gc.hashcode.HCHelper) r0;
+
+        $r12.<gc.hashcode.HCHelper: long sizeLimit0> = 0L;
+
+        $r13 = (gc.hashcode.HCHelper) r0;
+
+        $r13.<gc.hashcode.HCHelper: long sizeLimit1> = 0L;
+
+        $r14 = (gc.hashcode.HCHelper) r0;
+
+        $r14.<gc.hashcode.HCHelper: long sizeLimit2> = 0L;
+
+        $r15 = (gc.hashcode.HCHelper) r0;
+
+        $r15.<gc.hashcode.HCHelper: long sizeLimit3> = 0L;
+
+        $r16 = (gc.hashcode.HCHelper) r0;
+
+        $r16.<gc.hashcode.HCHelper: long sizeLimit4> = 0L;
+
+        $r17 = (gc.hashcode.HCHelper) r0;
+
+        $r17.<gc.hashcode.HCHelper: long sizeLimit5> = 0L;
+
+        return;
+    }
+
+    public void setupLists()
+    {
+        gc.hashcode.HCHelper $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30, $r31, $r32, $r33, $r34, $r35, $r36, $r37, $r38;
+        java.lang.Runtime $r0;
+        long $l0, l1, $l2, $l3, $l4, $l5, $l6, $l7, $l8, $l9, $l10, $l11, $l12, $l13;
+        java.util.ArrayList $r3, $r5, $r7, $r9, $r11, $r13;
+        gc.hashcode.HCHelper$AllocInfo $r2, $r4, $r6, $r8, $r10, $r12;
+        HCHelper r1;
+        double $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7, $d8, $d9, $d10, $d11, $d12, $d13, $d14;
+
+        r1 := @this: HCHelper;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long maxMemory()>();
+
+        $d1 = (double) $l0;
+
+        $r14 = (gc.hashcode.HCHelper) r1;
+
+        $d0 = $r14.<gc.hashcode.HCHelper: double percentToFill>;
+
+        $d2 = $d1 * $d0;
+
+        l1 = (long) $d2;
+
+        $d3 = (double) l1;
+
+        $d4 = $d3 * 0.5;
+
+        $l2 = (long) $d4;
+
+        $r15 = (gc.hashcode.HCHelper) r1;
+
+        $r15.<gc.hashcode.HCHelper: long sizeLimit0> = $l2;
+
+        $d5 = (double) l1;
+
+        $d6 = $d5 * 0.14;
+
+        $l3 = (long) $d6;
+
+        $r16 = (gc.hashcode.HCHelper) r1;
+
+        $r16.<gc.hashcode.HCHelper: long sizeLimit1> = $l3;
+
+        $d7 = (double) l1;
+
+        $d8 = $d7 * 0.12;
+
+        $l4 = (long) $d8;
+
+        $r17 = (gc.hashcode.HCHelper) r1;
+
+        $r17.<gc.hashcode.HCHelper: long sizeLimit2> = $l4;
+
+        $d9 = (double) l1;
+
+        $d10 = $d9 * 0.1;
+
+        $l5 = (long) $d10;
+
+        $r18 = (gc.hashcode.HCHelper) r1;
+
+        $r18.<gc.hashcode.HCHelper: long sizeLimit3> = $l5;
+
+        $d11 = (double) l1;
+
+        $d12 = $d11 * 0.07;
+
+        $l6 = (long) $d12;
+
+        $r19 = (gc.hashcode.HCHelper) r1;
+
+        $r19.<gc.hashcode.HCHelper: long sizeLimit4> = $l6;
+
+        $d13 = (double) l1;
+
+        $d14 = $d13 * 0.05;
+
+        $l7 = (long) $d14;
+
+        $r20 = (gc.hashcode.HCHelper) r1;
+
+        $r20.<gc.hashcode.HCHelper: long sizeLimit5> = $l7;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r21 = (gc.hashcode.HCHelper) r1;
+
+        $r2 = $r21.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r3 = virtualinvoke $r2.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList0()>();
+
+        $r22 = (gc.hashcode.HCHelper) r1;
+
+        $l8 = $r22.<gc.hashcode.HCHelper: long sizeLimit0>;
+
+        $r23 = (gc.hashcode.HCHelper) r1;
+
+        virtualinvoke $r23.<gc.hashcode.HCHelper: void allocObjects(java.util.ArrayList,long)>($r3, $l8);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r24 = (gc.hashcode.HCHelper) r1;
+
+        $r4 = $r24.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r5 = virtualinvoke $r4.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList1()>();
+
+        $r25 = (gc.hashcode.HCHelper) r1;
+
+        $l9 = $r25.<gc.hashcode.HCHelper: long sizeLimit1>;
+
+        $r26 = (gc.hashcode.HCHelper) r1;
+
+        virtualinvoke $r26.<gc.hashcode.HCHelper: void allocObjects(java.util.ArrayList,long)>($r5, $l9);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r27 = (gc.hashcode.HCHelper) r1;
+
+        $r6 = $r27.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r7 = virtualinvoke $r6.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList2()>();
+
+        $r28 = (gc.hashcode.HCHelper) r1;
+
+        $l10 = $r28.<gc.hashcode.HCHelper: long sizeLimit2>;
+
+        $r29 = (gc.hashcode.HCHelper) r1;
+
+        virtualinvoke $r29.<gc.hashcode.HCHelper: void allocObjects(java.util.ArrayList,long)>($r7, $l10);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r30 = (gc.hashcode.HCHelper) r1;
+
+        $r8 = $r30.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r9 = virtualinvoke $r8.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList3()>();
+
+        $r31 = (gc.hashcode.HCHelper) r1;
+
+        $l11 = $r31.<gc.hashcode.HCHelper: long sizeLimit3>;
+
+        $r32 = (gc.hashcode.HCHelper) r1;
+
+        virtualinvoke $r32.<gc.hashcode.HCHelper: void allocObjects(java.util.ArrayList,long)>($r9, $l11);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r33 = (gc.hashcode.HCHelper) r1;
+
+        $r10 = $r33.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r11 = virtualinvoke $r10.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList4()>();
+
+        $r34 = (gc.hashcode.HCHelper) r1;
+
+        $l12 = $r34.<gc.hashcode.HCHelper: long sizeLimit4>;
+
+        $r35 = (gc.hashcode.HCHelper) r1;
+
+        virtualinvoke $r35.<gc.hashcode.HCHelper: void allocObjects(java.util.ArrayList,long)>($r11, $l12);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r36 = (gc.hashcode.HCHelper) r1;
+
+        $r12 = $r36.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r13 = virtualinvoke $r12.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList5()>();
+
+        $r37 = (gc.hashcode.HCHelper) r1;
+
+        $l13 = $r37.<gc.hashcode.HCHelper: long sizeLimit5>;
+
+        $r38 = (gc.hashcode.HCHelper) r1;
+
+        virtualinvoke $r38.<gc.hashcode.HCHelper: void allocObjects(java.util.ArrayList,long)>($r13, $l13);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+
+    private void allocObjects(java.util.ArrayList, long)
+    {
+        long l3, $l6, $l7, $l9, $l10, l11;
+        java.util.Random $r1;
+        java.util.ArrayList r2;
+        byte $b8, $b13;
+        gc.hashcode.HCHelper$AllocObject $r4;
+        int $i0, $i1, i2, $i4, $i5, i12, $i14, $i15;
+        double $d0, $d1, $d2;
+        gc.hashcode.HCHelper $r5, $r6, $r7, $r8, $r9;
+        HCHelper r0;
+
+        r0 := @this: HCHelper;
+
+        r2 := @parameter0: java.util.ArrayList;
+
+        l3 := @parameter1: long;
+
+        l11 = 0L;
+
+        $r5 = (gc.hashcode.HCHelper) r0;
+
+        $i1 = $r5.<gc.hashcode.HCHelper: int maxSize>;
+
+        $r6 = (gc.hashcode.HCHelper) r0;
+
+        $i0 = $r6.<gc.hashcode.HCHelper: int minSize>;
+
+        i2 = $i1 - $i0;
+
+        goto label3;
+
+     label1:
+        $r7 = (gc.hashcode.HCHelper) r0;
+
+        $i4 = $r7.<gc.hashcode.HCHelper: int minSize>;
+
+        $r8 = (gc.hashcode.HCHelper) r0;
+
+        $r1 = $r8.<gc.hashcode.HCHelper: java.util.Random rnd>;
+
+        $d0 = virtualinvoke $r1.<java.util.Random: double nextDouble()>();
+
+        $d1 = (double) i2;
+
+        $d2 = $d0 * $d1;
+
+        $i5 = (int) $d2;
+
+        i12 = $i4 + $i5;
+
+        $l7 = (long) i12;
+
+        $l6 = l3 - l11;
+
+        $b8 = $l7 cmp $l6;
+
+        $i14 = (int) $b8;
+
+        if $i14 < 0 goto label2;
+
+        $l10 = l3 - l11;
+
+        i12 = (int) $l10;
+
+     label2:
+        $r4 = new gc.hashcode.HCHelper$AllocObject;
+
+        $r9 = (gc.hashcode.HCHelper) r0;
+
+        specialinvoke $r4.<gc.hashcode.HCHelper$AllocObject: void <init>(gc.hashcode.HCHelper,int)>($r9, i12);
+
+        virtualinvoke r2.<java.util.ArrayList: boolean add(java.lang.Object)>($r4);
+
+        $l9 = (long) i12;
+
+        l11 = l11 + $l9;
+
+     label3:
+        $b13 = l11 cmp l3;
+
+        $i15 = (int) $b13;
+
+        if $i15 < 0 goto label1;
+
+        return;
+    }
+
+    public void clearList(int)
+    {
+        java.util.ArrayList $r3, $r5, $r7, $r9, $r11, $r13;
+        int i0;
+        gc.hashcode.HCHelper $r15, $r16, $r17, $r18, $r19, $r20;
+        java.lang.IllegalArgumentException $r14;
+        gc.hashcode.HCHelper$AllocInfo $r2, $r4, $r6, $r8, $r10, $r12;
+        HCHelper r1;
+
+        r1 := @this: HCHelper;
+
+        i0 := @parameter0: int;
+
+        if i0 < 0 goto label1;
+
+        if i0 <= 5 goto label2;
+
+     label1:
+        $r14 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r14.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("List to removed bust be between EVAC_LIST_0 and EVAC_LIST_5");
+
+        throw $r14;
+
+     label2:
+        tableswitch(i0)
+        {
+            case 0: goto label3;
+            case 1: goto label4;
+            case 2: goto label5;
+            case 3: goto label6;
+            case 4: goto label7;
+            case 5: goto label8;
+            default: goto label9;
+        };
+
+     label3:
+        $r15 = (gc.hashcode.HCHelper) r1;
+
+        $r12 = $r15.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r13 = virtualinvoke $r12.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList0()>();
+
+        virtualinvoke $r13.<java.util.ArrayList: void clear()>();
+
+        goto label9;
+
+     label4:
+        $r16 = (gc.hashcode.HCHelper) r1;
+
+        $r10 = $r16.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r11 = virtualinvoke $r10.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList1()>();
+
+        virtualinvoke $r11.<java.util.ArrayList: void clear()>();
+
+        goto label9;
+
+     label5:
+        $r17 = (gc.hashcode.HCHelper) r1;
+
+        $r8 = $r17.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r9 = virtualinvoke $r8.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList2()>();
+
+        virtualinvoke $r9.<java.util.ArrayList: void clear()>();
+
+        goto label9;
+
+     label6:
+        $r18 = (gc.hashcode.HCHelper) r1;
+
+        $r6 = $r18.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r7 = virtualinvoke $r6.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList3()>();
+
+        virtualinvoke $r7.<java.util.ArrayList: void clear()>();
+
+        goto label9;
+
+     label7:
+        $r19 = (gc.hashcode.HCHelper) r1;
+
+        $r4 = $r19.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r5 = virtualinvoke $r4.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList4()>();
+
+        virtualinvoke $r5.<java.util.ArrayList: void clear()>();
+
+        goto label9;
+
+     label8:
+        $r20 = (gc.hashcode.HCHelper) r1;
+
+        $r2 = $r20.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r3 = virtualinvoke $r2.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList5()>();
+
+        virtualinvoke $r3.<java.util.ArrayList: void clear()>();
+
+        goto label9;
+
+     label9:
+        return;
+    }
+
+    boolean verifyHashCodes(java.util.ArrayList)
+    {
+        java.util.ArrayList r0;
+        gc.hashcode.HCHelper$AllocObject r2;
+        int $i0, $i1, $i2, i3;
+        java.lang.Object $r1;
+        HCHelper r3;
+
+        r3 := @this: HCHelper;
+
+        r0 := @parameter0: java.util.ArrayList;
+
+        i3 = 0;
+
+        goto label3;
+
+     label1:
+        $r1 = virtualinvoke r0.<java.util.ArrayList: java.lang.Object get(int)>(i3);
+
+        r2 = (gc.hashcode.HCHelper$AllocObject) $r1;
+
+        $i1 = virtualinvoke r2.<gc.hashcode.HCHelper$AllocObject: int getStoredHashValue()>();
+
+        $i2 = virtualinvoke r2.<gc.hashcode.HCHelper$AllocObject: int getCurrentHashValue()>();
+
+        if $i1 == $i2 goto label2;
+
+        return 0;
+
+     label2:
+        i3 = i3 + 1;
+
+     label3:
+        $i0 = virtualinvoke r0.<java.util.ArrayList: int size()>();
+
+        if i3 < $i0 goto label1;
+
+        return 1;
+    }
+
+    public boolean verifyHashCodes()
+    {
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7;
+        gc.hashcode.HCHelper $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30, $r31, $r32;
+        HCHelper r0;
+        java.util.ArrayList $r2, $r4, $r6, $r8, $r10, $r12, $r14, $r16;
+        gc.hashcode.HCHelper$AllocInfo $r1, $r3, $r5, $r7, $r9, $r11, $r13, $r15;
+
+        r0 := @this: HCHelper;
+
+        $r17 = (gc.hashcode.HCHelper) r0;
+
+        $r1 = $r17.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r2 = virtualinvoke $r1.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getAllocList()>();
+
+        $r18 = (gc.hashcode.HCHelper) r0;
+
+        $z0 = virtualinvoke $r18.<gc.hashcode.HCHelper: boolean verifyHashCodes(java.util.ArrayList)>($r2);
+
+        if $z0 == 0 goto label1;
+
+        $r19 = (gc.hashcode.HCHelper) r0;
+
+        $r3 = $r19.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r4 = virtualinvoke $r3.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getSafeList()>();
+
+        $r20 = (gc.hashcode.HCHelper) r0;
+
+        $z1 = virtualinvoke $r20.<gc.hashcode.HCHelper: boolean verifyHashCodes(java.util.ArrayList)>($r4);
+
+        if $z1 == 0 goto label1;
+
+        $r21 = (gc.hashcode.HCHelper) r0;
+
+        $r5 = $r21.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r6 = virtualinvoke $r5.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList0()>();
+
+        $r22 = (gc.hashcode.HCHelper) r0;
+
+        $z2 = virtualinvoke $r22.<gc.hashcode.HCHelper: boolean verifyHashCodes(java.util.ArrayList)>($r6);
+
+        if $z2 == 0 goto label1;
+
+        $r23 = (gc.hashcode.HCHelper) r0;
+
+        $r7 = $r23.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r8 = virtualinvoke $r7.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList1()>();
+
+        $r24 = (gc.hashcode.HCHelper) r0;
+
+        $z3 = virtualinvoke $r24.<gc.hashcode.HCHelper: boolean verifyHashCodes(java.util.ArrayList)>($r8);
+
+        if $z3 == 0 goto label1;
+
+        $r25 = (gc.hashcode.HCHelper) r0;
+
+        $r9 = $r25.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r10 = virtualinvoke $r9.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList2()>();
+
+        $r26 = (gc.hashcode.HCHelper) r0;
+
+        $z4 = virtualinvoke $r26.<gc.hashcode.HCHelper: boolean verifyHashCodes(java.util.ArrayList)>($r10);
+
+        if $z4 == 0 goto label1;
+
+        $r27 = (gc.hashcode.HCHelper) r0;
+
+        $r11 = $r27.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r12 = virtualinvoke $r11.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList3()>();
+
+        $r28 = (gc.hashcode.HCHelper) r0;
+
+        $z5 = virtualinvoke $r28.<gc.hashcode.HCHelper: boolean verifyHashCodes(java.util.ArrayList)>($r12);
+
+        if $z5 == 0 goto label1;
+
+        $r29 = (gc.hashcode.HCHelper) r0;
+
+        $r13 = $r29.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r14 = virtualinvoke $r13.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList4()>();
+
+        $r30 = (gc.hashcode.HCHelper) r0;
+
+        $z6 = virtualinvoke $r30.<gc.hashcode.HCHelper: boolean verifyHashCodes(java.util.ArrayList)>($r14);
+
+        if $z6 == 0 goto label1;
+
+        $r31 = (gc.hashcode.HCHelper) r0;
+
+        $r15 = $r31.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r16 = virtualinvoke $r15.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList5()>();
+
+        $r32 = (gc.hashcode.HCHelper) r0;
+
+        $z7 = virtualinvoke $r32.<gc.hashcode.HCHelper: boolean verifyHashCodes(java.util.ArrayList)>($r16);
+
+        if $z7 == 0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public void cleanupLists()
+    {
+        java.util.ArrayList $r2, $r4, $r6, $r8, $r10, $r12, $r14, $r16;
+        gc.hashcode.HCHelper $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24;
+        gc.hashcode.HCHelper$AllocInfo $r1, $r3, $r5, $r7, $r9, $r11, $r13, $r15;
+        HCHelper r0;
+
+        r0 := @this: HCHelper;
+
+        $r17 = (gc.hashcode.HCHelper) r0;
+
+        $r1 = $r17.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r2 = virtualinvoke $r1.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getAllocList()>();
+
+        virtualinvoke $r2.<java.util.ArrayList: void clear()>();
+
+        $r18 = (gc.hashcode.HCHelper) r0;
+
+        $r3 = $r18.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r4 = virtualinvoke $r3.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getSafeList()>();
+
+        virtualinvoke $r4.<java.util.ArrayList: void clear()>();
+
+        $r19 = (gc.hashcode.HCHelper) r0;
+
+        $r5 = $r19.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r6 = virtualinvoke $r5.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList0()>();
+
+        virtualinvoke $r6.<java.util.ArrayList: void clear()>();
+
+        $r20 = (gc.hashcode.HCHelper) r0;
+
+        $r7 = $r20.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r8 = virtualinvoke $r7.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList1()>();
+
+        virtualinvoke $r8.<java.util.ArrayList: void clear()>();
+
+        $r21 = (gc.hashcode.HCHelper) r0;
+
+        $r9 = $r21.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r10 = virtualinvoke $r9.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList2()>();
+
+        virtualinvoke $r10.<java.util.ArrayList: void clear()>();
+
+        $r22 = (gc.hashcode.HCHelper) r0;
+
+        $r11 = $r22.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r12 = virtualinvoke $r11.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList3()>();
+
+        virtualinvoke $r12.<java.util.ArrayList: void clear()>();
+
+        $r23 = (gc.hashcode.HCHelper) r0;
+
+        $r13 = $r23.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r14 = virtualinvoke $r13.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList4()>();
+
+        virtualinvoke $r14.<java.util.ArrayList: void clear()>();
+
+        $r24 = (gc.hashcode.HCHelper) r0;
+
+        $r15 = $r24.<gc.hashcode.HCHelper: gc.hashcode.HCHelper$AllocInfo ai>;
+
+        $r16 = virtualinvoke $r15.<gc.hashcode.HCHelper$AllocInfo: java.util.ArrayList getEvacList5()>();
+
+        virtualinvoke $r16.<java.util.ArrayList: void clear()>();
+
+        return;
+    }
+
+    public long getEvac0Size()
+    {
+        long $l0;
+        HCHelper r0;
+        gc.hashcode.HCHelper $r1;
+
+        r0 := @this: HCHelper;
+
+        $r1 = (gc.hashcode.HCHelper) r0;
+
+        $l0 = $r1.<gc.hashcode.HCHelper: long sizeLimit0>;
+
+        return $l0;
+    }
+
+    public long getEvac1Size()
+    {
+        long $l0;
+        HCHelper r0;
+        gc.hashcode.HCHelper $r1;
+
+        r0 := @this: HCHelper;
+
+        $r1 = (gc.hashcode.HCHelper) r0;
+
+        $l0 = $r1.<gc.hashcode.HCHelper: long sizeLimit1>;
+
+        return $l0;
+    }
+
+    public long getEvac2Size()
+    {
+        long $l0;
+        HCHelper r0;
+        gc.hashcode.HCHelper $r1;
+
+        r0 := @this: HCHelper;
+
+        $r1 = (gc.hashcode.HCHelper) r0;
+
+        $l0 = $r1.<gc.hashcode.HCHelper: long sizeLimit2>;
+
+        return $l0;
+    }
+
+    public long getEvac3Size()
+    {
+        long $l0;
+        HCHelper r0;
+        gc.hashcode.HCHelper $r1;
+
+        r0 := @this: HCHelper;
+
+        $r1 = (gc.hashcode.HCHelper) r0;
+
+        $l0 = $r1.<gc.hashcode.HCHelper: long sizeLimit3>;
+
+        return $l0;
+    }
+
+    public long getEvac4Size()
+    {
+        long $l0;
+        HCHelper r0;
+        gc.hashcode.HCHelper $r1;
+
+        r0 := @this: HCHelper;
+
+        $r1 = (gc.hashcode.HCHelper) r0;
+
+        $l0 = $r1.<gc.hashcode.HCHelper: long sizeLimit4>;
+
+        return $l0;
+    }
+
+    public long getEvac5Size()
+    {
+        long $l0;
+        HCHelper r0;
+        gc.hashcode.HCHelper $r1;
+
+        r0 := @this: HCHelper;
+
+        $r1 = (gc.hashcode.HCHelper) r0;
+
+        $l0 = $r1.<gc.hashcode.HCHelper: long sizeLimit5>;
+
+        return $l0;
+    }
+}

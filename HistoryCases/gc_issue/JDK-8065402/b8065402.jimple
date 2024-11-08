@@ -1,0 +1,187 @@
+public class b8065402 extends java.lang.Object
+{
+    public java.lang.String name;
+    public b8065402 next;
+
+    public static void main(java.lang.String[])
+    {
+        b8065402[] r3;
+        java.lang.String[] r0;
+        long $l2, $l3, $l4;
+        java.lang.Integer $r2;
+        int $i0, $i1, i5, i6;
+        java.lang.String $r1, $r9, $r14, $r19;
+        double $d0, d1;
+        java.io.PrintStream $r5, $r16, $r21;
+        b8065402 $r20;
+        java.lang.StringBuilder $r4, $r6, $r7, $r8, $r10, $r11, $r12, $r13, $r15, $r17, $r18;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 1 goto label1;
+
+        $r21 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>("Usage: b8065402 <number of roots");
+
+        return;
+
+     label1:
+        $r1 = r0[0];
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r1);
+
+        $i1 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        $l2 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        r3 = newarray (b8065402)[$i1];
+
+        i5 = 0;
+
+        i6 = 0;
+
+     label2:
+        if i5 >= 1000 goto label4;
+
+        if i6 != $i1 goto label3;
+
+        i6 = 0;
+
+     label3:
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>()>();
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("root_");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i5);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+
+        $r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("******** ");
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r19);
+
+        $r20 = staticinvoke <b8065402: b8065402 create(java.lang.String,int)>($r14, 1000000);
+
+        r3[i6] = $r20;
+
+        i5 = i5 + 1;
+
+        i6 = i6 + 1;
+
+        goto label2;
+
+     label4:
+        $l3 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l4 = $l3 - $l2;
+
+        $d0 = (double) $l4;
+
+        d1 = $d0 / 1000.0;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("******** duration ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(d1);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" sec.");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        return;
+    }
+
+    public void <init>(java.lang.String)
+    {
+        java.lang.String r1;
+        b8065402 r0;
+
+        r0 := @this: b8065402;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<b8065402: java.lang.String name> = r1;
+
+        return;
+    }
+
+    public static b8065402 create(java.lang.String, int)
+    {
+        b8065402[] r0;
+        b8065402 $r1, $r2, r8;
+        int i0, i1;
+        java.lang.StringBuilder $r3, $r5, $r6;
+        java.lang.String r4, $r7;
+
+        r4 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r0 = newarray (b8065402)[i0];
+
+        r8 = null;
+
+        i1 = 0;
+
+     label1:
+        if i1 >= i0 goto label3;
+
+        $r2 = new b8065402;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r4);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<b8065402: void <init>(java.lang.String)>($r7);
+
+        r0[i1] = $r2;
+
+        if r8 == null goto label2;
+
+        r8.<b8065402: b8065402 next> = $r2;
+
+     label2:
+        r8 = $r2;
+
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label3:
+        $r1 = r0[0];
+
+        return $r1;
+    }
+}

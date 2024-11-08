@@ -1,0 +1,163 @@
+public class nativeGC01 extends nsk.share.test.TestBase
+{
+    private nsk.share.gc.CircularLinkedList cl;
+
+    static void <clinit>()
+    {
+        staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("nativeGC01");
+
+        return;
+    }
+
+    public void <init>()
+    {
+        nativeGC01 r0;
+
+        r0 := @this: nativeGC01;
+
+        specialinvoke r0.<nsk.share.test.TestBase: void <init>()>();
+
+        return;
+    }
+
+    public native int nativeMethod01(nsk.share.gc.CircularLinkedList);
+
+    public void callbackGC()
+    {
+        nativeGC01 r0;
+        gc.gctests.nativeGC01.nativeGC01 $r1;
+
+        r0 := @this: nativeGC01;
+
+        $r1 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        $r1.<gc.gctests.nativeGC01.nativeGC01: nsk.share.gc.CircularLinkedList cl> = null;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        nativeGC01 r0;
+        int $i0;
+        gc.gctests.nativeGC01.nativeGC01 $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17;
+        java.lang.Exception $r5;
+        nsk.share.gc.CircularLinkedList $r1, $r2;
+        nsk.share.log.Log $r3, $r4, $r6, $r7;
+
+        r0 := @this: nativeGC01;
+
+        $r8 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        $r1 = virtualinvoke $r8.<gc.gctests.nativeGC01.nativeGC01: nsk.share.gc.CircularLinkedList buildBigCircularLinkedList()>();
+
+        $r9 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        $r9.<gc.gctests.nativeGC01.nativeGC01: nsk.share.gc.CircularLinkedList cl> = $r1;
+
+     label1:
+        $r10 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        $r2 = $r10.<gc.gctests.nativeGC01.nativeGC01: nsk.share.gc.CircularLinkedList cl>;
+
+        $r11 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        $i0 = virtualinvoke $r11.<gc.gctests.nativeGC01.nativeGC01: int nativeMethod01(nsk.share.gc.CircularLinkedList)>($r2);
+
+        if $i0 != 10000 goto label2;
+
+        $r12 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        $r4 = $r12.<gc.gctests.nativeGC01.nativeGC01: nsk.share.log.Log log>;
+
+        interfaceinvoke $r4.<nsk.share.log.Log: void info(java.lang.Object)>("Test Passed");
+
+        goto label5;
+
+     label2:
+        $r13 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        $r3 = $r13.<gc.gctests.nativeGC01.nativeGC01: nsk.share.log.Log log>;
+
+        interfaceinvoke $r3.<nsk.share.log.Log: void info(java.lang.Object)>("Test Failed");
+
+        $r14 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        virtualinvoke $r14.<gc.gctests.nativeGC01.nativeGC01: void setFailed(boolean)>(1);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r5 := @caughtexception;
+
+        $r15 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        $r6 = $r15.<gc.gctests.nativeGC01.nativeGC01: nsk.share.log.Log log>;
+
+        interfaceinvoke $r6.<nsk.share.log.Log: void info(java.lang.Object)>($r5);
+
+        $r16 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        $r7 = $r16.<gc.gctests.nativeGC01.nativeGC01: nsk.share.log.Log log>;
+
+        interfaceinvoke $r7.<nsk.share.log.Log: void info(java.lang.Object)>("broken test");
+
+        $r17 = (gc.gctests.nativeGC01.nativeGC01) r0;
+
+        virtualinvoke $r17.<gc.gctests.nativeGC01.nativeGC01: void setFailed(boolean)>(1);
+
+     label5:
+        return;
+
+        catch java.lang.Exception from label1 to label3 with label4;
+    }
+
+    private nsk.share.gc.CircularLinkedList buildBigCircularLinkedList()
+    {
+        int i0;
+        nsk.share.gc.CircularLinkedList $r0;
+        nativeGC01 r1;
+
+        r1 := @this: nativeGC01;
+
+        $r0 = new nsk.share.gc.CircularLinkedList;
+
+        specialinvoke $r0.<nsk.share.gc.CircularLinkedList: void <init>(int)>(100);
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r0.<nsk.share.gc.CircularLinkedList: void grow()>();
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 10000 goto label1;
+
+        return $r0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.nativeGC01.nativeGC01 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.nativeGC01.nativeGC01;
+
+        specialinvoke $r2.<gc.gctests.nativeGC01.nativeGC01: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.test.Tests: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

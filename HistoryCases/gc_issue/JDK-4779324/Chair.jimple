@@ -1,0 +1,150 @@
+class Chair extends java.lang.Object
+{
+    static boolean gcrun;
+    static boolean f;
+    static int created;
+    static int finalized;
+    int i;
+
+    void <init>()
+    {
+        java.io.PrintStream $r2;
+        Chair r0;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.lang.StringBuilder $r1, $r3, $r4;
+        java.lang.String $r5;
+
+        r0 := @this: Chair;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $i0 = <Chair: int created>;
+
+        $i1 = $i0 + 1;
+
+        <Chair: int created> = $i1;
+
+        r0.<Chair: int i> = $i1;
+
+        $i2 = <Chair: int created>;
+
+        $i3 = $i2 % 10000;
+
+        if $i3 != 0 goto label1;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Created ");
+
+        $i4 = <Chair: int created>;
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+     label1:
+        return;
+    }
+
+    protected void finalize()
+    {
+        Chair r0;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i8;
+        java.lang.String $r6, $r13;
+        boolean $z0;
+        java.io.PrintStream $r2, $r7, $r9;
+        java.lang.StringBuilder $r3, $r4, $r5, $r10, $r11, $r12, $r14, $r15;
+
+        r0 := @this: Chair;
+
+        $z0 = <Chair: boolean gcrun>;
+
+        if $z0 != 0 goto label1;
+
+        <Chair: boolean gcrun> = 1;
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Beginning to finalize after ");
+
+        $i6 = <Chair: int created>;
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" Chairs have been created");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13);
+
+     label1:
+        $i0 = r0.<Chair: int i>;
+
+        $i8 = (int) 50000;
+
+        if $i0 != $i8 goto label2;
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>("Finalizing Chair #300000, Setting flag to stop Chair creation");
+
+        <Chair: boolean f> = 1;
+
+     label2:
+        $i1 = <Chair: int finalized>;
+
+        $i2 = $i1 + 1;
+
+        <Chair: int finalized> = $i2;
+
+        $i4 = <Chair: int finalized>;
+
+        $i3 = <Chair: int created>;
+
+        if $i4 < $i3 goto label3;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("All ");
+
+        $i5 = <Chair: int finalized>;
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" finalized");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+     label3:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        <Chair: boolean gcrun> = 0;
+
+        <Chair: boolean f> = 0;
+
+        <Chair: int created> = 0;
+
+        <Chair: int finalized> = 0;
+
+        return;
+    }
+}

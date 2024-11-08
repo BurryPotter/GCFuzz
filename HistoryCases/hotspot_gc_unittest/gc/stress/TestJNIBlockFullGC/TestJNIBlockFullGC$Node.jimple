@@ -1,0 +1,42 @@
+public class TestJNIBlockFullGC$Node extends java.lang.Object
+{
+    public java.lang.ref.SoftReference next;
+    long payload1;
+    long payload2;
+    long payload3;
+    long payload4;
+
+    public void <init>(int)
+    {
+        TestJNIBlockFullGC$Node r0;
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node $r1, $r2, $r3, $r4;
+        int i0;
+        long $l1;
+
+        r0 := @this: TestJNIBlockFullGC$Node;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $l1 = (long) i0;
+
+        $r1 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node) r0;
+
+        $r1.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node: long payload4> = $l1;
+
+        $r2 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node) r0;
+
+        $r2.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node: long payload3> = $l1;
+
+        $r3 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node) r0;
+
+        $r3.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node: long payload2> = $l1;
+
+        $r4 = (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node) r0;
+
+        $r4.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node: long payload1> = $l1;
+
+        return;
+    }
+}

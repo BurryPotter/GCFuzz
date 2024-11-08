@@ -1,0 +1,66 @@
+public class TestCompressedClassFlags extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestCompressedClassFlags r0;
+
+        r0 := @this: TestCompressedClassFlags;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r0, r2;
+        jdk.test.lib.process.OutputAnalyzer $r1;
+        boolean $z0;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean is64bit()>();
+
+        if $z0 == 0 goto label1;
+
+        $r0 = newarray (java.lang.String)[3];
+
+        $r0[0] = "-XX:CompressedClassSpaceSize=1g";
+
+        $r0[1] = "-XX:-UseCompressedClassPointers";
+
+        $r0[2] = "-version";
+
+        $r1 = staticinvoke <gc.arguments.TestCompressedClassFlags: jdk.test.lib.process.OutputAnalyzer runJava(java.lang.String[])>($r0);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("warning");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("error");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+     label1:
+        return;
+    }
+
+    private static transient jdk.test.lib.process.OutputAnalyzer runJava(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Process $r3;
+        java.lang.String[] r0;
+        java.lang.ProcessBuilder $r1;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>(r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        return $r2;
+    }
+}

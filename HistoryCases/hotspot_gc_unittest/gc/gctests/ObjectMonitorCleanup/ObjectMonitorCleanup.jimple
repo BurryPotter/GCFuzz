@@ -1,0 +1,204 @@
+public class ObjectMonitorCleanup extends nsk.share.gc.GCTestBase
+{
+
+    public void <init>()
+    {
+        ObjectMonitorCleanup r0;
+
+        r0 := @this: ObjectMonitorCleanup;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Throwable $r14, $r17, $r27, $r28, $r29;
+        byte[] $r6;
+        nsk.share.runner.RunParams $r2, $r5, $r16;
+        nsk.share.test.ExecutionController $r24;
+        long $l0, $l1, $l3;
+        gc.gctests.ObjectMonitorCleanup.MonitorThread $r19;
+        nsk.share.test.StressOptions $r3;
+        gc.gctests.ObjectMonitorCleanup.ObjectMonitorCleanup $r23, $r25, $r26;
+        int $i2;
+        boolean $z0, $z1;
+        nsk.share.TestFailure $r20, $r21, $r22;
+        nsk.share.test.Stresser $r18;
+        java.lang.InterruptedException $r10, $r12, $r15;
+        java.lang.Object $r7, $r8;
+        ObjectMonitorCleanup r1;
+
+        r1 := @this: ObjectMonitorCleanup;
+
+        $r18 = new nsk.share.test.Stresser;
+
+        $r23 = (gc.gctests.ObjectMonitorCleanup.ObjectMonitorCleanup) r1;
+
+        $r2 = $r23.<gc.gctests.ObjectMonitorCleanup.ObjectMonitorCleanup: nsk.share.runner.RunParams runParams>;
+
+        $r3 = virtualinvoke $r2.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r18.<nsk.share.test.Stresser: void <init>(nsk.share.test.StressOptions)>($r3);
+
+        virtualinvoke $r18.<nsk.share.test.Stresser: void start(long)>(0L);
+
+        $r19 = new gc.gctests.ObjectMonitorCleanup.MonitorThread;
+
+        $r24 = (nsk.share.test.ExecutionController) $r18;
+
+        specialinvoke $r19.<gc.gctests.ObjectMonitorCleanup.MonitorThread: void <init>(nsk.share.test.ExecutionController)>($r24);
+
+        virtualinvoke $r19.<gc.gctests.ObjectMonitorCleanup.MonitorThread: void start()>();
+
+     label01:
+        goto label07;
+
+     label02:
+        $r25 = (gc.gctests.ObjectMonitorCleanup.ObjectMonitorCleanup) r1;
+
+        $r5 = $r25.<gc.gctests.ObjectMonitorCleanup.ObjectMonitorCleanup: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r5.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $l1 = $l0 / 10000L;
+
+        $i2 = (int) $l1;
+
+        $r6 = newarray (byte)[$i2];
+
+        <gc.gctests.ObjectMonitorCleanup.MonitorThread: java.lang.Object otherObject> = $r6;
+
+        $r7 = <gc.gctests.ObjectMonitorCleanup.MonitorThread: java.lang.Object otherObject>;
+
+        entermonitor $r7;
+
+     label03:
+        $r8 = <gc.gctests.ObjectMonitorCleanup.MonitorThread: java.lang.Object otherObject>;
+
+        virtualinvoke $r8.<java.lang.Object: void wait(long)>(10L);
+
+        exitmonitor $r7;
+
+     label04:
+        goto label07;
+
+     label05:
+        $r17 := @caughtexception;
+
+        exitmonitor $r7;
+
+     label06:
+        throw $r17;
+
+     label07:
+        $z0 = virtualinvoke $r18.<nsk.share.test.Stresser: boolean continueExecution()>();
+
+        if $z0 != 0 goto label02;
+
+     label08:
+        goto label18;
+
+     label09:
+        $r15 := @caughtexception;
+
+        entermonitor $r19;
+
+     label10:
+        $r19.<gc.gctests.ObjectMonitorCleanup.MonitorThread: boolean keepRunning> = 0;
+
+        exitmonitor $r19;
+
+     label11:
+        goto label14;
+
+     label12:
+        $r14 := @caughtexception;
+
+        exitmonitor $r19;
+
+     label13:
+        throw $r14;
+
+     label14:
+        $r26 = (gc.gctests.ObjectMonitorCleanup.ObjectMonitorCleanup) r1;
+
+        $r16 = $r26.<gc.gctests.ObjectMonitorCleanup.ObjectMonitorCleanup: nsk.share.runner.RunParams runParams>;
+
+        $l3 = virtualinvoke $r16.<nsk.share.runner.RunParams: long getSleepTime()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>($l3);
+
+     label15:
+        goto label17;
+
+     label16:
+        $r12 := @caughtexception;
+
+     label17:
+        $r20 = new nsk.share.TestFailure;
+
+        specialinvoke $r20.<nsk.share.TestFailure: void <init>(java.lang.String)>("Problem doing synchronization.");
+
+        $r27 = (java.lang.Throwable) $r20;
+
+        throw $r27;
+
+     label18:
+        virtualinvoke $r19.<gc.gctests.ObjectMonitorCleanup.MonitorThread: void join()>();
+
+        $z1 = $r19.<gc.gctests.ObjectMonitorCleanup.MonitorThread: boolean completedOk>;
+
+        if $z1 != 0 goto label20;
+
+        $r21 = new nsk.share.TestFailure;
+
+        specialinvoke $r21.<nsk.share.TestFailure: void <init>(java.lang.String)>("Test thread didn\'t report successful completion");
+
+        $r28 = (java.lang.Throwable) $r21;
+
+        throw $r28;
+
+     label19:
+        $r10 := @caughtexception;
+
+        $r22 = new nsk.share.TestFailure;
+
+        specialinvoke $r22.<nsk.share.TestFailure: void <init>(java.lang.String)>("Couldn\'t wait for thread to finish.");
+
+        $r29 = (java.lang.Throwable) $r22;
+
+        throw $r29;
+
+     label20:
+        return;
+
+        catch java.lang.Throwable from label03 to label04 with label05;
+        catch java.lang.Throwable from label05 to label06 with label05;
+        catch java.lang.InterruptedException from label01 to label08 with label09;
+        catch java.lang.Throwable from label10 to label11 with label12;
+        catch java.lang.Throwable from label12 to label13 with label12;
+        catch java.lang.InterruptedException from label14 to label15 with label16;
+        catch java.lang.InterruptedException from label18 to label19 with label19;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.ObjectMonitorCleanup.ObjectMonitorCleanup $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.ObjectMonitorCleanup.ObjectMonitorCleanup;
+
+        specialinvoke $r2.<gc.gctests.ObjectMonitorCleanup.ObjectMonitorCleanup: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

@@ -1,0 +1,51 @@
+public class TestRegionLivenessPrint extends java.lang.Object
+{
+    static byte[] bigobj;
+
+    static void <clinit>()
+    {
+        byte[] $r0;
+
+        $r0 = newarray (byte)[2097152];
+
+        <gc.g1.TestRegionLivenessPrint: byte[] bigobj> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestRegionLivenessPrint r0;
+
+        r0 := @this: TestRegionLivenessPrint;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.InterruptedException
+    {
+        sun.hotspot.WhiteBox $r0;
+        java.lang.String[] r1;
+        boolean $z0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        goto label2;
+
+     label1:
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+     label2:
+        $z0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1InConcurrentMark()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+}

@@ -1,0 +1,487 @@
+class TestUseCompressedOopsErgoTools extends java.lang.Object
+{
+
+    void <init>()
+    {
+        TestUseCompressedOopsErgoTools r0;
+
+        r0 := @this: TestUseCompressedOopsErgoTools;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static long getCompressedClassSpaceSize()
+    {
+        com.sun.management.VMOption $r2;
+        com.sun.management.HotSpotDiagnosticMXBean r1;
+        java.lang.management.PlatformManagedObject $r0;
+        long $l0;
+        java.lang.String $r3;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.PlatformManagedObject getPlatformMXBean(java.lang.Class)>(class "Lcom/sun/management/HotSpotDiagnosticMXBean;");
+
+        r1 = (com.sun.management.HotSpotDiagnosticMXBean) $r0;
+
+        $r2 = interfaceinvoke r1.<com.sun.management.HotSpotDiagnosticMXBean: com.sun.management.VMOption getVMOption(java.lang.String)>("CompressedClassSpaceSize");
+
+        $r3 = virtualinvoke $r2.<com.sun.management.VMOption: java.lang.String getValue()>();
+
+        $l0 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r3);
+
+        return $l0;
+    }
+
+    public static long getMaxHeapForCompressedOops(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0, $r3;
+        java.lang.Class $r1;
+        long $l0;
+        java.lang.String $r2, $r5;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = class "Lgc/arguments/DetermineMaxHeapForCompressedOops;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r3 = newarray (java.lang.String)[0];
+
+        $r4 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: jdk.test.lib.process.OutputAnalyzer runWhiteBoxTest(java.lang.String[],java.lang.String,java.lang.String[],boolean)>(r0, $r2, $r3, 0);
+
+        $r5 = virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        $l0 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r5);
+
+        return $l0;
+    }
+
+    public static boolean is64bitVM()
+    {
+        java.lang.RuntimeException $r1, $r6;
+        java.lang.StringBuilder $r2, $r3, $r4;
+        java.lang.String $r0, $r5;
+        boolean $z0, $z1;
+
+        $r0 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("sun.arch.data.model");
+
+        if $r0 != null goto label1;
+
+        $r6 = new java.lang.RuntimeException;
+
+        specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>("Could not read sun.arch.data.model");
+
+        throw $r6;
+
+     label1:
+        $z0 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>("64");
+
+        if $z0 == 0 goto label2;
+
+        return 1;
+
+     label2:
+        $z1 = virtualinvoke $r0.<java.lang.String: boolean equals(java.lang.Object)>("32");
+
+        if $z1 == 0 goto label3;
+
+        return 0;
+
+     label3:
+        $r1 = new java.lang.RuntimeException;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("Unexpected value ");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" of sun.arch.data.model");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r1.<java.lang.RuntimeException: void <init>(java.lang.String)>($r5);
+
+        throw $r1;
+    }
+
+    public static jdk.test.lib.process.OutputAnalyzer runWhiteBoxTest(java.lang.String[], java.lang.String, java.lang.String[], boolean) throws java.lang.Exception
+    {
+        java.lang.Object[] $r15;
+        java.lang.String[] $r1, r3, r5, r9, $r14, $r16;
+        java.util.ArrayList $r0;
+        int $i0;
+        java.lang.String $r2, r4, $r6, $r7, $r8;
+        java.lang.ProcessBuilder $r17;
+        boolean z0;
+        java.lang.Process $r19;
+        jdk.test.lib.process.OutputAnalyzer $r18;
+        java.util.List $r10, $r11, $r12, $r13;
+
+        r3 := @parameter0: java.lang.String[];
+
+        r4 := @parameter1: java.lang.String;
+
+        r5 := @parameter2: java.lang.String[];
+
+        z0 := @parameter3: boolean;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = newarray (java.lang.String)[5];
+
+        $r1[0] = "-Xbootclasspath/a:.";
+
+        $r1[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r1[2] = "-XX:+WhiteBoxAPI";
+
+        $r1[3] = "-cp";
+
+        $r2 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("java.class.path");
+
+        $r1[4] = $r2;
+
+        if z0 == 0 goto label2;
+
+        r9 = newarray (java.lang.String)[0];
+
+        $r6 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("test.java.opts");
+
+        if $r6 == null goto label1;
+
+        $r7 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("test.java.opts");
+
+        $i0 = virtualinvoke $r7.<java.lang.String: int length()>();
+
+        if $i0 == 0 goto label1;
+
+        $r8 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("test.java.opts");
+
+        r9 = virtualinvoke $r8.<java.lang.String: java.lang.String[] split(java.lang.String)>(" ");
+
+     label1:
+        $r10 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r9);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r10);
+
+     label2:
+        $r11 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r3);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r11);
+
+        $r12 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r1);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r12);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>(r4);
+
+        $r13 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r5);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r13);
+
+        $r14 = newarray (java.lang.String)[0];
+
+        $r15 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r14);
+
+        $r16 = (java.lang.String[]) $r15;
+
+        $r17 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r16);
+
+        $r18 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r19 = virtualinvoke $r17.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r18.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r19);
+
+        virtualinvoke $r18.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return $r18;
+    }
+
+    private static java.lang.String[] join(java.lang.String[], java.lang.String)
+    {
+        java.util.List $r2;
+        java.lang.Object[] $r5;
+        java.lang.String[] r1, $r4, $r6;
+        java.lang.String r3;
+        java.util.ArrayList $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        r3 := @parameter1: java.lang.String;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r1);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r2);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>(r3);
+
+        $r4 = newarray (java.lang.String)[0];
+
+        $r5 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r4);
+
+        $r6 = (java.lang.String[]) $r5;
+
+        return $r6;
+    }
+
+    public static void checkCompressedOopsErgo(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r11, $r12, $r13, $r14;
+        long $l0, $l1, $l2, $l3, $l4, $l5, $l6, $l7, $l8, $l9, $l10, $l11, $l12;
+        java.lang.String $r10;
+        java.lang.StringBuilder $r8, $r9;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $l0 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: long getMaxHeapForCompressedOops(java.lang.String[])>(r0);
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>(r0, $l0, 1);
+
+        $l1 = $l0 - 1L;
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>(r0, $l1, 1);
+
+        $l2 = $l0 + 1L;
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>(r0, $l2, 0);
+
+        $r1 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, "-XX:HeapBaseMinAddress=32G");
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>($r1, $l0, 1);
+
+        $r2 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, "-XX:HeapBaseMinAddress=32G");
+
+        $l3 = $l0 - 1L;
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>($r2, $l3, 1);
+
+        $r3 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, "-XX:HeapBaseMinAddress=32G");
+
+        $l4 = $l0 + 1L;
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>($r3, $l4, 0);
+
+        $r4 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, "-XX:ObjectAlignmentInBytes=16");
+
+        $l5 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: long getMaxHeapForCompressedOops(java.lang.String[])>($r4);
+
+        $r5 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, "-XX:ObjectAlignmentInBytes=16");
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>($r5, $l5, 1);
+
+        $r6 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, "-XX:ObjectAlignmentInBytes=16");
+
+        $l6 = $l5 - 1L;
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>($r6, $l6, 1);
+
+        $r7 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, "-XX:ObjectAlignmentInBytes=16");
+
+        $l7 = $l5 + 1L;
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>($r7, $l7, 0);
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:CompressedClassSpaceSize=");
+
+        $l8 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: long getCompressedClassSpaceSize()>();
+
+        $l9 = 2L * $l8;
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r11 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, $r10);
+
+        $l10 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: long getMaxHeapForCompressedOops(java.lang.String[])>($r11);
+
+        $r12 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, $r10);
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>($r12, $l10, 1);
+
+        $r13 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, $r10);
+
+        $l11 = $l10 - 1L;
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>($r13, $l11, 1);
+
+        $r14 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String[] join(java.lang.String[],java.lang.String)>(r0, $r10);
+
+        $l12 = $l10 + 1L;
+
+        staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: void checkUseCompressedOops(java.lang.String[],long,boolean)>($r14, $l12, 0);
+
+        return;
+    }
+
+    private static void checkUseCompressedOops(java.lang.String[], long, boolean) throws java.lang.Exception
+    {
+        java.lang.Object[] $r7;
+        java.lang.String[] r1, $r6, $r8;
+        long l0;
+        java.util.ArrayList $r0;
+        java.util.List $r2;
+        java.lang.Boolean $r10, $r11;
+        java.lang.StringBuilder $r3, $r4;
+        java.lang.String $r5, $r9;
+        boolean $z0, z1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        l0 := @parameter1: long;
+
+        z1 := @parameter2: boolean;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r1);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r2);
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xmx");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r5);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>("-XX:+PrintFlagsFinal");
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>("-version");
+
+        $r6 = newarray (java.lang.String)[0];
+
+        $r7 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r6);
+
+        $r8 = (java.lang.String[]) $r7;
+
+        $r9 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String expectValid(java.lang.String[])>($r8);
+
+        $z0 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: boolean getFlagBoolValue(java.lang.String,java.lang.String)>(" UseCompressedOops", $r9);
+
+        $r10 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(z1);
+
+        $r11 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r10, $r11);
+
+        return;
+    }
+
+    private static boolean getFlagBoolValue(java.lang.String, java.lang.String)
+    {
+        java.util.regex.Matcher $r7;
+        java.lang.String r1, $r2, $r4, r6, $r8, $r13;
+        boolean $z0, $z1;
+        java.lang.RuntimeException $r9;
+        java.lang.StringBuilder $r0, $r3, $r10, $r11, $r12;
+        java.util.regex.Pattern $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        r6 := @parameter1: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\\s+:?= (true|false)");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>($r4);
+
+        $r7 = virtualinvoke $r5.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r6);
+
+        $z0 = virtualinvoke $r7.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label1;
+
+        $r9 = new java.lang.RuntimeException;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("Could not find value for flag ");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in output string");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r9.<java.lang.RuntimeException: void <init>(java.lang.String)>($r13);
+
+        throw $r9;
+
+     label1:
+        $r8 = virtualinvoke $r7.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        $z1 = virtualinvoke $r8.<java.lang.String: boolean equals(java.lang.Object)>("true");
+
+        return $z1;
+    }
+
+    private static java.lang.String expect(java.lang.String[], boolean, boolean, int) throws java.lang.Exception
+    {
+        java.lang.Process $r3;
+        java.lang.String[] r0;
+        jdk.test.lib.process.OutputAnalyzer $r2;
+        int i0;
+        java.lang.ProcessBuilder $r1;
+        java.lang.String $r4;
+        boolean z0, z1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        z0 := @parameter1: boolean;
+
+        z1 := @parameter2: boolean;
+
+        i0 := @parameter3: int;
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>(r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(i0);
+
+        $r4 = virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        return $r4;
+    }
+
+    private static java.lang.String expectValid(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+        java.lang.String $r1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = staticinvoke <gc.arguments.TestUseCompressedOopsErgoTools: java.lang.String expect(java.lang.String[],boolean,boolean,int)>(r0, 0, 0, 0);
+
+        return $r1;
+    }
+}

@@ -1,0 +1,171 @@
+public class ReferencesGC extends nsk.share.gc.ThreadedGCTest
+{
+    static int RANGE;
+    static float RATIO;
+
+    static void <clinit>()
+    {
+        <gc.gctests.ReferencesGC.ReferencesGC: int RANGE> = 256;
+
+        <gc.gctests.ReferencesGC.ReferencesGC: float RATIO> = 1.0F;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        ReferencesGC r0;
+
+        r0 := @this: ReferencesGC;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        gc.gctests.ReferencesGC.ReferencesGC $r2;
+        nsk.share.test.Test $r3;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.gctests.ReferencesGC.ReferencesGC: void parseArgs(java.lang.String[])>(r0);
+
+        $r2 = new gc.gctests.ReferencesGC.ReferencesGC;
+
+        specialinvoke $r2.<gc.gctests.ReferencesGC.ReferencesGC: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r0);
+
+        return;
+    }
+
+    public static void parseArgs(java.lang.String[])
+    {
+        java.lang.Float $r3;
+        java.lang.String[] r0;
+        java.lang.Integer $r5;
+        int $i0, $i1, $i2, i3, $i4;
+        float $f0;
+        java.lang.String $r1, $r2, $r4, $r6;
+
+        r0 := @parameter0: java.lang.String[];
+
+        i3 = 0;
+
+        goto label4;
+
+     label1:
+        $r1 = r0[i3];
+
+        $i0 = virtualinvoke $r1.<java.lang.String: int compareTo(java.lang.String)>("-range");
+
+        if $i0 != 0 goto label2;
+
+        $r5 = new java.lang.Integer;
+
+        i3 = i3 + 1;
+
+        $r6 = r0[i3];
+
+        specialinvoke $r5.<java.lang.Integer: void <init>(java.lang.String)>($r6);
+
+        $i2 = virtualinvoke $r5.<java.lang.Integer: int intValue()>();
+
+        <gc.gctests.ReferencesGC.ReferencesGC: int RANGE> = $i2;
+
+        goto label3;
+
+     label2:
+        $r2 = r0[i3];
+
+        $i1 = virtualinvoke $r2.<java.lang.String: int compareTo(java.lang.String)>("-ratio");
+
+        if $i1 != 0 goto label3;
+
+        $r3 = new java.lang.Float;
+
+        i3 = i3 + 1;
+
+        $r4 = r0[i3];
+
+        specialinvoke $r3.<java.lang.Float: void <init>(java.lang.String)>($r4);
+
+        $f0 = virtualinvoke $r3.<java.lang.Float: float floatValue()>();
+
+        <gc.gctests.ReferencesGC.ReferencesGC: float RATIO> = $f0;
+
+     label3:
+        i3 = i3 + 1;
+
+     label4:
+        $i4 = lengthof r0;
+
+        if i3 < $i4 goto label1;
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        ReferencesGC r1;
+        gc.gctests.ReferencesGC.ReferencesGC $r3;
+        int i0;
+        gc.gctests.ReferencesGC.ReferencesGC$Worker $r2;
+        java.lang.Runnable $r4;
+
+        r1 := @this: ReferencesGC;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.ReferencesGC.ReferencesGC$Worker;
+
+        $r3 = (gc.gctests.ReferencesGC.ReferencesGC) r1;
+
+        specialinvoke $r2.<gc.gctests.ReferencesGC.ReferencesGC$Worker: void <init>(gc.gctests.ReferencesGC.ReferencesGC)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    static nsk.share.runner.RunParams access$0(gc.gctests.ReferencesGC.ReferencesGC)
+    {
+        gc.gctests.ReferencesGC.ReferencesGC r0;
+        nsk.share.runner.RunParams $r1;
+
+        r0 := @parameter0: gc.gctests.ReferencesGC.ReferencesGC;
+
+        $r1 = r0.<gc.gctests.ReferencesGC.ReferencesGC: nsk.share.runner.RunParams runParams>;
+
+        return $r1;
+    }
+
+    static nsk.share.test.ExecutionController access$1(gc.gctests.ReferencesGC.ReferencesGC)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.ReferencesGC.ReferencesGC r0;
+
+        r0 := @parameter0: gc.gctests.ReferencesGC.ReferencesGC;
+
+        $r1 = virtualinvoke r0.<gc.gctests.ReferencesGC.ReferencesGC: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+
+    static nsk.share.log.Log access$2(gc.gctests.ReferencesGC.ReferencesGC)
+    {
+        nsk.share.log.Log $r1;
+        gc.gctests.ReferencesGC.ReferencesGC r0;
+
+        r0 := @parameter0: gc.gctests.ReferencesGC.ReferencesGC;
+
+        $r1 = r0.<gc.gctests.ReferencesGC.ReferencesGC: nsk.share.log.Log log>;
+
+        return $r1;
+    }
+}

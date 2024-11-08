@@ -1,0 +1,128 @@
+public class TestVerifySilently extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestVerifySilently r0;
+
+        r0 := @this: TestVerifySilently;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static jdk.test.lib.process.OutputAnalyzer runTest(boolean) throws java.lang.Exception
+    {
+        java.lang.Object[] $r7;
+        java.lang.String[] $r1, $r2, $r3, $r6, $r8;
+        java.util.ArrayList $r0;
+        int $i0;
+        java.lang.String $r5, $r14, $r16, $r17;
+        java.lang.ProcessBuilder $r9;
+        boolean z0;
+        java.io.PrintStream $r13;
+        java.lang.Process $r11;
+        jdk.test.lib.process.OutputAnalyzer $r10;
+        java.lang.Class $r4;
+        java.lang.StringBuilder $r12, $r15;
+
+        z0 := @parameter0: boolean;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "-Xlog.*";
+
+        $r2 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getFilteredTestJavaOpts(java.lang.String[])>($r1);
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r2);
+
+        $r3 = newarray (java.lang.String)[6];
+
+        $r3[0] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r3[1] = "-XX:+VerifyDuringStartup";
+
+        $r3[2] = "-XX:+VerifyBeforeGC";
+
+        $r3[3] = "-XX:+VerifyAfterGC";
+
+        if z0 == 0 goto label1;
+
+        $r17 = "-Xlog:gc";
+
+        goto label2;
+
+     label1:
+        $r17 = "-Xlog:gc+verify=debug";
+
+     label2:
+        $r3[4] = $r17;
+
+        $r4 = class "Lgc/RunSystemGC;";
+
+        $r5 = virtualinvoke $r4.<java.lang.Class: java.lang.String getName()>();
+
+        $r3[5] = $r5;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r3);
+
+        $i0 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+        $r6 = newarray (java.lang.String)[$i0];
+
+        $r7 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r6);
+
+        $r8 = (java.lang.String[]) $r7;
+
+        $r9 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r8);
+
+        $r10 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r11 = virtualinvoke $r9.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r11);
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("Output:\n");
+
+        $r14 = virtualinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        $r15 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        return $r10;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r2;
+        jdk.test.lib.process.OutputAnalyzer $r0, $r1;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <gc.TestVerifySilently: jdk.test.lib.process.OutputAnalyzer runTest(boolean)>(0);
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Verifying");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r1 = staticinvoke <gc.TestVerifySilently: jdk.test.lib.process.OutputAnalyzer runTest(boolean)>(1);
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Verifying");
+
+        virtualinvoke $r1.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

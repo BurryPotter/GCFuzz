@@ -1,0 +1,169 @@
+public class TestUnifiedLoggingSwitchStress extends java.lang.Object
+{
+    private static final int MEMORY_STRESSERS_COUNT;
+    private static final int LOG_LEVEL_SWITCHERS_COUNT;
+    private static final int LOG_FILES_COUNT;
+    private static final int MAX_MEMORY_PER_STRESSER;
+
+    static void <clinit>()
+    {
+        java.lang.Runtime $r0;
+        int $i2;
+        long $l0, $l1;
+        double $d0, $d1;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+        $l1 = $l0 / 3L;
+
+        $d0 = (double) $l1;
+
+        $d1 = $d0 * 0.7;
+
+        $i2 = (int) $d1;
+
+        <gc.logging.TestUnifiedLoggingSwitchStress: int MAX_MEMORY_PER_STRESSER> = $i2;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestUnifiedLoggingSwitchStress r0;
+
+        r0 := @this: TestUnifiedLoggingSwitchStress;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.InterruptedException
+    {
+        java.lang.Error $r13;
+        java.lang.String[] r0;
+        long l3, $l4, $l6, $l7;
+        gc.logging.MemoryStresser $r18;
+        java.lang.Runnable $r20, $r21;
+        byte $b8;
+        java.lang.Thread $r17, $r19;
+        int $i0, $i1, $i2, $i5, i9, i10, $i11;
+        java.lang.String $r1, $r7;
+        gc.logging.LogLevelSwitcher $r16;
+        java.util.LinkedList $r14;
+        java.util.function.Consumer $r11;
+        java.util.stream.Stream $r10;
+        java.lang.StringBuilder $r6, $r15;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 1 goto label1;
+
+        $r13 = new java.lang.Error;
+
+        specialinvoke $r13.<java.lang.Error: void <init>(java.lang.String)>("Test Bug: Expected duration (in seconds) wasn\'t provided as command line argument");
+
+        throw $r13;
+
+     label1:
+        $r1 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        $i2 = $i1 * 1000;
+
+        l3 = (long) $i2;
+
+        $l4 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r14 = new java.util.LinkedList;
+
+        specialinvoke $r14.<java.util.LinkedList: void <init>()>();
+
+        i9 = 0;
+
+        goto label3;
+
+     label2:
+        $r17 = new java.lang.Thread;
+
+        $r16 = new gc.logging.LogLevelSwitcher;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("Output_");
+
+        $r6 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i9);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r16.<gc.logging.LogLevelSwitcher: void <init>(java.lang.String,int)>($r7, 2);
+
+        $r20 = (java.lang.Runnable) $r16;
+
+        specialinvoke $r17.<java.lang.Thread: void <init>(java.lang.Runnable)>($r20);
+
+        interfaceinvoke $r14.<java.util.List: boolean add(java.lang.Object)>($r17);
+
+        i9 = i9 + 1;
+
+     label3:
+        if i9 < 2 goto label2;
+
+        i10 = 0;
+
+        goto label5;
+
+     label4:
+        $r19 = new java.lang.Thread;
+
+        $r18 = new gc.logging.MemoryStresser;
+
+        $i5 = <gc.logging.TestUnifiedLoggingSwitchStress: int MAX_MEMORY_PER_STRESSER>;
+
+        specialinvoke $r18.<gc.logging.MemoryStresser: void <init>(int)>($i5);
+
+        $r21 = (java.lang.Runnable) $r18;
+
+        specialinvoke $r19.<java.lang.Thread: void <init>(java.lang.Runnable)>($r21);
+
+        interfaceinvoke $r14.<java.util.List: boolean add(java.lang.Object)>($r19);
+
+        i10 = i10 + 1;
+
+     label5:
+        if i10 < 3 goto label4;
+
+        $r10 = interfaceinvoke $r14.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r11 = staticinvoke <TestUnifiedLoggingSwitchStress$start__1: java.util.function.Consumer bootstrap$()>();
+
+        interfaceinvoke $r10.<java.util.stream.Stream: void forEach(java.util.function.Consumer)>($r11);
+
+        goto label7;
+
+     label6:
+        staticinvoke <java.lang.Thread: void yield()>();
+
+     label7:
+        $l6 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l7 = $l6 - $l4;
+
+        $b8 = $l7 cmp l3;
+
+        $i11 = (int) $b8;
+
+        if $i11 < 0 goto label6;
+
+        <gc.logging.MemoryStresser: boolean shouldStop> = 1;
+
+        <gc.logging.LogLevelSwitcher: boolean shouldStop> = 1;
+
+        return;
+    }
+}

@@ -1,0 +1,14 @@
+class PopulationException extends java.lang.Exception
+{
+
+    void <init>()
+    {
+        PopulationException r0;
+
+        r0 := @this: PopulationException;
+
+        specialinvoke r0.<java.lang.Exception: void <init>()>();
+
+        return;
+    }
+}

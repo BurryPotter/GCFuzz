@@ -1,0 +1,48 @@
+public class Demo extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Demo r0;
+
+        r0 := @this: Demo;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Thread $r0;
+        int i0;
+        Demo$Worker $r1;
+        java.lang.String[] r2;
+
+        r2 := @parameter0: java.lang.String[];
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 10 goto label2;
+
+        $r0 = new java.lang.Thread;
+
+        $r1 = new Demo$Worker;
+
+        specialinvoke $r1.<Demo$Worker: void <init>()>();
+
+        specialinvoke $r0.<java.lang.Thread: void <init>(java.lang.Runnable)>($r1);
+
+        virtualinvoke $r0.<java.lang.Thread: void start()>();
+
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label2:
+        staticinvoke <java.lang.Thread: void sleep(long)>(6000L);
+
+        goto label2;
+    }
+}

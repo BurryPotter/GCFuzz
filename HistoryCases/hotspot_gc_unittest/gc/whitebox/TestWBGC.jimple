@@ -1,0 +1,67 @@
+public class TestWBGC extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestWBGC r0;
+
+        r0 := @this: TestWBGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r6;
+        java.lang.Process $r5;
+        java.lang.String[] $r0, r8;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+        java.lang.Class $r1;
+        java.lang.String $r2, $r7;
+        java.lang.ProcessBuilder $r3;
+
+        r8 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[6];
+
+        $r0[0] = "-Xbootclasspath/a:.";
+
+        $r0[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[2] = "-XX:+WhiteBoxAPI";
+
+        $r0[3] = "-XX:MaxTenuringThreshold=1";
+
+        $r0[4] = "-Xlog:gc";
+
+        $r1 = class "Lgc/whitebox/TestWBGC$GCYoungTest;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[5] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(boolean,java.lang.String[])>(1, $r0);
+
+        $r4 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("WhiteBox Initiated Young GC");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Full");
+
+        return;
+    }
+}

@@ -1,0 +1,148 @@
+class HumongousAllocationTest extends java.lang.Object
+{
+    private static java.util.Map longLiveObjectsMap;
+    private static java.util.LinkedList oldGarbageList;
+    private static byte[] array;
+
+    void <init>()
+    {
+        HumongousAllocationTest r0;
+
+        r0 := @this: HumongousAllocationTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static void allocateLiveObjects()
+    {
+        java.util.Map $r1;
+        int i0;
+        java.lang.StringBuilder $r0, $r2, $r3, $r5, $r6, $r7;
+        java.lang.String $r4, $r8;
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 2000000 goto label2;
+
+        $r1 = <HumongousAllocationTest: java.util.Map longLiveObjectsMap>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("key");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("value");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r4, $r8);
+
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    private static void allocateGarbage()
+    {
+        byte[] $r0, $r1, $r5;
+        int $i0, i1, i2;
+        java.util.LinkedList $r2, $r3, $r4;
+
+        i1 = 0;
+
+     label1:
+        if i1 >= 1000000 goto label5;
+
+        $r0 = newarray (byte)[524288];
+
+        <HumongousAllocationTest: byte[] array> = $r0;
+
+        $r2 = <HumongousAllocationTest: java.util.LinkedList oldGarbageList>;
+
+        $r1 = newarray (byte)[10240];
+
+        virtualinvoke $r2.<java.util.LinkedList: boolean add(java.lang.Object)>($r1);
+
+        i2 = 0;
+
+     label2:
+        if i2 >= 50 goto label3;
+
+        $r5 = newarray (byte)[10240];
+
+        <HumongousAllocationTest: byte[] array> = $r5;
+
+        i2 = i2 + 1;
+
+        goto label2;
+
+     label3:
+        $r3 = <HumongousAllocationTest: java.util.LinkedList oldGarbageList>;
+
+        $i0 = virtualinvoke $r3.<java.util.LinkedList: int size()>();
+
+        if $i0 <= 5000 goto label4;
+
+        $r4 = <HumongousAllocationTest: java.util.LinkedList oldGarbageList>;
+
+        virtualinvoke $r4.<java.util.LinkedList: java.lang.Object removeFirst()>();
+
+     label4:
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label5:
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <HumongousAllocationTest: void allocateLiveObjects()>();
+
+        staticinvoke <HumongousAllocationTest: void allocateGarbage()>();
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.util.TreeMap $r0;
+        java.util.LinkedList $r1;
+
+        $r0 = new java.util.TreeMap;
+
+        specialinvoke $r0.<java.util.TreeMap: void <init>()>();
+
+        <HumongousAllocationTest: java.util.Map longLiveObjectsMap> = $r0;
+
+        $r1 = new java.util.LinkedList;
+
+        specialinvoke $r1.<java.util.LinkedList: void <init>()>();
+
+        <HumongousAllocationTest: java.util.LinkedList oldGarbageList> = $r1;
+
+        return;
+    }
+}

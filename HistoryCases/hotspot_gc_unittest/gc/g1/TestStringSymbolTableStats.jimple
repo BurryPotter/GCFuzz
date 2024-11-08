@@ -1,0 +1,70 @@
+public class TestStringSymbolTableStats extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestStringSymbolTableStats r0;
+
+        r0 := @this: TestStringSymbolTableStats;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r7;
+        java.lang.Process $r5;
+        java.lang.String[] $r0, r11;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+        java.lang.Class $r1;
+        java.lang.StringBuilder $r6, $r9;
+        java.lang.String $r2, $r8, $r10;
+        java.lang.ProcessBuilder $r3;
+
+        r11 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[4];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r0[2] = "-Xlog:gc+stringtable=trace";
+
+        $r1 = class "Lgc/g1/TestStringSymbolTableStats$SystemGCTest;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[3] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r4 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Output:\n");
+
+        $r8 = virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        $r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>("GC\\(\\d+\\) Cleaned string and symbol table");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

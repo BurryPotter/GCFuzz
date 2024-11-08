@@ -1,0 +1,80 @@
+public class soft003 extends nsk.share.gc.ThreadedGCTest
+{
+
+    public void <init>()
+    {
+        soft003 r0;
+
+        r0 := @this: soft003;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        soft003 r1;
+        gc.gctests.SoftReference.soft003.soft003 $r3;
+        int i0;
+        gc.gctests.SoftReference.soft003.soft003$Worker $r2;
+        java.lang.Runnable $r4;
+
+        r1 := @this: soft003;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.SoftReference.soft003.soft003$Worker;
+
+        $r3 = (gc.gctests.SoftReference.soft003.soft003) r1;
+
+        specialinvoke $r2.<gc.gctests.SoftReference.soft003.soft003$Worker: void <init>(gc.gctests.SoftReference.soft003.soft003)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        gc.gctests.SoftReference.soft003.soft003 $r2;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.SoftReference.soft003.soft003;
+
+        specialinvoke $r2.<gc.gctests.SoftReference.soft003.soft003: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.test.ExecutionController access$0(gc.gctests.SoftReference.soft003.soft003)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.SoftReference.soft003.soft003 r0;
+
+        r0 := @parameter0: gc.gctests.SoftReference.soft003.soft003;
+
+        $r1 = virtualinvoke r0.<gc.gctests.SoftReference.soft003.soft003: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+
+    static nsk.share.runner.RunParams access$1(gc.gctests.SoftReference.soft003.soft003)
+    {
+        gc.gctests.SoftReference.soft003.soft003 r0;
+        nsk.share.runner.RunParams $r1;
+
+        r0 := @parameter0: gc.gctests.SoftReference.soft003.soft003;
+
+        $r1 = r0.<gc.gctests.SoftReference.soft003.soft003: nsk.share.runner.RunParams runParams>;
+
+        return $r1;
+    }
+}

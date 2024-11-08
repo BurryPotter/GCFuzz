@@ -1,0 +1,28 @@
+class TestGCLogMessages$GCTestWithInitialMark extends java.lang.Object
+{
+
+    void <init>()
+    {
+        TestGCLogMessages$GCTestWithInitialMark r0;
+
+        r0 := @this: TestGCLogMessages$GCTestWithInitialMark;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        sun.hotspot.WhiteBox $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        return;
+    }
+}

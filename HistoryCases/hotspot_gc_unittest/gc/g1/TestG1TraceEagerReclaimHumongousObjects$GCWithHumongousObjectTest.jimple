@@ -1,0 +1,110 @@
+class TestG1TraceEagerReclaimHumongousObjects$GCWithHumongousObjectTest extends java.lang.Object
+{
+    public static final int M;
+    public static java.util.LinkedList garbageList;
+    static int[] filler;
+
+    static void <clinit>()
+    {
+        java.util.LinkedList $r0;
+        int[] $r1;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>()>();
+
+        <gc.g1.TestG1TraceEagerReclaimHumongousObjects$GCWithHumongousObjectTest: java.util.LinkedList garbageList> = $r0;
+
+        $r1 = newarray (int)[10485760];
+
+        <gc.g1.TestG1TraceEagerReclaimHumongousObjects$GCWithHumongousObjectTest: int[] filler> = $r1;
+
+        return;
+    }
+
+    void <init>()
+    {
+        TestG1TraceEagerReclaimHumongousObjects$GCWithHumongousObjectTest r0;
+
+        r0 := @this: TestG1TraceEagerReclaimHumongousObjects$GCWithHumongousObjectTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void genGarbage()
+    {
+        int[] $r0;
+        int i0, $i2;
+        java.util.LinkedList $r1, $r2;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r1 = <gc.g1.TestG1TraceEagerReclaimHumongousObjects$GCWithHumongousObjectTest: java.util.LinkedList garbageList>;
+
+        $r0 = newarray (int)[100];
+
+        virtualinvoke $r1.<java.util.LinkedList: boolean add(java.lang.Object)>($r0);
+
+        i0 = i0 + 1;
+
+     label2:
+        $i2 = (int) 32768;
+
+        if i0 < $i2 goto label1;
+
+        $r2 = <gc.g1.TestG1TraceEagerReclaimHumongousObjects$GCWithHumongousObjectTest: java.util.LinkedList garbageList>;
+
+        virtualinvoke $r2.<java.util.LinkedList: void clear()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r0, $r1, $r2, $r3;
+        java.lang.String[] r4;
+        int[] r5, r6;
+        int i0;
+
+        r4 := @parameter0: java.lang.String[];
+
+        r5 = newarray (int)[1048576];
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Creating garbage");
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        r6 = newarray (int)[6291456];
+
+        staticinvoke <gc.g1.TestG1TraceEagerReclaimHumongousObjects$GCWithHumongousObjectTest: void genGarbage()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.Object)>(r6);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 100 goto label1;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.Object)>(r5);
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("Done");
+
+        return;
+    }
+}

@@ -1,0 +1,442 @@
+public class TestMetaspacePerfCounters extends java.lang.Object
+{
+    public static java.lang.Class fooClass;
+    private static final java.lang.String[] counterNames;
+    private static final java.util.List gcBeans;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+        java.util.List $r1;
+
+        <gc.metaspace.TestMetaspacePerfCounters: java.lang.Class fooClass> = null;
+
+        $r0 = newarray (java.lang.String)[4];
+
+        $r0[0] = "minCapacity";
+
+        $r0[1] = "maxCapacity";
+
+        $r0[2] = "capacity";
+
+        $r0[3] = "used";
+
+        <gc.metaspace.TestMetaspacePerfCounters: java.lang.String[] counterNames> = $r0;
+
+        $r1 = staticinvoke <sun.management.ManagementFactoryHelper: java.util.List getGarbageCollectorMXBeans()>();
+
+        <gc.metaspace.TestMetaspacePerfCounters: java.util.List gcBeans> = $r1;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestMetaspacePerfCounters r0;
+
+        r0 := @this: TestMetaspacePerfCounters;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.metaspace.TestMetaspacePerfCounters: void checkPerfCounters(java.lang.String)>("sun.gc.metaspace");
+
+        $z0 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: boolean isUsingCompressedClassPointers()>();
+
+        if $z0 == 0 goto label1;
+
+        staticinvoke <gc.metaspace.TestMetaspacePerfCounters: void checkPerfCounters(java.lang.String)>("sun.gc.compressedclassspace");
+
+        staticinvoke <gc.metaspace.TestMetaspacePerfCounters: void checkUsedIncreasesWhenLoadingClass(java.lang.String)>("sun.gc.compressedclassspace");
+
+        goto label2;
+
+     label1:
+        staticinvoke <gc.metaspace.TestMetaspacePerfCounters: void checkEmptyPerfCounters(java.lang.String)>("sun.gc.compressedclassspace");
+
+        staticinvoke <gc.metaspace.TestMetaspacePerfCounters: void checkUsedIncreasesWhenLoadingClass(java.lang.String)>("sun.gc.metaspace");
+
+     label2:
+        return;
+    }
+
+    private static void checkPerfCounters(java.lang.String) throws java.lang.Exception
+    {
+        long $l0, $l1, $l2, $l3, $l4, $l5;
+        byte $b6;
+        java.lang.Long $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10;
+        int $i7;
+        java.lang.String r0;
+
+        r0 := @parameter0: java.lang.String;
+
+     label1:
+        $l0 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: long currentGCCount()>();
+
+        $l1 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: long getMinCapacity(java.lang.String)>(r0);
+
+        $l2 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: long getMaxCapacity(java.lang.String)>(r0);
+
+        $l3 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: long getCapacity(java.lang.String)>(r0);
+
+        $l4 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: long getUsed(java.lang.String)>(r0);
+
+        $l5 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: long currentGCCount()>();
+
+        $r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l5);
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGTE(java.lang.Comparable,java.lang.Comparable)>($r1, $r2);
+
+        $b6 = $l5 cmp $l0;
+
+        $i7 = (int) $b6;
+
+        if $i7 > 0 goto label1;
+
+        $r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(0L);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGTE(java.lang.Comparable,java.lang.Comparable)>($r3, $r4);
+
+        $r5 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l4);
+
+        $r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGTE(java.lang.Comparable,java.lang.Comparable)>($r5, $r6);
+
+        $r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        $r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l4);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGTE(java.lang.Comparable,java.lang.Comparable)>($r7, $r8);
+
+        $r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGTE(java.lang.Comparable,java.lang.Comparable)>($r9, $r10);
+
+        return;
+    }
+
+    private static void checkEmptyPerfCounters(java.lang.String) throws java.lang.Exception
+    {
+        java.util.Iterator $r2;
+        long $l0;
+        gc.testlibrary.PerfCounter r4;
+        java.util.List $r1;
+        java.lang.Long $r10, $r11;
+        java.lang.Object $r3;
+        java.lang.StringBuilder $r5, $r7, $r8;
+        java.lang.String r0, $r6, $r9;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: java.util.List countersInNamespace(java.lang.String)>(r0);
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        $r3 = interfaceinvoke $r2.<java.util.Iterator: java.lang.Object next()>();
+
+        r4 = (gc.testlibrary.PerfCounter) $r3;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected ");
+
+        $r6 = virtualinvoke r4.<gc.testlibrary.PerfCounter: java.lang.String getName()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" to equal 0");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $l0 = virtualinvoke r4.<gc.testlibrary.PerfCounter: long longValue()>();
+
+        $r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r11 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(0L);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object,java.lang.String)>($r10, $r11, $r9);
+
+     label2:
+        $z0 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+
+    private static void checkUsedIncreasesWhenLoadingClass(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.Long $r2, $r3;
+        long $l0, $l1;
+        java.lang.Class $r1;
+        java.lang.String r0;
+
+        r0 := @parameter0: java.lang.String;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $l0 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: long getUsed(java.lang.String)>(r0);
+
+        $r1 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: java.lang.Class compileAndLoad(java.lang.String,java.lang.String)>("Foo", "public class Foo { }");
+
+        <gc.metaspace.TestMetaspacePerfCounters: java.lang.Class fooClass> = $r1;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $l1 = staticinvoke <gc.metaspace.TestMetaspacePerfCounters: long getUsed(java.lang.String)>(r0);
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGT(java.lang.Comparable,java.lang.Comparable)>($r2, $r3);
+
+        return;
+    }
+
+    private static java.util.List countersInNamespace(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.String[] $r1;
+        java.util.ArrayList $r0;
+        gc.testlibrary.PerfCounter $r9;
+        int i0, i1;
+        java.lang.StringBuilder $r3, $r6, $r7;
+        java.lang.String r2, r4, $r5, $r8;
+
+        r4 := @parameter0: java.lang.String;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = <gc.metaspace.TestMetaspacePerfCounters: java.lang.String[] counterNames>;
+
+        i0 = lengthof $r1;
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        r2 = $r1[i1];
+
+        $r3 = new java.lang.StringBuilder;
+
+        $r5 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r4);
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>($r5);
+
+        $r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r9 = staticinvoke <gc.testlibrary.PerfCounters: gc.testlibrary.PerfCounter findByName(java.lang.String)>($r8);
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>($r9);
+
+        i1 = i1 + 1;
+
+     label2:
+        if i1 < i0 goto label1;
+
+        return $r0;
+    }
+
+    private static java.lang.Class compileAndLoad(java.lang.String, java.lang.String) throws java.lang.Exception
+    {
+        byte[] $r3;
+        java.lang.String[] $r2;
+        java.lang.Class $r4;
+        java.lang.String r0, r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: java.lang.String;
+
+        $r2 = newarray (java.lang.String)[0];
+
+        $r3 = staticinvoke <jdk.test.lib.compiler.InMemoryJavaCompiler: byte[] compile(java.lang.String,java.lang.CharSequence,java.lang.String[])>(r0, r1, $r2);
+
+        $r4 = staticinvoke <jdk.test.lib.ByteCodeLoader: java.lang.Class load(java.lang.String,byte[])>(r0, $r3);
+
+        return $r4;
+    }
+
+    private static boolean isUsingCompressedClassPointers()
+    {
+        boolean $z0, $z1;
+
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean is64bit()>();
+
+        if $z0 == 0 goto label1;
+
+        $z1 = staticinvoke <gc.metaspace.InputArguments: boolean contains(java.lang.String)>("-XX:+UseCompressedClassPointers");
+
+        if $z1 == 0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    private static long getMinCapacity(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.StringBuilder $r0, $r3;
+        long $l0;
+        java.lang.String r1, $r2, $r4;
+        gc.testlibrary.PerfCounter $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".minCapacity");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <gc.testlibrary.PerfCounters: gc.testlibrary.PerfCounter findByName(java.lang.String)>($r4);
+
+        $l0 = virtualinvoke $r5.<gc.testlibrary.PerfCounter: long longValue()>();
+
+        return $l0;
+    }
+
+    private static long getCapacity(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.StringBuilder $r0, $r3;
+        long $l0;
+        java.lang.String r1, $r2, $r4;
+        gc.testlibrary.PerfCounter $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".capacity");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <gc.testlibrary.PerfCounters: gc.testlibrary.PerfCounter findByName(java.lang.String)>($r4);
+
+        $l0 = virtualinvoke $r5.<gc.testlibrary.PerfCounter: long longValue()>();
+
+        return $l0;
+    }
+
+    private static long getMaxCapacity(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.StringBuilder $r0, $r3;
+        long $l0;
+        java.lang.String r1, $r2, $r4;
+        gc.testlibrary.PerfCounter $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".maxCapacity");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <gc.testlibrary.PerfCounters: gc.testlibrary.PerfCounter findByName(java.lang.String)>($r4);
+
+        $l0 = virtualinvoke $r5.<gc.testlibrary.PerfCounter: long longValue()>();
+
+        return $l0;
+    }
+
+    private static long getUsed(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.StringBuilder $r0, $r3;
+        long $l0;
+        java.lang.String r1, $r2, $r4;
+        gc.testlibrary.PerfCounter $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".used");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <gc.testlibrary.PerfCounters: gc.testlibrary.PerfCounter findByName(java.lang.String)>($r4);
+
+        $l0 = virtualinvoke $r5.<gc.testlibrary.PerfCounter: long longValue()>();
+
+        return $l0;
+    }
+
+    private static long currentGCCount()
+    {
+        java.util.List $r0;
+        java.util.Iterator $r1;
+        java.lang.management.GarbageCollectorMXBean r3;
+        java.lang.Object $r2;
+        long $l0, l1;
+        boolean $z0;
+
+        l1 = 0L;
+
+        $r0 = <gc.metaspace.TestMetaspacePerfCounters: java.util.List gcBeans>;
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        $r2 = interfaceinvoke $r1.<java.util.Iterator: java.lang.Object next()>();
+
+        r3 = (java.lang.management.GarbageCollectorMXBean) $r2;
+
+        $l0 = interfaceinvoke r3.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        l1 = l1 + $l0;
+
+     label2:
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+        return l1;
+    }
+}

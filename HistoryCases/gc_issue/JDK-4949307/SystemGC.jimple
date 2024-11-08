@@ -1,0 +1,25 @@
+public class SystemGC extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        SystemGC r0;
+
+        r0 := @this: SystemGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+}

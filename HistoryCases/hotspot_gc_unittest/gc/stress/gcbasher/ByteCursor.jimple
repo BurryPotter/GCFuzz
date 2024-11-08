@@ -1,0 +1,433 @@
+class ByteCursor extends java.lang.Object
+{
+    private int offset;
+    private byte[] data;
+
+    public void <init>(byte[])
+    {
+        byte[] r1;
+        gc.stress.gcbasher.ByteCursor $r2, $r3;
+        ByteCursor r0;
+
+        r0 := @this: ByteCursor;
+
+        r1 := @parameter0: byte[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $r2.<gc.stress.gcbasher.ByteCursor: int offset> = 0;
+
+        $r3 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $r3.<gc.stress.gcbasher.ByteCursor: byte[] data> = r1;
+
+        return;
+    }
+
+    public int getOffset()
+    {
+        int $i0;
+        gc.stress.gcbasher.ByteCursor $r1;
+        ByteCursor r0;
+
+        r0 := @this: ByteCursor;
+
+        $r1 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i0 = $r1.<gc.stress.gcbasher.ByteCursor: int offset>;
+
+        return $i0;
+    }
+
+    public void skipBytes(int)
+    {
+        gc.stress.gcbasher.ByteCursor $r1, $r2;
+        int i0, $i1, $i2;
+        ByteCursor r0;
+
+        r0 := @this: ByteCursor;
+
+        i0 := @parameter0: int;
+
+        $r1 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i1 = $r1.<gc.stress.gcbasher.ByteCursor: int offset>;
+
+        $i2 = $i1 + i0;
+
+        $r2 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $r2.<gc.stress.gcbasher.ByteCursor: int offset> = $i2;
+
+        return;
+    }
+
+    public int readUnsignedByte()
+    {
+        gc.stress.gcbasher.ByteCursor $r1, $r2, $r3, $r4;
+        int $i0, $i1, $i2, $i3;
+        ByteCursor r0;
+
+        r0 := @this: ByteCursor;
+
+        $r1 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i0 = $r1.<gc.stress.gcbasher.ByteCursor: int offset>;
+
+        $r2 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i1 = virtualinvoke $r2.<gc.stress.gcbasher.ByteCursor: int readUnsignedByteAt(int)>($i0);
+
+        $r3 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i2 = $r3.<gc.stress.gcbasher.ByteCursor: int offset>;
+
+        $i3 = $i2 + 1;
+
+        $r4 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $r4.<gc.stress.gcbasher.ByteCursor: int offset> = $i3;
+
+        return $i1;
+    }
+
+    public int readUnsignedByteAt(int)
+    {
+        byte[] $r1;
+        gc.stress.gcbasher.ByteCursor $r2;
+        short $s1, $s3;
+        byte $b0;
+        int i2, $i4;
+        ByteCursor r0;
+
+        r0 := @this: ByteCursor;
+
+        i2 := @parameter0: int;
+
+        $r2 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $r1 = $r2.<gc.stress.gcbasher.ByteCursor: byte[] data>;
+
+        $b0 = $r1[i2];
+
+        $s3 = (short) $b0;
+
+        $s1 = $s3 & 255;
+
+        $i4 = (int) $s1;
+
+        return $i4;
+    }
+
+    public int readUnsignedShort()
+    {
+        gc.stress.gcbasher.ByteCursor $r1, $r2, $r3, $r4;
+        int $i0, $i1, $i2, $i3;
+        ByteCursor r0;
+
+        r0 := @this: ByteCursor;
+
+        $r1 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i0 = $r1.<gc.stress.gcbasher.ByteCursor: int offset>;
+
+        $r2 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i1 = virtualinvoke $r2.<gc.stress.gcbasher.ByteCursor: int readUnsignedShortAt(int)>($i0);
+
+        $r3 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i2 = $r3.<gc.stress.gcbasher.ByteCursor: int offset>;
+
+        $i3 = $i2 + 2;
+
+        $r4 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $r4.<gc.stress.gcbasher.ByteCursor: int offset> = $i3;
+
+        return $i1;
+    }
+
+    public int readInt()
+    {
+        gc.stress.gcbasher.ByteCursor $r1, $r2, $r3, $r4;
+        int $i0, $i1, $i2, $i3;
+        ByteCursor r0;
+
+        r0 := @this: ByteCursor;
+
+        $r1 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i0 = $r1.<gc.stress.gcbasher.ByteCursor: int offset>;
+
+        $r2 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i1 = virtualinvoke $r2.<gc.stress.gcbasher.ByteCursor: int readIntAt(int)>($i0);
+
+        $r3 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i2 = $r3.<gc.stress.gcbasher.ByteCursor: int offset>;
+
+        $i3 = $i2 + 4;
+
+        $r4 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $r4.<gc.stress.gcbasher.ByteCursor: int offset> = $i3;
+
+        return $i1;
+    }
+
+    public int readUnsignedShortAt(int)
+    {
+        byte[] $r1, $r2;
+        gc.stress.gcbasher.ByteCursor $r3, $r4;
+        short s1, s3, $s8, $s9;
+        byte $b0, $b2;
+        int $i4, $i5, i6, i7, $i10, $i11;
+        ByteCursor r0;
+
+        r0 := @this: ByteCursor;
+
+        i6 := @parameter0: int;
+
+        $r3 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $r1 = $r3.<gc.stress.gcbasher.ByteCursor: byte[] data>;
+
+        i7 = i6 + 1;
+
+        $b0 = $r1[i6];
+
+        $s8 = (short) $b0;
+
+        s1 = $s8 & 255;
+
+        $r4 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $r2 = $r4.<gc.stress.gcbasher.ByteCursor: byte[] data>;
+
+        $b2 = $r2[i7];
+
+        $s9 = (short) $b2;
+
+        s3 = $s9 & 255;
+
+        $i10 = (int) s1;
+
+        $i4 = $i10 << 8;
+
+        $i11 = (int) s3;
+
+        $i5 = $i4 + $i11;
+
+        return $i5;
+    }
+
+    public int readIntAt(int)
+    {
+        gc.stress.gcbasher.ByteCursor $r1, $r2;
+        int i0, $i1, $i2, $i3, $i4, $i5;
+        ByteCursor r0;
+
+        r0 := @this: ByteCursor;
+
+        i0 := @parameter0: int;
+
+        $r1 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i1 = virtualinvoke $r1.<gc.stress.gcbasher.ByteCursor: int readUnsignedShortAt(int)>(i0);
+
+        $i2 = i0 + 2;
+
+        $r2 = (gc.stress.gcbasher.ByteCursor) r0;
+
+        $i3 = virtualinvoke $r2.<gc.stress.gcbasher.ByteCursor: int readUnsignedShortAt(int)>($i2);
+
+        $i4 = $i1 << 16;
+
+        $i5 = $i4 + $i3;
+
+        return $i5;
+    }
+
+    public java.lang.String readUtf8(int) throws java.lang.IllegalStateException
+    {
+        java.lang.IllegalStateException $r6, $r7, $r8;
+        ByteCursor r1;
+        gc.stress.gcbasher.ByteCursor $r10, $r11, $r12, $r13;
+        int i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i17, $i18, $i19, $i20, $i21, $i22, $i23, $i25, $i27, i28, i29;
+        java.lang.String $r9;
+        char $c16, $c24, $c26;
+        char[] r0;
+
+        r1 := @this: ByteCursor;
+
+        i0 := @parameter0: int;
+
+        r0 = newarray (char)[i0];
+
+        i28 = 0;
+
+        i29 = 0;
+
+        goto label10;
+
+     label01:
+        $r10 = (gc.stress.gcbasher.ByteCursor) r1;
+
+        $i1 = virtualinvoke $r10.<gc.stress.gcbasher.ByteCursor: int readUnsignedByte()>();
+
+        $i2 = $i1 >> 4;
+
+        tableswitch($i2)
+        {
+            case 0: goto label02;
+            case 1: goto label02;
+            case 2: goto label02;
+            case 3: goto label02;
+            case 4: goto label02;
+            case 5: goto label02;
+            case 6: goto label02;
+            case 7: goto label02;
+            case 8: goto label09;
+            case 9: goto label09;
+            case 10: goto label09;
+            case 11: goto label09;
+            case 12: goto label04;
+            case 13: goto label04;
+            case 14: goto label06;
+            default: goto label09;
+        };
+
+     label02:
+        i28 = i28 + 1;
+
+        if $i1 != 47 goto label03;
+
+        $i27 = i29;
+
+        i29 = i29 + 1;
+
+        r0[$i27] = 46;
+
+        goto label10;
+
+     label03:
+        $i25 = i29;
+
+        i29 = i29 + 1;
+
+        $c26 = (char) $i1;
+
+        r0[$i25] = $c26;
+
+        goto label10;
+
+     label04:
+        i28 = i28 + 2;
+
+        $r11 = (gc.stress.gcbasher.ByteCursor) r1;
+
+        $i17 = virtualinvoke $r11.<gc.stress.gcbasher.ByteCursor: int readUnsignedByte()>();
+
+        $i18 = $i17 & 192;
+
+        if $i18 == 128 goto label05;
+
+        $r6 = new java.lang.IllegalStateException;
+
+        specialinvoke $r6.<java.lang.IllegalStateException: void <init>()>();
+
+        throw $r6;
+
+     label05:
+        $i19 = i29;
+
+        i29 = i29 + 1;
+
+        $i20 = $i1 & 31;
+
+        $i22 = $i20 << 6;
+
+        $i21 = $i17 & 63;
+
+        $i23 = $i22 | $i21;
+
+        $c24 = (char) $i23;
+
+        r0[$i19] = $c24;
+
+        goto label10;
+
+     label06:
+        i28 = i28 + 3;
+
+        $r12 = (gc.stress.gcbasher.ByteCursor) r1;
+
+        $i3 = virtualinvoke $r12.<gc.stress.gcbasher.ByteCursor: int readUnsignedByte()>();
+
+        $r13 = (gc.stress.gcbasher.ByteCursor) r1;
+
+        $i4 = virtualinvoke $r13.<gc.stress.gcbasher.ByteCursor: int readUnsignedByte()>();
+
+        $i5 = $i3 & 192;
+
+        if $i5 != 128 goto label07;
+
+        $i6 = $i4 & 192;
+
+        if $i6 == 128 goto label08;
+
+     label07:
+        $r7 = new java.lang.IllegalStateException;
+
+        specialinvoke $r7.<java.lang.IllegalStateException: void <init>()>();
+
+        throw $r7;
+
+     label08:
+        $i7 = i29;
+
+        i29 = i29 + 1;
+
+        $i8 = $i1 & 15;
+
+        $i11 = $i8 << 12;
+
+        $i9 = $i3 & 63;
+
+        $i10 = $i9 << 6;
+
+        $i14 = $i11 | $i10;
+
+        $i12 = $i4 & 63;
+
+        $i13 = $i12 << 0;
+
+        $i15 = $i14 | $i13;
+
+        $c16 = (char) $i15;
+
+        r0[$i7] = $c16;
+
+        goto label10;
+
+     label09:
+        $r8 = new java.lang.IllegalStateException;
+
+        specialinvoke $r8.<java.lang.IllegalStateException: void <init>()>();
+
+        throw $r8;
+
+     label10:
+        if i28 < i0 goto label01;
+
+        $r9 = new java.lang.String;
+
+        specialinvoke $r9.<java.lang.String: void <init>(char[])>(r0);
+
+        return $r9;
+    }
+}

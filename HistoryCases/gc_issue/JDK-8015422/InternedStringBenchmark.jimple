@@ -1,0 +1,75 @@
+public class InternedStringBenchmark extends java.lang.Object
+{
+    public static int numStrings;
+    public static java.lang.String[] strings;
+    public static java.lang.Object dummy;
+
+    public void <init>()
+    {
+        InternedStringBenchmark r0;
+
+        r0 := @this: InternedStringBenchmark;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r0;
+        byte[] $r1;
+        java.lang.String[] $r2, r5;
+        int $i0, i1;
+        java.lang.String $r3, $r4;
+
+        r5 := @parameter0: java.lang.String[];
+
+        i1 = 0;
+
+     label1:
+        $i0 = <InternedStringBenchmark: int numStrings>;
+
+        if i1 >= $i0 goto label2;
+
+        $r2 = <InternedStringBenchmark: java.lang.String[] strings>;
+
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i1);
+
+        $r4 = virtualinvoke $r3.<java.lang.String: java.lang.String intern()>();
+
+        $r2[i1] = $r4;
+
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label2:
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Interned done");
+
+     label3:
+        $r1 = newarray (byte)[2048];
+
+        <InternedStringBenchmark: java.lang.Object dummy> = $r1;
+
+        goto label3;
+    }
+
+    static void <clinit>()
+    {
+        int $i0;
+        java.lang.String[] $r0;
+
+        <InternedStringBenchmark: int numStrings> = 1000000;
+
+        $i0 = <InternedStringBenchmark: int numStrings>;
+
+        $r0 = newarray (java.lang.String)[$i0];
+
+        <InternedStringBenchmark: java.lang.String[] strings> = $r0;
+
+        return;
+    }
+}

@@ -1,0 +1,149 @@
+final class ArraysSort$OrderChecker extends java.util.concurrent.CountedCompleter
+{
+    final java.lang.Long[] array;
+    final int lo;
+    final int hi;
+    final int size;
+
+    void <init>(java.util.concurrent.CountedCompleter, java.lang.Long[], int, int, int)
+    {
+        java.lang.Long[] r2;
+        ArraysSort$OrderChecker r0;
+        java.util.concurrent.CountedCompleter r1;
+        int i0, i1, i2;
+
+        r0 := @this: ArraysSort$OrderChecker;
+
+        r1 := @parameter0: java.util.concurrent.CountedCompleter;
+
+        r2 := @parameter1: java.lang.Long[];
+
+        i0 := @parameter2: int;
+
+        i1 := @parameter3: int;
+
+        i2 := @parameter4: int;
+
+        specialinvoke r0.<java.util.concurrent.CountedCompleter: void <init>(java.util.concurrent.CountedCompleter)>(r1);
+
+        r0.<ArraysSort$OrderChecker: java.lang.Long[] array> = r2;
+
+        r0.<ArraysSort$OrderChecker: int lo> = i0;
+
+        r0.<ArraysSort$OrderChecker: int hi> = i1;
+
+        r0.<ArraysSort$OrderChecker: int size> = i2;
+
+        return;
+    }
+
+    public final void compute()
+    {
+        ArraysSort$OrderChecker r0, $r12;
+        java.lang.Error $r14;
+        long $l3, l12;
+        byte $b4;
+        java.lang.Long $r2, $r3;
+        int i0, $i1, $i2, $i5, i6, i7, i8, i9, i10, i11, $i13;
+        java.lang.String $r10;
+        java.lang.Long[] r1;
+        java.lang.StringBuilder $r6, $r7, $r8, $r9, $r13;
+
+        r0 := @this: ArraysSort$OrderChecker;
+
+        r1 = r0.<ArraysSort$OrderChecker: java.lang.Long[] array>;
+
+        i0 = r0.<ArraysSort$OrderChecker: int lo>;
+
+        i7 = r0.<ArraysSort$OrderChecker: int hi>;
+
+        i8 = r0.<ArraysSort$OrderChecker: int size>;
+
+     label1:
+        $i2 = i7 - i0;
+
+        $i1 = <ArraysSort: int THRESHOLD>;
+
+        if $i2 <= $i1 goto label2;
+
+        virtualinvoke r0.<ArraysSort$OrderChecker: void addToPendingCount(int)>(1);
+
+        $r12 = new ArraysSort$OrderChecker;
+
+        $i5 = i0 + i7;
+
+        i6 = $i5 >>> 1;
+
+        specialinvoke $r12.<ArraysSort$OrderChecker: void <init>(java.util.concurrent.CountedCompleter,java.lang.Long[],int,int,int)>(r0, r1, i6, i7, i8);
+
+        virtualinvoke $r12.<ArraysSort$OrderChecker: java.util.concurrent.ForkJoinTask fork()>();
+
+        i7 = i6;
+
+        goto label1;
+
+     label2:
+        if i7 >= i8 goto label3;
+
+        i9 = i7;
+
+        goto label4;
+
+     label3:
+        i9 = i8 - 1;
+
+     label4:
+        i10 = i9;
+
+        i11 = i0;
+
+        $r2 = r1[i0];
+
+        l12 = virtualinvoke $r2.<java.lang.Long: long longValue()>();
+
+     label5:
+        if i11 >= i10 goto label7;
+
+        i11 = i11 + 1;
+
+        $r3 = r1[i11];
+
+        $l3 = virtualinvoke $r3.<java.lang.Long: long longValue()>();
+
+        $b4 = l12 cmp $l3;
+
+        $i13 = (int) $b4;
+
+        if $i13 <= 0 goto label6;
+
+        $r14 = new java.lang.Error;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unsorted ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l12);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" / ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r14.<java.lang.Error: void <init>(java.lang.String)>($r10);
+
+        throw $r14;
+
+     label6:
+        l12 = $l3;
+
+        goto label5;
+
+     label7:
+        virtualinvoke r0.<ArraysSort$OrderChecker: void tryComplete()>();
+
+        return;
+    }
+}

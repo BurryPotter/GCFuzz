@@ -1,0 +1,390 @@
+public abstract enum class GC extends java.lang.Enum
+{
+    public static final enum gc.g1.humongousObjects.objectGraphTest.GC CMC;
+    public static final enum gc.g1.humongousObjects.objectGraphTest.GC CMC_NO_SURV_ROOTS;
+    public static final enum gc.g1.humongousObjects.objectGraphTest.GC YOUNG_GC;
+    public static final enum gc.g1.humongousObjects.objectGraphTest.GC FULL_GC;
+    public static final enum gc.g1.humongousObjects.objectGraphTest.GC MIXED_GC;
+    public static final enum gc.g1.humongousObjects.objectGraphTest.GC FULL_GC_MEMORY_PRESSURE;
+    private static final sun.hotspot.WhiteBox WHITE_BOX;
+    private static final gc.g1.humongousObjects.objectGraphTest.GC[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.g1.humongousObjects.objectGraphTest.GC[] $r6;
+        gc.g1.humongousObjects.objectGraphTest.GC$6 $r19;
+        gc.g1.humongousObjects.objectGraphTest.GC$4 $r17;
+        gc.g1.humongousObjects.objectGraphTest.GC$5 $r18;
+        sun.hotspot.WhiteBox $r13;
+        gc.g1.humongousObjects.objectGraphTest.GC$2 $r15;
+        gc.g1.humongousObjects.objectGraphTest.GC$3 $r16;
+        gc.g1.humongousObjects.objectGraphTest.GC$1 $r14;
+        gc.g1.humongousObjects.objectGraphTest.GC $r7, $r8, $r9, $r10, $r11, $r12, $r20, $r21, $r22, $r23, $r24, $r25;
+
+        $r14 = new gc.g1.humongousObjects.objectGraphTest.GC$1;
+
+        specialinvoke $r14.<gc.g1.humongousObjects.objectGraphTest.GC$1: void <init>(java.lang.String,int)>("CMC", 0);
+
+        $r20 = (gc.g1.humongousObjects.objectGraphTest.GC) $r14;
+
+        <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC CMC> = $r20;
+
+        $r15 = new gc.g1.humongousObjects.objectGraphTest.GC$2;
+
+        specialinvoke $r15.<gc.g1.humongousObjects.objectGraphTest.GC$2: void <init>(java.lang.String,int)>("CMC_NO_SURV_ROOTS", 1);
+
+        $r21 = (gc.g1.humongousObjects.objectGraphTest.GC) $r15;
+
+        <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC CMC_NO_SURV_ROOTS> = $r21;
+
+        $r16 = new gc.g1.humongousObjects.objectGraphTest.GC$3;
+
+        specialinvoke $r16.<gc.g1.humongousObjects.objectGraphTest.GC$3: void <init>(java.lang.String,int)>("YOUNG_GC", 2);
+
+        $r22 = (gc.g1.humongousObjects.objectGraphTest.GC) $r16;
+
+        <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC YOUNG_GC> = $r22;
+
+        $r17 = new gc.g1.humongousObjects.objectGraphTest.GC$4;
+
+        specialinvoke $r17.<gc.g1.humongousObjects.objectGraphTest.GC$4: void <init>(java.lang.String,int)>("FULL_GC", 3);
+
+        $r23 = (gc.g1.humongousObjects.objectGraphTest.GC) $r17;
+
+        <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC FULL_GC> = $r23;
+
+        $r18 = new gc.g1.humongousObjects.objectGraphTest.GC$5;
+
+        specialinvoke $r18.<gc.g1.humongousObjects.objectGraphTest.GC$5: void <init>(java.lang.String,int)>("MIXED_GC", 4);
+
+        $r24 = (gc.g1.humongousObjects.objectGraphTest.GC) $r18;
+
+        <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC MIXED_GC> = $r24;
+
+        $r19 = new gc.g1.humongousObjects.objectGraphTest.GC$6;
+
+        specialinvoke $r19.<gc.g1.humongousObjects.objectGraphTest.GC$6: void <init>(java.lang.String,int)>("FULL_GC_MEMORY_PRESSURE", 5);
+
+        $r25 = (gc.g1.humongousObjects.objectGraphTest.GC) $r19;
+
+        <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC FULL_GC_MEMORY_PRESSURE> = $r25;
+
+        $r6 = newarray (gc.g1.humongousObjects.objectGraphTest.GC)[6];
+
+        $r7 = <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC CMC>;
+
+        $r6[0] = $r7;
+
+        $r8 = <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC CMC_NO_SURV_ROOTS>;
+
+        $r6[1] = $r8;
+
+        $r9 = <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC YOUNG_GC>;
+
+        $r6[2] = $r9;
+
+        $r10 = <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC FULL_GC>;
+
+        $r6[3] = $r10;
+
+        $r11 = <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC MIXED_GC>;
+
+        $r6[4] = $r11;
+
+        $r12 = <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC FULL_GC_MEMORY_PRESSURE>;
+
+        $r6[5] = $r12;
+
+        <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC[] ENUM$VALUES> = $r6;
+
+        $r13 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX> = $r13;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        java.lang.String r1;
+        GC r0;
+
+        r0 := @this: GC;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    protected java.lang.String getErrorMessage(gc.g1.humongousObjects.objectGraphTest.ReferenceInfo, boolean, java.lang.String)
+    {
+        java.lang.Object[] $r0;
+        gc.g1.humongousObjects.objectGraphTest.ReferenceInfo r1;
+        java.lang.String r2, $r3, $r5, $r6, $r7;
+        GC r4;
+        boolean $z0, $z1, z2;
+
+        r4 := @this: GC;
+
+        r1 := @parameter0: gc.g1.humongousObjects.objectGraphTest.ReferenceInfo;
+
+        z2 := @parameter1: boolean;
+
+        r2 := @parameter2: java.lang.String;
+
+        $r0 = newarray (java.lang.Object)[4];
+
+        $z0 = r1.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: boolean softlyReachable>;
+
+        if $z0 == 0 goto label1;
+
+        $r5 = "soft";
+
+        goto label2;
+
+     label1:
+        $r5 = "weak";
+
+     label2:
+        $r0[0] = $r5;
+
+        $z1 = r1.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: boolean effectiveHumongous>;
+
+        if $z1 == 0 goto label3;
+
+        $r6 = "";
+
+        goto label4;
+
+     label3:
+        $r6 = "non-";
+
+     label4:
+        $r0[1] = $r6;
+
+        if z2 == 0 goto label5;
+
+        $r7 = " not";
+
+        goto label6;
+
+     label5:
+        $r7 = "";
+
+     label6:
+        $r0[2] = $r7;
+
+        $r0[3] = r2;
+
+        $r3 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Externally effectively %s referenced %shumongous object was%s deleted after %s", $r0);
+
+        return $r3;
+    }
+
+    protected java.util.function.Consumer getCaseCheck(boolean)
+    {
+        java.util.function.Consumer $r1;
+        gc.g1.humongousObjects.objectGraphTest.GC $r2, $r3;
+        GC r0;
+        boolean z0;
+
+        r0 := @this: GC;
+
+        z0 := @parameter0: boolean;
+
+        if z0 == 0 goto label1;
+
+        $r2 = (gc.g1.humongousObjects.objectGraphTest.GC) r0;
+
+        $r1 = staticinvoke <GC$lambda_0__2: java.util.function.Consumer bootstrap$(gc.g1.humongousObjects.objectGraphTest.GC)>($r2);
+
+        goto label2;
+
+     label1:
+        $r3 = (gc.g1.humongousObjects.objectGraphTest.GC) r0;
+
+        $r1 = staticinvoke <GC$lambda_1__1: java.util.function.Consumer bootstrap$(gc.g1.humongousObjects.objectGraphTest.GC)>($r3);
+
+     label2:
+        return $r1;
+    }
+
+    protected java.util.function.Consumer getCheckerImpl(boolean, boolean, boolean, boolean)
+    {
+        gc.g1.humongousObjects.objectGraphTest.GC$Checker $r6;
+        java.util.function.Consumer $r2, $r3, $r4, $r5, $r11;
+        gc.g1.humongousObjects.objectGraphTest.GC $r7, $r8, $r9, $r10;
+        GC r1;
+        boolean z0, z1, z2, z3;
+
+        r1 := @this: GC;
+
+        z0 := @parameter0: boolean;
+
+        z1 := @parameter1: boolean;
+
+        z2 := @parameter2: boolean;
+
+        z3 := @parameter3: boolean;
+
+        $r6 = new gc.g1.humongousObjects.objectGraphTest.GC$Checker;
+
+        $r7 = (gc.g1.humongousObjects.objectGraphTest.GC) r1;
+
+        $r2 = virtualinvoke $r7.<gc.g1.humongousObjects.objectGraphTest.GC: java.util.function.Consumer getCaseCheck(boolean)>(z0);
+
+        $r8 = (gc.g1.humongousObjects.objectGraphTest.GC) r1;
+
+        $r3 = virtualinvoke $r8.<gc.g1.humongousObjects.objectGraphTest.GC: java.util.function.Consumer getCaseCheck(boolean)>(z1);
+
+        $r9 = (gc.g1.humongousObjects.objectGraphTest.GC) r1;
+
+        $r4 = virtualinvoke $r9.<gc.g1.humongousObjects.objectGraphTest.GC: java.util.function.Consumer getCaseCheck(boolean)>(z2);
+
+        $r10 = (gc.g1.humongousObjects.objectGraphTest.GC) r1;
+
+        $r5 = virtualinvoke $r10.<gc.g1.humongousObjects.objectGraphTest.GC: java.util.function.Consumer getCaseCheck(boolean)>(z3);
+
+        specialinvoke $r6.<gc.g1.humongousObjects.objectGraphTest.GC$Checker: void <init>(java.util.function.Consumer,java.util.function.Consumer,java.util.function.Consumer,java.util.function.Consumer)>($r2, $r3, $r4, $r5);
+
+        $r11 = (java.util.function.Consumer) $r6;
+
+        return $r11;
+    }
+
+    protected java.lang.String getGcLogName(java.lang.String)
+    {
+        gc.g1.humongousObjects.objectGraphTest.GC $r10;
+        java.lang.StringBuilder $r3, $r6, $r7, $r9;
+        java.lang.String r1, $r2, $r5, $r8;
+        GC r4;
+
+        r4 := @this: GC;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r9 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_");
+
+        $r10 = (gc.g1.humongousObjects.objectGraphTest.GC) r4;
+
+        $r5 = virtualinvoke $r10.<gc.g1.humongousObjects.objectGraphTest.GC: java.lang.String name()>();
+
+        $r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".gc.log");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r8;
+    }
+
+    public abstract java.lang.Runnable get();
+
+    public abstract java.util.function.Consumer getChecker();
+
+    public abstract java.util.List shouldContain();
+
+    public abstract java.util.List shouldNotContain();
+
+    public static gc.g1.humongousObjects.objectGraphTest.GC[] values()
+    {
+        int $i0;
+        gc.g1.humongousObjects.objectGraphTest.GC[] $r0, $r1;
+
+        $r0 = <gc.g1.humongousObjects.objectGraphTest.GC: gc.g1.humongousObjects.objectGraphTest.GC[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.g1.humongousObjects.objectGraphTest.GC)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.g1.humongousObjects.objectGraphTest.GC valueOf(java.lang.String)
+    {
+        java.lang.String r0;
+        java.lang.Enum $r1;
+        gc.g1.humongousObjects.objectGraphTest.GC $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/g1/humongousObjects/objectGraphTest/GC;", r0);
+
+        $r2 = (gc.g1.humongousObjects.objectGraphTest.GC) $r1;
+
+        return $r2;
+    }
+
+    private void lambda$0(gc.g1.humongousObjects.objectGraphTest.ReferenceInfo)
+    {
+        gc.g1.humongousObjects.objectGraphTest.ReferenceInfo r0;
+        java.lang.ref.Reference $r1;
+        gc.g1.humongousObjects.objectGraphTest.GC $r6, $r7;
+        java.lang.Object $r2;
+        java.lang.String $r4, $r5;
+        GC r3;
+
+        r3 := @this: GC;
+
+        r0 := @parameter0: gc.g1.humongousObjects.objectGraphTest.ReferenceInfo;
+
+        $r1 = r0.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: java.lang.ref.Reference reference>;
+
+        $r2 = virtualinvoke $r1.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        $r6 = (gc.g1.humongousObjects.objectGraphTest.GC) r3;
+
+        $r4 = virtualinvoke $r6.<gc.g1.humongousObjects.objectGraphTest.GC: java.lang.String name()>();
+
+        $r7 = (gc.g1.humongousObjects.objectGraphTest.GC) r3;
+
+        $r5 = virtualinvoke $r7.<gc.g1.humongousObjects.objectGraphTest.GC: java.lang.String getErrorMessage(gc.g1.humongousObjects.objectGraphTest.ReferenceInfo,boolean,java.lang.String)>(r0, 1, $r4);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertNull(java.lang.Object,java.lang.String)>($r2, $r5);
+
+        return;
+    }
+
+    private void lambda$1(gc.g1.humongousObjects.objectGraphTest.ReferenceInfo)
+    {
+        gc.g1.humongousObjects.objectGraphTest.ReferenceInfo r0;
+        java.lang.ref.Reference $r1;
+        gc.g1.humongousObjects.objectGraphTest.GC $r6, $r7;
+        java.lang.Object $r2;
+        java.lang.String $r4, $r5;
+        GC r3;
+
+        r3 := @this: GC;
+
+        r0 := @parameter0: gc.g1.humongousObjects.objectGraphTest.ReferenceInfo;
+
+        $r1 = r0.<gc.g1.humongousObjects.objectGraphTest.ReferenceInfo: java.lang.ref.Reference reference>;
+
+        $r2 = virtualinvoke $r1.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        $r6 = (gc.g1.humongousObjects.objectGraphTest.GC) r3;
+
+        $r4 = virtualinvoke $r6.<gc.g1.humongousObjects.objectGraphTest.GC: java.lang.String name()>();
+
+        $r7 = (gc.g1.humongousObjects.objectGraphTest.GC) r3;
+
+        $r5 = virtualinvoke $r7.<gc.g1.humongousObjects.objectGraphTest.GC: java.lang.String getErrorMessage(gc.g1.humongousObjects.objectGraphTest.ReferenceInfo,boolean,java.lang.String)>(r0, 0, $r4);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertNotNull(java.lang.Object,java.lang.String)>($r2, $r5);
+
+        return;
+    }
+}

@@ -1,0 +1,275 @@
+class weak007$Worker extends java.lang.Object implements java.lang.Runnable
+{
+    private int length;
+    private int objectSize;
+    private java.lang.ref.Reference[] references;
+    final gc.gctests.WeakReference.weak007.weak007 this$0;
+
+    private void makeReferences()
+    {
+        java.lang.ref.Reference[] $r1, $r4, $r6, $r8, $r9;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, i7, i8;
+        java.lang.ref.WeakReference $r11, $r12;
+        java.lang.ref.Reference $r7;
+        weak007$Worker r0;
+        gc.gctests.WeakReference.weak007.weak007$Worker $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21;
+        nsk.share.gc.FinMemoryObject $r10;
+
+        r0 := @this: weak007$Worker;
+
+        $r13 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r1 = $r13.<gc.gctests.WeakReference.weak007.weak007$Worker: java.lang.ref.Reference[] references>;
+
+        $r14 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $i0 = $r14.<gc.gctests.WeakReference.weak007.weak007$Worker: int length>;
+
+        $i1 = $i0 - 1;
+
+        $r1[$i1] = null;
+
+        $r10 = new nsk.share.gc.FinMemoryObject;
+
+        $r15 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $i2 = $r15.<gc.gctests.WeakReference.weak007.weak007$Worker: int objectSize>;
+
+        specialinvoke $r10.<nsk.share.gc.FinMemoryObject: void <init>(int)>($i2);
+
+        $r16 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r4 = $r16.<gc.gctests.WeakReference.weak007.weak007$Worker: java.lang.ref.Reference[] references>;
+
+        $r11 = new java.lang.ref.WeakReference;
+
+        specialinvoke $r11.<java.lang.ref.WeakReference: void <init>(java.lang.Object)>($r10);
+
+        $r4[0] = $r11;
+
+        i7 = 1;
+
+        goto label2;
+
+     label1:
+        $r17 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r8 = $r17.<gc.gctests.WeakReference.weak007.weak007$Worker: java.lang.ref.Reference[] references>;
+
+        $r12 = new java.lang.ref.WeakReference;
+
+        $r18 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r6 = $r18.<gc.gctests.WeakReference.weak007.weak007$Worker: java.lang.ref.Reference[] references>;
+
+        $i4 = i7 - 1;
+
+        $r7 = $r6[$i4];
+
+        specialinvoke $r12.<java.lang.ref.WeakReference: void <init>(java.lang.Object)>($r7);
+
+        $r8[i7] = $r12;
+
+        i7 = i7 + 1;
+
+     label2:
+        $r19 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $i3 = $r19.<gc.gctests.WeakReference.weak007.weak007$Worker: int length>;
+
+        if i7 < $i3 goto label1;
+
+        i8 = 0;
+
+        goto label4;
+
+     label3:
+        $r20 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r9 = $r20.<gc.gctests.WeakReference.weak007.weak007$Worker: java.lang.ref.Reference[] references>;
+
+        $r9[i8] = null;
+
+        i8 = i8 + 1;
+
+     label4:
+        $r21 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $i5 = $r21.<gc.gctests.WeakReference.weak007.weak007$Worker: int length>;
+
+        $i6 = $i5 - 1;
+
+        if i8 < $i6 goto label3;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Throwable $r23;
+        java.lang.ref.Reference[] $r12;
+        nsk.share.test.ExecutionController $r2, $r4, $r9;
+        long $l0;
+        int $i1, $i2;
+        java.lang.String $r11;
+        boolean $z0;
+        gc.gctests.WeakReference.weak007.weak007 $r1, $r3, $r5, $r8;
+        nsk.share.TestFailure $r16;
+        java.lang.ref.Reference $r13;
+        weak007$Worker r0;
+        nsk.share.log.Log $r6;
+        java.lang.StringBuilder $r10, $r17;
+        java.lang.Object $r14;
+        gc.gctests.WeakReference.weak007.weak007$Worker $r18, $r19, $r20, $r21, $r22, $r24, $r25;
+
+        r0 := @this: weak007$Worker;
+
+        $r18 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        virtualinvoke $r18.<gc.gctests.WeakReference.weak007.weak007$Worker: void makeReferences()>();
+
+        $r19 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r1 = $r19.<gc.gctests.WeakReference.weak007.weak007$Worker: gc.gctests.WeakReference.weak007.weak007 this$0>;
+
+        $r2 = staticinvoke <gc.gctests.WeakReference.weak007.weak007: nsk.share.test.ExecutionController access$0(gc.gctests.WeakReference.weak007.weak007)>($r1);
+
+        staticinvoke <nsk.share.gc.Algorithms: void eatMemory(nsk.share.test.ExecutionController)>($r2);
+
+        $r20 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r3 = $r20.<gc.gctests.WeakReference.weak007.weak007$Worker: gc.gctests.WeakReference.weak007.weak007 this$0>;
+
+        $r4 = staticinvoke <gc.gctests.WeakReference.weak007.weak007: nsk.share.test.ExecutionController access$0(gc.gctests.WeakReference.weak007.weak007)>($r3);
+
+        $z0 = interfaceinvoke $r4.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 == 0 goto label1;
+
+        $r21 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r12 = $r21.<gc.gctests.WeakReference.weak007.weak007$Worker: java.lang.ref.Reference[] references>;
+
+        $r22 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $i1 = $r22.<gc.gctests.WeakReference.weak007.weak007$Worker: int length>;
+
+        $i2 = $i1 - 1;
+
+        $r13 = $r12[$i2];
+
+        $r14 = virtualinvoke $r13.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        if $r14 == null goto label2;
+
+        $r16 = new nsk.share.TestFailure;
+
+        specialinvoke $r16.<nsk.share.TestFailure: void <init>(java.lang.String)>("Last weak reference has not been cleared");
+
+        $r23 = (java.lang.Throwable) $r16;
+
+        throw $r23;
+
+     label1:
+        $r24 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r5 = $r24.<gc.gctests.WeakReference.weak007.weak007$Worker: gc.gctests.WeakReference.weak007.weak007 this$0>;
+
+        $r6 = staticinvoke <gc.gctests.WeakReference.weak007.weak007: nsk.share.log.Log access$1(gc.gctests.WeakReference.weak007.weak007)>($r5);
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>(java.lang.String)>("Completed iterations: ");
+
+        $r25 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r8 = $r25.<gc.gctests.WeakReference.weak007.weak007$Worker: gc.gctests.WeakReference.weak007.weak007 this$0>;
+
+        $r9 = staticinvoke <gc.gctests.WeakReference.weak007.weak007: nsk.share.test.ExecutionController access$0(gc.gctests.WeakReference.weak007.weak007)>($r8);
+
+        $l0 = interfaceinvoke $r9.<nsk.share.test.ExecutionController: long getIteration()>();
+
+        $r10 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r6.<nsk.share.log.Log: void info(java.lang.Object)>($r11);
+
+     label2:
+        return;
+    }
+
+    public void <init>(gc.gctests.WeakReference.weak007.weak007)
+    {
+        java.lang.ref.WeakReference[] $r10;
+        int $i0, $i1, $i2;
+        java.lang.String $r5, $r9;
+        gc.gctests.WeakReference.weak007.weak007 r1;
+        weak007$Worker r0;
+        nsk.share.log.Log $r2, $r6;
+        java.lang.StringBuilder $r4, $r8, $r11, $r12;
+        gc.gctests.WeakReference.weak007.weak007$Worker $r13, $r14, $r15, $r16, $r17, $r18, $r19;
+
+        r0 := @this: weak007$Worker;
+
+        r1 := @parameter0: gc.gctests.WeakReference.weak007.weak007;
+
+        $r13 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r13.<gc.gctests.WeakReference.weak007.weak007$Worker: gc.gctests.WeakReference.weak007.weak007 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r14 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r14.<gc.gctests.WeakReference.weak007.weak007$Worker: int length> = 10000;
+
+        $r15 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r15.<gc.gctests.WeakReference.weak007.weak007$Worker: int objectSize> = 10000;
+
+        $r2 = staticinvoke <gc.gctests.WeakReference.weak007.weak007: nsk.share.log.Log access$1(gc.gctests.WeakReference.weak007.weak007)>(r1);
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("Array size: ");
+
+        $r16 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $i0 = $r16.<gc.gctests.WeakReference.weak007.weak007$Worker: int length>;
+
+        $r4 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r2.<nsk.share.log.Log: void info(java.lang.Object)>($r5);
+
+        $r6 = staticinvoke <gc.gctests.WeakReference.weak007.weak007: nsk.share.log.Log access$1(gc.gctests.WeakReference.weak007.weak007)>(r1);
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("Object size: ");
+
+        $r17 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $i1 = $r17.<gc.gctests.WeakReference.weak007.weak007$Worker: int objectSize>;
+
+        $r8 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r6.<nsk.share.log.Log: void info(java.lang.Object)>($r9);
+
+        $r18 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $i2 = $r18.<gc.gctests.WeakReference.weak007.weak007$Worker: int length>;
+
+        $r10 = newarray (java.lang.ref.WeakReference)[$i2];
+
+        $r19 = (gc.gctests.WeakReference.weak007.weak007$Worker) r0;
+
+        $r19.<gc.gctests.WeakReference.weak007.weak007$Worker: java.lang.ref.Reference[] references> = $r10;
+
+        return;
+    }
+}

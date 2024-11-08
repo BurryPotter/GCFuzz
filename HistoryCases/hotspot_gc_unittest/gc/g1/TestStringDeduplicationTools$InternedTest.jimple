@@ -1,0 +1,215 @@
+class TestStringDeduplicationTools$InternedTest extends java.lang.Object
+{
+
+    private void <init>()
+    {
+        TestStringDeduplicationTools$InternedTest r0;
+
+        r0 := @this: TestStringDeduplicationTools$InternedTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Exception $r33;
+        java.lang.StringBuilder $r3, $r6, $r8, $r17;
+        java.lang.String[] r1;
+        int $i0, i1;
+        java.lang.String $r2, $r5, $r7, $r9, $r18, $r22;
+        java.io.PrintStream $r0, $r14, $r26;
+        java.lang.RuntimeException $r27, $r28, $r29, $r30, $r31, $r32, $r34;
+        java.lang.Class $r4;
+        java.lang.Object $r10, $r11, $r12, $r13, $r15, $r16, $r19, $r20, $r21, $r23, $r24, $r25;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Begin: InternedTest");
+
+        $r2 = r1[0];
+
+        $i0 = staticinvoke <java.lang.Integer: int parseUnsignedInt(java.lang.String)>($r2);
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("DeduplicationTestString:");
+
+        $r4 = class "Lgc/g1/TestStringDeduplicationTools$InternedTest;";
+
+        $r5 = virtualinvoke $r4.<java.lang.Class: java.lang.String getName()>();
+
+        $r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r10 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r9);
+
+        $r11 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r7);
+
+        if $r10 != $r11 goto label01;
+
+        $r32 = new java.lang.RuntimeException;
+
+        specialinvoke $r32.<java.lang.RuntimeException: void <init>(java.lang.String)>("Values should not match");
+
+        throw $r32;
+
+     label01:
+        staticinvoke <gc.g1.TestStringDeduplicationTools: void forceDeduplication(int,java.lang.String)>($i0, "FullGC");
+
+        i1 = 0;
+
+        goto label08;
+
+     label02:
+        $r12 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r9);
+
+        $r13 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r7);
+
+        if $r12 != $r13 goto label03;
+
+        goto label09;
+
+     label03:
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>("Waiting...");
+
+     label04:
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000L);
+
+     label05:
+        goto label07;
+
+     label06:
+        $r33 := @caughtexception;
+
+        $r34 = new java.lang.RuntimeException;
+
+        specialinvoke $r34.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r33);
+
+        throw $r34;
+
+     label07:
+        i1 = i1 + 1;
+
+     label08:
+        if i1 < 10 goto label02;
+
+     label09:
+        $r15 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r9);
+
+        $r16 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r7);
+
+        if $r15 == $r16 goto label10;
+
+        $r31 = new java.lang.RuntimeException;
+
+        specialinvoke $r31.<java.lang.RuntimeException: void <init>(java.lang.String)>("Deduplication has not occurred");
+
+        throw $r31;
+
+     label10:
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>(java.lang.String)>($r7);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r19 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r18);
+
+        $r20 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r7);
+
+        if $r19 != $r20 goto label11;
+
+        $r30 = new java.lang.RuntimeException;
+
+        specialinvoke $r30.<java.lang.RuntimeException: void <init>(java.lang.String)>("Values should not match");
+
+        throw $r30;
+
+     label11:
+        $r21 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r18);
+
+        $r22 = virtualinvoke $r18.<java.lang.String: java.lang.String intern()>();
+
+        if $r22 == $r18 goto label12;
+
+        $r29 = new java.lang.RuntimeException;
+
+        specialinvoke $r29.<java.lang.RuntimeException: void <init>(java.lang.String)>("String should match");
+
+        throw $r29;
+
+     label12:
+        $r23 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r22);
+
+        $r24 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r7);
+
+        if $r23 == $r24 goto label13;
+
+        $r28 = new java.lang.RuntimeException;
+
+        specialinvoke $r28.<java.lang.RuntimeException: void <init>(java.lang.String)>("Values should match");
+
+        throw $r28;
+
+     label13:
+        $r25 = staticinvoke <gc.g1.TestStringDeduplicationTools: java.lang.Object getValue(java.lang.String)>($r7);
+
+        if $r21 != $r25 goto label14;
+
+        $r27 = new java.lang.RuntimeException;
+
+        specialinvoke $r27.<java.lang.RuntimeException: void <init>(java.lang.String)>("Values should not match");
+
+        throw $r27;
+
+     label14:
+        $r26 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>("End: InternedTest");
+
+        return;
+
+        catch java.lang.Exception from label04 to label05 with label06;
+    }
+
+    public static jdk.test.lib.process.OutputAnalyzer run() throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+        jdk.test.lib.process.OutputAnalyzer $r3;
+
+        $r0 = newarray (java.lang.String)[5];
+
+        $r0[0] = "-Xlog:gc=debug,gc+stringdedup=trace";
+
+        $r0[1] = "-XX:+UseStringDeduplication";
+
+        $r0[2] = "-XX:StringDeduplicationAgeThreshold=3";
+
+        $r1 = class "Lgc/g1/TestStringDeduplicationTools$InternedTest;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[3] = $r2;
+
+        $r0[4] = "3";
+
+        $r3 = staticinvoke <gc.g1.TestStringDeduplicationTools: jdk.test.lib.process.OutputAnalyzer runTest(java.lang.String[])>($r0);
+
+        return $r3;
+    }
+}

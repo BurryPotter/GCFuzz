@@ -1,0 +1,228 @@
+public class TestFromCardCacheIndex extends java.lang.Object
+{
+    private static sun.hotspot.WhiteBox WB;
+    private static final int CardSizeShift;
+    private static int numArrays;
+    private static int arraySize;
+    private static int byteArraySize;
+
+    static void <clinit>()
+    {
+        <gc.g1.TestFromCardCacheIndex: int numArrays> = 7000;
+
+        <gc.g1.TestFromCardCacheIndex: int arraySize> = 508;
+
+        <gc.g1.TestFromCardCacheIndex: int byteArraySize> = 1047552;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestFromCardCacheIndex r0;
+
+        r0 := @this: TestFromCardCacheIndex;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static long getObjectLastAddress(java.lang.Object[])
+    {
+        java.lang.Object[] r0;
+        sun.hotspot.WhiteBox $r1, $r2;
+        long $l0, $l1, $l2, $l3;
+
+        r0 := @parameter0: java.lang.Object[];
+
+        $r1 = <gc.g1.TestFromCardCacheIndex: sun.hotspot.WhiteBox WB>;
+
+        $l0 = virtualinvoke $r1.<sun.hotspot.WhiteBox: long getObjectAddress(java.lang.Object)>(r0);
+
+        $r2 = <gc.g1.TestFromCardCacheIndex: sun.hotspot.WhiteBox WB>;
+
+        $l1 = virtualinvoke $r2.<sun.hotspot.WhiteBox: long getObjectSize(java.lang.Object)>(r0);
+
+        $l2 = $l0 + $l1;
+
+        $l3 = $l2 - 1L;
+
+        return $l3;
+    }
+
+    private static int getCardIndex32bit(long)
+    {
+        int $i2;
+        long l0, $l1;
+
+        l0 := @parameter0: long;
+
+        $l1 = l0 >> 9;
+
+        $i2 = (int) $l1;
+
+        return $i2;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int i0;
+        sun.hotspot.WhiteBox $r0, $r1;
+        java.lang.String[] r2;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.TestFromCardCacheIndex: sun.hotspot.WhiteBox WB> = $r0;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        staticinvoke <gc.g1.TestFromCardCacheIndex: void runTest()>();
+
+        $r1 = <gc.g1.TestFromCardCacheIndex: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r1.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 5 goto label1;
+
+        return;
+    }
+
+    public static void runTest()
+    {
+        byte[] r11;
+        java.lang.Object[] $r2, $r4;
+        java.lang.Object[][] r1;
+        int $i0, $i1, $i2, $i3, $i4, $i5, i6;
+        java.io.PrintStream $r0, $r5, $r6, $r7, $r9, $r10;
+        sun.hotspot.WhiteBox $r3, $r8;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Starting test");
+
+        $i0 = <gc.g1.TestFromCardCacheIndex: int numArrays>;
+
+        r1 = newarray (java.lang.Object[])[$i0];
+
+        i6 = 0;
+
+        goto label2;
+
+     label1:
+        $i2 = <gc.g1.TestFromCardCacheIndex: int arraySize>;
+
+        $r2 = newarray (java.lang.Object)[$i2];
+
+        r1[i6] = $r2;
+
+        i6 = i6 + 1;
+
+     label2:
+        $i1 = <gc.g1.TestFromCardCacheIndex: int numArrays>;
+
+        if i6 < $i1 goto label1;
+
+        $r3 = <gc.g1.TestFromCardCacheIndex: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r3.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        $r4 = staticinvoke <gc.g1.TestFromCardCacheIndex: java.lang.Object[] findArray(java.lang.Object[][])>(r1);
+
+        if $r4 != null goto label3;
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>("Array with card -1 not found. Trying again.");
+
+        return;
+
+     label3:
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>("Array with card -1 found.");
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>("Modifying the last card in the array with a new object in a different region...");
+
+        $i3 = <gc.g1.TestFromCardCacheIndex: int byteArraySize>;
+
+        r11 = newarray (byte)[$i3];
+
+        $i4 = <gc.g1.TestFromCardCacheIndex: int arraySize>;
+
+        $i5 = $i4 - 1;
+
+        $r4[$i5] = r11;
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>("Doing a GC.");
+
+        $r8 = <gc.g1.TestFromCardCacheIndex: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r8.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>("The crash didn\'t reproduce. Trying again.");
+
+        return;
+    }
+
+    private static java.lang.Object[] findArray(java.lang.Object[][])
+    {
+        java.lang.Object[] r1;
+        sun.hotspot.WhiteBox $r2;
+        long $l0;
+        java.lang.Object[][] r0;
+        int $i1, i2, $i3, $i5;
+
+        r0 := @parameter0: java.lang.Object[][];
+
+        i2 = 0;
+
+        goto label4;
+
+     label1:
+        r1 = r0[i2];
+
+        if r1 != null goto label2;
+
+        goto label3;
+
+     label2:
+        $r2 = <gc.g1.TestFromCardCacheIndex: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r2.<sun.hotspot.WhiteBox: long getObjectAddress(java.lang.Object)>(r1);
+
+        $l0 = staticinvoke <gc.g1.TestFromCardCacheIndex: long getObjectLastAddress(java.lang.Object[])>(r1);
+
+        $i1 = staticinvoke <gc.g1.TestFromCardCacheIndex: int getCardIndex32bit(long)>($l0);
+
+        $i5 = (int) -1;
+
+        if $i1 != $i5 goto label3;
+
+        return r1;
+
+     label3:
+        i2 = i2 + 1;
+
+     label4:
+        $i3 = lengthof r0;
+
+        if i2 < $i3 goto label1;
+
+        return null;
+    }
+}

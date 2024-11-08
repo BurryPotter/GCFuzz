@@ -1,0 +1,130 @@
+class mallocWithGC1$javaHeapEater extends java.lang.Thread
+{
+    private java.util.Vector v;
+    final gc.gctests.mallocWithGC1.mallocWithGC1 this$0;
+
+    public void <init>(gc.gctests.mallocWithGC1.mallocWithGC1, java.util.Vector)
+    {
+        gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater $r3, $r4;
+        java.util.Vector r2;
+        gc.gctests.mallocWithGC1.mallocWithGC1 r1;
+        mallocWithGC1$javaHeapEater r0;
+
+        r0 := @this: mallocWithGC1$javaHeapEater;
+
+        r1 := @parameter0: gc.gctests.mallocWithGC1.mallocWithGC1;
+
+        r2 := @parameter1: java.util.Vector;
+
+        $r3 = (gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater) r0;
+
+        $r3.<gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater: gc.gctests.mallocWithGC1.mallocWithGC1 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        $r4 = (gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater) r0;
+
+        $r4.<gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater: java.util.Vector v> = r2;
+
+        return;
+    }
+
+    public void run() throws java.lang.OutOfMemoryError
+    {
+        gc.gctests.mallocWithGC1.mallocWithGC1 $r1, $r5;
+        gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater $r13, $r14, $r15, $r16, $r17;
+        java.util.Vector $r2, $r4, $r6;
+        int i0, i1, i2, i3;
+        java.lang.String $r11;
+        java.io.PrintStream $r9;
+        nsk.share.gc.CircularLinkedList $r3, $r7;
+        java.lang.StringBuilder $r10, $r12;
+        mallocWithGC1$javaHeapEater r0;
+
+        r0 := @this: mallocWithGC1$javaHeapEater;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r13 = (gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater) r0;
+
+        $r2 = $r13.<gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater: java.util.Vector v>;
+
+        $r14 = (gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater) r0;
+
+        $r1 = $r14.<gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater: gc.gctests.mallocWithGC1.mallocWithGC1 this$0>;
+
+        $r3 = virtualinvoke $r1.<gc.gctests.mallocWithGC1.mallocWithGC1: nsk.share.gc.CircularLinkedList buildCircularLinkedList()>();
+
+        virtualinvoke $r2.<java.util.Vector: void addElement(java.lang.Object)>($r3);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 5 goto label1;
+
+        i1 = 0;
+
+        goto label8;
+
+     label3:
+        i2 = 0;
+
+        goto label5;
+
+     label4:
+        $r15 = (gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater) r0;
+
+        $r4 = $r15.<gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater: java.util.Vector v>;
+
+        virtualinvoke $r4.<java.util.Vector: void setElementAt(java.lang.Object,int)>(null, i2);
+
+        i2 = i2 + 1;
+
+     label5:
+        if i2 < 5 goto label4;
+
+        i3 = 0;
+
+        goto label7;
+
+     label6:
+        $r16 = (gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater) r0;
+
+        $r6 = $r16.<gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater: java.util.Vector v>;
+
+        $r17 = (gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater) r0;
+
+        $r5 = $r17.<gc.gctests.mallocWithGC1.mallocWithGC1$javaHeapEater: gc.gctests.mallocWithGC1.mallocWithGC1 this$0>;
+
+        $r7 = virtualinvoke $r5.<gc.gctests.mallocWithGC1.mallocWithGC1: nsk.share.gc.CircularLinkedList buildCircularLinkedList()>();
+
+        virtualinvoke $r6.<java.util.Vector: void setElementAt(java.lang.Object,int)>($r7, i3);
+
+        i3 = i3 + 1;
+
+     label7:
+        if i3 < 5 goto label6;
+
+        i1 = i1 + 1;
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("Finished iteration # ");
+
+        $r10 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r11);
+
+     label8:
+        if i1 < 10 goto label3;
+
+        return;
+    }
+}

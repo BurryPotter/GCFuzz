@@ -1,0 +1,31 @@
+public class TestGCLockerWithG1 extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestGCLockerWithG1 r0;
+
+        r0 := @this: TestGCLockerWithG1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] $r0, r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "2";
+
+        $r0[1] = "G1 Old Gen";
+
+        staticinvoke <gc.stress.gclocker.TestGCLocker: void main(java.lang.String[])>($r0);
+
+        return;
+    }
+}

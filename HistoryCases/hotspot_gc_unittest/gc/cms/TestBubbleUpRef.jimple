@@ -1,0 +1,380 @@
+public class TestBubbleUpRef extends java.lang.Object
+{
+    gc.cms.MyList list;
+    gc.cms.MyRefList refList;
+    java.lang.ref.ReferenceQueue rq;
+    int refListLen;
+    int arraySize;
+    int iterations;
+    int workUnits;
+
+    void <init>(int, int, int)
+    {
+        java.lang.ref.ReferenceQueue $r3;
+        gc.cms.MyRefList $r6;
+        int i0, i1, i2, $i3;
+        TestBubbleUpRef r0;
+        gc.cms.MyList $r4, $r5;
+        gc.cms.TestBubbleUpRef $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14;
+
+        r0 := @this: TestBubbleUpRef;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r7 = (gc.cms.TestBubbleUpRef) r0;
+
+        $r7.<gc.cms.TestBubbleUpRef: int arraySize> = i0;
+
+        $r8 = (gc.cms.TestBubbleUpRef) r0;
+
+        $r8.<gc.cms.TestBubbleUpRef: int iterations> = i1;
+
+        $r9 = (gc.cms.TestBubbleUpRef) r0;
+
+        $r9.<gc.cms.TestBubbleUpRef: int workUnits> = i2;
+
+        $r5 = new gc.cms.MyList;
+
+        $r10 = (gc.cms.TestBubbleUpRef) r0;
+
+        $i3 = $r10.<gc.cms.TestBubbleUpRef: int arraySize>;
+
+        specialinvoke $r5.<gc.cms.MyList: void <init>(int)>($i3);
+
+        $r11 = (gc.cms.TestBubbleUpRef) r0;
+
+        $r11.<gc.cms.TestBubbleUpRef: gc.cms.MyList list> = $r5;
+
+        $r6 = new gc.cms.MyRefList;
+
+        $r12 = (gc.cms.TestBubbleUpRef) r0;
+
+        $r4 = $r12.<gc.cms.TestBubbleUpRef: gc.cms.MyList list>;
+
+        $r13 = (gc.cms.TestBubbleUpRef) r0;
+
+        $r3 = $r13.<gc.cms.TestBubbleUpRef: java.lang.ref.ReferenceQueue rq>;
+
+        specialinvoke $r6.<gc.cms.MyRefList: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r4, $r3);
+
+        $r14 = (gc.cms.TestBubbleUpRef) r0;
+
+        $r14.<gc.cms.TestBubbleUpRef: gc.cms.MyRefList refList> = $r6;
+
+        return;
+    }
+
+    public void fill()
+    {
+        java.util.ListIterator $r20;
+        gc.cms.MyRefList $r19, r22, $r24, $r25, $r30, $r33;
+        TestBubbleUpRef r2;
+        boolean $z0, $z1, $z2;
+        java.lang.Exception $r6;
+        gc.cms.TestBubbleUpRef $r35, $r36, $r37, $r38, $r39, $r40, $r41, $r42, $r43, $r44, $r45, $r46;
+        java.lang.StringBuilder $r3, $r4, $r9, $r31, $r34;
+        java.lang.ref.ReferenceQueue $r29;
+        int $i0, $i1, $i2, $i3, i4, $i5, i6;
+        java.lang.String $r5, $r10;
+        java.io.PrintStream $r1, $r8, $r12, $r14, $r17, $r18, $r23;
+        gc.cms.MyList $r15, $r16, $r27, $r32;
+        java.lang.Object $r21;
+        java.lang.OutOfMemoryError $r11, $r13;
+
+        r2 := @this: TestBubbleUpRef;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r31 = new java.lang.StringBuilder;
+
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>(java.lang.String)>("fill() ");
+
+        $r35 = (gc.cms.TestBubbleUpRef) r2;
+
+        $i0 = $r35.<gc.cms.TestBubbleUpRef: int iterations>;
+
+        $r3 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" times");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        i4 = 0;
+
+     label01:
+        $r32 = new gc.cms.MyList;
+
+        $r36 = (gc.cms.TestBubbleUpRef) r2;
+
+        $i5 = $r36.<gc.cms.TestBubbleUpRef: int arraySize>;
+
+        specialinvoke $r32.<gc.cms.MyList: void <init>(int)>($i5);
+
+        $r37 = (gc.cms.TestBubbleUpRef) r2;
+
+        $r27 = $r37.<gc.cms.TestBubbleUpRef: gc.cms.MyList list>;
+
+        virtualinvoke $r27.<gc.cms.MyList: boolean add(java.lang.Object)>($r32);
+
+        $r33 = new gc.cms.MyRefList;
+
+        $r38 = (gc.cms.TestBubbleUpRef) r2;
+
+        $r29 = $r38.<gc.cms.TestBubbleUpRef: java.lang.ref.ReferenceQueue rq>;
+
+        specialinvoke $r33.<gc.cms.MyRefList: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r32, $r29);
+
+        $r39 = (gc.cms.TestBubbleUpRef) r2;
+
+        $r30 = $r39.<gc.cms.TestBubbleUpRef: gc.cms.MyRefList refList>;
+
+        virtualinvoke $r30.<gc.cms.MyRefList: boolean add(java.lang.Object)>($r33);
+
+     label02:
+        goto label01;
+
+     label03:
+        $r13 := @caughtexception;
+
+     label04:
+        $i1 = i4;
+
+        i4 = i4 + 1;
+
+        $r40 = (gc.cms.TestBubbleUpRef) r2;
+
+        $i2 = $r40.<gc.cms.TestBubbleUpRef: int iterations>;
+
+        if $i1 <= $i2 goto label06;
+
+     label05:
+        return;
+
+     label06:
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>("Freeing list");
+
+        goto label08;
+
+     label07:
+        $r41 = (gc.cms.TestBubbleUpRef) r2;
+
+        $r16 = $r41.<gc.cms.TestBubbleUpRef: gc.cms.MyList list>;
+
+        virtualinvoke $r16.<gc.cms.MyList: java.lang.Object removeFirst()>();
+
+     label08:
+        $r42 = (gc.cms.TestBubbleUpRef) r2;
+
+        $r15 = $r42.<gc.cms.TestBubbleUpRef: gc.cms.MyList list>;
+
+        $z0 = virtualinvoke $r15.<gc.cms.MyList: boolean isEmpty()>();
+
+        if $z0 == 0 goto label07;
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>("Doing work");
+
+        i6 = 1;
+
+        goto label10;
+
+     label09:
+        i6 = i6 + 1;
+
+     label10:
+        $r43 = (gc.cms.TestBubbleUpRef) r2;
+
+        $i3 = $r43.<gc.cms.TestBubbleUpRef: int workUnits>;
+
+        if i6 < $i3 goto label09;
+
+        $r18 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>("Clearing refs");
+
+        $r44 = (gc.cms.TestBubbleUpRef) r2;
+
+        $r19 = $r44.<gc.cms.TestBubbleUpRef: gc.cms.MyRefList refList>;
+
+        $r20 = virtualinvoke $r19.<gc.cms.MyRefList: java.util.ListIterator listIterator()>();
+
+        goto label12;
+
+     label11:
+        $r21 = interfaceinvoke $r20.<java.util.ListIterator: java.lang.Object next()>();
+
+        r22 = (gc.cms.MyRefList) $r21;
+
+        virtualinvoke r22.<gc.cms.MyRefList: void clearReferent()>();
+
+     label12:
+        $z1 = interfaceinvoke $r20.<java.util.ListIterator: boolean hasNext()>();
+
+        if $z1 != 0 goto label11;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r23 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>("Freeing refs");
+
+        goto label14;
+
+     label13:
+        $r45 = (gc.cms.TestBubbleUpRef) r2;
+
+        $r25 = $r45.<gc.cms.TestBubbleUpRef: gc.cms.MyRefList refList>;
+
+        virtualinvoke $r25.<gc.cms.MyRefList: java.lang.Object removeFirst()>();
+
+     label14:
+        $r46 = (gc.cms.TestBubbleUpRef) r2;
+
+        $r24 = $r46.<gc.cms.TestBubbleUpRef: gc.cms.MyRefList refList>;
+
+        $z2 = virtualinvoke $r24.<gc.cms.MyRefList: boolean isEmpty()>();
+
+        if $z2 == 0 goto label13;
+
+     label15:
+        goto label01;
+
+     label16:
+        $r11 := @caughtexception;
+
+        $r12 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>("Out of Memory - 2 ");
+
+        goto label01;
+
+     label17:
+        $r6 := @caughtexception;
+
+        $r8 = <java.lang.System: java.io.PrintStream err>;
+
+        $r34 = new java.lang.StringBuilder;
+
+        specialinvoke $r34.<java.lang.StringBuilder: void <init>(java.lang.String)>("Unexpected exception: ");
+
+        $r9 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r6);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label01 to label02 with label03;
+        catch java.lang.OutOfMemoryError from label04 to label05 with label16;
+        catch java.lang.OutOfMemoryError from label06 to label15 with label16;
+        catch java.lang.Exception from label01 to label02 with label17;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String $r1, $r2, $r3, $r14;
+        java.io.PrintStream $r5, $r18, $r20;
+        java.lang.IllegalArgumentException $r16;
+        java.lang.Exception $r17;
+        gc.cms.TestBubbleUpRef $r15;
+        java.lang.StringBuilder $r4, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13;
+        java.lang.OutOfMemoryError $r19;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 3 goto label1;
+
+        $r16 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r16.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Wrong number of input argumets");
+
+        throw $r16;
+
+     label1:
+        $r1 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        $r2 = r0[1];
+
+        $i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        $r3 = r0[2];
+
+        $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("<array size> ");
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("<OOM\'s> ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("<work units> ");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r14);
+
+        $r15 = new gc.cms.TestBubbleUpRef;
+
+        specialinvoke $r15.<gc.cms.TestBubbleUpRef: void <init>(int,int,int)>($i1, $i2, $i3);
+
+     label2:
+        virtualinvoke $r15.<gc.cms.TestBubbleUpRef: void fill()>();
+
+     label3:
+        goto label6;
+
+     label4:
+        $r19 := @caughtexception;
+
+        $r20 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>("Out of Memory - exiting ");
+
+        goto label6;
+
+     label5:
+        $r17 := @caughtexception;
+
+        $r18 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>("Exiting ");
+
+     label6:
+        return;
+
+        catch java.lang.OutOfMemoryError from label2 to label3 with label4;
+        catch java.lang.Exception from label2 to label3 with label5;
+    }
+}

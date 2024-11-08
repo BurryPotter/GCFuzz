@@ -1,0 +1,656 @@
+class ArraysSort extends java.lang.Object
+{
+    static final long NPS;
+    static int THRESHOLD;
+    static java.lang.Long[] numbers;
+    static final java.util.Comparator 'cmp';
+
+    static void <clinit>()
+    {
+        java.util.Comparator $r0;
+
+        $r0 = staticinvoke <ArraysSort$lambda_static_0__1: java.util.Comparator bootstrap$()>();
+
+        <ArraysSort: java.util.Comparator 'cmp'> = $r0;
+
+        return;
+    }
+
+    void <init>()
+    {
+        ArraysSort r0;
+
+        r0 := @this: ArraysSort;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static void checkSorted(java.lang.Long[])
+    {
+        java.lang.Error $r13;
+        long $l3, l5;
+        byte $b4;
+        java.lang.Long $r1, $r2;
+        int i0, $i1, $i2, i6, $i7;
+        java.lang.String $r11;
+        java.lang.Long[] r0;
+        java.lang.StringBuilder $r5, $r6, $r7, $r8, $r9, $r10, $r12;
+
+        r0 := @parameter0: java.lang.Long[];
+
+        i0 = lengthof r0;
+
+        $r1 = r0[0];
+
+        l5 = virtualinvoke $r1.<java.lang.Long: long longValue()>();
+
+        i6 = 0;
+
+     label1:
+        $i1 = i0 - 1;
+
+        if i6 >= $i1 goto label3;
+
+        $i2 = i6 + 1;
+
+        $r2 = r0[$i2];
+
+        $l3 = virtualinvoke $r2.<java.lang.Long: long longValue()>();
+
+        $b4 = l5 cmp $l3;
+
+        $i7 = (int) $b4;
+
+        if $i7 <= 0 goto label2;
+
+        $r13 = new java.lang.Error;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Unsorted at ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i6);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l5);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" / ");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r13.<java.lang.Error: void <init>(java.lang.String)>($r11);
+
+        throw $r13;
+
+     label2:
+        l5 = $l3;
+
+        i6 = i6 + 1;
+
+        goto label1;
+
+     label3:
+        return;
+    }
+
+    static void cparTest(java.lang.Long[], int, int) throws java.lang.Exception
+    {
+        ArraysSort$OrderChecker $r10;
+        java.lang.Object[] r11, r12;
+        java.lang.Double $r8, $r9;
+        long $l2, $l3, $l4, $l5, $l6;
+        java.lang.Integer $r1, $r2;
+        int i0, i1, i7;
+        double $d0, d1, $d2, $d3;
+        java.io.PrintStream $r0, r7;
+        java.lang.Long[] r4, $r5;
+        ArraysSort$RandomRepacker $r3;
+        java.util.Comparator $r6;
+
+        r4 := @parameter0: java.lang.Long[];
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        r11 = newarray (java.lang.Object)[2];
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        r11[0] = $r1;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+
+        r11[1] = $r2;
+
+        virtualinvoke $r0.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Sorting %d longs, %d replications\n", r11);
+
+        $l2 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        i7 = 0;
+
+     label1:
+        if i7 >= i1 goto label2;
+
+        $r3 = new ArraysSort$RandomRepacker;
+
+        $r5 = <ArraysSort: java.lang.Long[] numbers>;
+
+        specialinvoke $r3.<ArraysSort$RandomRepacker: void <init>(java.util.concurrent.CountedCompleter,java.lang.Long[],java.lang.Long[],int,int,int)>(null, $r5, r4, 0, i0, i0);
+
+        virtualinvoke $r3.<ArraysSort$RandomRepacker: java.lang.Object invoke()>();
+
+        $l3 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $r6 = <ArraysSort: java.util.Comparator 'cmp'>;
+
+        staticinvoke <java.util.Arrays: void parallelSort(java.lang.Object[],java.util.Comparator)>(r4, $r6);
+
+        $l4 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $l5 = $l4 - $l2;
+
+        $d0 = (double) $l5;
+
+        d1 = $d0 / 1.0E9;
+
+        $l6 = $l4 - $l3;
+
+        $d2 = (double) $l6;
+
+        $d3 = $d2 / 1.0E9;
+
+        r7 = <java.lang.System: java.io.PrintStream out>;
+
+        r12 = newarray (java.lang.Object)[2];
+
+        $r8 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d3);
+
+        r12[0] = $r8;
+
+        $r9 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d1);
+
+        r12[1] = $r9;
+
+        virtualinvoke r7.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Par cmp  sort time:  %7.3f total %9.3f\n", r12);
+
+        $r10 = new ArraysSort$OrderChecker;
+
+        specialinvoke $r10.<ArraysSort$OrderChecker: void <init>(java.util.concurrent.CountedCompleter,java.lang.Long[],int,int,int)>(null, r4, 0, i0, i0);
+
+        virtualinvoke $r10.<ArraysSort$OrderChecker: java.lang.Object invoke()>();
+
+        i7 = i7 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    static void cseqTest(java.lang.Long[], int, int)
+    {
+        ArraysSort$OrderChecker $r10;
+        java.lang.Object[] r11, r12;
+        java.lang.Double $r8, $r9;
+        long $l2, $l3, $l4, $l5, $l6;
+        java.lang.Integer $r1, $r2;
+        int i0, i1, i7;
+        double $d0, d1, $d2, $d3;
+        java.io.PrintStream $r0, r7;
+        java.lang.Long[] r4, $r5;
+        ArraysSort$RandomRepacker $r3;
+        java.util.Comparator $r6;
+
+        r4 := @parameter0: java.lang.Long[];
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        r11 = newarray (java.lang.Object)[2];
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        r11[0] = $r1;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+
+        r11[1] = $r2;
+
+        virtualinvoke $r0.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Sorting %d longs, %d replications\n", r11);
+
+        $l2 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        i7 = 0;
+
+     label1:
+        if i7 >= i1 goto label2;
+
+        $r3 = new ArraysSort$RandomRepacker;
+
+        $r5 = <ArraysSort: java.lang.Long[] numbers>;
+
+        specialinvoke $r3.<ArraysSort$RandomRepacker: void <init>(java.util.concurrent.CountedCompleter,java.lang.Long[],java.lang.Long[],int,int,int)>(null, $r5, r4, 0, i0, i0);
+
+        virtualinvoke $r3.<ArraysSort$RandomRepacker: java.lang.Object invoke()>();
+
+        $l3 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $r6 = <ArraysSort: java.util.Comparator 'cmp'>;
+
+        staticinvoke <java.util.Arrays: void sort(java.lang.Object[],java.util.Comparator)>(r4, $r6);
+
+        $l4 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $l5 = $l4 - $l2;
+
+        $d0 = (double) $l5;
+
+        d1 = $d0 / 1.0E9;
+
+        $l6 = $l4 - $l3;
+
+        $d2 = (double) $l6;
+
+        $d3 = $d2 / 1.0E9;
+
+        r7 = <java.lang.System: java.io.PrintStream out>;
+
+        r12 = newarray (java.lang.Object)[2];
+
+        $r8 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d3);
+
+        r12[0] = $r8;
+
+        $r9 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d1);
+
+        r12[1] = $r9;
+
+        virtualinvoke r7.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Arrays.cmp sort time:  %7.3f total %9.3f\n", r12);
+
+        $r10 = new ArraysSort$OrderChecker;
+
+        specialinvoke $r10.<ArraysSort$OrderChecker: void <init>(java.util.concurrent.CountedCompleter,java.lang.Long[],int,int,int)>(null, r4, 0, i0, i0);
+
+        virtualinvoke $r10.<ArraysSort$OrderChecker: java.lang.Object invoke()>();
+
+        i7 = i7 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    public static int lambda$static$0(java.lang.Object, java.lang.Object)
+    {
+        java.lang.Long $r2, $r3;
+        int $i0;
+        java.lang.Object r0, r1;
+
+        r0 := @parameter0: java.lang.Object;
+
+        r1 := @parameter1: java.lang.Object;
+
+        $r3 = (java.lang.Long) r0;
+
+        $r2 = (java.lang.Long) r1;
+
+        $i0 = virtualinvoke $r3.<java.lang.Long: int compareTo(java.lang.Long)>($r2);
+
+        return $i0;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Long $r15;
+        java.lang.Exception $r18;
+        java.lang.StringBuilder $r1, $r3, $r4;
+        long $l6;
+        java.lang.String[] r20;
+        int $i0, $i1, $i2, $i3, $i4, $i5, i7, i8, i9, i10, i11;
+        java.lang.String $r5, $r16, $r17;
+        java.io.PrintStream $r2, $r7, $r8, $r9, $r10, $r11, $r12, $r19;
+        java.lang.Long[] $r0, $r13, $r14;
+        java.util.concurrent.ForkJoinPool $r6;
+
+        r20 := @parameter0: java.lang.String[];
+
+        i7 = 4194304;
+
+        i8 = 30;
+
+     label1:
+        $i0 = lengthof r20;
+
+        if $i0 <= 0 goto label2;
+
+        $r17 = r20[0];
+
+        i7 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r17);
+
+     label2:
+        $i1 = lengthof r20;
+
+        if $i1 <= 1 goto label3;
+
+        $r16 = r20[1];
+
+        i8 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r16);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r18 := @caughtexception;
+
+        $r19 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>("Usage: java ArraysSort n reps");
+
+        return;
+
+     label5:
+        $r0 = newarray (java.lang.Long)[i7];
+
+        <ArraysSort: java.lang.Long[] numbers> = $r0;
+
+        i9 = 0;
+
+     label6:
+        if i9 >= i7 goto label7;
+
+        $r14 = <ArraysSort: java.lang.Long[] numbers>;
+
+        $l6 = (long) i9;
+
+        $r15 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l6);
+
+        $r14[i9] = $r15;
+
+        i9 = i9 + 1;
+
+        goto label6;
+
+     label7:
+        $i2 = i7 + 7;
+
+        $i3 = $i2 >>> 3;
+
+        $i4 = staticinvoke <java.util.concurrent.ForkJoinPool: int getCommonPoolParallelism()>();
+
+        i10 = $i3 / $i4;
+
+        if i10 > 8192 goto label8;
+
+        i11 = 8192;
+
+        goto label9;
+
+     label8:
+        i11 = i10;
+
+     label9:
+        <ArraysSort: int THRESHOLD> = i11;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Threshold = ");
+
+        $i5 = <ArraysSort: int THRESHOLD>;
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $r13 = newarray (java.lang.Long)[i7];
+
+        $r6 = staticinvoke <java.util.concurrent.ForkJoinPool: java.util.concurrent.ForkJoinPool commonPool()>();
+
+        staticinvoke <ArraysSort: void seqTest(java.lang.Long[],int,int)>($r13, i7, 1);
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.Object)>($r6);
+
+        staticinvoke <ArraysSort: void parTest(java.lang.Long[],int,int)>($r13, i7, i8);
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.Object)>($r6);
+
+        staticinvoke <ArraysSort: void seqTest(java.lang.Long[],int,int)>($r13, i7, 2);
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.Object)>($r6);
+
+        staticinvoke <ArraysSort: void cseqTest(java.lang.Long[],int,int)>($r13, i7, 1);
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.Object)>($r6);
+
+        staticinvoke <ArraysSort: void cparTest(java.lang.Long[],int,int)>($r13, i7, i8);
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.Object)>($r6);
+
+        staticinvoke <ArraysSort: void cseqTest(java.lang.Long[],int,int)>($r13, i7, 2);
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.Object)>($r6);
+
+        return;
+
+        catch java.lang.Exception from label1 to label3 with label4;
+    }
+
+    static void parTest(java.lang.Long[], int, int) throws java.lang.Exception
+    {
+        ArraysSort$OrderChecker $r9;
+        java.lang.Object[] r10, r11;
+        java.lang.Double $r7, $r8;
+        long $l2, $l3, $l4, $l5, $l6;
+        java.lang.Integer $r1, $r2;
+        int i0, i1, i7;
+        double $d0, d1, $d2, $d3;
+        java.io.PrintStream $r0, r6;
+        java.lang.Long[] r4, $r5;
+        ArraysSort$RandomRepacker $r3;
+
+        r4 := @parameter0: java.lang.Long[];
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        r10 = newarray (java.lang.Object)[2];
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        r10[0] = $r1;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+
+        r10[1] = $r2;
+
+        virtualinvoke $r0.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Sorting %d longs, %d replications\n", r10);
+
+        $l2 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        i7 = 0;
+
+     label1:
+        if i7 >= i1 goto label2;
+
+        $r3 = new ArraysSort$RandomRepacker;
+
+        $r5 = <ArraysSort: java.lang.Long[] numbers>;
+
+        specialinvoke $r3.<ArraysSort$RandomRepacker: void <init>(java.util.concurrent.CountedCompleter,java.lang.Long[],java.lang.Long[],int,int,int)>(null, $r5, r4, 0, i0, i0);
+
+        virtualinvoke $r3.<ArraysSort$RandomRepacker: java.lang.Object invoke()>();
+
+        $l3 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        staticinvoke <java.util.Arrays: void parallelSort(java.lang.Comparable[])>(r4);
+
+        $l4 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $l5 = $l4 - $l2;
+
+        $d0 = (double) $l5;
+
+        d1 = $d0 / 1.0E9;
+
+        $l6 = $l4 - $l3;
+
+        $d2 = (double) $l6;
+
+        $d3 = $d2 / 1.0E9;
+
+        r6 = <java.lang.System: java.io.PrintStream out>;
+
+        r11 = newarray (java.lang.Object)[2];
+
+        $r7 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d3);
+
+        r11[0] = $r7;
+
+        $r8 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d1);
+
+        r11[1] = $r8;
+
+        virtualinvoke r6.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Parallel sort time:  %7.3f total %9.3f\n", r11);
+
+        $r9 = new ArraysSort$OrderChecker;
+
+        specialinvoke $r9.<ArraysSort$OrderChecker: void <init>(java.util.concurrent.CountedCompleter,java.lang.Long[],int,int,int)>(null, r4, 0, i0, i0);
+
+        virtualinvoke $r9.<ArraysSort$OrderChecker: java.lang.Object invoke()>();
+
+        i7 = i7 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    static void seqTest(java.lang.Long[], int, int)
+    {
+        ArraysSort$OrderChecker $r9;
+        java.lang.Object[] r10, r11;
+        java.lang.Double $r7, $r8;
+        long $l2, $l3, $l4, $l5, $l6;
+        java.lang.Integer $r1, $r2;
+        int i0, i1, i7;
+        double $d0, d1, $d2, $d3;
+        java.io.PrintStream $r0, r6;
+        java.lang.Long[] r4, $r5;
+        ArraysSort$RandomRepacker $r3;
+
+        r4 := @parameter0: java.lang.Long[];
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        r10 = newarray (java.lang.Object)[2];
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        r10[0] = $r1;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+
+        r10[1] = $r2;
+
+        virtualinvoke $r0.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Sorting %d longs, %d replications\n", r10);
+
+        $l2 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        i7 = 0;
+
+     label1:
+        if i7 >= i1 goto label2;
+
+        $r3 = new ArraysSort$RandomRepacker;
+
+        $r5 = <ArraysSort: java.lang.Long[] numbers>;
+
+        specialinvoke $r3.<ArraysSort$RandomRepacker: void <init>(java.util.concurrent.CountedCompleter,java.lang.Long[],java.lang.Long[],int,int,int)>(null, $r5, r4, 0, i0, i0);
+
+        virtualinvoke $r3.<ArraysSort$RandomRepacker: java.lang.Object invoke()>();
+
+        $l3 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        staticinvoke <java.util.Arrays: void sort(java.lang.Object[])>(r4);
+
+        $l4 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $l5 = $l4 - $l2;
+
+        $d0 = (double) $l5;
+
+        d1 = $d0 / 1.0E9;
+
+        $l6 = $l4 - $l3;
+
+        $d2 = (double) $l6;
+
+        $d3 = $d2 / 1.0E9;
+
+        r6 = <java.lang.System: java.io.PrintStream out>;
+
+        r11 = newarray (java.lang.Object)[2];
+
+        $r7 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d3);
+
+        r11[0] = $r7;
+
+        $r8 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>(d1);
+
+        r11[1] = $r8;
+
+        virtualinvoke r6.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Arrays.sort   time:  %7.3f total %9.3f\n", r11);
+
+        $r9 = new ArraysSort$OrderChecker;
+
+        specialinvoke $r9.<ArraysSort$OrderChecker: void <init>(java.util.concurrent.CountedCompleter,java.lang.Long[],int,int,int)>(null, r4, 0, i0, i0);
+
+        virtualinvoke $r9.<ArraysSort$OrderChecker: java.lang.Object invoke()>();
+
+        i7 = i7 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+}

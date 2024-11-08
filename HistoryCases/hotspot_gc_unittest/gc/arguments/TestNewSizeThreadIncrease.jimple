@@ -1,0 +1,114 @@
+public class TestNewSizeThreadIncrease extends java.lang.Object
+{
+    static final java.lang.String VALID_VALUE;
+    static java.lang.String INVALID_VALUE_1;
+    static final java.lang.String LOG_NEWSIZE_CHANGED;
+
+    static void <clinit>()
+    {
+        <gc.arguments.TestNewSizeThreadIncrease: java.lang.String INVALID_VALUE_1> = "3689348814741910324";
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestNewSizeThreadIncrease r0;
+
+        r0 := @this: TestNewSizeThreadIncrease;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r1;
+        java.lang.String $r0;
+        boolean $z0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean is32bit()>();
+
+        if $z0 == 0 goto label1;
+
+        <gc.arguments.TestNewSizeThreadIncrease: java.lang.String INVALID_VALUE_1> = "858993460";
+
+     label1:
+        staticinvoke <gc.arguments.TestNewSizeThreadIncrease: void runNewSizeThreadIncreaseTest(java.lang.String,boolean)>("2097152", 1);
+
+        $r0 = <gc.arguments.TestNewSizeThreadIncrease: java.lang.String INVALID_VALUE_1>;
+
+        staticinvoke <gc.arguments.TestNewSizeThreadIncrease: void runNewSizeThreadIncreaseTest(java.lang.String,boolean)>($r0, 0);
+
+        return;
+    }
+
+    static void runNewSizeThreadIncreaseTest(java.lang.String, boolean) throws java.lang.Exception
+    {
+        java.lang.Process $r9;
+        java.lang.String[] $r0;
+        jdk.test.lib.process.OutputAnalyzer $r8;
+        java.lang.StringBuilder $r1, $r3;
+        java.lang.Class $r5;
+        java.lang.String r2, $r4, $r6;
+        java.lang.ProcessBuilder $r7;
+        boolean z0;
+
+        r2 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+        $r0 = newarray (java.lang.String)[7];
+
+        $r0[0] = "-XX:+UseSerialGC";
+
+        $r0[1] = "-Xms96M";
+
+        $r0[2] = "-Xmx128M";
+
+        $r0[3] = "-XX:NewRatio=2";
+
+        $r0[4] = "-Xlog:gc+heap+ergo=debug";
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:NewSizeThreadIncrease=");
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[5] = $r4;
+
+        $r5 = class "Lgc/arguments/TestNewSizeThreadIncrease$GCTest;";
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[6] = $r6;
+
+        $r7 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r8 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r9 = virtualinvoke $r7.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r9);
+
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        if z0 == 0 goto label1;
+
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("New generation size ");
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("New generation size ");
+
+     label2:
+        return;
+    }
+}

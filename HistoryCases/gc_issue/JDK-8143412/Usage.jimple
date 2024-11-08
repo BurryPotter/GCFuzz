@@ -1,0 +1,111 @@
+public class Usage extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Usage r0;
+
+        r0 := @this: Usage;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r2;
+        java.lang.Object[] $r1;
+        long $l0, $l1, $l2, $l3;
+        java.lang.String[] r7;
+        java.lang.Long $r3, $r4, $r5, $r6;
+        java.lang.management.MemoryUsage $r0;
+
+        r7 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <Usage: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = newarray (java.lang.Object)[4];
+
+        $l0 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r1[0] = $r3;
+
+        $l1 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r1[1] = $r4;
+
+        $l2 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $r5 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $r1[2] = $r5;
+
+        $l3 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        $r1[3] = $r6;
+
+        virtualinvoke $r2.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Commited : %15d  Init : %15d  Max : %15d Used : %15d%n", $r1);
+
+        return;
+    }
+
+    private static java.lang.management.MemoryUsage getUsage(java.lang.String)
+    {
+        java.util.Iterator $r1;
+        java.util.List $r0;
+        java.lang.management.MemoryPoolMXBean r3;
+        java.lang.Object $r2;
+        java.lang.String $r4, r5;
+        java.lang.management.MemoryUsage r6;
+        boolean $z0, $z1;
+
+        r5 := @parameter0: java.lang.String;
+
+        r6 = null;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r2 = interfaceinvoke $r1.<java.util.Iterator: java.lang.Object next()>();
+
+        r3 = (java.lang.management.MemoryPoolMXBean) $r2;
+
+        $r4 = interfaceinvoke r3.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        $z1 = virtualinvoke $r4.<java.lang.String: boolean matches(java.lang.String)>(r5);
+
+        if $z1 == 0 goto label2;
+
+        r6 = interfaceinvoke r3.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+     label2:
+        goto label1;
+
+     label3:
+        return r6;
+    }
+
+    public static java.lang.management.MemoryUsage getEdenUsage()
+    {
+        java.lang.management.MemoryUsage $r0;
+
+        $r0 = staticinvoke <Usage: java.lang.management.MemoryUsage getUsage(java.lang.String)>(".*Eden.*");
+
+        return $r0;
+    }
+}

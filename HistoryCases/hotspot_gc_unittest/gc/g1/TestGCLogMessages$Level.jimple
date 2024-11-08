@@ -1,0 +1,156 @@
+final enum class TestGCLogMessages$Level extends java.lang.Enum
+{
+    public static final enum gc.g1.TestGCLogMessages$Level OFF;
+    public static final enum gc.g1.TestGCLogMessages$Level INFO;
+    public static final enum gc.g1.TestGCLogMessages$Level DEBUG;
+    public static final enum gc.g1.TestGCLogMessages$Level TRACE;
+    private java.lang.String logName;
+    private static final gc.g1.TestGCLogMessages$Level[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.g1.TestGCLogMessages$Level $r0, $r1, $r2, $r3, $r5, $r6, $r7, $r8;
+        gc.g1.TestGCLogMessages$Level[] $r4;
+
+        $r0 = new gc.g1.TestGCLogMessages$Level;
+
+        specialinvoke $r0.<gc.g1.TestGCLogMessages$Level: void <init>(java.lang.String,int,java.lang.String)>("OFF", 0, "");
+
+        <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level OFF> = $r0;
+
+        $r1 = new gc.g1.TestGCLogMessages$Level;
+
+        specialinvoke $r1.<gc.g1.TestGCLogMessages$Level: void <init>(java.lang.String,int,java.lang.String)>("INFO", 1, "info");
+
+        <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level INFO> = $r1;
+
+        $r2 = new gc.g1.TestGCLogMessages$Level;
+
+        specialinvoke $r2.<gc.g1.TestGCLogMessages$Level: void <init>(java.lang.String,int,java.lang.String)>("DEBUG", 2, "debug");
+
+        <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG> = $r2;
+
+        $r3 = new gc.g1.TestGCLogMessages$Level;
+
+        specialinvoke $r3.<gc.g1.TestGCLogMessages$Level: void <init>(java.lang.String,int,java.lang.String)>("TRACE", 3, "trace");
+
+        <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE> = $r3;
+
+        $r4 = newarray (gc.g1.TestGCLogMessages$Level)[4];
+
+        $r5 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level OFF>;
+
+        $r4[0] = $r5;
+
+        $r6 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level INFO>;
+
+        $r4[1] = $r6;
+
+        $r7 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level DEBUG>;
+
+        $r4[2] = $r7;
+
+        $r8 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level TRACE>;
+
+        $r4[3] = $r8;
+
+        <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level[] ENUM$VALUES> = $r4;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int, java.lang.String)
+    {
+        TestGCLogMessages$Level r0;
+        int i0;
+        gc.g1.TestGCLogMessages$Level $r3;
+        java.lang.String r1, r2;
+
+        r0 := @this: TestGCLogMessages$Level;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        r2 := @parameter2: java.lang.String;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        $r3 = (gc.g1.TestGCLogMessages$Level) r0;
+
+        $r3.<gc.g1.TestGCLogMessages$Level: java.lang.String logName> = r2;
+
+        return;
+    }
+
+    public boolean lessThan(gc.g1.TestGCLogMessages$Level)
+    {
+        TestGCLogMessages$Level r0;
+        java.lang.Enum $r3;
+        gc.g1.TestGCLogMessages$Level r1, $r2;
+        int $i0;
+
+        r0 := @this: TestGCLogMessages$Level;
+
+        r1 := @parameter0: gc.g1.TestGCLogMessages$Level;
+
+        $r2 = (gc.g1.TestGCLogMessages$Level) r0;
+
+        $r3 = (java.lang.Enum) r1;
+
+        $i0 = virtualinvoke $r2.<gc.g1.TestGCLogMessages$Level: int compareTo(java.lang.Enum)>($r3);
+
+        if $i0 >= 0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public java.lang.String toString()
+    {
+        gc.g1.TestGCLogMessages$Level $r2;
+        java.lang.String $r1;
+        TestGCLogMessages$Level r0;
+
+        r0 := @this: TestGCLogMessages$Level;
+
+        $r2 = (gc.g1.TestGCLogMessages$Level) r0;
+
+        $r1 = $r2.<gc.g1.TestGCLogMessages$Level: java.lang.String logName>;
+
+        return $r1;
+    }
+
+    public static gc.g1.TestGCLogMessages$Level[] values()
+    {
+        int $i0;
+        gc.g1.TestGCLogMessages$Level[] $r0, $r1;
+
+        $r0 = <gc.g1.TestGCLogMessages$Level: gc.g1.TestGCLogMessages$Level[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.g1.TestGCLogMessages$Level)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.g1.TestGCLogMessages$Level valueOf(java.lang.String)
+    {
+        gc.g1.TestGCLogMessages$Level $r2;
+        java.lang.String r0;
+        java.lang.Enum $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/g1/TestGCLogMessages$Level;", r0);
+
+        $r2 = (gc.g1.TestGCLogMessages$Level) $r1;
+
+        return $r2;
+    }
+}

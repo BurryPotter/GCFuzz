@@ -1,0 +1,127 @@
+public class TestRemsetLoggingThreads extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestRemsetLoggingThreads r0;
+
+        r0 := @this: TestRemsetLoggingThreads;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static void runTest(int, int) throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        java.util.regex.Matcher $r12;
+        int i0, i1;
+        java.lang.String $r3, $r6, $r11, $r17, $r19;
+        java.lang.ProcessBuilder $r7;
+        boolean $z0;
+        java.lang.Process $r9;
+        jdk.test.lib.process.OutputAnalyzer $r8;
+        java.lang.Exception $r13;
+        java.lang.StringBuilder $r1, $r2, $r4, $r5, $r14, $r15, $r16, $r18;
+        java.util.regex.Pattern $r10;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        $r0 = newarray (java.lang.String)[6];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[2] = "-Xlog:gc+remset+exit=trace";
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:G1ConcRefinementThreads=");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[3] = $r3;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:ParallelGCThreads=");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[4] = $r6;
+
+        $r0[5] = "-version";
+
+        $r7 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r8 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r9 = virtualinvoke $r7.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r9);
+
+        $r10 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String,int)>("Concurrent RS threads times \\(s\\)$", 8);
+
+        $r11 = virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        $r12 = virtualinvoke $r10.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r11);
+
+        $z0 = virtualinvoke $r12.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label1;
+
+        $r13 = new java.lang.Exception;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>(java.lang.String)>("Could not find correct output for concurrent RS threads times in stdout, should match the pattern \"");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Concurrent RS threads times \\(s\\)$");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\", but stdout is \n");
+
+        $r17 = virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        $r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r13.<java.lang.Exception: void <init>(java.lang.String)>($r19);
+
+        throw $r13;
+
+     label1:
+        virtualinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.g1.TestRemsetLoggingThreads: void runTest(int,int)>(1, 1);
+
+        staticinvoke <gc.g1.TestRemsetLoggingThreads: void runTest(int,int)>(1, 5);
+
+        staticinvoke <gc.g1.TestRemsetLoggingThreads: void runTest(int,int)>(5, 1);
+
+        staticinvoke <gc.g1.TestRemsetLoggingThreads: void runTest(int,int)>(10, 10);
+
+        staticinvoke <gc.g1.TestRemsetLoggingThreads: void runTest(int,int)>(1, 2);
+
+        staticinvoke <gc.g1.TestRemsetLoggingThreads: void runTest(int,int)>(4, 3);
+
+        return;
+    }
+}

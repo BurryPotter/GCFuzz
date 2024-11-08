@@ -1,0 +1,100 @@
+public class TestUnrecognizedVMOptionsHandling extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestUnrecognizedVMOptionsHandling r0;
+
+        r0 := @this: TestUnrecognizedVMOptionsHandling;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r0, $r4, $r8, r14;
+        int $i0, $i1;
+        java.lang.ProcessBuilder $r1, $r5, $r9;
+        java.lang.Process $r3, $r7, $r11;
+        java.lang.RuntimeException $r12, $r13;
+        jdk.test.lib.process.OutputAnalyzer $r2, $r6, $r10;
+
+        r14 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "-XX:+UseDynamicNumberOfGcThreads";
+
+        $r0[1] = "-version";
+
+        $r1 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r2 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r3 = virtualinvoke $r1.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r3);
+
+        virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Did you mean \'(+/-)UseDynamicNumberOfGCThreads\'?");
+
+        $i0 = virtualinvoke $r2.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        if $i0 != 0 goto label1;
+
+        $r13 = new java.lang.RuntimeException;
+
+        specialinvoke $r13.<java.lang.RuntimeException: void <init>(java.lang.String)>("Not expected to get exit value 0");
+
+        throw $r13;
+
+     label1:
+        $r4 = newarray (java.lang.String)[2];
+
+        $r4[0] = "-XX:MaxiumHeapSize=500m";
+
+        $r4[1] = "-version";
+
+        $r5 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r4);
+
+        $r6 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r7 = virtualinvoke $r5.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r6.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r7);
+
+        virtualinvoke $r6.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Did you mean \'MaxHeapSize=<value>\'?");
+
+        $i1 = virtualinvoke $r6.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        if $i1 != 0 goto label2;
+
+        $r12 = new java.lang.RuntimeException;
+
+        specialinvoke $r12.<java.lang.RuntimeException: void <init>(java.lang.String)>("Not expected to get exit value 0");
+
+        throw $r12;
+
+     label2:
+        $r8 = newarray (java.lang.String)[2];
+
+        $r8[0] = "-XX:+UseDynamicNumberOfGCThreads";
+
+        $r8[1] = "-version";
+
+        $r9 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r8);
+
+        $r10 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r11 = virtualinvoke $r9.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r11);
+
+        virtualinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Did you mean \'(+/-)UseDynamicNumberOfGCThreads\'?");
+
+        virtualinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

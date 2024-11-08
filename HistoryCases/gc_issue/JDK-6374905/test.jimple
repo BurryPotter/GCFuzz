@@ -1,0 +1,48 @@
+public class test extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        test r0;
+
+        r0 := @this: test;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r0;
+        byte $b3;
+        java.lang.StringBuffer $r2;
+        java.lang.String[] r1;
+        long l0, $l1, $l2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        l0 = 0L;
+
+     label1:
+        $r2 = new java.lang.StringBuffer;
+
+        specialinvoke $r2.<java.lang.StringBuffer: void <init>(int)>(1024);
+
+        $l1 = l0 + 1L;
+
+        l0 = $l1;
+
+        $l2 = $l1 % 10000L;
+
+        $b3 = $l2 cmp 0L;
+
+        if $b3 != 0 goto label1;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(long)>($l1);
+
+        goto label1;
+    }
+}

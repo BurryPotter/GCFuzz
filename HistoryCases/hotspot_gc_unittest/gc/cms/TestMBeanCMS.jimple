@@ -1,0 +1,414 @@
+public class TestMBeanCMS extends java.lang.Object
+{
+    private java.lang.String poolName;
+    private java.lang.String collectorName;
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r1;
+        gc.cms.TestMBeanCMS $r2, $r3, r6;
+        java.lang.String[] r0;
+        int $i0;
+        java.lang.String $r4, $r5;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 != 2 goto label1;
+
+        $r3 = new gc.cms.TestMBeanCMS;
+
+        $r5 = r0[0];
+
+        $r4 = r0[1];
+
+        specialinvoke $r3.<gc.cms.TestMBeanCMS: void <init>(java.lang.String,java.lang.String)>($r5, $r4);
+
+        r6 = $r3;
+
+        goto label2;
+
+     label1:
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Defaulting to monitor CMS pool and collector.");
+
+        $r2 = new gc.cms.TestMBeanCMS;
+
+        specialinvoke $r2.<gc.cms.TestMBeanCMS: void <init>()>();
+
+        r6 = $r2;
+
+     label2:
+        virtualinvoke r6.<gc.cms.TestMBeanCMS: void run()>();
+
+        return;
+    }
+
+    public void <init>(java.lang.String, java.lang.String)
+    {
+        TestMBeanCMS r0;
+        gc.cms.TestMBeanCMS $r3, $r4, $r5, $r6;
+        java.lang.String r1, r2;
+
+        r0 := @this: TestMBeanCMS;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.cms.TestMBeanCMS) r0;
+
+        $r3.<gc.cms.TestMBeanCMS: java.lang.String poolName> = "CMS";
+
+        $r4 = (gc.cms.TestMBeanCMS) r0;
+
+        $r4.<gc.cms.TestMBeanCMS: java.lang.String collectorName> = "ConcurrentMarkSweep";
+
+        $r5 = (gc.cms.TestMBeanCMS) r0;
+
+        $r5.<gc.cms.TestMBeanCMS: java.lang.String poolName> = r1;
+
+        $r6 = (gc.cms.TestMBeanCMS) r0;
+
+        $r6.<gc.cms.TestMBeanCMS: java.lang.String collectorName> = r2;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestMBeanCMS r0;
+        gc.cms.TestMBeanCMS $r1, $r2;
+
+        r0 := @this: TestMBeanCMS;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.cms.TestMBeanCMS) r0;
+
+        $r1.<gc.cms.TestMBeanCMS: java.lang.String poolName> = "CMS";
+
+        $r2 = (gc.cms.TestMBeanCMS) r0;
+
+        $r2.<gc.cms.TestMBeanCMS: java.lang.String collectorName> = "ConcurrentMarkSweep";
+
+        return;
+    }
+
+    public void run()
+    {
+        byte $b1, $b5, $b7;
+        java.lang.StringBuilder $r7, $r14, $r15, $r23, $r29, $r30, $r35, $r36, $r44, $r45, $r47, $r48, $r49;
+        long $l0, $l2, $l3, $l4, $l6;
+        java.lang.management.MemoryPoolMXBean r43;
+        java.lang.String $r4, $r8, $r9, $r13, $r16, $r20, $r24, $r25, $r28, $r31, $r34, $r37;
+        TestMBeanCMS r0;
+        java.lang.RuntimeException $r46, $r50, $r51, $r52;
+        gc.cms.TestMBeanCMS $r53, $r54, $r55;
+        boolean $z0, $z1;
+        java.util.List $r2, $r17;
+        java.lang.management.GarbageCollectorMXBean r19;
+        int i8, i9, i10, $i11, i12, i13, i14, $i15, $i16, $i17, $i18;
+        java.lang.management.MemoryUsage $r10;
+        java.io.PrintStream $r1, $r6, $r12, $r22, $r27, $r33, $r39;
+        java.lang.Object $r3, $r18;
+
+        r0 := @this: TestMBeanCMS;
+
+        $r53 = (gc.cms.TestMBeanCMS) r0;
+
+        virtualinvoke $r53.<gc.cms.TestMBeanCMS: void allocationWork(long)>(314572800L);
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Done allocationWork");
+
+        $r2 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        i8 = 0;
+
+        i9 = 0;
+
+        i10 = 0;
+
+        goto label03;
+
+     label01:
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(i10);
+
+        r43 = (java.lang.management.MemoryPoolMXBean) $r3;
+
+        $r4 = interfaceinvoke r43.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r44 = new java.lang.StringBuilder;
+
+        specialinvoke $r44.<java.lang.StringBuilder: void <init>(java.lang.String)>("found pool: ");
+
+        $r7 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        $r54 = (gc.cms.TestMBeanCMS) r0;
+
+        $r9 = $r54.<gc.cms.TestMBeanCMS: java.lang.String poolName>;
+
+        $z0 = virtualinvoke $r4.<java.lang.String: boolean contains(java.lang.CharSequence)>($r9);
+
+        if $z0 == 0 goto label02;
+
+        $r10 = interfaceinvoke r43.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getCollectionUsage()>();
+
+        $l0 = virtualinvoke $r10.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r12 = <java.lang.System: java.io.PrintStream out>;
+
+        $r45 = new java.lang.StringBuilder;
+
+        $r13 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r4);
+
+        specialinvoke $r45.<java.lang.StringBuilder: void <init>(java.lang.String)>($r13);
+
+        $r14 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": usage after GC = ");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r12.<java.io.PrintStream: void println(java.lang.String)>($r16);
+
+        i8 = i8 + 1;
+
+        $b1 = $l0 cmp 0L;
+
+        $i16 = (int) $b1;
+
+        if $i16 <= 0 goto label02;
+
+        i9 = i9 + 1;
+
+     label02:
+        i10 = i10 + 1;
+
+     label03:
+        $i11 = interfaceinvoke $r2.<java.util.List: int size()>();
+
+        if i10 < $i11 goto label01;
+
+        if i8 != 0 goto label04;
+
+        $r46 = new java.lang.RuntimeException;
+
+        specialinvoke $r46.<java.lang.RuntimeException: void <init>(java.lang.String)>("No matching memory pools found: test with -XX:+UseConcMarkSweepGC");
+
+        throw $r46;
+
+     label04:
+        $r17 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getGarbageCollectorMXBeans()>();
+
+        i12 = 0;
+
+        i13 = 0;
+
+        i14 = 0;
+
+        goto label08;
+
+     label05:
+        $r18 = interfaceinvoke $r17.<java.util.List: java.lang.Object get(int)>(i14);
+
+        r19 = (java.lang.management.GarbageCollectorMXBean) $r18;
+
+        $r20 = interfaceinvoke r19.<java.lang.management.GarbageCollectorMXBean: java.lang.String getName()>();
+
+        $r22 = <java.lang.System: java.io.PrintStream out>;
+
+        $r47 = new java.lang.StringBuilder;
+
+        specialinvoke $r47.<java.lang.StringBuilder: void <init>(java.lang.String)>("found collector: ");
+
+        $r23 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r24);
+
+        $r55 = (gc.cms.TestMBeanCMS) r0;
+
+        $r25 = $r55.<gc.cms.TestMBeanCMS: java.lang.String collectorName>;
+
+        $z1 = virtualinvoke $r20.<java.lang.String: boolean contains(java.lang.CharSequence)>($r25);
+
+        if $z1 == 0 goto label07;
+
+        i12 = i12 + 1;
+
+        $r27 = <java.lang.System: java.io.PrintStream out>;
+
+        $r48 = new java.lang.StringBuilder;
+
+        $r28 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r20);
+
+        specialinvoke $r48.<java.lang.StringBuilder: void <init>(java.lang.String)>($r28);
+
+        $r29 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": collection count = ");
+
+        $l2 = interfaceinvoke r19.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r31);
+
+        $r33 = <java.lang.System: java.io.PrintStream out>;
+
+        $r49 = new java.lang.StringBuilder;
+
+        $r34 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r20);
+
+        specialinvoke $r49.<java.lang.StringBuilder: void <init>(java.lang.String)>($r34);
+
+        $r35 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": collection time  = ");
+
+        $l3 = interfaceinvoke r19.<java.lang.management.GarbageCollectorMXBean: long getCollectionTime()>();
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>($r37);
+
+        $l4 = interfaceinvoke r19.<java.lang.management.GarbageCollectorMXBean: long getCollectionCount()>();
+
+        $b5 = $l4 cmp 0L;
+
+        $i17 = (int) $b5;
+
+        if $i17 > 0 goto label06;
+
+        $r50 = new java.lang.RuntimeException;
+
+        specialinvoke $r50.<java.lang.RuntimeException: void <init>(java.lang.String)>("collection count <= 0");
+
+        throw $r50;
+
+     label06:
+        $l6 = interfaceinvoke r19.<java.lang.management.GarbageCollectorMXBean: long getCollectionTime()>();
+
+        $b7 = $l6 cmp 0L;
+
+        $i18 = (int) $b7;
+
+        if $i18 <= 0 goto label07;
+
+        i13 = i13 + 1;
+
+     label07:
+        i14 = i14 + 1;
+
+     label08:
+        $i15 = interfaceinvoke $r17.<java.util.List: int size()>();
+
+        if i14 < $i15 goto label05;
+
+        if i9 >= i8 goto label09;
+
+        $r51 = new java.lang.RuntimeException;
+
+        specialinvoke $r51.<java.lang.RuntimeException: void <init>(java.lang.String)>("pools found with zero stats");
+
+        throw $r51;
+
+     label09:
+        if i13 >= i12 goto label10;
+
+        $r52 = new java.lang.RuntimeException;
+
+        specialinvoke $r52.<java.lang.RuntimeException: void <init>(java.lang.String)>("collectors found with zero time");
+
+        throw $r52;
+
+     label10:
+        $r39 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>("Test passed.");
+
+        return;
+    }
+
+    public void allocationWork(long)
+    {
+        java.io.PrintStream $r2;
+        TestMBeanCMS r4;
+        byte[] r1;
+        long l0, $l1, $l3, l4, l5;
+        byte $b2, $b6;
+        java.lang.InterruptedException $r3;
+        int $i7;
+        java.util.LinkedList $r5;
+
+        r4 := @this: TestMBeanCMS;
+
+        l0 := @parameter0: long;
+
+        l4 = 0L;
+
+        $r5 = new java.util.LinkedList;
+
+        specialinvoke $r5.<java.util.LinkedList: void <init>()>();
+
+        l5 = 0L;
+
+        goto label6;
+
+     label1:
+        r1 = newarray (byte)[1048576];
+
+        $l1 = l5 % 2L;
+
+        $b2 = $l1 cmp 0L;
+
+        if $b2 != 0 goto label2;
+
+        interfaceinvoke $r5.<java.util.List: boolean add(java.lang.Object)>(r1);
+
+        $l3 = (long) 1048576;
+
+        l4 = l4 + $l3;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void print(java.lang.String)>(".");
+
+     label2:
+        staticinvoke <java.lang.Thread: void sleep(long)>(50L);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r3 := @caughtexception;
+
+     label5:
+        l5 = l5 + 1L;
+
+     label6:
+        $b6 = l4 cmp l0;
+
+        $i7 = (int) $b6;
+
+        if $i7 < 0 goto label1;
+
+        return;
+
+        catch java.lang.InterruptedException from label2 to label3 with label4;
+    }
+}

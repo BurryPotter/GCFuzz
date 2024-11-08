@@ -1,0 +1,38 @@
+class TestNoEagerReclaimOfHumongousRegions$LargeRef extends java.lang.Object
+{
+    private byte[] _ref;
+
+    void <init>(byte[])
+    {
+        byte[] r1;
+        TestNoEagerReclaimOfHumongousRegions$LargeRef r0;
+        gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef $r2;
+
+        r0 := @this: TestNoEagerReclaimOfHumongousRegions$LargeRef;
+
+        r1 := @parameter0: byte[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = (gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef) r0;
+
+        $r2.<gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef: byte[] _ref> = r1;
+
+        return;
+    }
+
+    byte[] ref()
+    {
+        byte[] $r1;
+        TestNoEagerReclaimOfHumongousRegions$LargeRef r0;
+        gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef $r2;
+
+        r0 := @this: TestNoEagerReclaimOfHumongousRegions$LargeRef;
+
+        $r2 = (gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef) r0;
+
+        $r1 = $r2.<gc.g1.TestNoEagerReclaimOfHumongousRegions$LargeRef: byte[] _ref>;
+
+        return $r1;
+    }
+}

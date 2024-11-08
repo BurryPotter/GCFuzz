@@ -1,0 +1,153 @@
+public class TestSharedArchiveWithPreTouch extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestSharedArchiveWithPreTouch r0;
+
+        r0 := @this: TestSharedArchiveWithPreTouch;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Object[] $r6, $r15;
+        java.lang.String[] $r0, $r3, $r5, $r7, $r12, $r14, $r16, $r20, $r22, r25;
+        java.util.ArrayList $r2, $r11;
+        java.lang.ProcessBuilder $r8, $r17;
+        boolean $z0, $z1;
+        java.lang.Process $r10, $r19;
+        java.lang.RuntimeException $r24;
+        jdk.test.lib.process.OutputAnalyzer $r9, $r18, r26;
+        java.util.List $r1, $r4, $r13, $r21, $r23;
+
+        r25 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[4];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-XX:+AlwaysPreTouch";
+
+        $r0[2] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[3] = "-XX:SharedArchiveFile=./SharedArchiveWithPreTouch.jsa";
+
+        $r1 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r0);
+
+        $r2 = new java.util.ArrayList;
+
+        specialinvoke $r2.<java.util.ArrayList: void <init>(java.util.Collection)>($r1);
+
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean is64bit()>();
+
+        if $z0 == 0 goto label1;
+
+        $r22 = newarray (java.lang.String)[2];
+
+        $r22[0] = "-XX:+UseCompressedClassPointers";
+
+        $r22[1] = "-XX:+UseCompressedOops";
+
+        $r23 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r22);
+
+        interfaceinvoke $r2.<java.util.List: boolean addAll(int,java.util.Collection)>(0, $r23);
+
+     label1:
+        $r3 = newarray (java.lang.String)[1];
+
+        $r3[0] = "-Xshare:dump";
+
+        $r4 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r3);
+
+        interfaceinvoke $r2.<java.util.List: boolean addAll(java.util.Collection)>($r4);
+
+        $r5 = newarray (java.lang.String)[0];
+
+        $r6 = interfaceinvoke $r2.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r5);
+
+        $r7 = (java.lang.String[]) $r6;
+
+        $r8 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r7);
+
+        $r9 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r10 = virtualinvoke $r8.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r9.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r10);
+
+        r26 = $r9;
+
+     label2:
+        virtualinvoke $r9.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Loading classes to share");
+
+        virtualinvoke $r9.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r11 = new java.util.ArrayList;
+
+        specialinvoke $r11.<java.util.ArrayList: void <init>(java.util.Collection)>($r1);
+
+        $z1 = staticinvoke <jdk.test.lib.Platform: boolean is64bit()>();
+
+        if $z1 == 0 goto label3;
+
+        $r20 = newarray (java.lang.String)[2];
+
+        $r20[0] = "-XX:+UseCompressedClassPointers";
+
+        $r20[1] = "-XX:+UseCompressedOops";
+
+        $r21 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r20);
+
+        interfaceinvoke $r11.<java.util.List: boolean addAll(int,java.util.Collection)>(0, $r21);
+
+     label3:
+        $r12 = newarray (java.lang.String)[2];
+
+        $r12[0] = "-Xshare:on";
+
+        $r12[1] = "-version";
+
+        $r13 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r12);
+
+        interfaceinvoke $r11.<java.util.List: boolean addAll(java.util.Collection)>($r13);
+
+        $r14 = newarray (java.lang.String)[0];
+
+        $r15 = interfaceinvoke $r11.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r14);
+
+        $r16 = (java.lang.String[]) $r15;
+
+        $r17 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r16);
+
+        $r18 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r19 = virtualinvoke $r17.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r18.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r19);
+
+        r26 = $r18;
+
+        virtualinvoke $r18.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("sharing");
+
+        virtualinvoke $r18.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+     label4:
+        goto label6;
+
+     label5:
+        $r24 := @caughtexception;
+
+        virtualinvoke r26.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Unable to use shared archive");
+
+        virtualinvoke r26.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(1);
+
+     label6:
+        return;
+
+        catch java.lang.RuntimeException from label2 to label4 with label5;
+    }
+}

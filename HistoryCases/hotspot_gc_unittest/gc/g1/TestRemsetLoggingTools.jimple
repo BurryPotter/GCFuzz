@@ -1,0 +1,278 @@
+public class TestRemsetLoggingTools extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestRemsetLoggingTools r0;
+
+        r0 := @this: TestRemsetLoggingTools;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.lang.String runTest(java.lang.String[], int) throws java.lang.Exception
+    {
+        java.lang.Object[] $r9;
+        java.lang.String[] $r1, r4, $r8, $r10;
+        java.util.ArrayList $r0;
+        int i0;
+        java.lang.String $r2, $r6, $r7, $r14;
+        java.lang.ProcessBuilder $r11;
+        java.lang.Process $r13;
+        jdk.test.lib.process.OutputAnalyzer $r12;
+        java.util.List $r3, $r15;
+        java.lang.Class $r5;
+
+        r4 := @parameter0: java.lang.String[];
+
+        i0 := @parameter1: int;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = newarray (java.lang.String)[14];
+
+        $r1[0] = "-Xbootclasspath/a:.";
+
+        $r1[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r1[2] = "-XX:+WhiteBoxAPI";
+
+        $r1[3] = "-cp";
+
+        $r2 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("java.class.path");
+
+        $r1[4] = $r2;
+
+        $r1[5] = "-XX:+UseG1GC";
+
+        $r1[6] = "-Xmn4m";
+
+        $r1[7] = "-Xint";
+
+        $r1[8] = "-Xms20m";
+
+        $r1[9] = "-Xmx20m";
+
+        $r1[10] = "-XX:ParallelGCThreads=1";
+
+        $r1[11] = "-XX:InitiatingHeapOccupancyPercent=100";
+
+        $r1[12] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r1[13] = "-XX:G1HeapRegionSize=1M";
+
+        $r3 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r1);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r3);
+
+        if r4 == null goto label1;
+
+        $r15 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r4);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r15);
+
+     label1:
+        $r5 = class "Lgc/g1/VerifySummaryOutput;";
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r6);
+
+        $r7 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i0);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r7);
+
+        $r8 = newarray (java.lang.String)[0];
+
+        $r9 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r8);
+
+        $r10 = (java.lang.String[]) $r9;
+
+        $r11 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r10);
+
+        $r12 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r13 = virtualinvoke $r11.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r12.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r13);
+
+        virtualinvoke $r12.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        $r14 = virtualinvoke $r12.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        return $r14;
+    }
+
+    private static void checkCounts(int, int, java.lang.String) throws java.lang.Exception
+    {
+        java.lang.Exception $r0;
+        int i0, i1;
+        java.lang.StringBuilder $r1, $r3, $r4, $r5, $r6, $r7;
+        java.lang.String r2, $r8;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        r2 := @parameter2: java.lang.String;
+
+        if i0 == i1 goto label1;
+
+        $r0 = new java.lang.Exception;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("RSet summaries mention ");
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" regions an incorrect number of times. Expected ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", got ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r0.<java.lang.Exception: void <init>(java.lang.String)>($r8);
+
+        throw $r0;
+
+     label1:
+        return;
+    }
+
+    public static void expectPerRegionRSetSummaries(java.lang.String, int, int) throws java.lang.Exception
+    {
+        java.lang.String[] $r1, $r2, $r3, $r4;
+        int i0, i1, $i2, i3, $i4, i5, $i6, i7, $i8, i9, $i10, i11;
+        java.lang.String r0;
+
+        r0 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>(r0, i0, i1);
+
+        $r1 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>("Young regions");
+
+        $i2 = lengthof $r1;
+
+        i3 = $i2 - 1;
+
+        $r2 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>("Humongous regions");
+
+        $i4 = lengthof $r2;
+
+        i5 = $i4 - 1;
+
+        $r3 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>("Free regions");
+
+        $i6 = lengthof $r3;
+
+        i7 = $i6 - 1;
+
+        $r4 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>("Old regions");
+
+        $i8 = lengthof $r4;
+
+        i9 = $i8 - 1;
+
+        $i10 = i0 + i1;
+
+        i11 = $i10 * 4;
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void checkCounts(int,int,java.lang.String)>(i11, i3, "Young");
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void checkCounts(int,int,java.lang.String)>(i11, i5, "Humongous");
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void checkCounts(int,int,java.lang.String)>(i11, i7, "Free");
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void checkCounts(int,int,java.lang.String)>(i11, i9, "Old");
+
+        return;
+    }
+
+    public static void expectRSetSummaries(java.lang.String, int, int) throws java.lang.Exception
+    {
+        java.lang.String[] $r1, $r2;
+        int $i0, i1, $i2, i3, i4, i5, $i6, $i7;
+        java.lang.String r0, $r8, $r14;
+        java.lang.Exception $r3, $r9;
+        java.lang.StringBuilder $r4, $r5, $r6, $r7, $r10, $r11, $r12, $r13;
+
+        r0 := @parameter0: java.lang.String;
+
+        i4 := @parameter1: int;
+
+        i5 := @parameter2: int;
+
+        $r1 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>("concurrent refinement");
+
+        $i0 = lengthof $r1;
+
+        i1 = $i0 - 1;
+
+        $r2 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String)>("Cumulative RS summary");
+
+        $i2 = lengthof $r2;
+
+        i3 = $i2 - 1;
+
+        if i4 == i3 goto label1;
+
+        $r9 = new java.lang.Exception;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("Incorrect amount of RSet summaries at the end. Expected ");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", got ");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r9.<java.lang.Exception: void <init>(java.lang.String)>($r14);
+
+        throw $r9;
+
+     label1:
+        $i6 = i1 - i3;
+
+        if i5 == $i6 goto label2;
+
+        $r3 = new java.lang.Exception;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("Incorrect amount of per-period RSet summaries at the end. Expected ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i5);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", got ");
+
+        $i7 = i1 - i3;
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i7);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<java.lang.Exception: void <init>(java.lang.String)>($r8);
+
+        throw $r3;
+
+     label2:
+        return;
+    }
+}

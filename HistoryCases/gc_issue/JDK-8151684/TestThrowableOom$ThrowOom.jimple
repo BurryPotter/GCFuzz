@@ -1,0 +1,15 @@
+class TestThrowableOom$ThrowOom extends java.lang.Object
+{
+    TestThrowableOom$ThrowOom next;
+
+    void <init>()
+    {
+        TestThrowableOom$ThrowOom r0;
+
+        r0 := @this: TestThrowableOom$ThrowOom;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

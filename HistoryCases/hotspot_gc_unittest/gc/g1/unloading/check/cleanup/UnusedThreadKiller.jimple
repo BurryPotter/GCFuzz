@@ -1,0 +1,106 @@
+public class UnusedThreadKiller extends java.lang.Object implements gc.g1.unloading.check.cleanup.CleanupAction
+{
+    private long threadId;
+
+    public void <init>(long)
+    {
+        long l0;
+        gc.g1.unloading.check.cleanup.UnusedThreadKiller $r1;
+        UnusedThreadKiller r0;
+
+        r0 := @this: UnusedThreadKiller;
+
+        l0 := @parameter0: long;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.g1.unloading.check.cleanup.UnusedThreadKiller) r0;
+
+        $r1.<gc.g1.unloading.check.cleanup.UnusedThreadKiller: long threadId> = l0;
+
+        return;
+    }
+
+    public void cleanup() throws java.lang.Exception
+    {
+        java.lang.Object[] $r11;
+        long $l0, $l1;
+        java.lang.reflect.Method[] $r7;
+        byte $b2;
+        java.util.Map $r0;
+        java.lang.Thread r4;
+        int i3, i4;
+        java.lang.String $r9, $r10;
+        java.lang.reflect.Method r8;
+        boolean $z0, $z1;
+        java.util.Iterator $r2;
+        java.util.Set $r1;
+        gc.g1.unloading.check.cleanup.UnusedThreadKiller $r12;
+        java.lang.Object $r3;
+        java.lang.Class $r6;
+        UnusedThreadKiller r5;
+
+        r5 := @this: UnusedThreadKiller;
+
+        $r0 = staticinvoke <java.lang.Thread: java.util.Map getAllStackTraces()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.Map: java.util.Set keySet()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.Set: java.util.Iterator iterator()>();
+
+        goto label5;
+
+     label1:
+        $r3 = interfaceinvoke $r2.<java.util.Iterator: java.lang.Object next()>();
+
+        r4 = (java.lang.Thread) $r3;
+
+        $l0 = virtualinvoke r4.<java.lang.Thread: long getId()>();
+
+        $r12 = (gc.g1.unloading.check.cleanup.UnusedThreadKiller) r5;
+
+        $l1 = $r12.<gc.g1.unloading.check.cleanup.UnusedThreadKiller: long threadId>;
+
+        $b2 = $l0 cmp $l1;
+
+        if $b2 != 0 goto label5;
+
+        $r6 = virtualinvoke r4.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.Class: java.lang.reflect.Method[] getMethods()>();
+
+        i3 = lengthof $r7;
+
+        i4 = 0;
+
+        goto label4;
+
+     label2:
+        r8 = $r7[i4];
+
+        $r9 = "finishThread";
+
+        $r10 = virtualinvoke r8.<java.lang.reflect.Method: java.lang.String getName()>();
+
+        $z0 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+
+        if $z0 == 0 goto label3;
+
+        $r11 = newarray (java.lang.Object)[0];
+
+        virtualinvoke r8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(r4, $r11);
+
+     label3:
+        i4 = i4 + 1;
+
+     label4:
+        if i4 < i3 goto label2;
+
+     label5:
+        $z1 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 != 0 goto label1;
+
+        return;
+    }
+}

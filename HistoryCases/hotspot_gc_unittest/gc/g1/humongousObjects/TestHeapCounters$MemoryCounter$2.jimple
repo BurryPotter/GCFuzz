@@ -1,0 +1,41 @@
+enum class TestHeapCounters$MemoryCounter$2 extends gc.g1.humongousObjects.TestHeapCounters$MemoryCounter
+{
+
+    void <init>(java.lang.String, int)
+    {
+        TestHeapCounters$MemoryCounter$2 r0;
+        int i0;
+        java.lang.String r1;
+
+        r0 := @this: TestHeapCounters$MemoryCounter$2;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<gc.g1.humongousObjects.TestHeapCounters$MemoryCounter: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public long getUsedMemory()
+    {
+        java.lang.Runtime $r0, $r1;
+        TestHeapCounters$MemoryCounter$2 r2;
+        long $l0, $l1, $l2;
+
+        r2 := @this: TestHeapCounters$MemoryCounter$2;
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long totalMemory()>();
+
+        $r1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l1 = virtualinvoke $r1.<java.lang.Runtime: long freeMemory()>();
+
+        $l2 = $l0 - $l1;
+
+        return $l2;
+    }
+}

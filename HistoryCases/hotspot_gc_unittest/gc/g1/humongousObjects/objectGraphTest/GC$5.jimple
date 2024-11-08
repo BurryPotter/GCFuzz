@@ -1,0 +1,128 @@
+enum class GC$5 extends gc.g1.humongousObjects.objectGraphTest.GC
+{
+
+    void <init>(java.lang.String, int)
+    {
+        int i0;
+        java.lang.String r1;
+        GC$5 r0;
+
+        r0 := @this: GC$5;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<gc.g1.humongousObjects.objectGraphTest.GC: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public java.lang.Runnable get()
+    {
+        GC$5 r1;
+        java.lang.Runnable $r0;
+
+        r1 := @this: GC$5;
+
+        $r0 = staticinvoke <GC$5$lambda_0__1: java.lang.Runnable bootstrap$()>();
+
+        return $r0;
+    }
+
+    public java.util.function.Consumer getChecker()
+    {
+        java.util.function.Consumer $r1;
+        gc.g1.humongousObjects.objectGraphTest.GC$5 $r2;
+        GC$5 r0;
+
+        r0 := @this: GC$5;
+
+        $r2 = (gc.g1.humongousObjects.objectGraphTest.GC$5) r0;
+
+        $r1 = virtualinvoke $r2.<gc.g1.humongousObjects.objectGraphTest.GC$5: java.util.function.Consumer getCheckerImpl(boolean,boolean,boolean,boolean)>(1, 0, 1, 0);
+
+        return $r1;
+    }
+
+    public java.util.List shouldContain()
+    {
+        java.lang.String[] $r0;
+        java.util.List $r1;
+        GC$5 r2;
+
+        r2 := @this: GC$5;
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "WhiteBox Initiated Concurrent Mark";
+
+        $r1 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r0);
+
+        return $r1;
+    }
+
+    public java.util.List shouldNotContain()
+    {
+        java.lang.String[] $r0;
+        java.util.List $r1;
+        GC$5 r2;
+
+        r2 := @this: GC$5;
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "GC pause (young)";
+
+        $r1 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r0);
+
+        return $r1;
+    }
+
+    private static void lambda$0()
+    {
+        sun.hotspot.WhiteBox $r0, $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9;
+
+        $r0 = <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r1 = <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        staticinvoke <gc.testlibrary.Helpers: void waitTillCMCFinished(sun.hotspot.WhiteBox,int)>($r1, 0);
+
+        $r2 = <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r2.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r3 = <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        staticinvoke <gc.testlibrary.Helpers: void waitTillCMCFinished(sun.hotspot.WhiteBox,int)>($r3, 0);
+
+        $r4 = <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r4.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        $r5 = <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        staticinvoke <gc.testlibrary.Helpers: void waitTillCMCFinished(sun.hotspot.WhiteBox,int)>($r5, 0);
+
+        $r6 = <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r6.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r7 = <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        staticinvoke <gc.testlibrary.Helpers: void waitTillCMCFinished(sun.hotspot.WhiteBox,int)>($r7, 0);
+
+        $r8 = <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r8.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r9 = <gc.g1.humongousObjects.objectGraphTest.GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        staticinvoke <gc.testlibrary.Helpers: void waitTillCMCFinished(sun.hotspot.WhiteBox,int)>($r9, 0);
+
+        return;
+    }
+}

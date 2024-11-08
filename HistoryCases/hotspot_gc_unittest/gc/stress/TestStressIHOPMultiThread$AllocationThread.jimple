@@ -1,0 +1,250 @@
+class TestStressIHOPMultiThread$AllocationThread extends java.lang.Thread
+{
+    private final java.util.List garbage;
+    private final long amountOfGarbage;
+    private final int threadId;
+    final gc.stress.TestStressIHOPMultiThread this$0;
+
+    public void <init>(gc.stress.TestStressIHOPMultiThread, int, long)
+    {
+        TestStressIHOPMultiThread$AllocationThread r0;
+        gc.stress.TestStressIHOPMultiThread r1;
+        long l1;
+        int i0;
+        java.lang.StringBuilder $r3, $r6;
+        java.lang.String $r4;
+        java.util.LinkedList $r7;
+        gc.stress.TestStressIHOPMultiThread$AllocationThread $r8, $r9, $r10, $r11;
+
+        r0 := @this: TestStressIHOPMultiThread$AllocationThread;
+
+        r1 := @parameter0: gc.stress.TestStressIHOPMultiThread;
+
+        i0 := @parameter1: int;
+
+        l1 := @parameter2: long;
+
+        $r8 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r0;
+
+        $r8.<gc.stress.TestStressIHOPMultiThread$AllocationThread: gc.stress.TestStressIHOPMultiThread this$0> = r1;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Thread ");
+
+        $r3 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke r0.<java.lang.Thread: void <init>(java.lang.String)>($r4);
+
+        $r9 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r0;
+
+        $r9.<gc.stress.TestStressIHOPMultiThread$AllocationThread: int threadId> = i0;
+
+        $r10 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r0;
+
+        $r10.<gc.stress.TestStressIHOPMultiThread$AllocationThread: long amountOfGarbage> = l1;
+
+        $r7 = new java.util.LinkedList;
+
+        specialinvoke $r7.<java.util.LinkedList: void <init>()>();
+
+        $r11 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r0;
+
+        $r11.<gc.stress.TestStressIHOPMultiThread$AllocationThread: java.util.List garbage> = $r7;
+
+        return;
+    }
+
+    public java.util.List getList()
+    {
+        java.util.List $r1;
+        gc.stress.TestStressIHOPMultiThread$AllocationThread $r2;
+        TestStressIHOPMultiThread$AllocationThread r0;
+
+        r0 := @this: TestStressIHOPMultiThread$AllocationThread;
+
+        $r2 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r0;
+
+        $r1 = $r2.<gc.stress.TestStressIHOPMultiThread$AllocationThread: java.util.List garbage>;
+
+        return $r1;
+    }
+
+    public void run()
+    {
+        java.io.PrintStream $r1;
+        TestStressIHOPMultiThread$AllocationThread r2;
+        gc.stress.TestStressIHOPMultiThread $r5;
+        long $l1;
+        int $i0;
+        java.lang.StringBuilder $r3, $r6;
+        java.lang.String $r4;
+        gc.stress.TestStressIHOPMultiThread$AllocationThread $r7, $r8, $r9, $r10, $r11;
+        boolean $z0;
+
+        r2 := @this: TestStressIHOPMultiThread$AllocationThread;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Start the thread ");
+
+        $r7 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r2;
+
+        $i0 = $r7.<gc.stress.TestStressIHOPMultiThread$AllocationThread: int threadId>;
+
+        $r3 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r4);
+
+        goto label2;
+
+     label1:
+        $r8 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r2;
+
+        $l1 = $r8.<gc.stress.TestStressIHOPMultiThread$AllocationThread: long amountOfGarbage>;
+
+        $r9 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r2;
+
+        virtualinvoke $r9.<gc.stress.TestStressIHOPMultiThread$AllocationThread: void allocate(long)>($l1);
+
+        $r10 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r2;
+
+        virtualinvoke $r10.<gc.stress.TestStressIHOPMultiThread$AllocationThread: void free()>();
+
+     label2:
+        $r11 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r2;
+
+        $r5 = $r11.<gc.stress.TestStressIHOPMultiThread$AllocationThread: gc.stress.TestStressIHOPMultiThread this$0>;
+
+        $z0 = virtualinvoke $r5.<gc.stress.TestStressIHOPMultiThread: boolean isRunning()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+
+    private void silentJoin()
+    {
+        java.io.PrintStream $r1;
+        TestStressIHOPMultiThread$AllocationThread r2;
+        java.lang.RuntimeException $r8;
+        java.lang.InterruptedException $r5;
+        int $i0;
+        java.lang.StringBuilder $r3, $r7;
+        java.lang.String $r4;
+        gc.stress.TestStressIHOPMultiThread$AllocationThread $r9, $r10;
+
+        r2 := @this: TestStressIHOPMultiThread$AllocationThread;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("Join the thread ");
+
+        $r9 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r2;
+
+        $i0 = $r9.<gc.stress.TestStressIHOPMultiThread$AllocationThread: int threadId>;
+
+        $r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r4);
+
+     label1:
+        $r10 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r2;
+
+        virtualinvoke $r10.<gc.stress.TestStressIHOPMultiThread$AllocationThread: void join()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r5 := @caughtexception;
+
+        $r8 = new java.lang.RuntimeException;
+
+        specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.Throwable)>($r5);
+
+        throw $r8;
+
+     label4:
+        return;
+
+        catch java.lang.InterruptedException from label1 to label2 with label3;
+    }
+
+    private void allocate(long)
+    {
+        byte[] $r2;
+        TestStressIHOPMultiThread$AllocationThread r0;
+        gc.stress.TestStressIHOPMultiThread $r1;
+        long l0, l2;
+        java.util.List $r3;
+        byte $b1;
+        int $i3;
+        gc.stress.TestStressIHOPMultiThread$AllocationThread $r4, $r5;
+        boolean $z0;
+
+        r0 := @this: TestStressIHOPMultiThread$AllocationThread;
+
+        l0 := @parameter0: long;
+
+        l2 = 0L;
+
+        goto label2;
+
+     label1:
+        $r4 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r0;
+
+        $r3 = $r4.<gc.stress.TestStressIHOPMultiThread$AllocationThread: java.util.List garbage>;
+
+        $r2 = newarray (byte)[100000];
+
+        interfaceinvoke $r3.<java.util.List: boolean add(java.lang.Object)>($r2);
+
+        l2 = l2 + 100000L;
+
+     label2:
+        $b1 = l2 cmp l0;
+
+        $i3 = (int) $b1;
+
+        if $i3 >= 0 goto label3;
+
+        $r5 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r0;
+
+        $r1 = $r5.<gc.stress.TestStressIHOPMultiThread$AllocationThread: gc.stress.TestStressIHOPMultiThread this$0>;
+
+        $z0 = virtualinvoke $r1.<gc.stress.TestStressIHOPMultiThread: boolean isRunning()>();
+
+        if $z0 != 0 goto label1;
+
+     label3:
+        return;
+    }
+
+    private void free()
+    {
+        java.util.List $r1;
+        gc.stress.TestStressIHOPMultiThread$AllocationThread $r2;
+        TestStressIHOPMultiThread$AllocationThread r0;
+
+        r0 := @this: TestStressIHOPMultiThread$AllocationThread;
+
+        $r2 = (gc.stress.TestStressIHOPMultiThread$AllocationThread) r0;
+
+        $r1 = $r2.<gc.stress.TestStressIHOPMultiThread$AllocationThread: java.util.List garbage>;
+
+        interfaceinvoke $r1.<java.util.List: void clear()>();
+
+        return;
+    }
+}

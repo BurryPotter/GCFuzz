@@ -1,0 +1,195 @@
+public class TestG1ClassUnloadingHWM extends java.lang.Object
+{
+    private static long MetaspaceSize;
+    private static long YoungGenSize;
+
+    static void <clinit>()
+    {
+        <gc.class_unloading.TestG1ClassUnloadingHWM: long MetaspaceSize> = 33554432L;
+
+        <gc.class_unloading.TestG1ClassUnloadingHWM: long YoungGenSize> = 33554432L;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestG1ClassUnloadingHWM r0;
+
+        r0 := @this: TestG1ClassUnloadingHWM;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static jdk.test.lib.process.OutputAnalyzer run(boolean) throws java.lang.Exception
+    {
+        java.lang.String[] $r0;
+        long $l0, $l1, $l2, $l3;
+        java.lang.String $r3, $r6, $r10, $r12, $r15, $r18, $r22;
+        java.lang.ProcessBuilder $r19;
+        boolean z0;
+        java.lang.Process $r21;
+        jdk.test.lib.process.OutputAnalyzer $r20;
+        java.lang.StringBuilder $r1, $r2, $r4, $r5, $r7, $r8, $r9, $r13, $r14, $r16, $r17;
+        java.lang.Class $r11;
+
+        z0 := @parameter0: boolean;
+
+        $r0 = newarray (java.lang.String)[11];
+
+        $r0[0] = "-Xbootclasspath/a:.";
+
+        $r0[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[2] = "-XX:+WhiteBoxAPI";
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MetaspaceSize=");
+
+        $l0 = <gc.class_unloading.TestG1ClassUnloadingHWM: long MetaspaceSize>;
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[3] = $r3;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Xmn");
+
+        $l1 = <gc.class_unloading.TestG1ClassUnloadingHWM: long YoungGenSize>;
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[4] = $r6;
+
+        $r0[5] = "-XX:+UseG1GC";
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:");
+
+        if z0 == 0 goto label1;
+
+        $r22 = "+";
+
+        goto label2;
+
+     label1:
+        $r22 = "-";
+
+     label2:
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ClassUnloadingWithConcurrentMark");
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[6] = $r10;
+
+        $r0[7] = "-Xlog:gc";
+
+        $r11 = class "Lgc/class_unloading/TestG1ClassUnloadingHWM$AllocateBeyondMetaspaceSize;";
+
+        $r12 = virtualinvoke $r11.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[8] = $r12;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+
+        $l2 = <gc.class_unloading.TestG1ClassUnloadingHWM: long MetaspaceSize>;
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[9] = $r15;
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>()>();
+
+        $l3 = <gc.class_unloading.TestG1ClassUnloadingHWM: long YoungGenSize>;
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l3);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[10] = $r18;
+
+        $r19 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r20 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r21 = virtualinvoke $r19.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r20.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r21);
+
+        return $r20;
+    }
+
+    public static jdk.test.lib.process.OutputAnalyzer runWithG1ClassUnloading() throws java.lang.Exception
+    {
+        jdk.test.lib.process.OutputAnalyzer $r0;
+
+        $r0 = staticinvoke <gc.class_unloading.TestG1ClassUnloadingHWM: jdk.test.lib.process.OutputAnalyzer run(boolean)>(1);
+
+        return $r0;
+    }
+
+    public static jdk.test.lib.process.OutputAnalyzer runWithoutG1ClassUnloading() throws java.lang.Exception
+    {
+        jdk.test.lib.process.OutputAnalyzer $r0;
+
+        $r0 = staticinvoke <gc.class_unloading.TestG1ClassUnloadingHWM: jdk.test.lib.process.OutputAnalyzer run(boolean)>(0);
+
+        return $r0;
+    }
+
+    public static void testWithoutG1ClassUnloading() throws java.lang.Exception
+    {
+        jdk.test.lib.process.OutputAnalyzer $r0;
+
+        $r0 = staticinvoke <gc.class_unloading.TestG1ClassUnloadingHWM: jdk.test.lib.process.OutputAnalyzer runWithoutG1ClassUnloading()>();
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>(".*Pause Full.*");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotMatch(java.lang.String)>(".*Pause Young \\(Concurrent Start\\).*");
+
+        return;
+    }
+
+    public static void testWithG1ClassUnloading() throws java.lang.Exception
+    {
+        jdk.test.lib.process.OutputAnalyzer $r0;
+
+        $r0 = staticinvoke <gc.class_unloading.TestG1ClassUnloadingHWM: jdk.test.lib.process.OutputAnalyzer runWithG1ClassUnloading()>();
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldMatch(java.lang.String)>(".*Pause Young \\(Concurrent Start\\).*");
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotMatch(java.lang.String)>(".*Pause Full.*");
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.class_unloading.TestG1ClassUnloadingHWM: void testWithG1ClassUnloading()>();
+
+        staticinvoke <gc.class_unloading.TestG1ClassUnloadingHWM: void testWithoutG1ClassUnloading()>();
+
+        return;
+    }
+}

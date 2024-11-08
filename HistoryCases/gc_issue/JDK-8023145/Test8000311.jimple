@@ -1,0 +1,39 @@
+public class Test8000311 extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Test8000311 r0;
+
+        r0 := @this: Test8000311;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int i0;
+        byte[] r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        i0 = 0;
+
+     label1:
+        if i0 >= 100 goto label2;
+
+        r0 = newarray (byte)[1000];
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        i0 = i0 + 1;
+
+        goto label1;
+
+     label2:
+        return;
+    }
+}

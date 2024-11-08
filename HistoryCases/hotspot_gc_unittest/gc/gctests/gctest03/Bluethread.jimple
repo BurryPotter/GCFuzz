@@ -1,0 +1,145 @@
+class Bluethread extends java.lang.Thread
+{
+    gc.gctests.gctest03.Tree optree;
+    int key;
+    private int loopcount;
+
+    void <init>(gc.gctests.gctest03.Tree, int)
+    {
+        int i0;
+        Bluethread r0;
+        gc.gctests.gctest03.Tree r1;
+        gc.gctests.gctest03.Bluethread $r2, $r3, $r4;
+
+        r0 := @this: Bluethread;
+
+        r1 := @parameter0: gc.gctests.gctest03.Tree;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        $r2 = (gc.gctests.gctest03.Bluethread) r0;
+
+        $r2.<gc.gctests.gctest03.Bluethread: int loopcount> = 0;
+
+        $r3 = (gc.gctests.gctest03.Bluethread) r0;
+
+        $r3.<gc.gctests.gctest03.Bluethread: gc.gctests.gctest03.Tree optree> = r1;
+
+        $r4 = (gc.gctests.gctest03.Bluethread) r0;
+
+        $r4.<gc.gctests.gctest03.Bluethread: int key> = i0;
+
+        return;
+    }
+
+    public void setloop(int)
+    {
+        int i0;
+        Bluethread r0;
+        gc.gctests.gctest03.Bluethread $r1;
+
+        r0 := @this: Bluethread;
+
+        i0 := @parameter0: int;
+
+        $r1 = (gc.gctests.gctest03.Bluethread) r0;
+
+        $r1.<gc.gctests.gctest03.Bluethread: int loopcount> = i0;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Throwable $r7;
+        int $i0, $i1, $i2, $i3, i4, $i5;
+        gc.gctests.gctest03.Tree $r3, $r5;
+        gc.gctests.gctest03.TreeNode $r4, $r9;
+        Bluethread r0;
+        gc.gctests.gctest03.Bluethread $r10, $r11, $r12, $r13, $r14;
+        gc.gctests.gctest03.DataNode $r8;
+        java.lang.InterruptedException $r6;
+
+        r0 := @this: Bluethread;
+
+        i4 = 1;
+
+        goto label10;
+
+     label01:
+        $r10 = (gc.gctests.gctest03.Bluethread) r0;
+
+        $i1 = $r10.<gc.gctests.gctest03.Bluethread: int key>;
+
+        $i2 = $i1 * i4;
+
+        $i3 = $i2 % 65536;
+
+     label02:
+        $r8 = new gc.gctests.gctest03.DataNode;
+
+        specialinvoke $r8.<gc.gctests.gctest03.DataNode: void <init>(int)>($i3);
+
+     label03:
+        goto label05;
+
+     label04:
+        $r7 := @caughtexception;
+
+        return;
+
+     label05:
+        $r9 = new gc.gctests.gctest03.TreeNode;
+
+        specialinvoke $r9.<gc.gctests.gctest03.TreeNode: void <init>(gc.gctests.gctest03.DataNode)>($r8);
+
+        $r11 = (gc.gctests.gctest03.Bluethread) r0;
+
+        $r3 = $r11.<gc.gctests.gctest03.Bluethread: gc.gctests.gctest03.Tree optree>;
+
+        $r4 = virtualinvoke $r3.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode search(gc.gctests.gctest03.DataNode)>($r8);
+
+        if $r4 != null goto label06;
+
+        $r12 = (gc.gctests.gctest03.Bluethread) r0;
+
+        $r5 = $r12.<gc.gctests.gctest03.Bluethread: gc.gctests.gctest03.Tree optree>;
+
+        virtualinvoke $r5.<gc.gctests.gctest03.Tree: void insert(gc.gctests.gctest03.TreeNode)>($r9);
+
+     label06:
+        i4 = i4 + 1;
+
+     label07:
+        staticinvoke <gc.gctests.gctest03.Bluethread: void sleep(long)>(5L);
+
+     label08:
+        goto label10;
+
+     label09:
+        $r6 := @caughtexception;
+
+     label10:
+        $r13 = (gc.gctests.gctest03.Bluethread) r0;
+
+        $i5 = $r13.<gc.gctests.gctest03.Bluethread: int loopcount>;
+
+        if $i5 != 0 goto label11;
+
+        goto label01;
+
+     label11:
+        $r14 = (gc.gctests.gctest03.Bluethread) r0;
+
+        $i0 = $r14.<gc.gctests.gctest03.Bluethread: int loopcount>;
+
+        if i4 < $i0 goto label01;
+
+        return;
+
+        catch gc.gctests.gctest03.DataNodeException from label02 to label03 with label04;
+        catch java.lang.InterruptedException from label07 to label08 with label09;
+    }
+}

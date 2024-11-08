@@ -1,0 +1,598 @@
+public class Tree extends java.lang.Object
+{
+    private gc.gctests.JumbleGC.treeNode TreeRoot;
+    private int elementCount;
+    java.util.Vector TreeValues;
+    private int TreeValueIndex;
+
+    void <init>(int)
+    {
+        gc.gctests.JumbleGC.Tree $r3;
+        java.util.Vector $r2;
+        int i0;
+        Tree r0;
+
+        r0 := @this: Tree;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = new java.util.Vector;
+
+        specialinvoke $r2.<java.util.Vector: void <init>(int)>(i0);
+
+        $r3 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $r3.<gc.gctests.JumbleGC.Tree: java.util.Vector TreeValues> = $r2;
+
+        return;
+    }
+
+    synchronized void addElement(int)
+    {
+        java.lang.Integer $r7;
+        gc.gctests.JumbleGC.Tree $r8, $r9, $r10, $r11, $r12;
+        java.util.Vector $r3;
+        int i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        Tree r1;
+        gc.gctests.JumbleGC.treeNode r4, r5, $r6;
+
+        r1 := @this: Tree;
+
+        i0 := @parameter0: int;
+
+        $r6 = new gc.gctests.JumbleGC.treeNode;
+
+        specialinvoke $r6.<gc.gctests.JumbleGC.treeNode: void <init>(int)>(i0);
+
+        $r8 = (gc.gctests.JumbleGC.Tree) r1;
+
+        r4 = $r8.<gc.gctests.JumbleGC.Tree: gc.gctests.JumbleGC.treeNode TreeRoot>;
+
+        r5 = null;
+
+        goto label3;
+
+     label1:
+        r5 = r4;
+
+        $i2 = $r6.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        $i1 = r4.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if $i2 > $i1 goto label2;
+
+        r4 = r4.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        goto label3;
+
+     label2:
+        r4 = r4.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+     label3:
+        if r4 != null goto label1;
+
+        if r5 != null goto label4;
+
+        $r9 = (gc.gctests.JumbleGC.Tree) r1;
+
+        $r9.<gc.gctests.JumbleGC.Tree: gc.gctests.JumbleGC.treeNode TreeRoot> = $r6;
+
+        return;
+
+     label4:
+        $i4 = $r6.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        $i3 = r5.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if $i4 > $i3 goto label5;
+
+        r5.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left> = $r6;
+
+        goto label6;
+
+     label5:
+        r5.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right> = $r6;
+
+     label6:
+        $r10 = (gc.gctests.JumbleGC.Tree) r1;
+
+        $i5 = $r10.<gc.gctests.JumbleGC.Tree: int elementCount>;
+
+        $i6 = $i5 + 1;
+
+        $r11 = (gc.gctests.JumbleGC.Tree) r1;
+
+        $r11.<gc.gctests.JumbleGC.Tree: int elementCount> = $i6;
+
+        $r12 = (gc.gctests.JumbleGC.Tree) r1;
+
+        $r3 = $r12.<gc.gctests.JumbleGC.Tree: java.util.Vector TreeValues>;
+
+        $r7 = new java.lang.Integer;
+
+        specialinvoke $r7.<java.lang.Integer: void <init>(int)>(i0);
+
+        virtualinvoke $r3.<java.util.Vector: void addElement(java.lang.Object)>($r7);
+
+        return;
+    }
+
+    int getTreeValue(int)
+    {
+        java.lang.Integer r3;
+        gc.gctests.JumbleGC.Tree $r5, $r6;
+        java.util.Vector $r1, $r4;
+        int i0, $i1;
+        Tree r0;
+        java.lang.Object $r2;
+
+        r0 := @this: Tree;
+
+        i0 := @parameter0: int;
+
+        $r5 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $r1 = $r5.<gc.gctests.JumbleGC.Tree: java.util.Vector TreeValues>;
+
+        $r2 = virtualinvoke $r1.<java.util.Vector: java.lang.Object elementAt(int)>(i0);
+
+        r3 = (java.lang.Integer) $r2;
+
+        $r6 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $r4 = $r6.<gc.gctests.JumbleGC.Tree: java.util.Vector TreeValues>;
+
+        virtualinvoke $r4.<java.util.Vector: void removeElementAt(int)>(i0);
+
+        $i1 = virtualinvoke r3.<java.lang.Integer: int intValue()>();
+
+        return $i1;
+    }
+
+    int vectorSize()
+    {
+        gc.gctests.JumbleGC.Tree $r2;
+        java.util.Vector $r1;
+        int $i0;
+        Tree r0;
+
+        r0 := @this: Tree;
+
+        $r2 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $r1 = $r2.<gc.gctests.JumbleGC.Tree: java.util.Vector TreeValues>;
+
+        $i0 = virtualinvoke $r1.<java.util.Vector: int size()>();
+
+        return $i0;
+    }
+
+    synchronized void PrettyPrint()
+    {
+        gc.gctests.JumbleGC.Tree $r2, $r3;
+        Tree r0;
+        gc.gctests.JumbleGC.treeNode $r1;
+
+        r0 := @this: Tree;
+
+        $r2 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $r1 = $r2.<gc.gctests.JumbleGC.Tree: gc.gctests.JumbleGC.treeNode TreeRoot>;
+
+        $r3 = (gc.gctests.JumbleGC.Tree) r0;
+
+        virtualinvoke $r3.<gc.gctests.JumbleGC.Tree: void Print(gc.gctests.JumbleGC.treeNode,java.lang.String)>($r1, "");
+
+        return;
+    }
+
+    private void Print(gc.gctests.JumbleGC.treeNode, java.lang.String)
+    {
+        gc.gctests.JumbleGC.Tree $r21, $r22;
+        int $i0;
+        Tree r1;
+        java.lang.String r3, $r5, $r7, $r10, $r12, $r15, $r17;
+        java.io.PrintStream $r9;
+        gc.gctests.JumbleGC.treeNode r0, $r4, $r14;
+        java.lang.StringBuilder $r6, $r11, $r16, $r18, $r19, $r20;
+
+        r1 := @this: Tree;
+
+        r0 := @parameter0: gc.gctests.JumbleGC.treeNode;
+
+        r3 := @parameter1: java.lang.String;
+
+        if r0 != null goto label1;
+
+        return;
+
+     label1:
+        $r4 = r0.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+        $r18 = new java.lang.StringBuilder;
+
+        $r5 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r3);
+
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>($r5);
+
+        $r6 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("    ");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r21 = (gc.gctests.JumbleGC.Tree) r1;
+
+        virtualinvoke $r21.<gc.gctests.JumbleGC.Tree: void Print(gc.gctests.JumbleGC.treeNode,java.lang.String)>($r4, $r7);
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r19 = new java.lang.StringBuilder;
+
+        $r10 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r3);
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>($r10);
+
+        $i0 = r0.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        $r11 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        $r14 = r0.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        $r20 = new java.lang.StringBuilder;
+
+        $r15 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r3);
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>(java.lang.String)>($r15);
+
+        $r16 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("    ");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r22 = (gc.gctests.JumbleGC.Tree) r1;
+
+        virtualinvoke $r22.<gc.gctests.JumbleGC.Tree: void Print(gc.gctests.JumbleGC.treeNode,java.lang.String)>($r14, $r17);
+
+        return;
+    }
+
+    synchronized int getNodeNumber()
+    {
+        int $i0;
+        Tree r0;
+        gc.gctests.JumbleGC.Tree $r1;
+
+        r0 := @this: Tree;
+
+        $r1 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $i0 = $r1.<gc.gctests.JumbleGC.Tree: int elementCount>;
+
+        return $i0;
+    }
+
+    private synchronized gc.gctests.JumbleGC.treeNode findNode(int)
+    {
+        gc.gctests.JumbleGC.Tree $r2;
+        int i0, $i1, $i2, $i3;
+        Tree r0;
+        gc.gctests.JumbleGC.treeNode r1;
+
+        r0 := @this: Tree;
+
+        i0 := @parameter0: int;
+
+        $r2 = (gc.gctests.JumbleGC.Tree) r0;
+
+        r1 = $r2.<gc.gctests.JumbleGC.Tree: gc.gctests.JumbleGC.treeNode TreeRoot>;
+
+        goto label3;
+
+     label1:
+        $i2 = r1.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if i0 >= $i2 goto label2;
+
+        r1 = r1.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        goto label3;
+
+     label2:
+        $i3 = r1.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if i0 <= $i3 goto label3;
+
+        r1 = r1.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+     label3:
+        if r1 == null goto label4;
+
+        $i1 = r1.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if $i1 != i0 goto label1;
+
+     label4:
+        return r1;
+    }
+
+    void destroySubTree(int)
+    {
+        gc.gctests.JumbleGC.Tree $r3, $r4, $r5, $r6, $r7;
+        int $i0, $i1, $i2, $i3, $i4, i5, $i6, $i7, $i8;
+        Tree r0;
+        gc.gctests.JumbleGC.treeNode r1, r2;
+
+        r0 := @this: Tree;
+
+        i5 := @parameter0: int;
+
+        $r3 = (gc.gctests.JumbleGC.Tree) r0;
+
+        r1 = $r3.<gc.gctests.JumbleGC.Tree: gc.gctests.JumbleGC.treeNode TreeRoot>;
+
+        r2 = null;
+
+        goto label3;
+
+     label1:
+        r2 = r1;
+
+        $i7 = r1.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if i5 >= $i7 goto label2;
+
+        r1 = r1.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        goto label3;
+
+     label2:
+        $i8 = r1.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if i5 <= $i8 goto label3;
+
+        r1 = r1.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+     label3:
+        if r1 == null goto label4;
+
+        $i6 = r1.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if $i6 != i5 goto label1;
+
+     label4:
+        if r1 != null goto label5;
+
+        return;
+
+     label5:
+        $r4 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $i0 = $r4.<gc.gctests.JumbleGC.Tree: int elementCount>;
+
+        $r5 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $i1 = virtualinvoke $r5.<gc.gctests.JumbleGC.Tree: int getCount(gc.gctests.JumbleGC.treeNode)>(r1);
+
+        $i2 = $i0 - $i1;
+
+        $r6 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $r6.<gc.gctests.JumbleGC.Tree: int elementCount> = $i2;
+
+        if r2 != null goto label6;
+
+        $r7 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $r7.<gc.gctests.JumbleGC.Tree: gc.gctests.JumbleGC.treeNode TreeRoot> = null;
+
+        return;
+
+     label6:
+        $i4 = r1.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        $i3 = r2.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if $i4 <= $i3 goto label7;
+
+        r2.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right> = null;
+
+        goto label8;
+
+     label7:
+        r2.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left> = null;
+
+     label8:
+        return;
+    }
+
+    synchronized void deleteElement(int)
+    {
+        gc.gctests.JumbleGC.Tree $r15, $r16;
+        int $i0, $i1, i2, $i3, $i4, $i5;
+        Tree r0;
+        gc.gctests.JumbleGC.treeNode r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8, r9, r10, r11, r12, r13, r14;
+
+        r0 := @this: Tree;
+
+        i2 := @parameter0: int;
+
+        $r15 = (gc.gctests.JumbleGC.Tree) r0;
+
+        r9 = $r15.<gc.gctests.JumbleGC.Tree: gc.gctests.JumbleGC.treeNode TreeRoot>;
+
+        r10 = null;
+
+        r11 = null;
+
+        goto label03;
+
+     label01:
+        r10 = r9;
+
+        $i4 = r9.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if i2 >= $i4 goto label02;
+
+        r9 = r9.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        goto label03;
+
+     label02:
+        $i5 = r9.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if i2 <= $i5 goto label03;
+
+        r9 = r9.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+     label03:
+        if r9 == null goto label04;
+
+        $i3 = r9.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if $i3 != i2 goto label01;
+
+     label04:
+        if r9 != null goto label05;
+
+        return;
+
+     label05:
+        r1 = r9.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+        if r1 != null goto label06;
+
+        r11 = r9.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        goto label10;
+
+     label06:
+        $r2 = r1.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        if $r2 != null goto label07;
+
+        $r8 = r9.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        r1.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left> = $r8;
+
+        r11 = r9.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+        goto label10;
+
+     label07:
+        $r3 = r1.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        if $r3 == null goto label10;
+
+        $r4 = r1.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+        if $r4 == null goto label10;
+
+        r12 = r1;
+
+        r13 = null;
+
+        r14 = null;
+
+        goto label09;
+
+     label08:
+        r13 = r14;
+
+        r14 = r12;
+
+        r12 = r12.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+     label09:
+        if r12 != null goto label08;
+
+        $r5 = r14.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+        r13.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left> = $r5;
+
+        $r6 = r9.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        r14.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left> = $r6;
+
+        $r7 = r9.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+        r14.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right> = $r7;
+
+        r11 = r14;
+
+     label10:
+        if r10 != null goto label11;
+
+        $r16 = (gc.gctests.JumbleGC.Tree) r0;
+
+        $r16.<gc.gctests.JumbleGC.Tree: gc.gctests.JumbleGC.treeNode TreeRoot> = r11;
+
+        return;
+
+     label11:
+        $i1 = r9.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        $i0 = r10.<gc.gctests.JumbleGC.treeNode: int info>;
+
+        if $i1 <= $i0 goto label12;
+
+        r10.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right> = r11;
+
+        goto label13;
+
+     label12:
+        r10.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left> = r11;
+
+     label13:
+        return;
+    }
+
+    private int getCount(gc.gctests.JumbleGC.treeNode)
+    {
+        gc.gctests.JumbleGC.treeNode r0, $r1, $r3, $r4, $r5;
+        gc.gctests.JumbleGC.Tree $r6, $r7;
+        int $i0, $i1, $i2, $i3;
+        Tree r2;
+
+        r2 := @this: Tree;
+
+        r0 := @parameter0: gc.gctests.JumbleGC.treeNode;
+
+        if r0 != null goto label1;
+
+        return 0;
+
+     label1:
+        $r1 = r0.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        if $r1 != null goto label2;
+
+        $r5 = r0.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+        if $r5 != null goto label2;
+
+        return 1;
+
+     label2:
+        $r3 = r0.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode left>;
+
+        $r6 = (gc.gctests.JumbleGC.Tree) r2;
+
+        $i0 = virtualinvoke $r6.<gc.gctests.JumbleGC.Tree: int getCount(gc.gctests.JumbleGC.treeNode)>($r3);
+
+        $r4 = r0.<gc.gctests.JumbleGC.treeNode: gc.gctests.JumbleGC.treeNode right>;
+
+        $r7 = (gc.gctests.JumbleGC.Tree) r2;
+
+        $i1 = virtualinvoke $r7.<gc.gctests.JumbleGC.Tree: int getCount(gc.gctests.JumbleGC.treeNode)>($r4);
+
+        $i2 = $i0 + $i1;
+
+        $i3 = $i2 + 1;
+
+        return $i3;
+    }
+}

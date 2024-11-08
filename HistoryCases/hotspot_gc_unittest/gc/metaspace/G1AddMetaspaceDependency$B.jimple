@@ -1,0 +1,23 @@
+class G1AddMetaspaceDependency$B extends gc.metaspace.G1AddMetaspaceDependency$A
+{
+    final gc.metaspace.G1AddMetaspaceDependency this$0;
+
+    void <init>(gc.metaspace.G1AddMetaspaceDependency)
+    {
+        G1AddMetaspaceDependency$B r0;
+        gc.metaspace.G1AddMetaspaceDependency r1;
+        gc.metaspace.G1AddMetaspaceDependency$B $r2;
+
+        r0 := @this: G1AddMetaspaceDependency$B;
+
+        r1 := @parameter0: gc.metaspace.G1AddMetaspaceDependency;
+
+        $r2 = (gc.metaspace.G1AddMetaspaceDependency$B) r0;
+
+        $r2.<gc.metaspace.G1AddMetaspaceDependency$B: gc.metaspace.G1AddMetaspaceDependency this$0> = r1;
+
+        specialinvoke r0.<gc.metaspace.G1AddMetaspaceDependency$A: void <init>(gc.metaspace.G1AddMetaspaceDependency)>(r1);
+
+        return;
+    }
+}

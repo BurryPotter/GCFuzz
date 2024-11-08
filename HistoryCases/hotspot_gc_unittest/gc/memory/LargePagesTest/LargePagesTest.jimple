@@ -1,0 +1,894 @@
+public final class LargePagesTest extends java.lang.Thread
+{
+    private static int cnt;
+    private static final int SMALL_OBJECT_ALLOCATER;
+    private static final int LARGE_OBJECT_ALLOCATER;
+    private static final int ANY_OBJECT_ALLOCATER;
+    private static final int ANY_NO_MULTIARRAYS_ALLOCATER;
+    private int myType;
+    public gc.memory.LargePagesTest.LargePagesTest$Dummy[] d0;
+    public gc.memory.LargePagesTest.LargePagesTest$Dummy[] d1;
+    public gc.memory.LargePagesTest.LargePagesTest$Dummy[][] d2;
+    public gc.memory.LargePagesTest.LargePagesTest$Dummy[][] d3;
+    public gc.memory.LargePagesTest.LargePagesTest$Dummy[][][] d4;
+    public gc.memory.LargePagesTest.LargePagesTest$Dummy d5;
+    private long duration;
+    private boolean verbose;
+    private static int noThreads;
+    public long iterations;
+    public boolean result;
+    private java.io.PrintStream out;
+
+    static void <clinit>()
+    {
+        <gc.memory.LargePagesTest.LargePagesTest: int noThreads> = 5;
+
+        return;
+    }
+
+    void <init>(java.lang.String, long, java.io.PrintStream, boolean)
+    {
+        java.io.PrintStream r2;
+        gc.memory.LargePagesTest.LargePagesTest $r3, $r4, $r5, $r6, $r7;
+        long l0;
+        LargePagesTest r0;
+        java.lang.String r1;
+        boolean z0;
+
+        r0 := @this: LargePagesTest;
+
+        r1 := @parameter0: java.lang.String;
+
+        l0 := @parameter1: long;
+
+        r2 := @parameter2: java.io.PrintStream;
+
+        z0 := @parameter3: boolean;
+
+        specialinvoke r0.<java.lang.Thread: void <init>(java.lang.String)>(r1);
+
+        $r3 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r3.<gc.memory.LargePagesTest.LargePagesTest: long iterations> = 0L;
+
+        $r4 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r4.<gc.memory.LargePagesTest.LargePagesTest: boolean result> = 0;
+
+        $r5 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r5.<gc.memory.LargePagesTest.LargePagesTest: long duration> = l0;
+
+        $r6 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r6.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out> = r2;
+
+        $r7 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r7.<gc.memory.LargePagesTest.LargePagesTest: boolean verbose> = z0;
+
+        return;
+    }
+
+    void describe()
+    {
+        gc.memory.LargePagesTest.LargePagesTest $r14, $r15, $r16, $r17;
+        long $l0, $l1;
+        int $i2;
+        LargePagesTest r0;
+        java.lang.String $r6, $r11;
+        java.io.PrintStream $r1, $r3, $r8;
+        java.lang.StringBuilder $r4, $r5, $r9, $r10, $r12, $r13;
+
+        r0 := @this: LargePagesTest;
+
+        $r14 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r1 = $r14.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("DurAllocator run: ");
+
+        $r15 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r3 = $r15.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("   test duration:     ");
+
+        $r16 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $l0 = $r16.<gc.memory.LargePagesTest.LargePagesTest: long duration>;
+
+        $l1 = $l0 / 1000L;
+
+        $r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" seconds");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $r17 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r8 = $r17.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("   number of threads: ");
+
+        $i2 = <gc.memory.LargePagesTest.LargePagesTest: int noThreads>;
+
+        $r9 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" threads");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r11);
+
+        return;
+    }
+
+    public void run()
+    {
+        byte $b5, $b8, $b11, $b13, $b20;
+        java.lang.StringBuilder $r7, $r13, $r17, $r21, $r29, $r32, $r33, $r34, $r35, $r37, $r39, $r40, $r41, $r42, $r43;
+        java.lang.Throwable $r24;
+        long $l0, $l1, $l2, $l3, $l4, $l6, $l7, $l9, $l10, $l12, $l14, $l15, $l16, $l17, $l18, $l19;
+        LargePagesTest r0;
+        java.lang.String $r5, $r6, $r8, $r11, $r12, $r14, $r18, $r22, $r27, $r28, $r31, $r36, $r38;
+        boolean $z0, $z1, $z2;
+        gc.memory.LargePagesTest.LargePagesTest $r44, $r45, $r46, $r47, $r48, $r49, $r50, $r51, $r52, $r53, $r54, $r55, $r56, $r57, $r58, $r59, $r60, $r61, $r62, $r63, $r64, $r65, $r66, $r67, $r68;
+        int $i21, $i22, $i23;
+        java.io.PrintStream $r1, $r2, $r4, $r10, $r16, $r20, $r23, $r26;
+        java.lang.Class $r30;
+
+        r0 := @this: LargePagesTest;
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        goto label06;
+
+     label01:
+        $r44 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        virtualinvoke $r44.<gc.memory.LargePagesTest.LargePagesTest: void allocate()>();
+
+     label02:
+        goto label04;
+
+     label03:
+        $r24 := @caughtexception;
+
+        $r45 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r26 = $r45.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        $r39 = new java.lang.StringBuilder;
+
+        $r46 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r27 = virtualinvoke $r46.<gc.memory.LargePagesTest.LargePagesTest: java.lang.String getName()>();
+
+        $r28 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r27);
+
+        specialinvoke $r39.<java.lang.StringBuilder: void <init>(java.lang.String)>($r28);
+
+        $r29 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" FAILED: ");
+
+        $r30 = virtualinvoke $r24.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r31 = virtualinvoke $r30.<java.lang.Class: java.lang.String getName()>();
+
+        $r32 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r31);
+
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" in iteration ");
+
+        $r47 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $l16 = $r47.<gc.memory.LargePagesTest.LargePagesTest: long iterations>;
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l16);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(": ");
+
+        $r36 = virtualinvoke $r24.<java.lang.Throwable: java.lang.String getMessage()>();
+
+        $r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r36);
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r38);
+
+        return;
+
+     label04:
+        $r48 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $l1 = $r48.<gc.memory.LargePagesTest.LargePagesTest: long iterations>;
+
+        $l2 = $l1 + 1L;
+
+        $r49 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r49.<gc.memory.LargePagesTest.LargePagesTest: long iterations> = $l2;
+
+        $r50 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $z0 = $r50.<gc.memory.LargePagesTest.LargePagesTest: boolean verbose>;
+
+        if $z0 == 0 goto label05;
+
+        $r51 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $l6 = $r51.<gc.memory.LargePagesTest.LargePagesTest: long iterations>;
+
+        $l7 = $l6 % 1000L;
+
+        $b8 = $l7 cmp 0L;
+
+        if $b8 != 0 goto label05;
+
+        $r52 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r2 = $r52.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void print(java.lang.String)>(".");
+
+     label05:
+        $r53 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $z2 = $r53.<gc.memory.LargePagesTest.LargePagesTest: boolean verbose>;
+
+        if $z2 == 0 goto label06;
+
+        $r54 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $l3 = $r54.<gc.memory.LargePagesTest.LargePagesTest: long iterations>;
+
+        $l4 = $l3 % 60000L;
+
+        $b5 = $l4 cmp 0L;
+
+        if $b5 != 0 goto label06;
+
+        $r55 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r1 = $r55.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(".");
+
+     label06:
+        $l17 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l18 = $l17 - $l0;
+
+        $r56 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $l19 = $r56.<gc.memory.LargePagesTest.LargePagesTest: long duration>;
+
+        $b20 = $l18 cmp $l19;
+
+        $i21 = (int) $b20;
+
+        if $i21 < 0 goto label01;
+
+        $r57 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $z1 = $r57.<gc.memory.LargePagesTest.LargePagesTest: boolean verbose>;
+
+        if $z1 == 0 goto label07;
+
+        $r58 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r23 = $r58.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>("");
+
+     label07:
+        $l9 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l15 = $l9 - $l0;
+
+        $r59 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $l10 = $r59.<gc.memory.LargePagesTest.LargePagesTest: long duration>;
+
+        $b11 = $l10 cmp $l15;
+
+        $i22 = (int) $b11;
+
+        if $i22 <= 0 goto label08;
+
+        $r60 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r10 = $r60.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        $r40 = new java.lang.StringBuilder;
+
+        $r61 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r11 = virtualinvoke $r61.<gc.memory.LargePagesTest.LargePagesTest: java.lang.String getName()>();
+
+        $r12 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r11);
+
+        specialinvoke $r40.<java.lang.StringBuilder: void <init>(java.lang.String)>($r12);
+
+        $r13 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  FAILED: Execution time < requested execution time.");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r10.<java.io.PrintStream: void println(java.lang.String)>($r14);
+
+        $r62 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r16 = $r62.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        $r41 = new java.lang.StringBuilder;
+
+        specialinvoke $r41.<java.lang.StringBuilder: void <init>(java.lang.String)>("                execution time is ");
+
+        $r17 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l15);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r18);
+
+        $r63 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r20 = $r63.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        $r42 = new java.lang.StringBuilder;
+
+        specialinvoke $r42.<java.lang.StringBuilder: void <init>(java.lang.String)>("                requested time is ");
+
+        $r64 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $l14 = $r64.<gc.memory.LargePagesTest.LargePagesTest: long duration>;
+
+        $r21 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l14);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>($r22);
+
+        goto label10;
+
+     label08:
+        $r65 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $l12 = $r65.<gc.memory.LargePagesTest.LargePagesTest: long iterations>;
+
+        $b13 = $l12 cmp 0L;
+
+        $i23 = (int) $b13;
+
+        if $i23 > 0 goto label09;
+
+        $r66 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r4 = $r66.<gc.memory.LargePagesTest.LargePagesTest: java.io.PrintStream out>;
+
+        $r43 = new java.lang.StringBuilder;
+
+        $r67 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r5 = virtualinvoke $r67.<gc.memory.LargePagesTest.LargePagesTest: java.lang.String getName()>();
+
+        $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r5);
+
+        specialinvoke $r43.<java.lang.StringBuilder: void <init>(java.lang.String)>($r6);
+
+        $r7 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  FAILED: No executions finished");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        goto label10;
+
+     label09:
+        $r68 = (gc.memory.LargePagesTest.LargePagesTest) r0;
+
+        $r68.<gc.memory.LargePagesTest.LargePagesTest: boolean result> = 1;
+
+     label10:
+        return;
+
+        catch java.lang.Throwable from label01 to label02 with label03;
+    }
+
+    private void allocate()
+    {
+        gc.memory.LargePagesTest.LargePagesTest$Dummy $r11;
+        gc.memory.LargePagesTest.LargePagesTest$Dummy[][][] $r3;
+        gc.memory.LargePagesTest.LargePagesTest $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19;
+        java.util.Random $r9, $r10;
+        int $i0, $i1, i2, i3;
+        LargePagesTest r2;
+        gc.memory.LargePagesTest.LargePagesTest$Dummy[] $r6, $r7;
+        gc.memory.LargePagesTest.LargePagesTest$Dummy[][] $r4, $r5;
+
+        r2 := @this: LargePagesTest;
+
+        $r9 = new java.util.Random;
+
+        specialinvoke $r9.<java.util.Random: void <init>()>();
+
+        i2 = 0;
+
+        goto label14;
+
+     label01:
+        $r10 = new java.util.Random;
+
+        specialinvoke $r10.<java.util.Random: void <init>()>();
+
+        i3 = 0;
+
+        $r12 = (gc.memory.LargePagesTest.LargePagesTest) r2;
+
+        $i0 = $r12.<gc.memory.LargePagesTest.LargePagesTest: int myType>;
+
+        tableswitch($i0)
+        {
+            case 1: goto label02;
+            case 2: goto label03;
+            case 3: goto label04;
+            case 4: goto label05;
+            default: goto label06;
+        };
+
+     label02:
+        i3 = 5;
+
+        goto label06;
+
+     label03:
+        i3 = 1;
+
+        goto label06;
+
+     label04:
+        i3 = virtualinvoke $r10.<java.util.Random: int nextInt(int)>(100);
+
+        goto label06;
+
+     label05:
+        $i1 = virtualinvoke $r10.<java.util.Random: int nextInt(int)>(100);
+
+        i3 = $i1;
+
+        if $i1 < 2 goto label06;
+
+        if $i1 > 4 goto label06;
+
+        i3 = 5;
+
+        goto label06;
+
+     label06:
+        tableswitch(i3)
+        {
+            case 0: goto label07;
+            case 1: goto label08;
+            case 2: goto label09;
+            case 3: goto label10;
+            case 4: goto label11;
+            default: goto label12;
+        };
+
+     label07:
+        $r7 = newarray (gc.memory.LargePagesTest.LargePagesTest$Dummy)[10];
+
+        $r13 = (gc.memory.LargePagesTest.LargePagesTest) r2;
+
+        $r13.<gc.memory.LargePagesTest.LargePagesTest: gc.memory.LargePagesTest.LargePagesTest$Dummy[] d0> = $r7;
+
+        goto label13;
+
+     label08:
+        $r6 = newarray (gc.memory.LargePagesTest.LargePagesTest$Dummy)[1000];
+
+        $r14 = (gc.memory.LargePagesTest.LargePagesTest) r2;
+
+        $r14.<gc.memory.LargePagesTest.LargePagesTest: gc.memory.LargePagesTest.LargePagesTest$Dummy[] d1> = $r6;
+
+        goto label13;
+
+     label09:
+        $r5 = newmultiarray (gc.memory.LargePagesTest.LargePagesTest$Dummy)[10][10];
+
+        $r15 = (gc.memory.LargePagesTest.LargePagesTest) r2;
+
+        $r15.<gc.memory.LargePagesTest.LargePagesTest: gc.memory.LargePagesTest.LargePagesTest$Dummy[][] d2> = $r5;
+
+        goto label13;
+
+     label10:
+        $r4 = newmultiarray (gc.memory.LargePagesTest.LargePagesTest$Dummy)[100][100];
+
+        $r16 = (gc.memory.LargePagesTest.LargePagesTest) r2;
+
+        $r16.<gc.memory.LargePagesTest.LargePagesTest: gc.memory.LargePagesTest.LargePagesTest$Dummy[][] d3> = $r4;
+
+        goto label13;
+
+     label11:
+        $r3 = newmultiarray (gc.memory.LargePagesTest.LargePagesTest$Dummy)[10][10][10];
+
+        $r17 = (gc.memory.LargePagesTest.LargePagesTest) r2;
+
+        $r17.<gc.memory.LargePagesTest.LargePagesTest: gc.memory.LargePagesTest.LargePagesTest$Dummy[][][] d4> = $r3;
+
+        goto label13;
+
+     label12:
+        $r11 = new gc.memory.LargePagesTest.LargePagesTest$Dummy;
+
+        $r18 = (gc.memory.LargePagesTest.LargePagesTest) r2;
+
+        specialinvoke $r11.<gc.memory.LargePagesTest.LargePagesTest$Dummy: void <init>(gc.memory.LargePagesTest.LargePagesTest)>($r18);
+
+        $r19 = (gc.memory.LargePagesTest.LargePagesTest) r2;
+
+        $r19.<gc.memory.LargePagesTest.LargePagesTest: gc.memory.LargePagesTest.LargePagesTest$Dummy d5> = $r11;
+
+     label13:
+        i2 = i2 + 1;
+
+     label14:
+        if i2 < 1000 goto label01;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.StringBuilder $r9, $r22, $r32, $r34, $r38, $r39, $r47, $r50, $r51, $r53, $r58, $r59, $r61, $r62, $r63;
+        long $l7, $l15, $l16, l19;
+        java.lang.String r2, $r3, $r4, $r5, $r8, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r23, $r30, $r31, $r35, $r40, $r45, $r46, $r49, $r52, $r54, r55, r56, $r57;
+        gc.memory.LargePagesTest.LargePagesTest[] $r41;
+        boolean $z0, $z1, z2;
+        gc.memory.LargePagesTest.LargePagesTest $r24, $r25, $r26, $r27, $r29, $r33, $r37, $r44, $r60;
+        java.lang.String[] r1;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i17, $i18, i20, $i21, i22, i23, i24, $i25, i26, $i27, i28, $i29, $i31, $i33, $i35, $i37, $i39, $i41;
+        java.io.PrintStream r0, $r7;
+        java.lang.InterruptedException $r42;
+        java.lang.Class $r48;
+
+        r1 := @parameter0: java.lang.String[];
+
+        l19 = 1800000L;
+
+        r0 = <java.lang.System: java.io.PrintStream out>;
+
+        z2 = 1;
+
+        i20 = 0;
+
+        goto label06;
+
+     label01:
+        r55 = "noThreads=";
+
+        r56 = "duration=";
+
+        r2 = "verbose=";
+
+        $r3 = r1[i20];
+
+        $i0 = virtualinvoke $r3.<java.lang.String: int indexOf(java.lang.String)>("noThreads=");
+
+        $i31 = (int) -1;
+
+        if $i0 == $i31 goto label02;
+
+        $r17 = r1[i20];
+
+        $i8 = virtualinvoke r55.<java.lang.String: int length()>();
+
+        $r18 = r1[i20];
+
+        $i9 = virtualinvoke $r18.<java.lang.String: int length()>();
+
+        $r19 = virtualinvoke $r17.<java.lang.String: java.lang.String substring(int,int)>($i8, $i9);
+
+        $i10 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r19);
+
+        <gc.memory.LargePagesTest.LargePagesTest: int noThreads> = $i10;
+
+        goto label05;
+
+     label02:
+        $r4 = r1[i20];
+
+        $i1 = virtualinvoke $r4.<java.lang.String: int indexOf(java.lang.String)>("duration=");
+
+        $i33 = (int) -1;
+
+        if $i1 == $i33 goto label03;
+
+        $r14 = r1[i20];
+
+        $i5 = virtualinvoke r56.<java.lang.String: int length()>();
+
+        $r15 = r1[i20];
+
+        $i6 = virtualinvoke $r15.<java.lang.String: int length()>();
+
+        $r16 = virtualinvoke $r14.<java.lang.String: java.lang.String substring(int,int)>($i5, $i6);
+
+        $l7 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r16);
+
+        l19 = 1000L * $l7;
+
+        goto label05;
+
+     label03:
+        $r5 = r1[i20];
+
+        $i2 = virtualinvoke $r5.<java.lang.String: int indexOf(java.lang.String)>("verbose=");
+
+        $i35 = (int) -1;
+
+        if $i2 == $i35 goto label04;
+
+        $r11 = r1[i20];
+
+        $i3 = virtualinvoke r2.<java.lang.String: int length()>();
+
+        $r12 = r1[i20];
+
+        $i4 = virtualinvoke $r12.<java.lang.String: int length()>();
+
+        $r13 = virtualinvoke $r11.<java.lang.String: java.lang.String substring(int,int)>($i3, $i4);
+
+        z2 = staticinvoke <java.lang.Boolean: boolean parseBoolean(java.lang.String)>($r13);
+
+        goto label05;
+
+     label04:
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r58 = new java.lang.StringBuilder;
+
+        specialinvoke $r58.<java.lang.StringBuilder: void <init>(java.lang.String)>("ERROR: Unknown argument string: ");
+
+        $r8 = r1[i20];
+
+        $r9 = virtualinvoke $r58.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        $i37 = (int) -1;
+
+        staticinvoke <java.lang.System: void exit(int)>($i37);
+
+     label05:
+        i20 = i20 + 1;
+
+     label06:
+        $i21 = lengthof r1;
+
+        if i20 < $i21 goto label01;
+
+        $i11 = <gc.memory.LargePagesTest.LargePagesTest: int noThreads>;
+
+        if $i11 > 0 goto label07;
+
+        <gc.memory.LargePagesTest.LargePagesTest: int noThreads> = 1;
+
+     label07:
+        $i12 = <gc.memory.LargePagesTest.LargePagesTest: int noThreads>;
+
+        $r41 = newarray (gc.memory.LargePagesTest.LargePagesTest)[$i12];
+
+        i22 = 0;
+
+        goto label09;
+
+     label08:
+        $r60 = new gc.memory.LargePagesTest.LargePagesTest;
+
+        $r59 = new java.lang.StringBuilder;
+
+        specialinvoke $r59.<java.lang.StringBuilder: void <init>(java.lang.String)>("DurAllocator ");
+
+        $r22 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i22);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r60.<gc.memory.LargePagesTest.LargePagesTest: void <init>(java.lang.String,long,java.io.PrintStream,boolean)>($r23, l19, r0, z2);
+
+        $r41[i22] = $r60;
+
+        i22 = i22 + 1;
+
+     label09:
+        $i13 = <gc.memory.LargePagesTest.LargePagesTest: int noThreads>;
+
+        if i22 < $i13 goto label08;
+
+        $r24 = $r41[0];
+
+        virtualinvoke $r24.<gc.memory.LargePagesTest.LargePagesTest: void describe()>();
+
+        i23 = 0;
+
+        goto label11;
+
+     label10:
+        $r25 = $r41[i23];
+
+        virtualinvoke $r25.<gc.memory.LargePagesTest.LargePagesTest: void start()>();
+
+        i23 = i23 + 1;
+
+     label11:
+        $i14 = <gc.memory.LargePagesTest.LargePagesTest: int noThreads>;
+
+        if i23 < $i14 goto label10;
+
+        i24 = 0;
+
+        goto label16;
+
+     label12:
+        $r26 = $r41[i24];
+
+        $l15 = l19 + 600000L;
+
+        virtualinvoke $r26.<gc.memory.LargePagesTest.LargePagesTest: void join(long)>($l15);
+
+     label13:
+        goto label15;
+
+     label14:
+        $r42 := @caughtexception;
+
+        $r61 = new java.lang.StringBuilder;
+
+        $r44 = $r41[i24];
+
+        $r45 = virtualinvoke $r44.<gc.memory.LargePagesTest.LargePagesTest: java.lang.String getName()>();
+
+        $r46 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r45);
+
+        specialinvoke $r61.<java.lang.StringBuilder: void <init>(java.lang.String)>($r46);
+
+        $r47 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" FAILED: ");
+
+        $r48 = virtualinvoke $r42.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r49 = virtualinvoke $r48.<java.lang.Class: java.lang.String getName()>();
+
+        $r50 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r49);
+
+        $r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r52 = virtualinvoke $r42.<java.lang.InterruptedException: java.lang.String getMessage()>();
+
+        $r53 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r52);
+
+        $r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r0.<java.io.PrintStream: void println(java.lang.String)>($r54);
+
+        $i39 = (int) -1;
+
+        staticinvoke <java.lang.System: void exit(int)>($i39);
+
+     label15:
+        i24 = i24 + 1;
+
+     label16:
+        $i25 = <gc.memory.LargePagesTest.LargePagesTest: int noThreads>;
+
+        if i24 < $i25 goto label12;
+
+        i26 = 0;
+
+        goto label19;
+
+     label17:
+        $r27 = $r41[i26];
+
+        $z0 = $r27.<gc.memory.LargePagesTest.LargePagesTest: boolean result>;
+
+        if $z0 != 0 goto label18;
+
+        $r62 = new java.lang.StringBuilder;
+
+        $r29 = $r41[i26];
+
+        $r30 = virtualinvoke $r29.<gc.memory.LargePagesTest.LargePagesTest: java.lang.String getName()>();
+
+        $r31 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r30);
+
+        specialinvoke $r62.<java.lang.StringBuilder: void <init>(java.lang.String)>($r31);
+
+        $r32 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" FAILED: status=");
+
+        $r33 = $r41[i26];
+
+        $z1 = $r33.<gc.memory.LargePagesTest.LargePagesTest: boolean result>;
+
+        $r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z1);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r0.<java.io.PrintStream: void println(java.lang.String)>($r35);
+
+        $i41 = (int) -1;
+
+        staticinvoke <java.lang.System: void exit(int)>($i41);
+
+     label18:
+        i26 = i26 + 1;
+
+     label19:
+        $i27 = <gc.memory.LargePagesTest.LargePagesTest: int noThreads>;
+
+        if i26 < $i27 goto label17;
+
+        if z2 == 0 goto label20;
+
+        virtualinvoke r0.<java.io.PrintStream: void println()>();
+
+     label20:
+        virtualinvoke r0.<java.io.PrintStream: void print(java.lang.String)>("DurAllocator PASSED with (");
+
+        i28 = 0;
+
+        goto label24;
+
+     label21:
+        $r63 = new java.lang.StringBuilder;
+
+        specialinvoke $r63.<java.lang.StringBuilder: void <init>()>();
+
+        $r37 = $r41[i28];
+
+        $l16 = $r37.<gc.memory.LargePagesTest.LargePagesTest: long iterations>;
+
+        $r38 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l16);
+
+        $i18 = i28 + 1;
+
+        $i17 = <gc.memory.LargePagesTest.LargePagesTest: int noThreads>;
+
+        if $i18 >= $i17 goto label22;
+
+        $r57 = "+";
+
+        goto label23;
+
+     label22:
+        $r57 = "";
+
+     label23:
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r57);
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke r0.<java.io.PrintStream: void print(java.lang.String)>($r40);
+
+        i28 = i28 + 1;
+
+     label24:
+        $i29 = <gc.memory.LargePagesTest.LargePagesTest: int noThreads>;
+
+        if i28 < $i29 goto label21;
+
+        virtualinvoke r0.<java.io.PrintStream: void println(java.lang.String)>(") iterations.");
+
+        return;
+
+        catch java.lang.InterruptedException from label12 to label13 with label14;
+    }
+}

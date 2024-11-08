@@ -1,0 +1,49 @@
+public class TestShrinkHeapInSteps extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestShrinkHeapInSteps r0;
+
+        r0 := @this: TestShrinkHeapInSteps;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.util.List $r3;
+        java.lang.String[] $r1, $r2, r4;
+        java.util.LinkedList $r0;
+
+        r4 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.LinkedList;
+
+        $r1 = newarray (java.lang.String)[2];
+
+        $r1[0] = "-XX:[^ ]*HeapFreeRatio";
+
+        $r1[1] = "-XX:\\+ExplicitGCInvokesConcurrent";
+
+        $r2 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getFilteredTestJavaOpts(java.lang.String[])>($r1);
+
+        $r3 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r2);
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>(java.util.Collection)>($r3);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void positiveTest(int,boolean,int,boolean,boolean,java.util.LinkedList)>(10, 0, 90, 0, 0, $r0);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void positiveTest(int,boolean,int,boolean,boolean,java.util.LinkedList)>(10, 1, 80, 0, 0, $r0);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void positiveTest(int,boolean,int,boolean,boolean,java.util.LinkedList)>(20, 0, 70, 1, 0, $r0);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void positiveTest(int,boolean,int,boolean,boolean,java.util.LinkedList)>(25, 1, 65, 1, 0, $r0);
+
+        staticinvoke <gc.arguments.TestMaxMinHeapFreeRatioFlags: void positiveTest(int,boolean,int,boolean,boolean,java.util.LinkedList)>(40, 0, 50, 0, 0, $r0);
+
+        return;
+    }
+}

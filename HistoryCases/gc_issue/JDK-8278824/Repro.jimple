@@ -1,0 +1,256 @@
+public final class Repro extends java.lang.Object
+{
+    public static final long tps;
+    public static final long targetSize;
+    public static volatile byte[] hole;
+    final java.util.concurrent.ExecutorService root;
+    final java.util.concurrent.ScheduledExecutorService timer;
+    final java.util.concurrent.BlockingQueue queue;
+    final java.util.concurrent.atomic.AtomicLong count;
+
+    public void <init>()
+    {
+        java.util.concurrent.atomic.AtomicLong $r6;
+        java.util.concurrent.ScheduledExecutorService $r2, $r3;
+        Repro r0;
+        java.util.concurrent.ScheduledThreadPoolExecutor $r4;
+        java.util.concurrent.BlockingQueue $r5;
+        java.util.concurrent.ExecutorService $r1;
+
+        r0 := @this: Repro;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ExecutorService newCachedThreadPool()>();
+
+        r0.<Repro: java.util.concurrent.ExecutorService root> = $r1;
+
+        $r2 = staticinvoke <java.util.concurrent.Executors: java.util.concurrent.ScheduledExecutorService newScheduledThreadPool(int)>(28);
+
+        r0.<Repro: java.util.concurrent.ScheduledExecutorService timer> = $r2;
+
+        $r3 = r0.<Repro: java.util.concurrent.ScheduledExecutorService timer>;
+
+        $r4 = (java.util.concurrent.ScheduledThreadPoolExecutor) $r3;
+
+        $r5 = virtualinvoke $r4.<java.util.concurrent.ScheduledThreadPoolExecutor: java.util.concurrent.BlockingQueue getQueue()>();
+
+        r0.<Repro: java.util.concurrent.BlockingQueue queue> = $r5;
+
+        $r6 = new java.util.concurrent.atomic.AtomicLong;
+
+        specialinvoke $r6.<java.util.concurrent.atomic.AtomicLong: void <init>()>();
+
+        r0.<Repro: java.util.concurrent.atomic.AtomicLong count> = $r6;
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Throwable $r1;
+        Repro $r0;
+        java.lang.String[] r2;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = new Repro;
+
+        specialinvoke $r0.<Repro: void <init>()>();
+
+     label1:
+        virtualinvoke $r0.<Repro: void run()>();
+
+     label2:
+        virtualinvoke $r0.<Repro: void close()>();
+
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        virtualinvoke $r0.<Repro: void close()>();
+
+        throw $r1;
+
+     label4:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+    }
+
+    public void run()
+    {
+        java.util.concurrent.ScheduledFuture $r8;
+        Repro r0;
+        long $l0, l1, $l2, $l3, $l5, l6;
+        java.lang.Runnable $r2, $r6, $r10;
+        byte $b4;
+        java.util.concurrent.ScheduledExecutorService $r1, $r5;
+        int $i7;
+        java.util.concurrent.ExecutorService $r9;
+        java.util.concurrent.TimeUnit $r3, $r4, $r7;
+
+        r0 := @this: Repro;
+
+        $r1 = r0.<Repro: java.util.concurrent.ScheduledExecutorService timer>;
+
+        $r2 = staticinvoke <Repro$report__1: java.lang.Runnable bootstrap$(Repro)>(r0);
+
+        $r3 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+
+        interfaceinvoke $r1.<java.util.concurrent.ScheduledExecutorService: java.util.concurrent.ScheduledFuture scheduleAtFixedRate(java.lang.Runnable,long,long,java.util.concurrent.TimeUnit)>($r2, 1L, 1L, $r3);
+
+        $r4 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+
+        $l0 = virtualinvoke $r4.<java.util.concurrent.TimeUnit: long toNanos(long)>(1L);
+
+        l1 = $l0 / 10000L;
+
+        l6 = staticinvoke <java.lang.System: long nanoTime()>();
+
+     label1:
+        $r5 = r0.<Repro: java.util.concurrent.ScheduledExecutorService timer>;
+
+        $r6 = staticinvoke <Repro$onTimeout__2: java.lang.Runnable bootstrap$()>();
+
+        $r7 = <java.util.concurrent.TimeUnit: java.util.concurrent.TimeUnit SECONDS>;
+
+        $r8 = interfaceinvoke $r5.<java.util.concurrent.ScheduledExecutorService: java.util.concurrent.ScheduledFuture schedule(java.lang.Runnable,long,java.util.concurrent.TimeUnit)>($r6, 40L, $r7);
+
+        $r9 = r0.<Repro: java.util.concurrent.ExecutorService root>;
+
+        $r10 = staticinvoke <Repro$lambda_run_0__3: java.lang.Runnable bootstrap$(Repro,java.util.concurrent.ScheduledFuture)>(r0, $r8);
+
+        interfaceinvoke $r9.<java.util.concurrent.ExecutorService: void execute(java.lang.Runnable)>($r10);
+
+        $l5 = l6 + l1;
+
+        l6 = $l5;
+
+        $l2 = staticinvoke <java.lang.System: long nanoTime()>();
+
+        $l3 = $l5 - $l2;
+
+        $b4 = $l3 cmp 0L;
+
+        $i7 = (int) $b4;
+
+        if $i7 <= 0 goto label2;
+
+        staticinvoke <java.util.concurrent.locks.LockSupport: void parkNanos(long)>($l3);
+
+     label2:
+        goto label1;
+    }
+
+    void report()
+    {
+        byte[] $r12;
+        java.util.Date $r2;
+        Repro r5;
+        long $l0;
+        int $i1;
+        java.lang.String $r14;
+        java.io.PrintStream $r1;
+        java.util.concurrent.BlockingQueue $r9;
+        java.util.concurrent.atomic.AtomicLong $r6;
+        java.lang.StringBuilder $r0, $r3, $r4, $r7, $r8, $r10, $r11, $r13;
+
+        r5 := @this: Repro;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = new java.util.Date;
+
+        specialinvoke $r2.<java.util.Date: void <init>()>();
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" count: ");
+
+        $r6 = r5.<Repro: java.util.concurrent.atomic.AtomicLong count>;
+
+        $l0 = virtualinvoke $r6.<java.util.concurrent.atomic.AtomicLong: long getAndSet(long)>(0L);
+
+        $r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" queue: ");
+
+        $r9 = r5.<Repro: java.util.concurrent.BlockingQueue queue>;
+
+        $i1 = interfaceinvoke $r9.<java.util.concurrent.BlockingQueue: int size()>();
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" hole: ");
+
+        $r12 = <Repro: byte[] hole>;
+
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r12);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r14);
+
+        return;
+    }
+
+    public static void onTimeout()
+    {
+        java.io.PrintStream $r0;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("timeout");
+
+        return;
+    }
+
+    public void close()
+    {
+        java.util.concurrent.ScheduledExecutorService $r2;
+        Repro r0;
+        java.util.concurrent.ExecutorService $r1;
+
+        r0 := @this: Repro;
+
+        $r1 = r0.<Repro: java.util.concurrent.ExecutorService root>;
+
+        interfaceinvoke $r1.<java.util.concurrent.ExecutorService: void shutdown()>();
+
+        $r2 = r0.<Repro: java.util.concurrent.ScheduledExecutorService timer>;
+
+        interfaceinvoke $r2.<java.util.concurrent.ScheduledExecutorService: void shutdown()>();
+
+        return;
+    }
+
+    public void lambda$run$0(java.util.concurrent.ScheduledFuture)
+    {
+        java.util.concurrent.atomic.AtomicLong $r1;
+        byte[] $r2;
+        java.util.concurrent.ScheduledFuture r3;
+        Repro r0;
+
+        r0 := @this: Repro;
+
+        r3 := @parameter0: java.util.concurrent.ScheduledFuture;
+
+        $r1 = r0.<Repro: java.util.concurrent.atomic.AtomicLong count>;
+
+        virtualinvoke $r1.<java.util.concurrent.atomic.AtomicLong: long incrementAndGet()>();
+
+        $r2 = newarray (byte)[65536];
+
+        <Repro: byte[] hole> = $r2;
+
+        interfaceinvoke r3.<java.util.concurrent.ScheduledFuture: boolean cancel(boolean)>(1);
+
+        return;
+    }
+}

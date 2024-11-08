@@ -1,0 +1,307 @@
+public class large001 extends nsk.share.gc.ThreadedGCTest
+{
+    static final java.lang.String PREFIX;
+    static final java.lang.String[] LCLASSES;
+    static final java.lang.String[] SCLASSES;
+    boolean isOverLimitFields;
+    int aggregationDepth;
+    java.lang.String largeClassesPath;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0, $r1;
+
+        $r0 = newarray (java.lang.String)[13];
+
+        $r0[0] = "nsk.share.gc.newclass.private_int_lchild";
+
+        $r0[1] = "nsk.share.gc.newclass.protected_short_lchild";
+
+        $r0[2] = "nsk.share.gc.newclass.public_long_lchild";
+
+        $r0[3] = "nsk.share.gc.newclass.public_Object_lchild";
+
+        $r0[4] = "nsk.share.gc.newclass.static_byte_lchild";
+
+        $r0[5] = "nsk.share.gc.newclass.static_float_lchild";
+
+        $r0[6] = "nsk.share.gc.newclass.transient_boolean_lchild";
+
+        $r0[7] = "nsk.share.gc.newclass.volatile_double_lchild";
+
+        $r0[8] = "nsk.share.gc.newclass.protected_combination_lchild";
+
+        $r0[9] = "nsk.share.gc.newclass.public_combination_lchild";
+
+        $r0[10] = "nsk.share.gc.newclass.static_combination_lchild";
+
+        $r0[11] = "nsk.share.gc.newclass.transient_combination_lchild";
+
+        $r0[12] = "nsk.share.gc.newclass.volatile_combination_lchild";
+
+        <gc.gctests.LargeObjects.large001.large001: java.lang.String[] LCLASSES> = $r0;
+
+        $r1 = newarray (java.lang.String)[13];
+
+        $r1[0] = "nsk.share.gc.newclass.private_int_schild";
+
+        $r1[1] = "nsk.share.gc.newclass.protected_short_schild";
+
+        $r1[2] = "nsk.share.gc.newclass.public_long_schild";
+
+        $r1[3] = "nsk.share.gc.newclass.public_Object_schild";
+
+        $r1[4] = "nsk.share.gc.newclass.static_byte_schild";
+
+        $r1[5] = "nsk.share.gc.newclass.static_float_schild";
+
+        $r1[6] = "nsk.share.gc.newclass.transient_boolean_schild";
+
+        $r1[7] = "nsk.share.gc.newclass.volatile_double_schild";
+
+        $r1[8] = "nsk.share.gc.newclass.protected_combination_schild";
+
+        $r1[9] = "nsk.share.gc.newclass.public_combination_schild";
+
+        $r1[10] = "nsk.share.gc.newclass.static_combination_schild";
+
+        $r1[11] = "nsk.share.gc.newclass.transient_combination_schild";
+
+        $r1[12] = "nsk.share.gc.newclass.volatile_combination_schild";
+
+        <gc.gctests.LargeObjects.large001.large001: java.lang.String[] SCLASSES> = $r1;
+
+        return;
+    }
+
+    public void <init>(java.lang.String[])
+    {
+        java.lang.Throwable $r19;
+        java.lang.String[] r1;
+        large001 r0;
+        gc.gctests.LargeObjects.large001.large001 $r12, $r13, $r14, $r15, $r16, $r17, $r18;
+        int $i0, $i1, i2, $i3;
+        java.lang.String $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r10;
+        boolean $z0, $z1, $z2, $z3;
+        nsk.share.TestFailure $r11;
+
+        r0 := @this: large001;
+
+        r1 := @parameter0: java.lang.String[];
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r12 = (gc.gctests.LargeObjects.large001.large001) r0;
+
+        $r12.<gc.gctests.LargeObjects.large001.large001: boolean isOverLimitFields> = 1;
+
+        $r13 = (gc.gctests.LargeObjects.large001.large001) r0;
+
+        $r13.<gc.gctests.LargeObjects.large001.large001: int aggregationDepth> = 0;
+
+        i2 = 0;
+
+        goto label5;
+
+     label1:
+        $r2 = r1[i2];
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>("-largeClassesPath");
+
+        if $z0 == 0 goto label2;
+
+        i2 = i2 + 1;
+
+        $r7 = r1[i2];
+
+        $r14 = (gc.gctests.LargeObjects.large001.large001) r0;
+
+        $r14.<gc.gctests.LargeObjects.large001.large001: java.lang.String largeClassesPath> = $r7;
+
+        goto label4;
+
+     label2:
+        $r3 = r1[i2];
+
+        $z1 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>("-isOverLimitFields");
+
+        if $z1 == 0 goto label3;
+
+        i2 = i2 + 1;
+
+        $r6 = r1[i2];
+
+        $z3 = staticinvoke <java.lang.Boolean: boolean getBoolean(java.lang.String)>($r6);
+
+        $r15 = (gc.gctests.LargeObjects.large001.large001) r0;
+
+        $r15.<gc.gctests.LargeObjects.large001.large001: boolean isOverLimitFields> = $z3;
+
+        goto label4;
+
+     label3:
+        $r4 = r1[i2];
+
+        $z2 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>("-aggregationDepth");
+
+        if $z2 == 0 goto label4;
+
+        i2 = i2 + 1;
+
+        $r5 = r1[i2];
+
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r5);
+
+        $r16 = (gc.gctests.LargeObjects.large001.large001) r0;
+
+        $r16.<gc.gctests.LargeObjects.large001.large001: int aggregationDepth> = $i0;
+
+     label4:
+        i2 = i2 + 1;
+
+     label5:
+        $i3 = lengthof r1;
+
+        if i2 < $i3 goto label1;
+
+        $r17 = (gc.gctests.LargeObjects.large001.large001) r0;
+
+        $r8 = $r17.<gc.gctests.LargeObjects.large001.large001: java.lang.String largeClassesPath>;
+
+        if $r8 == null goto label6;
+
+        $r18 = (gc.gctests.LargeObjects.large001.large001) r0;
+
+        $r10 = $r18.<gc.gctests.LargeObjects.large001.large001: java.lang.String largeClassesPath>;
+
+        $i1 = virtualinvoke $r10.<java.lang.String: int length()>();
+
+        if $i1 != 0 goto label7;
+
+     label6:
+        $r11 = new nsk.share.TestFailure;
+
+        specialinvoke $r11.<nsk.share.TestFailure: void <init>(java.lang.String)>("No classpath for large classes is given");
+
+        $r19 = (java.lang.Throwable) $r11;
+
+        throw $r19;
+
+     label7:
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.gctests.LargeObjects.large001.large001$Worker $r2;
+        gc.gctests.LargeObjects.large001.large001 $r3;
+        int i0;
+        large001 r1;
+        java.lang.Runnable $r4;
+
+        r1 := @this: large001;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.LargeObjects.large001.large001$Worker;
+
+        $r3 = (gc.gctests.LargeObjects.large001.large001) r1;
+
+        specialinvoke $r2.<gc.gctests.LargeObjects.large001.large001$Worker: void <init>(gc.gctests.LargeObjects.large001.large001,int)>($r3, i0);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public void run()
+    {
+        gc.gctests.LargeObjects.large001.large001 $r3, $r4, $r5;
+        nsk.share.log.Log $r1, $r2;
+        large001 r0;
+        boolean $z0;
+
+        r0 := @this: large001;
+
+        $r3 = (gc.gctests.LargeObjects.large001.large001) r0;
+
+        $z0 = $r3.<gc.gctests.LargeObjects.large001.large001: boolean isOverLimitFields>;
+
+        if $z0 == 0 goto label1;
+
+        $r4 = (gc.gctests.LargeObjects.large001.large001) r0;
+
+        $r2 = $r4.<gc.gctests.LargeObjects.large001.large001: nsk.share.log.Log log>;
+
+        interfaceinvoke $r2.<nsk.share.log.Log: void debug(java.lang.Object)>("Loading classes that have number of fields over limitation (more than 65535)");
+
+        goto label2;
+
+     label1:
+        $r5 = (gc.gctests.LargeObjects.large001.large001) r0;
+
+        $r1 = $r5.<gc.gctests.LargeObjects.large001.large001: nsk.share.log.Log log>;
+
+        interfaceinvoke $r1.<nsk.share.log.Log: void debug(java.lang.Object)>("Loading classes that have number of fields under limitation (less than 65535)");
+
+     label2:
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void run()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.LargeObjects.large001.large001 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.LargeObjects.large001.large001;
+
+        specialinvoke $r2.<gc.gctests.LargeObjects.large001.large001: void <init>(java.lang.String[])>(r1);
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.log.Log access$0(gc.gctests.LargeObjects.large001.large001)
+    {
+        nsk.share.log.Log $r1;
+        gc.gctests.LargeObjects.large001.large001 r0;
+
+        r0 := @parameter0: gc.gctests.LargeObjects.large001.large001;
+
+        $r1 = r0.<gc.gctests.LargeObjects.large001.large001: nsk.share.log.Log log>;
+
+        return $r1;
+    }
+
+    static nsk.share.test.ExecutionController access$1(gc.gctests.LargeObjects.large001.large001)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.LargeObjects.large001.large001 r0;
+
+        r0 := @parameter0: gc.gctests.LargeObjects.large001.large001;
+
+        $r1 = virtualinvoke r0.<gc.gctests.LargeObjects.large001.large001: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+
+    static nsk.share.runner.RunParams access$2(gc.gctests.LargeObjects.large001.large001)
+    {
+        nsk.share.runner.RunParams $r1;
+        gc.gctests.LargeObjects.large001.large001 r0;
+
+        r0 := @parameter0: gc.gctests.LargeObjects.large001.large001;
+
+        $r1 = r0.<gc.gctests.LargeObjects.large001.large001: nsk.share.runner.RunParams runParams>;
+
+        return $r1;
+    }
+}

@@ -1,0 +1,291 @@
+public class TestIHOPErgo extends java.lang.Object
+{
+    private static final java.lang.String[] COMMON_OPTIONS;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        $r0 = newarray (java.lang.String)[12];
+
+        $r0[0] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r0[1] = "-XX:G1MixedGCLiveThresholdPercent=100";
+
+        $r0[2] = "-XX:G1HeapWastePercent=0";
+
+        $r0[3] = "-XX:MaxGCPauseMillis=30000";
+
+        $r0[4] = "-XX:G1MixedGCCountTarget=1";
+
+        $r0[5] = "-XX:+UseG1GC";
+
+        $r0[6] = "-XX:G1HeapRegionSize=1m";
+
+        $r0[7] = "-XX:+G1UseAdaptiveIHOP";
+
+        $r0[8] = "-Xlog:gc+ihop=debug,gc+ihop+ergo=debug,gc+ergo=debug";
+
+        $r0[9] = "-XX:+AlwaysTenure";
+
+        $r0[10] = "-XX:G1AdaptiveIHOPNumInitialSamples=1";
+
+        $r0[11] = "-XX:InitiatingHeapOccupancyPercent=30";
+
+        <gc.g1.ihop.TestIHOPErgo: java.lang.String[] COMMON_OPTIONS> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestIHOPErgo r0;
+
+        r0 := @this: TestIHOPErgo;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Throwable
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.g1.ihop.TestIHOPErgo: void runTest(int,int,boolean)>(64, 0, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPErgo: void runTest(int,int,boolean)>(64, 100, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPErgo: void runTest(int,int,boolean)>(128, 100, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPErgo: void runTest(int,int,boolean)>(256, 50, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPErgo: void runTest(int,int,boolean)>(512, 30, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPErgo: void runTest(int,int,boolean)>(64, 50, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPErgo: void runTest(int,int,boolean)>(128, 200, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPErgo: void runTest(int,int,boolean)>(256, 100, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPErgo: void runTest(int,int,boolean)>(512, 50, 1);
+
+        return;
+    }
+
+    private static void runTest(int, int, boolean) throws java.lang.Throwable
+    {
+        boolean z0;
+        jdk.test.lib.process.OutputAnalyzer $r36;
+        java.lang.StringBuilder $r1, $r3, $r7, $r8, $r10, $r11, $r13, $r14, $r15, $r17, $r18, $r19, $r21, $r22, $r23, $r25, $r26, $r27, $r29, $r30, $r31;
+        java.lang.String[] $r6, $r33;
+        java.util.ArrayList $r5;
+        int i0, i1, $i2, $i3;
+        java.lang.String $r4, $r9, $r12, $r16, $r20, $r24, $r28, $r32, $r35, $r37;
+        java.io.PrintStream $r0, $r2;
+        java.lang.Class $r34;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        z0 := @parameter2: boolean;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("IHOP test:");
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("  MaxHeapSize : ");
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r4);
+
+        $r5 = new java.util.ArrayList;
+
+        specialinvoke $r5.<java.util.ArrayList: void <init>()>();
+
+        $r6 = newarray (java.lang.String)[7];
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Dheap.size=");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6[0] = $r9;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Dsleep.time=");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6[1] = $r12;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MaxHeapSize=");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6[2] = $r16;
+
+        $r17 = new java.lang.StringBuilder;
+
+        specialinvoke $r17.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:NewSize=");
+
+        $i2 = i0 / 8;
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6[3] = $r20;
+
+        $r21 = new java.lang.StringBuilder;
+
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MaxNewSize=");
+
+        $i3 = i0 / 8;
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6[4] = $r24;
+
+        $r25 = new java.lang.StringBuilder;
+
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:InitialHeapSize=");
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6[5] = $r28;
+
+        $r29 = new java.lang.StringBuilder;
+
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:");
+
+        if z0 == 0 goto label1;
+
+        $r37 = "+";
+
+        goto label2;
+
+     label1:
+        $r37 = "-";
+
+     label2:
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r37);
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("G1UseAdaptiveIHOP");
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6[6] = $r32;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r5, $r6);
+
+        $r33 = <gc.g1.ihop.TestIHOPErgo: java.lang.String[] COMMON_OPTIONS>;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r5, $r33);
+
+        $r34 = class "Lgc/g1/ihop/TestIHOPErgo$AppIHOP;";
+
+        $r35 = virtualinvoke $r34.<java.lang.Class: java.lang.String getName()>();
+
+        interfaceinvoke $r5.<java.util.List: boolean add(java.lang.Object)>($r35);
+
+        $r36 = staticinvoke <gc.g1.ihop.TestIHOPErgo: jdk.test.lib.process.OutputAnalyzer executeTest(java.util.List)>($r5);
+
+        if z0 == 0 goto label3;
+
+        staticinvoke <gc.g1.ihop.lib.IhopUtils: void checkAdaptiveIHOPWasActivated(jdk.test.lib.process.OutputAnalyzer)>($r36);
+
+     label3:
+        staticinvoke <gc.g1.ihop.lib.IhopUtils: void checkErgoMessagesExist(jdk.test.lib.process.OutputAnalyzer)>($r36);
+
+        staticinvoke <gc.g1.ihop.lib.IhopUtils: void checkIhopLogValues(jdk.test.lib.process.OutputAnalyzer)>($r36);
+
+        return;
+    }
+
+    private static jdk.test.lib.process.OutputAnalyzer executeTest(java.util.List) throws java.lang.Throwable, java.lang.RuntimeException
+    {
+        java.io.PrintStream $r5;
+        java.lang.Object[] $r2;
+        java.lang.String[] $r1, $r3;
+        java.lang.RuntimeException $r7;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+        java.util.List r0;
+        int $i0, $i1, $i2;
+        java.lang.StringBuilder $r8, $r9;
+        java.lang.String $r6, $r10;
+
+        r0 := @parameter0: java.util.List;
+
+        $i0 = interfaceinvoke r0.<java.util.List: int size()>();
+
+        $r1 = newarray (java.lang.String)[$i0];
+
+        $r2 = interfaceinvoke r0.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r1);
+
+        $r3 = (java.lang.String[]) $r2;
+
+        $r4 = staticinvoke <jdk.test.lib.process.ProcessTools: jdk.test.lib.process.OutputAnalyzer executeTestJvm(java.lang.String[])>($r3);
+
+        $i1 = virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        if $i1 == 0 goto label1;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $r7 = new java.lang.RuntimeException;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("AppIHOP failed with exit code");
+
+        $i2 = virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r7.<java.lang.RuntimeException: void <init>(java.lang.String)>($r10);
+
+        throw $r7;
+
+     label1:
+        return $r4;
+    }
+}

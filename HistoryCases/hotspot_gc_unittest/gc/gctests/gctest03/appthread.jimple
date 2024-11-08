@@ -1,0 +1,14 @@
+public class appthread extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        appthread r0;
+
+        r0 := @this: appthread;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

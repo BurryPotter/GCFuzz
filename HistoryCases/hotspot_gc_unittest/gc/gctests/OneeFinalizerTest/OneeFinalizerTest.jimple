@@ -1,0 +1,287 @@
+public class OneeFinalizerTest extends nsk.share.gc.GCTestBase
+{
+    private gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter[] finalizerCounters;
+
+    public void <init>()
+    {
+        OneeFinalizerTest r0;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest $r1;
+
+        r0 := @this: OneeFinalizerTest;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        $r1 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest) r0;
+
+        $r1.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest: gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter[] finalizerCounters> = null;
+
+        return;
+    }
+
+    private void initOneeFinalizerTest(int)
+    {
+        OneeFinalizerTest r0;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter[] $r1, $r3;
+        int i0, i1;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest $r5, $r6, $r7, $r8;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter $r4;
+
+        r0 := @this: OneeFinalizerTest;
+
+        i0 := @parameter0: int;
+
+        $r5 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest) r0;
+
+        $r5.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest: gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter[] finalizerCounters> = null;
+
+        $r1 = newarray (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter)[i0];
+
+        $r6 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest) r0;
+
+        $r6.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest: gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter[] finalizerCounters> = $r1;
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        $r7 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest) r0;
+
+        $r3 = $r7.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest: gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter[] finalizerCounters>;
+
+        $r4 = new gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter;
+
+        $r8 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest) r0;
+
+        specialinvoke $r4.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter: void <init>(gc.gctests.OneeFinalizerTest.OneeFinalizerTest)>($r8);
+
+        $r3[i1] = $r4;
+
+        i1 = i1 + 1;
+
+     label2:
+        if i1 < i0 goto label1;
+
+        return;
+    }
+
+    public void run()
+    {
+        nsk.share.runner.RunParams $r4;
+        OneeFinalizerTest r0;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject[] r31;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest $r39, $r40, $r41, $r43;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject $r2, $r32;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter $r7;
+        boolean $z0;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter[] $r6;
+        nsk.share.test.Stresser $r33;
+        java.lang.StringBuilder $r10, $r14, $r15, $r16, $r21, $r22, $r26, $r27, $r34, $r35, $r36, $r37;
+        java.lang.Throwable $r44;
+        nsk.share.test.ExecutionController $r42;
+        nsk.share.test.StressOptions $r5;
+        int $i0, $i1, i2, i3, i4, i5;
+        java.lang.String $r11, $r17, $r23, $r28;
+        java.io.PrintStream $r9, $r13, $r18, $r25, $r29, $r30;
+        nsk.share.TestFailure $r38;
+
+        r0 := @this: OneeFinalizerTest;
+
+        $r39 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest) r0;
+
+        virtualinvoke $r39.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest: void initOneeFinalizerTest(int)>(2000);
+
+        r31 = newarray (gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject)[2000];
+
+        i2 = 0;
+
+        goto label02;
+
+     label01:
+        $r32 = new gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject;
+
+        $r40 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest) r0;
+
+        specialinvoke $r32.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$FinalizedObject: void <init>(gc.gctests.OneeFinalizerTest.OneeFinalizerTest,int)>($r40, i2);
+
+        r31[i2] = $r32;
+
+        i2 = i2 + 1;
+
+     label02:
+        if i2 < 2000 goto label01;
+
+        $r2 = r31[0];
+
+        $i0 = virtualinvoke $r2.<java.lang.Object: int hashCode()>();
+
+        if $i0 != 2128506 goto label03;
+
+        $r30 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r30.<java.io.PrintStream: void println(java.lang.String)>("Bingo!!!");
+
+     label03:
+        $r33 = new nsk.share.test.Stresser;
+
+        $r41 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest) r0;
+
+        $r4 = $r41.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest: nsk.share.runner.RunParams runParams>;
+
+        $r5 = virtualinvoke $r4.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r33.<nsk.share.test.Stresser: void <init>(nsk.share.test.StressOptions)>($r5);
+
+        virtualinvoke $r33.<nsk.share.test.Stresser: void start(long)>(0L);
+
+        $r42 = (nsk.share.test.ExecutionController) $r33;
+
+        staticinvoke <nsk.share.gc.gp.GarbageUtils: int eatMemory(nsk.share.test.ExecutionController)>($r42);
+
+        $z0 = virtualinvoke $r33.<nsk.share.test.Stresser: boolean continueExecution()>();
+
+        if $z0 != 0 goto label04;
+
+        $r29 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r29.<java.io.PrintStream: void println(java.lang.String)>("Passed without check");
+
+        return;
+
+     label04:
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <java.lang.System: void runFinalization()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <java.lang.System: void runFinalization()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        i3 = 0;
+
+        i4 = 0;
+
+        i5 = 0;
+
+        goto label08;
+
+     label05:
+        $r43 = (gc.gctests.OneeFinalizerTest.OneeFinalizerTest) r0;
+
+        $r6 = $r43.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest: gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter[] finalizerCounters>;
+
+        $r7 = $r6[i5];
+
+        $i1 = virtualinvoke $r7.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest$GlobalSafeCounter: int getCounterValue()>();
+
+        if $i1 <= 1 goto label06;
+
+        i3 = i3 + 1;
+
+        $r13 = <java.lang.System: java.io.PrintStream err>;
+
+        $r34 = new java.lang.StringBuilder;
+
+        specialinvoke $r34.<java.lang.StringBuilder: void <init>(java.lang.String)>("Object #");
+
+        $r14 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i5);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" counter = ");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+        goto label07;
+
+     label06:
+        if $i1 != 0 goto label07;
+
+        $r9 = <java.lang.System: java.io.PrintStream err>;
+
+        $r35 = new java.lang.StringBuilder;
+
+        specialinvoke $r35.<java.lang.StringBuilder: void <init>(java.lang.String)>("WARNING: Finalizer not run for object #");
+
+        $r10 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i5);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r11);
+
+        i4 = i4 + 1;
+
+     label07:
+        i5 = i5 + 1;
+
+     label08:
+        if i5 < 2000 goto label05;
+
+        if i4 <= 0 goto label09;
+
+        $r25 = <java.lang.System: java.io.PrintStream err>;
+
+        $r36 = new java.lang.StringBuilder;
+
+        specialinvoke $r36.<java.lang.StringBuilder: void <init>(java.lang.String)>("WARNING: ");
+
+        $r26 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" finalizers not run");
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>($r28);
+
+     label09:
+        if i3 == 0 goto label10;
+
+        $r38 = new nsk.share.TestFailure;
+
+        $r37 = new java.lang.StringBuilder;
+
+        specialinvoke $r37.<java.lang.StringBuilder: void <init>(java.lang.String)>("OneeFinalizerTest failed. ");
+
+        $r21 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" errors");
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r38.<nsk.share.TestFailure: void <init>(java.lang.String)>($r23);
+
+        $r44 = (java.lang.Throwable) $r38;
+
+        throw $r44;
+
+     label10:
+        $r18 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>("Test passed.");
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        gc.gctests.OneeFinalizerTest.OneeFinalizerTest $r2;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.OneeFinalizerTest.OneeFinalizerTest;
+
+        specialinvoke $r2.<gc.gctests.OneeFinalizerTest.OneeFinalizerTest: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

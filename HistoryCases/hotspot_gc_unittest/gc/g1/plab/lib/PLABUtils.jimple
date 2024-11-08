@@ -1,0 +1,133 @@
+public class PLABUtils extends java.lang.Object
+{
+    private static final java.lang.String[] GC_TUNE_OPTIONS;
+    private static final java.lang.String[] G1_PLAB_LOGGING_OPTIONS;
+    private static final java.lang.String[] WB_DIAGNOSTIC_OPTIONS;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0, $r1, $r2;
+
+        $r0 = newarray (java.lang.String)[7];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-XX:G1HeapRegionSize=1m";
+
+        $r0[2] = "-XX:OldSize=64m";
+
+        $r0[3] = "-XX:-UseAdaptiveSizePolicy";
+
+        $r0[4] = "-XX:MaxTenuringThreshold=1";
+
+        $r0[5] = "-XX:-UseTLAB";
+
+        $r0[6] = "-XX:SurvivorRatio=1";
+
+        <gc.g1.plab.lib.PLABUtils: java.lang.String[] GC_TUNE_OPTIONS> = $r0;
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "-Xlog:gc=debug,gc+plab=debug,gc+heap=debug";
+
+        <gc.g1.plab.lib.PLABUtils: java.lang.String[] G1_PLAB_LOGGING_OPTIONS> = $r1;
+
+        $r2 = newarray (java.lang.String)[3];
+
+        $r2[0] = "-Xbootclasspath/a:.";
+
+        $r2[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r2[2] = "-XX:+WhiteBoxAPI";
+
+        <gc.g1.plab.lib.PLABUtils: java.lang.String[] WB_DIAGNOSTIC_OPTIONS> = $r2;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        PLABUtils r0;
+
+        r0 := @this: PLABUtils;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static java.util.List prepareOptions(java.util.List)
+    {
+        java.lang.String[] $r2, $r4, $r5, $r6;
+        java.lang.IllegalArgumentException $r7;
+        java.util.ArrayList $r1;
+        java.util.List r0, $r3;
+
+        r0 := @parameter0: java.util.List;
+
+        if r0 != null goto label1;
+
+        $r7 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r7.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Options cannot be null");
+
+        throw $r7;
+
+     label1:
+        $r1 = new java.util.ArrayList;
+
+        $r2 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getTestJavaOpts()>();
+
+        $r3 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r2);
+
+        specialinvoke $r1.<java.util.ArrayList: void <init>(java.util.Collection)>($r3);
+
+        $r4 = <gc.g1.plab.lib.PLABUtils: java.lang.String[] WB_DIAGNOSTIC_OPTIONS>;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r1, $r4);
+
+        $r5 = <gc.g1.plab.lib.PLABUtils: java.lang.String[] G1_PLAB_LOGGING_OPTIONS>;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r1, $r5);
+
+        $r6 = <gc.g1.plab.lib.PLABUtils: java.lang.String[] GC_TUNE_OPTIONS>;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r1, $r6);
+
+        interfaceinvoke $r1.<java.util.List: boolean addAll(java.util.Collection)>(r0);
+
+        return $r1;
+    }
+
+    public static void commonCheck(jdk.test.lib.process.OutputAnalyzer) throws java.lang.RuntimeException
+    {
+        java.io.PrintStream $r1;
+        int $i0;
+        java.lang.String $r2;
+        java.lang.RuntimeException $r3;
+        jdk.test.lib.process.OutputAnalyzer r0;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        $i0 = virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        if $i0 == 0 goto label1;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r2 = virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r2);
+
+        $r3 = new java.lang.RuntimeException;
+
+        specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>("Exit code is not 0");
+
+        throw $r3;
+
+     label1:
+        virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("Pause Young (G1 Evacuation Pause)");
+
+        return;
+    }
+}

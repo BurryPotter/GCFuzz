@@ -1,0 +1,34 @@
+final class TestEvacFailureThreaded$2 extends java.lang.Thread
+{
+
+    void <init>()
+    {
+        TestEvacFailureThreaded$2 r0;
+
+        r0 := @this: TestEvacFailureThreaded$2;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        TestEvacFailureThreaded$2 r0;
+        int $i0;
+        long $l1;
+        double $d0;
+
+        r0 := @this: TestEvacFailureThreaded$2;
+
+        $l1 = <TestEvacFailureThreaded: long main_size>;
+
+        $i0 = <TestEvacFailureThreaded: int main_iter>;
+
+        $d0 = <TestEvacFailureThreaded: double alive_fraq>;
+
+        staticinvoke <TestEvacFailureThreaded: void runTest(long,int,double)>($l1, $i0, $d0);
+
+        return;
+    }
+}

@@ -1,0 +1,68 @@
+class HeapUsageTest$TestValue extends java.lang.Object
+{
+    private int allocationSize;
+    private int allocationIterations;
+    final gc.gctests.HeapUsageTest.HeapUsageTest this$0;
+
+    void <init>(gc.gctests.HeapUsageTest.HeapUsageTest, int, int)
+    {
+        gc.gctests.HeapUsageTest.HeapUsageTest$TestValue $r2, $r3, $r4;
+        gc.gctests.HeapUsageTest.HeapUsageTest r1;
+        int i0, i1;
+        HeapUsageTest$TestValue r0;
+
+        r0 := @this: HeapUsageTest$TestValue;
+
+        r1 := @parameter0: gc.gctests.HeapUsageTest.HeapUsageTest;
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        $r2 = (gc.gctests.HeapUsageTest.HeapUsageTest$TestValue) r0;
+
+        $r2.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: gc.gctests.HeapUsageTest.HeapUsageTest this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = (gc.gctests.HeapUsageTest.HeapUsageTest$TestValue) r0;
+
+        $r3.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: int allocationSize> = i0;
+
+        $r4 = (gc.gctests.HeapUsageTest.HeapUsageTest$TestValue) r0;
+
+        $r4.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: int allocationIterations> = i1;
+
+        return;
+    }
+
+    final int getSize()
+    {
+        int $i0;
+        gc.gctests.HeapUsageTest.HeapUsageTest$TestValue $r1;
+        HeapUsageTest$TestValue r0;
+
+        r0 := @this: HeapUsageTest$TestValue;
+
+        $r1 = (gc.gctests.HeapUsageTest.HeapUsageTest$TestValue) r0;
+
+        $i0 = $r1.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: int allocationSize>;
+
+        return $i0;
+    }
+
+    final int getIterations()
+    {
+        int $i0;
+        gc.gctests.HeapUsageTest.HeapUsageTest$TestValue $r1;
+        HeapUsageTest$TestValue r0;
+
+        r0 := @this: HeapUsageTest$TestValue;
+
+        $r1 = (gc.gctests.HeapUsageTest.HeapUsageTest$TestValue) r0;
+
+        $i0 = $r1.<gc.gctests.HeapUsageTest.HeapUsageTest$TestValue: int allocationIterations>;
+
+        return $i0;
+    }
+}

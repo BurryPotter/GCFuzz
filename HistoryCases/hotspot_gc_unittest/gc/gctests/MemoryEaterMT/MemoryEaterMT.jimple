@@ -1,0 +1,68 @@
+public class MemoryEaterMT extends nsk.share.gc.ThreadedGCTest
+{
+
+    public void <init>()
+    {
+        MemoryEaterMT r0;
+
+        r0 := @this: MemoryEaterMT;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        int i0;
+        gc.gctests.MemoryEaterMT.MemoryEaterMT $r3;
+        gc.gctests.MemoryEaterMT.MemoryEaterMT$Eater $r2;
+        java.lang.Runnable $r4;
+        MemoryEaterMT r1;
+
+        r1 := @this: MemoryEaterMT;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.MemoryEaterMT.MemoryEaterMT$Eater;
+
+        $r3 = (gc.gctests.MemoryEaterMT.MemoryEaterMT) r1;
+
+        specialinvoke $r2.<gc.gctests.MemoryEaterMT.MemoryEaterMT$Eater: void <init>(gc.gctests.MemoryEaterMT.MemoryEaterMT)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.gctests.MemoryEaterMT.MemoryEaterMT $r2;
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.MemoryEaterMT.MemoryEaterMT;
+
+        specialinvoke $r2.<gc.gctests.MemoryEaterMT.MemoryEaterMT: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.test.ExecutionController access$0(gc.gctests.MemoryEaterMT.MemoryEaterMT)
+    {
+        gc.gctests.MemoryEaterMT.MemoryEaterMT r0;
+        nsk.share.test.ExecutionController $r1;
+
+        r0 := @parameter0: gc.gctests.MemoryEaterMT.MemoryEaterMT;
+
+        $r1 = virtualinvoke r0.<gc.gctests.MemoryEaterMT.MemoryEaterMT: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+}

@@ -1,0 +1,32 @@
+public class PerfCounters extends java.lang.Object
+{
+    private static final sun.jvmstat.monitor.MonitoredVm vm;
+
+    public void <init>()
+    {
+        java.lang.Error $r0;
+        PerfCounters r1;
+
+        r1 := @this: PerfCounters;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problems: \n\tThe method getMonitoredHost(String) in the type MonitoredHost is not applicable for the arguments (VmIdentifier)\n\tThe method getMonitoredVm(sun.jvmstat.monitor.VmIdentifier) in the type MonitoredHost is not applicable for the arguments (sun.jvmstat.monitor.VmIdentifier)\n");
+
+        throw $r0;
+    }
+
+    public static gc.testlibrary.PerfCounter findByName(java.lang.String) throws sun.jvmstat.monitor.MonitorException, java.lang.IllegalArgumentException
+    {
+        java.lang.Error $r0;
+        java.lang.String r1;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.Error;
+
+        specialinvoke $r0.<java.lang.Error: void <init>(java.lang.String)>("Unresolved compilation problem: \n");
+
+        throw $r0;
+    }
+}

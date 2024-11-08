@@ -1,0 +1,50 @@
+class LinkedListHolder extends java.lang.Object
+{
+    private static gc.gctests.MTLinkedListGC.CircularLinkedList cl;
+
+    static void <clinit>()
+    {
+        gc.gctests.MTLinkedListGC.CircularLinkedList $r0;
+
+        $r0 = new gc.gctests.MTLinkedListGC.CircularLinkedList;
+
+        specialinvoke $r0.<gc.gctests.MTLinkedListGC.CircularLinkedList: void <init>()>();
+
+        <gc.gctests.MTLinkedListGC.LinkedListHolder: gc.gctests.MTLinkedListGC.CircularLinkedList cl> = $r0;
+
+        return;
+    }
+
+    void <init>()
+    {
+        LinkedListHolder r0;
+
+        r0 := @this: LinkedListHolder;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static gc.gctests.MTLinkedListGC.CircularLinkedList getCircularLinkedList()
+    {
+        gc.gctests.MTLinkedListGC.CircularLinkedList $r0;
+
+        $r0 = <gc.gctests.MTLinkedListGC.LinkedListHolder: gc.gctests.MTLinkedListGC.CircularLinkedList cl>;
+
+        return $r0;
+    }
+
+    static void getNewList()
+    {
+        gc.gctests.MTLinkedListGC.CircularLinkedList $r0;
+
+        $r0 = new gc.gctests.MTLinkedListGC.CircularLinkedList;
+
+        specialinvoke $r0.<gc.gctests.MTLinkedListGC.CircularLinkedList: void <init>()>();
+
+        <gc.gctests.MTLinkedListGC.LinkedListHolder: gc.gctests.MTLinkedListGC.CircularLinkedList cl> = $r0;
+
+        return;
+    }
+}

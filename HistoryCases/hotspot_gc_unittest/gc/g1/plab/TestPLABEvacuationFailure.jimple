@@ -1,0 +1,644 @@
+public class TestPLABEvacuationFailure extends java.lang.Object
+{
+    private static final java.util.List FAILURE_STAT_FIELDS;
+    private static final java.lang.String[] COMMON_OPTIONS;
+    private static final java.util.regex.Pattern GC_ID_PATTERN;
+    private static java.util.List evacuationFailureIDs;
+    private static gc.g1.plab.lib.LogParser logParser;
+    private static java.lang.String appPlabEvacFailureOutput;
+
+    static void <clinit>()
+    {
+        java.util.List $r2;
+        java.lang.String[] $r1, $r3;
+        java.util.regex.Pattern $r4;
+        java.util.ArrayList $r0;
+
+        $r0 = new java.util.ArrayList;
+
+        $r1 = newarray (java.lang.String)[2];
+
+        $r1[0] = "failure used";
+
+        $r1[1] = "failure wasted";
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r1);
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>(java.util.Collection)>($r2);
+
+        <gc.g1.plab.TestPLABEvacuationFailure: java.util.List FAILURE_STAT_FIELDS> = $r0;
+
+        $r3 = newarray (java.lang.String)[5];
+
+        $r3[0] = "-Xlog:gc=debug,gc+plab=debug,gc+phases=trace";
+
+        $r3[1] = "-XX:+UseG1GC";
+
+        $r3[2] = "-XX:InitiatingHeapOccupancyPercent=100";
+
+        $r3[3] = "-XX:-G1UseAdaptiveIHOP";
+
+        $r3[4] = "-XX:G1HeapRegionSize=1m";
+
+        <gc.g1.plab.TestPLABEvacuationFailure: java.lang.String[] COMMON_OPTIONS> = $r3;
+
+        $r4 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("GC\\((\\d+)\\)");
+
+        <gc.g1.plab.TestPLABEvacuationFailure: java.util.regex.Pattern GC_ID_PATTERN> = $r4;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestPLABEvacuationFailure r0;
+
+        r0 := @this: TestPLABEvacuationFailure;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Throwable
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void runTest(int,int,int,int,boolean)>(10, 1024, 3, 16, 1);
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void runTest(int,int,int,int,boolean)>(15, 2048, 4, 256, 1);
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void runTest(int,int,int,int,boolean)>(20, 65536, 7, 128, 0);
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void runTest(int,int,int,int,boolean)>(25, 1024, 3, 16, 1);
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void runTest(int,int,int,int,boolean)>(30, 16384, 7, 256, 0);
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void runTest(int,int,int,int,boolean)>(10, 65536, 4, 32, 0);
+
+        return;
+    }
+
+    private static void runTest(int, int, int, int, boolean) throws java.lang.Throwable
+    {
+        java.lang.StringBuilder $r1, $r3, $r4, $r6, $r8, $r10, $r12, $r14, $r16, $r18, $r20, $r26, $r27, $r29, $r30, $r32, $r33, $r35, $r36, $r38, $r39, $r40, $r42, $r43, $r44;
+        gc.g1.plab.lib.LogParser $r54;
+        java.lang.Object[] $r49;
+        java.util.ArrayList $r22;
+        java.lang.String $r5, $r9, $r13, $r17, $r21, $r28, $r31, $r34, $r37, $r41, $r45, $r47, $r52, $r55, $r56, $r59, $r60;
+        java.lang.RuntimeException $r58;
+        boolean z0;
+        jdk.test.lib.process.OutputAnalyzer $r51;
+        java.util.List $r53;
+        java.lang.String[] $r23, $r24, $r25, $r48, $r50;
+        int i0, i1, i2, i3, $i4, $i5;
+        java.io.PrintStream $r0, $r2, $r7, $r11, $r15, $r19, $r57;
+        java.lang.Class $r46;
+
+        i2 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i3 := @parameter2: int;
+
+        i0 := @parameter3: int;
+
+        z0 := @parameter4: boolean;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Test case details:");
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Heap size : ");
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Initial PLAB size : ");
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Parallel GC buffer waste pct : ");
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>($r13);
+
+        $r15 = <java.lang.System: java.io.PrintStream out>;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Parallel GC threads : ");
+
+        $r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+        $r19 = <java.lang.System: java.io.PrintStream out>;
+
+        $r18 = new java.lang.StringBuilder;
+
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>("  PLAB size is fixed: ");
+
+        if z0 == 0 goto label1;
+
+        $r59 = "yes";
+
+        goto label2;
+
+     label1:
+        $r59 = "no";
+
+     label2:
+        $r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r59);
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>($r21);
+
+        $r22 = new java.util.ArrayList;
+
+        specialinvoke $r22.<java.util.ArrayList: void <init>()>();
+
+        $r23 = <gc.g1.plab.TestPLABEvacuationFailure: java.lang.String[] COMMON_OPTIONS>;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r22, $r23);
+
+        $r24 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getTestJavaOpts()>();
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r22, $r24);
+
+        $r25 = newarray (java.lang.String)[6];
+
+        $r26 = new java.lang.StringBuilder;
+
+        specialinvoke $r26.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:ParallelGCThreads=");
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i3);
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r25[0] = $r28;
+
+        $r29 = new java.lang.StringBuilder;
+
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:ParallelGCBufferWastePct=");
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r25[1] = $r31;
+
+        $r32 = new java.lang.StringBuilder;
+
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:OldPLABSize=");
+
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r25[2] = $r34;
+
+        $r35 = new java.lang.StringBuilder;
+
+        specialinvoke $r35.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:YoungPLABSize=");
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r25[3] = $r37;
+
+        $r38 = new java.lang.StringBuilder;
+
+        specialinvoke $r38.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:");
+
+        if z0 == 0 goto label3;
+
+        $r60 = "-";
+
+        goto label4;
+
+     label3:
+        $r60 = "+";
+
+     label4:
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r60);
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ResizePLAB");
+
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r25[4] = $r41;
+
+        $r42 = new java.lang.StringBuilder;
+
+        specialinvoke $r42.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MaxHeapSize=");
+
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("m");
+
+        $r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r25[5] = $r45;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r22, $r25);
+
+        $r46 = class "Lgc/g1/plab/lib/AppPLABEvacuationFailure;";
+
+        $r47 = virtualinvoke $r46.<java.lang.Class: java.lang.String getName()>();
+
+        interfaceinvoke $r22.<java.util.List: boolean add(java.lang.Object)>($r47);
+
+        $i4 = interfaceinvoke $r22.<java.util.List: int size()>();
+
+        $r48 = newarray (java.lang.String)[$i4];
+
+        $r49 = interfaceinvoke $r22.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r48);
+
+        $r50 = (java.lang.String[]) $r49;
+
+        $r51 = staticinvoke <jdk.test.lib.process.ProcessTools: jdk.test.lib.process.OutputAnalyzer executeTestJvm(java.lang.String[])>($r50);
+
+        $r52 = virtualinvoke $r51.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        <gc.g1.plab.TestPLABEvacuationFailure: java.lang.String appPlabEvacFailureOutput> = $r52;
+
+        $i5 = virtualinvoke $r51.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        if $i5 == 0 goto label5;
+
+        $r57 = <java.lang.System: java.io.PrintStream out>;
+
+        $r56 = <gc.g1.plab.TestPLABEvacuationFailure: java.lang.String appPlabEvacFailureOutput>;
+
+        virtualinvoke $r57.<java.io.PrintStream: void println(java.lang.String)>($r56);
+
+        $r58 = new java.lang.RuntimeException;
+
+        specialinvoke $r58.<java.lang.RuntimeException: void <init>(java.lang.String)>("Expect exit code 0.");
+
+        throw $r58;
+
+     label5:
+        $r53 = staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: java.util.List getGcIdPlabEvacFailures(jdk.test.lib.process.OutputAnalyzer)>($r51);
+
+        <gc.g1.plab.TestPLABEvacuationFailure: java.util.List evacuationFailureIDs> = $r53;
+
+        $r54 = new gc.g1.plab.lib.LogParser;
+
+        $r55 = <gc.g1.plab.TestPLABEvacuationFailure: java.lang.String appPlabEvacFailureOutput>;
+
+        specialinvoke $r54.<gc.g1.plab.lib.LogParser: void <init>(java.lang.String)>($r55);
+
+        <gc.g1.plab.TestPLABEvacuationFailure: gc.g1.plab.lib.LogParser logParser> = $r54;
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void checkResults()>();
+
+        return;
+    }
+
+    private static void checkResults()
+    {
+        java.io.PrintStream $r6;
+        java.lang.RuntimeException $r7;
+        java.util.List $r0;
+        java.util.Map $r1, $r2, $r3, $r4;
+        java.lang.String $r5;
+        boolean $z0;
+
+        $r0 = <gc.g1.plab.TestPLABEvacuationFailure: java.util.List evacuationFailureIDs>;
+
+        $z0 = interfaceinvoke $r0.<java.util.List: boolean isEmpty()>();
+
+        if $z0 == 0 goto label1;
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        $r5 = <gc.g1.plab.TestPLABEvacuationFailure: java.lang.String appPlabEvacFailureOutput>;
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $r7 = new java.lang.RuntimeException;
+
+        specialinvoke $r7.<java.lang.RuntimeException: void <init>(java.lang.String)>("AppPLABEvacuationFailure did not reach Evacuation Failure.");
+
+        throw $r7;
+
+     label1:
+        $r1 = staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: java.util.Map getNonEvacFailureSurvivorStats()>();
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void checkValuesIsZero(java.util.Map,java.lang.String)>($r1, "Expect that SURVIVOR PLAB failure statistics should be 0 when no evacuation failure");
+
+        $r2 = staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: java.util.Map getNonEvacFailureOldStats()>();
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void checkValuesIsZero(java.util.Map,java.lang.String)>($r2, "Expect that OLD PLAB failure statistics should be 0 when no evacuation failure");
+
+        $r3 = staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: java.util.Map getEvacFailureSurvivorStats()>();
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void checkValuesIsZero(java.util.Map,java.lang.String)>($r3, "Expect that failure statistics should be 0 in SURVIVOR PLAB statistics at evacuation failure");
+
+        $r4 = staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: java.util.Map getEvacFailureOldStats()>();
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void checkValuesIsNotZero(java.util.Map,java.lang.String)>($r4, "Expect that failure statistics should not be 0 in OLD PLAB statistics at evacuation failure");
+
+        return;
+    }
+
+    private static void checkValuesIsZero(java.util.Map, java.lang.String)
+    {
+        java.lang.String r1;
+        java.util.Map r0;
+
+        r0 := @parameter0: java.util.Map;
+
+        r1 := @parameter1: java.lang.String;
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void checkValues(java.util.Map,java.lang.String,boolean)>(r0, r1, 1);
+
+        return;
+    }
+
+    private static void checkValuesIsNotZero(java.util.Map, java.lang.String)
+    {
+        java.lang.String r1;
+        java.util.Map r0;
+
+        r0 := @parameter0: java.util.Map;
+
+        r1 := @parameter1: java.lang.String;
+
+        staticinvoke <gc.g1.plab.TestPLABEvacuationFailure: void checkValues(java.util.Map,java.lang.String,boolean)>(r0, r1, 0);
+
+        return;
+    }
+
+    private static void checkValues(java.util.Map, java.lang.String, boolean)
+    {
+        java.util.function.Consumer $r3;
+        java.util.Map r0;
+        java.util.Set $r1;
+        java.lang.String r2;
+        boolean z0;
+
+        r0 := @parameter0: java.util.Map;
+
+        r2 := @parameter1: java.lang.String;
+
+        z0 := @parameter2: boolean;
+
+        $r1 = interfaceinvoke r0.<java.util.Map: java.util.Set entrySet()>();
+
+        $r3 = staticinvoke <TestPLABEvacuationFailure$lambda_0__1: java.util.function.Consumer bootstrap$(boolean,java.lang.String)>(z0, r2);
+
+        interfaceinvoke $r1.<java.util.Set: void forEach(java.util.function.Consumer)>($r3);
+
+        return;
+    }
+
+    private static java.util.Map getNonEvacFailureSurvivorStats()
+    {
+        gc.g1.plab.lib.LogParser $r3;
+        java.util.List $r0, $r2;
+        java.util.Map $r4;
+        gc.g1.plab.lib.LogParser$ReportType $r1;
+
+        $r3 = <gc.g1.plab.TestPLABEvacuationFailure: gc.g1.plab.lib.LogParser logParser>;
+
+        $r2 = <gc.g1.plab.TestPLABEvacuationFailure: java.util.List evacuationFailureIDs>;
+
+        $r1 = <gc.g1.plab.lib.LogParser$ReportType: gc.g1.plab.lib.LogParser$ReportType SURVIVOR_STATS>;
+
+        $r0 = <gc.g1.plab.TestPLABEvacuationFailure: java.util.List FAILURE_STAT_FIELDS>;
+
+        $r4 = virtualinvoke $r3.<gc.g1.plab.lib.LogParser: java.util.Map getExcludedSpecifiedStats(java.util.List,gc.g1.plab.lib.LogParser$ReportType,java.util.List)>($r2, $r1, $r0);
+
+        return $r4;
+    }
+
+    private static java.util.Map getNonEvacFailureOldStats()
+    {
+        gc.g1.plab.lib.LogParser $r3;
+        java.util.List $r0, $r2;
+        java.util.Map $r4;
+        gc.g1.plab.lib.LogParser$ReportType $r1;
+
+        $r3 = <gc.g1.plab.TestPLABEvacuationFailure: gc.g1.plab.lib.LogParser logParser>;
+
+        $r2 = <gc.g1.plab.TestPLABEvacuationFailure: java.util.List evacuationFailureIDs>;
+
+        $r1 = <gc.g1.plab.lib.LogParser$ReportType: gc.g1.plab.lib.LogParser$ReportType OLD_STATS>;
+
+        $r0 = <gc.g1.plab.TestPLABEvacuationFailure: java.util.List FAILURE_STAT_FIELDS>;
+
+        $r4 = virtualinvoke $r3.<gc.g1.plab.lib.LogParser: java.util.Map getExcludedSpecifiedStats(java.util.List,gc.g1.plab.lib.LogParser$ReportType,java.util.List)>($r2, $r1, $r0);
+
+        return $r4;
+    }
+
+    private static java.util.Map getEvacFailureSurvivorStats()
+    {
+        gc.g1.plab.lib.LogParser $r3;
+        java.util.List $r0, $r2;
+        java.util.Map $r4;
+        gc.g1.plab.lib.LogParser$ReportType $r1;
+
+        $r3 = <gc.g1.plab.TestPLABEvacuationFailure: gc.g1.plab.lib.LogParser logParser>;
+
+        $r2 = <gc.g1.plab.TestPLABEvacuationFailure: java.util.List evacuationFailureIDs>;
+
+        $r1 = <gc.g1.plab.lib.LogParser$ReportType: gc.g1.plab.lib.LogParser$ReportType SURVIVOR_STATS>;
+
+        $r0 = <gc.g1.plab.TestPLABEvacuationFailure: java.util.List FAILURE_STAT_FIELDS>;
+
+        $r4 = virtualinvoke $r3.<gc.g1.plab.lib.LogParser: java.util.Map getSpecifiedStats(java.util.List,gc.g1.plab.lib.LogParser$ReportType,java.util.List)>($r2, $r1, $r0);
+
+        return $r4;
+    }
+
+    private static java.util.Map getEvacFailureOldStats()
+    {
+        gc.g1.plab.lib.LogParser $r3;
+        java.util.List $r0, $r2;
+        java.util.Map $r4;
+        gc.g1.plab.lib.LogParser$ReportType $r1;
+
+        $r3 = <gc.g1.plab.TestPLABEvacuationFailure: gc.g1.plab.lib.LogParser logParser>;
+
+        $r2 = <gc.g1.plab.TestPLABEvacuationFailure: java.util.List evacuationFailureIDs>;
+
+        $r1 = <gc.g1.plab.lib.LogParser$ReportType: gc.g1.plab.lib.LogParser$ReportType OLD_STATS>;
+
+        $r0 = <gc.g1.plab.TestPLABEvacuationFailure: java.util.List FAILURE_STAT_FIELDS>;
+
+        $r4 = virtualinvoke $r3.<gc.g1.plab.lib.LogParser: java.util.Map getSpecifiedStats(java.util.List,gc.g1.plab.lib.LogParser$ReportType,java.util.List)>($r2, $r1, $r0);
+
+        return $r4;
+    }
+
+    private static java.util.List getGcIdPlabEvacFailures(jdk.test.lib.process.OutputAnalyzer)
+    {
+        java.util.function.Predicate $r3;
+        jdk.test.lib.process.OutputAnalyzer r0;
+        java.util.function.Function $r5;
+        java.util.List $r1, $r9;
+        java.util.stream.Stream $r2, $r4, $r6;
+        java.lang.Object $r8;
+        java.util.stream.Collector $r7;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        $r1 = virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: java.util.List asLines()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.util.stream.Stream stream()>();
+
+        $r3 = staticinvoke <TestPLABEvacuationFailure$lambda_2__2: java.util.function.Predicate bootstrap$()>();
+
+        $r4 = interfaceinvoke $r2.<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>($r3);
+
+        $r5 = staticinvoke <TestPLABEvacuationFailure$lambda_3__3: java.util.function.Function bootstrap$()>();
+
+        $r6 = interfaceinvoke $r4.<java.util.stream.Stream: java.util.stream.Stream map(java.util.function.Function)>($r5);
+
+        $r7 = staticinvoke <java.util.stream.Collectors: java.util.stream.Collector toList()>();
+
+        $r8 = interfaceinvoke $r6.<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>($r7);
+
+        $r9 = (java.util.List) $r8;
+
+        return $r9;
+    }
+
+    private static void lambda$0(boolean, java.lang.String, java.util.Map$Entry)
+    {
+        java.util.function.Consumer $r5;
+        java.util.Map$Entry r0;
+        java.util.Collection $r3;
+        java.lang.Object $r1;
+        java.lang.String r4;
+        gc.g1.plab.lib.PlabInfo $r2;
+        boolean z0;
+
+        z0 := @parameter0: boolean;
+
+        r4 := @parameter1: java.lang.String;
+
+        r0 := @parameter2: java.util.Map$Entry;
+
+        $r1 = interfaceinvoke r0.<java.util.Map$Entry: java.lang.Object getValue()>();
+
+        $r2 = (gc.g1.plab.lib.PlabInfo) $r1;
+
+        $r3 = virtualinvoke $r2.<gc.g1.plab.lib.PlabInfo: java.util.Collection values()>();
+
+        $r5 = staticinvoke <TestPLABEvacuationFailure$lambda_1__4: java.util.function.Consumer bootstrap$(boolean,java.lang.String)>(z0, r4);
+
+        interfaceinvoke $r3.<java.util.Collection: void forEach(java.util.function.Consumer)>($r5);
+
+        return;
+    }
+
+    private static boolean lambda$2(java.lang.String)
+    {
+        java.lang.String r0;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke r0.<java.lang.String: boolean contains(java.lang.CharSequence)>("Evacuation Failure");
+
+        return $z0;
+    }
+
+    private static java.lang.Long lambda$3(java.lang.String)
+    {
+        java.lang.String r0;
+        java.util.regex.Pattern $r1;
+        java.lang.Long $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = <gc.g1.plab.TestPLABEvacuationFailure: java.util.regex.Pattern GC_ID_PATTERN>;
+
+        $r2 = staticinvoke <gc.g1.plab.lib.LogParser: java.lang.Long getGcIdFromLine(java.lang.String,java.util.regex.Pattern)>(r0, $r1);
+
+        return $r2;
+    }
+
+    private static void lambda$1(boolean, java.lang.String, java.lang.Long)
+    {
+        java.io.PrintStream $r2;
+        long $l0;
+        java.lang.RuntimeException $r3;
+        byte $b1;
+        java.lang.Long r0;
+        java.lang.String $r1, r4;
+        boolean z0, $z1;
+
+        z0 := @parameter0: boolean;
+
+        r4 := @parameter1: java.lang.String;
+
+        r0 := @parameter2: java.lang.Long;
+
+        $l0 = virtualinvoke r0.<java.lang.Long: long longValue()>();
+
+        $b1 = $l0 cmp 0L;
+
+        if $b1 != 0 goto label1;
+
+        $z1 = 1;
+
+        goto label2;
+
+     label1:
+        $z1 = 0;
+
+     label2:
+        if z0 == $z1 goto label3;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = <gc.g1.plab.TestPLABEvacuationFailure: java.lang.String appPlabEvacFailureOutput>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r1);
+
+        $r3 = new java.lang.RuntimeException;
+
+        specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String)>(r4);
+
+        throw $r3;
+
+     label3:
+        return;
+    }
+}

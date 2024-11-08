@@ -1,0 +1,71 @@
+public abstract class ExecutionTask extends java.lang.Object implements java.lang.Runnable
+{
+    protected nsk.share.test.ExecutionController executionController;
+
+    public void <init>(nsk.share.test.ExecutionController)
+    {
+        ExecutionTask r0;
+        nsk.share.test.ExecutionController r1;
+        gc.g1.unloading.ExecutionTask $r2;
+
+        r0 := @this: ExecutionTask;
+
+        r1 := @parameter0: nsk.share.test.ExecutionController;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = (gc.g1.unloading.ExecutionTask) r0;
+
+        $r2.<gc.g1.unloading.ExecutionTask: nsk.share.test.ExecutionController executionController> = r1;
+
+        return;
+    }
+
+    protected abstract void task() throws java.lang.Exception;
+
+    public void run()
+    {
+        gc.g1.unloading.ExecutionTask $r5, $r6;
+        ExecutionTask r0;
+        nsk.share.test.ExecutionController $r1;
+        java.lang.RuntimeException $r4;
+        java.lang.Exception $r2;
+        boolean $z0;
+
+        r0 := @this: ExecutionTask;
+
+     label1:
+        goto label3;
+
+     label2:
+        $r5 = (gc.g1.unloading.ExecutionTask) r0;
+
+        virtualinvoke $r5.<gc.g1.unloading.ExecutionTask: void task()>();
+
+     label3:
+        $r6 = (gc.g1.unloading.ExecutionTask) r0;
+
+        $r1 = $r6.<gc.g1.unloading.ExecutionTask: nsk.share.test.ExecutionController executionController>;
+
+        $z0 = interfaceinvoke $r1.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 != 0 goto label2;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r2 := @caughtexception;
+
+        $r4 = new java.lang.RuntimeException;
+
+        specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>("Something went wrong in PhantomizationServiceThread");
+
+        throw $r4;
+
+     label6:
+        return;
+
+        catch java.lang.Exception from label1 to label4 with label5;
+    }
+}

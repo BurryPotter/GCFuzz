@@ -1,0 +1,386 @@
+public class TestSystemGC extends java.lang.Object
+{
+    private static long endTime;
+    private static final int numGroups;
+    private static final int numGCsPerGroup;
+    private static java.util.Map longLivedMap;
+
+    static void <clinit>()
+    {
+        java.util.TreeMap $r0;
+
+        $r0 = new java.util.TreeMap;
+
+        specialinvoke $r0.<java.util.TreeMap: void <init>()>();
+
+        <gc.stress.systemgc.TestSystemGC: java.util.Map longLivedMap> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestSystemGC r0;
+
+        r0 := @this: TestSystemGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static void populateLongLived()
+    {
+        java.util.Map $r6;
+        int i0;
+        java.lang.StringBuilder $r0, $r1, $r3, $r4;
+        java.lang.String $r2, $r5;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>("all key = ");
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("the value is ");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6 = <gc.stress.systemgc.TestSystemGC: java.util.Map longLivedMap>;
+
+        interfaceinvoke $r6.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r2, $r5);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 1000000 goto label1;
+
+        return;
+    }
+
+    private static long getDelayMS(int)
+    {
+        int i0, i2, i3;
+        long $l1;
+
+        i0 := @parameter0: int;
+
+        if i0 != 0 goto label1;
+
+        return 0L;
+
+     label1:
+        i2 = 16;
+
+        i3 = 0;
+
+        goto label3;
+
+     label2:
+        i2 = i2 * 2;
+
+        i3 = i3 + 1;
+
+     label3:
+        if i3 < i0 goto label2;
+
+        $l1 = (long) i2;
+
+        return $l1;
+    }
+
+    private static void doSystemGCs()
+    {
+        byte $b2;
+        int i4, i5, $i6;
+        long $l0, $l1, $l3;
+
+        staticinvoke <gc.stress.systemgc.ThreadUtils: void sleep(long)>(1000L);
+
+        i4 = 0;
+
+        goto label5;
+
+     label1:
+        i5 = 0;
+
+        goto label4;
+
+     label2:
+        staticinvoke <java.lang.System: void gc()>();
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l1 = <gc.stress.systemgc.TestSystemGC: long endTime>;
+
+        $b2 = $l0 cmp $l1;
+
+        $i6 = (int) $b2;
+
+        if $i6 < 0 goto label3;
+
+        return;
+
+     label3:
+        $l3 = staticinvoke <gc.stress.systemgc.TestSystemGC: long getDelayMS(int)>(i4);
+
+        staticinvoke <gc.stress.systemgc.ThreadUtils: void sleep(long)>($l3);
+
+        i5 = i5 + 1;
+
+     label4:
+        if i5 < 4 goto label2;
+
+        i4 = i4 + 1;
+
+     label5:
+        if i4 < 7 goto label1;
+
+        return;
+    }
+
+    private static gc.stress.systemgc.SystemGCTask createSystemGCTask(int)
+    {
+        gc.stress.systemgc.SystemGCTask $r0;
+        long $l1, $l3, $l4, $l5, l6;
+        int i0, $i2;
+
+        i0 := @parameter0: int;
+
+        $l1 = staticinvoke <gc.stress.systemgc.TestSystemGC: long getDelayMS(int)>(i0);
+
+        $i2 = i0 + 1;
+
+        $l3 = staticinvoke <gc.stress.systemgc.TestSystemGC: long getDelayMS(int)>($i2);
+
+        $l4 = $l3 - $l1;
+
+        $l5 = $l4 / 2L;
+
+        l6 = $l1 + $l5;
+
+        $r0 = new gc.stress.systemgc.SystemGCTask;
+
+        specialinvoke $r0.<gc.stress.systemgc.SystemGCTask: void <init>(long)>(l6);
+
+        return $r0;
+    }
+
+    private static void startTask(java.lang.Runnable)
+    {
+        java.lang.Runnable r0;
+        java.lang.Thread $r1;
+
+        r0 := @parameter0: java.lang.Runnable;
+
+        if r0 == null goto label1;
+
+        $r1 = new java.lang.Thread;
+
+        specialinvoke $r1.<java.lang.Thread: void <init>(java.lang.Runnable)>(r0);
+
+        virtualinvoke $r1.<java.lang.Thread: void start()>();
+
+     label1:
+        return;
+    }
+
+    private static void exitTask(gc.stress.systemgc.Exitable)
+    {
+        gc.stress.systemgc.Exitable r0;
+
+        r0 := @parameter0: gc.stress.systemgc.Exitable;
+
+        if r0 == null goto label1;
+
+        virtualinvoke r0.<gc.stress.systemgc.Exitable: void exit()>();
+
+     label1:
+        return;
+    }
+
+    private static void runAllPhases()
+    {
+        gc.stress.systemgc.SystemGCTask r0, $r3;
+        long $l0, $l1;
+        java.lang.Runnable $r8, $r9, $r10;
+        byte $b2;
+        gc.stress.systemgc.ShortLivedAllocationTask r1, $r4, $r6;
+        java.util.Map $r2;
+        int $i3, i4, $i5;
+        gc.stress.systemgc.LongLivedAllocationTask $r5, $r7;
+        gc.stress.systemgc.Exitable $r11, $r12, $r13;
+
+        i4 = 0;
+
+        goto label10;
+
+     label01:
+        $i3 = i4 % 2;
+
+        if $i3 != 1 goto label02;
+
+        $r3 = staticinvoke <gc.stress.systemgc.TestSystemGC: gc.stress.systemgc.SystemGCTask createSystemGCTask(int)>(2);
+
+        goto label03;
+
+     label02:
+        $r3 = null;
+
+     label03:
+        r0 = $r3;
+
+        if i4 == 1 goto label04;
+
+        if i4 != 3 goto label05;
+
+     label04:
+        $r6 = new gc.stress.systemgc.ShortLivedAllocationTask;
+
+        $r4 = $r6;
+
+        specialinvoke $r6.<gc.stress.systemgc.ShortLivedAllocationTask: void <init>()>();
+
+        goto label06;
+
+     label05:
+        $r4 = null;
+
+     label06:
+        r1 = $r4;
+
+        if i4 == 2 goto label07;
+
+        if i4 != 3 goto label08;
+
+     label07:
+        $r7 = new gc.stress.systemgc.LongLivedAllocationTask;
+
+        $r5 = $r7;
+
+        $r2 = <gc.stress.systemgc.TestSystemGC: java.util.Map longLivedMap>;
+
+        specialinvoke $r7.<gc.stress.systemgc.LongLivedAllocationTask: void <init>(java.util.Map)>($r2);
+
+        goto label09;
+
+     label08:
+        $r5 = null;
+
+     label09:
+        $r8 = (java.lang.Runnable) r0;
+
+        staticinvoke <gc.stress.systemgc.TestSystemGC: void startTask(java.lang.Runnable)>($r8);
+
+        $r9 = (java.lang.Runnable) r1;
+
+        staticinvoke <gc.stress.systemgc.TestSystemGC: void startTask(java.lang.Runnable)>($r9);
+
+        $r10 = (java.lang.Runnable) $r5;
+
+        staticinvoke <gc.stress.systemgc.TestSystemGC: void startTask(java.lang.Runnable)>($r10);
+
+        staticinvoke <gc.stress.systemgc.TestSystemGC: void doSystemGCs()>();
+
+        $r11 = (gc.stress.systemgc.Exitable) r0;
+
+        staticinvoke <gc.stress.systemgc.TestSystemGC: void exitTask(gc.stress.systemgc.Exitable)>($r11);
+
+        $r12 = (gc.stress.systemgc.Exitable) r1;
+
+        staticinvoke <gc.stress.systemgc.TestSystemGC: void exitTask(gc.stress.systemgc.Exitable)>($r12);
+
+        $r13 = (gc.stress.systemgc.Exitable) $r5;
+
+        staticinvoke <gc.stress.systemgc.TestSystemGC: void exitTask(gc.stress.systemgc.Exitable)>($r13);
+
+        staticinvoke <gc.stress.systemgc.ThreadUtils: void sleep(long)>(1000L);
+
+        i4 = i4 + 1;
+
+     label10:
+        if i4 >= 4 goto label11;
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l1 = <gc.stress.systemgc.TestSystemGC: long endTime>;
+
+        $b2 = $l0 cmp $l1;
+
+        $i5 = (int) $b2;
+
+        if $i5 < 0 goto label01;
+
+     label11:
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r3;
+        java.lang.String[] r0;
+        long $l3, $l4, $l5;
+        java.lang.IllegalArgumentException $r7;
+        int $i0, $i1, i2;
+        java.lang.StringBuilder $r2, $r4, $r5;
+        java.lang.String $r1, $r6;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 != 0 goto label1;
+
+        $r7 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r7.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Must specify timeout in seconds as first argument");
+
+        throw $r7;
+
+     label1:
+        $r1 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        i2 = $i1 * 1000;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("Running with timeout of ");
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ms");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $l3 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l4 = (long) i2;
+
+        $l5 = $l3 + $l4;
+
+        <gc.stress.systemgc.TestSystemGC: long endTime> = $l5;
+
+        staticinvoke <gc.stress.systemgc.TestSystemGC: void populateLongLived()>();
+
+        staticinvoke <gc.stress.systemgc.TestSystemGC: void runAllPhases()>();
+
+        return;
+    }
+}

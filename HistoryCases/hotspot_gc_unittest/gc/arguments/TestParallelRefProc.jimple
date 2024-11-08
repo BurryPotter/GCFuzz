@@ -1,0 +1,155 @@
+public class TestParallelRefProc extends java.lang.Object
+{
+    private static final java.lang.String parallelRefProcEnabledPattern;
+    private static final java.lang.String parallelRefProcDisabledPattern;
+
+    public void <init>()
+    {
+        TestParallelRefProc r0;
+
+        r0 := @this: TestParallelRefProc;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r0, $r1, $r2, $r3, $r4, $r5, r6;
+
+        r6 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[1];
+
+        $r0[0] = "-XX:+UseSerialGC";
+
+        staticinvoke <gc.arguments.TestParallelRefProc: void testFlag(java.lang.String[],boolean)>($r0, 0);
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "-XX:+UseConcMarkSweepGC";
+
+        staticinvoke <gc.arguments.TestParallelRefProc: void testFlag(java.lang.String[],boolean)>($r1, 0);
+
+        $r2 = newarray (java.lang.String)[1];
+
+        $r2[0] = "-XX:+UseParallelGC";
+
+        staticinvoke <gc.arguments.TestParallelRefProc: void testFlag(java.lang.String[],boolean)>($r2, 0);
+
+        $r3 = newarray (java.lang.String)[2];
+
+        $r3[0] = "-XX:+UseG1GC";
+
+        $r3[1] = "-XX:ParallelGCThreads=1";
+
+        staticinvoke <gc.arguments.TestParallelRefProc: void testFlag(java.lang.String[],boolean)>($r3, 0);
+
+        $r4 = newarray (java.lang.String)[2];
+
+        $r4[0] = "-XX:+UseG1GC";
+
+        $r4[1] = "-XX:ParallelGCThreads=2";
+
+        staticinvoke <gc.arguments.TestParallelRefProc: void testFlag(java.lang.String[],boolean)>($r4, 1);
+
+        $r5 = newarray (java.lang.String)[3];
+
+        $r5[0] = "-XX:+UseG1GC";
+
+        $r5[1] = "-XX:-ParallelRefProcEnabled";
+
+        $r5[2] = "-XX:ParallelGCThreads=2";
+
+        staticinvoke <gc.arguments.TestParallelRefProc: void testFlag(java.lang.String[],boolean)>($r5, 0);
+
+        return;
+    }
+
+    private static void testFlag(java.lang.String[], boolean) throws java.lang.Exception
+    {
+        java.lang.Object[] $r4;
+        java.lang.String[] r1, $r3, $r5;
+        java.util.ArrayList $r0;
+        java.lang.ProcessBuilder $r6;
+        java.lang.String $r9, $r12, $r13, $r17, $r18;
+        boolean z0;
+        java.lang.Process $r8;
+        java.lang.RuntimeException $r10;
+        jdk.test.lib.process.OutputAnalyzer $r7;
+        java.util.List $r2;
+        java.lang.StringBuilder $r11, $r14, $r15, $r16;
+
+        r1 := @parameter0: java.lang.String[];
+
+        z0 := @parameter1: boolean;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r1);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r2);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>("-XX:+PrintFlagsFinal");
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>("-version");
+
+        $r3 = newarray (java.lang.String)[0];
+
+        $r4 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r3);
+
+        $r5 = (java.lang.String[]) $r4;
+
+        $r6 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r5);
+
+        $r7 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r8 = virtualinvoke $r6.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r8);
+
+        virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        if z0 == 0 goto label1;
+
+        $r18 = " *bool +ParallelRefProcEnabled *= *true +\\{product\\}";
+
+        goto label2;
+
+     label1:
+        $r18 = " *bool +ParallelRefProcEnabled *= *false +\\{product\\}";
+
+     label2:
+        $r9 = virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String)>($r18);
+
+        if $r9 != null goto label3;
+
+        $r10 = new java.lang.RuntimeException;
+
+        $r11 = new java.lang.StringBuilder;
+
+        $r12 = staticinvoke <java.util.Arrays: java.lang.String toString(java.lang.Object[])>(r1);
+
+        $r13 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r12);
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>($r13);
+
+        $r14 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" didn\'t set ParallelRefProcEnabled to ");
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z0);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" as expected");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<java.lang.RuntimeException: void <init>(java.lang.String)>($r17);
+
+        throw $r10;
+
+     label3:
+        return;
+    }
+}

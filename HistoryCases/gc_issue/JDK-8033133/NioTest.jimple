@@ -1,0 +1,249 @@
+public class NioTest extends java.lang.Object
+{
+    public static final int SIZE;
+    public static java.nio.ByteBuffer bb;
+    public static final java.lang.management.MemoryMXBean mBean;
+
+    public void <init>()
+    {
+        NioTest r0;
+
+        r0 := @this: NioTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.nio.ByteBuffer $r7;
+        byte $b4;
+        java.lang.StringBuilder $r2, $r4, $r10, $r12, $r17, $r19, $r24, $r26, $r27, $r30, $r31, $r32, $r33;
+        long $l0, $l1, $l2, $l3, $l5;
+        java.lang.String[] r29;
+        int $i6;
+        java.lang.String $r3, $r5, $r11, $r13, $r18, $r20, $r25, $r28;
+        java.io.PrintStream $r1, $r6, $r9, $r14, $r16, $r21, $r23;
+
+        r29 := @parameter0: java.lang.String[];
+
+        staticinvoke <NioTest: void gc()>();
+
+        $l0 = staticinvoke <NioTest: long getUsedHeap()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r30 = new java.lang.StringBuilder;
+
+        specialinvoke $r30.<java.lang.StringBuilder: void <init>()>();
+
+        $r2 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Used heap initial: ");
+
+        $r3 = staticinvoke <NioTest: java.lang.String toK(long)>($l0);
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>("   allocating direct memory");
+
+        $r7 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(25000000);
+
+        <NioTest: java.nio.ByteBuffer bb> = $r7;
+
+        $l1 = staticinvoke <NioTest: long getUsedHeap()>();
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r31 = new java.lang.StringBuilder;
+
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>()>();
+
+        $r10 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Used heap after  : ");
+
+        $r11 = staticinvoke <NioTest: java.lang.String toK(long)>($l1);
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r13);
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>("   invoking GC");
+
+        staticinvoke <NioTest: void gc()>();
+
+        $l2 = staticinvoke <NioTest: long getUsedHeap()>();
+
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        $r32 = new java.lang.StringBuilder;
+
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>()>();
+
+        $r17 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Used heap final  : ");
+
+        $r18 = staticinvoke <NioTest: java.lang.String toK(long)>($l2);
+
+        $r19 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r18);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r20);
+
+        $l3 = $l1 - $l0;
+
+        $b4 = $l3 cmp 8333333L;
+
+        $i6 = (int) $b4;
+
+        if $i6 <= 0 goto label1;
+
+        $r23 = <java.lang.System: java.io.PrintStream out>;
+
+        $r33 = new java.lang.StringBuilder;
+
+        specialinvoke $r33.<java.lang.StringBuilder: void <init>()>();
+
+        $r24 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Test failed: ");
+
+        $l5 = $l1 - $l0;
+
+        $r25 = staticinvoke <NioTest: java.lang.String toK(long)>($l5);
+
+        $r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r25);
+
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" of heap was allocated");
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>($r28);
+
+        staticinvoke <java.lang.System: void exit(int)>(1);
+
+     label1:
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>("Test passed");
+
+        return;
+    }
+
+    public static java.lang.String toK(long)
+    {
+        java.lang.StringBuilder $r0, $r1, $r2;
+        long l0, $l1;
+        java.lang.String $r3;
+
+        l0 := @parameter0: long;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $l1 = l0 / 1024L;
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("K");
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r3;
+    }
+
+    public static void dumpHeap(java.lang.String)
+    {
+        java.io.PrintStream $r4;
+        java.lang.Exception $r2;
+        com.sun.management.HotSpotDiagnosticMXBean $r0;
+        java.lang.StringBuilder $r3, $r5, $r6;
+        java.lang.String r1, $r7;
+
+        r1 := @parameter0: java.lang.String;
+
+     label1:
+        $r0 = staticinvoke <sun.management.ManagementFactoryHelper: com.sun.management.HotSpotDiagnosticMXBean getDiagnosticMXBean()>();
+
+        interfaceinvoke $r0.<com.sun.management.HotSpotDiagnosticMXBean: void dumpHeap(java.lang.String,boolean)>(r1, 1);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r2 := @caughtexception;
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Ex: ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r2);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+     label4:
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    public static long getUsedHeap()
+    {
+        java.lang.management.MemoryMXBean $r0;
+        long $l0;
+        java.lang.management.MemoryUsage $r1;
+
+        $r0 = <NioTest: java.lang.management.MemoryMXBean mBean>;
+
+        $r1 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l0 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        return $l0;
+    }
+
+    public static void gc()
+    {
+        java.lang.Exception $r0;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label1:
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000L);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r0 := @caughtexception;
+
+     label4:
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.management.MemoryMXBean $r0;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        <NioTest: java.lang.management.MemoryMXBean mBean> = $r0;
+
+        return;
+    }
+}

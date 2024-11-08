@@ -1,0 +1,91 @@
+public class MaxOutMemory extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        java.io.PrintStream $r1, $r5;
+        java.lang.String[] $r3;
+        MaxOutMemory r0;
+        java.lang.Exception $r9;
+        java.util.ArrayList $r2;
+        int $i0, i1;
+        java.lang.StringBuilder $r4, $r6, $r7;
+        java.lang.String $r8;
+
+        r0 := @this: MaxOutMemory;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Starting array allocation");
+
+        $r2 = new java.util.ArrayList;
+
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+
+     label1:
+        i1 = 0;
+
+     label2:
+        if i1 >= 10000000 goto label4;
+
+        $r3 = newarray (java.lang.String)[100000];
+
+        interfaceinvoke $r2.<java.util.Collection: boolean add(java.lang.Object)>($r3);
+
+        $i0 = i1 % 400;
+
+        if $i0 != 0 goto label3;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Executing GC i=");
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label3:
+        i1 = i1 + 1;
+
+        goto label2;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r9 := @caughtexception;
+
+        virtualinvoke $r9.<java.lang.Exception: void printStackTrace()>();
+
+     label6:
+        return;
+
+        catch java.lang.Exception from label1 to label4 with label5;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        MaxOutMemory $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new MaxOutMemory;
+
+        specialinvoke $r0.<MaxOutMemory: void <init>()>();
+
+        staticinvoke <java.lang.System: void exit(int)>(95);
+
+        return;
+    }
+}

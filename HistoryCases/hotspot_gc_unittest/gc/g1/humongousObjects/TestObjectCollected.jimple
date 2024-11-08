@@ -1,0 +1,257 @@
+public class TestObjectCollected extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WHITE_BOX;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.humongousObjects.TestObjectCollected: sun.hotspot.WhiteBox WHITE_BOX> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestObjectCollected r0;
+
+        r0 := @this: TestObjectCollected;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void doTesting(gc.g1.humongousObjects.TestObjectCollected$GC, gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY)
+    {
+        boolean $z0, $z1, $z2, $z3, z4, $z5, $z6, z7, $z9, $z10;
+        java.lang.ref.Reference $r7;
+        gc.g1.humongousObjects.TestObjectCollected$GC r4;
+        java.lang.Object[] $r0, $r26;
+        long $l0;
+        java.lang.Boolean $r13, $r14, $r15, $r16, $r17, $r18, $r22, $r23;
+        java.lang.String $r3, $r5, $r6, $r24, $r28, $r29, $r30;
+        java.io.PrintStream $r2, $r25;
+        sun.hotspot.WhiteBox $r8, $r11, $r12, $r20, $r21;
+        java.lang.Object $r9, $r10, $r19;
+        java.lang.Class $r27;
+        gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY r1;
+
+        r4 := @parameter0: gc.g1.humongousObjects.TestObjectCollected$GC;
+
+        r1 := @parameter1: gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $r3 = virtualinvoke r1.<gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: java.lang.String name()>();
+
+        $r0[0] = $r3;
+
+        $r5 = virtualinvoke r4.<gc.g1.humongousObjects.TestObjectCollected$GC: java.lang.String name()>();
+
+        $r0[1] = $r5;
+
+        $r6 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Testing %s reference behavior after %s", $r0);
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $r7 = virtualinvoke r1.<gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: java.lang.ref.Reference create()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertNotNull(java.lang.Object,java.lang.String)>($r7, "Test Bug: failed to allocate reference");
+
+        $r8 = <gc.g1.humongousObjects.TestObjectCollected: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $r9 = virtualinvoke $r7.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        $l0 = virtualinvoke $r8.<sun.hotspot.WhiteBox: long getObjectAddress(java.lang.Object)>($r9);
+
+        $r10 = virtualinvoke $r7.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        if $r10 != null goto label01;
+
+        $z5 = 1;
+
+        goto label02;
+
+     label01:
+        $z5 = 0;
+
+     label02:
+        $r11 = <gc.g1.humongousObjects.TestObjectCollected: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $z0 = virtualinvoke $r11.<sun.hotspot.WhiteBox: boolean g1BelongsToHumongousRegion(long)>($l0);
+
+        $r12 = <gc.g1.humongousObjects.TestObjectCollected: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $z1 = virtualinvoke $r12.<sun.hotspot.WhiteBox: boolean g1BelongsToFreeRegion(long)>($l0);
+
+        $r13 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z5);
+
+        $r14 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r13, $r14, "We just allocated an object but reference.get() already returned null");
+
+        $r15 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z1);
+
+        $r16 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r15, $r16, "We just allocated an object but WB returns that allocation region is still considered free");
+
+        $r17 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        $r18 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r17, $r18, "We just allocated a humongous object but WB returns that allocation region is not humongous");
+
+        virtualinvoke r4.<gc.g1.humongousObjects.TestObjectCollected$GC: void provoke()>();
+
+        $r19 = virtualinvoke $r7.<java.lang.ref.Reference: java.lang.Object get()>();
+
+        if $r19 != null goto label03;
+
+        $z6 = 1;
+
+        goto label04;
+
+     label03:
+        $z6 = 0;
+
+     label04:
+        z7 = $z6;
+
+        $r20 = <gc.g1.humongousObjects.TestObjectCollected: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $z2 = virtualinvoke $r20.<sun.hotspot.WhiteBox: boolean g1BelongsToHumongousRegion(long)>($l0);
+
+        $r21 = <gc.g1.humongousObjects.TestObjectCollected: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        $z3 = virtualinvoke $r21.<sun.hotspot.WhiteBox: boolean g1BelongsToFreeRegion(long)>($l0);
+
+        if $z3 != 0 goto label05;
+
+        if $z2 == 0 goto label05;
+
+        $z10 = 0;
+
+        $z9 = 0;
+
+        goto label06;
+
+     label05:
+        $z10 = 1;
+
+        $z9 = 1;
+
+     label06:
+        z4 = $z9;
+
+        $r22 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(z7);
+
+        $r23 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z10);
+
+        $r26 = newarray (java.lang.Object)[3];
+
+        $r27 = virtualinvoke $r7.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r28 = virtualinvoke $r27.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r26[0] = $r28;
+
+        if z7 == 0 goto label07;
+
+        $r29 = "";
+
+        goto label08;
+
+     label07:
+        $r29 = "not ";
+
+     label08:
+        $r26[1] = $r29;
+
+        if z4 == 0 goto label09;
+
+        $r30 = "";
+
+        goto label10;
+
+     label09:
+        $r30 = " not";
+
+     label10:
+        $r26[2] = $r30;
+
+        $r24 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("There is an inconsistensy between reference and white box method behavior - one considers object referenced with %s type collected and another doesn\'t!\n\treference.get() returned %snull\n\tWhiteBox methods returned that object was%s collected", $r26);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r22, $r23, $r24);
+
+        $r25 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>("Passed");
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r16;
+        gc.g1.humongousObjects.TestObjectCollected$GC $r1, $r3, $r5, $r7, $r9, $r11, $r13, $r15;
+        gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY $r0, $r2, $r4, $r6, $r8, $r10, $r12, $r14;
+
+        r16 := @parameter0: java.lang.String[];
+
+        $r1 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC FULL_GC>;
+
+        $r0 = <gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY WEAK>;
+
+        staticinvoke <gc.g1.humongousObjects.TestObjectCollected: void doTesting(gc.g1.humongousObjects.TestObjectCollected$GC,gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY)>($r1, $r0);
+
+        $r3 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC FULL_GC>;
+
+        $r2 = <gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY SOFT>;
+
+        staticinvoke <gc.g1.humongousObjects.TestObjectCollected: void doTesting(gc.g1.humongousObjects.TestObjectCollected$GC,gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY)>($r3, $r2);
+
+        $r5 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC FULL_GC_MEMORY_PRESSURE>;
+
+        $r4 = <gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY WEAK>;
+
+        staticinvoke <gc.g1.humongousObjects.TestObjectCollected: void doTesting(gc.g1.humongousObjects.TestObjectCollected$GC,gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY)>($r5, $r4);
+
+        $r7 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC FULL_GC_MEMORY_PRESSURE>;
+
+        $r6 = <gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY SOFT>;
+
+        staticinvoke <gc.g1.humongousObjects.TestObjectCollected: void doTesting(gc.g1.humongousObjects.TestObjectCollected$GC,gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY)>($r7, $r6);
+
+        $r9 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC YOUNG_CG>;
+
+        $r8 = <gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY WEAK>;
+
+        staticinvoke <gc.g1.humongousObjects.TestObjectCollected: void doTesting(gc.g1.humongousObjects.TestObjectCollected$GC,gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY)>($r9, $r8);
+
+        $r11 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC YOUNG_CG>;
+
+        $r10 = <gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY SOFT>;
+
+        staticinvoke <gc.g1.humongousObjects.TestObjectCollected: void doTesting(gc.g1.humongousObjects.TestObjectCollected$GC,gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY)>($r11, $r10);
+
+        $r13 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC CMC>;
+
+        $r12 = <gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY WEAK>;
+
+        staticinvoke <gc.g1.humongousObjects.TestObjectCollected: void doTesting(gc.g1.humongousObjects.TestObjectCollected$GC,gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY)>($r13, $r12);
+
+        $r15 = <gc.g1.humongousObjects.TestObjectCollected$GC: gc.g1.humongousObjects.TestObjectCollected$GC CMC>;
+
+        $r14 = <gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY SOFT>;
+
+        staticinvoke <gc.g1.humongousObjects.TestObjectCollected: void doTesting(gc.g1.humongousObjects.TestObjectCollected$GC,gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY)>($r15, $r14);
+
+        return;
+    }
+}

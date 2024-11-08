@@ -1,0 +1,20 @@
+class ReferenceCrasher$Referent extends java.lang.Object
+{
+    int number;
+
+    void <init>(int)
+    {
+        int i0;
+        ReferenceCrasher$Referent r0;
+
+        r0 := @this: ReferenceCrasher$Referent;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ReferenceCrasher$Referent: int number> = i0;
+
+        return;
+    }
+}

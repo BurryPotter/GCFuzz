@@ -1,0 +1,96 @@
+public class Test7190310 extends java.lang.Object
+{
+    private static java.lang.Object str;
+    private static final java.lang.ref.ReferenceQueue rq;
+    private static final java.lang.ref.WeakReference wr;
+
+    public void <init>()
+    {
+        Test7190310 r0;
+
+        r0 := @this: Test7190310;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.InterruptedException
+    {
+        Test7190310$3 $r1;
+        java.lang.String[] r2;
+        Test7190310$2 $r0;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = new Test7190310$2;
+
+        specialinvoke $r0.<Test7190310$2: void <init>()>();
+
+        $r1 = new Test7190310$3;
+
+        specialinvoke $r1.<Test7190310$3: void <init>()>();
+
+        virtualinvoke $r0.<java.lang.Thread: void start()>();
+
+        virtualinvoke $r1.<java.lang.Thread: void start()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000L);
+
+        <Test7190310: java.lang.Object str> = null;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+
+    static java.lang.ref.WeakReference access$000()
+    {
+        java.lang.ref.WeakReference $r0;
+
+        $r0 = <Test7190310: java.lang.ref.WeakReference wr>;
+
+        return $r0;
+    }
+
+    static java.lang.ref.ReferenceQueue access$100()
+    {
+        java.lang.ref.ReferenceQueue $r0;
+
+        $r0 = <Test7190310: java.lang.ref.ReferenceQueue rq>;
+
+        return $r0;
+    }
+
+    static void <clinit>()
+    {
+        Test7190310$1 $r0;
+        java.lang.Object $r4;
+        java.lang.ref.WeakReference $r2;
+        java.lang.ref.ReferenceQueue $r1, $r3;
+
+        $r0 = new Test7190310$1;
+
+        specialinvoke $r0.<Test7190310$1: void <init>()>();
+
+        <Test7190310: java.lang.Object str> = $r0;
+
+        $r1 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r1.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        <Test7190310: java.lang.ref.ReferenceQueue rq> = $r1;
+
+        $r2 = new java.lang.ref.WeakReference;
+
+        $r4 = <Test7190310: java.lang.Object str>;
+
+        $r3 = <Test7190310: java.lang.ref.ReferenceQueue rq>;
+
+        specialinvoke $r2.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r4, $r3);
+
+        <Test7190310: java.lang.ref.WeakReference wr> = $r2;
+
+        return;
+    }
+}

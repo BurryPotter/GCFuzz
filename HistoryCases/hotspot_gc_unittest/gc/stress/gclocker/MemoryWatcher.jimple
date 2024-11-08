@@ -1,0 +1,251 @@
+class MemoryWatcher extends java.lang.Object
+{
+    private java.lang.management.MemoryPoolMXBean bean;
+    private final int thresholdPromille;
+    private final int criticalThresholdPromille;
+    private final int minGCWaitMS;
+    private final int minFreeWaitElapsedMS;
+    private final int minFreeCriticalWaitMS;
+    private int lastUsage;
+    private long lastGCDetected;
+    private long lastFree;
+
+    public void <init>(java.lang.String)
+    {
+        gc.stress.gclocker.MemoryWatcher $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15;
+        long $l0, $l1;
+        java.lang.management.MemoryPoolMXBean r4;
+        java.lang.String $r5, r6;
+        boolean $z0, $z1;
+        java.util.Iterator $r2;
+        MemoryWatcher r0;
+        java.util.List $r1;
+        java.lang.Object $r3;
+
+        r0 := @this: MemoryWatcher;
+
+        r6 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r7 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r7.<gc.stress.gclocker.MemoryWatcher: int thresholdPromille> = 750;
+
+        $r8 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r8.<gc.stress.gclocker.MemoryWatcher: int criticalThresholdPromille> = 800;
+
+        $r9 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r9.<gc.stress.gclocker.MemoryWatcher: int minGCWaitMS> = 1000;
+
+        $r10 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r10.<gc.stress.gclocker.MemoryWatcher: int minFreeWaitElapsedMS> = 30000;
+
+        $r11 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r11.<gc.stress.gclocker.MemoryWatcher: int minFreeCriticalWaitMS> = 500;
+
+        $r12 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r12.<gc.stress.gclocker.MemoryWatcher: int lastUsage> = 0;
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r13 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r13.<gc.stress.gclocker.MemoryWatcher: long lastGCDetected> = $l0;
+
+        $l1 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r14 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r14.<gc.stress.gclocker.MemoryWatcher: long lastFree> = $l1;
+
+        $r1 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        $r3 = interfaceinvoke $r2.<java.util.Iterator: java.lang.Object next()>();
+
+        r4 = (java.lang.management.MemoryPoolMXBean) $r3;
+
+        $r5 = interfaceinvoke r4.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        $z1 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>(r6);
+
+        if $z1 == 0 goto label2;
+
+        $r15 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r15.<gc.stress.gclocker.MemoryWatcher: java.lang.management.MemoryPoolMXBean bean> = r4;
+
+        goto label3;
+
+     label2:
+        $z0 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+     label3:
+        return;
+    }
+
+    private int getMemoryUsage()
+    {
+        gc.stress.gclocker.MemoryWatcher $r5, $r6;
+        long $l0, $l1, $l3, $l4;
+        java.lang.management.MemoryPoolMXBean $r1, $r2;
+        int $i2, $i5;
+        java.lang.management.MemoryUsage $r3;
+        java.lang.Runtime $r4;
+        MemoryWatcher r0;
+        float $f0, $f1, $f2, $f3, $f4, $f5, $f6, f7, f8;
+
+        r0 := @this: MemoryWatcher;
+
+        $r5 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r1 = $r5.<gc.stress.gclocker.MemoryWatcher: java.lang.management.MemoryPoolMXBean bean>;
+
+        if $r1 != null goto label1;
+
+        $r4 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l3 = virtualinvoke $r4.<java.lang.Runtime: long freeMemory()>();
+
+        $f3 = (float) $l3;
+
+        $l4 = virtualinvoke $r4.<java.lang.Runtime: long maxMemory()>();
+
+        $f4 = (float) $l4;
+
+        f7 = $f3 / $f4;
+
+        $f5 = 1.0F - f7;
+
+        $f6 = $f5 * 1000.0F;
+
+        $i5 = staticinvoke <java.lang.Math: int round(float)>($f6);
+
+        return $i5;
+
+     label1:
+        $r6 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r2 = $r6.<gc.stress.gclocker.MemoryWatcher: java.lang.management.MemoryPoolMXBean bean>;
+
+        $r3 = interfaceinvoke $r2.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l0 = virtualinvoke $r3.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $f0 = (float) $l0;
+
+        $l1 = virtualinvoke $r3.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $f1 = (float) $l1;
+
+        f8 = $f0 / $f1;
+
+        $f2 = f8 * 1000.0F;
+
+        $i2 = staticinvoke <java.lang.Math: int round(float)>($f2);
+
+        return $i2;
+    }
+
+    public synchronized boolean shouldFreeUpSpace()
+    {
+        gc.stress.gclocker.MemoryWatcher $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8;
+        long $l1, $l3, $l4, $l8, $l9;
+        byte $b5, $b6, $b7;
+        int $i0, $i2, $i10, $i11, $i12;
+        boolean z0;
+        MemoryWatcher r0;
+
+        r0 := @this: MemoryWatcher;
+
+        $r1 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $i0 = virtualinvoke $r1.<gc.stress.gclocker.MemoryWatcher: int getMemoryUsage()>();
+
+        $l1 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        z0 = 0;
+
+        $r2 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $i2 = $r2.<gc.stress.gclocker.MemoryWatcher: int lastUsage>;
+
+        if $i0 >= $i2 goto label1;
+
+        $r3 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r3.<gc.stress.gclocker.MemoryWatcher: long lastGCDetected> = $l1;
+
+        z0 = 1;
+
+     label1:
+        $r4 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r4.<gc.stress.gclocker.MemoryWatcher: int lastUsage> = $i0;
+
+        $r5 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $l3 = $r5.<gc.stress.gclocker.MemoryWatcher: long lastFree>;
+
+        $l8 = $l1 - $l3;
+
+        $r6 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $l4 = $r6.<gc.stress.gclocker.MemoryWatcher: long lastGCDetected>;
+
+        $l9 = $l1 - $l4;
+
+        if $i0 <= 800 goto label2;
+
+        $b7 = $l8 cmp 500L;
+
+        $i10 = (int) $b7;
+
+        if $i10 <= 0 goto label2;
+
+        $r7 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r7.<gc.stress.gclocker.MemoryWatcher: long lastFree> = $l1;
+
+        return 1;
+
+     label2:
+        if $i0 <= 750 goto label4;
+
+        if z0 != 0 goto label4;
+
+        $b5 = $l8 cmp 30000L;
+
+        $i11 = (int) $b5;
+
+        if $i11 > 0 goto label3;
+
+        $b6 = $l9 cmp 1000L;
+
+        $i12 = (int) $b6;
+
+        if $i12 <= 0 goto label4;
+
+     label3:
+        $r8 = (gc.stress.gclocker.MemoryWatcher) r0;
+
+        $r8.<gc.stress.gclocker.MemoryWatcher: long lastFree> = $l1;
+
+        return 1;
+
+     label4:
+        return 0;
+    }
+}

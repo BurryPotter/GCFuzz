@@ -1,0 +1,122 @@
+public class LogTest extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        LogTest r0;
+
+        r0 := @this: LogTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int $i0;
+        java.lang.String[] r0;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 != 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        staticinvoke <LogTest: void setLogging(boolean)>($z0);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+
+    private static void setLogging(boolean)
+    {
+        com.sun.management.VMOption $r18;
+        java.lang.management.PlatformManagedObject $r0;
+        java.lang.String $r5, $r9, $r13, $r19, $r21;
+        boolean z0;
+        java.io.PrintStream $r14, $r16, $r22;
+        com.sun.management.HotSpotDiagnosticMXBean r1;
+        java.lang.StringBuilder $r2, $r3, $r4, $r6, $r7, $r8, $r10, $r11, $r12, $r15, $r17, $r20;
+
+        z0 := @parameter0: boolean;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.PlatformManagedObject getPlatformMXBean(java.lang.Class)>(class "Lcom/sun/management/HotSpotDiagnosticMXBean;");
+
+        r1 = (com.sun.management.HotSpotDiagnosticMXBean) $r0;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r1.<com.sun.management.HotSpotDiagnosticMXBean: void setVMOption(java.lang.String,java.lang.String)>("PrintGC", $r5);
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z0);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r1.<com.sun.management.HotSpotDiagnosticMXBean: void setVMOption(java.lang.String,java.lang.String)>("PrintGCDetails", $r9);
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>()>();
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z0);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke r1.<com.sun.management.HotSpotDiagnosticMXBean: void setVMOption(java.lang.String,java.lang.String)>("PrintGCTimeStamps", $r13);
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void println(java.lang.String)>("---------------------- ");
+
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>()>();
+
+        $r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("PrintGC ");
+
+        $r18 = interfaceinvoke r1.<com.sun.management.HotSpotDiagnosticMXBean: com.sun.management.VMOption getVMOption(java.lang.String)>("PrintGC");
+
+        $r19 = virtualinvoke $r18.<com.sun.management.VMOption: java.lang.String getValue()>();
+
+        $r20 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19);
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>($r21);
+
+        $r22 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>("---------------------- ");
+
+        return;
+    }
+}

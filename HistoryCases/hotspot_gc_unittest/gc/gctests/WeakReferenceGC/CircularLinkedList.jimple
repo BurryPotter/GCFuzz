@@ -1,0 +1,187 @@
+public class CircularLinkedList extends java.lang.Object implements java.lang.Cloneable
+{
+    private gc.gctests.WeakReferenceGC.node Root;
+
+    public void <init>()
+    {
+        CircularLinkedList r0;
+
+        r0 := @this: CircularLinkedList;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void addElement()
+    {
+        gc.gctests.WeakReferenceGC.CircularLinkedList $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23;
+        gc.gctests.WeakReferenceGC.node $r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13;
+        CircularLinkedList r1;
+
+        r1 := @this: CircularLinkedList;
+
+        $r13 = new gc.gctests.WeakReferenceGC.node;
+
+        specialinvoke $r13.<gc.gctests.WeakReferenceGC.node: void <init>()>();
+
+        $r14 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r1;
+
+        $r2 = $r14.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        if $r2 != null goto label1;
+
+        $r15 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r1;
+
+        $r15.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root> = $r13;
+
+        $r16 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r1;
+
+        $r10 = $r16.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        $r17 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r1;
+
+        $r9 = $r17.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        $r10.<gc.gctests.WeakReferenceGC.node: gc.gctests.WeakReferenceGC.node next> = $r9;
+
+        $r18 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r1;
+
+        $r12 = $r18.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        $r19 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r1;
+
+        $r11 = $r19.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        $r12.<gc.gctests.WeakReferenceGC.node: gc.gctests.WeakReferenceGC.node prev> = $r11;
+
+        goto label2;
+
+     label1:
+        $r20 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r1;
+
+        $r3 = $r20.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        $r4 = $r3.<gc.gctests.WeakReferenceGC.node: gc.gctests.WeakReferenceGC.node next>;
+
+        $r13.<gc.gctests.WeakReferenceGC.node: gc.gctests.WeakReferenceGC.node next> = $r4;
+
+        $r21 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r1;
+
+        $r5 = $r21.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        $r6 = $r5.<gc.gctests.WeakReferenceGC.node: gc.gctests.WeakReferenceGC.node next>;
+
+        $r6.<gc.gctests.WeakReferenceGC.node: gc.gctests.WeakReferenceGC.node prev> = $r13;
+
+        $r22 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r1;
+
+        $r7 = $r22.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        $r7.<gc.gctests.WeakReferenceGC.node: gc.gctests.WeakReferenceGC.node next> = $r13;
+
+        $r23 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r1;
+
+        $r8 = $r23.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        $r13.<gc.gctests.WeakReferenceGC.node: gc.gctests.WeakReferenceGC.node prev> = $r8;
+
+     label2:
+        return;
+    }
+
+    public void addNelements(int)
+    {
+        gc.gctests.WeakReferenceGC.CircularLinkedList $r1;
+        int i0, i1;
+        CircularLinkedList r0;
+
+        r0 := @this: CircularLinkedList;
+
+        i0 := @parameter0: int;
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        $r1 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r0;
+
+        virtualinvoke $r1.<gc.gctests.WeakReferenceGC.CircularLinkedList: void addElement()>();
+
+        i1 = i1 + 1;
+
+     label2:
+        if i1 < i0 goto label1;
+
+        return;
+    }
+
+    public int elementCount()
+    {
+        gc.gctests.WeakReferenceGC.CircularLinkedList $r4, $r5;
+        CircularLinkedList r0;
+        int i0;
+        gc.gctests.WeakReferenceGC.node $r1, $r2, r3;
+
+        r0 := @this: CircularLinkedList;
+
+        $r4 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r0;
+
+        r3 = $r4.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        i0 = 0;
+
+     label1:
+        $r2 = r3.<gc.gctests.WeakReferenceGC.node: gc.gctests.WeakReferenceGC.node prev>;
+
+        r3 = $r2;
+
+        i0 = i0 + 1;
+
+        $r5 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r0;
+
+        $r1 = $r5.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        if $r2 != $r1 goto label1;
+
+        return i0;
+    }
+
+    public java.lang.Object clone()
+    {
+        gc.gctests.WeakReferenceGC.CircularLinkedList $r5, $r6, $r7;
+        CircularLinkedList r0;
+        gc.gctests.WeakReferenceGC.node $r2, $r3, r4;
+
+        r0 := @this: CircularLinkedList;
+
+        $r6 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r0;
+
+        r4 = $r6.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        if r4 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = new gc.gctests.WeakReferenceGC.CircularLinkedList;
+
+        specialinvoke $r5.<gc.gctests.WeakReferenceGC.CircularLinkedList: void <init>()>();
+
+     label2:
+        virtualinvoke $r5.<gc.gctests.WeakReferenceGC.CircularLinkedList: void addElement()>();
+
+        $r3 = r4.<gc.gctests.WeakReferenceGC.node: gc.gctests.WeakReferenceGC.node prev>;
+
+        r4 = $r3;
+
+        $r7 = (gc.gctests.WeakReferenceGC.CircularLinkedList) r0;
+
+        $r2 = $r7.<gc.gctests.WeakReferenceGC.CircularLinkedList: gc.gctests.WeakReferenceGC.node Root>;
+
+        if $r3 != $r2 goto label2;
+
+        return $r5;
+    }
+}

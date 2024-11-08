@@ -1,0 +1,41 @@
+class ClassTwo extends java.lang.Object
+{
+    static int counter;
+
+    static void <clinit>()
+    {
+        <gc.gctests.ClassDeallocGC.ClassTwo: int counter> = 0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        int $i0, $i1;
+        ClassTwo r0;
+
+        r0 := @this: ClassTwo;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $i0 = <gc.gctests.ClassDeallocGC.ClassTwo: int counter>;
+
+        $i1 = $i0 + 1;
+
+        <gc.gctests.ClassDeallocGC.ClassTwo: int counter> = $i1;
+
+        return;
+    }
+
+    public int getCounter()
+    {
+        int $i0;
+        ClassTwo r0;
+
+        r0 := @this: ClassTwo;
+
+        $i0 = <gc.gctests.ClassDeallocGC.ClassTwo: int counter>;
+
+        return $i0;
+    }
+}

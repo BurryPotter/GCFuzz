@@ -1,0 +1,173 @@
+public class TestLogging extends java.lang.Object
+{
+    private static final java.lang.String[] COMMON_OPTIONS;
+    public static final int ALLOCATION_SIZE;
+    public static final int ALLOCATION_COUNT;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        $r0 = newarray (java.lang.String)[16];
+
+        $r0[0] = "-Xbootclasspath/a:.";
+
+        $r0[1] = "-XX:+UseG1GC";
+
+        $r0[2] = "-XX:+UnlockExperimentalVMOptions";
+
+        $r0[3] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r0[4] = "-XX:+WhiteBoxAPI";
+
+        $r0[5] = "-XX:SurvivorRatio=1";
+
+        $r0[6] = "-Xms10M";
+
+        $r0[7] = "-Xmx10M";
+
+        $r0[8] = "-XX:MaxTenuringThreshold=1";
+
+        $r0[9] = "-XX:InitiatingHeapOccupancyPercent=100";
+
+        $r0[10] = "-XX:-G1UseAdaptiveIHOP";
+
+        $r0[11] = "-XX:G1MixedGCCountTarget=4";
+
+        $r0[12] = "-XX:MaxGCPauseMillis=30000";
+
+        $r0[13] = "-XX:G1HeapRegionSize=1m";
+
+        $r0[14] = "-XX:G1HeapWastePercent=0";
+
+        $r0[15] = "-XX:G1MixedGCLiveThresholdPercent=100";
+
+        <gc.g1.mixedgc.TestLogging: java.lang.String[] COMMON_OPTIONS> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestLogging r0;
+
+        r0 := @this: TestLogging;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.g1.mixedgc.TestLogging: void test(java.lang.String)>("-Xlog:gc");
+
+        staticinvoke <gc.g1.mixedgc.TestLogging: void test(java.lang.String)>("-Xlog:gc=debug");
+
+        return;
+    }
+
+    private static void test(java.lang.String) throws java.lang.Exception
+    {
+        java.io.PrintStream $r2, $r8;
+        java.lang.Object[] $r0;
+        java.lang.String[] $r6;
+        jdk.test.lib.process.OutputAnalyzer $r7;
+        java.lang.Class $r1;
+        java.lang.String $r3, r4, $r5, $r9;
+
+        r4 := @parameter0: java.lang.String;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = newarray (java.lang.Object)[2];
+
+        $r1 = class "Lgc/g1/mixedgc/TestLogging;";
+
+        $r3 = virtualinvoke $r1.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r0[0] = $r3;
+
+        $r0[1] = r4;
+
+        $r5 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("%s: running with %s flag", $r0);
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $r6 = newarray (java.lang.String)[1];
+
+        $r6[0] = r4;
+
+        $r7 = staticinvoke <gc.g1.mixedgc.TestLogging: jdk.test.lib.process.OutputAnalyzer spawnMixedGCProvoker(java.lang.String[])>($r6);
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r9 = virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        virtualinvoke $r7.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Pause Young (Mixed) (G1 Evacuation Pause)");
+
+        return;
+    }
+
+    private static transient jdk.test.lib.process.OutputAnalyzer spawnMixedGCProvoker(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r5;
+        java.lang.Object[] $r7;
+        java.lang.Process $r11;
+        java.lang.String[] $r1, r2, $r6, $r8;
+        jdk.test.lib.process.OutputAnalyzer $r10;
+        java.util.ArrayList $r0;
+        int $i0;
+        java.lang.Class $r3;
+        java.lang.String $r4;
+        java.lang.ProcessBuilder $r9;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = <gc.g1.mixedgc.TestLogging: java.lang.String[] COMMON_OPTIONS>;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r1);
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, r2);
+
+        $r3 = class "Lgc/g1/mixedgc/MixedGCProvoker;";
+
+        $r4 = virtualinvoke $r3.<java.lang.Class: java.lang.String getName()>();
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>($r4);
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.Object)>($r0);
+
+        $i0 = interfaceinvoke $r0.<java.util.List: int size()>();
+
+        $r6 = newarray (java.lang.String)[$i0];
+
+        $r7 = interfaceinvoke $r0.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r6);
+
+        $r8 = (java.lang.String[]) $r7;
+
+        $r9 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(boolean,java.lang.String[])>(0, $r8);
+
+        $r10 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r11 = virtualinvoke $r9.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r11);
+
+        return $r10;
+    }
+}

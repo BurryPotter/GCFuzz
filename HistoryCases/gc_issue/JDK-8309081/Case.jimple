@@ -1,0 +1,39 @@
+public class Case extends java.lang.Object
+{
+    public java.lang.Object[][][] objectArray;
+
+    public void <init>()
+    {
+        java.lang.Object[][][] $r1;
+        Case r0;
+
+        r0 := @this: Case;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = newmultiarray (java.lang.Object)[256][256][4];
+
+        r0.<Case: java.lang.Object[][][] objectArray> = $r1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte[] r1;
+        java.lang.String[] r2;
+        Case $r0;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = new Case;
+
+        specialinvoke $r0.<Case: void <init>()>();
+
+        r1 = newarray (byte)[134217728];
+
+        staticinvoke <Case: void main(java.lang.String[])>(r2);
+
+        return;
+    }
+}

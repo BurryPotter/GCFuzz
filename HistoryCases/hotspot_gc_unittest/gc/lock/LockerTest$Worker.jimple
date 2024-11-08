@@ -1,0 +1,97 @@
+class LockerTest$Worker extends java.lang.Object implements java.lang.Runnable
+{
+    byte[] rezerve;
+    private nsk.share.gc.lock.Locker locker;
+    final gc.lock.LockerTest this$0;
+
+    public void <init>(gc.lock.LockerTest)
+    {
+        LockerTest$Worker r0;
+        byte[] $r2;
+        long $l0;
+        gc.lock.LockerTest$Worker $r8, $r9, $r10, $r11;
+        nsk.share.gc.lock.Lockers $r4;
+        gc.lock.LockerTest r1;
+        nsk.share.gc.lock.Locker $r6, $r7;
+        java.lang.Object $r5;
+        nsk.share.gc.gp.GarbageProducer $r3;
+
+        r0 := @this: LockerTest$Worker;
+
+        r1 := @parameter0: gc.lock.LockerTest;
+
+        $r8 = (gc.lock.LockerTest$Worker) r0;
+
+        $r8.<gc.lock.LockerTest$Worker: gc.lock.LockerTest this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = newarray (byte)[1048576];
+
+        $r9 = (gc.lock.LockerTest$Worker) r0;
+
+        $r9.<gc.lock.LockerTest$Worker: byte[] rezerve> = $r2;
+
+        $r4 = r1.<gc.lock.LockerTest: nsk.share.gc.lock.Lockers lockers>;
+
+        $r3 = r1.<gc.lock.LockerTest: nsk.share.gc.gp.GarbageProducer garbageProducer1>;
+
+        $l0 = r1.<gc.lock.LockerTest: long objectSize>;
+
+        $r5 = interfaceinvoke $r3.<nsk.share.gc.gp.GarbageProducer: java.lang.Object create(long)>($l0);
+
+        $r6 = interfaceinvoke $r4.<nsk.share.gc.lock.Lockers: nsk.share.gc.lock.Locker createLocker(java.lang.Object)>($r5);
+
+        $r10 = (gc.lock.LockerTest$Worker) r0;
+
+        $r10.<gc.lock.LockerTest$Worker: nsk.share.gc.lock.Locker locker> = $r6;
+
+        $r11 = (gc.lock.LockerTest$Worker) r0;
+
+        $r7 = $r11.<gc.lock.LockerTest$Worker: nsk.share.gc.lock.Locker locker>;
+
+        interfaceinvoke $r7.<nsk.share.gc.lock.Locker: void enable()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        LockerTest$Worker r0;
+        nsk.share.test.ExecutionController $r3;
+        gc.lock.LockerTest$Worker $r7, $r8, $r9, $r10;
+        gc.lock.LockerTest $r2, $r4;
+        nsk.share.gc.lock.Locker $r1, $r6;
+        nsk.share.gc.gp.GarbageProducer $r5;
+
+        r0 := @this: LockerTest$Worker;
+
+        $r7 = (gc.lock.LockerTest$Worker) r0;
+
+        $r1 = $r7.<gc.lock.LockerTest$Worker: nsk.share.gc.lock.Locker locker>;
+
+        interfaceinvoke $r1.<nsk.share.gc.lock.Locker: void lock()>();
+
+        $r8 = (gc.lock.LockerTest$Worker) r0;
+
+        $r2 = $r8.<gc.lock.LockerTest$Worker: gc.lock.LockerTest this$0>;
+
+        $r3 = staticinvoke <gc.lock.LockerTest: nsk.share.test.ExecutionController access$0(gc.lock.LockerTest)>($r2);
+
+        $r9 = (gc.lock.LockerTest$Worker) r0;
+
+        $r4 = $r9.<gc.lock.LockerTest$Worker: gc.lock.LockerTest this$0>;
+
+        $r5 = $r4.<gc.lock.LockerTest: nsk.share.gc.gp.GarbageProducer garbageProducer>;
+
+        staticinvoke <nsk.share.gc.gp.GarbageUtils: int eatMemory(nsk.share.test.ExecutionController,nsk.share.gc.gp.GarbageProducer)>($r3, $r5);
+
+        $r10 = (gc.lock.LockerTest$Worker) r0;
+
+        $r6 = $r10.<gc.lock.LockerTest$Worker: nsk.share.gc.lock.Locker locker>;
+
+        interfaceinvoke $r6.<nsk.share.gc.lock.Locker: void unlock()>();
+
+        return;
+    }
+}

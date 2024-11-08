@@ -1,0 +1,240 @@
+class BigRamTester$Statistics$1 extends java.lang.Thread
+{
+    final BigRamTester$Statistics this$0;
+
+    void <init>(BigRamTester$Statistics)
+    {
+        BigRamTester$Statistics$1 r0;
+        BigRamTester$Statistics r1;
+
+        r0 := @this: BigRamTester$Statistics$1;
+
+        r1 := @parameter0: BigRamTester$Statistics;
+
+        r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0> = r1;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        byte $b3, $b5;
+        java.lang.Thread $r44;
+        java.lang.Runtime $r33;
+        java.lang.StringBuilder $r9, $r10, $r17, $r18, $r21, $r22, $r25, $r26, $r31, $r32, $r34, $r35, $r37, $r38, $r39, $r40, $r49;
+        java.lang.Throwable $r42;
+        long $l0, $l1, $l2, $l4, $l6, $l7, $l8, $l9, $l10, $l11, $l12, $l13, $l14, $l15, $l16, $l17, $l18, $l19;
+        java.lang.String $r8, $r41;
+        java.util.concurrent.atomic.AtomicLong $r3, $r5, $r12, $r14, $r16, $r20, $r24, $r28, $r30, $r46, $r48;
+        BigRamTester$Statistics$1 r0;
+        int $i20, $i21;
+        double $d0, $d1, $d2, $d3, $d4, $d5, $d6, $d7;
+        java.io.PrintStream $r7;
+        BigRamTester$Statistics $r1, $r2, $r4, $r11, $r13, $r15, $r19, $r23, $r27, $r29, $r36, $r45, $r47;
+        java.lang.InterruptedException $r43;
+
+        r0 := @this: BigRamTester$Statistics$1;
+
+     label01:
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000L);
+
+     label02:
+        goto label04;
+
+     label03:
+        $r43 := @caughtexception;
+
+        $r44 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>();
+
+        virtualinvoke $r44.<java.lang.Thread: void interrupt()>();
+
+     label04:
+        $r1 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        entermonitor $r1;
+
+     label05:
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $l1 = staticinvoke <BigRamTester: long access$000()>();
+
+        $l19 = $l0 - $l1;
+
+        $r2 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r3 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$100(BigRamTester$Statistics)>($r2);
+
+        $l2 = virtualinvoke $r3.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $b3 = $l2 cmp 0L;
+
+        $i20 = (int) $b3;
+
+        if $i20 <= 0 goto label06;
+
+        $r4 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r5 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$200(BigRamTester$Statistics)>($r4);
+
+        $l4 = virtualinvoke $r5.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $b5 = $l4 cmp 0L;
+
+        $i21 = (int) $b5;
+
+        if $i21 <= 0 goto label06;
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r49 = new java.lang.StringBuilder;
+
+        specialinvoke $r49.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = staticinvoke <BigRamTester: java.lang.String access$300()>();
+
+        $r9 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Hit rate = ");
+
+        $r11 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r12 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$100(BigRamTester$Statistics)>($r11);
+
+        $l6 = virtualinvoke $r12.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $d0 = (double) $l6;
+
+        $r13 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r14 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$200(BigRamTester$Statistics)>($r13);
+
+        $l7 = virtualinvoke $r14.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $d1 = (double) $l7;
+
+        $r15 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r16 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$100(BigRamTester$Statistics)>($r15);
+
+        $l8 = virtualinvoke $r16.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $d2 = (double) $l8;
+
+        $d3 = $d1 + $d2;
+
+        $d4 = $d0 / $d3;
+
+        $r17 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d4);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; total hits = ");
+
+        $r19 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r20 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$100(BigRamTester$Statistics)>($r19);
+
+        $l9 = virtualinvoke $r20.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $r21 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; total misses = ");
+
+        $r23 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r24 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$200(BigRamTester$Statistics)>($r23);
+
+        $l10 = virtualinvoke $r24.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $r25 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l10);
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; total reads = ");
+
+        $r27 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r28 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$100(BigRamTester$Statistics)>($r27);
+
+        $l11 = virtualinvoke $r28.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $r29 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r30 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$200(BigRamTester$Statistics)>($r29);
+
+        $l12 = virtualinvoke $r30.<java.util.concurrent.atomic.AtomicLong: long get()>();
+
+        $l13 = $l11 + $l12;
+
+        $r31 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l13);
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("; free memory = ");
+
+        $r33 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l14 = virtualinvoke $r33.<java.lang.Runtime: long freeMemory()>();
+
+        $l15 = $l14 / 1024L;
+
+        $l16 = $l15 / 1024L;
+
+        $r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l16);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("MB; max time taken = ");
+
+        $r36 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $l17 = staticinvoke <BigRamTester$Statistics: long access$400(BigRamTester$Statistics)>($r36);
+
+        $d5 = (double) $l17;
+
+        $d6 = $d5 / 1000.0;
+
+        $d7 = $d6 / 1000.0;
+
+        $r37 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d7);
+
+        $r38 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ms; uptime = ");
+
+        $l18 = $l19 / 1000L;
+
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l18);
+
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" seconds");
+
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r41);
+
+     label06:
+        $r45 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r46 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$100(BigRamTester$Statistics)>($r45);
+
+        virtualinvoke $r46.<java.util.concurrent.atomic.AtomicLong: void set(long)>(0L);
+
+        $r47 = r0.<BigRamTester$Statistics$1: BigRamTester$Statistics this$0>;
+
+        $r48 = staticinvoke <BigRamTester$Statistics: java.util.concurrent.atomic.AtomicLong access$200(BigRamTester$Statistics)>($r47);
+
+        virtualinvoke $r48.<java.util.concurrent.atomic.AtomicLong: void set(long)>(0L);
+
+        exitmonitor $r1;
+
+     label07:
+        goto label10;
+
+     label08:
+        $r42 := @caughtexception;
+
+        exitmonitor $r1;
+
+     label09:
+        throw $r42;
+
+     label10:
+        goto label01;
+
+        catch java.lang.InterruptedException from label01 to label02 with label03;
+        catch java.lang.Throwable from label05 to label07 with label08;
+        catch java.lang.Throwable from label08 to label09 with label08;
+    }
+}

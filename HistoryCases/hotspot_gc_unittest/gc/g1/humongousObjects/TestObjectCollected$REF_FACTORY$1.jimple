@@ -1,0 +1,43 @@
+enum class TestObjectCollected$REF_FACTORY$1 extends gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY
+{
+
+    void <init>(java.lang.String, int)
+    {
+        int i0;
+        java.lang.String r1;
+        TestObjectCollected$REF_FACTORY$1 r0;
+
+        r0 := @this: TestObjectCollected$REF_FACTORY$1;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public java.lang.ref.Reference create()
+    {
+        byte[] $r2;
+        int $i0;
+        java.lang.ref.WeakReference $r0;
+        java.lang.ref.ReferenceQueue $r1;
+        TestObjectCollected$REF_FACTORY$1 r3;
+
+        r3 := @this: TestObjectCollected$REF_FACTORY$1;
+
+        $r0 = new java.lang.ref.WeakReference;
+
+        $i0 = <gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: int ALLOCATION_SIZE>;
+
+        $r2 = newarray (byte)[$i0];
+
+        $r1 = <gc.g1.humongousObjects.TestObjectCollected$REF_FACTORY: java.lang.ref.ReferenceQueue referenceQueqe>;
+
+        specialinvoke $r0.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r2, $r1);
+
+        return $r0;
+    }
+}

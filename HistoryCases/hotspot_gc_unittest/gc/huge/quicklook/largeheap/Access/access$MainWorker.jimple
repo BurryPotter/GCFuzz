@@ -1,0 +1,213 @@
+class access$MainWorker extends java.lang.Object implements java.lang.Runnable
+{
+    final gc.huge.quicklook.largeheap.Access.access this$0;
+
+    void <init>(gc.huge.quicklook.largeheap.Access.access)
+    {
+        gc.huge.quicklook.largeheap.Access.access r1;
+        gc.huge.quicklook.largeheap.Access.access$MainWorker $r2;
+        access$MainWorker r0;
+
+        r0 := @this: access$MainWorker;
+
+        r1 := @parameter0: gc.huge.quicklook.largeheap.Access.access;
+
+        $r2 = (gc.huge.quicklook.largeheap.Access.access$MainWorker) r0;
+
+        $r2.<gc.huge.quicklook.largeheap.Access.access$MainWorker: gc.huge.quicklook.largeheap.Access.access this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        byte $b6;
+        boolean $z0, $z1;
+        gc.huge.quicklook.largeheap.Access.access $r1, $r3, $r7, $r9, $r11, $r13, $r14, $r17;
+        java.lang.StringBuilder $r27, $r28, $r29, $r32;
+        java.lang.Throwable $r31, $r41;
+        nsk.share.test.ExecutionController $r4, $r18;
+        long $l4, $l5, $l7;
+        gc.huge.quicklook.largeheap.Access.access$MainWorker $r34, $r35, $r36, $r37, $r38, $r39, $r40, $r42;
+        long[] $r5, $r20, $r22, $r26;
+        java.util.concurrent.ThreadLocalRandom $r16;
+        int $i0, $i1, $i2, $i3, i8;
+        java.lang.String $r30;
+        long[][] $r6, $r19, $r21, $r25;
+        nsk.share.TestFailure $r33;
+        java.lang.Object $r2, $r10, $r15;
+        nsk.share.log.Log $r8, $r12;
+        access$MainWorker r0;
+
+        r0 := @this: access$MainWorker;
+
+        $r34 = (gc.huge.quicklook.largeheap.Access.access$MainWorker) r0;
+
+        $r1 = $r34.<gc.huge.quicklook.largeheap.Access.access$MainWorker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r2 = $r1.<gc.huge.quicklook.largeheap.Access.access: java.lang.Object lock>;
+
+        entermonitor $r2;
+
+     label01:
+        i8 = 0;
+
+        goto label05;
+
+     label02:
+        $r35 = (gc.huge.quicklook.largeheap.Access.access$MainWorker) r0;
+
+        $r3 = $r35.<gc.huge.quicklook.largeheap.Access.access$MainWorker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r4 = staticinvoke <gc.huge.quicklook.largeheap.Access.access: nsk.share.test.ExecutionController access$0(gc.huge.quicklook.largeheap.Access.access)>($r3);
+
+        $z0 = interfaceinvoke $r4.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 != 0 goto label04;
+
+        $r36 = (gc.huge.quicklook.largeheap.Access.access$MainWorker) r0;
+
+        $r7 = $r36.<gc.huge.quicklook.largeheap.Access.access$MainWorker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r8 = staticinvoke <gc.huge.quicklook.largeheap.Access.access: nsk.share.log.Log access$1(gc.huge.quicklook.largeheap.Access.access)>($r7);
+
+        interfaceinvoke $r8.<nsk.share.log.Log: void debug(java.lang.Object)>("Test run out of time before 4G were allocated");
+
+        $r37 = (gc.huge.quicklook.largeheap.Access.access$MainWorker) r0;
+
+        $r9 = $r37.<gc.huge.quicklook.largeheap.Access.access$MainWorker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r10 = $r9.<gc.huge.quicklook.largeheap.Access.access: java.lang.Object lock>;
+
+        virtualinvoke $r10.<java.lang.Object: void notifyAll()>();
+
+        exitmonitor $r2;
+
+     label03:
+        return;
+
+     label04:
+        $r6 = <gc.huge.quicklook.largeheap.Access.access: long[][] storage>;
+
+        $i0 = <gc.huge.quicklook.largeheap.Access.access: int STORAGE_SIZE_DIM2>;
+
+        $r5 = newarray (long)[$i0];
+
+        $r6[i8] = $r5;
+
+        i8 = i8 + 1;
+
+     label05:
+        if i8 < 65536 goto label02;
+
+        $r38 = (gc.huge.quicklook.largeheap.Access.access$MainWorker) r0;
+
+        $r11 = $r38.<gc.huge.quicklook.largeheap.Access.access$MainWorker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r12 = staticinvoke <gc.huge.quicklook.largeheap.Access.access: nsk.share.log.Log access$1(gc.huge.quicklook.largeheap.Access.access)>($r11);
+
+        interfaceinvoke $r12.<nsk.share.log.Log: void debug(java.lang.Object)>("The 4G are allocated, starting to test");
+
+        $r39 = (gc.huge.quicklook.largeheap.Access.access$MainWorker) r0;
+
+        $r13 = $r39.<gc.huge.quicklook.largeheap.Access.access$MainWorker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r13.<gc.huge.quicklook.largeheap.Access.access: boolean is4GAllocated> = 1;
+
+        $r40 = (gc.huge.quicklook.largeheap.Access.access$MainWorker) r0;
+
+        $r14 = $r40.<gc.huge.quicklook.largeheap.Access.access$MainWorker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r15 = $r14.<gc.huge.quicklook.largeheap.Access.access: java.lang.Object lock>;
+
+        virtualinvoke $r15.<java.lang.Object: void notifyAll()>();
+
+        exitmonitor $r2;
+
+     label06:
+        goto label09;
+
+     label07:
+        $r31 := @caughtexception;
+
+        exitmonitor $r2;
+
+     label08:
+        throw $r31;
+
+     label09:
+        $r16 = staticinvoke <java.util.concurrent.ThreadLocalRandom: java.util.concurrent.ThreadLocalRandom current()>();
+
+        goto label11;
+
+     label10:
+        $i1 = virtualinvoke $r16.<java.util.concurrent.ThreadLocalRandom: int nextInt(int)>(65536);
+
+        $i2 = <gc.huge.quicklook.largeheap.Access.access: int STORAGE_SIZE_DIM2>;
+
+        $i3 = virtualinvoke $r16.<java.util.concurrent.ThreadLocalRandom: int nextInt(int)>($i2);
+
+        $l4 = virtualinvoke $r16.<java.util.concurrent.ThreadLocalRandom: long nextLong(long)>(9223372036854775807L);
+
+        $r19 = <gc.huge.quicklook.largeheap.Access.access: long[][] storage>;
+
+        $r20 = $r19[$i1];
+
+        $r20[$i3] = $l4;
+
+        $r21 = <gc.huge.quicklook.largeheap.Access.access: long[][] storage>;
+
+        $r22 = $r21[$i1];
+
+        $l5 = $r22[$i3];
+
+        $b6 = $l5 cmp $l4;
+
+        if $b6 == 0 goto label11;
+
+        $r33 = new nsk.share.TestFailure;
+
+        $r32 = new java.lang.StringBuilder;
+
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>(java.lang.String)>("The value = ");
+
+        $r25 = <gc.huge.quicklook.largeheap.Access.access: long[][] storage>;
+
+        $r26 = $r25[$i1];
+
+        $l7 = $r26[$i3];
+
+        $r27 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l7);
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" when expected =");
+
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l4);
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r33.<nsk.share.TestFailure: void <init>(java.lang.String)>($r30);
+
+        $r41 = (java.lang.Throwable) $r33;
+
+        throw $r41;
+
+     label11:
+        $r42 = (gc.huge.quicklook.largeheap.Access.access$MainWorker) r0;
+
+        $r17 = $r42.<gc.huge.quicklook.largeheap.Access.access$MainWorker: gc.huge.quicklook.largeheap.Access.access this$0>;
+
+        $r18 = staticinvoke <gc.huge.quicklook.largeheap.Access.access: nsk.share.test.ExecutionController access$0(gc.huge.quicklook.largeheap.Access.access)>($r17);
+
+        $z1 = interfaceinvoke $r18.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z1 != 0 goto label10;
+
+        return;
+
+        catch java.lang.Throwable from label01 to label03 with label07;
+        catch java.lang.Throwable from label04 to label06 with label07;
+        catch java.lang.Throwable from label07 to label08 with label07;
+    }
+}

@@ -1,0 +1,49 @@
+class GCDownTest$FooInvocationHandler extends java.lang.Object implements java.lang.reflect.InvocationHandler
+{
+    private final GCDownTest$Foo foo;
+    final GCDownTest this$0;
+
+    void <init>(GCDownTest, GCDownTest$Foo)
+    {
+        GCDownTest r1;
+        GCDownTest$Foo r2;
+        GCDownTest$FooInvocationHandler r0;
+
+        r0 := @this: GCDownTest$FooInvocationHandler;
+
+        r1 := @parameter0: GCDownTest;
+
+        r2 := @parameter1: GCDownTest$Foo;
+
+        r0.<GCDownTest$FooInvocationHandler: GCDownTest this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<GCDownTest$FooInvocationHandler: GCDownTest$Foo foo> = r2;
+
+        return;
+    }
+
+    public java.lang.Object invoke(java.lang.Object, java.lang.reflect.Method, java.lang.Object[]) throws java.lang.Throwable
+    {
+        java.lang.Object[] r2;
+        GCDownTest$FooInvocationHandler r1;
+        GCDownTest$Foo $r3;
+        java.lang.Object $r4, r5;
+        java.lang.reflect.Method r0;
+
+        r1 := @this: GCDownTest$FooInvocationHandler;
+
+        r5 := @parameter0: java.lang.Object;
+
+        r0 := @parameter1: java.lang.reflect.Method;
+
+        r2 := @parameter2: java.lang.Object[];
+
+        $r3 = r1.<GCDownTest$FooInvocationHandler: GCDownTest$Foo foo>;
+
+        $r4 = virtualinvoke r0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r3, r2);
+
+        return $r4;
+    }
+}

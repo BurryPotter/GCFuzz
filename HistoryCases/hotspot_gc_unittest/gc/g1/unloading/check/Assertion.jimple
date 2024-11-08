@@ -1,0 +1,104 @@
+public abstract class Assertion extends java.lang.Object
+{
+    private java.util.List storage;
+
+    public void <init>()
+    {
+        Assertion r0;
+        gc.g1.unloading.check.Assertion $r3;
+        java.util.LinkedList $r2;
+
+        r0 := @this: Assertion;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = new java.util.LinkedList;
+
+        specialinvoke $r2.<java.util.LinkedList: void <init>()>();
+
+        $r3 = (gc.g1.unloading.check.Assertion) r0;
+
+        $r3.<gc.g1.unloading.check.Assertion: java.util.List storage> = $r2;
+
+        return;
+    }
+
+    public abstract void check();
+
+    public void keepLink(java.lang.Object)
+    {
+        java.util.List $r2;
+        Assertion r0;
+        java.lang.Object r1;
+        gc.g1.unloading.check.Assertion $r3;
+
+        r0 := @this: Assertion;
+
+        r1 := @parameter0: java.lang.Object;
+
+        $r3 = (gc.g1.unloading.check.Assertion) r0;
+
+        $r2 = $r3.<gc.g1.unloading.check.Assertion: java.util.List storage>;
+
+        interfaceinvoke $r2.<java.util.List: boolean add(java.lang.Object)>(r1);
+
+        return;
+    }
+
+    public void cleanup()
+    {
+        java.util.Iterator $r2;
+        Assertion r0;
+        gc.g1.unloading.check.cleanup.CleanupAction $r4;
+        java.lang.RuntimeException $r7;
+        gc.g1.unloading.check.Assertion $r8;
+        java.lang.Exception $r5;
+        java.util.List $r1;
+        java.lang.Object $r3;
+        boolean $z0, $z1;
+
+        r0 := @this: Assertion;
+
+     label1:
+        $r8 = (gc.g1.unloading.check.Assertion) r0;
+
+        $r1 = $r8.<gc.g1.unloading.check.Assertion: java.util.List storage>;
+
+        $r2 = interfaceinvoke $r1.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label3;
+
+     label2:
+        $r3 = interfaceinvoke $r2.<java.util.Iterator: java.lang.Object next()>();
+
+        $z0 = $r3 instanceof gc.g1.unloading.check.cleanup.CleanupAction;
+
+        if $z0 == 0 goto label3;
+
+        $r4 = (gc.g1.unloading.check.cleanup.CleanupAction) $r3;
+
+        interfaceinvoke $r4.<gc.g1.unloading.check.cleanup.CleanupAction: void cleanup()>();
+
+     label3:
+        $z1 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 != 0 goto label2;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r5 := @caughtexception;
+
+        $r7 = new java.lang.RuntimeException;
+
+        specialinvoke $r7.<java.lang.RuntimeException: void <init>(java.lang.String,java.lang.Throwable)>("Something bad happened while cleaning after checked assertion", $r5);
+
+        throw $r7;
+
+     label6:
+        return;
+
+        catch java.lang.Exception from label1 to label4 with label5;
+    }
+}

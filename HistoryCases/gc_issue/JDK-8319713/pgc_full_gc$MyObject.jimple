@@ -1,0 +1,16 @@
+class pgc_full_gc$MyObject extends java.lang.Object
+{
+    int x;
+    java.lang.Object obj;
+
+    void <init>()
+    {
+        pgc_full_gc$MyObject r0;
+
+        r0 := @this: pgc_full_gc$MyObject;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

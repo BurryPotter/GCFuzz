@@ -1,0 +1,143 @@
+public class TestReclaimStringsLeaksMemory extends java.lang.Object
+{
+    public static final int ReservedThreshold;
+
+    public void <init>()
+    {
+        TestReclaimStringsLeaksMemory r0;
+
+        r0 := @this: TestReclaimStringsLeaksMemory;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Object[] $r8;
+        java.lang.Process $r12;
+        java.lang.String[] $r1, r3, $r7, $r9;
+        jdk.test.lib.process.OutputAnalyzer $r11;
+        java.util.ArrayList $r0;
+        java.util.List $r2, $r4;
+        java.lang.Class $r5;
+        java.lang.String $r6;
+        java.lang.ProcessBuilder $r10;
+
+        r3 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.ArrayList;
+
+        $r1 = newarray (java.lang.String)[6];
+
+        $r1[0] = "-Xms256M";
+
+        $r1[1] = "-Xmx256M";
+
+        $r1[2] = "-Xlog:gc*";
+
+        $r1[3] = "-XX:NativeMemoryTracking=summary";
+
+        $r1[4] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r1[5] = "-XX:+PrintNMTStatistics";
+
+        $r2 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r1);
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>(java.util.Collection)>($r2);
+
+        $r4 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>(r3);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean addAll(java.util.Collection)>($r4);
+
+        $r5 = class "Lgc/stress/TestReclaimStringsLeaksMemory$GCTest;";
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r6);
+
+        $r7 = newarray (java.lang.String)[0];
+
+        $r8 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r7);
+
+        $r9 = (java.lang.String[]) $r8;
+
+        $r10 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r9);
+
+        $r11 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r12 = virtualinvoke $r10.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r11.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r12);
+
+        staticinvoke <gc.stress.TestReclaimStringsLeaksMemory: void verifySymbolMemoryUsageNotTooHigh(jdk.test.lib.process.OutputAnalyzer)>($r11);
+
+        return;
+    }
+
+    private static void verifySymbolMemoryUsageNotTooHigh(jdk.test.lib.process.OutputAnalyzer) throws java.lang.Exception
+    {
+        java.lang.Integer $r6, $r7;
+        java.util.regex.Matcher $r4;
+        int $i0;
+        java.lang.String $r1, $r5, $r13;
+        boolean $z0;
+        java.io.PrintStream $r2;
+        java.lang.RuntimeException $r14;
+        jdk.test.lib.process.OutputAnalyzer r0;
+        java.lang.StringBuilder $r8, $r9, $r10, $r11, $r12;
+        java.util.regex.Pattern $r3;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        $r1 = virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getStdout()>();
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r1);
+
+        $r3 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>("Symbol \\(reserved=(\\d*)");
+
+        $r4 = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>($r1);
+
+        $z0 = virtualinvoke $r4.<java.util.regex.Matcher: boolean find()>();
+
+        if $z0 != 0 goto label1;
+
+        $r14 = new java.lang.RuntimeException;
+
+        specialinvoke $r14.<java.lang.RuntimeException: void <init>(java.lang.String)>("Could not find Symbol memory usage in NMT output");
+
+        throw $r14;
+
+     label1:
+        $r5 = virtualinvoke $r4.<java.util.regex.Matcher: java.lang.String group(int)>(1);
+
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r5);
+
+        $r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        $r7 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(70000);
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("Reserved memory size is ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("KB which is greater than or equal to ");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(70000);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("KB indicating a memory leak");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertLT(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r6, $r7, $r13);
+
+        virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

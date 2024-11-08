@@ -1,0 +1,230 @@
+public class TestMetaspaceSizeFlags extends java.lang.Object
+{
+    public static final long K;
+    public static final long M;
+    public static final long MAX_ALIGNMENT;
+
+    public void <init>()
+    {
+        TestMetaspaceSizeFlags r0;
+
+        r0 := @this: TestMetaspaceSizeFlags;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.metaspace.TestMetaspaceSizeFlags: void testMaxMetaspaceSizeEQMetaspaceSize(long,long)>(33554432L, 33554432L);
+
+        staticinvoke <gc.metaspace.TestMetaspaceSizeFlags: void testMaxMetaspaceSizeLTMetaspaceSize(long,long)>(33554432L, 67108864L);
+
+        staticinvoke <gc.metaspace.TestMetaspaceSizeFlags: void testMaxMetaspaceSizeGTMetaspaceSize(long,long)>(67108864L, 33554432L);
+
+        return;
+    }
+
+    private static void testMaxMetaspaceSizeEQMetaspaceSize(long, long) throws java.lang.Exception
+    {
+        gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags $r0;
+        long l0, l1, $l2, $l3;
+        java.lang.Long $r1, $r2, $r3, $r4, $r5, $r6;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        $r0 = staticinvoke <gc.metaspace.TestMetaspaceSizeFlags: gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags runAndGetValue(long,long)>(l0, l1);
+
+        $r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0);
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        $l2 = $r0.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: long maxMetaspaceSize>;
+
+        $r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r3, $r4);
+
+        $l3 = $r0.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: long metaspaceSize>;
+
+        $r5 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        $r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r5, $r6);
+
+        return;
+    }
+
+    private static void testMaxMetaspaceSizeLTMetaspaceSize(long, long) throws java.lang.Exception
+    {
+        gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags $r0;
+        long l0, l1, $l2, $l3;
+        java.lang.Long $r1, $r2, $r3, $r4;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        $r0 = staticinvoke <gc.metaspace.TestMetaspaceSizeFlags: gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags runAndGetValue(long,long)>(l0, l1);
+
+        $l2 = $r0.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: long maxMetaspaceSize>;
+
+        $r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        $l3 = $r0.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: long metaspaceSize>;
+
+        $r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r3, $r4);
+
+        return;
+    }
+
+    private static void testMaxMetaspaceSizeGTMetaspaceSize(long, long) throws java.lang.Exception
+    {
+        gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags $r0;
+        long l0, l1, $l2, $l3, $l4, $l5;
+        java.lang.Long $r1, $r2, $r3, $r4, $r5, $r6, $r7, $r8;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        $r0 = staticinvoke <gc.metaspace.TestMetaspaceSizeFlags: gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags runAndGetValue(long,long)>(l0, l1);
+
+        $r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0);
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGT(java.lang.Comparable,java.lang.Comparable)>($r1, $r2);
+
+        $l2 = $r0.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: long maxMetaspaceSize>;
+
+        $r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $l3 = $r0.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: long metaspaceSize>;
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertGT(java.lang.Comparable,java.lang.Comparable)>($r3, $r4);
+
+        $l4 = $r0.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: long maxMetaspaceSize>;
+
+        $r5 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l4);
+
+        $r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r5, $r6);
+
+        $l5 = $r0.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: long metaspaceSize>;
+
+        $r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l5);
+
+        $r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r7, $r8);
+
+        return;
+    }
+
+    private static gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags runAndGetValue(long, long) throws java.lang.Exception
+    {
+        gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags $r3;
+        long l0, l1, $l2, $l3;
+        jdk.test.lib.process.OutputAnalyzer $r0;
+        java.lang.String $r1, $r2;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        $r0 = staticinvoke <gc.metaspace.TestMetaspaceSizeFlags: jdk.test.lib.process.OutputAnalyzer run(long,long)>(l0, l1);
+
+        virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotMatch(java.lang.String)>("Error occurred during initialization of VM\n.*");
+
+        $r1 = virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String,int)>(".* MaxMetaspaceSize .* = (\\d+).*", 1);
+
+        $r2 = virtualinvoke $r0.<jdk.test.lib.process.OutputAnalyzer: java.lang.String firstMatch(java.lang.String,int)>(".* MetaspaceSize .* = (\\d+).*", 1);
+
+        $r3 = new gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags;
+
+        $l2 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r1);
+
+        $l3 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r2);
+
+        specialinvoke $r3.<gc.metaspace.TestMetaspaceSizeFlags$MetaspaceFlags: void <init>(long,long)>($l2, $l3);
+
+        return $r3;
+    }
+
+    private static jdk.test.lib.process.OutputAnalyzer run(long, long) throws java.lang.Exception
+    {
+        java.lang.Process $r9;
+        java.lang.String[] $r0;
+        long l0, l1;
+        jdk.test.lib.process.OutputAnalyzer $r8;
+        java.lang.StringBuilder $r1, $r2, $r4, $r5;
+        java.lang.String $r3, $r6;
+        java.lang.ProcessBuilder $r7;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        $r0 = newarray (java.lang.String)[5];
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MaxMetaspaceSize=");
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[0] = $r3;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MetaspaceSize=");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r0[1] = $r6;
+
+        $r0[2] = "-XX:-UseLargePages";
+
+        $r0[3] = "-XX:+PrintFlagsFinal";
+
+        $r0[4] = "-version";
+
+        $r7 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r8 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r9 = virtualinvoke $r7.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r8.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r9);
+
+        return $r8;
+    }
+}

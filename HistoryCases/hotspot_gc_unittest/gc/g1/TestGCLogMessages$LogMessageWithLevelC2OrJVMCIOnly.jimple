@@ -1,0 +1,50 @@
+class TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly extends gc.g1.TestGCLogMessages$LogMessageWithLevel
+{
+    final gc.g1.TestGCLogMessages this$0;
+
+    public void <init>(gc.g1.TestGCLogMessages, java.lang.String, gc.g1.TestGCLogMessages$Level)
+    {
+        gc.g1.TestGCLogMessages$Level r3;
+        gc.g1.TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly $r4;
+        java.lang.String r2;
+        gc.g1.TestGCLogMessages r1;
+        TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly r0;
+
+        r0 := @this: TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly;
+
+        r1 := @parameter0: gc.g1.TestGCLogMessages;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: gc.g1.TestGCLogMessages$Level;
+
+        $r4 = (gc.g1.TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly) r0;
+
+        $r4.<gc.g1.TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly: gc.g1.TestGCLogMessages this$0> = r1;
+
+        specialinvoke r0.<gc.g1.TestGCLogMessages$LogMessageWithLevel: void <init>(gc.g1.TestGCLogMessages,java.lang.String,gc.g1.TestGCLogMessages$Level)>(r1, r2, r3);
+
+        return;
+    }
+
+    public boolean isAvailable()
+    {
+        boolean $z0, $z1;
+        TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly r0;
+
+        r0 := @this: TestGCLogMessages$LogMessageWithLevelC2OrJVMCIOnly;
+
+        $z0 = staticinvoke <jdk.test.lib.Platform: boolean isGraal()>();
+
+        if $z0 != 0 goto label1;
+
+        $z1 = staticinvoke <jdk.test.lib.Platform: boolean isServer()>();
+
+        if $z1 != 0 goto label1;
+
+        return 0;
+
+     label1:
+        return 1;
+    }
+}

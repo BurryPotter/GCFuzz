@@ -1,0 +1,262 @@
+public class TestHumongousClassLoader extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WB;
+    private static final java.lang.String SAMPLE_CLASS_NAME_PREFIX;
+    public static final java.lang.String SIMPLE_CLASSLOADER_NAME;
+    public static final java.lang.String HUMONGOUS_CLASSLOADER_NAME;
+    public static final java.lang.String LOAD_CLASS_METHOD_PROTOTYPE;
+    public static final java.lang.String CLASS_HEADER;
+    public static final java.lang.String GENERIC_PROTOTYPE;
+    public static final java.lang.String CONSTUCTOR_PROTOTYPE;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.humongousObjects.TestHumongousClassLoader: sun.hotspot.WhiteBox WB> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestHumongousClassLoader r0;
+
+        r0 := @this: TestHumongousClassLoader;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException, java.io.IOException, java.lang.NoSuchMethodException, java.lang.reflect.InvocationTargetException
+    {
+        java.net.URLClassLoader $r8;
+        gc.g1.humongousObjects.G1SampleClass $r28, $r31, $r34, $r37, r60;
+        java.nio.file.Path $r4;
+        gc.g1.humongousObjects.G1SampleClass[] $r45;
+        gc.g1.humongousObjects.TestHumongousClassLoader$GC $r2;
+        java.lang.StringBuilder $r46, $r50;
+        java.lang.ClassLoader $r14, r58, r59;
+        java.lang.Object[] $r12, $r22, $r27, $r43, $r55;
+        java.lang.Error $r57;
+        java.lang.reflect.Constructor $r11, $r21;
+        java.lang.String $r1, $r44, $r47, $r48, $r49, $r51, $r56;
+        java.lang.Class[] $r10, $r20;
+        sun.hotspot.WhiteBox $r16, $r24, $r40, $r52;
+        java.net.URL $r7;
+        java.net.URL[] $r5;
+        java.net.URI $r6;
+        boolean $z0, $z1, $z2, $z3;
+        java.lang.String[] r0, $r3;
+        int $i0, $i1, i2, i3, i4;
+        java.lang.Boolean $r17, $r18, $r25, $r26, $r41, $r42, $r53, $r54;
+        java.lang.Class $r9, $r13, $r19, $r29, $r32, $r35, $r38;
+        java.lang.Object $r15, $r23, $r30, $r33, $r36, $r39;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 1 goto label1;
+
+        $r57 = new java.lang.Error;
+
+        specialinvoke $r57.<java.lang.Error: void <init>(java.lang.String)>("Test Bug: Expected GC type wasn\'t provided as command line argument");
+
+        throw $r57;
+
+     label1:
+        $r1 = r0[0];
+
+        $r2 = staticinvoke <gc.g1.humongousObjects.TestHumongousClassLoader$GC: gc.g1.humongousObjects.TestHumongousClassLoader$GC valueOf(java.lang.String)>($r1);
+
+        $r3 = newarray (java.lang.String)[0];
+
+        $r4 = staticinvoke <java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>("", $r3);
+
+        $r5 = newarray (java.net.URL)[1];
+
+        $r6 = interfaceinvoke $r4.<java.nio.file.Path: java.net.URI toUri()>();
+
+        $r7 = virtualinvoke $r6.<java.net.URI: java.net.URL toURL()>();
+
+        $r5[0] = $r7;
+
+        $r8 = new java.net.URLClassLoader;
+
+        specialinvoke $r8.<java.net.URLClassLoader: void <init>(java.net.URL[])>($r5);
+
+        $r9 = virtualinvoke $r8.<java.net.URLClassLoader: java.lang.Class loadClass(java.lang.String)>("SimpleClassLoader");
+
+        $r10 = newarray (java.lang.Class)[1];
+
+        $r10[0] = class "Ljava/lang/ClassLoader;";
+
+        $r11 = virtualinvoke $r9.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($r10);
+
+        $r12 = newarray (java.lang.Object)[1];
+
+        $r13 = class "Lgc/g1/humongousObjects/TestHumongousClassLoader;";
+
+        $r14 = virtualinvoke $r13.<java.lang.Class: java.lang.ClassLoader getClassLoader()>();
+
+        $r12[0] = $r14;
+
+        $r15 = virtualinvoke $r11.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r12);
+
+        r58 = (java.lang.ClassLoader) $r15;
+
+        $r16 = <gc.g1.humongousObjects.TestHumongousClassLoader: sun.hotspot.WhiteBox WB>;
+
+        $z0 = virtualinvoke $r16.<sun.hotspot.WhiteBox: boolean g1IsHumongous(java.lang.Object)>(r58);
+
+        $r17 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        $r18 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r17, $r18, "Test Bug: simpleClassLoader is expected to be non-humongous but it\'s humongous");
+
+        $r19 = virtualinvoke r58.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("HumongousClassLoader");
+
+        $r20 = newarray (java.lang.Class)[1];
+
+        $r20[0] = class "Ljava/lang/ClassLoader;";
+
+        $r21 = virtualinvoke $r19.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($r20);
+
+        $r22 = newarray (java.lang.Object)[1];
+
+        $r22[0] = r58;
+
+        $r23 = virtualinvoke $r21.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($r22);
+
+        r59 = (java.lang.ClassLoader) $r23;
+
+        $r24 = <gc.g1.humongousObjects.TestHumongousClassLoader: sun.hotspot.WhiteBox WB>;
+
+        $z1 = virtualinvoke $r24.<sun.hotspot.WhiteBox: boolean g1IsHumongous(java.lang.Object)>(r59);
+
+        $r25 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z1);
+
+        $r26 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r25, $r26, "Test Bug: humongousClassLoader is expected to be humongous but it\'s non-humongous");
+
+        $r27 = newarray (java.lang.Object)[4];
+
+        $r28 = <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass LARGEST_NON_HUMONGOUS>;
+
+        $r29 = virtualinvoke $r28.<gc.g1.humongousObjects.G1SampleClass: java.lang.Class getCls(java.lang.ClassLoader,java.nio.file.Path,java.lang.String)>(r59, $r4, "SampleClassFiller");
+
+        $r30 = virtualinvoke $r29.<java.lang.Class: java.lang.Object newInstance()>();
+
+        $r27[0] = $r30;
+
+        $r31 = <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass SMALLEST_HUMONGOUS>;
+
+        $r32 = virtualinvoke $r31.<gc.g1.humongousObjects.G1SampleClass: java.lang.Class getCls(java.lang.ClassLoader,java.nio.file.Path,java.lang.String)>(r59, $r4, "SampleClassFiller");
+
+        $r33 = virtualinvoke $r32.<java.lang.Class: java.lang.Object newInstance()>();
+
+        $r27[1] = $r33;
+
+        $r34 = <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass ONE_REGION_HUMONGOUS>;
+
+        $r35 = virtualinvoke $r34.<gc.g1.humongousObjects.G1SampleClass: java.lang.Class getCls(java.lang.ClassLoader,java.nio.file.Path,java.lang.String)>(r59, $r4, "SampleClassFiller");
+
+        $r36 = virtualinvoke $r35.<java.lang.Class: java.lang.Object newInstance()>();
+
+        $r27[2] = $r36;
+
+        $r37 = <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass TWO_REGION_HUMONGOUS>;
+
+        $r38 = virtualinvoke $r37.<gc.g1.humongousObjects.G1SampleClass: java.lang.Class getCls(java.lang.ClassLoader,java.nio.file.Path,java.lang.String)>(r59, $r4, "SampleClassFiller");
+
+        $r39 = virtualinvoke $r38.<java.lang.Class: java.lang.Object newInstance()>();
+
+        $r27[3] = $r39;
+
+        i3 = 0;
+
+        goto label3;
+
+     label2:
+        $r27[i3] = null;
+
+        i3 = i3 + 1;
+
+     label3:
+        $i1 = lengthof $r27;
+
+        if i3 < $i1 goto label2;
+
+        virtualinvoke $r2.<gc.g1.humongousObjects.TestHumongousClassLoader$GC: void provoke()>();
+
+        $r40 = <gc.g1.humongousObjects.TestHumongousClassLoader: sun.hotspot.WhiteBox WB>;
+
+        $z2 = virtualinvoke $r40.<sun.hotspot.WhiteBox: boolean isClassAlive(java.lang.String)>("HumongousClassLoader");
+
+        $r41 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z2);
+
+        $r42 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(0);
+
+        $r43 = newarray (java.lang.Object)[1];
+
+        $r43[0] = "HumongousClassLoader";
+
+        $r44 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Classloader class %s is loaded after we forget all references to it", $r43);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r41, $r42, $r44);
+
+        $r45 = staticinvoke <gc.g1.humongousObjects.G1SampleClass: gc.g1.humongousObjects.G1SampleClass[] values()>();
+
+        i2 = lengthof $r45;
+
+        i4 = 0;
+
+        goto label5;
+
+     label4:
+        r60 = $r45[i4];
+
+        $r46 = new java.lang.StringBuilder;
+
+        $r47 = virtualinvoke r60.<gc.g1.humongousObjects.G1SampleClass: java.lang.String name()>();
+
+        $r48 = staticinvoke <gc.testlibrary.Helpers: java.lang.String enumNameToClassName(java.lang.String)>($r47);
+
+        $r49 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r48);
+
+        specialinvoke $r46.<java.lang.StringBuilder: void <init>(java.lang.String)>($r49);
+
+        $r50 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Class");
+
+        $r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r52 = <gc.g1.humongousObjects.TestHumongousClassLoader: sun.hotspot.WhiteBox WB>;
+
+        $z3 = virtualinvoke $r52.<sun.hotspot.WhiteBox: boolean isClassAlive(java.lang.String)>($r51);
+
+        $r53 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z3);
+
+        $r54 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(0);
+
+        $r55 = newarray (java.lang.Object)[1];
+
+        $r55[0] = $r51;
+
+        $r56 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Class %s is loaded after we forget all references to it", $r55);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEquals(java.lang.Object,java.lang.Object,java.lang.String)>($r53, $r54, $r56);
+
+        i4 = i4 + 1;
+
+     label5:
+        if i4 < i2 goto label4;
+
+        return;
+    }
+}

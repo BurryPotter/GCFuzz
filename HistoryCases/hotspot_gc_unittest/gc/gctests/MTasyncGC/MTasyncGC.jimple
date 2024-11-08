@@ -1,0 +1,99 @@
+public class MTasyncGC extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        MTasyncGC r0;
+
+        r0 := @this: MTasyncGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.Throwable $r12;
+        java.lang.Object[] r1;
+        gc.gctests.MTasyncGC.MemEvil $r8;
+        java.lang.String[] r7;
+        java.lang.Exception $r5;
+        nsk.share.TestFailure $r9;
+        int[] $r0;
+        java.lang.Thread $r10, $r11;
+        int $i0, $i1, i2, i3;
+        java.lang.Object $r3, $r4;
+
+        r7 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (int)[10000];
+
+        r1 = newarray (java.lang.Thread)[1000];
+
+        i2 = 0;
+
+        goto label2;
+
+     label1:
+        $r8 = new gc.gctests.MTasyncGC.MemEvil;
+
+        specialinvoke $r8.<gc.gctests.MTasyncGC.MemEvil: void <init>()>();
+
+        r1[i2] = $r8;
+
+        i2 = i2 + 1;
+
+     label2:
+        $i0 = lengthof r1;
+
+        if i2 < $i0 goto label1;
+
+        i3 = 0;
+
+        goto label7;
+
+     label3:
+        $r3 = r1[i3];
+
+        $r10 = (java.lang.Thread) $r3;
+
+        virtualinvoke $r10.<java.lang.Thread: void start()>();
+
+        $r4 = r1[i3];
+
+        $r11 = (java.lang.Thread) $r4;
+
+        virtualinvoke $r11.<java.lang.Thread: void join()>();
+
+     label4:
+        goto label6;
+
+     label5:
+        $r5 := @caughtexception;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r9 = new nsk.share.TestFailure;
+
+        specialinvoke $r9.<nsk.share.TestFailure: void <init>(java.lang.String,java.lang.Throwable)>("Test Failed.", $r5);
+
+        $r12 = (java.lang.Throwable) $r9;
+
+        throw $r12;
+
+     label6:
+        r1[i3] = null;
+
+        i3 = i3 + 1;
+
+     label7:
+        $i1 = lengthof r1;
+
+        if i3 < $i1 goto label3;
+
+        return;
+
+        catch java.lang.Exception from label3 to label4 with label5;
+    }
+}

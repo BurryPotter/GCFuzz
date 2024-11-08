@@ -1,0 +1,63 @@
+public class TestConcMarkCycleWB extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestConcMarkCycleWB r0;
+
+        r0 := @this: TestConcMarkCycleWB;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        sun.hotspot.WhiteBox $r0;
+        java.lang.String[] r1;
+        boolean $z0, $z1, $z2, $z3, $z4;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $z0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean)>($z0);
+
+        goto label2;
+
+     label1:
+        staticinvoke <java.lang.Thread: void sleep(long)>(5L);
+
+     label2:
+        $z1 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1InConcurrentMark()>();
+
+        if $z1 != 0 goto label1;
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        $z2 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean)>($z2);
+
+        goto label4;
+
+     label3:
+        staticinvoke <java.lang.Thread: void sleep(long)>(5L);
+
+     label4:
+        $z3 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1InConcurrentMark()>();
+
+        if $z3 != 0 goto label3;
+
+        $z4 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean)>($z4);
+
+        return;
+    }
+}

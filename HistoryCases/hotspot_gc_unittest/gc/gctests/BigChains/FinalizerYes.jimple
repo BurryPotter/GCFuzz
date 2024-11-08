@@ -1,0 +1,62 @@
+class FinalizerYes extends gc.gctests.BigChains.BaseClass
+{
+    private static int noOfFinalized;
+
+    static void <clinit>()
+    {
+        <gc.gctests.BigChains.FinalizerYes: int noOfFinalized> = 0;
+
+        return;
+    }
+
+    void <init>()
+    {
+        FinalizerYes r0;
+
+        r0 := @this: FinalizerYes;
+
+        specialinvoke r0.<gc.gctests.BigChains.BaseClass: void <init>()>();
+
+        return;
+    }
+
+    public final void finalize()
+    {
+        java.lang.Throwable $r2;
+        int $i0, $i1;
+        java.lang.Class $r1;
+        FinalizerYes r0;
+
+        r0 := @this: FinalizerYes;
+
+        $r1 = virtualinvoke r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        entermonitor $r1;
+
+     label1:
+        $i0 = <gc.gctests.BigChains.FinalizerYes: int noOfFinalized>;
+
+        $i1 = $i0 + 1;
+
+        <gc.gctests.BigChains.FinalizerYes: int noOfFinalized> = $i1;
+
+        exitmonitor $r1;
+
+     label2:
+        goto label5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        exitmonitor $r1;
+
+     label4:
+        throw $r2;
+
+     label5:
+        return;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+        catch java.lang.Throwable from label3 to label4 with label3;
+    }
+}

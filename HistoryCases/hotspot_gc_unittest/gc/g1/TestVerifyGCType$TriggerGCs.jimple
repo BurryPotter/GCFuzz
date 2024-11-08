@@ -1,0 +1,103 @@
+public class TestVerifyGCType$TriggerGCs extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestVerifyGCType$TriggerGCs r0;
+
+        r0 := @this: TestVerifyGCType$TriggerGCs;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Object[] $r1;
+        sun.hotspot.WhiteBox $r0;
+        java.lang.String[] r2;
+        boolean $z0;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $r1 = staticinvoke <gc.g1.TestVerifyGCType$TriggerGCs: java.lang.Object[] alloc1M()>();
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void fullGC()>();
+
+        staticinvoke <gc.g1.TestVerifyGCType$TriggerGCs: void partialFree(java.lang.Object[])>($r1);
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        goto label2;
+
+     label1:
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000L);
+
+     label2:
+        $z0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: boolean g1InConcurrentMark()>();
+
+        if $z0 != 0 goto label1;
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        return;
+    }
+
+    private static java.lang.Object[] alloc1M()
+    {
+        byte[] $r1;
+        java.lang.Object[] r0;
+        int $i0, i1;
+
+        r0 = newarray (java.lang.Object)[1024];
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        $r1 = newarray (byte)[1024];
+
+        r0[i1] = $r1;
+
+        i1 = i1 + 1;
+
+     label2:
+        $i0 = lengthof r0;
+
+        if i1 < $i0 goto label1;
+
+        return r0;
+    }
+
+    private static void partialFree(java.lang.Object[])
+    {
+        int $i0, i1;
+        java.lang.Object[] r0;
+
+        r0 := @parameter0: java.lang.Object[];
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        r0[i1] = null;
+
+        i1 = i1 + 2;
+
+     label2:
+        $i0 = lengthof r0;
+
+        if i1 < $i0 goto label1;
+
+        return;
+    }
+}

@@ -1,0 +1,40 @@
+public class GetArrayCritical extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        GetArrayCritical r0;
+
+        r0 := @this: GetArrayCritical;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static native void get_critical_array();
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        staticinvoke <GetArrayCritical: void get_critical_array()>();
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("ready");
+
+     label1:
+        goto label1;
+    }
+
+    static void <clinit>()
+    {
+        staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("critical");
+
+        return;
+    }
+}

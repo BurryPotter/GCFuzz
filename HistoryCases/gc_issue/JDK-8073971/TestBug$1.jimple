@@ -1,0 +1,38 @@
+final class TestBug$1 extends java.lang.Thread
+{
+
+    void <init>()
+    {
+        TestBug$1 r0;
+
+        r0 := @this: TestBug$1;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.InterruptedException $r0;
+        TestBug$1 r1;
+
+        r1 := @this: TestBug$1;
+
+     label1:
+        staticinvoke <java.lang.Thread: void sleep(long)>(100L);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r0 := @caughtexception;
+
+     label4:
+        staticinvoke <java.lang.System: void gc()>();
+
+        goto label1;
+
+        catch java.lang.InterruptedException from label1 to label2 with label3;
+    }
+}

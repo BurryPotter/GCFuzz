@@ -1,0 +1,408 @@
+public class TestStressIHOPMultiThread extends java.lang.Object
+{
+    public static final java.util.List GARBAGE;
+    private final long HEAP_SIZE;
+    private final long HEAP_PREALLOC_SIZE;
+    private final long HEAP_ALLOC_SIZE;
+    private final int CHUNK_SIZE;
+    private final int TIMEOUT;
+    private final int THREADS;
+    private final int HEAP_LOW_BOUND;
+    private final int HEAP_HIGH_BOUND;
+    private volatile boolean running;
+    private final java.util.List threads;
+
+    static void <clinit>()
+    {
+        java.util.LinkedList $r0;
+
+        $r0 = new java.util.LinkedList;
+
+        specialinvoke $r0.<java.util.LinkedList: void <init>()>();
+
+        <gc.stress.TestStressIHOPMultiThread: java.util.List GARBAGE> = $r0;
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.InterruptedException
+    {
+        java.lang.String[] r1;
+        gc.stress.TestStressIHOPMultiThread $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new gc.stress.TestStressIHOPMultiThread;
+
+        specialinvoke $r0.<gc.stress.TestStressIHOPMultiThread: void <init>()>();
+
+        virtualinvoke $r0.<gc.stress.TestStressIHOPMultiThread: void start()>();
+
+        return;
+    }
+
+    void <init>()
+    {
+        gc.stress.TestStressIHOPMultiThread $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23;
+        java.lang.Integer $r1, $r2, $r3, $r4;
+        TestStressIHOPMultiThread r0;
+        java.lang.Runtime $r5;
+        long $l5, $l7, $l8, $l9, $l10, $l14, $l15, $l16, $l17;
+        java.util.ArrayList $r7;
+        int $i0, $i1, $i2, $i3, $i4, $i6, $i11, $i12, $i13, $i18;
+
+        r0 := @this: TestStressIHOPMultiThread;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r8 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r8.<gc.stress.TestStressIHOPMultiThread: int CHUNK_SIZE> = 100000;
+
+        $r9 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r9.<gc.stress.TestStressIHOPMultiThread: boolean running> = 1;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String)>("timeout");
+
+        $i0 = virtualinvoke $r1.<java.lang.Integer: int intValue()>();
+
+        $i1 = $i0 * 60;
+
+        $r10 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r10.<gc.stress.TestStressIHOPMultiThread: int TIMEOUT> = $i1;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String)>("threads");
+
+        $i2 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        $r11 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r11.<gc.stress.TestStressIHOPMultiThread: int THREADS> = $i2;
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String)>("heapUsageMinBound");
+
+        $i3 = virtualinvoke $r3.<java.lang.Integer: int intValue()>();
+
+        $r12 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r12.<gc.stress.TestStressIHOPMultiThread: int HEAP_LOW_BOUND> = $i3;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer getInteger(java.lang.String)>("heapUsageMaxBound");
+
+        $i4 = virtualinvoke $r4.<java.lang.Integer: int intValue()>();
+
+        $r13 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r13.<gc.stress.TestStressIHOPMultiThread: int HEAP_HIGH_BOUND> = $i4;
+
+        $r5 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l5 = virtualinvoke $r5.<java.lang.Runtime: long maxMemory()>();
+
+        $r14 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r14.<gc.stress.TestStressIHOPMultiThread: long HEAP_SIZE> = $l5;
+
+        $r15 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $l8 = $r15.<gc.stress.TestStressIHOPMultiThread: long HEAP_SIZE>;
+
+        $r16 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $i6 = $r16.<gc.stress.TestStressIHOPMultiThread: int HEAP_LOW_BOUND>;
+
+        $l7 = (long) $i6;
+
+        $l9 = $l8 * $l7;
+
+        $l10 = $l9 / 100L;
+
+        $r17 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r17.<gc.stress.TestStressIHOPMultiThread: long HEAP_PREALLOC_SIZE> = $l10;
+
+        $r18 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $l15 = $r18.<gc.stress.TestStressIHOPMultiThread: long HEAP_SIZE>;
+
+        $r19 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $i12 = $r19.<gc.stress.TestStressIHOPMultiThread: int HEAP_HIGH_BOUND>;
+
+        $r20 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $i11 = $r20.<gc.stress.TestStressIHOPMultiThread: int HEAP_LOW_BOUND>;
+
+        $i13 = $i12 - $i11;
+
+        $l14 = (long) $i13;
+
+        $l16 = $l15 * $l14;
+
+        $l17 = $l16 / 100L;
+
+        $r21 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r21.<gc.stress.TestStressIHOPMultiThread: long HEAP_ALLOC_SIZE> = $l17;
+
+        $r7 = new java.util.ArrayList;
+
+        $r22 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $i18 = $r22.<gc.stress.TestStressIHOPMultiThread: int THREADS>;
+
+        specialinvoke $r7.<java.util.ArrayList: void <init>(int)>($i18);
+
+        $r23 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r23.<gc.stress.TestStressIHOPMultiThread: java.util.List threads> = $r7;
+
+        return;
+    }
+
+    public void start() throws java.lang.InterruptedException
+    {
+        gc.stress.TestStressIHOPMultiThread $r1, $r2, $r3, $r4, $r5;
+        TestStressIHOPMultiThread r0;
+
+        r0 := @this: TestStressIHOPMultiThread;
+
+        $r1 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        virtualinvoke $r1.<gc.stress.TestStressIHOPMultiThread: void fill()>();
+
+        $r2 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        virtualinvoke $r2.<gc.stress.TestStressIHOPMultiThread: void createThreads()>();
+
+        $r3 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        virtualinvoke $r3.<gc.stress.TestStressIHOPMultiThread: void waitForStress()>();
+
+        $r4 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        virtualinvoke $r4.<gc.stress.TestStressIHOPMultiThread: void stressDone()>();
+
+        $r5 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        virtualinvoke $r5.<gc.stress.TestStressIHOPMultiThread: void waitForFinish()>();
+
+        return;
+    }
+
+    private void fill()
+    {
+        byte[] $r1;
+        gc.stress.TestStressIHOPMultiThread $r3;
+        long $l0, l2;
+        java.util.List $r2;
+        byte $b1;
+        int $i3;
+        TestStressIHOPMultiThread r0;
+
+        r0 := @this: TestStressIHOPMultiThread;
+
+        l2 = 0L;
+
+        goto label2;
+
+     label1:
+        $r2 = <gc.stress.TestStressIHOPMultiThread: java.util.List GARBAGE>;
+
+        $r1 = newarray (byte)[100000];
+
+        interfaceinvoke $r2.<java.util.List: boolean add(java.lang.Object)>($r1);
+
+        l2 = l2 + 100000L;
+
+     label2:
+        $r3 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $l0 = $r3.<gc.stress.TestStressIHOPMultiThread: long HEAP_PREALLOC_SIZE>;
+
+        $b1 = l2 cmp $l0;
+
+        $i3 = (int) $b1;
+
+        if $i3 < 0 goto label1;
+
+        return;
+    }
+
+    private void createThreads()
+    {
+        gc.stress.TestStressIHOPMultiThread $r13, $r14, $r15, $r16, $r17, $r18;
+        long $l2, $l3, $l4;
+        int $i0, $i1, i5;
+        java.lang.String $r4;
+        TestStressIHOPMultiThread r0;
+        java.io.PrintStream $r2;
+        java.util.function.Consumer $r10;
+        java.util.List $r6, $r7, $r8, $r9;
+        java.lang.StringBuilder $r3, $r11;
+        gc.stress.TestStressIHOPMultiThread$AllocationThread $r12;
+
+        r0 := @this: TestStressIHOPMultiThread;
+
+        i5 = 0;
+
+        goto label2;
+
+     label1:
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("Create thread ");
+
+        $r3 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i5);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r4);
+
+        $r12 = new gc.stress.TestStressIHOPMultiThread$AllocationThread;
+
+        $r13 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $l3 = $r13.<gc.stress.TestStressIHOPMultiThread: long HEAP_ALLOC_SIZE>;
+
+        $r14 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $i1 = $r14.<gc.stress.TestStressIHOPMultiThread: int THREADS>;
+
+        $l2 = (long) $i1;
+
+        $l4 = $l3 / $l2;
+
+        $r15 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        specialinvoke $r12.<gc.stress.TestStressIHOPMultiThread$AllocationThread: void <init>(gc.stress.TestStressIHOPMultiThread,int,long)>($r15, i5, $l4);
+
+        $r6 = <gc.stress.TestStressIHOPMultiThread: java.util.List GARBAGE>;
+
+        $r7 = virtualinvoke $r12.<gc.stress.TestStressIHOPMultiThread$AllocationThread: java.util.List getList()>();
+
+        interfaceinvoke $r6.<java.util.List: boolean add(java.lang.Object)>($r7);
+
+        $r16 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r8 = $r16.<gc.stress.TestStressIHOPMultiThread: java.util.List threads>;
+
+        interfaceinvoke $r8.<java.util.List: boolean add(java.lang.Object)>($r12);
+
+        i5 = i5 + 1;
+
+     label2:
+        $r17 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $i0 = $r17.<gc.stress.TestStressIHOPMultiThread: int THREADS>;
+
+        if i5 < $i0 goto label1;
+
+        $r18 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r9 = $r18.<gc.stress.TestStressIHOPMultiThread: java.util.List threads>;
+
+        $r10 = staticinvoke <TestStressIHOPMultiThread$lambda_0__1: java.util.function.Consumer bootstrap$()>();
+
+        interfaceinvoke $r9.<java.util.List: void forEach(java.util.function.Consumer)>($r10);
+
+        return;
+    }
+
+    private void waitForFinish()
+    {
+        java.util.function.Consumer $r2;
+        java.util.List $r1;
+        gc.stress.TestStressIHOPMultiThread $r3;
+        TestStressIHOPMultiThread r0;
+
+        r0 := @this: TestStressIHOPMultiThread;
+
+        $r3 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r1 = $r3.<gc.stress.TestStressIHOPMultiThread: java.util.List threads>;
+
+        $r2 = staticinvoke <TestStressIHOPMultiThread$lambda_1__2: java.util.function.Consumer bootstrap$()>();
+
+        interfaceinvoke $r1.<java.util.List: void forEach(java.util.function.Consumer)>($r2);
+
+        return;
+    }
+
+    private boolean isRunning()
+    {
+        TestStressIHOPMultiThread r0;
+        boolean $z0;
+        gc.stress.TestStressIHOPMultiThread $r1;
+
+        r0 := @this: TestStressIHOPMultiThread;
+
+        $r1 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $z0 = $r1.<gc.stress.TestStressIHOPMultiThread: boolean running>;
+
+        return $z0;
+    }
+
+    private void stressDone()
+    {
+        TestStressIHOPMultiThread r0;
+        gc.stress.TestStressIHOPMultiThread $r1;
+
+        r0 := @this: TestStressIHOPMultiThread;
+
+        $r1 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $r1.<gc.stress.TestStressIHOPMultiThread: boolean running> = 0;
+
+        return;
+    }
+
+    private void waitForStress() throws java.lang.InterruptedException
+    {
+        gc.stress.TestStressIHOPMultiThread $r1;
+        int $i0, $i1;
+        long $l2;
+        TestStressIHOPMultiThread r0;
+
+        r0 := @this: TestStressIHOPMultiThread;
+
+        $r1 = (gc.stress.TestStressIHOPMultiThread) r0;
+
+        $i0 = $r1.<gc.stress.TestStressIHOPMultiThread: int TIMEOUT>;
+
+        $i1 = $i0 * 1000;
+
+        $l2 = (long) $i1;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>($l2);
+
+        return;
+    }
+
+    private static void lambda$0(gc.stress.TestStressIHOPMultiThread$AllocationThread)
+    {
+        gc.stress.TestStressIHOPMultiThread$AllocationThread r0;
+
+        r0 := @parameter0: gc.stress.TestStressIHOPMultiThread$AllocationThread;
+
+        virtualinvoke r0.<gc.stress.TestStressIHOPMultiThread$AllocationThread: void start()>();
+
+        return;
+    }
+
+    private static void lambda$1(gc.stress.TestStressIHOPMultiThread$AllocationThread)
+    {
+        gc.stress.TestStressIHOPMultiThread$AllocationThread r0;
+
+        r0 := @parameter0: gc.stress.TestStressIHOPMultiThread$AllocationThread;
+
+        virtualinvoke r0.<gc.stress.TestStressIHOPMultiThread$AllocationThread: void silentJoin()>();
+
+        return;
+    }
+}

@@ -1,0 +1,68 @@
+class ThreadTracker extends java.lang.Object
+{
+    static int threadCount;
+
+    static void <clinit>()
+    {
+        <gc.gctests.gctest01.ThreadTracker: int threadCount> = 0;
+
+        return;
+    }
+
+    void <init>()
+    {
+        ThreadTracker r0;
+
+        r0 := @this: ThreadTracker;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static synchronized int getThreadCount()
+    {
+        int $i0;
+
+        $i0 = <gc.gctests.gctest01.ThreadTracker: int threadCount>;
+
+        return $i0;
+    }
+
+    static synchronized void setThreadCount(int)
+    {
+        int i0;
+
+        i0 := @parameter0: int;
+
+        <gc.gctests.gctest01.ThreadTracker: int threadCount> = i0;
+
+        return;
+    }
+
+    static synchronized void incr()
+    {
+        int $i0, $i1;
+
+        $i0 = <gc.gctests.gctest01.ThreadTracker: int threadCount>;
+
+        $i1 = $i0 + 1;
+
+        <gc.gctests.gctest01.ThreadTracker: int threadCount> = $i1;
+
+        return;
+    }
+
+    static synchronized void decr()
+    {
+        int $i0, $i1;
+
+        $i0 = <gc.gctests.gctest01.ThreadTracker: int threadCount>;
+
+        $i1 = $i0 - 1;
+
+        <gc.gctests.gctest01.ThreadTracker: int threadCount> = $i1;
+
+        return;
+    }
+}

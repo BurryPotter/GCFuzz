@@ -1,0 +1,592 @@
+#Test Results (version 2)
+#Fri Apr 25 09:38:02 PDT 2014
+#checksum:10f8235a894836b0
+#-----testdescription-----
+$file=/export/jmasa/java/jdk9-gc-8038928/test/gc/g1/TestGCLogMessages.java
+$root=/export/jmasa/java/jdk9-gc-8038928/test
+keywords=bug8035406 bug8027295 bug8035398 bug8019342 gc
+library=/testlibrary
+run=ASSUMED_ACTION main TestGCLogMessages\n
+source=TestGCLogMessages.java
+title=Ensure that the PrintGCDetails output for a minor GC with G1 includes the expected necessary messages.
+
+#-----environment-----
+
+#-----testresult-----
+description=file\:/export/jmasa/java/jdk9-gc-8038928/test/gc/g1/TestGCLogMessages.java
+elapsed=1265 0\:00\:01.265
+end=Fri Apr 25 09\:38\:02 PDT 2014
+environment=regtest
+execStatus=Failed. Execution failed\: `main' threw exception\: java.lang.RuntimeException\: Expected to get exit value of [0]
+hostname=pistachio
+javatestOS=Linux 3.11.0-19-generic (amd64)
+javatestVersion=4.4
+jtregVersion=jtreg 4.1 fcs b08
+script=com.sun.javatest.regtest.RegressionScript 
+sections=script_messages build main
+start=Fri Apr 25 09\:38\:01 PDT 2014
+test=gc/g1/TestGCLogMessages.java
+user.name=jmasamit
+work=/export/jmasa/java/jdk9-gc-8038928/test/gc/g1/JTwork/gc/g1
+
+#section:script_messages
+----------messages:(5/188)----------
+JDK under test: (/export/jmasa/jdk1.9.0.amd64)
+java version "1.9.0-ea"
+Java(TM) SE Runtime Environment (build 1.9.0-ea-b04)
+Java HotSpot(TM) 64-Bit Server VM (build 25.0-b62, mixed mode)
+
+
+#section:build
+----------messages:(3/102)----------
+command: build TestGCLogMessages
+reason: Named class compiled on demand
+elapsed time (seconds): 0.001
+result: Passed. All files up to date
+
+#section:main
+----------messages:(3/133)----------
+command: main TestGCLogMessages
+reason: Assumed action based on file name: run main TestGCLogMessages 
+elapsed time (seconds): 1.157
+----------System.out:(2/310)----------
+Command line: [/export/jmasa/jdk1.9.0.amd64/bin/java -XX:+UseG1GC -c2_gc_ref -Xmx10M TestGCLogMessages$GCTest ]
+Command line: [/export/jmasa/jdk1.9.0.amd64/bin/java -XX:+UseG1GC -c2_gc_ref -XX:InitiatingHeapOccupancyPercent=10 -XX:+UseStringDeduplication -Xmx10M -XX:+PrintGCDetails TestGCLogMessages$GCTest ]
+----------System.err:(513/28571)----------
+ stdout: [Creating garbage
+[GC pause (G1 Evacuation Pause) (young), 0.0128726 secs]
+   [Parallel Time: 4.7 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 100.1, Avg: 101.0, Max: 102.4, Diff: 2.3]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.2, Max: 0.6, Diff: 0.6, Sum: 4.7]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.1, Max: 3.0, Diff: 3.0, Sum: 3.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.2, Max: 0.4, Diff: 0.4, Sum: 5.1]
+      [Termination (ms): Min: 0.0, Avg: 2.2, Max: 2.6, Diff: 2.6, Sum: 50.1]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.3]
+      [GC Worker Total (ms): Min: 1.4, Avg: 2.8, Max: 3.6, Diff: 2.3, Sum: 63.3]
+      [GC Worker End (ms): Min: 103.7, Avg: 103.7, Max: 103.7, Diff: 0.1]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.9 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.2, Sum: 0.2]
+   [Clear CT: 1.5 ms]
+   [Other: 4.8 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 3.3 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.3 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 6144.0K(6144.0K)->0.0B(5120.0K) Survivors: 0.0B->1024.0K Heap: 6144.0K(10.0M)->736.0K(10.0M)]
+ [Times: user=0.08 sys=0.00 real=0.02 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0347618 secs]
+   [Parallel Time: 24.8 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 117.2, Avg: 123.3, Max: 141.0, Diff: 23.8]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.1, Max: 0.5, Diff: 0.5, Sum: 3.3]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.7, Max: 10.4, Diff: 10.4, Sum: 15.6]
+      [Termination (ms): Min: 0.0, Avg: 16.9, Max: 22.8, Diff: 22.8, Sum: 388.4]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.2]
+      [GC Worker Total (ms): Min: 0.0, Avg: 17.7, Max: 23.8, Diff: 23.8, Sum: 407.5]
+      [GC Worker End (ms): Min: 141.0, Avg: 141.0, Max: 141.0, Diff: 0.0]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.4 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.1]
+   [Clear CT: 1.3 ms]
+   [Other: 7.3 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 6.0 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.2 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5856.0K(10.0M)->573.3K(10.0M)]
+ [Times: user=0.38 sys=0.01 real=0.04 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0106499 secs]
+   [Parallel Time: 2.1 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 153.4, Avg: 153.8, Max: 154.6, Diff: 1.2]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.7]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.2, Max: 0.3, Diff: 0.3, Sum: 4.4]
+      [Termination (ms): Min: 0.0, Avg: 0.6, Max: 0.8, Diff: 0.8, Sum: 13.6]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [GC Worker Total (ms): Min: 0.0, Avg: 0.8, Max: 1.2, Diff: 1.2, Sum: 18.9]
+      [GC Worker End (ms): Min: 154.6, Avg: 154.7, Max: 154.7, Diff: 0.0]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.3 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+   [Clear CT: 1.0 ms]
+   [Other: 6.3 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 5.2 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.0 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5693.3K(10.0M)->556.1K(10.0M)]
+ [Times: user=0.09 sys=0.00 real=0.01 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0062972 secs]
+   [Parallel Time: 2.2 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 166.4, Avg: 166.9, Max: 167.8, Diff: 1.3]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.2, Sum: 0.9]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.1, Max: 0.2, Diff: 0.2, Sum: 3.0]
+      [Termination (ms): Min: 0.0, Avg: 0.7, Max: 1.0, Diff: 1.0, Sum: 16.8]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [GC Worker Total (ms): Min: 0.0, Avg: 0.9, Max: 1.4, Diff: 1.4, Sum: 20.8]
+      [GC Worker End (ms): Min: 167.8, Avg: 167.8, Max: 167.8, Diff: 0.0]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.0 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.1]
+   [Clear CT: 0.8 ms]
+   [Other: 2.3 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 1.5 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 0.8 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5676.1K(10.0M)->544.4K(10.0M)]
+ [Times: user=0.03 sys=0.00 real=0.01 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0052631 secs]
+   [Parallel Time: 1.3 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 175.3, Avg: 175.7, Max: 176.2, Diff: 0.8]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.2, Sum: 1.1]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.2, Max: 0.3, Diff: 0.3, Sum: 3.5]
+      [Termination (ms): Min: 0.0, Avg: 0.3, Max: 0.4, Diff: 0.4, Sum: 7.1]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [GC Worker Total (ms): Min: 0.0, Avg: 0.5, Max: 0.9, Diff: 0.8, Sum: 11.9]
+      [GC Worker End (ms): Min: 176.2, Avg: 176.2, Max: 176.2, Diff: 0.0]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.3 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.1]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.2, Sum: 0.2]
+   [Clear CT: 0.7 ms]
+   [Other: 1.9 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 1.3 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 0.6 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5664.4K(10.0M)->555.8K(10.0M)]
+ [Times: user=0.02 sys=0.00 real=0.00 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0059847 secs]
+   [Parallel Time: 1.1 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 183.2, Avg: 183.6, Max: 184.3, Diff: 1.0]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.1, Max: 0.4, Diff: 0.4, Sum: 3.2]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.2, Max: 0.3, Diff: 0.3, Sum: 4.4]
+      [Termination (ms): Min: 0.0, Avg: 0.3, Max: 0.4, Diff: 0.4, Sum: 7.1]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [GC Worker Total (ms): Min: 0.0, Avg: 0.6, Max: 1.1, Diff: 1.1, Sum: 14.9]
+      [GC Worker End (ms): Min: 184.3, Avg: 184.3, Max: 184.3, Diff: 0.0]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 0.9 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.1]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.1]
+   [Clear CT: 0.6 ms]
+   [Other: 3.3 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 2.6 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 0.6 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5675.8K(10.0M)->584.3K(10.0M)]
+ [Times: user=0.05 sys=0.00 real=0.00 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0057972 secs]
+   [Parallel Time: 2.3 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 191.3, Avg: 191.8, Max: 193.1, Diff: 1.8]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.1, Max: 0.3, Diff: 0.3, Sum: 2.9]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.4, Max: 0.5, Diff: 0.5, Sum: 8.6]
+      [Termination (ms): Min: 0.0, Avg: 0.8, Max: 1.1, Diff: 1.1, Sum: 18.7]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.2]
+      [GC Worker Total (ms): Min: 0.0, Avg: 1.3, Max: 1.9, Diff: 1.9, Sum: 30.5]
+      [GC Worker End (ms): Min: 193.1, Avg: 193.2, Max: 193.2, Diff: 0.1]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 0.9 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.1]
+   [Clear CT: 0.6 ms]
+   [Other: 2.0 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 1.4 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 0.5 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5704.3K(10.0M)->541.7K(10.0M)]
+ [Times: user=0.05 sys=0.00 real=0.00 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0060941 secs]
+   [Parallel Time: 2.2 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 199.0, Avg: 199.5, Max: 200.8, Diff: 1.8]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.1, Max: 0.3, Diff: 0.3, Sum: 2.2]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.4, Max: 0.5, Diff: 0.5, Sum: 8.1]
+      [Termination (ms): Min: 0.0, Avg: 0.8, Max: 1.1, Diff: 1.1, Sum: 19.5]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.2]
+      [GC Worker Total (ms): Min: 0.0, Avg: 1.3, Max: 1.9, Diff: 1.9, Sum: 30.2]
+      [GC Worker End (ms): Min: 200.8, Avg: 200.8, Max: 200.9, Diff: 0.1]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 0.9 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.1]
+   [Clear CT: 0.6 ms]
+   [Other: 2.3 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 1.7 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 0.6 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5661.7K(10.0M)->552.5K(10.0M)]
+ [Times: user=0.05 sys=0.00 real=0.01 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0132130 secs]
+   [Parallel Time: 5.7 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 206.9, Avg: 208.7, Max: 211.6, Diff: 4.7]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.3, Max: 0.6, Diff: 0.6, Sum: 6.0]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.3, Max: 0.6, Diff: 0.6, Sum: 6.4]
+      [Termination (ms): Min: 0.0, Avg: 2.4, Max: 3.6, Diff: 3.6, Sum: 55.4]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.3]
+      [GC Worker Total (ms): Min: 0.0, Avg: 3.0, Max: 4.8, Diff: 4.8, Sum: 68.2]
+      [GC Worker End (ms): Min: 211.6, Avg: 211.7, Max: 211.7, Diff: 0.1]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 2.3 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.1]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.1]
+   [Clear CT: 1.8 ms]
+   [Other: 3.4 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 1.7 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.5 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5672.5K(10.0M)->525.8K(10.0M)]
+ [Times: user=0.08 sys=0.01 real=0.01 secs] 
+[GC concurrent-string-deduplication, 52.3K->43.3K(9176.0B), avg 17.1%, 0.0008782 secs]
+[GC pause (G1 Evacuation Pause) (young), 0.0097117 secs]
+   [Parallel Time: 2.7 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 222.0, Avg: 222.6, Max: 223.8, Diff: 1.8]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.2, Max: 0.4, Diff: 0.4, Sum: 3.9]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.5, Max: 0.7, Diff: 0.7, Sum: 11.6]
+      [Termination (ms): Min: 0.0, Avg: 0.6, Max: 0.7, Diff: 0.7, Sum: 12.8]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.2]
+      [GC Worker Total (ms): Min: 0.0, Avg: 1.2, Max: 1.8, Diff: 1.8, Sum: 28.7]
+      [GC Worker End (ms): Min: 223.8, Avg: 223.9, Max: 223.9, Diff: 0.1]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.7 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.2, Sum: 0.2]
+   [Clear CT: 1.7 ms]
+   [Other: 3.5 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 1.9 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.5 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5645.8K(10.0M)->559.2K(10.0M)]
+ [Times: user=0.03 sys=0.01 real=0.02 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0100524 secs]
+   [Parallel Time: 3.1 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 233.6, Avg: 233.9, Max: 234.3, Diff: 0.7]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.2, Max: 0.4, Diff: 0.4, Sum: 3.9]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.7, Avg: 0.9, Max: 1.0, Diff: 0.3, Sum: 20.3]
+      [Termination (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.6]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.7]
+      [GC Worker Total (ms): Min: 0.7, Avg: 1.1, Max: 1.4, Diff: 0.7, Sum: 25.7]
+      [GC Worker End (ms): Min: 235.0, Avg: 235.0, Max: 235.1, Diff: 0.1]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.7 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.2, Sum: 0.2]
+   [Clear CT: 1.6 ms]
+   [Other: 3.7 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 1.9 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.7 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5679.2K(10.0M)->646.8K(10.0M)]
+ [Times: user=0.04 sys=0.00 real=0.01 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0102549 secs]
+   [Parallel Time: 3.2 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 245.7, Avg: 246.0, Max: 246.4, Diff: 0.7]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.1, Max: 0.4, Diff: 0.4, Sum: 2.8]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.8, Avg: 1.1, Max: 1.2, Diff: 0.3, Sum: 25.6]
+      [Termination (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.4]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.7]
+      [GC Worker Total (ms): Min: 0.9, Avg: 1.3, Max: 1.6, Diff: 0.8, Sum: 29.6]
+      [GC Worker End (ms): Min: 247.3, Avg: 247.3, Max: 247.3, Diff: 0.0]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.6 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.2, Sum: 0.2]
+   [Clear CT: 1.6 ms]
+   [Other: 3.8 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 2.1 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.5 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5766.8K(10.0M)->647.4K(10.0M)]
+ [Times: user=0.05 sys=0.00 real=0.01 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0101998 secs]
+   [Parallel Time: 2.5 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 257.8, Avg: 258.2, Max: 258.5, Diff: 0.7]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.1, Max: 0.4, Diff: 0.4, Sum: 2.9]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.6, Avg: 0.8, Max: 0.9, Diff: 0.3, Sum: 19.2]
+      [Termination (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.6]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.1, Sum: 1.1]
+      [GC Worker Total (ms): Min: 0.7, Avg: 1.0, Max: 1.4, Diff: 0.7, Sum: 23.9]
+      [GC Worker End (ms): Min: 259.2, Avg: 259.2, Max: 259.3, Diff: 0.1]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 2.0 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.2, Sum: 0.2]
+   [Clear CT: 1.8 ms]
+   [Other: 3.9 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 2.1 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.7 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5767.4K(10.0M)->623.3K(10.0M)]
+ [Times: user=0.04 sys=0.01 real=0.01 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0125210 secs]
+   [Parallel Time: 4.5 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 270.1, Avg: 270.8, Max: 273.0, Diff: 2.9]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.2, Max: 0.6, Diff: 0.6, Sum: 4.9]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.6, Max: 0.8, Diff: 0.8, Sum: 13.8]
+      [Termination (ms): Min: 0.0, Avg: 1.4, Max: 1.6, Diff: 1.6, Sum: 32.8]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.2]
+      [GC Worker Total (ms): Min: 0.0, Avg: 2.3, Max: 3.0, Diff: 3.0, Sum: 52.0]
+      [GC Worker End (ms): Min: 273.0, Avg: 273.0, Max: 273.1, Diff: 0.1]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.9 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.2]
+   [Clear CT: 1.6 ms]
+   [Other: 4.4 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 2.7 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.6 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5743.3K(10.0M)->560.0K(10.0M)]
+ [Times: user=0.07 sys=0.00 real=0.02 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0105883 secs]
+   [Parallel Time: 3.2 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 284.4, Avg: 285.0, Max: 286.1, Diff: 1.7]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.3, Max: 0.6, Diff: 0.6, Sum: 6.0]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.0, Avg: 0.6, Max: 0.8, Diff: 0.8, Sum: 13.9]
+      [Termination (ms): Min: 0.0, Avg: 0.3, Max: 0.4, Diff: 0.4, Sum: 6.1]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.3]
+      [GC Worker Total (ms): Min: 0.0, Avg: 1.1, Max: 1.7, Diff: 1.7, Sum: 26.4]
+      [GC Worker End (ms): Min: 286.1, Avg: 286.2, Max: 286.2, Diff: 0.1]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.8 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.2, Sum: 0.2]
+   [Clear CT: 1.6 ms]
+   [Other: 4.0 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 2.4 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.5 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5680.0K(10.0M)->528.4K(10.0M)]
+ [Times: user=0.05 sys=0.01 real=0.01 secs] 
+[GC pause (G1 Evacuation Pause) (young), 0.0085532 secs]
+   [Parallel Time: 2.9 ms, GC Workers: 23]
+      [GC Worker Start (ms): Min: 297.0, Avg: 297.4, Max: 297.8, Diff: 0.8]
+      [Ext Root Scanning (ms): Min: 0.0, Avg: 0.2, Max: 0.5, Diff: 0.5, Sum: 3.9]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Object Copy (ms): Min: 0.6, Avg: 0.8, Max: 1.1, Diff: 0.5, Sum: 18.1]
+      [Termination (ms): Min: 0.0, Avg: 0.3, Max: 0.3, Diff: 0.3, Sum: 5.9]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.1, Diff: 0.1, Sum: 0.9]
+      [GC Worker Total (ms): Min: 0.9, Avg: 1.3, Max: 1.7, Diff: 0.8, Sum: 28.9]
+      [GC Worker End (ms): Min: 298.6, Avg: 298.6, Max: 298.7, Diff: 0.1]
+   [Code Root Fixup: 0.0 ms]
+   [Code Root Migration: 0.0 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 1.6 ms, GC Workers: 23]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.2, Diff: 0.2, Sum: 0.2]
+   [Clear CT: 1.2 ms]
+   [Other: 2.8 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 1.5 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 1.2 ms]
+      [Free CSet: 0.0 ms]
+   [Eden: 5120.0K(5120.0K)->0.0B(5120.0K) Survivors: 1024.0K->1024.0K Heap: 5648.4K(10.0M)->507.6K(10.0M)]
+ [Times: user=0.03 sys=0.00 real=0.01 secs] 
+[GC pause (G1 Evacuation Pause) (young) (initial-mark)#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007fc4a214ce5b, pid=3662, tid=140482151692032
+#
+# JRE version: Java(TM) SE Runtime Environment (9.0-b04) (build 1.9.0-ea-b04)
+# Java VM: OpenJDK 64-Bit Server VM (25.0-b62-/jdk9-gc-ref mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# V  [libjvm.so+0x550e5b]  MarkStrongCodeRootCodeBlobClosure::MarkStrongCodeRootOopClosure::do_oop(oopDesc**)+0x6b
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# An error report file with more information is saved as:
+# /export/jmasa/java/jdk9-gc-8038928/test/gc/g1/JTwork/gc/g1/TestGCLogMessages/hs_err_pid3662.log
+Compiled method (c1)     315   35 %     3       TestGCLogMessages$GCTest::main @ -2 (55 bytes)
+ total in heap  [0x00007fc48d350490,0x00007fc48d3514b0] = 4128
+ relocation     [0x00007fc48d3505b8,0x00007fc48d350688] = 208
+ main code      [0x00007fc48d3506a0,0x00007fc48d350fc0] = 2336
+ stub code      [0x00007fc48d350fc0,0x00007fc48d351098] = 216
+ oops           [0x00007fc48d351098,0x00007fc48d3510b0] = 24
+ metadata       [0x00007fc48d3510b0,0x00007fc48d3510d0] = 32
+ scopes data    [0x00007fc48d3510d0,0x00007fc48d3512f0] = 544
+ scopes pcs     [0x00007fc48d3512f0,0x00007fc48d351430] = 320
+ dependencies   [0x00007fc48d351430,0x00007fc48d351438] = 8
+ handler table  [0x00007fc48d351438,0x00007fc48d351498] = 96
+ nul chk table  [0x00007fc48d351498,0x00007fc48d3514b0] = 24
+Compiled method (c1)     315   35 %     3       TestGCLogMessages$GCTest::main @ -2 (55 bytes)
+ total in heap  [0x00007fc48d350490,0x00007fc48d3514b0] = 4128
+ relocation     [0x00007fc48d3505b8,0x00007fc48d350688] = 208
+ main code      [0x00007fc48d3506a0,0x00007fc48d350fc0] = 2336
+ stub code      [0x00007fc48d350fc0,0x00007fc48d351098] = 216
+ oops           [0x00007fc48d351098,0x00007fc48d3510b0] = 24
+ metadata       [0x00007fc48d3510b0,0x00007fc48d3510d0] = 32
+ scopes data    [0x00007fc48d3510d0,0x00007fc48d3512f0] = 544
+ scopes pcs     [0x00007fc48d3512f0,0x00007fc48d351430] = 320
+ dependencies   [0x00007fc48d351430,0x00007fc48d351438] = 8
+ handler table  [0x00007fc48d351438,0x00007fc48d351498] = 96
+ nul chk table  [0x00007fc48d351498,0x00007fc48d3514b0] = 24
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+];
+ stderr: []
+ exitValue = 134
+
+java.lang.RuntimeException: Expected to get exit value of [0]
+
+	at com.oracle.java.testlibrary.OutputAnalyzer.shouldHaveExitValue(OutputAnalyzer.java:296)
+	at TestGCLogMessages.testNormalLogs(TestGCLogMessages.java:83)
+	at TestGCLogMessages.main(TestGCLogMessages.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:484)
+	at com.sun.javatest.regtest.MainWrapper$MainThread.run(MainWrapper.java:94)
+	at java.lang.Thread.run(Thread.java:744)
+
+JavaTest Message: Test threw exception: java.lang.RuntimeException: Expected to get exit value of [0]
+
+JavaTest Message: shutting down test
+
+STATUS:Failed.`main' threw exception: java.lang.RuntimeException: Expected to get exit value of [0]
+----------rerun:(19/1347)*----------
+DISPLAY=localhost:12.0 \\
+HOME=/home/jmasamit \\
+LANG=en_US.UTF-8 \\
+PATH=/bin:/usr/bin \\
+CLASSPATH=/net/jre.us.oracle.com/p/v10/jtreg/4.1/fcs/b08/binaries/jtreg/lib/javatest.jar:/net/jre.us.oracle.com/p/v10/jtreg/4.1/fcs/b08/binaries/jtreg/lib/jtreg.jar:/export/jmasa/java/jdk9-gc-8038928/test/gc/g1/JTwork/classes/gc/g1:/export/jmasa/java/jdk9-gc-8038928/test/gc/g1:/export/jmasa/jdk1.9.0.amd64/lib/tools.jar \\
+    /export/jmasa/jdk1.9.0.amd64/bin/java \\
+        -Dtest.vm.opts=-server \\
+        -Dtest.jdk=/export/jmasa/jdk1.9.0.amd64 \\
+        -Dtest.timeout.factor=1.0 \\
+        -Dtest.src.path=/export/jmasa/java/jdk9-gc-8038928/test/gc/g1:/export/jmasa/java/jdk9-gc-8038928/test/testlibrary \\
+        -Dtest.compiler.opts= \\
+        -Dcompile.jdk=/export/jmasa/jdk1.9.0.amd64 \\
+        -Dtest.classes=/export/jmasa/java/jdk9-gc-8038928/test/gc/g1/JTwork/classes/gc/g1 \\
+        -Dtest.class.path=/export/jmasa/java/jdk9-gc-8038928/test/gc/g1/JTwork/classes/gc/g1:/export/jmasa/java/jdk9-gc-8038928/test/gc/g1/JTwork/classes/testlibrary \\
+        -Dtest.java.opts= \\
+        -Dtest.src=/export/jmasa/java/jdk9-gc-8038928/test/gc/g1 \\
+        -Dtest.tool.vm.opts=-J-server \\
+        -server \\
+        com.sun.javatest.regtest.MainWrapper /export/jmasa/java/jdk9-gc-8038928/test/gc/g1/JTwork/classes/gc/g1/TestGCLogMessages.jta
+result: Failed. Execution failed: `main' threw exception: java.lang.RuntimeException: Expected to get exit value of [0]
+
+
+test result: Failed. Execution failed: `main' threw exception: java.lang.RuntimeException: Expected to get exit value of [0]

@@ -1,0 +1,511 @@
+public class Nio extends java.lang.Object
+{
+    static final int MAX_SIZE;
+
+    static void <clinit>()
+    {
+        int $i1;
+        long $l0;
+
+        $l0 = staticinvoke <jdk.internal.misc.VM: long maxDirectMemory()>();
+
+        $i1 = (int) $l0;
+
+        <gc.memory.Nio.Nio: int MAX_SIZE> = $i1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int $i0, $i1;
+        java.lang.String[] r1;
+        gc.memory.Nio.Nio $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new gc.memory.Nio.Nio;
+
+        specialinvoke $r0.<gc.memory.Nio.Nio: void <init>()>();
+
+        $i0 = virtualinvoke $r0.<gc.memory.Nio.Nio: int run()>();
+
+        $i1 = $i0 + 95;
+
+        staticinvoke <java.lang.System: void exit(int)>($i1);
+
+        return;
+    }
+
+    public void <init>()
+    {
+        Nio r0;
+
+        r0 := @this: Nio;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public int run()
+    {
+        java.nio.ByteBuffer $r4;
+        byte $b14, $b15;
+        float $f0;
+        java.lang.StringBuilder $r2, $r13, $r18, $r22, $r23, $r24, $r28, $r29, $r30, $r38, $r40, $r41, $r44, $r45, $r46, $r48;
+        java.lang.Throwable $r50, $r52, $r53, $r54;
+        gc.memory.Nio.Nio$Fault $r42, $r43, $r47, $r49;
+        long $l0, $l1, $l4, $l5;
+        int $i2, $i3, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13;
+        java.lang.String $r3, $r14, $r19, $r25, $r31, $r39;
+        double $d0;
+        java.io.PrintStream $r1, $r5, $r7, $r8, $r17, $r21, $r27, $r33, $r34;
+        Nio r6;
+        gc.memory.Nio.Nio $r51;
+        java.lang.OutOfMemoryError $r10, $r15, $r35;
+
+        r6 := @this: Nio;
+
+        staticinvoke <gc.memory.Nio.Nio: void gc()>();
+
+        $l0 = staticinvoke <gc.memory.Nio.Nio: long getUsedHeap()>();
+
+        $l1 = staticinvoke <gc.memory.Nio.Nio: long getUsedNonHeap()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r40 = new java.lang.StringBuilder;
+
+        specialinvoke $r40.<java.lang.StringBuilder: void <init>(java.lang.String)>("Allocating all the direct memory: ");
+
+        $i2 = <gc.memory.Nio.Nio: int MAX_SIZE>;
+
+        $r2 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r3);
+
+     label01:
+        $i3 = <gc.memory.Nio.Nio: int MAX_SIZE>;
+
+        $r4 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>($i3);
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>("... success");
+
+     label02:
+        goto label04;
+
+     label03:
+        $r35 := @caughtexception;
+
+        $r42 = new gc.memory.Nio.Nio$Fault;
+
+        $r41 = new java.lang.StringBuilder;
+
+        specialinvoke $r41.<java.lang.StringBuilder: void <init>(java.lang.String)>("Unexpected OOME during the first allocation ");
+
+        $r38 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r35);
+
+        $r39 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r42.<gc.memory.Nio.Nio$Fault: void <init>(java.lang.String)>($r39);
+
+        $r50 = (java.lang.Throwable) $r42;
+
+        throw $r50;
+
+     label04:
+        $l4 = staticinvoke <gc.memory.Nio.Nio: long getUsedHeap()>();
+
+        $l5 = staticinvoke <gc.memory.Nio.Nio: long getUsedNonHeap()>();
+
+        $r51 = (gc.memory.Nio.Nio) r6;
+
+        virtualinvoke $r51.<gc.memory.Nio.Nio: void checkHeapIsNotAffected(long,long,long,long)>($l0, $l4, $l1, $l5);
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>("Doing gc");
+
+        staticinvoke <gc.memory.Nio.Nio: void gc()>();
+
+     label05:
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>("Allocating 1 byte");
+
+        staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(1);
+
+        $r43 = new gc.memory.Nio.Nio$Fault;
+
+        specialinvoke $r43.<gc.memory.Nio.Nio$Fault: void <init>(java.lang.String)>("No OOM, but we already allocated all the memory");
+
+        $r52 = (java.lang.Throwable) $r43;
+
+        throw $r52;
+
+     label06:
+        $r15 := @caughtexception;
+
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+
+        $r44 = new java.lang.StringBuilder;
+
+        specialinvoke $r44.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected OOM ");
+
+        $r18 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r15);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r19);
+
+        $i6 = <gc.memory.Nio.Nio: int MAX_SIZE>;
+
+        $i7 = $i6 / 2;
+
+        virtualinvoke $r4.<java.nio.ByteBuffer: java.nio.ByteBuffer putDouble(int,double)>($i7, -3.1415);
+
+        $i8 = <gc.memory.Nio.Nio: int MAX_SIZE>;
+
+        $i9 = $i8 - 17;
+
+        virtualinvoke $r4.<java.nio.ByteBuffer: java.nio.ByteBuffer putFloat(int,float)>($i9, 41234.6F);
+
+        $i10 = <gc.memory.Nio.Nio: int MAX_SIZE>;
+
+        $i11 = $i10 / 2;
+
+        $d0 = virtualinvoke $r4.<java.nio.ByteBuffer: double getDouble(int)>($i11);
+
+        $i12 = <gc.memory.Nio.Nio: int MAX_SIZE>;
+
+        $i13 = $i12 - 17;
+
+        $f0 = virtualinvoke $r4.<java.nio.ByteBuffer: float getFloat(int)>($i13);
+
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+
+        $r45 = new java.lang.StringBuilder;
+
+        specialinvoke $r45.<java.lang.StringBuilder: void <init>(java.lang.String)>("put: ");
+
+        $r22 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>(-3.1415);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", ");
+
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>(41234.6F);
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r25);
+
+        $r27 = <java.lang.System: java.io.PrintStream out>;
+
+        $r46 = new java.lang.StringBuilder;
+
+        specialinvoke $r46.<java.lang.StringBuilder: void <init>(java.lang.String)>("got: ");
+
+        $r28 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", ");
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(float)>($f0);
+
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r27.<java.io.PrintStream: void println(java.lang.String)>($r31);
+
+        $b14 = -3.1415 cmpl $d0;
+
+        if $b14 != 0 goto label07;
+
+        $b15 = 41234.6F cmpl $f0;
+
+        if $b15 == 0 goto label08;
+
+     label07:
+        $r47 = new gc.memory.Nio.Nio$Fault;
+
+        specialinvoke $r47.<gc.memory.Nio.Nio$Fault: void <init>(java.lang.String)>("read/write to buffer check failed");
+
+        $r53 = (java.lang.Throwable) $r47;
+
+        throw $r53;
+
+     label08:
+        staticinvoke <gc.memory.Nio.Nio: void gc()>();
+
+     label09:
+        $r33 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>("Allocating 10 bytes");
+
+        staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocateDirect(int)>(10);
+
+     label10:
+        goto label12;
+
+     label11:
+        $r10 := @caughtexception;
+
+        $r49 = new gc.memory.Nio.Nio$Fault;
+
+        $r48 = new java.lang.StringBuilder;
+
+        specialinvoke $r48.<java.lang.StringBuilder: void <init>(java.lang.String)>("Nop, OOM is unexpected again: ");
+
+        $r13 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r10);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r49.<gc.memory.Nio.Nio$Fault: void <init>(java.lang.String)>($r14);
+
+        $r54 = (java.lang.Throwable) $r49;
+
+        throw $r54;
+
+     label12:
+        $r34 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r34.<java.io.PrintStream: void println(java.lang.String)>("The long quest has done! Congratulations");
+
+        return 0;
+
+        catch java.lang.OutOfMemoryError from label01 to label02 with label03;
+        catch java.lang.OutOfMemoryError from label05 to label06 with label06;
+        catch java.lang.OutOfMemoryError from label09 to label10 with label11;
+    }
+
+    public static void gc()
+    {
+        java.lang.Exception $r0;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label1:
+        staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(200L);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r0 := @caughtexception;
+
+     label4:
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    public static long getUsedHeap()
+    {
+        java.lang.management.MemoryMXBean $r0;
+        long $l0;
+        java.lang.management.MemoryUsage $r1;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r1 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l0 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        return $l0;
+    }
+
+    public static long getUsedNonHeap()
+    {
+        java.lang.management.MemoryMXBean $r0;
+        long $l0;
+        java.lang.management.MemoryUsage $r1;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r1 = interfaceinvoke $r0.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getNonHeapMemoryUsage()>();
+
+        $l0 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        return $l0;
+    }
+
+    void checkHeapIsNotAffected(long, long, long, long)
+    {
+        byte $b4, $b9;
+        java.lang.StringBuilder $r2, $r6, $r12, $r16, $r19, $r20, $r22, $r23;
+        java.lang.Throwable $r26, $r28;
+        gc.memory.Nio.Nio$Fault $r21, $r24;
+        long l0, l1, $l2, l5, l6, $l7;
+        int $i3, $i8, $i10, $i11;
+        java.lang.String $r3, $r7, $r13, $r17;
+        double $d0, $d1, $d2, $d3, $d4, $d5;
+        java.io.PrintStream $r1, $r5, $r11, $r15;
+        Nio r8;
+        gc.memory.Nio.Nio $r25, $r27;
+
+        r8 := @this: Nio;
+
+        l1 := @parameter0: long;
+
+        l0 := @parameter1: long;
+
+        l6 := @parameter2: long;
+
+        l5 := @parameter3: long;
+
+        $l2 = l0 - l1;
+
+        $d2 = (double) $l2;
+
+        $i3 = <gc.memory.Nio.Nio: int MAX_SIZE>;
+
+        $d0 = (double) $i3;
+
+        $d1 = $d0 * 0.75;
+
+        $b4 = $d2 cmpl $d1;
+
+        $i10 = (int) $b4;
+
+        if $i10 <= 0 goto label1;
+
+        $r11 = <java.lang.System: java.io.PrintStream err>;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>("Used heap before: ");
+
+        $r12 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>($r13);
+
+        $r15 = <java.lang.System: java.io.PrintStream err>;
+
+        $r20 = new java.lang.StringBuilder;
+
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>(java.lang.String)>("Used heap after : ");
+
+        $r16 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+        $r25 = (gc.memory.Nio.Nio) r8;
+
+        virtualinvoke $r25.<gc.memory.Nio.Nio: void dumpHeap()>();
+
+        $r21 = new gc.memory.Nio.Nio$Fault;
+
+        specialinvoke $r21.<gc.memory.Nio.Nio$Fault: void <init>(java.lang.String)>("Allocating direct memory should not eat the heap! Heap dumped to heapDump.hprof file.");
+
+        $r26 = (java.lang.Throwable) $r21;
+
+        throw $r26;
+
+     label1:
+        $l7 = l5 - l6;
+
+        $d5 = (double) $l7;
+
+        $i8 = <gc.memory.Nio.Nio: int MAX_SIZE>;
+
+        $d3 = (double) $i8;
+
+        $d4 = $d3 * 0.75;
+
+        $b9 = $d5 cmpl $d4;
+
+        $i11 = (int) $b9;
+
+        if $i11 <= 0 goto label2;
+
+        $r1 = <java.lang.System: java.io.PrintStream err>;
+
+        $r22 = new java.lang.StringBuilder;
+
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>(java.lang.String)>("Used heap before: ");
+
+        $r2 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l6);
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r3);
+
+        $r5 = <java.lang.System: java.io.PrintStream err>;
+
+        $r23 = new java.lang.StringBuilder;
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>("Used heap after : ");
+
+        $r6 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        $r27 = (gc.memory.Nio.Nio) r8;
+
+        virtualinvoke $r27.<gc.memory.Nio.Nio: void dumpHeap()>();
+
+        $r24 = new gc.memory.Nio.Nio$Fault;
+
+        specialinvoke $r24.<gc.memory.Nio.Nio$Fault: void <init>(java.lang.String)>("Allocating direct memory should not eat non the heap!");
+
+        $r28 = (java.lang.Throwable) $r24;
+
+        throw $r28;
+
+     label2:
+        return;
+    }
+
+    void dumpHeap()
+    {
+        java.io.PrintStream $r2, $r3, $r5;
+        Nio r6;
+        com.sun.management.HotSpotDiagnosticMXBean r1;
+        java.lang.management.PlatformManagedObject $r0;
+        java.io.IOException $r4;
+
+        r6 := @this: Nio;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.PlatformManagedObject getPlatformMXBean(java.lang.Class)>(class "Lcom/sun/management/HotSpotDiagnosticMXBean;");
+
+        r1 = (com.sun.management.HotSpotDiagnosticMXBean) $r0;
+
+     label1:
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("Try to dump heap to heapDump.hprof file..");
+
+        interfaceinvoke r1.<com.sun.management.HotSpotDiagnosticMXBean: void dumpHeap(java.lang.String,boolean)>("heapDump.hprof", 0);
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>("Done");
+
+     label2:
+        goto label4;
+
+     label3:
+        $r4 := @caughtexception;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>("Failed to dump heap");
+
+        virtualinvoke $r4.<java.io.IOException: void printStackTrace()>();
+
+     label4:
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+}

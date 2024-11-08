@@ -1,0 +1,97 @@
+final enum class SurvivorAlignmentTestMain$HeapSpace extends java.lang.Enum
+{
+    public static final enum gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace EDEN;
+    public static final enum gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace SURVIVOR;
+    public static final enum gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace TENURED;
+    private static final gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace[] ENUM$VALUES;
+
+    static void <clinit>()
+    {
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace $r0, $r1, $r2, $r4, $r5, $r6;
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace[] $r3;
+
+        $r0 = new gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace;
+
+        specialinvoke $r0.<gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: void <init>(java.lang.String,int)>("EDEN", 0);
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace EDEN> = $r0;
+
+        $r1 = new gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace;
+
+        specialinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: void <init>(java.lang.String,int)>("SURVIVOR", 1);
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace SURVIVOR> = $r1;
+
+        $r2 = new gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace;
+
+        specialinvoke $r2.<gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: void <init>(java.lang.String,int)>("TENURED", 2);
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace TENURED> = $r2;
+
+        $r3 = newarray (gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)[3];
+
+        $r4 = <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace EDEN>;
+
+        $r3[0] = $r4;
+
+        $r5 = <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace SURVIVOR>;
+
+        $r3[1] = $r5;
+
+        $r6 = <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace TENURED>;
+
+        $r3[2] = $r6;
+
+        <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace[] ENUM$VALUES> = $r3;
+
+        return;
+    }
+
+    private void <init>(java.lang.String, int)
+    {
+        int i0;
+        SurvivorAlignmentTestMain$HeapSpace r0;
+        java.lang.String r1;
+
+        r0 := @this: SurvivorAlignmentTestMain$HeapSpace;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Enum: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public static gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace[] values()
+    {
+        int $i0;
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace[] $r0, $r1;
+
+        $r0 = <gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace: gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace[] ENUM$VALUES>;
+
+        $i0 = lengthof $r0;
+
+        $r1 = newarray (gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    public static gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace valueOf(java.lang.String)
+    {
+        gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace $r2;
+        java.lang.String r0;
+        java.lang.Enum $r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = staticinvoke <java.lang.Enum: java.lang.Enum valueOf(java.lang.Class,java.lang.String)>(class "Lgc/survivorAlignment/SurvivorAlignmentTestMain$HeapSpace;", r0);
+
+        $r2 = (gc.survivorAlignment.SurvivorAlignmentTestMain$HeapSpace) $r1;
+
+        return $r2;
+    }
+}

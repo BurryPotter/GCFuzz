@@ -1,0 +1,36 @@
+public class TestGenerationPerfCounter extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestGenerationPerfCounter r0;
+
+        r0 := @this: TestGenerationPerfCounter;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Long $r1, $r2;
+        long $l0;
+        java.lang.String[] r3;
+        gc.testlibrary.PerfCounter $r0;
+
+        r3 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <gc.testlibrary.PerfCounters: gc.testlibrary.PerfCounter findByName(java.lang.String)>("sun.gc.policy.generations");
+
+        $l0 = virtualinvoke $r0.<gc.testlibrary.PerfCounter: long longValue()>();
+
+        $r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r2 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(2L);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+}

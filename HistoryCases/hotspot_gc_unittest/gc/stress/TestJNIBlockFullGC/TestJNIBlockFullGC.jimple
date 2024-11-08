@@ -1,0 +1,493 @@
+public class TestJNIBlockFullGC extends java.lang.Object
+{
+    public static volatile java.lang.Object tmp;
+    public static volatile boolean hadError;
+
+    static void <clinit>()
+    {
+        staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("TestJNIBlockFullGC");
+
+        <gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC: boolean hadError> = 0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestJNIBlockFullGC r0;
+
+        r0 := @this: TestJNIBlockFullGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static native int TestCriticalArray0(int[]);
+
+    public static void warmUp(long, int)
+    {
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node[] r0;
+        long $l1, l2;
+        byte $b3;
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node $r2;
+        int i0, $i4, $i5, i6, i7, $i8;
+        double $d0, $d1, $d2;
+
+        l2 := @parameter0: long;
+
+        i0 := @parameter1: int;
+
+        r0 = newarray (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node)[i0];
+
+        goto label2;
+
+     label1:
+        $d0 = staticinvoke <java.lang.Math: double random()>();
+
+        $i4 = lengthof r0;
+
+        $d1 = (double) $i4;
+
+        $d2 = $d0 * $d1;
+
+        i6 = (int) $d2;
+
+        $r2 = new gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node;
+
+        specialinvoke $r2.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node: void <init>(int)>(1);
+
+        r0[i6] = $r2;
+
+     label2:
+        $l1 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $b3 = $l1 cmp l2;
+
+        $i8 = (int) $b3;
+
+        if $i8 < 0 goto label1;
+
+        i7 = 0;
+
+        goto label4;
+
+     label3:
+        r0[i7] = null;
+
+        i7 = i7 + 1;
+
+     label4:
+        $i5 = lengthof r0;
+
+        if i7 < $i5 goto label3;
+
+        return;
+    }
+
+    public static void runTest(long, int, double)
+    {
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node[] r9;
+        long $l1, l2;
+        byte $b3, $b5;
+        int[] r0;
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node $r2, $r6, $r10, $r11, $r12, $r14;
+        int i0, $i4, $i6, i7, i8, $i9, $i10;
+        java.lang.ref.SoftReference $r13;
+        double $d0, d1, $d2, $d3, $d4;
+        boolean $z0;
+        java.lang.OutOfMemoryError $r8;
+
+        l2 := @parameter0: long;
+
+        i0 := @parameter1: int;
+
+        d1 := @parameter2: double;
+
+        r0 = newarray (int)[10000];
+
+        i7 = 1;
+
+        goto label02;
+
+     label01:
+        r0[i7] = i7;
+
+        i7 = i7 + 1;
+
+     label02:
+        if i7 < 10000 goto label01;
+
+        r9 = newarray (gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node)[i0];
+
+     label03:
+        $r10 = new gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node;
+
+        specialinvoke $r10.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node: void <init>(int)>(0);
+
+        r9[0] = $r10;
+
+        goto label07;
+
+     label04:
+        $i4 = staticinvoke <gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC: int TestCriticalArray0(int[])>(r0);
+
+        $d0 = staticinvoke <java.lang.Math: double random()>();
+
+        $b5 = $d0 cmpl d1;
+
+        $i9 = (int) $b5;
+
+        if $i9 <= 0 goto label05;
+
+        $r11 = new gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node;
+
+        specialinvoke $r11.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node: void <init>(int)>($i4);
+
+        <gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC: java.lang.Object tmp> = $r11;
+
+        goto label07;
+
+     label05:
+        $d2 = staticinvoke <java.lang.Math: double random()>();
+
+        $i6 = lengthof r9;
+
+        $d3 = (double) $i6;
+
+        $d4 = $d2 * $d3;
+
+        i8 = (int) $d4;
+
+        $r2 = r9[i8];
+
+        if $r2 == null goto label06;
+
+        $r12 = new gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node;
+
+        specialinvoke $r12.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node: void <init>(int)>($i4);
+
+        $r13 = new java.lang.ref.SoftReference;
+
+        $r6 = r9[i8];
+
+        specialinvoke $r13.<java.lang.ref.SoftReference: void <init>(java.lang.Object)>($r6);
+
+        $r12.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node: java.lang.ref.SoftReference next> = $r13;
+
+        r9[i8] = $r12;
+
+        goto label07;
+
+     label06:
+        $r14 = new gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node;
+
+        specialinvoke $r14.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$Node: void <init>(int)>($i4);
+
+        r9[i8] = $r14;
+
+     label07:
+        $z0 = <gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC: boolean hadError>;
+
+        if $z0 != 0 goto label10;
+
+        $l1 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $b3 = $l1 cmp l2;
+
+        $i10 = (int) $b3;
+
+        if $i10 < 0 goto label04;
+
+     label08:
+        goto label10;
+
+     label09:
+        $r8 := @caughtexception;
+
+        <gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC: boolean hadError> = 1;
+
+        virtualinvoke $r8.<java.lang.OutOfMemoryError: void printStackTrace()>();
+
+     label10:
+        return;
+
+        catch java.lang.OutOfMemoryError from label03 to label08 with label09;
+    }
+
+    private static void joinThreads(java.lang.Thread[]) throws java.lang.Exception
+    {
+        java.lang.InterruptedException $r3;
+        java.lang.Thread $r1, $r2;
+        java.lang.Thread[] r0;
+        int i0, $i1;
+
+        r0 := @parameter0: java.lang.Thread[];
+
+        i0 = 0;
+
+        goto label5;
+
+     label1:
+        $r1 = r0[i0];
+
+        if $r1 == null goto label4;
+
+        $r2 = r0[i0];
+
+        virtualinvoke $r2.<java.lang.Thread: void join()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r3 := @caughtexception;
+
+        virtualinvoke $r3.<java.lang.InterruptedException: void printStackTrace()>();
+
+        throw $r3;
+
+     label4:
+        i0 = i0 + 1;
+
+     label5:
+        $i1 = lengthof r0;
+
+        if i0 < $i1 goto label1;
+
+        return;
+
+        catch java.lang.InterruptedException from label1 to label2 with label3;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Thread $r56, $r58;
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1 $r53;
+        gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2 $r54;
+        java.lang.StringBuilder $r4, $r9, $r14, $r19, $r24, $r29, $r34, $r46, $r47, $r48, $r49, $r50, $r51, $r52;
+        java.lang.Object[] $r45;
+        long $l8, $l9;
+        java.lang.String $r1, $r5, $r6, $r10, $r11, $r15, $r16, $r20, $r21, $r25, $r26, $r30, $r31, $r35;
+        java.lang.RuntimeException $r55;
+        boolean $z0;
+        java.lang.String[] r0;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, i10, i11;
+        double $d0;
+        java.io.PrintStream $r3, $r8, $r13, $r18, $r23, $r28, $r33, $r36, $r39, $r42, $r44;
+        java.lang.Thread[] $r57, $r59;
+        java.lang.Object $r38, $r41;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 >= 7 goto label1;
+
+        $r44 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r44.<java.io.PrintStream: void println(java.lang.String)>("Usage: java TestJNIBlockFullGC <warmupThreads> <warmup-time-in-millis> <warmup iterations> <threads> <time-in-millis> <iterations> <aliveFrac>");
+
+        staticinvoke <java.lang.System: void exit(int)>(0);
+
+     label1:
+        $r1 = r0[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r46 = new java.lang.StringBuilder;
+
+        specialinvoke $r46.<java.lang.StringBuilder: void <init>(java.lang.String)>("# Warmup Threads = ");
+
+        $r4 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i1);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $r6 = r0[1];
+
+        $i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r6);
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r47 = new java.lang.StringBuilder;
+
+        specialinvoke $r47.<java.lang.StringBuilder: void <init>(java.lang.String)>("WarmUp Duration = ");
+
+        $r9 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        $r11 = r0[2];
+
+        $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r11);
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        $r48 = new java.lang.StringBuilder;
+
+        specialinvoke $r48.<java.lang.StringBuilder: void <init>(java.lang.String)>("# Warmup Iterations = ");
+
+        $r14 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r15);
+
+        $r16 = r0[3];
+
+        $i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r16);
+
+        $r18 = <java.lang.System: java.io.PrintStream out>;
+
+        $r49 = new java.lang.StringBuilder;
+
+        specialinvoke $r49.<java.lang.StringBuilder: void <init>(java.lang.String)>("# Main Threads = ");
+
+        $r19 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>($r20);
+
+        $r21 = r0[4];
+
+        $i5 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r21);
+
+        $r23 = <java.lang.System: java.io.PrintStream out>;
+
+        $r50 = new java.lang.StringBuilder;
+
+        specialinvoke $r50.<java.lang.StringBuilder: void <init>(java.lang.String)>("Main Duration = ");
+
+        $r24 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r23.<java.io.PrintStream: void println(java.lang.String)>($r25);
+
+        $r26 = r0[5];
+
+        $i6 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r26);
+
+        $r28 = <java.lang.System: java.io.PrintStream out>;
+
+        $r51 = new java.lang.StringBuilder;
+
+        specialinvoke $r51.<java.lang.StringBuilder: void <init>(java.lang.String)>("# Main Iterations = ");
+
+        $r29 = virtualinvoke $r51.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>($r30);
+
+        $r31 = r0[6];
+
+        $d0 = staticinvoke <java.lang.Double: double parseDouble(java.lang.String)>($r31);
+
+        $r33 = <java.lang.System: java.io.PrintStream out>;
+
+        $r52 = new java.lang.StringBuilder;
+
+        specialinvoke $r52.<java.lang.StringBuilder: void <init>(java.lang.String)>("Live Fraction = ");
+
+        $r34 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d0);
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r33.<java.io.PrintStream: void println(java.lang.String)>($r35);
+
+        $i7 = staticinvoke <java.lang.Math: int max(int,int)>($i1, $i4);
+
+        $r45 = newarray (java.lang.Thread)[$i7];
+
+        $r36 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r36.<java.io.PrintStream: void println(java.lang.String)>("Start warm-up threads!");
+
+        $l8 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        i10 = 0;
+
+        goto label3;
+
+     label2:
+        $r53 = new gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1;
+
+        specialinvoke $r53.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$1: void <init>(long,int,int)>($l8, $i2, $i3);
+
+        $r45[i10] = $r53;
+
+        $r38 = $r45[i10];
+
+        $r56 = (java.lang.Thread) $r38;
+
+        virtualinvoke $r56.<java.lang.Thread: void start()>();
+
+        i10 = i10 + 1;
+
+     label3:
+        if i10 < $i1 goto label2;
+
+        $r57 = (java.lang.Thread[]) $r45;
+
+        staticinvoke <gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC: void joinThreads(java.lang.Thread[])>($r57);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r39 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r39.<java.io.PrintStream: void println(java.lang.String)>("Keep alive a lot");
+
+        $l9 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        i11 = 0;
+
+        goto label5;
+
+     label4:
+        $r54 = new gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2;
+
+        specialinvoke $r54.<gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC$2: void <init>(long,int,int,double)>($l9, $i5, $i6, $d0);
+
+        $r45[i11] = $r54;
+
+        $r41 = $r45[i11];
+
+        $r58 = (java.lang.Thread) $r41;
+
+        virtualinvoke $r58.<java.lang.Thread: void start()>();
+
+        i11 = i11 + 1;
+
+     label5:
+        if i11 < $i4 goto label4;
+
+        $r42 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r42.<java.io.PrintStream: void println(java.lang.String)>("All threads started");
+
+        $r59 = (java.lang.Thread[]) $r45;
+
+        staticinvoke <gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC: void joinThreads(java.lang.Thread[])>($r59);
+
+        $z0 = <gc.stress.TestJNIBlockFullGC.TestJNIBlockFullGC: boolean hadError>;
+
+        if $z0 == 0 goto label6;
+
+        $r55 = new java.lang.RuntimeException;
+
+        specialinvoke $r55.<java.lang.RuntimeException: void <init>(java.lang.String)>("Experienced an OoME during execution.");
+
+        throw $r55;
+
+     label6:
+        return;
+    }
+}

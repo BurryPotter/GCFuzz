@@ -1,0 +1,97 @@
+class Redthread extends java.lang.Thread
+{
+    gc.gctests.gctest03.Tree optree;
+    int key;
+
+    void <init>(gc.gctests.gctest03.Tree, int)
+    {
+        int i0;
+        Redthread r0;
+        gc.gctests.gctest03.Tree r1;
+        gc.gctests.gctest03.Redthread $r2, $r3;
+
+        r0 := @this: Redthread;
+
+        r1 := @parameter0: gc.gctests.gctest03.Tree;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        $r2 = (gc.gctests.gctest03.Redthread) r0;
+
+        $r2.<gc.gctests.gctest03.Redthread: gc.gctests.gctest03.Tree optree> = r1;
+
+        $r3 = (gc.gctests.gctest03.Redthread) r0;
+
+        $r3.<gc.gctests.gctest03.Redthread: int key> = i0;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.lang.Throwable $r4;
+        Redthread r0;
+        gc.gctests.gctest03.Redthread $r7, $r8;
+        gc.gctests.gctest03.DataNode $r6;
+        java.lang.InterruptedException $r3;
+        int i0;
+        gc.gctests.gctest03.Tree $r2, $r5;
+        boolean $z0, $z1;
+
+        r0 := @this: Redthread;
+
+        i0 = 1;
+
+        goto label9;
+
+     label1:
+        $r6 = new gc.gctests.gctest03.DataNode;
+
+        specialinvoke $r6.<gc.gctests.gctest03.DataNode: void <init>(int)>(i0);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r4 := @caughtexception;
+
+        return;
+
+     label4:
+        $r7 = (gc.gctests.gctest03.Redthread) r0;
+
+        $r2 = $r7.<gc.gctests.gctest03.Redthread: gc.gctests.gctest03.Tree optree>;
+
+        $z0 = virtualinvoke $r2.<gc.gctests.gctest03.Tree: boolean remove(gc.gctests.gctest03.DataNode)>($r6);
+
+        if $z0 == 0 goto label5;
+
+     label5:
+        staticinvoke <gc.gctests.gctest03.Redthread: void sleep(long)>(3L);
+
+     label6:
+        goto label8;
+
+     label7:
+        $r3 := @caughtexception;
+
+     label8:
+        i0 = i0 + 1;
+
+     label9:
+        $r8 = (gc.gctests.gctest03.Redthread) r0;
+
+        $r5 = $r8.<gc.gctests.gctest03.Redthread: gc.gctests.gctest03.Tree optree>;
+
+        $z1 = virtualinvoke $r5.<gc.gctests.gctest03.Tree: boolean isempty()>();
+
+        if $z1 == 0 goto label1;
+
+        return;
+
+        catch gc.gctests.gctest03.DataNodeException from label1 to label2 with label3;
+        catch java.lang.InterruptedException from label5 to label6 with label7;
+    }
+}

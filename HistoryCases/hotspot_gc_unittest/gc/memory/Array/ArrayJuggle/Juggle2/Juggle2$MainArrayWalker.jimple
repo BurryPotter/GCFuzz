@@ -1,0 +1,74 @@
+class Juggle2$MainArrayWalker extends java.lang.Object implements java.lang.Runnable
+{
+    final gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0;
+
+    private void <init>(gc.memory.Array.ArrayJuggle.Juggle2.Juggle2)
+    {
+        Juggle2$MainArrayWalker r0;
+        gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 r1;
+        gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$MainArrayWalker $r2;
+
+        r0 := @this: Juggle2$MainArrayWalker;
+
+        r1 := @parameter0: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2;
+
+        $r2 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$MainArrayWalker) r0;
+
+        $r2.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$MainArrayWalker: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 $r1, $r2, $r3;
+        nsk.share.gc.LinkedMemoryObject $r6;
+        gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$MainArrayWalker $r7, $r8, $r9;
+        int $i0, $i1, $i2, $i3;
+        Juggle2$MainArrayWalker r0;
+        nsk.share.gc.LinkedMemoryObject[] $r5;
+
+        r0 := @this: Juggle2$MainArrayWalker;
+
+        $r7 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$MainArrayWalker) r0;
+
+        $r1 = $r7.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$MainArrayWalker: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0>;
+
+        $i0 = $r1.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2: int arraySize>;
+
+        $i1 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int)>($i0);
+
+        $r8 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$MainArrayWalker) r0;
+
+        $r2 = $r8.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$MainArrayWalker: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0>;
+
+        $i2 = $r2.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2: int objectSize>;
+
+        $i3 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int)>($i2);
+
+        $r9 = (gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$MainArrayWalker) r0;
+
+        $r3 = $r9.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2$MainArrayWalker: gc.memory.Array.ArrayJuggle.Juggle2.Juggle2 this$0>;
+
+        $r5 = $r3.<gc.memory.Array.ArrayJuggle.Juggle2.Juggle2: nsk.share.gc.LinkedMemoryObject[] mainArray>;
+
+        $r6 = new nsk.share.gc.LinkedMemoryObject;
+
+        specialinvoke $r6.<nsk.share.gc.LinkedMemoryObject: void <init>(int)>($i3);
+
+        $r5[$i1] = $r6;
+
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        Juggle2$MainArrayWalker r0;
+
+        r0 := @this: Juggle2$MainArrayWalker;
+
+        return "Thread-A";
+    }
+}

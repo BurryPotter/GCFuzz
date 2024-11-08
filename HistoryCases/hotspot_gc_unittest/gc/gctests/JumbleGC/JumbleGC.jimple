@@ -1,0 +1,233 @@
+public class JumbleGC extends nsk.share.test.TestBase
+{
+
+    public void <init>()
+    {
+        JumbleGC r0;
+
+        r0 := @this: JumbleGC;
+
+        specialinvoke r0.<nsk.share.test.TestBase: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        gc.gctests.JumbleGC.Tree $r2, $r4;
+        java.util.Vector $r13;
+        int $i0, $i1, i2, i3, i4, i5;
+        java.lang.String $r9;
+        JumbleGC r1;
+        nsk.share.gc.CircularLinkedList $r3, $r5;
+        gc.gctests.JumbleGC.JumbleGC $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22;
+        nsk.share.log.Log $r7, $r10, $r12;
+        java.lang.StringBuilder $r8, $r14;
+        java.lang.OutOfMemoryError $r11;
+
+        r1 := @this: JumbleGC;
+
+        $r13 = new java.util.Vector;
+
+        specialinvoke $r13.<java.util.Vector: void <init>(int)>(10);
+
+        i2 = 0;
+
+     label01:
+        i3 = 0;
+
+        goto label05;
+
+     label02:
+        $i0 = i3 % 2;
+
+        if $i0 != 0 goto label03;
+
+        $r15 = (gc.gctests.JumbleGC.JumbleGC) r1;
+
+        $r3 = virtualinvoke $r15.<gc.gctests.JumbleGC.JumbleGC: nsk.share.gc.CircularLinkedList buildCircularLinkedList()>();
+
+        virtualinvoke $r13.<java.util.Vector: void addElement(java.lang.Object)>($r3);
+
+        goto label04;
+
+     label03:
+        $r16 = (gc.gctests.JumbleGC.JumbleGC) r1;
+
+        $r2 = virtualinvoke $r16.<gc.gctests.JumbleGC.JumbleGC: gc.gctests.JumbleGC.Tree buildTree()>();
+
+        virtualinvoke $r13.<java.util.Vector: void addElement(java.lang.Object)>($r2);
+
+     label04:
+        i3 = i3 + 1;
+
+     label05:
+        if i3 < 10 goto label02;
+
+        goto label13;
+
+     label06:
+        i4 = 0;
+
+        goto label08;
+
+     label07:
+        virtualinvoke $r13.<java.util.Vector: void setElementAt(java.lang.Object,int)>(null, i4);
+
+        i4 = i4 + 1;
+
+     label08:
+        if i4 < 10 goto label07;
+
+        i5 = 0;
+
+        goto label12;
+
+     label09:
+        $i1 = i5 % 2;
+
+        if $i1 != 0 goto label10;
+
+        $r17 = (gc.gctests.JumbleGC.JumbleGC) r1;
+
+        $r5 = virtualinvoke $r17.<gc.gctests.JumbleGC.JumbleGC: nsk.share.gc.CircularLinkedList buildCircularLinkedList()>();
+
+        virtualinvoke $r13.<java.util.Vector: void setElementAt(java.lang.Object,int)>($r5, i5);
+
+        goto label11;
+
+     label10:
+        $r18 = (gc.gctests.JumbleGC.JumbleGC) r1;
+
+        $r4 = virtualinvoke $r18.<gc.gctests.JumbleGC.JumbleGC: gc.gctests.JumbleGC.Tree buildTree()>();
+
+        virtualinvoke $r13.<java.util.Vector: void setElementAt(java.lang.Object,int)>($r4, i5);
+
+     label11:
+        i5 = i5 + 1;
+
+     label12:
+        if i5 < 10 goto label09;
+
+        i2 = i2 + 1;
+
+        $r19 = (gc.gctests.JumbleGC.JumbleGC) r1;
+
+        $r7 = $r19.<gc.gctests.JumbleGC.JumbleGC: nsk.share.log.Log log>;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>(java.lang.String)>("Finished iteration # ");
+
+        $r8 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r7.<nsk.share.log.Log: void info(java.lang.Object)>($r9);
+
+     label13:
+        if i2 < 10 goto label06;
+
+     label14:
+        goto label16;
+
+     label15:
+        $r11 := @caughtexception;
+
+        $r20 = (gc.gctests.JumbleGC.JumbleGC) r1;
+
+        $r12 = $r20.<gc.gctests.JumbleGC.JumbleGC: nsk.share.log.Log log>;
+
+        interfaceinvoke $r12.<nsk.share.log.Log: void error(java.lang.Object)>("Test Failed.");
+
+        $r21 = (gc.gctests.JumbleGC.JumbleGC) r1;
+
+        virtualinvoke $r21.<gc.gctests.JumbleGC.JumbleGC: void setFailed(boolean)>(1);
+
+     label16:
+        $r22 = (gc.gctests.JumbleGC.JumbleGC) r1;
+
+        $r10 = $r22.<gc.gctests.JumbleGC.JumbleGC: nsk.share.log.Log log>;
+
+        interfaceinvoke $r10.<nsk.share.log.Log: void info(java.lang.Object)>("Test Passed.");
+
+        return;
+
+        catch java.lang.OutOfMemoryError from label01 to label14 with label15;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        gc.gctests.JumbleGC.JumbleGC $r2;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.JumbleGC.JumbleGC;
+
+        specialinvoke $r2.<gc.gctests.JumbleGC.JumbleGC: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    private gc.gctests.JumbleGC.Tree buildTree()
+    {
+        gc.gctests.JumbleGC.Tree $r0;
+        JumbleGC r1;
+        int $i0, i1;
+
+        r1 := @this: JumbleGC;
+
+        i1 = 0;
+
+        $r0 = new gc.gctests.JumbleGC.Tree;
+
+        specialinvoke $r0.<gc.gctests.JumbleGC.Tree: void <init>(int)>(100);
+
+        goto label2;
+
+     label1:
+        $i0 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int,int)>(0, 1000000);
+
+        virtualinvoke $r0.<gc.gctests.JumbleGC.Tree: void addElement(int)>($i0);
+
+        i1 = i1 + 1;
+
+     label2:
+        if i1 < 100 goto label1;
+
+        return $r0;
+    }
+
+    private nsk.share.gc.CircularLinkedList buildCircularLinkedList()
+    {
+        int i0;
+        nsk.share.gc.CircularLinkedList $r0;
+        JumbleGC r1;
+
+        r1 := @this: JumbleGC;
+
+        $r0 = new nsk.share.gc.CircularLinkedList;
+
+        specialinvoke $r0.<nsk.share.gc.CircularLinkedList: void <init>(int)>(100);
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r0.<nsk.share.gc.CircularLinkedList: void grow()>();
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 1000 goto label1;
+
+        return $r0;
+    }
+}

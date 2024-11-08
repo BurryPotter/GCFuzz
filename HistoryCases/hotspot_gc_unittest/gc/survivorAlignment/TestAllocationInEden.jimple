@@ -1,0 +1,42 @@
+public class TestAllocationInEden extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestAllocationInEden r0;
+
+        r0 := @this: TestAllocationInEden;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r2;
+        java.lang.String[] r0;
+        long $l0;
+        gc.survivorAlignment.SurvivorAlignmentTestMain $r1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = staticinvoke <gc.survivorAlignment.SurvivorAlignmentTestMain: gc.survivorAlignment.SurvivorAlignmentTestMain fromArgs(java.lang.String[])>(r0);
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.Object)>($r1);
+
+        $l0 = virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: long getExpectedMemoryUsage()>();
+
+        virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: void baselineMemoryAllocation()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: void allocate()>();
+
+        virtualinvoke $r1.<gc.survivorAlignment.SurvivorAlignmentTestMain: void verifyMemoryUsage(long)>($l0);
+
+        return;
+    }
+}

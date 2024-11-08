@@ -1,0 +1,61 @@
+class TestStressG1HumongousImpl$Timer extends java.lang.Object implements java.lang.Runnable
+{
+    final gc.stress.TestStressG1HumongousImpl this$0;
+
+    void <init>(gc.stress.TestStressG1HumongousImpl)
+    {
+        TestStressG1HumongousImpl$Timer r0;
+        gc.stress.TestStressG1HumongousImpl r1;
+        gc.stress.TestStressG1HumongousImpl$Timer $r2;
+
+        r0 := @this: TestStressG1HumongousImpl$Timer;
+
+        r1 := @parameter0: gc.stress.TestStressG1HumongousImpl;
+
+        $r2 = (gc.stress.TestStressG1HumongousImpl$Timer) r0;
+
+        $r2.<gc.stress.TestStressG1HumongousImpl$Timer: gc.stress.TestStressG1HumongousImpl this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        TestStressG1HumongousImpl$Timer r0;
+        java.lang.InterruptedException $r2;
+        gc.stress.TestStressG1HumongousImpl $r1;
+        int $i0, $i1;
+        long $l2;
+        gc.stress.TestStressG1HumongousImpl$Timer $r3;
+
+        r0 := @this: TestStressG1HumongousImpl$Timer;
+
+     label1:
+        $i0 = <gc.stress.TestStressG1HumongousImpl: int TIMEOUT>;
+
+        $i1 = $i0 * 1000;
+
+        $l2 = (long) $i1;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>($l2);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r2 := @caughtexception;
+
+     label4:
+        $r3 = (gc.stress.TestStressG1HumongousImpl$Timer) r0;
+
+        $r1 = $r3.<gc.stress.TestStressG1HumongousImpl$Timer: gc.stress.TestStressG1HumongousImpl this$0>;
+
+        virtualinvoke $r1.<gc.stress.TestStressG1HumongousImpl: void setDone()>();
+
+        return;
+
+        catch java.lang.InterruptedException from label1 to label2 with label3;
+    }
+}

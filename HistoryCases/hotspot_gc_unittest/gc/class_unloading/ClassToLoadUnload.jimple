@@ -1,0 +1,14 @@
+class ClassToLoadUnload extends java.lang.Object
+{
+
+    void <init>()
+    {
+        ClassToLoadUnload r0;
+
+        r0 := @this: ClassToLoadUnload;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

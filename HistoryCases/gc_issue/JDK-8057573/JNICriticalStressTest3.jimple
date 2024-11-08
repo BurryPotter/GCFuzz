@@ -1,0 +1,278 @@
+public class JNICriticalStressTest3 extends java.lang.Object
+{
+    private static final int LARGE_MAP_SIZE;
+    private static final int MAP_ARRAY_LENGTH;
+    private static final int MAP_SIZE;
+    private static final int BYTE_ARRAY_LENGTH;
+    private static final long SYSTEM_GC_PERIOD_MS;
+    public static java.util.Map largeMap;
+
+    public void <init>()
+    {
+        JNICriticalStressTest3 r0;
+
+        r0 := @this: JNICriticalStressTest3;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static void println(java.lang.String)
+    {
+        java.io.PrintStream $r1;
+        java.lang.String r0;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>(r0);
+
+        return;
+    }
+
+    private static void println()
+    {
+        java.io.PrintStream $r0;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println()>();
+
+        return;
+    }
+
+    private static void exit(int)
+    {
+        int i0;
+
+        i0 := @parameter0: int;
+
+        staticinvoke <java.lang.System: void exit(int)>(i0);
+
+        return;
+    }
+
+    static java.util.Map populateMap(int)
+    {
+        java.util.HashMap $r0;
+        java.lang.Integer $r1;
+        int i0, i1;
+        java.lang.StringBuilder $r2, $r3, $r4, $r5;
+        java.lang.String $r6;
+
+        i0 := @parameter0: int;
+
+        $r0 = new java.util.HashMap;
+
+        specialinvoke $r0.<java.util.HashMap: void <init>()>();
+
+        i1 = 0;
+
+     label1:
+        if i1 >= i0 goto label2;
+
+        $r1 = new java.lang.Integer;
+
+        specialinvoke $r1.<java.lang.Integer: void <init>(int)>(i1);
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("value is [");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r0.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r6);
+
+        i1 = i1 + 1;
+
+        goto label1;
+
+     label2:
+        return $r0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        byte $b5;
+        java.util.Map $r9;
+        java.lang.Thread $r30, $r33, $r35;
+        java.lang.Exception $r26;
+        java.lang.StringBuilder $r5, $r6, $r7, $r11, $r12, $r13, $r16, $r17, $r18, $r27, $r28, $r31;
+        java.lang.String[] r0;
+        long $l1, $l4, $l6, $l7, l10, l11;
+        JNICriticalStressTest3$AllocatingWorker $r29;
+        int $i0, $i2, $i3, i8, i9, $i13, $i14;
+        java.lang.String $r1, $r2, $r3, $r8, $r14, $r19;
+        JNICriticalStressTest3$JNICriticalWorker $r32;
+        JNICriticalStressTest3$SystemGCWorker $r34;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 >= 3 goto label01;
+
+        staticinvoke <JNICriticalStressTest3: void println(java.lang.String)>("usage: JNICriticalStressTest3 <duration sec> <alloc threads> <jni critical threads>");
+
+        $i13 = (int) -1;
+
+        staticinvoke <JNICriticalStressTest3: void exit(int)>($i13);
+
+     label01:
+        $r1 = r0[0];
+
+        $l1 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r1);
+
+        $r2 = r0[1];
+
+        $i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        $r3 = r0[2];
+
+        $i3 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        $r27 = new java.lang.StringBuilder;
+
+        specialinvoke $r27.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Running for ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" secs");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <JNICriticalStressTest3: void println(java.lang.String)>($r8);
+
+        $r9 = staticinvoke <JNICriticalStressTest3: java.util.Map populateMap(int)>(65536);
+
+        <JNICriticalStressTest3: java.util.Map largeMap> = $r9;
+
+        $r28 = new java.lang.StringBuilder;
+
+        specialinvoke $r28.<java.lang.StringBuilder: void <init>()>();
+
+        $r11 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Starting ");
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" allocating threads");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <JNICriticalStressTest3: void println(java.lang.String)>($r14);
+
+        i8 = 0;
+
+     label02:
+        if i8 >= $i2 goto label03;
+
+        $r30 = new java.lang.Thread;
+
+        $r29 = new JNICriticalStressTest3$AllocatingWorker;
+
+        specialinvoke $r29.<JNICriticalStressTest3$AllocatingWorker: void <init>(JNICriticalStressTest3$1)>(null);
+
+        specialinvoke $r30.<java.lang.Thread: void <init>(java.lang.Runnable)>($r29);
+
+        virtualinvoke $r30.<java.lang.Thread: void start()>();
+
+        i8 = i8 + 1;
+
+        goto label02;
+
+     label03:
+        $r31 = new java.lang.StringBuilder;
+
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>()>();
+
+        $r16 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Starting ");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" jni critical threads");
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <JNICriticalStressTest3: void println(java.lang.String)>($r19);
+
+        i9 = 0;
+
+     label04:
+        if i9 >= $i3 goto label05;
+
+        $r33 = new java.lang.Thread;
+
+        $r32 = new JNICriticalStressTest3$JNICriticalWorker;
+
+        specialinvoke $r32.<JNICriticalStressTest3$JNICriticalWorker: void <init>(JNICriticalStressTest3$1)>(null);
+
+        specialinvoke $r33.<java.lang.Thread: void <init>(java.lang.Runnable)>($r32);
+
+        virtualinvoke $r33.<java.lang.Thread: void start()>();
+
+        i9 = i9 + 1;
+
+        goto label04;
+
+     label05:
+        $r35 = new java.lang.Thread;
+
+        $r34 = new JNICriticalStressTest3$SystemGCWorker;
+
+        specialinvoke $r34.<JNICriticalStressTest3$SystemGCWorker: void <init>(JNICriticalStressTest3$1)>(null);
+
+        specialinvoke $r35.<java.lang.Thread: void <init>(java.lang.Runnable)>($r34);
+
+        virtualinvoke $r35.<java.lang.Thread: void start()>();
+
+        l10 = 1000L * $l1;
+
+        $l4 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        l11 = $l4 - $l4;
+
+     label06:
+        $b5 = l11 cmp l10;
+
+        $i14 = (int) $b5;
+
+        if $i14 >= 0 goto label11;
+
+     label07:
+        $l6 = l10 - l11;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>($l6);
+
+     label08:
+        goto label10;
+
+     label09:
+        $r26 := @caughtexception;
+
+     label10:
+        $l7 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        l11 = $l7 - $l4;
+
+        goto label06;
+
+     label11:
+        staticinvoke <JNICriticalStressTest3: void println(java.lang.String)>("Done.");
+
+        staticinvoke <JNICriticalStressTest3: void exit(int)>(0);
+
+        return;
+
+        catch java.lang.Exception from label07 to label08 with label09;
+    }
+}

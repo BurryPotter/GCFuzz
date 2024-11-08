@@ -1,0 +1,561 @@
+public class TestPLABPromotion extends java.lang.Object
+{
+    private static final long GC_ID_SURVIVOR_STATS;
+    private static final long GC_ID_OLD_STATS;
+    private static final java.lang.String PLAB_USED_FIELD_NAME;
+    private static final java.lang.String PLAB_DIRECT_ALLOCATED_FIELD_NAME;
+    private static final java.util.List FIELDS_TO_EXTRACT;
+    private static java.lang.String output;
+    private static final long MEM_DIFFERENCE_PCT;
+    private static final int PLAB_SIZE_SMALL;
+    private static final int PLAB_SIZE_MEDIUM;
+    private static final int PLAB_SIZE_HIGH;
+    private static final int OBJECT_SIZE_SMALL;
+    private static final int OBJECT_SIZE_MEDIUM;
+    private static final int OBJECT_SIZE_HIGH;
+    private static final int GC_NUM_SMALL;
+    private static final int GC_NUM_MEDIUM;
+    private static final int GC_NUM_HIGH;
+    private static final int WASTE_PCT_SMALL;
+    private static final int WASTE_PCT_MEDIUM;
+    private static final int WASTE_PCT_HIGH;
+    private static final int YOUNG_SIZE_LOW;
+    private static final int YOUNG_SIZE_HIGH;
+    private static final boolean PLAB_FIXED;
+    private static final boolean PLAB_DYNAMIC;
+    private static final gc.g1.plab.TestPLABPromotion$TestCase[] TEST_CASES;
+
+    static void <clinit>()
+    {
+        gc.g1.plab.TestPLABPromotion$TestCase $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20;
+        java.lang.String[] $r0;
+        gc.g1.plab.TestPLABPromotion$TestCase[] $r2;
+        java.util.List $r1;
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "used";
+
+        $r0[1] = "direct allocated";
+
+        $r1 = staticinvoke <java.util.Arrays: java.util.List asList(java.lang.Object[])>($r0);
+
+        <gc.g1.plab.TestPLABPromotion: java.util.List FIELDS_TO_EXTRACT> = $r1;
+
+        $r2 = newarray (gc.g1.plab.TestPLABPromotion$TestCase)[18];
+
+        $r3 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r3.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(10, 1024, 100, 1, 16, 1, 0, 0);
+
+        $r2[0] = $r3;
+
+        $r4 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r4.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(30, 4096, 10, 7, 64, 1, 0, 0);
+
+        $r2[1] = $r4;
+
+        $r5 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r5.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(10, 1024, 10, 7, 64, 1, 1, 1);
+
+        $r2[2] = $r5;
+
+        $r6 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r6.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(10, 4096, 100, 1, 16, 1, 1, 1);
+
+        $r2[3] = $r6;
+
+        $r7 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r7.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(10, 1024, 1000, 3, 16, 1, 1, 0);
+
+        $r2[4] = $r7;
+
+        $r8 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r8.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(20, 65536, 10, 7, 64, 1, 1, 1);
+
+        $r2[5] = $r8;
+
+        $r9 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r9.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(20, 1024, 100, 1, 16, 1, 1, 1);
+
+        $r2[6] = $r9;
+
+        $r10 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r10.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(20, 4096, 1000, 3, 16, 1, 1, 1);
+
+        $r2[7] = $r10;
+
+        $r11 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r11.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(30, 1024, 10, 7, 64, 1, 1, 1);
+
+        $r2[8] = $r11;
+
+        $r12 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r12.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(30, 65536, 100, 1, 16, 1, 1, 1);
+
+        $r2[9] = $r12;
+
+        $r13 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r13.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(30, 1024, 1000, 3, 64, 1, 1, 0);
+
+        $r2[10] = $r13;
+
+        $r14 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r14.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(20, 4096, 10, 7, 16, 0, 0, 0);
+
+        $r2[11] = $r14;
+
+        $r15 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r15.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(10, 65536, 10, 7, 64, 0, 1, 1);
+
+        $r2[12] = $r15;
+
+        $r16 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r16.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(20, 4096, 10, 1, 16, 0, 1, 1);
+
+        $r2[13] = $r16;
+
+        $r17 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r17.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(10, 4096, 1000, 7, 64, 0, 1, 0);
+
+        $r2[14] = $r17;
+
+        $r18 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r18.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(20, 1024, 100, 3, 16, 0, 1, 1);
+
+        $r2[15] = $r18;
+
+        $r19 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r19.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(30, 65536, 100, 1, 64, 0, 1, 1);
+
+        $r2[16] = $r19;
+
+        $r20 = new gc.g1.plab.TestPLABPromotion$TestCase;
+
+        specialinvoke $r20.<gc.g1.plab.TestPLABPromotion$TestCase: void <init>(int,int,int,int,int,boolean,boolean,boolean)>(30, 65536, 10, 7, 16, 0, 1, 1);
+
+        $r2[17] = $r20;
+
+        <gc.g1.plab.TestPLABPromotion: gc.g1.plab.TestPLABPromotion$TestCase[] TEST_CASES> = $r2;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestPLABPromotion r0;
+
+        r0 := @this: TestPLABPromotion;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Throwable
+    {
+        java.lang.Object[] $r8;
+        gc.g1.plab.TestPLABPromotion$TestCase r1;
+        java.lang.String[] $r7, $r9, r12;
+        gc.g1.plab.TestPLABPromotion$TestCase[] $r0;
+        int i0, $i1, i2;
+        java.lang.String $r6, $r11;
+        java.io.PrintStream $r2;
+        jdk.test.lib.process.OutputAnalyzer $r10;
+        java.util.List $r3, $r4;
+        java.lang.Class $r5;
+
+        r12 := @parameter0: java.lang.String[];
+
+        $r0 = <gc.g1.plab.TestPLABPromotion: gc.g1.plab.TestPLABPromotion$TestCase[] TEST_CASES>;
+
+        i0 = lengthof $r0;
+
+        i2 = 0;
+
+        goto label2;
+
+     label1:
+        r1 = $r0[i2];
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke r1.<gc.g1.plab.TestPLABPromotion$TestCase: void print(java.io.PrintStream)>($r2);
+
+        $r3 = virtualinvoke r1.<gc.g1.plab.TestPLABPromotion$TestCase: java.util.List toOptions()>();
+
+        $r4 = staticinvoke <gc.g1.plab.lib.PLABUtils: java.util.List prepareOptions(java.util.List)>($r3);
+
+        $r5 = class "Lgc/g1/plab/lib/AppPLABPromotion;";
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getName()>();
+
+        interfaceinvoke $r4.<java.util.List: boolean add(java.lang.Object)>($r6);
+
+        $i1 = interfaceinvoke $r4.<java.util.List: int size()>();
+
+        $r7 = newarray (java.lang.String)[$i1];
+
+        $r8 = interfaceinvoke $r4.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r7);
+
+        $r9 = (java.lang.String[]) $r8;
+
+        $r10 = staticinvoke <jdk.test.lib.process.ProcessTools: jdk.test.lib.process.OutputAnalyzer executeTestJvm(java.lang.String[])>($r9);
+
+        staticinvoke <gc.g1.plab.lib.PLABUtils: void commonCheck(jdk.test.lib.process.OutputAnalyzer)>($r10);
+
+        $r11 = virtualinvoke $r10.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        <gc.g1.plab.TestPLABPromotion: java.lang.String output> = $r11;
+
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkResults(gc.g1.plab.TestPLABPromotion$TestCase)>(r1);
+
+        i2 = i2 + 1;
+
+     label2:
+        if i2 < i0 goto label1;
+
+        return;
+    }
+
+    private static void checkResults(gc.g1.plab.TestPLABPromotion$TestCase)
+    {
+        gc.g1.plab.lib.LogParser $r1;
+        java.lang.Object[] $r9, $r14;
+        gc.g1.plab.TestPLABPromotion$TestCase r0;
+        gc.g1.plab.lib.LogParser$ReportType $r4, $r7;
+        long $l0, $l1, $l2, $l3, $l4;
+        java.lang.Long $r11, $r12, $r13, $r16, $r17, $r18;
+        java.lang.String $r2;
+        boolean $z0, $z1;
+        java.io.PrintStream $r10, $r15, $r19;
+        gc.g1.plab.lib.PlabInfo $r5, $r8;
+        java.util.List $r3, $r6;
+
+        r0 := @parameter0: gc.g1.plab.TestPLABPromotion$TestCase;
+
+        $l0 = virtualinvoke r0.<gc.g1.plab.TestPLABPromotion$TestCase: long getMemToFill()>();
+
+        $r1 = new gc.g1.plab.lib.LogParser;
+
+        $r2 = <gc.g1.plab.TestPLABPromotion: java.lang.String output>;
+
+        specialinvoke $r1.<gc.g1.plab.lib.LogParser: void <init>(java.lang.String)>($r2);
+
+        $r4 = <gc.g1.plab.lib.LogParser$ReportType: gc.g1.plab.lib.LogParser$ReportType SURVIVOR_STATS>;
+
+        $r3 = <gc.g1.plab.TestPLABPromotion: java.util.List FIELDS_TO_EXTRACT>;
+
+        $r5 = virtualinvoke $r1.<gc.g1.plab.lib.LogParser: gc.g1.plab.lib.PlabInfo getSpecifiedStats(long,gc.g1.plab.lib.LogParser$ReportType,java.util.List)>(1L, $r4, $r3);
+
+        $r7 = <gc.g1.plab.lib.LogParser$ReportType: gc.g1.plab.lib.LogParser$ReportType OLD_STATS>;
+
+        $r6 = <gc.g1.plab.TestPLABPromotion: java.util.List FIELDS_TO_EXTRACT>;
+
+        $r8 = virtualinvoke $r1.<gc.g1.plab.lib.LogParser: gc.g1.plab.lib.PlabInfo getSpecifiedStats(long,gc.g1.plab.lib.LogParser$ReportType,java.util.List)>(2L, $r7, $r6);
+
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkFields(gc.g1.plab.lib.PlabInfo)>($r5);
+
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkFields(gc.g1.plab.lib.PlabInfo)>($r8);
+
+        $l1 = virtualinvoke $r5.<gc.g1.plab.lib.PlabInfo: long get(java.lang.String)>("used");
+
+        $l2 = virtualinvoke $r5.<gc.g1.plab.lib.PlabInfo: long get(java.lang.String)>("direct allocated");
+
+        $l3 = virtualinvoke $r8.<gc.g1.plab.lib.PlabInfo: long get(java.lang.String)>("used");
+
+        $l4 = virtualinvoke $r8.<gc.g1.plab.lib.PlabInfo: long get(java.lang.String)>("direct allocated");
+
+        $r10 = <java.lang.System: java.io.PrintStream out>;
+
+        $r9 = newarray (java.lang.Object)[3];
+
+        $r11 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r9[0] = $r11;
+
+        $r12 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $r9[1] = $r12;
+
+        $r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r9[2] = $r13;
+
+        virtualinvoke $r10.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Survivor PLAB allocated:%17d Direct allocated: %17d Mem consumed:%17d%n", $r9);
+
+        $r15 = <java.lang.System: java.io.PrintStream out>;
+
+        $r14 = newarray (java.lang.Object)[3];
+
+        $r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        $r14[0] = $r16;
+
+        $r17 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l4);
+
+        $r14[1] = $r17;
+
+        $r18 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r14[2] = $r18;
+
+        virtualinvoke $r15.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("Old      PLAB allocated:%17d Direct allocated: %17d Mem consumed:%17d%n", $r14);
+
+        $z0 = virtualinvoke r0.<gc.g1.plab.TestPLABPromotion$TestCase: boolean isDeadObjectCase()>();
+
+        if $z0 == 0 goto label1;
+
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkDeadObjectsPromotion(long,long,long)>($l1, $l2, $l0);
+
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkDeadObjectsPromotion(long,long,long)>($l3, $l4, $l0);
+
+        goto label4;
+
+     label1:
+        $z1 = virtualinvoke r0.<gc.g1.plab.TestPLABPromotion$TestCase: boolean isPromotedByPLAB()>();
+
+        if $z1 == 0 goto label2;
+
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkLiveObjectsPromotion(long,long,java.lang.String)>($l1, $l0, "Expect that Survivor PLAB allocation are similar to all mem consumed");
+
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkLiveObjectsPromotion(long,long,java.lang.String)>($l3, $l0, "Expect that Old PLAB allocation are similar to all mem consumed");
+
+        goto label3;
+
+     label2:
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkLiveObjectsPromotion(long,long,java.lang.String)>($l2, $l0, "Expect that Survivor direct allocation are similar to all mem consumed");
+
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkLiveObjectsPromotion(long,long,java.lang.String)>($l4, $l0, "Expect that Old direct allocation are similar to all mem consumed");
+
+     label3:
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkTotalPromotion(long,long,long,java.lang.String)>($l1, $l2, $l0, "Expect that Survivor gen total allocation are similar to all mem consumed");
+
+        staticinvoke <gc.g1.plab.TestPLABPromotion: void checkTotalPromotion(long,long,long,java.lang.String)>($l3, $l4, $l0, "Expect that Old gen total allocation are similar to all mem consumed");
+
+     label4:
+        $r19 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>("Test passed!");
+
+        return;
+    }
+
+    private static void checkTotalPromotion(long, long, long, java.lang.String)
+    {
+        java.io.PrintStream $r1;
+        long l0, l1, l2, $l3;
+        java.lang.RuntimeException $r2;
+        java.lang.String $r0, r3;
+        boolean $z0;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        l2 := @parameter2: long;
+
+        r3 := @parameter3: java.lang.String;
+
+        $l3 = l0 + l1;
+
+        $z0 = staticinvoke <gc.g1.plab.TestPLABPromotion: boolean checkDifferenceRatio(long,long)>($l3, l2);
+
+        if $z0 != 0 goto label1;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = <gc.g1.plab.TestPLABPromotion: java.lang.String output>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r0);
+
+        $r2 = new java.lang.RuntimeException;
+
+        specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>(r3);
+
+        throw $r2;
+
+     label1:
+        return;
+    }
+
+    private static void checkLiveObjectsPromotion(long, long, java.lang.String)
+    {
+        java.io.PrintStream $r1;
+        long l0, l1;
+        java.lang.String $r0, r3;
+        java.lang.RuntimeException $r2;
+        boolean $z0;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        r3 := @parameter2: java.lang.String;
+
+        $z0 = staticinvoke <gc.g1.plab.TestPLABPromotion: boolean checkDifferenceRatio(long,long)>(l0, l1);
+
+        if $z0 != 0 goto label1;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = <gc.g1.plab.TestPLABPromotion: java.lang.String output>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r0);
+
+        $r2 = new java.lang.RuntimeException;
+
+        specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>(r3);
+
+        throw $r2;
+
+     label1:
+        return;
+    }
+
+    private static void checkDeadObjectsPromotion(long, long, long)
+    {
+        java.io.PrintStream $r1;
+        long l0, l1, l2;
+        java.lang.RuntimeException $r2;
+        java.lang.String $r0;
+        boolean $z0, $z1;
+
+        l0 := @parameter0: long;
+
+        l2 := @parameter1: long;
+
+        l1 := @parameter2: long;
+
+        $z0 = staticinvoke <gc.g1.plab.TestPLABPromotion: boolean checkRatio(long,long)>(l0, l1);
+
+        if $z0 == 0 goto label1;
+
+        $z1 = staticinvoke <gc.g1.plab.TestPLABPromotion: boolean checkRatio(long,long)>(l2, l1);
+
+        if $z1 != 0 goto label2;
+
+     label1:
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r0 = <gc.g1.plab.TestPLABPromotion: java.lang.String output>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r0);
+
+        $r2 = new java.lang.RuntimeException;
+
+        specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String)>("Unreachable objects should not be allocated using PLAB or directly allocated to Survivor/Old");
+
+        throw $r2;
+
+     label2:
+        return;
+    }
+
+    private static void checkFields(gc.g1.plab.lib.PlabInfo)
+    {
+        java.io.PrintStream $r3;
+        java.util.List $r1;
+        java.lang.String $r2;
+        java.lang.RuntimeException $r4;
+        gc.g1.plab.lib.PlabInfo r0;
+        boolean $z0;
+
+        r0 := @parameter0: gc.g1.plab.lib.PlabInfo;
+
+        $r1 = <gc.g1.plab.TestPLABPromotion: java.util.List FIELDS_TO_EXTRACT>;
+
+        $z0 = virtualinvoke r0.<gc.g1.plab.lib.PlabInfo: boolean checkFields(java.util.List)>($r1);
+
+        if $z0 != 0 goto label1;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r2 = <gc.g1.plab.TestPLABPromotion: java.lang.String output>;
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r2);
+
+        $r4 = new java.lang.RuntimeException;
+
+        specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>("PLAB log does not contain expected fields");
+
+        throw $r4;
+
+     label1:
+        return;
+    }
+
+    private static boolean checkRatio(long, long)
+    {
+        byte $b5;
+        int $i6;
+        long l0, $l1, l2, $l3, $l4;
+
+        l0 := @parameter0: long;
+
+        l2 := @parameter1: long;
+
+        $l1 = staticinvoke <java.lang.Math: long abs(long)>(l0);
+
+        $l3 = $l1 / l2;
+
+        $l4 = $l3 * 100L;
+
+        $b5 = $l4 cmp 5L;
+
+        $i6 = (int) $b5;
+
+        if $i6 >= 0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    private static boolean checkDifferenceRatio(long, long)
+    {
+        long l0, l1, $l2, $l3, $l4, $l5;
+        byte $b6;
+        int $i7;
+
+        l0 := @parameter0: long;
+
+        l1 := @parameter1: long;
+
+        $l2 = l0 - l1;
+
+        $l3 = staticinvoke <java.lang.Math: long abs(long)>($l2);
+
+        $l4 = $l3 / l1;
+
+        $l5 = $l4 * 100L;
+
+        $b6 = $l5 cmp 5L;
+
+        $i7 = (int) $b6;
+
+        if $i7 >= 0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+}

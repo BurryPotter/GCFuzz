@@ -1,0 +1,94 @@
+public class TestG1ClassUnloadingHWM$AllocateBeyondMetaspaceSize extends java.lang.Object
+{
+    public static java.lang.Object dummy;
+
+    public void <init>()
+    {
+        TestG1ClassUnloadingHWM$AllocateBeyondMetaspaceSize r0;
+
+        r0 := @this: TestG1ClassUnloadingHWM$AllocateBeyondMetaspaceSize;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+        sun.hotspot.WhiteBox $r1;
+        long $l1, l2, $l3, $l4;
+        java.lang.IllegalArgumentException $r4;
+        int $i0;
+        java.lang.String $r2, $r3;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 2 goto label1;
+
+        $r4 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r4.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Usage: <MetaspaceSize> <YoungGenSize>");
+
+        throw $r4;
+
+     label1:
+        $r1 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $r2 = r0[0];
+
+        $l1 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r2);
+
+        l2 = $l1 * 2L;
+
+        $l3 = virtualinvoke $r1.<sun.hotspot.WhiteBox: long allocateMetaspace(java.lang.ClassLoader,long)>(null, l2);
+
+        $r3 = r0[1];
+
+        $l4 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r3);
+
+        staticinvoke <gc.class_unloading.TestG1ClassUnloadingHWM$AllocateBeyondMetaspaceSize: void triggerYoungGCs(long)>($l4);
+
+        virtualinvoke $r1.<sun.hotspot.WhiteBox: void freeMetaspace(java.lang.ClassLoader,long,long)>(null, $l3, $l3);
+
+        return;
+    }
+
+    public static void triggerYoungGCs(long)
+    {
+        byte[] $r0;
+        long l0, $l1, l2, l5;
+        byte $b3;
+        int $i4, $i6;
+
+        l0 := @parameter0: long;
+
+        $l1 = 2L * l0;
+
+        l2 = $l1 / 32768L;
+
+        l5 = 0L;
+
+        goto label2;
+
+     label1:
+        $i4 = (int) 32768L;
+
+        $r0 = newarray (byte)[$i4];
+
+        <gc.class_unloading.TestG1ClassUnloadingHWM$AllocateBeyondMetaspaceSize: java.lang.Object dummy> = $r0;
+
+        l5 = l5 + 1L;
+
+     label2:
+        $b3 = l5 cmp l2;
+
+        $i6 = (int) $b3;
+
+        if $i6 < 0 goto label1;
+
+        return;
+    }
+}

@@ -1,0 +1,51 @@
+class VerifySummaryOutput extends java.lang.Object
+{
+
+    void <init>()
+    {
+        VerifySummaryOutput r0;
+
+        r0 := @this: VerifySummaryOutput;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        int $i0, $i1, i2;
+        java.lang.String[] r0;
+        sun.hotspot.WhiteBox $r2;
+        java.lang.String $r1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r1 = r0[0];
+
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+
+        $r2 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        i2 = 0;
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r2.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        i2 = i2 + 1;
+
+     label2:
+        $i1 = $i0 - 1;
+
+        if i2 < $i1 goto label1;
+
+        if $i0 <= 0 goto label3;
+
+        virtualinvoke $r2.<sun.hotspot.WhiteBox: void fullGC()>();
+
+     label3:
+        return;
+    }
+}

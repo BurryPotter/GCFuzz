@@ -1,0 +1,34 @@
+class Demo$Worker extends java.lang.Object implements java.lang.Runnable
+{
+    static volatile java.lang.Object o;
+
+    void <init>()
+    {
+        Demo$Worker r0;
+
+        r0 := @this: Demo$Worker;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        Demo$Worker r1;
+        java.lang.Object $r0;
+
+        r1 := @this: Demo$Worker;
+
+     label1:
+        $r0 = new java.lang.Object;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        <Demo$Worker: java.lang.Object o> = $r0;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        goto label1;
+    }
+}

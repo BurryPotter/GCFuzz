@@ -1,0 +1,112 @@
+public class TestG1LoggingFailure extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestG1LoggingFailure r0;
+
+        r0 := @this: TestG1LoggingFailure;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Throwable
+    {
+        int i0;
+        java.lang.String[] $r1, $r2, r5;
+        java.lang.Class $r3;
+        java.lang.String $r4;
+        java.util.ArrayList $r0;
+
+        r5 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getTestJavaOpts()>();
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r1);
+
+        $r2 = newarray (java.lang.String)[5];
+
+        $r2[0] = "-XX:+UseG1GC";
+
+        $r2[1] = "-Xmx20m";
+
+        $r2[2] = "-Xmn10m";
+
+        $r2[3] = "-Xlog:gc=info";
+
+        $r2[4] = "-XX:G1HeapRegionSize=1m";
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r2);
+
+        $r3 = class "Lgc/g1/logging/TestG1LoggingFailure$Alloc;";
+
+        $r4 = virtualinvoke $r3.<java.lang.Class: java.lang.String getName()>();
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>($r4);
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        staticinvoke <gc.g1.logging.TestG1LoggingFailure: void startVM(java.util.List)>($r0);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 40 goto label1;
+
+        return;
+    }
+
+    private static void startVM(java.util.List) throws java.lang.Throwable, java.lang.RuntimeException
+    {
+        java.io.PrintStream $r5;
+        java.lang.Object[] $r2;
+        java.lang.String[] $r1, $r3;
+        java.lang.RuntimeException $r7;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+        java.util.List r0;
+        int $i0, $i1;
+        java.lang.String $r6;
+
+        r0 := @parameter0: java.util.List;
+
+        $i0 = interfaceinvoke r0.<java.util.List: int size()>();
+
+        $r1 = newarray (java.lang.String)[$i0];
+
+        $r2 = interfaceinvoke r0.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r1);
+
+        $r3 = (java.lang.String[]) $r2;
+
+        $r4 = staticinvoke <jdk.test.lib.process.ProcessTools: jdk.test.lib.process.OutputAnalyzer executeTestJvm(java.lang.String[])>($r3);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("pure virtual method called");
+
+        $i1 = virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        if $i1 != 0 goto label1;
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        $r7 = new java.lang.RuntimeException;
+
+        specialinvoke $r7.<java.lang.RuntimeException: void <init>(java.lang.String)>("Expects Alloc failure.");
+
+        throw $r7;
+
+     label1:
+        return;
+    }
+}

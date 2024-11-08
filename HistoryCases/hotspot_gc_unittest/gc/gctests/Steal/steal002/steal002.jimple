@@ -1,0 +1,156 @@
+public class steal002 extends nsk.share.gc.GCTestBase
+{
+    nsk.share.test.ExecutionController stresser;
+    static final int SMALL_NODES;
+    static final int SMALL_NODE_SIZE;
+    static final int HUGE_NODES;
+    static final double PART_OF_HEAP;
+    final int hugeNodeSize;
+    public static nsk.share.gc.NonbranchyTree smallTree;
+    public static nsk.share.gc.NonbranchyTree hugeTree;
+
+    public void run()
+    {
+        nsk.share.runner.RunParams $r6, $r8;
+        nsk.share.gc.NonbranchyTree $r12, $r13;
+        nsk.share.test.ExecutionController $r1, $r4, $r9, $r10, $r17;
+        long $l1;
+        nsk.share.test.StressOptions $r7;
+        gc.gctests.Steal.steal002.steal002 $r14, $r15, $r16, $r18, $r19, $r20, $r21, $r22;
+        int $i0;
+        steal002 r0;
+        boolean $z0;
+        nsk.share.test.Stresser $r11;
+
+        r0 := @this: steal002;
+
+        $r14 = (gc.gctests.Steal.steal002.steal002) r0;
+
+        $r1 = $r14.<gc.gctests.Steal.steal002.steal002: nsk.share.test.ExecutionController stresser>;
+
+        if $r1 != null goto label2;
+
+        $r11 = new nsk.share.test.Stresser;
+
+        $r15 = (gc.gctests.Steal.steal002.steal002) r0;
+
+        $r6 = $r15.<gc.gctests.Steal.steal002.steal002: nsk.share.runner.RunParams runParams>;
+
+        $r7 = virtualinvoke $r6.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r11.<nsk.share.test.Stresser: void <init>(nsk.share.test.StressOptions)>($r7);
+
+        $r16 = (gc.gctests.Steal.steal002.steal002) r0;
+
+        $r17 = (nsk.share.test.ExecutionController) $r11;
+
+        $r16.<gc.gctests.Steal.steal002.steal002: nsk.share.test.ExecutionController stresser> = $r17;
+
+        $r18 = (gc.gctests.Steal.steal002.steal002) r0;
+
+        $r9 = $r18.<gc.gctests.Steal.steal002.steal002: nsk.share.test.ExecutionController stresser>;
+
+        $r19 = (gc.gctests.Steal.steal002.steal002) r0;
+
+        $r8 = $r19.<gc.gctests.Steal.steal002.steal002: nsk.share.runner.RunParams runParams>;
+
+        $l1 = virtualinvoke $r8.<nsk.share.runner.RunParams: long getIterations()>();
+
+        interfaceinvoke $r9.<nsk.share.test.ExecutionController: void start(long)>($l1);
+
+        goto label2;
+
+     label1:
+        $r12 = new nsk.share.gc.NonbranchyTree;
+
+        specialinvoke $r12.<nsk.share.gc.NonbranchyTree: void <init>(int,float,int)>(10, 0.3F, 1);
+
+        <gc.gctests.Steal.steal002.steal002: nsk.share.gc.NonbranchyTree smallTree> = $r12;
+
+        $r13 = new nsk.share.gc.NonbranchyTree;
+
+        $r20 = (gc.gctests.Steal.steal002.steal002) r0;
+
+        $i0 = $r20.<gc.gctests.Steal.steal002.steal002: int hugeNodeSize>;
+
+        specialinvoke $r13.<nsk.share.gc.NonbranchyTree: void <init>(int,float,int)>(500, 0.3F, $i0);
+
+        <gc.gctests.Steal.steal002.steal002: nsk.share.gc.NonbranchyTree hugeTree> = $r13;
+
+        <gc.gctests.Steal.steal002.steal002: nsk.share.gc.NonbranchyTree hugeTree> = null;
+
+        <gc.gctests.Steal.steal002.steal002: nsk.share.gc.NonbranchyTree smallTree> = null;
+
+        $r21 = (gc.gctests.Steal.steal002.steal002) r0;
+
+        $r4 = $r21.<gc.gctests.Steal.steal002.steal002: nsk.share.test.ExecutionController stresser>;
+
+        staticinvoke <nsk.share.gc.Algorithms: void eatMemory(nsk.share.test.ExecutionController)>($r4);
+
+     label2:
+        $r22 = (gc.gctests.Steal.steal002.steal002) r0;
+
+        $r10 = $r22.<gc.gctests.Steal.steal002.steal002: nsk.share.test.ExecutionController stresser>;
+
+        $z0 = interfaceinvoke $r10.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        java.lang.Runtime $r1;
+        long $l0;
+        gc.gctests.Steal.steal002.steal002 $r2;
+        int $i1, $i2;
+        steal002 r0;
+        double $d0, $d1, $d2, $d3;
+
+        r0 := @this: steal002;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        $r1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l0 = virtualinvoke $r1.<java.lang.Runtime: long maxMemory()>();
+
+        $d0 = (double) $l0;
+
+        $d1 = 0.8 * $d0;
+
+        $d2 = $d1 / 500.0;
+
+        $d3 = $d2 - 20.0;
+
+        $i1 = (int) $d3;
+
+        $i2 = staticinvoke <java.lang.Math: int max(int,int)>(1, $i1);
+
+        $r2 = (gc.gctests.Steal.steal002.steal002) r0;
+
+        $r2.<gc.gctests.Steal.steal002.steal002: int hugeNodeSize> = $i2;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.Steal.steal002.steal002 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.Steal.steal002.steal002;
+
+        specialinvoke $r2.<gc.gctests.Steal.steal002.steal002: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

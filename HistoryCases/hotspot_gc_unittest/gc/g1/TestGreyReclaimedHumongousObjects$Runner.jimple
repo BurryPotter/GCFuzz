@@ -1,0 +1,160 @@
+class TestGreyReclaimedHumongousObjects$Runner extends java.lang.Thread
+{
+    private final java.util.Date startDate;
+    private final int obj_size;
+    private final java.lang.Object[] old_garbage;
+    private int old_index;
+
+    public void <init>(int)
+    {
+        java.lang.Object[] $r2;
+        java.util.Date $r3;
+        TestGreyReclaimedHumongousObjects$Runner r0;
+        int i0;
+        gc.g1.TestGreyReclaimedHumongousObjects$Runner $r4, $r5, $r6, $r7;
+
+        r0 := @this: TestGreyReclaimedHumongousObjects$Runner;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        $r3 = new java.util.Date;
+
+        specialinvoke $r3.<java.util.Date: void <init>()>();
+
+        $r4 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        $r4.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: java.util.Date startDate> = $r3;
+
+        $r5 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        $r5.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: int old_index> = 0;
+
+        $r6 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        $r6.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: int obj_size> = i0;
+
+        $r2 = newarray (java.lang.Object)[4];
+
+        $r7 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        $r7.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: java.lang.Object[] old_garbage> = $r2;
+
+        return;
+    }
+
+    private void allocate_garbage()
+    {
+        byte[] r1;
+        java.lang.Object[] $r2;
+        TestGreyReclaimedHumongousObjects$Runner r0;
+        int $i0, $i1, $i2, $i3, $i4;
+        gc.g1.TestGreyReclaimedHumongousObjects$Runner $r3, $r4, $r5, $r6;
+
+        r0 := @this: TestGreyReclaimedHumongousObjects$Runner;
+
+        $r3 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        $i0 = $r3.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: int obj_size>;
+
+        r1 = newarray (byte)[$i0];
+
+        $r4 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        $r2 = $r4.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: java.lang.Object[] old_garbage>;
+
+        $r5 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        $i1 = $r5.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: int old_index>;
+
+        $i2 = $i1 + 1;
+
+        $r6 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        $r6.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: int old_index> = $i2;
+
+        $i3 = $i2 % 4;
+
+        $i4 = staticinvoke <java.lang.Math: int abs(int)>($i3);
+
+        $r2[$i4] = r1;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.util.Date $r5, $r10;
+        long $l0, $l1, $l2;
+        java.lang.String $r8;
+        boolean $z0;
+        gc.g1.TestGreyReclaimedHumongousObjects$Runner $r11, $r12, $r13, $r14;
+        java.io.PrintStream $r3;
+        TestGreyReclaimedHumongousObjects$Runner r0;
+        java.lang.InterruptedException $r1;
+        java.lang.StringBuilder $r6, $r7, $r9;
+
+        r0 := @this: TestGreyReclaimedHumongousObjects$Runner;
+
+     label1:
+        goto label3;
+
+     label2:
+        $r11 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        virtualinvoke $r11.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: void allocate_garbage()>();
+
+        staticinvoke <java.lang.Thread: void sleep(long)>(0L);
+
+     label3:
+        $r12 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        $z0 = virtualinvoke $r12.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: boolean isInterrupted()>();
+
+        if $z0 == 0 goto label2;
+
+     label4:
+        goto label6;
+
+     label5:
+        $r1 := @caughtexception;
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>("Aborted after ");
+
+        $r10 = new java.util.Date;
+
+        specialinvoke $r10.<java.util.Date: void <init>()>();
+
+        $l0 = virtualinvoke $r10.<java.util.Date: long getTime()>();
+
+        $r13 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        $r5 = $r13.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: java.util.Date startDate>;
+
+        $l1 = virtualinvoke $r5.<java.util.Date: long getTime()>();
+
+        $l2 = $l0 - $l1;
+
+        $r6 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l2);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ms");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r8);
+
+        $r14 = (gc.g1.TestGreyReclaimedHumongousObjects$Runner) r0;
+
+        virtualinvoke $r14.<gc.g1.TestGreyReclaimedHumongousObjects$Runner: void interrupt()>();
+
+     label6:
+        return;
+
+        catch java.lang.InterruptedException from label1 to label4 with label5;
+    }
+}

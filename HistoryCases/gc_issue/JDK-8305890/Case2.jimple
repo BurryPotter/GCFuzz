@@ -1,0 +1,55 @@
+public class Case2 extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        Case2 r0;
+
+        r0 := @this: Case2;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r2;
+        Case2 $r0, $r1;
+
+        r2 := @parameter0: java.lang.String[];
+
+        $r0 = new Case2;
+
+        specialinvoke $r0.<Case2: void <init>()>();
+
+        $r1 = new Case2;
+
+        specialinvoke $r1.<Case2: void <init>()>();
+
+        virtualinvoke $r0.<Case2: java.lang.Object test(Case2)>($r1);
+
+        return;
+    }
+
+    public java.lang.Object test(Case2)
+    {
+        java.security.NoSuchAlgorithmException $r0;
+        java.lang.String[] $r1;
+        Case2 r2, r3;
+
+        r2 := @this: Case2;
+
+        r3 := @parameter0: Case2;
+
+        $r0 = new java.security.NoSuchAlgorithmException;
+
+        specialinvoke $r0.<java.security.NoSuchAlgorithmException: void <init>()>();
+
+        $r1 = newarray (java.lang.String)[64];
+
+        staticinvoke <Case2: void main(java.lang.String[])>($r1);
+
+        return null;
+    }
+}

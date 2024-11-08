@@ -1,0 +1,16 @@
+class LinkedList extends java.lang.Object
+{
+    public LinkedList next;
+    public int length;
+
+    void <init>()
+    {
+        LinkedList r0;
+
+        r0 := @this: LinkedList;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

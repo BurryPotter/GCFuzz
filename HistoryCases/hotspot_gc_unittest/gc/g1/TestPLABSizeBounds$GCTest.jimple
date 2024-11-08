@@ -1,0 +1,28 @@
+class TestPLABSizeBounds$GCTest extends java.lang.Object
+{
+
+    void <init>()
+    {
+        TestPLABSizeBounds$GCTest r0;
+
+        r0 := @this: TestPLABSizeBounds$GCTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Test completed.");
+
+        return;
+    }
+}

@@ -1,0 +1,191 @@
+public class InterruptGC extends nsk.share.gc.ThreadedGCTest implements nsk.share.gc.gp.GarbageProducerAware, nsk.share.gc.gp.MemoryStrategyAware
+{
+    private nsk.share.gc.gp.GarbageProducer garbageProducer;
+    private nsk.share.gc.gp.MemoryStrategy memoryStrategy;
+    private java.util.List interrupters;
+    private int count;
+    private long size;
+
+    public void <init>()
+    {
+        gc.gctests.InterruptGC.InterruptGC $r3;
+        InterruptGC r0;
+        java.util.ArrayList $r2;
+
+        r0 := @this: InterruptGC;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r2 = new java.util.ArrayList;
+
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+
+        $r3 = (gc.gctests.InterruptGC.InterruptGC) r0;
+
+        $r3.<gc.gctests.InterruptGC.InterruptGC: java.util.List interrupters> = $r2;
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.gctests.InterruptGC.InterruptGC $r6, $r8, $r9;
+        InterruptGC r1;
+        java.lang.Runnable $r7, $r10;
+        java.util.List $r3;
+        int i0;
+        gc.gctests.InterruptGC.InterruptGC$GarbageCreator $r4;
+        gc.gctests.InterruptGC.InterruptGC$Interrupter $r5;
+
+        r1 := @this: InterruptGC;
+
+        i0 := @parameter0: int;
+
+        tableswitch(i0)
+        {
+            case 0: goto label1;
+            default: goto label2;
+        };
+
+     label1:
+        $r4 = new gc.gctests.InterruptGC.InterruptGC$GarbageCreator;
+
+        $r6 = (gc.gctests.InterruptGC.InterruptGC) r1;
+
+        specialinvoke $r4.<gc.gctests.InterruptGC.InterruptGC$GarbageCreator: void <init>(gc.gctests.InterruptGC.InterruptGC)>($r6);
+
+        $r7 = (java.lang.Runnable) $r4;
+
+        return $r7;
+
+     label2:
+        $r5 = new gc.gctests.InterruptGC.InterruptGC$Interrupter;
+
+        $r8 = (gc.gctests.InterruptGC.InterruptGC) r1;
+
+        specialinvoke $r5.<gc.gctests.InterruptGC.InterruptGC$Interrupter: void <init>(gc.gctests.InterruptGC.InterruptGC)>($r8);
+
+        $r9 = (gc.gctests.InterruptGC.InterruptGC) r1;
+
+        $r3 = $r9.<gc.gctests.InterruptGC.InterruptGC: java.util.List interrupters>;
+
+        interfaceinvoke $r3.<java.util.List: boolean add(java.lang.Object)>($r5);
+
+        $r10 = (java.lang.Runnable) $r5;
+
+        return $r10;
+    }
+
+    public void run()
+    {
+        nsk.share.runner.RunParams $r1, $r3;
+        long $l0, $l1, $l2;
+        gc.gctests.InterruptGC.InterruptGC $r5, $r6, $r7, $r8, $r9, $r10;
+        InterruptGC r0;
+        nsk.share.gc.gp.MemoryStrategy $r2, $r4;
+        int $i3;
+
+        r0 := @this: InterruptGC;
+
+        $r5 = (gc.gctests.InterruptGC.InterruptGC) r0;
+
+        $r1 = $r5.<gc.gctests.InterruptGC.InterruptGC: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r1.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $r6 = (gc.gctests.InterruptGC.InterruptGC) r0;
+
+        $r2 = $r6.<gc.gctests.InterruptGC.InterruptGC: nsk.share.gc.gp.MemoryStrategy memoryStrategy>;
+
+        $l1 = staticinvoke <nsk.share.gc.gp.GarbageUtils: long getArraySize(long,nsk.share.gc.gp.MemoryStrategy)>($l0, $r2);
+
+        $r7 = (gc.gctests.InterruptGC.InterruptGC) r0;
+
+        $r7.<gc.gctests.InterruptGC.InterruptGC: long size> = $l1;
+
+        $r8 = (gc.gctests.InterruptGC.InterruptGC) r0;
+
+        $r3 = $r8.<gc.gctests.InterruptGC.InterruptGC: nsk.share.runner.RunParams runParams>;
+
+        $l2 = virtualinvoke $r3.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $r9 = (gc.gctests.InterruptGC.InterruptGC) r0;
+
+        $r4 = $r9.<gc.gctests.InterruptGC.InterruptGC: nsk.share.gc.gp.MemoryStrategy memoryStrategy>;
+
+        $i3 = staticinvoke <nsk.share.gc.gp.GarbageUtils: int getArrayCount(long,nsk.share.gc.gp.MemoryStrategy)>($l2, $r4);
+
+        $r10 = (gc.gctests.InterruptGC.InterruptGC) r0;
+
+        $r10.<gc.gctests.InterruptGC.InterruptGC: int count> = $i3;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void run()>();
+
+        return;
+    }
+
+    public void setGarbageProducer(nsk.share.gc.gp.GarbageProducer)
+    {
+        gc.gctests.InterruptGC.InterruptGC $r2;
+        nsk.share.gc.gp.GarbageProducer r1;
+        InterruptGC r0;
+
+        r0 := @this: InterruptGC;
+
+        r1 := @parameter0: nsk.share.gc.gp.GarbageProducer;
+
+        $r2 = (gc.gctests.InterruptGC.InterruptGC) r0;
+
+        $r2.<gc.gctests.InterruptGC.InterruptGC: nsk.share.gc.gp.GarbageProducer garbageProducer> = r1;
+
+        return;
+    }
+
+    public void setMemoryStrategy(nsk.share.gc.gp.MemoryStrategy)
+    {
+        gc.gctests.InterruptGC.InterruptGC $r2;
+        InterruptGC r0;
+        nsk.share.gc.gp.MemoryStrategy r1;
+
+        r0 := @this: InterruptGC;
+
+        r1 := @parameter0: nsk.share.gc.gp.MemoryStrategy;
+
+        $r2 = (gc.gctests.InterruptGC.InterruptGC) r0;
+
+        $r2.<gc.gctests.InterruptGC.InterruptGC: nsk.share.gc.gp.MemoryStrategy memoryStrategy> = r1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        gc.gctests.InterruptGC.InterruptGC $r2;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.InterruptGC.InterruptGC;
+
+        specialinvoke $r2.<gc.gctests.InterruptGC.InterruptGC: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.test.ExecutionController access$0(gc.gctests.InterruptGC.InterruptGC)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.InterruptGC.InterruptGC r0;
+
+        r0 := @parameter0: gc.gctests.InterruptGC.InterruptGC;
+
+        $r1 = virtualinvoke r0.<gc.gctests.InterruptGC.InterruptGC: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+}

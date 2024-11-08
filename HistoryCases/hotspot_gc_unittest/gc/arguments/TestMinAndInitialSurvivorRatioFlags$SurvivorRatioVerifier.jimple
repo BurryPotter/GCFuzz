@@ -1,0 +1,298 @@
+public class TestMinAndInitialSurvivorRatioFlags$SurvivorRatioVerifier extends java.lang.Object
+{
+    public static sun.hotspot.WhiteBox wb;
+    public static final int MAX_ITERATIONS;
+    public static final int ARRAY_LENGTH;
+    public static final int CHUNK_SIZE;
+    public static byte[][] garbage;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+        byte[][] $r1;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.arguments.TestMinAndInitialSurvivorRatioFlags$SurvivorRatioVerifier: sun.hotspot.WhiteBox wb> = $r0;
+
+        $r1 = newarray (byte[])[10000];
+
+        <gc.arguments.TestMinAndInitialSurvivorRatioFlags$SurvivorRatioVerifier: byte[][] garbage> = $r1;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestMinAndInitialSurvivorRatioFlags$SurvivorRatioVerifier r0;
+
+        r0 := @this: TestMinAndInitialSurvivorRatioFlags$SurvivorRatioVerifier;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        gc.arguments.GCTypes$YoungGCType $r9, $r10;
+        java.lang.String[] r0;
+        java.util.concurrent.Callable $r12;
+        java.lang.Integer $r2, $r4, $r6;
+        int $i0, $i1, $i2, $i3;
+        java.lang.Boolean $r8;
+        java.lang.String $r1, $r3, $r5, $r7;
+        gc.arguments.AllocationHelper $r11;
+        boolean $z0;
+        java.io.PrintStream $r13;
+        java.lang.IllegalArgumentException $r14;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $i0 = lengthof r0;
+
+        if $i0 == 4 goto label1;
+
+        $r14 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r14.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Expected 4 args: <survivorRatio> <initRatio> <minRatio> <useAdaptiveSizePolicy>");
+
+        throw $r14;
+
+     label1:
+        $r1 = r0[0];
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r1);
+
+        $i1 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+
+        $r3 = r0[1];
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r3);
+
+        $i2 = virtualinvoke $r4.<java.lang.Integer: int intValue()>();
+
+        $r5 = r0[2];
+
+        $r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($r5);
+
+        $i3 = virtualinvoke $r6.<java.lang.Integer: int intValue()>();
+
+        $r7 = r0[3];
+
+        $r8 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(java.lang.String)>($r7);
+
+        $z0 = virtualinvoke $r8.<java.lang.Boolean: boolean booleanValue()>();
+
+        $r9 = staticinvoke <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType getYoungGCType()>();
+
+        $r10 = <gc.arguments.GCTypes$YoungGCType: gc.arguments.GCTypes$YoungGCType PSNew>;
+
+        if $r9 == $r10 goto label2;
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>("Test is only applicable to Parallel GC");
+
+        return;
+
+     label2:
+        staticinvoke <gc.arguments.TestMinAndInitialSurvivorRatioFlags$SurvivorRatioVerifier: java.lang.Void verifySurvivorRatio(int,int,int,boolean,boolean)>($i1, $i2, $i3, $z0, 1);
+
+        $r11 = new gc.arguments.AllocationHelper;
+
+        $r12 = staticinvoke <TestMinAndInitialSurvivorRatioFlags$SurvivorRatioVerifier$lambda_0__1: java.util.concurrent.Callable bootstrap$(int,int,int,boolean)>($i1, $i2, $i3, $z0);
+
+        specialinvoke $r11.<gc.arguments.AllocationHelper: void <init>(int,int,int,java.util.concurrent.Callable)>(10, 10000, 10000, $r12);
+
+        virtualinvoke $r11.<gc.arguments.AllocationHelper: void allocateMemoryAndVerify()>();
+
+        return;
+    }
+
+    public static java.lang.Void verifySurvivorRatio(int, int, int, boolean, boolean)
+    {
+        byte $b11, $b21, $b23, $b30;
+        boolean z0, z1;
+        java.lang.StringBuilder $r5, $r6, $r7, $r11, $r12, $r13, $r14, $r15, $r19, $r20, $r21, $r23, $r25, $r27;
+        long $l0, $l1, $l2, l3, $l4, $l7, $l8, $l9, $l10, $l12, $l14, $l15, $l16, $l17, $l18, $l19, $l20, $l22, $l24, $l26, $l27, $l28, $l29, $l31;
+        int i5, i6, i13, $i25, $i32;
+        java.lang.String $r8, $r16, $r22;
+        java.lang.management.MemoryUsage $r0, $r1;
+        sun.hotspot.WhiteBox $r2;
+        java.lang.RuntimeException $r24, $r26, $r28;
+
+        i5 := @parameter0: int;
+
+        i6 := @parameter1: int;
+
+        i13 := @parameter2: int;
+
+        z1 := @parameter3: boolean;
+
+        z0 := @parameter4: boolean;
+
+        $r0 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getEdenUsage()>();
+
+        $r1 = staticinvoke <gc.arguments.HeapRegionUsageTool: java.lang.management.MemoryUsage getSurvivorUsage()>();
+
+        $l0 = virtualinvoke $r0.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $l1 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getMax()>();
+
+        $l2 = 2L * $l1;
+
+        l3 = $l0 + $l2;
+
+        $r2 = <gc.arguments.TestMinAndInitialSurvivorRatioFlags$SurvivorRatioVerifier: sun.hotspot.WhiteBox wb>;
+
+        $l4 = virtualinvoke $r2.<sun.hotspot.WhiteBox: long psHeapGenerationAlignment()>();
+
+        if i5 < 0 goto label1;
+
+        $i25 = i5 + 2;
+
+        $l26 = (long) $i25;
+
+        $l27 = l3 / $l26;
+
+        $l28 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignDown(long,long)>($l27, $l4);
+
+        $l29 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $b30 = $l29 cmp $l28;
+
+        if $b30 == 0 goto label4;
+
+        $r24 = new java.lang.RuntimeException;
+
+        $r23 = new java.lang.StringBuilder;
+
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected survivor size is: ");
+
+        $r19 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l28);
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", but observed size is: ");
+
+        $l31 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l31);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r24.<java.lang.RuntimeException: void <init>(java.lang.String)>($r22);
+
+        throw $r24;
+
+     label1:
+        if z0 != 0 goto label2;
+
+        if z1 != 0 goto label3;
+
+     label2:
+        $l7 = (long) i6;
+
+        $l8 = l3 / $l7;
+
+        $l9 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignDown(long,long)>($l8, $l4);
+
+        $l10 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $b11 = $l10 cmp $l9;
+
+        if $b11 == 0 goto label4;
+
+        $r26 = new java.lang.RuntimeException;
+
+        $r25 = new java.lang.StringBuilder;
+
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected survivor size is: ");
+
+        $r5 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l9);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", but observed size is: ");
+
+        $l12 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l12);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r26.<java.lang.RuntimeException: void <init>(java.lang.String)>($r8);
+
+        throw $r26;
+
+     label3:
+        $l14 = (long) i13;
+
+        $l15 = l3 / $l14;
+
+        $l16 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignDown(long,long)>($l15, $l4);
+
+        $l17 = (long) i6;
+
+        $l18 = l3 / $l17;
+
+        $l19 = staticinvoke <gc.arguments.HeapRegionUsageTool: long alignDown(long,long)>($l18, $l4);
+
+        $l20 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $b21 = $l20 cmp $l19;
+
+        if $b21 == 0 goto label4;
+
+        $l22 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $b23 = $l22 cmp $l16;
+
+        $i32 = (int) $b23;
+
+        if $i32 >= 0 goto label4;
+
+        $r28 = new java.lang.RuntimeException;
+
+        $r27 = new java.lang.StringBuilder;
+
+        specialinvoke $r27.<java.lang.StringBuilder: void <init>(java.lang.String)>("Expected survivor size should be ");
+
+        $r11 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l16);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" or should be greater then ");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l16);
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", but observer survivor size is ");
+
+        $l24 = virtualinvoke $r1.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l24);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r28.<java.lang.RuntimeException: void <init>(java.lang.String)>($r16);
+
+        throw $r28;
+
+     label4:
+        return null;
+    }
+
+    private static java.lang.Object lambda$0(int, int, int, boolean) throws java.lang.Exception
+    {
+        java.lang.Void $r0;
+        int i0, i1, i2;
+        boolean z0;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        z0 := @parameter3: boolean;
+
+        $r0 = staticinvoke <gc.arguments.TestMinAndInitialSurvivorRatioFlags$SurvivorRatioVerifier: java.lang.Void verifySurvivorRatio(int,int,int,boolean,boolean)>(i0, i1, i2, z0, 0);
+
+        return $r0;
+    }
+}

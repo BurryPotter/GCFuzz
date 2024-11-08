@@ -1,0 +1,238 @@
+public class Linear3 extends nsk.share.gc.GCTestBase
+{
+    private int arraySize;
+    private int objectSize;
+    private int circularitySize;
+    private nsk.share.gc.MemoryObject[] memoryArray;
+
+    public void <init>()
+    {
+        Linear3 r0;
+        gc.memory.UniThread.Linear3.Linear3 $r1;
+
+        r0 := @this: Linear3;
+
+        $r1 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        specialinvoke $r1.<gc.memory.UniThread.Linear3.Linear3: void <init>(int,int)>(100, 5);
+
+        return;
+    }
+
+    public void <init>(int, int)
+    {
+        gc.memory.UniThread.Linear3.Linear3 $r1, $r2;
+        int i0, i1;
+        Linear3 r0;
+
+        r0 := @this: Linear3;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        $r1 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $r1.<gc.memory.UniThread.Linear3.Linear3: int objectSize> = i0;
+
+        $r2 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $r2.<gc.memory.UniThread.Linear3.Linear3: int circularitySize> = i1;
+
+        return;
+    }
+
+    public void run()
+    {
+        nsk.share.runner.RunParams $r1, $r7, $r10;
+        java.lang.Long $r13;
+        boolean $z0, $z1;
+        java.lang.Runtime $r12;
+        nsk.share.test.Stresser $r19;
+        java.lang.StringBuilder $r4, $r18;
+        java.lang.Throwable $r17;
+        java.lang.Object[] $r14;
+        long $l0, $l3, $l7, $l8;
+        Linear3 r0;
+        nsk.share.test.StressOptions $r8;
+        nsk.share.gc.MemoryObject[] $r9;
+        int $i1, $i2, $i4, $i5, $i6, $i9, $i10, $i11, $i12, $i13, i14;
+        java.lang.String $r5;
+        java.io.PrintStream $r16;
+        nsk.share.gc.LinkedMemoryObject $r15;
+        gc.memory.UniThread.Linear3.Linear3 $r20, $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30, $r31, $r32, $r33, $r34, $r35;
+        nsk.share.log.Log $r3, $r11;
+
+        r0 := @this: Linear3;
+
+        $r20 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $r1 = $r20.<gc.memory.UniThread.Linear3.Linear3: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r1.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $r21 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $i2 = $r21.<gc.memory.UniThread.Linear3.Linear3: int circularitySize>;
+
+        $r22 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $i1 = $r22.<gc.memory.UniThread.Linear3.Linear3: int objectSize>;
+
+        $l3 = staticinvoke <nsk.share.gc.Memory: long getListSize(int,int)>($i2, $i1);
+
+        $i4 = staticinvoke <nsk.share.gc.Memory: int getArrayLength(long,long)>($l0, $l3);
+
+        $r23 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $r23.<gc.memory.UniThread.Linear3.Linear3: int arraySize> = $i4;
+
+        $r24 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $r3 = $r24.<gc.memory.UniThread.Linear3.Linear3: nsk.share.log.Log log>;
+
+        $r18 = new java.lang.StringBuilder;
+
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>("Array size: ");
+
+        $r25 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $i5 = $r25.<gc.memory.UniThread.Linear3.Linear3: int arraySize>;
+
+        $r4 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r3.<nsk.share.log.Log: void debug(java.lang.Object)>($r5);
+
+        $r19 = new nsk.share.test.Stresser;
+
+        $r26 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $r7 = $r26.<gc.memory.UniThread.Linear3.Linear3: nsk.share.runner.RunParams runParams>;
+
+        $r8 = virtualinvoke $r7.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r19.<nsk.share.test.Stresser: void <init>(nsk.share.test.StressOptions)>($r8);
+
+        $r27 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $i6 = $r27.<gc.memory.UniThread.Linear3.Linear3: int arraySize>;
+
+        $r9 = newarray (nsk.share.gc.MemoryObject)[$i6];
+
+        $r28 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $r28.<gc.memory.UniThread.Linear3.Linear3: nsk.share.gc.MemoryObject[] memoryArray> = $r9;
+
+        $r29 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $r10 = $r29.<gc.memory.UniThread.Linear3.Linear3: nsk.share.runner.RunParams runParams>;
+
+        $l7 = virtualinvoke $r10.<nsk.share.runner.RunParams: long getIterations()>();
+
+        virtualinvoke $r19.<nsk.share.test.Stresser: void start(long)>($l7);
+
+     label1:
+        goto label5;
+
+     label2:
+        $r30 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $r11 = $r30.<gc.memory.UniThread.Linear3.Linear3: nsk.share.log.Log log>;
+
+        $r12 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $l8 = virtualinvoke $r12.<java.lang.Runtime: long freeMemory()>();
+
+        $r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l8);
+
+        interfaceinvoke $r11.<nsk.share.log.Log: void debug(java.lang.Object)>($r13);
+
+        i14 = 0;
+
+        goto label4;
+
+     label3:
+        $r31 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $i10 = $r31.<gc.memory.UniThread.Linear3.Linear3: int arraySize>;
+
+        $i11 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int)>($i10);
+
+        $r32 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $r14 = $r32.<gc.memory.UniThread.Linear3.Linear3: nsk.share.gc.MemoryObject[] memoryArray>;
+
+        $r33 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $i13 = $r33.<gc.memory.UniThread.Linear3.Linear3: int circularitySize>;
+
+        $r34 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $i12 = $r34.<gc.memory.UniThread.Linear3.Linear3: int objectSize>;
+
+        $r15 = staticinvoke <nsk.share.gc.Memory: nsk.share.gc.LinkedMemoryObject makeCircularList(int,int)>($i13, $i12);
+
+        $r14[$i11] = $r15;
+
+        i14 = i14 + 1;
+
+     label4:
+        $r35 = (gc.memory.UniThread.Linear3.Linear3) r0;
+
+        $i9 = $r35.<gc.memory.UniThread.Linear3.Linear3: int arraySize>;
+
+        if i14 >= $i9 goto label5;
+
+        $z0 = virtualinvoke $r19.<nsk.share.test.Stresser: boolean continueExecution()>();
+
+        if $z0 != 0 goto label3;
+
+     label5:
+        $z1 = virtualinvoke $r19.<nsk.share.test.Stresser: boolean iteration()>();
+
+        if $z1 != 0 goto label2;
+
+        goto label7;
+
+     label6:
+        $r17 := @caughtexception;
+
+        virtualinvoke $r19.<nsk.share.test.Stresser: void finish()>();
+
+        throw $r17;
+
+     label7:
+        virtualinvoke $r19.<nsk.share.test.Stresser: void finish()>();
+
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>("Test passed.");
+
+        return;
+
+        catch java.lang.Throwable from label1 to label6 with label6;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.memory.UniThread.Linear3.Linear3 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.memory.UniThread.Linear3.Linear3;
+
+        specialinvoke $r2.<gc.memory.UniThread.Linear3.Linear3: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

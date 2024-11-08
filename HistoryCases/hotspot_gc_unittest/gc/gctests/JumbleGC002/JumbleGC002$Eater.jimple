@@ -1,0 +1,379 @@
+class JumbleGC002$Eater extends java.lang.Object implements java.lang.Runnable
+{
+    private java.util.Vector vector;
+    int numberOfElements;
+    int numberOfQuarters;
+    int id;
+    int nodes;
+    java.util.concurrent.ThreadLocalRandom random;
+    final gc.gctests.JumbleGC002.JumbleGC002 this$0;
+
+    public void <init>(gc.gctests.JumbleGC002.JumbleGC002, int, int, int)
+    {
+        gc.gctests.JumbleGC002.JumbleGC002 r1;
+        gc.gctests.JumbleGC002.JumbleGC002$Eater $r3, $r4, $r5, $r6, $r7, $r8;
+        JumbleGC002$Eater r0;
+        java.util.concurrent.ThreadLocalRandom $r2;
+        int i0, $i1, i2, i3;
+
+        r0 := @this: JumbleGC002$Eater;
+
+        r1 := @parameter0: gc.gctests.JumbleGC002.JumbleGC002;
+
+        i2 := @parameter1: int;
+
+        i0 := @parameter2: int;
+
+        i3 := @parameter3: int;
+
+        $r3 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r3.<gc.gctests.JumbleGC002.JumbleGC002$Eater: gc.gctests.JumbleGC002.JumbleGC002 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = staticinvoke <java.util.concurrent.ThreadLocalRandom: java.util.concurrent.ThreadLocalRandom current()>();
+
+        $r4 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r4.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.concurrent.ThreadLocalRandom random> = $r2;
+
+        $r5 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r5.<gc.gctests.JumbleGC002.JumbleGC002$Eater: int numberOfQuarters> = i0;
+
+        $i1 = 4 * i0;
+
+        $r6 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r6.<gc.gctests.JumbleGC002.JumbleGC002$Eater: int numberOfElements> = $i1;
+
+        $r7 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r7.<gc.gctests.JumbleGC002.JumbleGC002$Eater: int id> = i2;
+
+        $r8 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r8.<gc.gctests.JumbleGC002.JumbleGC002$Eater: int nodes> = i3;
+
+        return;
+    }
+
+    public void run()
+    {
+        nsk.share.test.ExecutionController $r2;
+        gc.gctests.JumbleGC002.JumbleGC002 $r1;
+        gc.gctests.JumbleGC002.JumbleGC002$Eater $r3, $r4, $r5, $r6;
+        JumbleGC002$Eater r0;
+        boolean $z0;
+
+        r0 := @this: JumbleGC002$Eater;
+
+        $r3 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        virtualinvoke $r3.<gc.gctests.JumbleGC002.JumbleGC002$Eater: void initVector()>();
+
+        goto label2;
+
+     label1:
+        $r4 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        virtualinvoke $r4.<gc.gctests.JumbleGC002.JumbleGC002$Eater: void fillVector()>();
+
+        $r5 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        virtualinvoke $r5.<gc.gctests.JumbleGC002.JumbleGC002$Eater: void cleanVector()>();
+
+     label2:
+        $r6 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r1 = $r6.<gc.gctests.JumbleGC002.JumbleGC002$Eater: gc.gctests.JumbleGC002.JumbleGC002 this$0>;
+
+        $r2 = staticinvoke <gc.gctests.JumbleGC002.JumbleGC002: nsk.share.test.ExecutionController access$0(gc.gctests.JumbleGC002.JumbleGC002)>($r1);
+
+        $z0 = interfaceinvoke $r2.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+
+    private void initVector()
+    {
+        gc.gctests.JumbleGC002.JumbleGC002$Eater $r4, $r5, $r6;
+        java.util.Vector $r2, $r3;
+        JumbleGC002$Eater r0;
+        int $i0, i1;
+
+        r0 := @this: JumbleGC002$Eater;
+
+        $r3 = new java.util.Vector;
+
+        specialinvoke $r3.<java.util.Vector: void <init>()>();
+
+        $r4 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r4.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector> = $r3;
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        $r5 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r2 = $r5.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector>;
+
+        virtualinvoke $r2.<java.util.Vector: void addElement(java.lang.Object)>(null);
+
+        i1 = i1 + 1;
+
+     label2:
+        $r6 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $i0 = $r6.<gc.gctests.JumbleGC002.JumbleGC002$Eater: int numberOfElements>;
+
+        if i1 < $i0 goto label1;
+
+        return;
+    }
+
+    private void fillVector()
+    {
+        java.util.Vector $r3, $r6, $r9, $r12, $r14, $r15, $r16, $r18;
+        int[] $r17;
+        gc.gctests.JumbleGC002.JumbleGC002$Eater $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30, $r31, $r32, $r33, $r34;
+        JumbleGC002$Eater r0;
+        nsk.share.gc.NonbranchyTree $r20;
+        double[] $r19;
+        long $l1;
+        long[] r2;
+        java.util.concurrent.ThreadLocalRandom $r1, $r5, $r8;
+        int $i0, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20, i21, i22, i23, $i24;
+        java.lang.Object $r4, $r7, $r10, $r13;
+
+        r0 := @this: JumbleGC002$Eater;
+
+        i21 = 0;
+
+        goto label11;
+
+     label01:
+        $r21 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r1 = $r21.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.concurrent.ThreadLocalRandom random>;
+
+        $i0 = virtualinvoke $r1.<java.util.concurrent.ThreadLocalRandom: int nextInt(int)>(10);
+
+        r2 = newarray (long)[$i0];
+
+        i22 = 0;
+
+        goto label03;
+
+     label02:
+        $l1 = (long) i22;
+
+        r2[i22] = $l1;
+
+        i22 = i22 + 1;
+
+     label03:
+        if i22 < $i0 goto label02;
+
+        $r22 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r3 = $r22.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector>;
+
+        $i2 = 4 * i21;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i2);
+
+        if $r4 != null goto label04;
+
+        $r23 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r18 = $r23.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector>;
+
+        $i20 = 4 * i21;
+
+        virtualinvoke $r18.<java.util.Vector: void setElementAt(java.lang.Object,int)>(r2, $i20);
+
+     label04:
+        $r24 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r5 = $r24.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.concurrent.ThreadLocalRandom random>;
+
+        $i3 = virtualinvoke $r5.<java.util.concurrent.ThreadLocalRandom: int nextInt(int)>(10);
+
+        $r19 = newarray (double)[$i3];
+
+        $r25 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r6 = $r25.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector>;
+
+        $i4 = 4 * i21;
+
+        $i5 = $i4 + 1;
+
+        $r7 = virtualinvoke $r6.<java.util.Vector: java.lang.Object elementAt(int)>($i5);
+
+        if $r7 != null goto label05;
+
+        $r26 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r16 = $r26.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector>;
+
+        $i18 = 4 * i21;
+
+        $i19 = $i18 + 1;
+
+        virtualinvoke $r16.<java.util.Vector: void setElementAt(java.lang.Object,int)>($r19, $i19);
+
+     label05:
+        $r27 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r8 = $r27.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.concurrent.ThreadLocalRandom random>;
+
+        $i6 = virtualinvoke $r8.<java.util.concurrent.ThreadLocalRandom: int nextInt(int)>(10);
+
+        $r17 = newarray (int)[$i6];
+
+        i23 = 0;
+
+        goto label07;
+
+     label06:
+        $r17[i23] = i23;
+
+        i23 = i23 + 1;
+
+     label07:
+        if i23 < $i6 goto label06;
+
+        $r28 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r9 = $r28.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector>;
+
+        $i7 = 4 * i21;
+
+        $i8 = $i7 + 2;
+
+        $r10 = virtualinvoke $r9.<java.util.Vector: java.lang.Object elementAt(int)>($i8);
+
+        if $r10 != null goto label08;
+
+        $r29 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r15 = $r29.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector>;
+
+        $i16 = 4 * i21;
+
+        $i17 = $i16 + 2;
+
+        virtualinvoke $r15.<java.util.Vector: void setElementAt(java.lang.Object,int)>($r17, $i17);
+
+     label08:
+        $r20 = new nsk.share.gc.NonbranchyTree;
+
+        $r30 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $i9 = $r30.<gc.gctests.JumbleGC002.JumbleGC002$Eater: int nodes>;
+
+        specialinvoke $r20.<nsk.share.gc.NonbranchyTree: void <init>(int,float,int)>($i9, 0.3F, 1);
+
+        $r31 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $i10 = $r31.<gc.gctests.JumbleGC002.JumbleGC002$Eater: int id>;
+
+        $i11 = $i10 % 2;
+
+        if $i11 != 0 goto label09;
+
+        virtualinvoke $r20.<nsk.share.gc.NonbranchyTree: void bend()>();
+
+     label09:
+        $r32 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r12 = $r32.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector>;
+
+        $i12 = 4 * i21;
+
+        $i13 = $i12 + 3;
+
+        $r13 = virtualinvoke $r12.<java.util.Vector: java.lang.Object elementAt(int)>($i13);
+
+        if $r13 != null goto label10;
+
+        $r33 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r14 = $r33.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector>;
+
+        $i14 = 4 * i21;
+
+        $i15 = $i14 + 3;
+
+        virtualinvoke $r14.<java.util.Vector: void setElementAt(java.lang.Object,int)>($r20, $i15);
+
+     label10:
+        i21 = i21 + 1;
+
+     label11:
+        $r34 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $i24 = $r34.<gc.gctests.JumbleGC002.JumbleGC002$Eater: int numberOfQuarters>;
+
+        if i21 < $i24 goto label01;
+
+        return;
+    }
+
+    private void cleanVector()
+    {
+        gc.gctests.JumbleGC002.JumbleGC002$Eater $r3, $r4, $r5, $r6;
+        java.util.Vector $r2;
+        JumbleGC002$Eater r0;
+        java.util.concurrent.ThreadLocalRandom $r1;
+        int $i0, $i1, $i2, $i3, $i4, $i5, i6;
+
+        r0 := @this: JumbleGC002$Eater;
+
+        $r3 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r1 = $r3.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.concurrent.ThreadLocalRandom random>;
+
+        $r4 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $i0 = $r4.<gc.gctests.JumbleGC002.JumbleGC002$Eater: int numberOfElements>;
+
+        $i1 = $i0 / 2;
+
+        $i2 = virtualinvoke $r1.<java.util.concurrent.ThreadLocalRandom: int nextInt(int)>($i1);
+
+        i6 = $i2;
+
+        goto label2;
+
+     label1:
+        $r5 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $r2 = $r5.<gc.gctests.JumbleGC002.JumbleGC002$Eater: java.util.Vector vector>;
+
+        virtualinvoke $r2.<java.util.Vector: void setElementAt(java.lang.Object,int)>(null, i6);
+
+        i6 = i6 + 1;
+
+     label2:
+        $r6 = (gc.gctests.JumbleGC002.JumbleGC002$Eater) r0;
+
+        $i3 = $r6.<gc.gctests.JumbleGC002.JumbleGC002$Eater: int numberOfElements>;
+
+        $i4 = $i3 / 2;
+
+        $i5 = $i2 + $i4;
+
+        if i6 < $i5 goto label1;
+
+        return;
+    }
+}

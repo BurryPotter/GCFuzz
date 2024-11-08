@@ -1,0 +1,248 @@
+public class TestPerfCountersAndMemoryPools extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestPerfCountersAndMemoryPools r0;
+
+        r0 := @this: TestPerfCountersAndMemoryPools;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+        boolean $z0, $z1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.metaspace.TestPerfCountersAndMemoryPools: void checkMemoryUsage(java.lang.String,java.lang.String)>("Metaspace", "sun.gc.metaspace");
+
+        $z0 = staticinvoke <gc.metaspace.InputArguments: boolean contains(java.lang.String)>("-XX:+UseCompressedClassPointers");
+
+        if $z0 == 0 goto label1;
+
+        $z1 = staticinvoke <jdk.test.lib.Platform: boolean is64bit()>();
+
+        if $z1 == 0 goto label1;
+
+        staticinvoke <gc.metaspace.TestPerfCountersAndMemoryPools: void checkMemoryUsage(java.lang.String,java.lang.String)>("Compressed Class Space", "sun.gc.compressedclassspace");
+
+     label1:
+        return;
+    }
+
+    private static java.lang.management.MemoryPoolMXBean getMemoryPool(java.lang.String)
+    {
+        java.util.Iterator $r1;
+        java.lang.RuntimeException $r6;
+        java.util.List $r0;
+        java.lang.management.MemoryPoolMXBean r3;
+        java.lang.Object $r2;
+        java.lang.StringBuilder $r7, $r8;
+        java.lang.String $r4, r5, $r9;
+        boolean $z0, $z1;
+
+        r5 := @parameter0: java.lang.String;
+
+        $r0 = staticinvoke <java.lang.management.ManagementFactory: java.util.List getMemoryPoolMXBeans()>();
+
+        $r1 = interfaceinvoke $r0.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        $r2 = interfaceinvoke $r1.<java.util.Iterator: java.lang.Object next()>();
+
+        r3 = (java.lang.management.MemoryPoolMXBean) $r2;
+
+        $r4 = interfaceinvoke r3.<java.lang.management.MemoryPoolMXBean: java.lang.String getName()>();
+
+        $z1 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>(r5);
+
+        if $z1 == 0 goto label2;
+
+        return r3;
+
+     label2:
+        $z0 = interfaceinvoke $r1.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+        $r6 = new java.lang.RuntimeException;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("Excpted to find a memory pool with name ");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r6.<java.lang.RuntimeException: void <init>(java.lang.String)>($r9);
+
+        throw $r6;
+    }
+
+    private static void checkMemoryUsage(java.lang.String, java.lang.String) throws java.lang.Exception
+    {
+        long $l0, $l1, $l2, $l3, $l4, $l5;
+        java.lang.management.MemoryPoolMXBean $r1;
+        java.lang.Long $r6, $r7, $r8, $r10, $r11, $r13, $r14, $r16;
+        java.lang.String r0, r2;
+        java.lang.management.MemoryUsage $r3, $r4, $r5, $r9, $r12, $r15;
+
+        r0 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        $r1 = staticinvoke <gc.metaspace.TestPerfCountersAndMemoryPools: java.lang.management.MemoryPoolMXBean getMemoryPool(java.lang.String)>(r0);
+
+        staticinvoke <gc.metaspace.TestPerfCountersAndMemoryPools: long getMinCapacity(java.lang.String)>(r2);
+
+        staticinvoke <gc.metaspace.TestPerfCountersAndMemoryPools: long getCapacity(java.lang.String)>(r2);
+
+        staticinvoke <gc.metaspace.TestPerfCountersAndMemoryPools: long getUsed(java.lang.String)>(r2);
+
+        $r3 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        virtualinvoke $r3.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r4 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        virtualinvoke $r4.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r5 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        virtualinvoke $r5.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(1L);
+
+        $r7 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(1L);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object,java.lang.String)>($r6, $r7, "Make assert load");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $l0 = staticinvoke <gc.metaspace.TestPerfCountersAndMemoryPools: long getMinCapacity(java.lang.String)>(r2);
+
+        $r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $r9 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l1 = virtualinvoke $r9.<java.lang.management.MemoryUsage: long getInit()>();
+
+        $r10 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object,java.lang.String)>($r8, $r10, "MinCapacity out of sync");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $l2 = staticinvoke <gc.metaspace.TestPerfCountersAndMemoryPools: long getUsed(java.lang.String)>(r2);
+
+        $r11 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l2);
+
+        $r12 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l3 = virtualinvoke $r12.<java.lang.management.MemoryUsage: long getUsed()>();
+
+        $r13 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l3);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object,java.lang.String)>($r11, $r13, "Used out of sync");
+
+        $l4 = staticinvoke <gc.metaspace.TestPerfCountersAndMemoryPools: long getCapacity(java.lang.String)>(r2);
+
+        $r14 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l4);
+
+        $r15 = interfaceinvoke $r1.<java.lang.management.MemoryPoolMXBean: java.lang.management.MemoryUsage getUsage()>();
+
+        $l5 = virtualinvoke $r15.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r16 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l5);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertEQ(java.lang.Object,java.lang.Object,java.lang.String)>($r14, $r16, "Committed out of sync");
+
+        return;
+    }
+
+    private static long getMinCapacity(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.StringBuilder $r0, $r3;
+        long $l0;
+        java.lang.String r1, $r2, $r4;
+        gc.testlibrary.PerfCounter $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".minCapacity");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <gc.testlibrary.PerfCounters: gc.testlibrary.PerfCounter findByName(java.lang.String)>($r4);
+
+        $l0 = virtualinvoke $r5.<gc.testlibrary.PerfCounter: long longValue()>();
+
+        return $l0;
+    }
+
+    private static long getCapacity(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.StringBuilder $r0, $r3;
+        long $l0;
+        java.lang.String r1, $r2, $r4;
+        gc.testlibrary.PerfCounter $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".capacity");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <gc.testlibrary.PerfCounters: gc.testlibrary.PerfCounter findByName(java.lang.String)>($r4);
+
+        $l0 = virtualinvoke $r5.<gc.testlibrary.PerfCounter: long longValue()>();
+
+        return $l0;
+    }
+
+    private static long getUsed(java.lang.String) throws java.lang.Exception
+    {
+        java.lang.StringBuilder $r0, $r3;
+        long $l0;
+        java.lang.String r1, $r2, $r4;
+        gc.testlibrary.PerfCounter $r5;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.StringBuilder;
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+
+        $r3 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".used");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = staticinvoke <gc.testlibrary.PerfCounters: gc.testlibrary.PerfCounter findByName(java.lang.String)>($r4);
+
+        $l0 = virtualinvoke $r5.<gc.testlibrary.PerfCounter: long longValue()>();
+
+        return $l0;
+    }
+}

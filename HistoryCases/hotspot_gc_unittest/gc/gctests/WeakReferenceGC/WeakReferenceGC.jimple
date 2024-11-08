@@ -1,0 +1,700 @@
+public class WeakReferenceGC extends nsk.share.gc.ThreadedGCTest
+{
+    static java.lang.String[] args;
+    gc.gctests.WeakReferenceGC.CircularLinkedList[] holder;
+    int loopCount;
+    int[] memory_reserve;
+    int gcCount;
+    int numLists;
+    float qFactor;
+    java.lang.ref.ReferenceQueue refQueue;
+    java.util.Vector results;
+    java.lang.ref.WeakReference[] wholder;
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        nsk.share.test.Test $r3;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC $r2;
+
+        r0 := @parameter0: java.lang.String[];
+
+        <gc.gctests.WeakReferenceGC.WeakReferenceGC: java.lang.String[] args> = r0;
+
+        $r2 = new gc.gctests.WeakReferenceGC.WeakReferenceGC;
+
+        specialinvoke $r2.<gc.gctests.WeakReferenceGC.WeakReferenceGC: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r0);
+
+        return;
+    }
+
+    void <init>()
+    {
+        java.lang.ref.WeakReference[] $r2;
+        WeakReferenceGC r0;
+        java.lang.ref.ReferenceQueue $r5;
+        gc.gctests.WeakReferenceGC.CircularLinkedList[] $r1;
+        java.util.Vector $r6;
+        int $i0, $i1;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16;
+
+        r0 := @this: WeakReferenceGC;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r7 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r7.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int loopCount> = 100;
+
+        $r8 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r8.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int gcCount> = 5;
+
+        $r9 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r9.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int numLists> = 50;
+
+        $r10 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r10.<gc.gctests.WeakReferenceGC.WeakReferenceGC: float qFactor> = 0.9F;
+
+        $r11 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i0 = $r11.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int numLists>;
+
+        $r1 = newarray (gc.gctests.WeakReferenceGC.CircularLinkedList)[$i0];
+
+        $r12 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r12.<gc.gctests.WeakReferenceGC.WeakReferenceGC: gc.gctests.WeakReferenceGC.CircularLinkedList[] holder> = $r1;
+
+        $r13 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i1 = $r13.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int numLists>;
+
+        $r2 = newarray (java.lang.ref.WeakReference)[$i1];
+
+        $r14 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r14.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.lang.ref.WeakReference[] wholder> = $r2;
+
+        $r5 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r5.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r15 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r15.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.lang.ref.ReferenceQueue refQueue> = $r5;
+
+        $r6 = new java.util.Vector;
+
+        specialinvoke $r6.<java.util.Vector: void <init>()>();
+
+        $r16 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r16.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.util.Vector results> = $r6;
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker $r1, $r2;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC $r3;
+        WeakReferenceGC r0;
+        int i0;
+        java.lang.Runnable $r4;
+
+        r0 := @this: WeakReferenceGC;
+
+        i0 := @parameter0: int;
+
+        if i0 <= 0 goto label1;
+
+        $r1 = null;
+
+        goto label2;
+
+     label1:
+        $r2 = new gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker;
+
+        $r1 = $r2;
+
+        $r3 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        specialinvoke $r2.<gc.gctests.WeakReferenceGC.WeakReferenceGC$Worker: void <init>(gc.gctests.WeakReferenceGC.WeakReferenceGC)>($r3);
+
+     label2:
+        $r4 = (java.lang.Runnable) $r1;
+
+        return $r4;
+    }
+
+    private void dumpTestResults()
+    {
+        WeakReferenceGC r2;
+        java.util.Vector $r3, $r4;
+        int $i0, $i1, $i2, $i3, i4;
+        java.lang.String $r12;
+        double $d0, $d1, $d2;
+        java.io.PrintStream $r0, $r1, $r8;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC $r14, $r15, $r16;
+        gc.gctests.WeakReferenceGC.Statistic r6;
+        float $f0, $f1, $f2;
+        java.lang.Object $r5;
+        java.lang.StringBuilder $r9, $r10, $r11, $r13;
+
+        r2 := @this: WeakReferenceGC;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Percentage of Objects  # of GC\'s");
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("    Recovered          Required");
+
+        i4 = 0;
+
+        goto label2;
+
+     label1:
+        $r14 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r2;
+
+        $r4 = $r14.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.util.Vector results>;
+
+        $r5 = virtualinvoke $r4.<java.util.Vector: java.lang.Object elementAt(int)>(i4);
+
+        r6 = (gc.gctests.WeakReferenceGC.Statistic) $r5;
+
+        $i1 = r6.<gc.gctests.WeakReferenceGC.Statistic: int numEnqueued>;
+
+        $f1 = (float) $i1;
+
+        $r15 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r2;
+
+        $i2 = $r15.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int numLists>;
+
+        $f0 = (float) $i2;
+
+        $f2 = $f1 / $f0;
+
+        $d0 = (double) $f2;
+
+        $d1 = $d0 * 100.0;
+
+        $d2 = staticinvoke <java.lang.Math: double rint(double)>($d1);
+
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("        ");
+
+        $r9 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(double)>($d2);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" %             ");
+
+        $i3 = r6.<gc.gctests.WeakReferenceGC.Statistic: int iterations>;
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+        i4 = i4 + 1;
+
+     label2:
+        $r16 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r2;
+
+        $r3 = $r16.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.util.Vector results>;
+
+        $i0 = virtualinvoke $r3.<java.util.Vector: int size()>();
+
+        if i4 < $i0 goto label1;
+
+        return;
+    }
+
+    private boolean hasPassed()
+    {
+        WeakReferenceGC r0;
+        java.util.Vector $r1, $r2;
+        int $i0, $i1, $i2, $i3, $i4, $i5, i6;
+        boolean z0;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC $r5, $r6, $r7, $r8, $r9;
+        gc.gctests.WeakReferenceGC.Statistic r4;
+        float $f0, $f1, $f2;
+        java.lang.Object $r3;
+
+        r0 := @this: WeakReferenceGC;
+
+        z0 = 1;
+
+        i6 = 0;
+
+        goto label4;
+
+     label1:
+        $r5 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r2 = $r5.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.util.Vector results>;
+
+        $r3 = virtualinvoke $r2.<java.util.Vector: java.lang.Object elementAt(int)>(i6);
+
+        r4 = (gc.gctests.WeakReferenceGC.Statistic) $r3;
+
+        $i2 = r4.<gc.gctests.WeakReferenceGC.Statistic: int iterations>;
+
+        $r6 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i1 = $r6.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int gcCount>;
+
+        if $i2 > $i1 goto label2;
+
+        $i5 = r4.<gc.gctests.WeakReferenceGC.Statistic: int numEnqueued>;
+
+        $r7 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i3 = $r7.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int numLists>;
+
+        $f1 = (float) $i3;
+
+        $r8 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $f0 = $r8.<gc.gctests.WeakReferenceGC.WeakReferenceGC: float qFactor>;
+
+        $f2 = $f1 * $f0;
+
+        $i4 = (int) $f2;
+
+        if $i5 >= $i4 goto label3;
+
+     label2:
+        z0 = 0;
+
+        goto label5;
+
+     label3:
+        i6 = i6 + 1;
+
+     label4:
+        $r9 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r1 = $r9.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.util.Vector results>;
+
+        $i0 = virtualinvoke $r1.<java.util.Vector: int size()>();
+
+        if i6 < $i0 goto label1;
+
+     label5:
+        return z0;
+    }
+
+    private void parseTestParams(java.lang.String[])
+    {
+        java.lang.Float $r15;
+        WeakReferenceGC r5;
+        java.lang.String[] r0;
+        java.lang.Integer $r14, $r16, $r17;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, i7, $i8;
+        java.lang.String $r1, $r2, $r3, $r4, $r7, $r9, $r11, $r13;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC $r18, $r19, $r20, $r21;
+        float $f0;
+
+        r5 := @this: WeakReferenceGC;
+
+        r0 := @parameter0: java.lang.String[];
+
+        i7 = 0;
+
+        goto label6;
+
+     label1:
+        $r1 = r0[i7];
+
+        $i0 = virtualinvoke $r1.<java.lang.String: int compareTo(java.lang.String)>("-numList");
+
+        if $i0 != 0 goto label2;
+
+        $r14 = new java.lang.Integer;
+
+        i7 = i7 + 1;
+
+        $r13 = r0[i7];
+
+        specialinvoke $r14.<java.lang.Integer: void <init>(java.lang.String)>($r13);
+
+        $i6 = virtualinvoke $r14.<java.lang.Integer: int intValue()>();
+
+        $r18 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r5;
+
+        $r18.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int numLists> = $i6;
+
+        goto label5;
+
+     label2:
+        $r2 = r0[i7];
+
+        $i1 = virtualinvoke $r2.<java.lang.String: int compareTo(java.lang.String)>("-qFactor");
+
+        if $i1 != 0 goto label3;
+
+        $r15 = new java.lang.Float;
+
+        i7 = i7 + 1;
+
+        $r11 = r0[i7];
+
+        specialinvoke $r15.<java.lang.Float: void <init>(java.lang.String)>($r11);
+
+        $f0 = virtualinvoke $r15.<java.lang.Float: float floatValue()>();
+
+        $r19 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r5;
+
+        $r19.<gc.gctests.WeakReferenceGC.WeakReferenceGC: float qFactor> = $f0;
+
+        goto label5;
+
+     label3:
+        $r3 = r0[i7];
+
+        $i2 = virtualinvoke $r3.<java.lang.String: int compareTo(java.lang.String)>("-gcCount");
+
+        if $i2 != 0 goto label4;
+
+        $r16 = new java.lang.Integer;
+
+        i7 = i7 + 1;
+
+        $r9 = r0[i7];
+
+        specialinvoke $r16.<java.lang.Integer: void <init>(java.lang.String)>($r9);
+
+        $i5 = virtualinvoke $r16.<java.lang.Integer: int intValue()>();
+
+        $r20 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r5;
+
+        $r20.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int gcCount> = $i5;
+
+        goto label5;
+
+     label4:
+        $r4 = r0[i7];
+
+        $i3 = virtualinvoke $r4.<java.lang.String: int compareTo(java.lang.String)>("-iter");
+
+        if $i3 != 0 goto label5;
+
+        $r17 = new java.lang.Integer;
+
+        i7 = i7 + 1;
+
+        $r7 = r0[i7];
+
+        specialinvoke $r17.<java.lang.Integer: void <init>(java.lang.String)>($r7);
+
+        $i4 = virtualinvoke $r17.<java.lang.Integer: int intValue()>();
+
+        $r21 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r5;
+
+        $r21.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int loopCount> = $i4;
+
+     label5:
+        i7 = i7 + 1;
+
+     label6:
+        $i8 = lengthof r0;
+
+        if i7 < $i8 goto label1;
+
+        return;
+    }
+
+    private void persistentGC()
+    {
+        java.lang.ref.WeakReference[] $r5;
+        WeakReferenceGC r0;
+        nsk.share.test.ExecutionController $r3, $r4;
+        java.util.Vector $r2;
+        int $i0, i1, $i2, $i3, i4, i5, i6, $i7;
+        java.lang.ref.WeakReference $r6;
+        boolean $z0, $z1;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15;
+        gc.gctests.WeakReferenceGC.Statistic $r7;
+        float $f0, $f1, $f2;
+
+        r0 := @this: WeakReferenceGC;
+
+        i4 = 0;
+
+        i5 = 0;
+
+        $r8 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i0 = $r8.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int numLists>;
+
+        $f1 = (float) $i0;
+
+        $r9 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $f0 = $r9.<gc.gctests.WeakReferenceGC.WeakReferenceGC: float qFactor>;
+
+        $f2 = $f1 * $f0;
+
+        i1 = (int) $f2;
+
+        goto label7;
+
+     label1:
+        i5 = i5 + 1;
+
+        $r10 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r3 = virtualinvoke $r10.<gc.gctests.WeakReferenceGC.WeakReferenceGC: nsk.share.test.ExecutionController getExecutionController()>();
+
+        $z0 = interfaceinvoke $r3.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 != 0 goto label2;
+
+        return;
+
+     label2:
+        $r11 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r4 = virtualinvoke $r11.<gc.gctests.WeakReferenceGC.WeakReferenceGC: nsk.share.test.ExecutionController getExecutionController()>();
+
+        $i3 = staticinvoke <nsk.share.gc.gp.GarbageUtils: int eatMemory(nsk.share.test.ExecutionController)>($r4);
+
+        if $i3 != 0 goto label3;
+
+        return;
+
+     label3:
+        i4 = 0;
+
+        i6 = 0;
+
+        goto label6;
+
+     label4:
+        $r12 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r5 = $r12.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.lang.ref.WeakReference[] wholder>;
+
+        $r6 = $r5[i6];
+
+        $z1 = virtualinvoke $r6.<java.lang.ref.WeakReference: boolean isEnqueued()>();
+
+        if $z1 == 0 goto label5;
+
+        i4 = i4 + 1;
+
+     label5:
+        i6 = i6 + 1;
+
+     label6:
+        $r13 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i7 = $r13.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int numLists>;
+
+        if i6 < $i7 goto label4;
+
+     label7:
+        if i4 >= i1 goto label8;
+
+        $r14 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i2 = $r14.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int gcCount>;
+
+        if i5 <= $i2 goto label1;
+
+     label8:
+        $r15 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r2 = $r15.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.util.Vector results>;
+
+        $r7 = new gc.gctests.WeakReferenceGC.Statistic;
+
+        specialinvoke $r7.<gc.gctests.WeakReferenceGC.Statistic: void <init>(int,int)>(i5, i4);
+
+        virtualinvoke $r2.<java.util.Vector: void addElement(java.lang.Object)>($r7);
+
+        return;
+    }
+
+    private void runTest()
+    {
+        gc.gctests.WeakReferenceGC.CircularLinkedList $r4, $r8, $r17;
+        gc.gctests.WeakReferenceGC.CircularLinkedList[] $r2, $r3, $r6, $r10;
+        boolean $z0;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC $r21, $r22, $r23, $r24, $r25, $r26, $r27, $r28, $r29, $r30, $r31, $r32, $r33;
+        java.lang.StringBuilder $r15, $r19;
+        java.lang.Throwable $r34;
+        java.lang.ref.WeakReference[] $r9;
+        WeakReferenceGC r0;
+        nsk.share.test.ExecutionController $r11;
+        java.lang.ref.ReferenceQueue $r7;
+        int $i0, $i1, $i2, $i3, i4, i5, i6;
+        java.lang.String $r16;
+        java.lang.ref.WeakReference $r18;
+        nsk.share.TestFailure $r20;
+        java.lang.OutOfMemoryError $r12;
+
+        r0 := @this: WeakReferenceGC;
+
+        i4 = 1;
+
+     label01:
+        i5 = 0;
+
+        goto label03;
+
+     label02:
+        $r21 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r2 = $r21.<gc.gctests.WeakReferenceGC.WeakReferenceGC: gc.gctests.WeakReferenceGC.CircularLinkedList[] holder>;
+
+        $r17 = new gc.gctests.WeakReferenceGC.CircularLinkedList;
+
+        specialinvoke $r17.<gc.gctests.WeakReferenceGC.CircularLinkedList: void <init>()>();
+
+        $r2[i5] = $r17;
+
+        $r22 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r3 = $r22.<gc.gctests.WeakReferenceGC.WeakReferenceGC: gc.gctests.WeakReferenceGC.CircularLinkedList[] holder>;
+
+        $r4 = $r3[i5];
+
+        virtualinvoke $r4.<gc.gctests.WeakReferenceGC.CircularLinkedList: void addNelements(int)>(1000);
+
+        $r23 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r9 = $r23.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.lang.ref.WeakReference[] wholder>;
+
+        $r18 = new java.lang.ref.WeakReference;
+
+        $r24 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r6 = $r24.<gc.gctests.WeakReferenceGC.WeakReferenceGC: gc.gctests.WeakReferenceGC.CircularLinkedList[] holder>;
+
+        $r8 = $r6[i5];
+
+        $r25 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r7 = $r25.<gc.gctests.WeakReferenceGC.WeakReferenceGC: java.lang.ref.ReferenceQueue refQueue>;
+
+        specialinvoke $r18.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r8, $r7);
+
+        $r9[i5] = $r18;
+
+        i5 = i5 + 1;
+
+     label03:
+        $r26 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i0 = $r26.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int numLists>;
+
+        if i5 < $i0 goto label02;
+
+        i6 = 0;
+
+        goto label05;
+
+     label04:
+        $r27 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r10 = $r27.<gc.gctests.WeakReferenceGC.WeakReferenceGC: gc.gctests.WeakReferenceGC.CircularLinkedList[] holder>;
+
+        $r10[i6] = null;
+
+        i6 = i6 + 1;
+
+     label05:
+        $r28 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i1 = $r28.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int numLists>;
+
+        if i6 < $i1 goto label04;
+
+        $r29 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r11 = virtualinvoke $r29.<gc.gctests.WeakReferenceGC.WeakReferenceGC: nsk.share.test.ExecutionController getExecutionController()>();
+
+        $z0 = interfaceinvoke $r11.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 != 0 goto label07;
+
+     label06:
+        return;
+
+     label07:
+        $r30 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        virtualinvoke $r30.<gc.gctests.WeakReferenceGC.WeakReferenceGC: void persistentGC()>();
+
+        i4 = i4 + 1;
+
+        $r31 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i2 = $r31.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int loopCount>;
+
+        if i4 <= $i2 goto label01;
+
+     label08:
+        goto label10;
+
+     label09:
+        $r12 := @caughtexception;
+
+        $r32 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $r32.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int[] memory_reserve> = null;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r20 = new nsk.share.TestFailure;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>("Failed at iteration=");
+
+        $r33 = (gc.gctests.WeakReferenceGC.WeakReferenceGC) r0;
+
+        $i3 = $r33.<gc.gctests.WeakReferenceGC.WeakReferenceGC: int loopCount>;
+
+        $r15 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r20.<nsk.share.TestFailure: void <init>(java.lang.String)>($r16);
+
+        $r34 = (java.lang.Throwable) $r20;
+
+        throw $r34;
+
+     label10:
+        return;
+
+        catch java.lang.OutOfMemoryError from label01 to label06 with label09;
+        catch java.lang.OutOfMemoryError from label07 to label08 with label09;
+    }
+
+    static nsk.share.log.Log access$0(gc.gctests.WeakReferenceGC.WeakReferenceGC)
+    {
+        nsk.share.log.Log $r1;
+        gc.gctests.WeakReferenceGC.WeakReferenceGC r0;
+
+        r0 := @parameter0: gc.gctests.WeakReferenceGC.WeakReferenceGC;
+
+        $r1 = r0.<gc.gctests.WeakReferenceGC.WeakReferenceGC: nsk.share.log.Log log>;
+
+        return $r1;
+    }
+}

@@ -1,0 +1,21 @@
+public final class GCTokens extends java.lang.Object
+{
+    public static final java.lang.String WB_INITIATED_YOUNG_GC;
+    public static final java.lang.String WB_INITIATED_MIXED_GC;
+    public static final java.lang.String WB_INITIATED_CMC;
+    public static final java.lang.String FULL_GC;
+    public static final java.lang.String FULL_GC_MEMORY_PRESSURE;
+    public static final java.lang.String CMC;
+    public static final java.lang.String YOUNG_GC;
+
+    private void <init>()
+    {
+        GCTokens r0;
+
+        r0 := @this: GCTokens;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

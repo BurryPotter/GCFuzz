@@ -1,0 +1,80 @@
+public class weak007 extends nsk.share.gc.ThreadedGCTest
+{
+
+    public void <init>()
+    {
+        weak007 r0;
+
+        r0 := @this: weak007;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        weak007 r1;
+        int i0;
+        gc.gctests.WeakReference.weak007.weak007 $r3;
+        gc.gctests.WeakReference.weak007.weak007$Worker $r2;
+        java.lang.Runnable $r4;
+
+        r1 := @this: weak007;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.WeakReference.weak007.weak007$Worker;
+
+        $r3 = (gc.gctests.WeakReference.weak007.weak007) r1;
+
+        specialinvoke $r2.<gc.gctests.WeakReference.weak007.weak007$Worker: void <init>(gc.gctests.WeakReference.weak007.weak007)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        gc.gctests.WeakReference.weak007.weak007 $r2;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.WeakReference.weak007.weak007;
+
+        specialinvoke $r2.<gc.gctests.WeakReference.weak007.weak007: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.test.ExecutionController access$0(gc.gctests.WeakReference.weak007.weak007)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.WeakReference.weak007.weak007 r0;
+
+        r0 := @parameter0: gc.gctests.WeakReference.weak007.weak007;
+
+        $r1 = virtualinvoke r0.<gc.gctests.WeakReference.weak007.weak007: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+
+    static nsk.share.log.Log access$1(gc.gctests.WeakReference.weak007.weak007)
+    {
+        gc.gctests.WeakReference.weak007.weak007 r0;
+        nsk.share.log.Log $r1;
+
+        r0 := @parameter0: gc.gctests.WeakReference.weak007.weak007;
+
+        $r1 = r0.<gc.gctests.WeakReference.weak007.weak007: nsk.share.log.Log log>;
+
+        return $r1;
+    }
+}

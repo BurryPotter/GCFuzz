@@ -1,0 +1,205 @@
+class MixedGCProvoker extends java.lang.Object
+{
+    private static final sun.hotspot.WhiteBox WB;
+    private static final java.util.List liveOldObjects;
+    private static final java.util.List newObjects;
+
+    static void <clinit>()
+    {
+        sun.hotspot.WhiteBox $r0;
+        java.util.ArrayList $r1, $r2;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        <gc.g1.mixedgc.MixedGCProvoker: sun.hotspot.WhiteBox WB> = $r0;
+
+        $r1 = new java.util.ArrayList;
+
+        specialinvoke $r1.<java.util.ArrayList: void <init>()>();
+
+        <gc.g1.mixedgc.MixedGCProvoker: java.util.List liveOldObjects> = $r1;
+
+        $r2 = new java.util.ArrayList;
+
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+
+        <gc.g1.mixedgc.MixedGCProvoker: java.util.List newObjects> = $r2;
+
+        return;
+    }
+
+    void <init>()
+    {
+        MixedGCProvoker r0;
+
+        r0 := @this: MixedGCProvoker;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static void allocateOldObjects() throws java.lang.Exception
+    {
+        byte[] $r1, $r3;
+        sun.hotspot.WhiteBox $r4, $r5, $r7, $r8;
+        java.util.ArrayList $r0;
+        java.util.List $r2, $r6;
+        int i0;
+        boolean $z0, $z1;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r2 = <gc.g1.mixedgc.MixedGCProvoker: java.util.List liveOldObjects>;
+
+        $r1 = newarray (byte)[100000];
+
+        interfaceinvoke $r2.<java.util.List: boolean add(java.lang.Object)>($r1);
+
+        $r3 = newarray (byte)[100000];
+
+        interfaceinvoke $r0.<java.util.List: boolean add(java.lang.Object)>($r3);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 15 goto label1;
+
+        $r4 = <gc.g1.mixedgc.MixedGCProvoker: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r4.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r5 = <gc.g1.mixedgc.MixedGCProvoker: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r5.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r7 = <gc.g1.mixedgc.MixedGCProvoker: sun.hotspot.WhiteBox WB>;
+
+        $r6 = <gc.g1.mixedgc.MixedGCProvoker: java.util.List liveOldObjects>;
+
+        $z0 = virtualinvoke $r7.<sun.hotspot.WhiteBox: boolean isObjectInOldGen(java.lang.Object)>($r6);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z0, "List of the objects is suppose to be in OldGen");
+
+        $r8 = <gc.g1.mixedgc.MixedGCProvoker: sun.hotspot.WhiteBox WB>;
+
+        $z1 = virtualinvoke $r8.<sun.hotspot.WhiteBox: boolean isObjectInOldGen(java.lang.Object)>($r0);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z1, "List of the objects is suppose to be in OldGen");
+
+        return;
+    }
+
+    public static void waitTillCMCFinished(sun.hotspot.WhiteBox, int)
+    {
+        java.io.PrintStream $r2;
+        java.lang.InterruptedException $r1;
+        int i0, $i3;
+        sun.hotspot.WhiteBox r0;
+        long $l1;
+        boolean $z0;
+
+        r0 := @parameter0: sun.hotspot.WhiteBox;
+
+        i0 := @parameter1: int;
+
+        goto label5;
+
+     label1:
+        $i3 = (int) -1;
+
+        if i0 <= $i3 goto label5;
+
+     label2:
+        $l1 = (long) i0;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>($l1);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r1 := @caughtexception;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("Got InterruptedException while waiting for ConcMarkCycle to finish");
+
+     label5:
+        $z0 = virtualinvoke r0.<sun.hotspot.WhiteBox: boolean g1InConcurrentMark()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+
+        catch java.lang.InterruptedException from label2 to label3 with label4;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.PrintStream $r4;
+        byte[] $r5;
+        sun.hotspot.WhiteBox $r0, $r1, $r2, $r3, $r8;
+        java.lang.String[] r9;
+        java.util.List $r6, $r7;
+        int i0;
+        boolean $z0;
+
+        r9 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.g1.mixedgc.MixedGCProvoker: void allocateOldObjects()>();
+
+        $r0 = <gc.g1.mixedgc.MixedGCProvoker: sun.hotspot.WhiteBox WB>;
+
+        staticinvoke <gc.g1.mixedgc.MixedGCProvoker: void waitTillCMCFinished(sun.hotspot.WhiteBox,int)>($r0, 0);
+
+        $r1 = <gc.g1.mixedgc.MixedGCProvoker: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r1.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        $r2 = <gc.g1.mixedgc.MixedGCProvoker: sun.hotspot.WhiteBox WB>;
+
+        staticinvoke <gc.g1.mixedgc.MixedGCProvoker: void waitTillCMCFinished(sun.hotspot.WhiteBox,int)>($r2, 0);
+
+        $r3 = <gc.g1.mixedgc.MixedGCProvoker: sun.hotspot.WhiteBox WB>;
+
+        virtualinvoke $r3.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>("Allocating new objects to provoke mixed GC");
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r6 = <gc.g1.mixedgc.MixedGCProvoker: java.util.List newObjects>;
+
+        $r5 = newarray (byte)[20000];
+
+        interfaceinvoke $r6.<java.util.List: boolean add(java.lang.Object)>($r5);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 300 goto label1;
+
+        $r8 = <gc.g1.mixedgc.MixedGCProvoker: sun.hotspot.WhiteBox WB>;
+
+        $r7 = <gc.g1.mixedgc.MixedGCProvoker: java.util.List liveOldObjects>;
+
+        $z0 = virtualinvoke $r8.<sun.hotspot.WhiteBox: boolean isObjectInOldGen(java.lang.Object)>($r7);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertTrue(boolean,java.lang.String)>($z0, "List of the objects is suppose to be in OldGen");
+
+        return;
+    }
+}

@@ -1,0 +1,61 @@
+public final class PRHelper extends java.lang.ref.PhantomReference
+{
+    private int referentHashCode;
+
+    public void <init>(java.lang.Object, java.lang.ref.ReferenceQueue)
+    {
+        gc.gctests.PhantomReference.PRHelper $r3;
+        int $i1;
+        java.lang.Object r1;
+        PRHelper r0;
+        java.lang.ref.ReferenceQueue r2;
+
+        r0 := @this: PRHelper;
+
+        r1 := @parameter0: java.lang.Object;
+
+        r2 := @parameter1: java.lang.ref.ReferenceQueue;
+
+        specialinvoke r0.<java.lang.ref.PhantomReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>(r1, r2);
+
+        $r3 = (gc.gctests.PhantomReference.PRHelper) r0;
+
+        $i1 = (int) -1;
+
+        $r3.<gc.gctests.PhantomReference.PRHelper: int referentHashCode> = $i1;
+
+        return;
+    }
+
+    public int getReferentHashCode()
+    {
+        int $i0;
+        PRHelper r0;
+        gc.gctests.PhantomReference.PRHelper $r1;
+
+        r0 := @this: PRHelper;
+
+        $r1 = (gc.gctests.PhantomReference.PRHelper) r0;
+
+        $i0 = $r1.<gc.gctests.PhantomReference.PRHelper: int referentHashCode>;
+
+        return $i0;
+    }
+
+    public void setReferentHashCode(int)
+    {
+        int i0;
+        PRHelper r0;
+        gc.gctests.PhantomReference.PRHelper $r1;
+
+        r0 := @this: PRHelper;
+
+        i0 := @parameter0: int;
+
+        $r1 = (gc.gctests.PhantomReference.PRHelper) r0;
+
+        $r1.<gc.gctests.PhantomReference.PRHelper: int referentHashCode> = i0;
+
+        return;
+    }
+}

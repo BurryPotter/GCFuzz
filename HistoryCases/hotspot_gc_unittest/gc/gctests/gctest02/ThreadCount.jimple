@@ -1,0 +1,57 @@
+class ThreadCount extends java.lang.Object
+{
+    static int count;
+
+    static void <clinit>()
+    {
+        <gc.gctests.gctest02.ThreadCount: int count> = 0;
+
+        return;
+    }
+
+    void <init>()
+    {
+        ThreadCount r0;
+
+        r0 := @this: ThreadCount;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    static synchronized void inc()
+    {
+        int $i0, $i1;
+
+        $i0 = <gc.gctests.gctest02.ThreadCount: int count>;
+
+        $i1 = $i0 + 1;
+
+        <gc.gctests.gctest02.ThreadCount: int count> = $i1;
+
+        return;
+    }
+
+    static synchronized void dec()
+    {
+        int $i0, $i1;
+
+        $i0 = <gc.gctests.gctest02.ThreadCount: int count>;
+
+        $i1 = $i0 - 1;
+
+        <gc.gctests.gctest02.ThreadCount: int count> = $i1;
+
+        return;
+    }
+
+    static synchronized int get()
+    {
+        int $i0;
+
+        $i0 = <gc.gctests.gctest02.ThreadCount: int count>;
+
+        return $i0;
+    }
+}

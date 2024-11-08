@@ -1,0 +1,131 @@
+class TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject extends java.lang.Object
+{
+    private final java.util.List payload;
+    private final java.util.List ref;
+    final gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest this$1;
+
+    public void <init>(gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest, int)
+    {
+        byte[] $r4;
+        TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject r0;
+        java.util.ArrayList $r6;
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject $r8, $r9, $r10, $r11;
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest r1;
+        java.util.List $r5;
+        int i0;
+        java.util.LinkedList $r7;
+
+        r0 := @this: TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject;
+
+        r1 := @parameter0: gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest;
+
+        i0 := @parameter1: int;
+
+        $r8 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) r0;
+
+        $r8.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest this$1> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r6 = new java.util.ArrayList;
+
+        specialinvoke $r6.<java.util.ArrayList: void <init>()>();
+
+        $r9 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) r0;
+
+        $r9.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: java.util.List payload> = $r6;
+
+        $r7 = new java.util.LinkedList;
+
+        specialinvoke $r7.<java.util.LinkedList: void <init>()>();
+
+        $r10 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) r0;
+
+        $r10.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: java.util.List ref> = $r7;
+
+        $r11 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) r0;
+
+        $r5 = $r11.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: java.util.List payload>;
+
+        $r4 = newarray (byte)[i0];
+
+        interfaceinvoke $r5.<java.util.List: boolean add(java.lang.Object)>($r4);
+
+        return;
+    }
+
+    public void addRef(gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject)
+    {
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject r1, $r3;
+        java.util.List $r2;
+        TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject r0;
+
+        r0 := @this: TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject;
+
+        r1 := @parameter0: gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject;
+
+        $r3 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) r0;
+
+        $r2 = $r3.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: java.util.List ref>;
+
+        interfaceinvoke $r2.<java.util.List: boolean add(java.lang.Object)>(r1);
+
+        return;
+    }
+
+    public void mutate()
+    {
+        byte[] $r4, $r7;
+        byte $b2;
+        int $i0, $i1;
+        boolean $z0;
+        double $d0, $d1;
+        TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject r0;
+        gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject $r8, $r9, $r10;
+        java.util.List $r1, $r2, $r5;
+        java.lang.Object $r3, $r6;
+
+        r0 := @this: TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject;
+
+        $r8 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) r0;
+
+        $r1 = $r8.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: java.util.List payload>;
+
+        $z0 = interfaceinvoke $r1.<java.util.List: boolean isEmpty()>();
+
+        if $z0 != 0 goto label1;
+
+        $r9 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) r0;
+
+        $r2 = $r9.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: java.util.List payload>;
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(0);
+
+        $r4 = (byte[]) $r3;
+
+        $i0 = lengthof $r4;
+
+        if $i0 <= 0 goto label1;
+
+        $r10 = (gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject) r0;
+
+        $r5 = $r10.<gc.g1.TestShrinkAuxiliaryData$ShrinkAuxiliaryDataTest$GarbageObject: java.util.List payload>;
+
+        $r6 = interfaceinvoke $r5.<java.util.List: java.lang.Object get(int)>(0);
+
+        $r7 = (byte[]) $r6;
+
+        $d0 = staticinvoke <java.lang.Math: double random()>();
+
+        $d1 = $d0 * 127.0;
+
+        $i1 = (int) $d1;
+
+        $b2 = (byte) $i1;
+
+        $r7[0] = $b2;
+
+     label1:
+        return;
+    }
+}

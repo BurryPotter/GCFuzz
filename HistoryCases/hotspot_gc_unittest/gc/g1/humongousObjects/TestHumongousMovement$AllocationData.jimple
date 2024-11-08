@@ -1,0 +1,158 @@
+class TestHumongousMovement$AllocationData extends java.lang.Object
+{
+    private final byte[] allocation;
+    public final java.math.BigInteger objectAddress;
+
+    public void <init>(byte[])
+    {
+        byte[] r1, $r3;
+        sun.hotspot.WhiteBox $r4;
+        long $l0;
+        gc.g1.humongousObjects.TestHumongousMovement$AllocationData $r7, $r8, $r9;
+        TestHumongousMovement$AllocationData r0;
+        java.math.BigInteger $r6;
+        java.lang.String $r5;
+
+        r0 := @this: TestHumongousMovement$AllocationData;
+
+        r1 := @parameter0: byte[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r7 = (gc.g1.humongousObjects.TestHumongousMovement$AllocationData) r0;
+
+        $r7.<gc.g1.humongousObjects.TestHumongousMovement$AllocationData: byte[] allocation> = r1;
+
+        $r6 = new java.math.BigInteger;
+
+        $r4 = <gc.g1.humongousObjects.TestHumongousMovement: sun.hotspot.WhiteBox WB>;
+
+        $r8 = (gc.g1.humongousObjects.TestHumongousMovement$AllocationData) r0;
+
+        $r3 = $r8.<gc.g1.humongousObjects.TestHumongousMovement$AllocationData: byte[] allocation>;
+
+        $l0 = virtualinvoke $r4.<sun.hotspot.WhiteBox: long getObjectAddress(java.lang.Object)>($r3);
+
+        $r5 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long)>($l0);
+
+        specialinvoke $r6.<java.math.BigInteger: void <init>(java.lang.String)>($r5);
+
+        $r9 = (gc.g1.humongousObjects.TestHumongousMovement$AllocationData) r0;
+
+        $r9.<gc.g1.humongousObjects.TestHumongousMovement$AllocationData: java.math.BigInteger objectAddress> = $r6;
+
+        return;
+    }
+
+    public boolean isAddressChanged()
+    {
+        byte[] $r2;
+        sun.hotspot.WhiteBox $r3;
+        long $l0;
+        gc.g1.humongousObjects.TestHumongousMovement$AllocationData $r7, $r8;
+        TestHumongousMovement$AllocationData r1;
+        java.math.BigInteger $r5, $r6;
+        java.lang.String $r4;
+        boolean $z0, $z1;
+
+        r1 := @this: TestHumongousMovement$AllocationData;
+
+        $r6 = new java.math.BigInteger;
+
+        $r3 = <gc.g1.humongousObjects.TestHumongousMovement: sun.hotspot.WhiteBox WB>;
+
+        $r7 = (gc.g1.humongousObjects.TestHumongousMovement$AllocationData) r1;
+
+        $r2 = $r7.<gc.g1.humongousObjects.TestHumongousMovement$AllocationData: byte[] allocation>;
+
+        $l0 = virtualinvoke $r3.<sun.hotspot.WhiteBox: long getObjectAddress(java.lang.Object)>($r2);
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long)>($l0);
+
+        specialinvoke $r6.<java.math.BigInteger: void <init>(java.lang.String)>($r4);
+
+        $r8 = (gc.g1.humongousObjects.TestHumongousMovement$AllocationData) r1;
+
+        $r5 = $r8.<gc.g1.humongousObjects.TestHumongousMovement$AllocationData: java.math.BigInteger objectAddress>;
+
+        $z0 = virtualinvoke $r6.<java.math.BigInteger: boolean equals(java.lang.Object)>($r5);
+
+        if $z0 == 0 goto label1;
+
+        $z1 = 0;
+
+        goto label2;
+
+     label1:
+        $z1 = 1;
+
+     label2:
+        return $z1;
+    }
+
+    public void printDetails(java.io.PrintStream)
+    {
+        byte[] $r2;
+        java.lang.Object[] $r6;
+        long $l0;
+        java.math.BigInteger $r7, $r8, $r11;
+        java.lang.String $r4, $r9, $r10;
+        boolean $z0;
+        java.io.PrintStream r5;
+        sun.hotspot.WhiteBox $r3;
+        gc.g1.humongousObjects.TestHumongousMovement$AllocationData $r12, $r13, $r14;
+        TestHumongousMovement$AllocationData r1;
+
+        r1 := @this: TestHumongousMovement$AllocationData;
+
+        r5 := @parameter0: java.io.PrintStream;
+
+        $r11 = new java.math.BigInteger;
+
+        $r3 = <gc.g1.humongousObjects.TestHumongousMovement: sun.hotspot.WhiteBox WB>;
+
+        $r12 = (gc.g1.humongousObjects.TestHumongousMovement$AllocationData) r1;
+
+        $r2 = $r12.<gc.g1.humongousObjects.TestHumongousMovement$AllocationData: byte[] allocation>;
+
+        $l0 = virtualinvoke $r3.<sun.hotspot.WhiteBox: long getObjectAddress(java.lang.Object)>($r2);
+
+        $r4 = staticinvoke <java.lang.Long: java.lang.String toUnsignedString(long)>($l0);
+
+        specialinvoke $r11.<java.math.BigInteger: void <init>(java.lang.String)>($r4);
+
+        $r6 = newarray (java.lang.Object)[3];
+
+        $r13 = (gc.g1.humongousObjects.TestHumongousMovement$AllocationData) r1;
+
+        $r7 = $r13.<gc.g1.humongousObjects.TestHumongousMovement$AllocationData: java.math.BigInteger objectAddress>;
+
+        $r6[0] = $r7;
+
+        $r6[1] = $r11;
+
+        $r14 = (gc.g1.humongousObjects.TestHumongousMovement$AllocationData) r1;
+
+        $r8 = $r14.<gc.g1.humongousObjects.TestHumongousMovement$AllocationData: java.math.BigInteger objectAddress>;
+
+        $z0 = virtualinvoke $r8.<java.math.BigInteger: boolean equals(java.lang.Object)>($r11);
+
+        if $z0 != 0 goto label1;
+
+        $r10 = "not ";
+
+        goto label2;
+
+     label1:
+        $r10 = "";
+
+     label2:
+        $r6[2] = $r10;
+
+        $r9 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Object stored address = %d\nObject address after GC = %d\nThey are %sequals", $r6);
+
+        virtualinvoke r5.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        return;
+    }
+}

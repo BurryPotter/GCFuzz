@@ -1,0 +1,38 @@
+final enum class Main$RefType$3 extends driver.Main$RefType
+{
+
+    void <init>(java.lang.String, int)
+    {
+        int i0;
+        Main$RefType$3 r0;
+        java.lang.String r1;
+
+        r0 := @this: Main$RefType$3;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<driver.Main$RefType: void <init>(java.lang.String,int,driver.Main$1)>(r1, i0, null);
+
+        return;
+    }
+
+    public java.lang.Object get(java.net.URLClassLoader, java.lang.Class, java.lang.Object)
+    {
+        Main$RefType$3 r1;
+        java.net.URLClassLoader r2;
+        java.lang.Object r0;
+        java.lang.Class r3;
+
+        r1 := @this: Main$RefType$3;
+
+        r2 := @parameter0: java.net.URLClassLoader;
+
+        r3 := @parameter1: java.lang.Class;
+
+        r0 := @parameter2: java.lang.Object;
+
+        return r0;
+    }
+}

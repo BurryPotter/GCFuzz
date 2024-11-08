@@ -1,0 +1,5 @@
+interface  GCTypes$GCType extends java.lang.Object
+{
+
+    public abstract java.lang.String getGCName();
+}

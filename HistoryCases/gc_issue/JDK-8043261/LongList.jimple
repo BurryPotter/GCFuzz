@@ -1,0 +1,244 @@
+public class LongList extends java.lang.Object
+{
+    private static final int FILLER;
+    private static int listLenth;
+    private static int treeHeight;
+    private static final java.lang.String usage;
+    private static final java.lang.String list_length_string;
+    private static final java.lang.String tree_height_string;
+    private static int listLength;
+    private static LinkedList list;
+
+    public void <init>()
+    {
+        LongList r0;
+
+        r0 := @this: LongList;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private static LinkedList makeList(int)
+    {
+        java.lang.String[] r1;
+        LinkedList $r0, $r2, r8;
+        int i0, i1, i2;
+        java.lang.StringBuilder $r4, $r5, $r6;
+        java.lang.String $r3, $r7;
+
+        i0 := @parameter0: int;
+
+        if i0 != 0 goto label1;
+
+        return null;
+
+     label1:
+        $r0 = new LinkedList;
+
+        specialinvoke $r0.<LinkedList: void <init>()>();
+
+        r8 = $r0;
+
+        i1 = 0;
+
+     label2:
+        if i1 >= i0 goto label5;
+
+        r1 = newarray (java.lang.String)[0];
+
+        i2 = 0;
+
+     label3:
+        if i2 >= 0 goto label4;
+
+        $r3 = new java.lang.String;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("string ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<java.lang.String: void <init>(java.lang.String)>($r7);
+
+        r1[i2] = $r3;
+
+        i2 = i2 + 1;
+
+        goto label3;
+
+     label4:
+        $r2 = new LinkedList;
+
+        specialinvoke $r2.<LinkedList: void <init>()>();
+
+        r8.<LinkedList: LinkedList next> = $r2;
+
+        r8 = $r2;
+
+        i1 = i1 + 1;
+
+        goto label2;
+
+     label5:
+        return $r0;
+    }
+
+    public static TreeNode makeTree(int)
+    {
+        java.lang.Integer $r1, $r4;
+        TreeNode $r0, $r2, $r3;
+        int i0, $i1, $i2, $i3, $i4, $i5;
+
+        i0 := @parameter0: int;
+
+        if i0 != 0 goto label1;
+
+        return null;
+
+     label1:
+        $r0 = new TreeNode;
+
+        specialinvoke $r0.<TreeNode: void <init>()>();
+
+        $i1 = <TreeNode: int nodes>;
+
+        $i2 = $i1 + 1;
+
+        <TreeNode: int nodes> = $i2;
+
+        $i3 = <TreeNode: int nodes>;
+
+        $r1 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+
+        $r0.<TreeNode: java.lang.Integer val> = $r1;
+
+        $i4 = i0 - 1;
+
+        $r2 = staticinvoke <LongList: TreeNode makeTree(int)>($i4);
+
+        $r0.<TreeNode: TreeNode left> = $r2;
+
+        $i5 = i0 - 1;
+
+        $r3 = staticinvoke <LongList: TreeNode makeTree(int)>($i5);
+
+        $r0.<TreeNode: TreeNode right> = $r3;
+
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+
+        $r0.<TreeNode: java.lang.Integer val> = $r4;
+
+        return $r0;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r3;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        java.lang.String $r4, $r5, $r11, $r17;
+        java.io.PrintStream $r0, $r1, $r2, $r7, $r13, $r18, $r19, $r20, $r21;
+        java.lang.StringBuilder $r6, $r8, $r9, $r10, $r12, $r14, $r15, $r16;
+
+        r3 := @parameter0: java.lang.String[];
+
+        $r0 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("Usage: java LongList <list_length> <tree_height>");
+
+        $r1 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("  where <list_length> is the length of the linked list");
+
+        $r2 = <java.lang.System: java.io.PrintStream err>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("        <tree_height> is the height of the trees allocated before and after the linked list");
+
+        $i0 = lengthof r3;
+
+        if $i0 == 2 goto label1;
+
+        return;
+
+     label1:
+        $r4 = r3[0];
+
+        $i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r4);
+
+        <LongList: int listLength> = $i1;
+
+        $r5 = r3[1];
+
+        $i2 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r5);
+
+        <LongList: int treeHeight> = $i2;
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  ");
+
+        $i3 = <LongList: int listLength>;
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" list length");
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r11);
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("  ");
+
+        $i4 = <LongList: int treeHeight>;
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" tree height");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+        $i5 = <LongList: int treeHeight>;
+
+        staticinvoke <LongList: TreeNode makeTree(int)>($i5);
+
+        $r18 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>("### Tree built");
+
+        $r19 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r19.<java.io.PrintStream: void println(java.lang.String)>("### Tree felled");
+
+        $i6 = <LongList: int listLength>;
+
+        staticinvoke <LongList: LinkedList makeList(int)>($i6);
+
+        $r20 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r20.<java.io.PrintStream: void println(java.lang.String)>("### List built");
+
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>("### Done");
+
+        return;
+    }
+}

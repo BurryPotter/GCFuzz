@@ -1,0 +1,31 @@
+enum class TestHumongousClassLoader$GC$1 extends gc.g1.humongousObjects.TestHumongousClassLoader$GC
+{
+
+    void <init>(java.lang.String, int)
+    {
+        int i0;
+        TestHumongousClassLoader$GC$1 r0;
+        java.lang.String r1;
+
+        r0 := @this: TestHumongousClassLoader$GC$1;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<gc.g1.humongousObjects.TestHumongousClassLoader$GC: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public void provoke()
+    {
+        TestHumongousClassLoader$GC$1 r0;
+
+        r0 := @this: TestHumongousClassLoader$GC$1;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        return;
+    }
+}

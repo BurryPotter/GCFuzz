@@ -1,0 +1,187 @@
+public class TestDynShrinkHeap extends java.lang.Object
+{
+    public static final java.lang.String MIN_FREE_RATIO_FLAG_NAME;
+    public static final java.lang.String MAX_FREE_RATIO_FLAG_NAME;
+    private static java.util.ArrayList list;
+    private static final int LEN;
+
+    static void <clinit>()
+    {
+        java.util.ArrayList $r0;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>(int)>(0);
+
+        <gc.parallel.TestDynShrinkHeap: java.util.ArrayList list> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestDynShrinkHeap r0;
+
+        r0 := @this: TestDynShrinkHeap;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    private final void test()
+    {
+        com.sun.management.VMOption $r10, $r14;
+        java.lang.Object[] $r7;
+        long $l0, $l1;
+        java.lang.management.MemoryMXBean $r1, $r3;
+        java.lang.Long $r5, $r6;
+        java.lang.management.PlatformManagedObject $r8, $r12;
+        java.lang.String $r11, $r15, $r16;
+        java.lang.management.MemoryUsage $r2, $r4;
+        TestDynShrinkHeap r0;
+        com.sun.management.HotSpotDiagnosticMXBean $r9, $r13;
+        gc.parallel.TestDynShrinkHeap $r17, $r18;
+
+        r0 := @this: TestDynShrinkHeap;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <gc.parallel.MemoryUsagePrinter: void printMemoryUsage(java.lang.String)>("init");
+
+        $r17 = (gc.parallel.TestDynShrinkHeap) r0;
+
+        virtualinvoke $r17.<gc.parallel.TestDynShrinkHeap: void eat()>();
+
+        staticinvoke <gc.parallel.MemoryUsagePrinter: void printMemoryUsage(java.lang.String)>("eaten");
+
+        $r1 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r2 = interfaceinvoke $r1.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $r18 = (gc.parallel.TestDynShrinkHeap) r0;
+
+        virtualinvoke $r18.<gc.parallel.TestDynShrinkHeap: void free()>();
+
+        staticinvoke <gc.parallel.MemoryUsagePrinter: void printMemoryUsage(java.lang.String)>("free");
+
+        $r3 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.MemoryMXBean getMemoryMXBean()>();
+
+        $r4 = interfaceinvoke $r3.<java.lang.management.MemoryMXBean: java.lang.management.MemoryUsage getHeapMemoryUsage()>();
+
+        $l0 = virtualinvoke $r4.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r5 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        $l1 = virtualinvoke $r2.<java.lang.management.MemoryUsage: long getCommitted()>();
+
+        $r6 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l1);
+
+        $r7 = newarray (java.lang.Object)[4];
+
+        $r7[0] = "MinHeapFreeRatio";
+
+        $r8 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.PlatformManagedObject getPlatformMXBean(java.lang.Class)>(class "Lcom/sun/management/HotSpotDiagnosticMXBean;");
+
+        $r9 = (com.sun.management.HotSpotDiagnosticMXBean) $r8;
+
+        $r10 = interfaceinvoke $r9.<com.sun.management.HotSpotDiagnosticMXBean: com.sun.management.VMOption getVMOption(java.lang.String)>("MinHeapFreeRatio");
+
+        $r11 = virtualinvoke $r10.<com.sun.management.VMOption: java.lang.String getValue()>();
+
+        $r7[1] = $r11;
+
+        $r7[2] = "MaxHeapFreeRatio";
+
+        $r12 = staticinvoke <java.lang.management.ManagementFactory: java.lang.management.PlatformManagedObject getPlatformMXBean(java.lang.Class)>(class "Lcom/sun/management/HotSpotDiagnosticMXBean;");
+
+        $r13 = (com.sun.management.HotSpotDiagnosticMXBean) $r12;
+
+        $r14 = interfaceinvoke $r13.<com.sun.management.HotSpotDiagnosticMXBean: com.sun.management.VMOption getVMOption(java.lang.String)>("MaxHeapFreeRatio");
+
+        $r15 = virtualinvoke $r14.<com.sun.management.VMOption: java.lang.String getValue()>();
+
+        $r7[3] = $r15;
+
+        $r16 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("committed free heap size is not less than committed full heap size, heap hasn\'t been shrunk?%n%s = %s%n%s = %s", $r7);
+
+        staticinvoke <jdk.test.lib.Asserts: void assertLessThan(java.lang.Comparable,java.lang.Comparable,java.lang.String)>($r5, $r6, $r16);
+
+        return;
+    }
+
+    private void eat()
+    {
+        byte[] $r0;
+        java.util.List $r3;
+        TestDynShrinkHeap r4;
+        int i0;
+        java.util.ArrayList $r1, $r2;
+
+        r4 := @this: TestDynShrinkHeap;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r1 = <gc.parallel.TestDynShrinkHeap: java.util.ArrayList list>;
+
+        $r0 = newarray (byte)[1024];
+
+        virtualinvoke $r1.<java.util.ArrayList: boolean add(java.lang.Object)>($r0);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 524289 goto label1;
+
+        staticinvoke <gc.parallel.MemoryUsagePrinter: void printMemoryUsage(java.lang.String)>("allocated 524289 arrays");
+
+        $r2 = <gc.parallel.TestDynShrinkHeap: java.util.ArrayList list>;
+
+        $r3 = virtualinvoke $r2.<java.util.ArrayList: java.util.List subList(int,int)>(0, 262144);
+
+        interfaceinvoke $r3.<java.util.List: void clear()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <gc.parallel.MemoryUsagePrinter: void printMemoryUsage(java.lang.String)>("array halved");
+
+        return;
+    }
+
+    private void free()
+    {
+        int $i0;
+        TestDynShrinkHeap r0;
+
+        r0 := @this: TestDynShrinkHeap;
+
+        $i0 = staticinvoke <jdk.test.lib.management.DynamicVMOption: int getInt(java.lang.String)>("MinHeapFreeRatio");
+
+        staticinvoke <jdk.test.lib.management.DynamicVMOption: void setInt(java.lang.String,int)>("MaxHeapFreeRatio", $i0);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        staticinvoke <gc.parallel.MemoryUsagePrinter: void printMemoryUsage(java.lang.String)>("under pressure");
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.parallel.TestDynShrinkHeap $r0;
+        java.lang.String[] r1;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new gc.parallel.TestDynShrinkHeap;
+
+        specialinvoke $r0.<gc.parallel.TestDynShrinkHeap: void <init>()>();
+
+        virtualinvoke $r0.<gc.parallel.TestDynShrinkHeap: void test()>();
+
+        return;
+    }
+}

@@ -1,0 +1,62 @@
+public class StringInternGC extends nsk.share.gc.ThreadedGCTest
+{
+    private int maxLength;
+
+    public void <init>()
+    {
+        gc.gctests.StringInternGC.StringInternGC $r1;
+        StringInternGC r0;
+
+        r0 := @this: StringInternGC;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r1 = (gc.gctests.StringInternGC.StringInternGC) r0;
+
+        $r1.<gc.gctests.StringInternGC.StringInternGC: int maxLength> = 1000;
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        gc.gctests.StringInternGC.StringInternGC $r3;
+        int i0;
+        java.lang.Runnable $r4;
+        StringInternGC r1;
+        gc.gctests.StringInternGC.StringInternGC$StringGenerator $r2;
+
+        r1 := @this: StringInternGC;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.StringInternGC.StringInternGC$StringGenerator;
+
+        $r3 = (gc.gctests.StringInternGC.StringInternGC) r1;
+
+        specialinvoke $r2.<gc.gctests.StringInternGC.StringInternGC$StringGenerator: void <init>(gc.gctests.StringInternGC.StringInternGC)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        gc.gctests.StringInternGC.StringInternGC $r2;
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.StringInternGC.StringInternGC;
+
+        specialinvoke $r2.<gc.gctests.StringInternGC.StringInternGC: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

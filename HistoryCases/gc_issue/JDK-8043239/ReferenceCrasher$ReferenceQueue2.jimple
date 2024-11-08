@@ -1,0 +1,14 @@
+class ReferenceCrasher$ReferenceQueue2 extends java.lang.ref.ReferenceQueue
+{
+
+    void <init>()
+    {
+        ReferenceCrasher$ReferenceQueue2 r0;
+
+        r0 := @this: ReferenceCrasher$ReferenceQueue2;
+
+        specialinvoke r0.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        return;
+    }
+}

@@ -1,0 +1,207 @@
+public class TestVerifyGCType$CollectionInfo extends java.lang.Object
+{
+    java.lang.String name;
+    java.util.ArrayList verification;
+
+    public void <init>(java.lang.String)
+    {
+        java.io.PrintStream $r4;
+        java.util.ArrayList $r7;
+        TestVerifyGCType$CollectionInfo r0;
+        gc.g1.TestVerifyGCType$CollectionInfo $r9, $r10;
+        java.lang.StringBuilder $r5, $r8;
+        java.lang.String r1, $r6;
+
+        r0 := @this: TestVerifyGCType$CollectionInfo;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r9 = (gc.g1.TestVerifyGCType$CollectionInfo) r0;
+
+        $r9.<gc.g1.TestVerifyGCType$CollectionInfo: java.lang.String name> = r1;
+
+        $r7 = new java.util.ArrayList;
+
+        specialinvoke $r7.<java.util.ArrayList: void <init>()>();
+
+        $r10 = (gc.g1.TestVerifyGCType$CollectionInfo) r0;
+
+        $r10.<gc.g1.TestVerifyGCType$CollectionInfo: java.util.ArrayList verification> = $r7;
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("Created CollectionInfo: ");
+
+        $r5 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>($r6);
+
+        return;
+    }
+
+    public java.lang.String getName()
+    {
+        gc.g1.TestVerifyGCType$CollectionInfo $r2;
+        java.lang.String $r1;
+        TestVerifyGCType$CollectionInfo r0;
+
+        r0 := @this: TestVerifyGCType$CollectionInfo;
+
+        $r2 = (gc.g1.TestVerifyGCType$CollectionInfo) r0;
+
+        $r1 = $r2.<gc.g1.TestVerifyGCType$CollectionInfo: java.lang.String name>;
+
+        return $r1;
+    }
+
+    public void addVerification(java.lang.String)
+    {
+        java.io.PrintStream $r1;
+        java.util.ArrayList $r6;
+        TestVerifyGCType$CollectionInfo r5;
+        gc.g1.TestVerifyGCType$CollectionInfo $r8;
+        java.lang.StringBuilder $r3, $r7;
+        java.lang.String r2, $r4;
+
+        r5 := @this: TestVerifyGCType$CollectionInfo;
+
+        r2 := @parameter0: java.lang.String;
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        $r7 = new java.lang.StringBuilder;
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>("Adding: ");
+
+        $r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>($r4);
+
+        $r8 = (gc.g1.TestVerifyGCType$CollectionInfo) r5;
+
+        $r6 = $r8.<gc.g1.TestVerifyGCType$CollectionInfo: java.util.ArrayList verification>;
+
+        virtualinvoke $r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r2);
+
+        return;
+    }
+
+    public boolean containsVerification(java.lang.String)
+    {
+        java.util.Iterator $r2;
+        java.util.ArrayList $r1;
+        TestVerifyGCType$CollectionInfo r0;
+        gc.g1.TestVerifyGCType$CollectionInfo $r6;
+        java.lang.Object $r3;
+        java.lang.String r4, r5;
+        boolean $z0, $z1;
+
+        r0 := @this: TestVerifyGCType$CollectionInfo;
+
+        r5 := @parameter0: java.lang.String;
+
+        $r6 = (gc.g1.TestVerifyGCType$CollectionInfo) r0;
+
+        $r1 = $r6.<gc.g1.TestVerifyGCType$CollectionInfo: java.util.ArrayList verification>;
+
+        $r2 = virtualinvoke $r1.<java.util.ArrayList: java.util.Iterator iterator()>();
+
+        goto label2;
+
+     label1:
+        $r3 = interfaceinvoke $r2.<java.util.Iterator: java.lang.Object next()>();
+
+        r4 = (java.lang.String) $r3;
+
+        $z1 = virtualinvoke r4.<java.lang.String: boolean contains(java.lang.CharSequence)>(r5);
+
+        if $z1 == 0 goto label2;
+
+        return 1;
+
+     label2:
+        $z0 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label1;
+
+        return 0;
+    }
+
+    static gc.g1.TestVerifyGCType$CollectionInfo parseFirst(java.lang.String, java.lang.String)
+    {
+        java.lang.String[] $r5;
+        int $i0, $i1, $i2, $i3, $i4, i5, i6, $i8, $i10;
+        gc.g1.TestVerifyGCType$CollectionInfo $r7;
+        java.lang.String r0, r1, $r3, $r4, r6;
+        boolean $z0;
+
+        r1 := @parameter0: java.lang.String;
+
+        r0 := @parameter1: java.lang.String;
+
+        $i0 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String)>(r1);
+
+        $i8 = (int) -1;
+
+        if $i0 != $i8 goto label1;
+
+        return null;
+
+     label1:
+        $i1 = $i0 + 1;
+
+        $i2 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String,int)>(r1, $i1);
+
+        $i10 = (int) -1;
+
+        if $i2 != $i10 goto label2;
+
+        return null;
+
+     label2:
+        $r7 = new gc.g1.TestVerifyGCType$CollectionInfo;
+
+        specialinvoke $r7.<gc.g1.TestVerifyGCType$CollectionInfo: void <init>(java.lang.String)>(r1);
+
+        $i3 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        $i4 = $i2 + $i3;
+
+        $r3 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>($i0, $i4);
+
+        $r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("line.separator");
+
+        $r5 = virtualinvoke $r3.<java.lang.String: java.lang.String[] split(java.lang.String)>($r4);
+
+        i5 = lengthof $r5;
+
+        i6 = 0;
+
+        goto label5;
+
+     label3:
+        r6 = $r5[i6];
+
+        $z0 = virtualinvoke r6.<java.lang.String: boolean contains(java.lang.CharSequence)>("[gc,verify]");
+
+        if $z0 == 0 goto label4;
+
+        virtualinvoke $r7.<gc.g1.TestVerifyGCType$CollectionInfo: void addVerification(java.lang.String)>(r6);
+
+     label4:
+        i6 = i6 + 1;
+
+     label5:
+        if i6 < i5 goto label3;
+
+        return $r7;
+    }
+}

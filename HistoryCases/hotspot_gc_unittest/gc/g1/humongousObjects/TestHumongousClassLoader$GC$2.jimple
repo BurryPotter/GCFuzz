@@ -1,0 +1,54 @@
+enum class TestHumongousClassLoader$GC$2 extends gc.g1.humongousObjects.TestHumongousClassLoader$GC
+{
+
+    void <init>(java.lang.String, int)
+    {
+        int i0;
+        TestHumongousClassLoader$GC$2 r0;
+        java.lang.String r1;
+
+        r0 := @this: TestHumongousClassLoader$GC$2;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<gc.g1.humongousObjects.TestHumongousClassLoader$GC: void <init>(java.lang.String,int)>(r1, i0);
+
+        return;
+    }
+
+    public void provoke()
+    {
+        TestHumongousClassLoader$GC$2 r6;
+        sun.hotspot.WhiteBox $r0, $r1, $r2, $r3, $r4, $r5;
+
+        r6 := @this: TestHumongousClassLoader$GC$2;
+
+        $r0 = <gc.g1.humongousObjects.TestHumongousClassLoader$GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r0.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r1 = <gc.g1.humongousObjects.TestHumongousClassLoader$GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        staticinvoke <gc.testlibrary.Helpers: void waitTillCMCFinished(sun.hotspot.WhiteBox,int)>($r1, 0);
+
+        $r2 = <gc.g1.humongousObjects.TestHumongousClassLoader$GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r2.<sun.hotspot.WhiteBox: void youngGC()>();
+
+        $r3 = <gc.g1.humongousObjects.TestHumongousClassLoader$GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        staticinvoke <gc.testlibrary.Helpers: void waitTillCMCFinished(sun.hotspot.WhiteBox,int)>($r3, 0);
+
+        $r4 = <gc.g1.humongousObjects.TestHumongousClassLoader$GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        virtualinvoke $r4.<sun.hotspot.WhiteBox: boolean g1StartConcMarkCycle()>();
+
+        $r5 = <gc.g1.humongousObjects.TestHumongousClassLoader$GC: sun.hotspot.WhiteBox WHITE_BOX>;
+
+        staticinvoke <gc.testlibrary.Helpers: void waitTillCMCFinished(sun.hotspot.WhiteBox,int)>($r5, 0);
+
+        return;
+    }
+}

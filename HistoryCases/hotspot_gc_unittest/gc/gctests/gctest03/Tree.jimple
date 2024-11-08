@@ -1,0 +1,369 @@
+class Tree extends java.lang.Object
+{
+    gc.gctests.gctest03.TreeNode root;
+
+    void <init>()
+    {
+        Tree r0;
+        gc.gctests.gctest03.Tree $r1, $r2;
+
+        r0 := @this: Tree;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.gctests.gctest03.Tree) r0;
+
+        $r1.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root> = null;
+
+        $r2 = (gc.gctests.gctest03.Tree) r0;
+
+        $r2.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root> = null;
+
+        return;
+    }
+
+    void <init>(gc.gctests.gctest03.TreeNode)
+    {
+        gc.gctests.gctest03.TreeNode r1;
+        Tree r0;
+        gc.gctests.gctest03.Tree $r2, $r3;
+
+        r0 := @this: Tree;
+
+        r1 := @parameter0: gc.gctests.gctest03.TreeNode;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = (gc.gctests.gctest03.Tree) r0;
+
+        $r2.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root> = null;
+
+        $r3 = (gc.gctests.gctest03.Tree) r0;
+
+        $r3.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root> = r1;
+
+        return;
+    }
+
+    public synchronized void insert(gc.gctests.gctest03.TreeNode)
+    {
+        gc.gctests.gctest03.TreeNode $r1, r2, $r3;
+        Tree r0;
+        gc.gctests.gctest03.Tree $r4, $r5, $r6;
+
+        r0 := @this: Tree;
+
+        r2 := @parameter0: gc.gctests.gctest03.TreeNode;
+
+        $r4 = (gc.gctests.gctest03.Tree) r0;
+
+        $r1 = $r4.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        if $r1 != null goto label1;
+
+        $r5 = (gc.gctests.gctest03.Tree) r0;
+
+        $r5.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root> = r2;
+
+        return;
+
+     label1:
+        $r6 = (gc.gctests.gctest03.Tree) r0;
+
+        $r3 = $r6.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        virtualinvoke $r3.<gc.gctests.gctest03.TreeNode: void insert(gc.gctests.gctest03.TreeNode)>(r2);
+
+        return;
+    }
+
+    public void sort1()
+    {
+        Tree r0;
+        gc.gctests.gctest03.Tree $r2;
+        gc.gctests.gctest03.TreeNode $r1;
+
+        r0 := @this: Tree;
+
+        $r2 = (gc.gctests.gctest03.Tree) r0;
+
+        $r1 = $r2.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        virtualinvoke $r1.<gc.gctests.gctest03.TreeNode: void sprint()>();
+
+        return;
+    }
+
+    public void sort2()
+    {
+        Tree r0;
+        gc.gctests.gctest03.Tree $r2;
+        gc.gctests.gctest03.TreeNode $r1;
+
+        r0 := @this: Tree;
+
+        $r2 = (gc.gctests.gctest03.Tree) r0;
+
+        $r1 = $r2.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        virtualinvoke $r1.<gc.gctests.gctest03.TreeNode: void lprint()>();
+
+        return;
+    }
+
+    public gc.gctests.gctest03.TreeNode search(gc.gctests.gctest03.DataNode)
+    {
+        gc.gctests.gctest03.TreeNode $r1, $r3, $r4;
+        Tree r0;
+        gc.gctests.gctest03.Tree $r5, $r6;
+        gc.gctests.gctest03.DataNode r2;
+
+        r0 := @this: Tree;
+
+        r2 := @parameter0: gc.gctests.gctest03.DataNode;
+
+        $r5 = (gc.gctests.gctest03.Tree) r0;
+
+        $r1 = $r5.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        if $r1 != null goto label1;
+
+        return null;
+
+     label1:
+        $r6 = (gc.gctests.gctest03.Tree) r0;
+
+        $r3 = $r6.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        $r4 = virtualinvoke $r3.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode search(gc.gctests.gctest03.DataNode)>(r2);
+
+        return $r4;
+    }
+
+    public synchronized boolean remove(gc.gctests.gctest03.DataNode)
+    {
+        Tree r0;
+        gc.gctests.gctest03.Tree $r15, $r16, $r17, $r18, $r19, $r20;
+        gc.gctests.gctest03.TreeNode $r1, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14;
+        gc.gctests.gctest03.DataNode r2;
+
+        r0 := @this: Tree;
+
+        r2 := @parameter0: gc.gctests.gctest03.DataNode;
+
+        $r15 = (gc.gctests.gctest03.Tree) r0;
+
+        $r1 = $r15.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        if $r1 != null goto label01;
+
+        return 0;
+
+     label01:
+        $r16 = (gc.gctests.gctest03.Tree) r0;
+
+        $r3 = $r16.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        $r4 = virtualinvoke $r3.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode search(gc.gctests.gctest03.DataNode)>(r2);
+
+        if $r4 != null goto label02;
+
+        return 0;
+
+     label02:
+        $r5 = virtualinvoke $r4.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode getparent()>();
+
+        $r6 = virtualinvoke $r4.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode getleft()>();
+
+        $r7 = virtualinvoke $r4.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode getright()>();
+
+        if $r5 != null goto label06;
+
+        if $r6 != null goto label03;
+
+        if $r7 == null goto label03;
+
+        virtualinvoke $r7.<gc.gctests.gctest03.TreeNode: void setparent(gc.gctests.gctest03.TreeNode)>(null);
+
+        $r17 = (gc.gctests.gctest03.Tree) r0;
+
+        $r17.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root> = $r7;
+
+        return 1;
+
+     label03:
+        if $r6 == null goto label04;
+
+        if $r7 != null goto label04;
+
+        virtualinvoke $r6.<gc.gctests.gctest03.TreeNode: void setparent(gc.gctests.gctest03.TreeNode)>(null);
+
+        $r18 = (gc.gctests.gctest03.Tree) r0;
+
+        $r18.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root> = $r6;
+
+        return 1;
+
+     label04:
+        if $r6 != null goto label05;
+
+        if $r7 != null goto label05;
+
+        $r19 = (gc.gctests.gctest03.Tree) r0;
+
+        $r19.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root> = null;
+
+        return 1;
+
+     label05:
+        if $r6 == null goto label06;
+
+        if $r7 == null goto label06;
+
+        virtualinvoke $r7.<gc.gctests.gctest03.TreeNode: void setparent(gc.gctests.gctest03.TreeNode)>(null);
+
+        virtualinvoke $r7.<gc.gctests.gctest03.TreeNode: void insert(gc.gctests.gctest03.TreeNode)>($r6);
+
+        $r20 = (gc.gctests.gctest03.Tree) r0;
+
+        $r20.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root> = $r7;
+
+        return 1;
+
+     label06:
+        if $r7 != null goto label09;
+
+        if $r6 != null goto label09;
+
+        $r14 = virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode getright()>();
+
+        if $r14 != $r4 goto label07;
+
+        virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: void setright(gc.gctests.gctest03.TreeNode)>(null);
+
+        goto label08;
+
+     label07:
+        virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: void setleft(gc.gctests.gctest03.TreeNode)>(null);
+
+     label08:
+        return 1;
+
+     label09:
+        if $r7 == null goto label12;
+
+        if $r6 != null goto label12;
+
+        virtualinvoke $r7.<gc.gctests.gctest03.TreeNode: void setparent(gc.gctests.gctest03.TreeNode)>($r5);
+
+        $r12 = virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode getright()>();
+
+        if $r4 != $r12 goto label10;
+
+        virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: void setright(gc.gctests.gctest03.TreeNode)>($r7);
+
+     label10:
+        $r13 = virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode getleft()>();
+
+        if $r4 != $r13 goto label11;
+
+        virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: void setleft(gc.gctests.gctest03.TreeNode)>($r7);
+
+     label11:
+        return 1;
+
+     label12:
+        if $r7 != null goto label15;
+
+        if $r6 == null goto label15;
+
+        virtualinvoke $r6.<gc.gctests.gctest03.TreeNode: void setparent(gc.gctests.gctest03.TreeNode)>($r5);
+
+        $r10 = virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode getright()>();
+
+        if $r4 != $r10 goto label13;
+
+        virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: void setright(gc.gctests.gctest03.TreeNode)>($r6);
+
+     label13:
+        $r11 = virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode getleft()>();
+
+        if $r4 != $r11 goto label14;
+
+        virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: void setleft(gc.gctests.gctest03.TreeNode)>($r6);
+
+     label14:
+        return 1;
+
+     label15:
+        virtualinvoke $r7.<gc.gctests.gctest03.TreeNode: void insert(gc.gctests.gctest03.TreeNode)>($r6);
+
+        virtualinvoke $r7.<gc.gctests.gctest03.TreeNode: void setparent(gc.gctests.gctest03.TreeNode)>($r5);
+
+        $r8 = virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode getright()>();
+
+        if $r4 != $r8 goto label16;
+
+        virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: void setright(gc.gctests.gctest03.TreeNode)>($r7);
+
+     label16:
+        $r9 = virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode getleft()>();
+
+        if $r4 != $r9 goto label17;
+
+        virtualinvoke $r5.<gc.gctests.gctest03.TreeNode: void setleft(gc.gctests.gctest03.TreeNode)>($r7);
+
+     label17:
+        return 1;
+    }
+
+    public synchronized gc.gctests.gctest03.Tree copy()
+    {
+        gc.gctests.gctest03.TreeNode $r1, $r3, $r4;
+        Tree r0;
+        gc.gctests.gctest03.Tree $r5, $r6, $r7;
+
+        r0 := @this: Tree;
+
+        $r6 = (gc.gctests.gctest03.Tree) r0;
+
+        $r1 = $r6.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        if $r1 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = new gc.gctests.gctest03.Tree;
+
+        $r7 = (gc.gctests.gctest03.Tree) r0;
+
+        $r3 = $r7.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        $r4 = virtualinvoke $r3.<gc.gctests.gctest03.TreeNode: gc.gctests.gctest03.TreeNode duplicate()>();
+
+        specialinvoke $r5.<gc.gctests.gctest03.Tree: void <init>(gc.gctests.gctest03.TreeNode)>($r4);
+
+        return $r5;
+    }
+
+    public synchronized boolean isempty()
+    {
+        Tree r0;
+        gc.gctests.gctest03.Tree $r2;
+        gc.gctests.gctest03.TreeNode $r1;
+
+        r0 := @this: Tree;
+
+        $r2 = (gc.gctests.gctest03.Tree) r0;
+
+        $r1 = $r2.<gc.gctests.gctest03.Tree: gc.gctests.gctest03.TreeNode root>;
+
+        if $r1 != null goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+}

@@ -1,0 +1,64 @@
+public class SystemGC extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        SystemGC r0;
+
+        r0 := @this: SystemGC;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r2, $r7;
+        java.lang.Runtime $r0;
+        long $l0, $l1;
+        java.lang.String[] r11;
+        java.lang.StringBuilder $r1, $r3, $r4, $r6, $r8, $r9;
+        java.lang.String $r5, $r10;
+
+        r11 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>();
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("1: ");
+
+        $l0 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>()>();
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("2: ");
+
+        $l1 = virtualinvoke $r0.<java.lang.Runtime: long freeMemory()>();
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r10);
+
+        return;
+    }
+}

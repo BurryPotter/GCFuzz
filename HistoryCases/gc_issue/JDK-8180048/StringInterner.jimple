@@ -1,0 +1,75 @@
+public class StringInterner extends java.lang.Object
+{
+    public static volatile java.lang.String lastString;
+
+    public void <init>()
+    {
+        StringInterner r0;
+
+        r0 := @this: StringInterner;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r7;
+        java.util.UUID $r0;
+        int $i0, i1, i2;
+        java.lang.StringBuilder $r2, $r3, $r4;
+        java.lang.String $r1, $r5, $r6;
+
+        r7 := @parameter0: java.lang.String[];
+
+        i1 = 0;
+
+     label1:
+        if i1 >= 40 goto label5;
+
+        $r0 = staticinvoke <java.util.UUID: java.util.UUID randomUUID()>();
+
+        $r1 = virtualinvoke $r0.<java.util.UUID: java.lang.String toString()>();
+
+        i2 = 0;
+
+     label2:
+        if i2 >= 1000000 goto label3;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.String: java.lang.String intern()>();
+
+        <StringInterner: java.lang.String lastString> = $r6;
+
+        i2 = i2 + 1;
+
+        goto label2;
+
+     label3:
+        i1 = i1 + 1;
+
+        $i0 = i1 % 10;
+
+        if $i0 != 0 goto label4;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label4:
+        staticinvoke <java.util.concurrent.locks.LockSupport: void parkNanos(long)>(500000000L);
+
+        goto label1;
+
+     label5:
+        return;
+    }
+}

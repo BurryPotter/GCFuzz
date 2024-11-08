@@ -1,0 +1,316 @@
+public class TestIHOPStatic extends java.lang.Object
+{
+    static final long YOUNG_SIZE;
+    private static final java.lang.String[] COMMON_OPTIONS;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        $r0 = newarray (java.lang.String)[6];
+
+        $r0[0] = "-XX:+UseG1GC";
+
+        $r0[1] = "-XX:G1HeapRegionSize=1m";
+
+        $r0[2] = "-XX:-G1UseAdaptiveIHOP";
+
+        $r0[3] = "-XX:NewSize=8388608";
+
+        $r0[4] = "-XX:MaxNewSize=8388608";
+
+        $r0[5] = "-Xlog:gc+ihop+ergo=debug,gc*=debug";
+
+        <gc.g1.ihop.TestIHOPStatic: java.lang.String[] COMMON_OPTIONS> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TestIHOPStatic r0;
+
+        r0 := @this: TestIHOPStatic;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Throwable
+    {
+        java.lang.String[] r0;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(30, 35L, 64L, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(50, 55L, 256L, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(60, 65L, 64L, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(70, 75L, 512L, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(30, 50L, 256L, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(30, 70L, 512L, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(50, 70L, 256L, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(30, 25L, 64L, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(50, 45L, 256L, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(70, 65L, 64L, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(70, 65L, 512L, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(50, 30L, 300L, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(70, 50L, 160L, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(0, 50L, 256L, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(0, 95L, 512L, 1);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(100, 20L, 64L, 0);
+
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void runTest(int,long,long,boolean)>(100, 100L, 512L, 0);
+
+        return;
+    }
+
+    private static void runTest(int, long, long, boolean) throws java.lang.Throwable
+    {
+        boolean z0;
+        jdk.test.lib.process.OutputAnalyzer $r41;
+        java.lang.StringBuilder $r2, $r4, $r6, $r8, $r10, $r12, $r14, $r16, $r21, $r22, $r24, $r25, $r27, $r28, $r29, $r31, $r32, $r33, $r45, $r46;
+        java.lang.Object[] $r39;
+        long l1, l2, $l3, $l4, $l5, $l6;
+        java.lang.String[] $r19, $r20, $r35, $r38, $r40;
+        java.util.ArrayList $r18;
+        int i0, $i7, $i8, $i9;
+        java.lang.String $r5, $r9, $r13, $r17, $r23, $r26, $r30, $r34, $r37, $r43, $r47;
+        java.io.PrintStream $r0, $r1, $r3, $r7, $r11, $r15, $r42;
+        java.lang.RuntimeException $r44;
+        java.lang.Class $r36;
+
+        i0 := @parameter0: int;
+
+        l1 := @parameter1: long;
+
+        l2 := @parameter2: long;
+
+        z0 := @parameter3: boolean;
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("");
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("IHOP test:");
+
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("  InitiatingHeapOccupancyPercent : ");
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r5);
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Part of heap to fill (percentage) : ");
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r7.<java.io.PrintStream: void println(java.lang.String)>($r9);
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        $r10 = new java.lang.StringBuilder;
+
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("  MaxHeapSize : ");
+
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>($r13);
+
+        $r15 = <java.lang.System: java.io.PrintStream out>;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>(java.lang.String)>("  Expect for concurrent cycle initiation message : ");
+
+        $r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z0);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r15.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+        $r18 = new java.util.ArrayList;
+
+        specialinvoke $r18.<java.util.ArrayList: void <init>()>();
+
+        $r19 = staticinvoke <jdk.test.lib.Utils: java.lang.String[] getTestJavaOpts()>();
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r18, $r19);
+
+        $r20 = newarray (java.lang.String)[4];
+
+        $r21 = new java.lang.StringBuilder;
+
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:InitiatingHeapOccupancyPercent=");
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r20[0] = $r23;
+
+        $r24 = new java.lang.StringBuilder;
+
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>(java.lang.String)>("-Dmemory.fill=");
+
+        $l3 = l2 * 1024L;
+
+        $l4 = $l3 * 1024L;
+
+        $l5 = $l4 * l1;
+
+        $l6 = $l5 / 100L;
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l6);
+
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r20[1] = $r26;
+
+        $r27 = new java.lang.StringBuilder;
+
+        specialinvoke $r27.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:MaxHeapSize=");
+
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r20[2] = $r30;
+
+        $r31 = new java.lang.StringBuilder;
+
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>(java.lang.String)>("-XX:InitialHeapSize=");
+
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l2);
+
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("M");
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r20[3] = $r34;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r18, $r20);
+
+        $r35 = <gc.g1.ihop.TestIHOPStatic: java.lang.String[] COMMON_OPTIONS>;
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r18, $r35);
+
+        $r36 = class "Lgc/g1/ihop/TestIHOPStatic$AppIHOP;";
+
+        $r37 = virtualinvoke $r36.<java.lang.Class: java.lang.String getName()>();
+
+        interfaceinvoke $r18.<java.util.List: boolean add(java.lang.Object)>($r37);
+
+        $i7 = interfaceinvoke $r18.<java.util.List: int size()>();
+
+        $r38 = newarray (java.lang.String)[$i7];
+
+        $r39 = interfaceinvoke $r18.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($r38);
+
+        $r40 = (java.lang.String[]) $r39;
+
+        $r41 = staticinvoke <jdk.test.lib.process.ProcessTools: jdk.test.lib.process.OutputAnalyzer executeTestJvm(java.lang.String[])>($r40);
+
+        $i8 = virtualinvoke $r41.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        if $i8 == 0 goto label1;
+
+        $r42 = <java.lang.System: java.io.PrintStream out>;
+
+        $r43 = virtualinvoke $r41.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        virtualinvoke $r42.<java.io.PrintStream: void println(java.lang.String)>($r43);
+
+        $r44 = new java.lang.RuntimeException;
+
+        $r45 = new java.lang.StringBuilder;
+
+        specialinvoke $r45.<java.lang.StringBuilder: void <init>(java.lang.String)>("IhopTest failed with exit code ");
+
+        $i9 = virtualinvoke $r41.<jdk.test.lib.process.OutputAnalyzer: int getExitValue()>();
+
+        $r46 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9);
+
+        $r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r44.<java.lang.RuntimeException: void <init>(java.lang.String)>($r47);
+
+        throw $r44;
+
+     label1:
+        staticinvoke <gc.g1.ihop.TestIHOPStatic: void checkResult(jdk.test.lib.process.OutputAnalyzer,boolean)>($r41, z0);
+
+        return;
+    }
+
+    private static void checkResult(jdk.test.lib.process.OutputAnalyzer, boolean)
+    {
+        java.io.PrintStream $r2;
+        java.util.List $r1;
+        java.lang.String $r3;
+        java.lang.RuntimeException $r4;
+        jdk.test.lib.process.OutputAnalyzer r0;
+        boolean $z0, z1;
+
+        r0 := @parameter0: jdk.test.lib.process.OutputAnalyzer;
+
+        z1 := @parameter1: boolean;
+
+        $r1 = staticinvoke <gc.g1.ihop.lib.IhopUtils: java.util.List getErgoInitiationMessages(jdk.test.lib.process.OutputAnalyzer)>(r0);
+
+        $z0 = interfaceinvoke $r1.<java.util.List: boolean isEmpty()>();
+
+        if $z0 == 0 goto label1;
+
+        if z1 == 0 goto label1;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r3 = virtualinvoke r0.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>($r3);
+
+        $r4 = new java.lang.RuntimeException;
+
+        specialinvoke $r4.<java.lang.RuntimeException: void <init>(java.lang.String)>("Concurrent cycle was not initiated.");
+
+        throw $r4;
+
+     label1:
+        staticinvoke <gc.g1.ihop.lib.IhopUtils: void checkIhopLogValues(jdk.test.lib.process.OutputAnalyzer)>(r0);
+
+        return;
+    }
+}

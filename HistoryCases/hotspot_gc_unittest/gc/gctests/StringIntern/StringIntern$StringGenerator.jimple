@@ -1,0 +1,165 @@
+class StringIntern$StringGenerator extends java.lang.Object implements java.lang.Runnable
+{
+    private java.lang.StringBuffer sb;
+    final gc.gctests.StringIntern.StringIntern this$0;
+
+    private void <init>(gc.gctests.StringIntern.StringIntern)
+    {
+        java.lang.StringBuffer $r3;
+        gc.gctests.StringIntern.StringIntern$StringGenerator $r4, $r5;
+        gc.gctests.StringIntern.StringIntern r1;
+        StringIntern$StringGenerator r0;
+
+        r0 := @this: StringIntern$StringGenerator;
+
+        r1 := @parameter0: gc.gctests.StringIntern.StringIntern;
+
+        $r4 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        $r4.<gc.gctests.StringIntern.StringIntern$StringGenerator: gc.gctests.StringIntern.StringIntern this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r3 = new java.lang.StringBuffer;
+
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>()>();
+
+        $r5 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        $r5.<gc.gctests.StringIntern.StringIntern$StringGenerator: java.lang.StringBuffer sb> = $r3;
+
+        return;
+    }
+
+    private void generateRandomBuffer()
+    {
+        gc.gctests.StringIntern.StringIntern$StringGenerator $r3, $r4;
+        char $c3;
+        StringIntern$StringGenerator r0;
+        java.lang.StringBuffer $r2;
+        int $i0, $i1, $i2, i4;
+        gc.gctests.StringIntern.StringIntern $r1;
+
+        r0 := @this: StringIntern$StringGenerator;
+
+        $r3 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        $r1 = $r3.<gc.gctests.StringIntern.StringIntern$StringGenerator: gc.gctests.StringIntern.StringIntern this$0>;
+
+        $i0 = $r1.<gc.gctests.StringIntern.StringIntern: int maxLength>;
+
+        $i1 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int)>($i0);
+
+        i4 = 0;
+
+        goto label2;
+
+     label1:
+        $r4 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        $r2 = $r4.<gc.gctests.StringIntern.StringIntern$StringGenerator: java.lang.StringBuffer sb>;
+
+        $i2 = staticinvoke <nsk.share.test.LocalRandom: int nextInt(int)>(2147483647);
+
+        $c3 = (char) $i2;
+
+        virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c3);
+
+        i4 = i4 + 1;
+
+     label2:
+        if i4 < $i1 goto label1;
+
+        return;
+    }
+
+    private java.lang.String getString()
+    {
+        java.lang.StringBuffer $r1;
+        gc.gctests.StringIntern.StringIntern$StringGenerator $r3;
+        java.lang.String $r2;
+        StringIntern$StringGenerator r0;
+
+        r0 := @this: StringIntern$StringGenerator;
+
+        $r3 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        $r1 = $r3.<gc.gctests.StringIntern.StringIntern$StringGenerator: java.lang.StringBuffer sb>;
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r2;
+    }
+
+    public void run()
+    {
+        int i0, $i1;
+        java.lang.String $r1, $r2, $r3, $r4, $r9;
+        gc.gctests.StringIntern.StringIntern $r5, $r10, $r11;
+        gc.gctests.StringIntern.StringIntern$StringGenerator $r13, $r14, $r15, $r16, $r17, $r18;
+        StringIntern$StringGenerator r0;
+        nsk.share.log.Log $r6;
+        java.lang.StringBuilder $r8, $r12;
+
+        r0 := @this: StringIntern$StringGenerator;
+
+        $r13 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        virtualinvoke $r13.<gc.gctests.StringIntern.StringIntern$StringGenerator: void generateRandomBuffer()>();
+
+        i0 = 0;
+
+        goto label3;
+
+     label1:
+        $r14 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        $r1 = virtualinvoke $r14.<gc.gctests.StringIntern.StringIntern$StringGenerator: java.lang.String getString()>();
+
+        $r15 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        $r2 = virtualinvoke $r15.<gc.gctests.StringIntern.StringIntern$StringGenerator: java.lang.String getString()>();
+
+        $r3 = virtualinvoke $r1.<java.lang.String: java.lang.String intern()>();
+
+        $r4 = virtualinvoke $r2.<java.lang.String: java.lang.String intern()>();
+
+        if $r3 == $r4 goto label2;
+
+        $r16 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        $r5 = $r16.<gc.gctests.StringIntern.StringIntern$StringGenerator: gc.gctests.StringIntern.StringIntern this$0>;
+
+        $r6 = staticinvoke <gc.gctests.StringIntern.StringIntern: nsk.share.log.Log access$0(gc.gctests.StringIntern.StringIntern)>($r5);
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("Test failed on: ");
+
+        $r8 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r6.<nsk.share.log.Log: void error(java.lang.Object)>($r9);
+
+        $r17 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        $r10 = $r17.<gc.gctests.StringIntern.StringIntern$StringGenerator: gc.gctests.StringIntern.StringIntern this$0>;
+
+        virtualinvoke $r10.<gc.gctests.StringIntern.StringIntern: void setFailed(boolean)>(1);
+
+     label2:
+        i0 = i0 + 1;
+
+     label3:
+        $r18 = (gc.gctests.StringIntern.StringIntern$StringGenerator) r0;
+
+        $r11 = $r18.<gc.gctests.StringIntern.StringIntern$StringGenerator: gc.gctests.StringIntern.StringIntern this$0>;
+
+        $i1 = $r11.<gc.gctests.StringIntern.StringIntern: int checkCount>;
+
+        if i0 < $i1 goto label1;
+
+        return;
+    }
+}

@@ -1,0 +1,395 @@
+class weak001$Test extends java.lang.Object implements java.lang.Runnable
+{
+    int iteration;
+    final gc.gctests.WeakReference.weak001.weak001 this$0;
+
+    void <init>(gc.gctests.WeakReference.weak001.weak001)
+    {
+        gc.gctests.WeakReference.weak001.weak001 r1;
+        gc.gctests.WeakReference.weak001.weak001$Test $r2;
+        weak001$Test r0;
+
+        r0 := @this: weak001$Test;
+
+        r1 := @parameter0: gc.gctests.WeakReference.weak001.weak001;
+
+        $r2 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r2.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        byte[] $r38;
+        nsk.share.gc.gp.string.InternedStringProducer $r9;
+        byte $b5;
+        java.lang.StringBuilder $r4, $r59;
+        java.lang.Object[] $r22;
+        double[] $r26;
+        nsk.share.test.ExecutionController $r53, $r57;
+        float[] $r24;
+        long $l6;
+        java.lang.ref.ReferenceQueue $r60;
+        gc.gctests.WeakReference.weak001.weak001 $r1, $r8, $r11, $r15, $r17, $r18, $r20, $r42, $r45, $r47, $r49, $r52, $r54, $r56;
+        java.lang.String $r5, $r10;
+        boolean[] $r28;
+        char[] $r30;
+        gc.gctests.WeakReference.weak001.weak001$Test $r73, $r74, $r75, $r76, $r77, $r78, $r79, $r80, $r81, $r82, $r83, $r84, $r85, $r86, $r87, $r88, $r89, $r90;
+        java.lang.OutOfMemoryError $r41;
+        int[] $r34;
+        boolean $z0, $z1, $z2;
+        java.lang.ref.Reference $r14, r58;
+        nsk.share.gc.gp.MemoryStrategy $r12, $r13, $r50, $r51;
+        short[] $r36;
+        nsk.share.gc.NonbranchyTree $r71;
+        long[] $r32;
+        int $i0, $i1, i2, $i3, $i4;
+        nsk.share.gc.gp.GarbageProducer $r55;
+        java.lang.ref.WeakReference r48, $r61, $r62, $r63, $r64, $r65, $r66, $r67, $r68, $r69, $r70, $r72;
+        weak001$Test r0;
+        java.lang.InterruptedException $r44;
+        nsk.share.log.Log $r2, $r16, $r19, $r43, $r46;
+
+        r0 := @this: weak001$Test;
+
+     label01:
+        $r73 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r1 = $r73.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r2 = staticinvoke <gc.gctests.WeakReference.weak001.weak001: nsk.share.log.Log access$0(gc.gctests.WeakReference.weak001.weak001)>($r1);
+
+        $r59 = new java.lang.StringBuilder;
+
+        specialinvoke $r59.<java.lang.StringBuilder: void <init>(java.lang.String)>("iteration ");
+
+        $r74 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $i0 = $r74.<gc.gctests.WeakReference.weak001.weak001$Test: int iteration>;
+
+        $r4 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r2.<nsk.share.log.Log: void info(java.lang.Object)>($r5);
+
+        $r60 = new java.lang.ref.ReferenceQueue;
+
+        specialinvoke $r60.<java.lang.ref.ReferenceQueue: void <init>()>();
+
+        $r75 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $i1 = $r75.<gc.gctests.WeakReference.weak001.weak001$Test: int iteration>;
+
+        i2 = $i1 % 11;
+
+        tableswitch(i2)
+        {
+            case 0: goto label02;
+            case 1: goto label03;
+            case 2: goto label04;
+            case 3: goto label05;
+            case 4: goto label06;
+            case 5: goto label07;
+            case 6: goto label08;
+            case 7: goto label09;
+            case 8: goto label10;
+            case 9: goto label11;
+            default: goto label12;
+        };
+
+     label02:
+        $r61 = new java.lang.ref.WeakReference;
+
+        $r38 = newarray (byte)[100];
+
+        specialinvoke $r61.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r38, $r60);
+
+        r48 = $r61;
+
+        goto label13;
+
+     label03:
+        $r62 = new java.lang.ref.WeakReference;
+
+        $r36 = newarray (short)[100];
+
+        specialinvoke $r62.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r36, $r60);
+
+        r48 = $r62;
+
+        goto label13;
+
+     label04:
+        $r63 = new java.lang.ref.WeakReference;
+
+        $r34 = newarray (int)[100];
+
+        specialinvoke $r63.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r34, $r60);
+
+        r48 = $r63;
+
+        goto label13;
+
+     label05:
+        $r64 = new java.lang.ref.WeakReference;
+
+        $r32 = newarray (long)[100];
+
+        specialinvoke $r64.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r32, $r60);
+
+        r48 = $r64;
+
+        goto label13;
+
+     label06:
+        $r65 = new java.lang.ref.WeakReference;
+
+        $r30 = newarray (char)[100];
+
+        specialinvoke $r65.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r30, $r60);
+
+        r48 = $r65;
+
+        goto label13;
+
+     label07:
+        $r66 = new java.lang.ref.WeakReference;
+
+        $r28 = newarray (boolean)[100];
+
+        specialinvoke $r66.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r28, $r60);
+
+        r48 = $r66;
+
+        goto label13;
+
+     label08:
+        $r67 = new java.lang.ref.WeakReference;
+
+        $r26 = newarray (double)[100];
+
+        specialinvoke $r67.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r26, $r60);
+
+        r48 = $r67;
+
+        goto label13;
+
+     label09:
+        $r68 = new java.lang.ref.WeakReference;
+
+        $r24 = newarray (float)[100];
+
+        specialinvoke $r68.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r24, $r60);
+
+        r48 = $r68;
+
+        goto label13;
+
+     label10:
+        $r69 = new java.lang.ref.WeakReference;
+
+        $r22 = newarray (java.lang.Object)[100];
+
+        specialinvoke $r69.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r22, $r60);
+
+        r48 = $r69;
+
+        goto label13;
+
+     label11:
+        $r70 = new java.lang.ref.WeakReference;
+
+        $r76 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r8 = $r76.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r9 = $r8.<gc.gctests.WeakReference.weak001.weak001: nsk.share.gc.gp.string.InternedStringProducer internedStringProducer>;
+
+        $r10 = virtualinvoke $r9.<nsk.share.gc.gp.string.InternedStringProducer: java.lang.String create(long)>(100L);
+
+        specialinvoke $r70.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r10, $r60);
+
+        r48 = $r70;
+
+        goto label13;
+
+     label12:
+        $r72 = new java.lang.ref.WeakReference;
+
+        $r71 = new nsk.share.gc.NonbranchyTree;
+
+        specialinvoke $r71.<nsk.share.gc.NonbranchyTree: void <init>(int,float,int)>(100, 0.3F, 100);
+
+        specialinvoke $r72.<java.lang.ref.WeakReference: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r71, $r60);
+
+        r48 = $r72;
+
+     label13:
+        $r77 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r49 = $r77.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r50 = $r49.<gc.gctests.WeakReference.weak001.weak001: nsk.share.gc.gp.MemoryStrategy memoryStrategy>;
+
+        $r51 = <nsk.share.gc.gp.MemoryStrategy: nsk.share.gc.gp.MemoryStrategy HIGH>;
+
+        $z1 = virtualinvoke $r50.<java.lang.Object: boolean equals(java.lang.Object)>($r51);
+
+        if $z1 == 0 goto label14;
+
+        $b5 = 1;
+
+        goto label16;
+
+     label14:
+        $r78 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r11 = $r78.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r13 = $r11.<gc.gctests.WeakReference.weak001.weak001: nsk.share.gc.gp.MemoryStrategy memoryStrategy>;
+
+        $r12 = <nsk.share.gc.gp.MemoryStrategy: nsk.share.gc.gp.MemoryStrategy LOW>;
+
+        $z0 = virtualinvoke $r13.<java.lang.Object: boolean equals(java.lang.Object)>($r12);
+
+        if $z0 == 0 goto label15;
+
+        $b5 = 10;
+
+        goto label16;
+
+     label15:
+        $b5 = 2;
+
+     label16:
+        $r79 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r52 = $r79.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r53 = staticinvoke <gc.gctests.WeakReference.weak001.weak001: nsk.share.test.ExecutionController access$1(gc.gctests.WeakReference.weak001.weak001)>($r52);
+
+        $r80 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r54 = $r80.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r55 = $r54.<gc.gctests.WeakReference.weak001.weak001: nsk.share.gc.gp.GarbageProducer garbageProducer>;
+
+        $l6 = (long) $b5;
+
+        staticinvoke <nsk.share.gc.gp.GarbageUtils: int eatMemory(nsk.share.test.ExecutionController,nsk.share.gc.gp.GarbageProducer,long,long,long)>($r53, $r55, $l6, 10L, 0L);
+
+        $r81 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r56 = $r81.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r57 = staticinvoke <gc.gctests.WeakReference.weak001.weak001: nsk.share.test.ExecutionController access$1(gc.gctests.WeakReference.weak001.weak001)>($r56);
+
+        $z2 = interfaceinvoke $r57.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z2 != 0 goto label18;
+
+     label17:
+        return;
+
+     label18:
+        r58 = null;
+
+     label19:
+        r58 = virtualinvoke $r60.<java.lang.ref.ReferenceQueue: java.lang.ref.Reference remove()>();
+
+     label20:
+        goto label22;
+
+     label21:
+        $r44 := @caughtexception;
+
+        $r82 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r45 = $r82.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r46 = staticinvoke <gc.gctests.WeakReference.weak001.weak001: nsk.share.log.Log access$0(gc.gctests.WeakReference.weak001.weak001)>($r45);
+
+        interfaceinvoke $r46.<nsk.share.log.Log: void error(java.lang.Object)>("Unexpected InterruptedException during queue.remove().");
+
+        $r83 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r47 = $r83.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        virtualinvoke $r47.<gc.gctests.WeakReference.weak001.weak001: void setFailed(boolean)>(1);
+
+     label22:
+        if r58 == r48 goto label23;
+
+        $r84 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r18 = $r84.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r19 = staticinvoke <gc.gctests.WeakReference.weak001.weak001: nsk.share.log.Log access$0(gc.gctests.WeakReference.weak001.weak001)>($r18);
+
+        interfaceinvoke $r19.<nsk.share.log.Log: void error(java.lang.Object)>("The original reference is not equal to polled reference.");
+
+        $r85 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r20 = $r85.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        virtualinvoke $r20.<gc.gctests.WeakReference.weak001.weak001: void setFailed(boolean)>(1);
+
+     label23:
+        $r14 = virtualinvoke $r60.<java.lang.ref.ReferenceQueue: java.lang.ref.Reference poll()>();
+
+        if $r14 == null goto label24;
+
+        $r86 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r15 = $r86.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r16 = staticinvoke <gc.gctests.WeakReference.weak001.weak001: nsk.share.log.Log access$0(gc.gctests.WeakReference.weak001.weak001)>($r15);
+
+        interfaceinvoke $r16.<nsk.share.log.Log: void error(java.lang.Object)>("There are more  than one references in the queue.");
+
+        $r87 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r17 = $r87.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        virtualinvoke $r17.<gc.gctests.WeakReference.weak001.weak001: void setFailed(boolean)>(1);
+
+     label24:
+        virtualinvoke r48.<java.lang.ref.WeakReference: void clear()>();
+
+     label25:
+        goto label27;
+
+     label26:
+        $r41 := @caughtexception;
+
+        $r88 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r42 = $r88.<gc.gctests.WeakReference.weak001.weak001$Test: gc.gctests.WeakReference.weak001.weak001 this$0>;
+
+        $r43 = staticinvoke <gc.gctests.WeakReference.weak001.weak001: nsk.share.log.Log access$0(gc.gctests.WeakReference.weak001.weak001)>($r42);
+
+        interfaceinvoke $r43.<nsk.share.log.Log: void info(java.lang.Object)>("Ignored OOME in run()");
+
+     label27:
+        $r89 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $i3 = $r89.<gc.gctests.WeakReference.weak001.weak001$Test: int iteration>;
+
+        $i4 = $i3 + 1;
+
+        $r90 = (gc.gctests.WeakReference.weak001.weak001$Test) r0;
+
+        $r90.<gc.gctests.WeakReference.weak001.weak001$Test: int iteration> = $i4;
+
+        return;
+
+        catch java.lang.InterruptedException from label19 to label20 with label21;
+        catch java.lang.OutOfMemoryError from label01 to label17 with label26;
+        catch java.lang.OutOfMemoryError from label18 to label25 with label26;
+    }
+}

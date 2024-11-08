@@ -1,0 +1,37 @@
+class Escaper extends java.lang.Thread
+{
+
+    void <init>()
+    {
+        Escaper r0;
+
+        r0 := @this: Escaper;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        int $i0;
+        int[] $r0;
+        Escaper r1;
+
+        r1 := @this: Escaper;
+
+        goto label2;
+
+     label1:
+        $r0 = newarray (int)[32];
+
+        staticinvoke <gc.gctests.gctest02.Escaper: void yield()>();
+
+     label2:
+        $i0 = staticinvoke <gc.gctests.gctest02.ThreadCount: int get()>();
+
+        if $i0 > 0 goto label1;
+
+        return;
+    }
+}

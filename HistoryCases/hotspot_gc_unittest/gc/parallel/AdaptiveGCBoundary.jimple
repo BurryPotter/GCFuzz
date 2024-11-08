@@ -1,0 +1,58 @@
+public class AdaptiveGCBoundary extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        AdaptiveGCBoundary r0;
+
+        r0 := @this: AdaptiveGCBoundary;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.Process $r5;
+        java.lang.String[] $r0, r6;
+        java.lang.Class $r1;
+        java.lang.String $r2;
+        java.lang.ProcessBuilder $r3;
+        jdk.test.lib.process.OutputAnalyzer $r4;
+
+        r6 := @parameter0: java.lang.String[];
+
+        $r0 = newarray (java.lang.String)[5];
+
+        $r0[0] = "-showversion";
+
+        $r0[1] = "-XX:+UseParallelGC";
+
+        $r0[2] = "-XX:+UseAdaptiveGCBoundary";
+
+        $r0[3] = "-XX:+PrintCommandLineFlags";
+
+        $r1 = class "Lgc/parallel/AdaptiveGCBoundary$SystemGCCaller;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>();
+
+        $r0[4] = $r2;
+
+        $r3 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r0);
+
+        $r4 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r5 = virtualinvoke $r3.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r5);
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("+UseAdaptiveGCBoundary");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldNotContain(java.lang.String)>("error");
+
+        virtualinvoke $r4.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

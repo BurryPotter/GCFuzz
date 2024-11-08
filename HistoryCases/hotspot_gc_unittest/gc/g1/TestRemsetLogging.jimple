@@ -1,0 +1,106 @@
+public class TestRemsetLogging extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestRemsetLogging r0;
+
+        r0 := @this: TestRemsetLogging;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] $r2, $r4, $r6, $r8, $r10, $r12, $r14, $r16, r18;
+        java.lang.String $r0, $r1, $r3, $r5, $r7, $r9, $r11, $r13, $r15, $r17;
+
+        r18 := @parameter0: java.lang.String[];
+
+        $r0 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>(null, 0);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>($r0, 0, 0);
+
+        $r1 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>(null, 2);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>($r1, 0, 0);
+
+        $r2 = newarray (java.lang.String)[1];
+
+        $r2[0] = "-XX:G1SummarizeRSetStatsPeriod=1";
+
+        $r3 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>($r2, 3);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>($r3, 0, 0);
+
+        $r4 = newarray (java.lang.String)[1];
+
+        $r4[0] = "-Xlog:gc+remset*=trace";
+
+        $r5 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>($r4, 0);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>($r5, 1, 0);
+
+        $r6 = newarray (java.lang.String)[1];
+
+        $r6[0] = "-Xlog:gc+remset*=trace";
+
+        $r7 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>($r6, 2);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>($r7, 1, 0);
+
+        $r8 = newarray (java.lang.String)[2];
+
+        $r8[0] = "-Xlog:gc+remset*=trace";
+
+        $r8[1] = "-XX:G1SummarizeRSetStatsPeriod=1";
+
+        $r9 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>($r8, 0);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>($r9, 1, 0);
+
+        $r10 = newarray (java.lang.String)[2];
+
+        $r10[0] = "-Xlog:gc+remset*=trace";
+
+        $r10[1] = "-XX:G1SummarizeRSetStatsPeriod=1";
+
+        $r11 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>($r10, 1);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>($r11, 1, 2);
+
+        $r12 = newarray (java.lang.String)[2];
+
+        $r12[0] = "-Xlog:gc+remset*=trace";
+
+        $r12[1] = "-XX:G1SummarizeRSetStatsPeriod=1";
+
+        $r13 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>($r12, 3);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>($r13, 1, 6);
+
+        $r14 = newarray (java.lang.String)[2];
+
+        $r14[0] = "-Xlog:gc+remset*=trace";
+
+        $r14[1] = "-XX:G1SummarizeRSetStatsPeriod=2";
+
+        $r15 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>($r14, 3);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>($r15, 1, 4);
+
+        $r16 = newarray (java.lang.String)[2];
+
+        $r16[0] = "-Xlog:gc+remset*=trace";
+
+        $r16[1] = "-XX:G1SummarizeRSetStatsPeriod=100";
+
+        $r17 = staticinvoke <gc.g1.TestRemsetLoggingTools: java.lang.String runTest(java.lang.String[],int)>($r16, 3);
+
+        staticinvoke <gc.g1.TestRemsetLoggingTools: void expectRSetSummaries(java.lang.String,int,int)>($r17, 1, 2);
+
+        return;
+    }
+}

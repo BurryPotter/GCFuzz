@@ -1,0 +1,100 @@
+public class BigArrayInOldGenRR extends java.lang.Object
+{
+    public static final int BIG_ARR_LEN;
+    public static final int DUPS;
+    public static final java.lang.Object[] BIG_OLD_ARRAY;
+
+    public void <init>()
+    {
+        BigArrayInOldGenRR r0;
+
+        r0 := @this: BigArrayInOldGenRR;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.io.PrintStream $r0, $r1, $r2;
+        java.lang.String[] r3;
+
+        r3 := @parameter0: java.lang.String[];
+
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("BIG_ARR_LEN:8388608 DUPS:16");
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println()>();
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label1:
+        staticinvoke <BigArrayInOldGenRR: void allocateNewElements()>();
+
+        goto label1;
+    }
+
+    static void allocateNewElements()
+    {
+        java.lang.Object[] r0;
+        int $i0, $i1, i2, i3;
+        java.lang.Object $r1, $r2;
+
+        r0 = <BigArrayInOldGenRR: java.lang.Object[] BIG_OLD_ARRAY>;
+
+        i2 = 0;
+
+     label1:
+        if i2 >= 8388608 goto label4;
+
+        $r1 = new java.lang.Object;
+
+        specialinvoke $r1.<java.lang.Object: void <init>()>();
+
+        r0[i2] = $r1;
+
+        i3 = i2 + 1;
+
+     label2:
+        $i0 = i2 + 16;
+
+        $i1 = staticinvoke <java.lang.Math: int min(int,int)>(8388608, $i0);
+
+        if i3 >= $i1 goto label3;
+
+        $r2 = r0[i2];
+
+        r0[i3] = $r2;
+
+        i3 = i3 + 1;
+
+        goto label2;
+
+     label3:
+        i2 = i2 + 16;
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.lang.Object[] $r0;
+
+        $r0 = newarray (java.lang.Object)[8388608];
+
+        <BigArrayInOldGenRR: java.lang.Object[] BIG_OLD_ARRAY> = $r0;
+
+        return;
+    }
+}

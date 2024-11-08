@@ -1,0 +1,33 @@
+public class TestEvacFailureThreaded$Node extends java.lang.Object
+{
+    public java.lang.ref.SoftReference next;
+    long payload1;
+    long payload2;
+    long payload3;
+    long payload4;
+
+    public void <init>(int)
+    {
+        int i0;
+        long $l1;
+        TestEvacFailureThreaded$Node r0;
+
+        r0 := @this: TestEvacFailureThreaded$Node;
+
+        i0 := @parameter0: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $l1 = (long) i0;
+
+        r0.<TestEvacFailureThreaded$Node: long payload4> = $l1;
+
+        r0.<TestEvacFailureThreaded$Node: long payload3> = $l1;
+
+        r0.<TestEvacFailureThreaded$Node: long payload2> = $l1;
+
+        r0.<TestEvacFailureThreaded$Node: long payload1> = $l1;
+
+        return;
+    }
+}

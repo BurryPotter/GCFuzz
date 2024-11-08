@@ -1,0 +1,36 @@
+final class ThreadUtils extends java.lang.Object
+{
+
+    void <init>()
+    {
+        ThreadUtils r0;
+
+        r0 := @this: ThreadUtils;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void sleep(long)
+    {
+        long l0;
+        java.lang.Exception $r0;
+
+        l0 := @parameter0: long;
+
+     label1:
+        staticinvoke <java.lang.Thread: void sleep(long)>(l0);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r0 := @caughtexception;
+
+     label4:
+        return;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+}

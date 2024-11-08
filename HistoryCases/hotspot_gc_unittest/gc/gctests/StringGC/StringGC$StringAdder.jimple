@@ -1,0 +1,75 @@
+class StringGC$StringAdder extends java.lang.Object implements java.lang.Runnable
+{
+    private java.lang.String s;
+    final gc.gctests.StringGC.StringGC this$0;
+
+    private void <init>(gc.gctests.StringGC.StringGC)
+    {
+        gc.gctests.StringGC.StringGC r1;
+        gc.gctests.StringGC.StringGC$StringAdder $r2;
+        StringGC$StringAdder r0;
+
+        r0 := @this: StringGC$StringAdder;
+
+        r1 := @parameter0: gc.gctests.StringGC.StringGC;
+
+        $r2 = (gc.gctests.StringGC.StringGC$StringAdder) r0;
+
+        $r2.<gc.gctests.StringGC.StringGC$StringAdder: gc.gctests.StringGC.StringGC this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        StringGC$StringAdder r0;
+        gc.gctests.StringGC.StringGC $r7;
+        gc.gctests.StringGC.StringGC$StringAdder $r9, $r10, $r11, $r12, $r13;
+        int $i0, $i1;
+        java.lang.StringBuilder $r4, $r8;
+        java.lang.String $r2, $r3, $r5, $r6;
+
+        r0 := @this: StringGC$StringAdder;
+
+        $r9 = (gc.gctests.StringGC.StringGC$StringAdder) r0;
+
+        $r2 = $r9.<gc.gctests.StringGC.StringGC$StringAdder: java.lang.String s>;
+
+        $r8 = new java.lang.StringBuilder;
+
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r2);
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+
+        $r4 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("abcdef");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r10 = (gc.gctests.StringGC.StringGC$StringAdder) r0;
+
+        $r10.<gc.gctests.StringGC.StringGC$StringAdder: java.lang.String s> = $r5;
+
+        $r11 = (gc.gctests.StringGC.StringGC$StringAdder) r0;
+
+        $r6 = $r11.<gc.gctests.StringGC.StringGC$StringAdder: java.lang.String s>;
+
+        $i0 = virtualinvoke $r6.<java.lang.String: int length()>();
+
+        $r12 = (gc.gctests.StringGC.StringGC$StringAdder) r0;
+
+        $r7 = $r12.<gc.gctests.StringGC.StringGC$StringAdder: gc.gctests.StringGC.StringGC this$0>;
+
+        $i1 = $r7.<gc.gctests.StringGC.StringGC: int maxLength>;
+
+        if $i0 <= $i1 goto label1;
+
+        $r13 = (gc.gctests.StringGC.StringGC$StringAdder) r0;
+
+        $r13.<gc.gctests.StringGC.StringGC$StringAdder: java.lang.String s> = "";
+
+     label1:
+        return;
+    }
+}

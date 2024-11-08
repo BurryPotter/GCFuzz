@@ -1,0 +1,349 @@
+class StringInternSync$StringGenerator extends java.lang.Object implements java.lang.Runnable
+{
+    java.util.List internedLocal;
+    final gc.gctests.StringInternSync.StringInternSync this$0;
+
+    public void <init>(gc.gctests.StringInternSync.StringInternSync, java.util.List)
+    {
+        java.util.List r2;
+        StringInternSync$StringGenerator r0;
+        gc.gctests.StringInternSync.StringInternSync$StringGenerator $r3, $r4;
+        gc.gctests.StringInternSync.StringInternSync r1;
+
+        r0 := @this: StringInternSync$StringGenerator;
+
+        r1 := @parameter0: gc.gctests.StringInternSync.StringInternSync;
+
+        r2 := @parameter1: java.util.List;
+
+        $r3 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r3.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r4 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r4.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: java.util.List internedLocal> = r2;
+
+        return;
+    }
+
+    public void run()
+    {
+        byte $b7;
+        java.util.concurrent.locks.ReadWriteLock $r2, $r12, $r18, $r46, $r50, $r54;
+        nsk.share.gc.gp.string.RandomStringProducer $r41;
+        java.lang.StringBuilder $r33, $r34, $r35, $r60;
+        java.lang.Throwable $r48, $r52, $r71, $r72, $r73;
+        StringInternSync$StringGenerator r0;
+        long $l6, $l9, $l11, l13, l14;
+        gc.gctests.StringInternSync.StringInternSync$StringGenerator $r64, $r65, $r66, $r67, $r68, $r69, $r70, $r74, $r75, $r76, $r77, $r78, $r79;
+        java.lang.String $r10, r26, $r36, $r43, r56, $r59;
+        nsk.share.TestFailure $r61, $r62, $r63;
+        java.util.concurrent.locks.Lock $r3, $r13, $r19, $r47, $r51, $r55;
+        boolean $z0, $z1, $z2;
+        java.util.List $r4, $r5, $r9, $r14, $r15, $r20, $r22, $r37, $r42, r57, r58;
+        gc.gctests.StringInternSync.StringInternSync $r1, $r11, $r17, $r38, $r39, $r40, $r44, $r45, $r49, $r53;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i8, $i10, i12, $i15;
+        java.util.Iterator $r6, $r23;
+        java.lang.Object $r7, $r16, $r21, $r24, $r25, $r27, $r28;
+
+        r0 := @this: StringInternSync$StringGenerator;
+
+     label01:
+        $r64 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r1 = $r64.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0>;
+
+        $r2 = $r1.<gc.gctests.StringInternSync.StringInternSync: java.util.concurrent.locks.ReadWriteLock rwlock>;
+
+        $r3 = interfaceinvoke $r2.<java.util.concurrent.locks.ReadWriteLock: java.util.concurrent.locks.Lock readLock()>();
+
+        interfaceinvoke $r3.<java.util.concurrent.locks.Lock: void lock()>();
+
+        $r65 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r4 = $r65.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: java.util.List internedLocal>;
+
+        interfaceinvoke $r4.<java.util.List: void clear()>();
+
+        $r5 = <gc.gctests.StringInternSync.StringInternSync: java.util.List stringsToIntern>;
+
+        $r6 = interfaceinvoke $r5.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label03;
+
+     label02:
+        $r7 = interfaceinvoke $r6.<java.util.Iterator: java.lang.Object next()>();
+
+        r56 = (java.lang.String) $r7;
+
+        $r66 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r9 = $r66.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: java.util.List internedLocal>;
+
+        $r59 = new java.lang.String;
+
+        specialinvoke $r59.<java.lang.String: void <init>(java.lang.String)>(r56);
+
+        $r10 = virtualinvoke $r59.<java.lang.String: java.lang.String intern()>();
+
+        interfaceinvoke $r9.<java.util.List: boolean add(java.lang.Object)>($r10);
+
+     label03:
+        $z0 = interfaceinvoke $r6.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 != 0 goto label02;
+
+        goto label05;
+
+     label04:
+        $r52 := @caughtexception;
+
+        $r67 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r53 = $r67.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0>;
+
+        $r54 = $r53.<gc.gctests.StringInternSync.StringInternSync: java.util.concurrent.locks.ReadWriteLock rwlock>;
+
+        $r55 = interfaceinvoke $r54.<java.util.concurrent.locks.ReadWriteLock: java.util.concurrent.locks.Lock readLock()>();
+
+        interfaceinvoke $r55.<java.util.concurrent.locks.Lock: void unlock()>();
+
+        throw $r52;
+
+     label05:
+        $r68 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r11 = $r68.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0>;
+
+        $r12 = $r11.<gc.gctests.StringInternSync.StringInternSync: java.util.concurrent.locks.ReadWriteLock rwlock>;
+
+        $r13 = interfaceinvoke $r12.<java.util.concurrent.locks.ReadWriteLock: java.util.concurrent.locks.Lock readLock()>();
+
+        interfaceinvoke $r13.<java.util.concurrent.locks.Lock: void unlock()>();
+
+        $r69 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r15 = $r69.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: java.util.List internedLocal>;
+
+        $r14 = <gc.gctests.StringInternSync.StringInternSync: java.util.List internedStrings>;
+
+        $r16 = interfaceinvoke $r14.<java.util.List: java.lang.Object get(int)>(0);
+
+        if $r15 != $r16 goto label20;
+
+     label06:
+        $r70 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r17 = $r70.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0>;
+
+        $r18 = $r17.<gc.gctests.StringInternSync.StringInternSync: java.util.concurrent.locks.ReadWriteLock rwlock>;
+
+        $r19 = interfaceinvoke $r18.<java.util.concurrent.locks.ReadWriteLock: java.util.concurrent.locks.Lock writeLock()>();
+
+        interfaceinvoke $r19.<java.util.concurrent.locks.Lock: void lock()>();
+
+        $r20 = <gc.gctests.StringInternSync.StringInternSync: java.util.List internedStrings>;
+
+        $r21 = interfaceinvoke $r20.<java.util.List: java.lang.Object get(int)>(0);
+
+        r57 = (java.util.List) $r21;
+
+        $r22 = <gc.gctests.StringInternSync.StringInternSync: java.util.List internedStrings>;
+
+        $r23 = interfaceinvoke $r22.<java.util.List: java.util.Iterator iterator()>();
+
+        goto label15;
+
+     label07:
+        $r24 = interfaceinvoke $r23.<java.util.Iterator: java.lang.Object next()>();
+
+        r58 = (java.util.List) $r24;
+
+        if r58 != r57 goto label08;
+
+        goto label15;
+
+     label08:
+        $i0 = interfaceinvoke r58.<java.util.List: int size()>();
+
+        if $i0 != 0 goto label09;
+
+        goto label15;
+
+     label09:
+        $i1 = interfaceinvoke r58.<java.util.List: int size()>();
+
+        $i2 = interfaceinvoke r57.<java.util.List: int size()>();
+
+        if $i1 == $i2 goto label10;
+
+        $r61 = new nsk.share.TestFailure;
+
+        $r60 = new java.lang.StringBuilder;
+
+        specialinvoke $r60.<java.lang.StringBuilder: void <init>(java.lang.String)>("Size of interned string list differ from origial. interned ");
+
+        $i4 = interfaceinvoke r58.<java.util.List: int size()>();
+
+        $r33 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i4);
+
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" original ");
+
+        $i5 = interfaceinvoke r57.<java.util.List: int size()>();
+
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r36 = virtualinvoke $r35.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r61.<nsk.share.TestFailure: void <init>(java.lang.String)>($r36);
+
+        $r71 = (java.lang.Throwable) $r61;
+
+        throw $r71;
+
+     label10:
+        i12 = 0;
+
+        goto label14;
+
+     label11:
+        $r25 = interfaceinvoke r57.<java.util.List: java.lang.Object get(int)>(i12);
+
+        r26 = (java.lang.String) $r25;
+
+        $r27 = interfaceinvoke r58.<java.util.List: java.lang.Object get(int)>(i12);
+
+        $z1 = virtualinvoke r26.<java.lang.String: boolean equals(java.lang.Object)>($r27);
+
+        if $z1 != 0 goto label12;
+
+        $r62 = new nsk.share.TestFailure;
+
+        specialinvoke $r62.<nsk.share.TestFailure: void <init>(java.lang.String)>("The interned strings are not the equals.");
+
+        $r72 = (java.lang.Throwable) $r62;
+
+        throw $r72;
+
+     label12:
+        $r28 = interfaceinvoke r58.<java.util.List: java.lang.Object get(int)>(i12);
+
+        if r26 == $r28 goto label13;
+
+        $r63 = new nsk.share.TestFailure;
+
+        specialinvoke $r63.<nsk.share.TestFailure: void <init>(java.lang.String)>("The equal interned strings are not the same.");
+
+        $r73 = (java.lang.Throwable) $r63;
+
+        throw $r73;
+
+     label13:
+        i12 = i12 + 1;
+
+     label14:
+        $i3 = interfaceinvoke r57.<java.util.List: int size()>();
+
+        if i12 < $i3 goto label11;
+
+        interfaceinvoke r58.<java.util.List: void clear()>();
+
+     label15:
+        $z2 = interfaceinvoke $r23.<java.util.Iterator: boolean hasNext()>();
+
+        if $z2 != 0 goto label07;
+
+        interfaceinvoke r57.<java.util.List: void clear()>();
+
+        $r37 = <gc.gctests.StringInternSync.StringInternSync: java.util.List stringsToIntern>;
+
+        interfaceinvoke $r37.<java.util.List: void clear()>();
+
+        l13 = 0L;
+
+        goto label17;
+
+     label16:
+        $r42 = <gc.gctests.StringInternSync.StringInternSync: java.util.List stringsToIntern>;
+
+        $r74 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r39 = $r74.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0>;
+
+        $r41 = $r39.<gc.gctests.StringInternSync.StringInternSync: nsk.share.gc.gp.string.RandomStringProducer gp>;
+
+        $r75 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r40 = $r75.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0>;
+
+        $i8 = $r40.<gc.gctests.StringInternSync.StringInternSync: int maxStringSize>;
+
+        $l9 = (long) $i8;
+
+        $r43 = virtualinvoke $r41.<nsk.share.gc.gp.string.RandomStringProducer: java.lang.String create(long)>($l9);
+
+        interfaceinvoke $r42.<java.util.List: boolean add(java.lang.Object)>($r43);
+
+        $r76 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r44 = $r76.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0>;
+
+        $i10 = $r44.<gc.gctests.StringInternSync.StringInternSync: int maxStringSize>;
+
+        $l11 = (long) $i10;
+
+        l14 = l13 + $l11;
+
+        l13 = l14 + 1L;
+
+     label17:
+        $r77 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r38 = $r77.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0>;
+
+        $l6 = $r38.<gc.gctests.StringInternSync.StringInternSync: long sizeOfAllInteredStrings>;
+
+        $b7 = l13 cmp $l6;
+
+        $i15 = (int) $b7;
+
+        if $i15 <= 0 goto label16;
+
+        goto label19;
+
+     label18:
+        $r48 := @caughtexception;
+
+        $r78 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r49 = $r78.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0>;
+
+        $r50 = $r49.<gc.gctests.StringInternSync.StringInternSync: java.util.concurrent.locks.ReadWriteLock rwlock>;
+
+        $r51 = interfaceinvoke $r50.<java.util.concurrent.locks.ReadWriteLock: java.util.concurrent.locks.Lock writeLock()>();
+
+        interfaceinvoke $r51.<java.util.concurrent.locks.Lock: void unlock()>();
+
+        throw $r48;
+
+     label19:
+        $r79 = (gc.gctests.StringInternSync.StringInternSync$StringGenerator) r0;
+
+        $r45 = $r79.<gc.gctests.StringInternSync.StringInternSync$StringGenerator: gc.gctests.StringInternSync.StringInternSync this$0>;
+
+        $r46 = $r45.<gc.gctests.StringInternSync.StringInternSync: java.util.concurrent.locks.ReadWriteLock rwlock>;
+
+        $r47 = interfaceinvoke $r46.<java.util.concurrent.locks.ReadWriteLock: java.util.concurrent.locks.Lock writeLock()>();
+
+        interfaceinvoke $r47.<java.util.concurrent.locks.Lock: void unlock()>();
+
+     label20:
+        return;
+
+        catch java.lang.Throwable from label01 to label04 with label04;
+        catch java.lang.Throwable from label06 to label18 with label18;
+    }
+}

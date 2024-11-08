@@ -1,0 +1,54 @@
+public class Leak3$Resource extends java.lang.Object
+{
+    public static java.util.concurrent.atomic.AtomicLong births;
+    public static java.util.concurrent.atomic.AtomicLong deaths;
+
+    public void <init>()
+    {
+        java.util.concurrent.atomic.AtomicLong $r1;
+        Leak3$Resource r0;
+
+        r0 := @this: Leak3$Resource;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = <Leak3$Resource: java.util.concurrent.atomic.AtomicLong births>;
+
+        virtualinvoke $r1.<java.util.concurrent.atomic.AtomicLong: long getAndIncrement()>();
+
+        return;
+    }
+
+    protected void finalize()
+    {
+        java.util.concurrent.atomic.AtomicLong $r0;
+        Leak3$Resource r1;
+
+        r1 := @this: Leak3$Resource;
+
+        $r0 = <Leak3$Resource: java.util.concurrent.atomic.AtomicLong deaths>;
+
+        virtualinvoke $r0.<java.util.concurrent.atomic.AtomicLong: long getAndIncrement()>();
+
+        return;
+    }
+
+    static void <clinit>()
+    {
+        java.util.concurrent.atomic.AtomicLong $r0, $r1;
+
+        $r0 = new java.util.concurrent.atomic.AtomicLong;
+
+        specialinvoke $r0.<java.util.concurrent.atomic.AtomicLong: void <init>(long)>(0L);
+
+        <Leak3$Resource: java.util.concurrent.atomic.AtomicLong births> = $r0;
+
+        $r1 = new java.util.concurrent.atomic.AtomicLong;
+
+        specialinvoke $r1.<java.util.concurrent.atomic.AtomicLong: void <init>(long)>(0L);
+
+        <Leak3$Resource: java.util.concurrent.atomic.AtomicLong deaths> = $r1;
+
+        return;
+    }
+}

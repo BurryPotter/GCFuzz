@@ -1,0 +1,30 @@
+public class TestShrinkAuxiliaryData15 extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestShrinkAuxiliaryData15 r0;
+
+        r0 := @this: TestShrinkAuxiliaryData15;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r1;
+        gc.g1.TestShrinkAuxiliaryData $r0;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r0 = new gc.g1.TestShrinkAuxiliaryData;
+
+        specialinvoke $r0.<gc.g1.TestShrinkAuxiliaryData: void <init>(int)>(15);
+
+        virtualinvoke $r0.<gc.g1.TestShrinkAuxiliaryData: void test()>();
+
+        return;
+    }
+}

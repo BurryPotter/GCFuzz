@@ -1,0 +1,83 @@
+class Filler extends java.lang.Object
+{
+    private static final int SIZE;
+    private int[] i1;
+    private int[] i2;
+    private short[] s1;
+    private short[] s2;
+    private java.util.Map map;
+
+    public void <init>()
+    {
+        java.util.HashMap $r9;
+        int[] $r1, $r2;
+        java.util.Map $r7;
+        int i0;
+        gc.stress.gclocker.Filler $r12, $r13, $r14, $r15, $r16, $r17;
+        java.lang.Object $r10, $r11;
+        short[] $r3, $r4;
+        Filler r0;
+
+        r0 := @this: Filler;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = newarray (int)[250000];
+
+        $r12 = (gc.stress.gclocker.Filler) r0;
+
+        $r12.<gc.stress.gclocker.Filler: int[] i1> = $r1;
+
+        $r2 = newarray (int)[250000];
+
+        $r13 = (gc.stress.gclocker.Filler) r0;
+
+        $r13.<gc.stress.gclocker.Filler: int[] i2> = $r2;
+
+        $r3 = newarray (short)[250000];
+
+        $r14 = (gc.stress.gclocker.Filler) r0;
+
+        $r14.<gc.stress.gclocker.Filler: short[] s1> = $r3;
+
+        $r4 = newarray (short)[250000];
+
+        $r15 = (gc.stress.gclocker.Filler) r0;
+
+        $r15.<gc.stress.gclocker.Filler: short[] s2> = $r4;
+
+        $r9 = new java.util.HashMap;
+
+        specialinvoke $r9.<java.util.HashMap: void <init>()>();
+
+        $r16 = (gc.stress.gclocker.Filler) r0;
+
+        $r16.<gc.stress.gclocker.Filler: java.util.Map map> = $r9;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r17 = (gc.stress.gclocker.Filler) r0;
+
+        $r7 = $r17.<gc.stress.gclocker.Filler: java.util.Map map>;
+
+        $r10 = new java.lang.Object;
+
+        specialinvoke $r10.<java.lang.Object: void <init>()>();
+
+        $r11 = new java.lang.Object;
+
+        specialinvoke $r11.<java.lang.Object: void <init>()>();
+
+        interfaceinvoke $r7.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r10, $r11);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 10000 goto label1;
+
+        return;
+    }
+}

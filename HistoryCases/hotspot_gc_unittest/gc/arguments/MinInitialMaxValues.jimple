@@ -1,0 +1,19 @@
+final class MinInitialMaxValues extends java.lang.Object
+{
+    public long minHeapSize;
+    public long initialHeapSize;
+    public long maxHeapSize;
+    public long spaceAlignment;
+    public long heapAlignment;
+
+    void <init>()
+    {
+        MinInitialMaxValues r0;
+
+        r0 := @this: MinInitialMaxValues;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

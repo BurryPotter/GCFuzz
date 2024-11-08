@@ -1,0 +1,239 @@
+public final class SoftReferenceTest extends nsk.share.gc.GCTestBase
+{
+    private nsk.share.test.ExecutionController stresser;
+
+    public void <init>()
+    {
+        SoftReferenceTest r0;
+
+        r0 := @this: SoftReferenceTest;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        byte[] r22;
+        nsk.share.runner.RunParams $r2, $r5;
+        java.util.Random $r26;
+        byte $b5, $b6, $b9;
+        SoftReferenceTest r0;
+        boolean $z0;
+        nsk.share.test.Stresser $r25;
+        java.lang.StringBuilder $r17, $r18, $r19, $r20, $r30;
+        java.lang.Throwable $r10, $r38;
+        gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest $r32, $r33, $r35, $r36, $r37;
+        nsk.share.test.ExecutionController $r4, $r23, $r34;
+        long $l0, l1, $l3, $l4, $l7, l10, l11, l13;
+        java.util.ArrayList $r27, $r28;
+        nsk.share.test.StressOptions $r3;
+        int $i2, $i8, i12, i14, $i15, $i16;
+        java.lang.String $r16, $r21;
+        java.lang.ref.SoftReference r24, $r29;
+        double $d0, $d1, $d2;
+        nsk.share.TestFailure $r31;
+        java.lang.Object $r12, $r13;
+        java.lang.OutOfMemoryError $r11;
+
+        r0 := @this: SoftReferenceTest;
+
+        $r25 = new nsk.share.test.Stresser;
+
+        $r32 = (gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest) r0;
+
+        $r2 = $r32.<gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest: nsk.share.runner.RunParams runParams>;
+
+        $r3 = virtualinvoke $r2.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r25.<nsk.share.test.Stresser: void <init>(java.lang.String,nsk.share.test.StressOptions)>("Stresser to limit execution time", $r3);
+
+        $r33 = (gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest) r0;
+
+        $r34 = (nsk.share.test.ExecutionController) $r25;
+
+        $r33.<gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest: nsk.share.test.ExecutionController stresser> = $r34;
+
+        $r35 = (gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest) r0;
+
+        $r4 = $r35.<gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest: nsk.share.test.ExecutionController stresser>;
+
+        interfaceinvoke $r4.<nsk.share.test.ExecutionController: void start(long)>(1L);
+
+        l10 = 0L;
+
+        $r36 = (gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest) r0;
+
+        $r5 = $r36.<gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r5.<nsk.share.runner.RunParams: long getSeed()>();
+
+        $r26 = new java.util.Random;
+
+        specialinvoke $r26.<java.util.Random: void <init>(long)>($l0);
+
+        l1 = (long) 30720;
+
+        $r27 = new java.util.ArrayList;
+
+        specialinvoke $r27.<java.util.ArrayList: void <init>()>();
+
+        $r28 = new java.util.ArrayList;
+
+        specialinvoke $r28.<java.util.ArrayList: void <init>()>();
+
+        l11 = 0L;
+
+     label01:
+        goto label05;
+
+     label02:
+        $d0 = virtualinvoke $r26.<java.util.Random: double nextDouble()>();
+
+        $d1 = (double) l1;
+
+        $d2 = $d0 * $d1;
+
+        $i2 = (int) $d2;
+
+        i12 = $i2 + 2048;
+
+        r22 = newarray (byte)[i12];
+
+        $l3 = (long) 4;
+
+        $l4 = l10 % $l3;
+
+        $b5 = $l4 cmp 0L;
+
+        if $b5 != 0 goto label03;
+
+        virtualinvoke $r28.<java.util.ArrayList: boolean add(java.lang.Object)>(r22);
+
+        goto label04;
+
+     label03:
+        $r29 = new java.lang.ref.SoftReference;
+
+        specialinvoke $r29.<java.lang.ref.SoftReference: void <init>(java.lang.Object)>(r22);
+
+        virtualinvoke $r27.<java.util.ArrayList: boolean add(java.lang.Object)>($r29);
+
+     label04:
+        $l7 = l10 + 1L;
+
+        l10 = $l7;
+
+        $b6 = $l7 cmp 9223372036854775807L;
+
+        if $b6 != 0 goto label05;
+
+        l10 = 0L;
+
+     label05:
+        $r37 = (gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest) r0;
+
+        $r23 = $r37.<gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest: nsk.share.test.ExecutionController stresser>;
+
+        $z0 = interfaceinvoke $r23.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 != 0 goto label02;
+
+     label06:
+        goto label13;
+
+     label07:
+        $r11 := @caughtexception;
+
+        $i8 = virtualinvoke $r27.<java.util.ArrayList: int size()>();
+
+        l13 = (long) $i8;
+
+        i14 = 0;
+
+        goto label10;
+
+     label08:
+        $r12 = virtualinvoke $r27.<java.util.ArrayList: java.lang.Object get(int)>(i14);
+
+        r24 = (java.lang.ref.SoftReference) $r12;
+
+        $r13 = virtualinvoke r24.<java.lang.ref.SoftReference: java.lang.Object get()>();
+
+        if $r13 == null goto label09;
+
+        l11 = l11 + 1L;
+
+     label09:
+        i14 = i14 + 1;
+
+     label10:
+        $i15 = virtualinvoke $r27.<java.util.ArrayList: int size()>();
+
+        if i14 < $i15 goto label08;
+
+        $b9 = l11 cmp 0L;
+
+        $i16 = (int) $b9;
+
+        if $i16 <= 0 goto label11;
+
+        $r31 = new nsk.share.TestFailure;
+
+        $r30 = new java.lang.StringBuilder;
+
+        $r16 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>(l11);
+
+        specialinvoke $r30.<java.lang.StringBuilder: void <init>(java.lang.String)>($r16);
+
+        $r17 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" out of ");
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l13);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" SoftReferences was not ");
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("null at time of OutOfMemoryError");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r31.<nsk.share.TestFailure: void <init>(java.lang.String)>($r21);
+
+        $r38 = (java.lang.Throwable) $r31;
+
+        throw $r38;
+
+     label11:
+        goto label13;
+
+     label12:
+        $r10 := @caughtexception;
+
+        throw $r10;
+
+     label13:
+        return;
+
+        catch java.lang.OutOfMemoryError from label01 to label06 with label07;
+        catch java.lang.Throwable from label01 to label11 with label12;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest;
+
+        specialinvoke $r2.<gc.gctests.SoftReference.SoftReferenceTest.SoftReferenceTest: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

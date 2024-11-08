@@ -1,0 +1,61 @@
+class JNICriticalStressTest3$SystemGCWorker extends java.lang.Object implements java.lang.Runnable
+{
+
+    private void <init>()
+    {
+        JNICriticalStressTest3$SystemGCWorker r0;
+
+        r0 := @this: JNICriticalStressTest3$SystemGCWorker;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void run()
+    {
+        java.io.PrintStream $r0, $r1;
+        java.lang.InterruptedException $r2;
+        JNICriticalStressTest3$SystemGCWorker r3;
+
+        r3 := @this: JNICriticalStressTest3$SystemGCWorker;
+
+     label1:
+        staticinvoke <java.lang.Thread: void sleep(long)>(5000L);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r2 := @caughtexception;
+
+     label4:
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r0.<java.io.PrintStream: void println(java.lang.String)>("SYSTEM_GC BEFORE");
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("SYSTEM_GC AFTER");
+
+        goto label1;
+
+        catch java.lang.InterruptedException from label1 to label2 with label3;
+    }
+
+    void <init>(JNICriticalStressTest3$1)
+    {
+        JNICriticalStressTest3$1 r1;
+        JNICriticalStressTest3$SystemGCWorker r0;
+
+        r0 := @this: JNICriticalStressTest3$SystemGCWorker;
+
+        r1 := @parameter0: JNICriticalStressTest3$1;
+
+        specialinvoke r0.<JNICriticalStressTest3$SystemGCWorker: void <init>()>();
+
+        return;
+    }
+}

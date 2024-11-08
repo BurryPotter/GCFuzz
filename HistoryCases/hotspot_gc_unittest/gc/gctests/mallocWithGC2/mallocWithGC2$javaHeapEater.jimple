@@ -1,0 +1,134 @@
+class mallocWithGC2$javaHeapEater extends java.lang.Thread
+{
+    private java.util.Vector v;
+    final gc.gctests.mallocWithGC2.mallocWithGC2 this$0;
+
+    void <init>(gc.gctests.mallocWithGC2.mallocWithGC2, java.util.Vector)
+    {
+        java.util.Vector r2;
+        gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater $r3, $r4;
+        mallocWithGC2$javaHeapEater r0;
+        gc.gctests.mallocWithGC2.mallocWithGC2 r1;
+
+        r0 := @this: mallocWithGC2$javaHeapEater;
+
+        r1 := @parameter0: gc.gctests.mallocWithGC2.mallocWithGC2;
+
+        r2 := @parameter1: java.util.Vector;
+
+        $r3 = (gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater) r0;
+
+        $r3.<gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater: gc.gctests.mallocWithGC2.mallocWithGC2 this$0> = r1;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        $r4 = (gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater) r0;
+
+        $r4.<gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater: java.util.Vector v> = r2;
+
+        return;
+    }
+
+    public void run() throws java.lang.OutOfMemoryError
+    {
+        java.util.Vector $r2, $r4, $r6;
+        int i0, i1, i2, i3;
+        mallocWithGC2$javaHeapEater r0;
+        java.lang.String $r12;
+        gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater $r14, $r15, $r16, $r17, $r18, $r19;
+        gc.gctests.mallocWithGC2.mallocWithGC2 $r1, $r5, $r8;
+        nsk.share.gc.CircularLinkedList $r3, $r7;
+        nsk.share.log.Log $r9;
+        java.lang.StringBuilder $r11, $r13;
+
+        r0 := @this: mallocWithGC2$javaHeapEater;
+
+        i0 = 0;
+
+        goto label2;
+
+     label1:
+        $r14 = (gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater) r0;
+
+        $r2 = $r14.<gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater: java.util.Vector v>;
+
+        $r15 = (gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater) r0;
+
+        $r1 = $r15.<gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater: gc.gctests.mallocWithGC2.mallocWithGC2 this$0>;
+
+        $r3 = virtualinvoke $r1.<gc.gctests.mallocWithGC2.mallocWithGC2: nsk.share.gc.CircularLinkedList buildCircularLinkedList()>();
+
+        virtualinvoke $r2.<java.util.Vector: void addElement(java.lang.Object)>($r3);
+
+        i0 = i0 + 1;
+
+     label2:
+        if i0 < 10 goto label1;
+
+        i1 = 0;
+
+        goto label8;
+
+     label3:
+        i2 = 0;
+
+        goto label5;
+
+     label4:
+        $r16 = (gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater) r0;
+
+        $r4 = $r16.<gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater: java.util.Vector v>;
+
+        virtualinvoke $r4.<java.util.Vector: void setElementAt(java.lang.Object,int)>(null, i2);
+
+        i2 = i2 + 1;
+
+     label5:
+        if i2 < 10 goto label4;
+
+        i3 = 0;
+
+        goto label7;
+
+     label6:
+        $r17 = (gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater) r0;
+
+        $r6 = $r17.<gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater: java.util.Vector v>;
+
+        $r18 = (gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater) r0;
+
+        $r5 = $r18.<gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater: gc.gctests.mallocWithGC2.mallocWithGC2 this$0>;
+
+        $r7 = virtualinvoke $r5.<gc.gctests.mallocWithGC2.mallocWithGC2: nsk.share.gc.CircularLinkedList buildCircularLinkedList()>();
+
+        virtualinvoke $r6.<java.util.Vector: void setElementAt(java.lang.Object,int)>($r7, i3);
+
+        i3 = i3 + 1;
+
+     label7:
+        if i3 < 10 goto label6;
+
+        i1 = i1 + 1;
+
+        $r19 = (gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater) r0;
+
+        $r8 = $r19.<gc.gctests.mallocWithGC2.mallocWithGC2$javaHeapEater: gc.gctests.mallocWithGC2.mallocWithGC2 this$0>;
+
+        $r9 = staticinvoke <gc.gctests.mallocWithGC2.mallocWithGC2: nsk.share.log.Log access$0(gc.gctests.mallocWithGC2.mallocWithGC2)>($r8);
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("Finished iteration # ");
+
+        $r11 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r9.<nsk.share.log.Log: void info(java.lang.Object)>($r12);
+
+     label8:
+        if i1 < 10 goto label3;
+
+        return;
+    }
+}

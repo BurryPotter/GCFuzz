@@ -1,0 +1,308 @@
+class RememberedSet$Worker extends java.lang.Object implements java.lang.Runnable
+{
+    static final long BLOCK_SIZE;
+    final gc.gctests.RememberedSet.RememberedSet this$0;
+
+    void <init>(gc.gctests.RememberedSet.RememberedSet)
+    {
+        gc.gctests.RememberedSet.RememberedSet$Worker $r2;
+        RememberedSet$Worker r0;
+        gc.gctests.RememberedSet.RememberedSet r1;
+
+        r0 := @this: RememberedSet$Worker;
+
+        r1 := @parameter0: gc.gctests.RememberedSet.RememberedSet;
+
+        $r2 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r2.<gc.gctests.RememberedSet.RememberedSet$Worker: gc.gctests.RememberedSet.RememberedSet this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    nsk.share.gc.MemoryObject getOutOfTheBlockObject(int, java.lang.Object)
+    {
+        nsk.share.gc.MemoryObject r4, $r5, $r6;
+        long $l0, $l2, $l3, $l4, $l5, $l6;
+        byte $b7;
+        int i1, i8, $i10, $i11;
+        RememberedSet$Worker r3;
+        java.lang.Object r0;
+
+        r3 := @this: RememberedSet$Worker;
+
+        i1 := @parameter0: int;
+
+        r0 := @parameter1: java.lang.Object;
+
+        $l0 = staticinvoke <gc.gctests.RememberedSet.RememberedSet$PointerUtils: long toAddress(java.lang.Object)>(r0);
+
+        $r5 = new nsk.share.gc.MemoryObject;
+
+        specialinvoke $r5.<nsk.share.gc.MemoryObject: void <init>(int)>(i1);
+
+        r4 = $r5;
+
+        $l2 = (long) i1;
+
+        $l3 = 1048576L / $l2;
+
+        i8 = (int) $l3;
+
+        goto label2;
+
+     label1:
+        $r6 = new nsk.share.gc.MemoryObject;
+
+        specialinvoke $r6.<nsk.share.gc.MemoryObject: void <init>(int)>(i1);
+
+        r4 = $r6;
+
+        $i10 = (int) -1;
+
+        i8 = i8 + $i10;
+
+     label2:
+        if i8 == 0 goto label3;
+
+        $l4 = staticinvoke <gc.gctests.RememberedSet.RememberedSet$PointerUtils: long toAddress(java.lang.Object)>(r4);
+
+        $l5 = $l0 - $l4;
+
+        $l6 = staticinvoke <java.lang.Math: long abs(long)>($l5);
+
+        $b7 = $l6 cmp 1048576L;
+
+        $i11 = (int) $b7;
+
+        if $i11 < 0 goto label1;
+
+     label3:
+        return r4;
+    }
+
+    public void run()
+    {
+        nsk.share.runner.RunParams $r2, $r4, $r6;
+        boolean $z0;
+        java.util.List r26;
+        java.lang.StringBuilder $r21, $r30;
+        gc.gctests.RememberedSet.RememberedSet$Worker $r31, $r32, $r33, $r34, $r35, $r36, $r37, $r38, $r39, $r40, $r41;
+        nsk.share.gc.MemoryObject $r9, $r15, $r17;
+        nsk.share.test.ExecutionController $r11, $r13, $r25;
+        long $l1, $l2, $l4, $l6, $l8, $l9, $l10;
+        java.util.ArrayList $r27, $r28, $r29;
+        int i0, i3, $i5, $i7, i11, $i12, i13, i14, i15, i16, i17, i18, i19;
+        java.lang.String $r22;
+        RememberedSet$Worker r0;
+        gc.gctests.RememberedSet.RememberedSet $r1, $r3, $r5, $r10, $r12, $r18, $r23, $r24;
+        double $d0;
+        java.lang.Object $r14;
+        nsk.share.log.Log $r19;
+
+        r0 := @this: RememberedSet$Worker;
+
+        $d0 = staticinvoke <java.lang.Math: double sqrt(double)>(1048576.0);
+
+        i0 = (int) $d0;
+
+        $r31 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r1 = $r31.<gc.gctests.RememberedSet.RememberedSet$Worker: gc.gctests.RememberedSet.RememberedSet this$0>;
+
+        $r2 = staticinvoke <gc.gctests.RememberedSet.RememberedSet: nsk.share.runner.RunParams access$0(gc.gctests.RememberedSet.RememberedSet)>($r1);
+
+        $l1 = virtualinvoke $r2.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $l2 = $l1 / 1048576L;
+
+        i3 = (int) $l2;
+
+        $r32 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r3 = $r32.<gc.gctests.RememberedSet.RememberedSet$Worker: gc.gctests.RememberedSet.RememberedSet this$0>;
+
+        $r4 = staticinvoke <gc.gctests.RememberedSet.RememberedSet: nsk.share.runner.RunParams access$0(gc.gctests.RememberedSet.RememberedSet)>($r3);
+
+        $l4 = virtualinvoke $r4.<nsk.share.runner.RunParams: long getTestMemory()>();
+
+        $r33 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r5 = $r33.<gc.gctests.RememberedSet.RememberedSet$Worker: gc.gctests.RememberedSet.RememberedSet this$0>;
+
+        $r6 = staticinvoke <gc.gctests.RememberedSet.RememberedSet: nsk.share.runner.RunParams access$0(gc.gctests.RememberedSet.RememberedSet)>($r5);
+
+        $i5 = virtualinvoke $r6.<nsk.share.runner.RunParams: int getNumberOfThreads()>();
+
+        $l6 = (long) $i5;
+
+        $l9 = $l4 / $l6;
+
+        $i7 = i3 * i0;
+
+        $l8 = (long) $i7;
+
+        $l10 = $l9 / $l8;
+
+        i11 = (int) $l10;
+
+        $r27 = new java.util.ArrayList;
+
+        specialinvoke $r27.<java.util.ArrayList: void <init>(int)>(i11);
+
+        i13 = 0;
+
+        goto label04;
+
+     label01:
+        $r28 = new java.util.ArrayList;
+
+        specialinvoke $r28.<java.util.ArrayList: void <init>()>();
+
+        interfaceinvoke $r27.<java.util.List: boolean add(java.lang.Object)>($r28);
+
+        i14 = 0;
+
+        goto label03;
+
+     label02:
+        $r34 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r9 = virtualinvoke $r34.<gc.gctests.RememberedSet.RememberedSet$Worker: nsk.share.gc.MemoryObject getOutOfTheBlockObject(int,java.lang.Object)>(i0, $r28);
+
+        interfaceinvoke $r28.<java.util.List: boolean add(java.lang.Object)>($r9);
+
+        i14 = i14 + 1;
+
+     label03:
+        if i14 < i3 goto label02;
+
+        i13 = i13 + 1;
+
+     label04:
+        if i13 < i11 goto label01;
+
+        $r35 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r10 = $r35.<gc.gctests.RememberedSet.RememberedSet$Worker: gc.gctests.RememberedSet.RememberedSet this$0>;
+
+        $r11 = $r10.<gc.gctests.RememberedSet.RememberedSet: nsk.share.test.ExecutionController stresser>;
+
+        if $r11 != null goto label05;
+
+        $r36 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r24 = $r36.<gc.gctests.RememberedSet.RememberedSet$Worker: gc.gctests.RememberedSet.RememberedSet this$0>;
+
+        $r37 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r23 = $r37.<gc.gctests.RememberedSet.RememberedSet$Worker: gc.gctests.RememberedSet.RememberedSet this$0>;
+
+        $r25 = staticinvoke <gc.gctests.RememberedSet.RememberedSet: nsk.share.test.ExecutionController access$1(gc.gctests.RememberedSet.RememberedSet)>($r23);
+
+        $r24.<gc.gctests.RememberedSet.RememberedSet: nsk.share.test.ExecutionController stresser> = $r25;
+
+     label05:
+        i15 = 0;
+
+        goto label15;
+
+     label06:
+        i16 = i15;
+
+        goto label10;
+
+     label07:
+        i17 = 0;
+
+        goto label09;
+
+     label08:
+        $r14 = interfaceinvoke $r27.<java.util.List: java.lang.Object get(int)>(i17);
+
+        r26 = (java.util.List) $r14;
+
+        $r38 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r15 = virtualinvoke $r38.<gc.gctests.RememberedSet.RememberedSet$Worker: nsk.share.gc.MemoryObject getOutOfTheBlockObject(int,java.lang.Object)>(i0, r26);
+
+        interfaceinvoke r26.<java.util.List: java.lang.Object set(int,java.lang.Object)>(i16, $r15);
+
+        i17 = i17 + 1;
+
+     label09:
+        if i17 < i11 goto label08;
+
+        i16 = i16 + 10;
+
+     label10:
+        if i16 < i3 goto label07;
+
+        i18 = 10 - i15;
+
+        goto label14;
+
+     label11:
+        $r29 = new java.util.ArrayList;
+
+        specialinvoke $r29.<java.util.ArrayList: void <init>()>();
+
+        interfaceinvoke $r27.<java.util.List: java.lang.Object set(int,java.lang.Object)>(i18, $r29);
+
+        i19 = 0;
+
+        goto label13;
+
+     label12:
+        $r39 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r17 = virtualinvoke $r39.<gc.gctests.RememberedSet.RememberedSet$Worker: nsk.share.gc.MemoryObject getOutOfTheBlockObject(int,java.lang.Object)>(i0, $r29);
+
+        interfaceinvoke $r29.<java.util.List: boolean add(java.lang.Object)>($r17);
+
+        i19 = i19 + 1;
+
+     label13:
+        if i19 < i3 goto label12;
+
+        i18 = i18 + 10;
+
+     label14:
+        if i18 < i11 goto label11;
+
+        $r40 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r18 = $r40.<gc.gctests.RememberedSet.RememberedSet$Worker: gc.gctests.RememberedSet.RememberedSet this$0>;
+
+        $r19 = staticinvoke <gc.gctests.RememberedSet.RememberedSet: nsk.share.log.Log access$2(gc.gctests.RememberedSet.RememberedSet)>($r18);
+
+        $r30 = new java.lang.StringBuilder;
+
+        specialinvoke $r30.<java.lang.StringBuilder: void <init>(java.lang.String)>("shift = ");
+
+        $r21 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i15);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        interfaceinvoke $r19.<nsk.share.log.Log: void debug(java.lang.Object)>($r22);
+
+        $i12 = i15 + 1;
+
+        i15 = $i12 % 10;
+
+     label15:
+        $r41 = (gc.gctests.RememberedSet.RememberedSet$Worker) r0;
+
+        $r12 = $r41.<gc.gctests.RememberedSet.RememberedSet$Worker: gc.gctests.RememberedSet.RememberedSet this$0>;
+
+        $r13 = $r12.<gc.gctests.RememberedSet.RememberedSet: nsk.share.test.ExecutionController stresser>;
+
+        $z0 = interfaceinvoke $r13.<nsk.share.test.ExecutionController: boolean continueExecution()>();
+
+        if $z0 != 0 goto label06;
+
+        return;
+    }
+}

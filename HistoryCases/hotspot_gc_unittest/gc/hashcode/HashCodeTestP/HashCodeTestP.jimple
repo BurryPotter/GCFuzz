@@ -1,0 +1,102 @@
+public class HashCodeTestP extends nsk.share.gc.GCTestBase
+{
+
+    public void <init>()
+    {
+        HashCodeTestP r0;
+
+        r0 := @this: HashCodeTestP;
+
+        specialinvoke r0.<nsk.share.gc.GCTestBase: void <init>()>();
+
+        return;
+    }
+
+    public final void run()
+    {
+        java.lang.Throwable $r13;
+        nsk.share.runner.RunParams $r2, $r4;
+        gc.hashcode.HCHelper $r7;
+        nsk.share.test.ExecutionController $r12;
+        long $l0;
+        nsk.share.TestFailure $r9;
+        nsk.share.test.StressOptions $r5;
+        nsk.share.test.Stresser $r8;
+        HashCodeTestP r1;
+        boolean $z0, $z1;
+        gc.hashcode.HashCodeTestP.HashCodeTestP $r10, $r11;
+
+        r1 := @this: HashCodeTestP;
+
+        $r7 = new gc.hashcode.HCHelper;
+
+        $r10 = (gc.hashcode.HashCodeTestP.HashCodeTestP) r1;
+
+        $r2 = $r10.<gc.hashcode.HashCodeTestP.HashCodeTestP: nsk.share.runner.RunParams runParams>;
+
+        $l0 = virtualinvoke $r2.<nsk.share.runner.RunParams: long getSeed()>();
+
+        specialinvoke $r7.<gc.hashcode.HCHelper: void <init>(int,int,long,double,int)>(512, 2000, $l0, 0.7, 10240);
+
+        virtualinvoke $r7.<gc.hashcode.HCHelper: void setupLists()>();
+
+        $r8 = new nsk.share.test.Stresser;
+
+        $r11 = (gc.hashcode.HashCodeTestP.HashCodeTestP) r1;
+
+        $r4 = $r11.<gc.hashcode.HashCodeTestP.HashCodeTestP: nsk.share.runner.RunParams runParams>;
+
+        $r5 = virtualinvoke $r4.<nsk.share.runner.RunParams: nsk.share.test.StressOptions getStressOptions()>();
+
+        specialinvoke $r8.<nsk.share.test.Stresser: void <init>(nsk.share.test.StressOptions)>($r5);
+
+        virtualinvoke $r8.<nsk.share.test.Stresser: void start(long)>(0L);
+
+        $r12 = (nsk.share.test.ExecutionController) $r8;
+
+        staticinvoke <nsk.share.gc.gp.GarbageUtils: int eatMemory(nsk.share.test.ExecutionController)>($r12);
+
+        $z0 = virtualinvoke $r8.<nsk.share.test.Stresser: boolean continueExecution()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+
+     label1:
+        $z1 = virtualinvoke $r7.<gc.hashcode.HCHelper: boolean verifyHashCodes()>();
+
+        virtualinvoke $r7.<gc.hashcode.HCHelper: void cleanupLists()>();
+
+        if $z1 != 0 goto label2;
+
+        $r9 = new nsk.share.TestFailure;
+
+        specialinvoke $r9.<nsk.share.TestFailure: void <init>(java.lang.String)>("Some hash codes didn\'t match");
+
+        $r13 = (java.lang.Throwable) $r9;
+
+        throw $r13;
+
+     label2:
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.hashcode.HashCodeTestP.HashCodeTestP $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.hashcode.HashCodeTestP.HashCodeTestP;
+
+        specialinvoke $r2.<gc.hashcode.HashCodeTestP.HashCodeTestP: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+}

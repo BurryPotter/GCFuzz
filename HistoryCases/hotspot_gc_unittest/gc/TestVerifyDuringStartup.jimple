@@ -1,0 +1,143 @@
+public class TestVerifyDuringStartup extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        TestVerifyDuringStartup r0;
+
+        r0 := @this: TestVerifyDuringStartup;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        boolean $z0;
+        java.lang.Process $r20;
+        jdk.test.lib.process.OutputAnalyzer $r19;
+        java.lang.StringBuilder $r3, $r6, $r8, $r12, $r21, $r24;
+        java.lang.Object[] $r16;
+        java.lang.String[] $r2, $r15, $r17, $r26, r27;
+        java.util.ArrayList $r0;
+        int $i0, $i1, i2;
+        java.lang.String $r1, $r5, $r7, $r11, $r13, $r23, $r25;
+        java.lang.ProcessBuilder $r18;
+        java.io.PrintStream $r4, $r9, $r14, $r22;
+        java.lang.Object $r10;
+
+        r27 := @parameter0: java.lang.String[];
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $r1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("test.java.opts");
+
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean isEmpty()>();
+
+        if $z0 != 0 goto label1;
+
+        $r26 = virtualinvoke $r1.<java.lang.String: java.lang.String[] split(java.lang.String)>(" ");
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r26);
+
+     label1:
+        $r2 = newarray (java.lang.String)[5];
+
+        $r2[0] = "-XX:-UseTLAB";
+
+        $r2[1] = "-XX:+UnlockDiagnosticVMOptions";
+
+        $r2[2] = "-XX:+VerifyDuringStartup";
+
+        $r2[3] = "-Xlog:gc+verify=debug";
+
+        $r2[4] = "-version";
+
+        staticinvoke <java.util.Collections: boolean addAll(java.util.Collection,java.lang.Object[])>($r0, $r2);
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("Testing:\n");
+
+        $r5 = staticinvoke <jdk.test.lib.JDKToolFinder: java.lang.String getJDKTool(java.lang.String)>("java");
+
+        $r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintStream: void print(java.lang.String)>($r7);
+
+        i2 = 0;
+
+        goto label3;
+
+     label2:
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>(" ");
+
+        $r10 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object get(int)>(i2);
+
+        $r11 = (java.lang.String) $r10;
+
+        $r12 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void print(java.lang.String)>($r13);
+
+        i2 = i2 + 1;
+
+     label3:
+        $i0 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+        if i2 < $i0 goto label2;
+
+        $r14 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r14.<java.io.PrintStream: void println()>();
+
+        $i1 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+        $r15 = newarray (java.lang.String)[$i1];
+
+        $r16 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($r15);
+
+        $r17 = (java.lang.String[]) $r16;
+
+        $r18 = staticinvoke <jdk.test.lib.process.ProcessTools: java.lang.ProcessBuilder createJavaProcessBuilder(java.lang.String[])>($r17);
+
+        $r19 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r20 = virtualinvoke $r18.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r19.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r20);
+
+        $r22 = <java.lang.System: java.io.PrintStream out>;
+
+        $r21 = new java.lang.StringBuilder;
+
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>(java.lang.String)>("Output:\n");
+
+        $r23 = virtualinvoke $r19.<jdk.test.lib.process.OutputAnalyzer: java.lang.String getOutput()>();
+
+        $r24 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r23);
+
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r22.<java.io.PrintStream: void println(java.lang.String)>($r25);
+
+        virtualinvoke $r19.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldContain(java.lang.String)>("Verifying");
+
+        virtualinvoke $r19.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+}

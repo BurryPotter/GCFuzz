@@ -1,0 +1,84 @@
+public class ThreadTemplateClass extends java.lang.Thread
+{
+    static int field2;
+
+    static void <clinit>()
+    {
+        <gc.g1.unloading.bytecode.ThreadTemplateClass: int field2> = -1;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        ThreadTemplateClass r0;
+
+        r0 := @this: ThreadTemplateClass;
+
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+
+        return;
+    }
+
+    public synchronized void finishThread()
+    {
+        ThreadTemplateClass r0;
+
+        r0 := @this: ThreadTemplateClass;
+
+        virtualinvoke r0.<java.lang.Object: void notifyAll()>();
+
+        return;
+    }
+
+    public synchronized void run()
+    {
+        java.lang.RuntimeException $r2;
+        ThreadTemplateClass r0;
+        java.lang.InterruptedException $r1;
+
+        r0 := @this: ThreadTemplateClass;
+
+        specialinvoke r0.<java.lang.Thread: void run()>();
+
+     label1:
+        virtualinvoke r0.<java.lang.Object: void wait()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r1 := @caughtexception;
+
+        $r2 = new java.lang.RuntimeException;
+
+        specialinvoke $r2.<java.lang.RuntimeException: void <init>(java.lang.String,java.lang.Throwable)>("Unexpected InterruptedException ", $r1);
+
+        throw $r2;
+
+     label4:
+        return;
+
+        catch java.lang.InterruptedException from label1 to label2 with label3;
+    }
+
+    public static void methodForCompilation(java.lang.Object)
+    {
+        int $i0, $i1, $i2, i3;
+        java.lang.Object r0;
+
+        r0 := @parameter0: java.lang.Object;
+
+        $i0 = virtualinvoke r0.<java.lang.Object: int hashCode()>();
+
+        $i1 = $i0 * 2000;
+
+        $i2 = $i1 / 1994;
+
+        i3 = $i2 + 153;
+
+        <gc.g1.unloading.bytecode.ThreadTemplateClass: int field2> = i3;
+
+        return;
+    }
+}

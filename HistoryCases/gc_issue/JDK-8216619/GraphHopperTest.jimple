@@ -1,0 +1,315 @@
+public class GraphHopperTest extends java.lang.Object
+{
+    private static java.lang.String someFile;
+
+    public void <init>()
+    {
+        GraphHopperTest r0;
+
+        r0 := @this: GraphHopperTest;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static boolean jreIsMinimumJava9()
+    {
+        java.util.StringTokenizer $r0;
+        int $i0, i1;
+        java.lang.String $r1, $r2, $r3;
+        boolean $z0, $z1;
+
+        $r0 = new java.util.StringTokenizer;
+
+        $r1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("java.specification.version");
+
+        specialinvoke $r0.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>($r1, ".");
+
+        $r2 = virtualinvoke $r0.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r2);
+
+        $z0 = virtualinvoke $r0.<java.util.StringTokenizer: boolean hasMoreTokens()>();
+
+        if $z0 == 0 goto label1;
+
+        $r3 = virtualinvoke $r0.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+        i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+
+        goto label2;
+
+     label1:
+        i1 = 0;
+
+     label2:
+        if $i0 > 1 goto label3;
+
+        if $i0 != 1 goto label4;
+
+        if i1 < 9 goto label4;
+
+     label3:
+        $z1 = 1;
+
+        goto label5;
+
+     label4:
+        $z1 = 0;
+
+     label5:
+        return $z1;
+    }
+
+    public static void cleanMappedByteBuffer(java.nio.ByteBuffer)
+    {
+        java.security.PrivilegedActionException $r2;
+        GraphHopperTest$1 $r0;
+        java.lang.RuntimeException $r3;
+        java.nio.ByteBuffer r1;
+
+        r1 := @parameter0: java.nio.ByteBuffer;
+
+     label1:
+        $r0 = new GraphHopperTest$1;
+
+        specialinvoke $r0.<GraphHopperTest$1: void <init>(java.nio.ByteBuffer)>(r1);
+
+        staticinvoke <java.security.AccessController: java.lang.Object doPrivileged(java.security.PrivilegedExceptionAction)>($r0);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r2 := @caughtexception;
+
+        $r3 = new java.lang.RuntimeException;
+
+        specialinvoke $r3.<java.lang.RuntimeException: void <init>(java.lang.String,java.lang.Throwable)>("Unable to unmap the mapped buffer", $r2);
+
+        throw $r3;
+
+     label4:
+        return;
+
+        catch java.security.PrivilegedActionException from label1 to label2 with label3;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.io.RandomAccessFile $r1;
+        java.nio.channels.FileChannel$MapMode $r5;
+        byte $b2;
+        boolean z0, z1, $z2, $z5, $z6, $z7, $z8;
+        java.lang.StringBuilder $r14, $r15, $r16, $r19, $r20, $r21;
+        java.lang.Throwable $r9, $r10, $r11, $r12, r23;
+        java.lang.String[] r0;
+        long $l1;
+        int $i0, $i4, i5;
+        java.lang.String $r3, $r8, $r17, $r22;
+        java.io.PrintStream $r7, $r13, $r18;
+        char $c3;
+        java.io.File $r2;
+        java.nio.channels.FileChannel $r4;
+        java.nio.MappedByteBuffer $r6;
+
+        r0 := @parameter0: java.lang.String[];
+
+        staticinvoke <java.lang.System: void gc()>();
+
+        $i0 = lengthof r0;
+
+        if $i0 <= 0 goto label01;
+
+        $z8 = 1;
+
+        $z7 = 1;
+
+        goto label02;
+
+     label01:
+        $z8 = 0;
+
+        $z7 = 0;
+
+     label02:
+        z0 = $z8;
+
+        if $z7 == 0 goto label03;
+
+        $r8 = r0[0];
+
+        $z2 = virtualinvoke $r8.<java.lang.String: boolean startsWith(java.lang.String)>("s");
+
+        if $z2 == 0 goto label03;
+
+        $z6 = 1;
+
+        $z5 = 1;
+
+        goto label04;
+
+     label03:
+        $z6 = 0;
+
+        $z5 = 0;
+
+     label04:
+        z1 = $z5;
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        $r14 = new java.lang.StringBuilder;
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>()>();
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("cleanout ");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>(z0);
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r17);
+
+        $r18 = <java.lang.System: java.io.PrintStream out>;
+
+        $r19 = new java.lang.StringBuilder;
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>()>();
+
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("use system.gc ");
+
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z6);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r18.<java.io.PrintStream: void println(java.lang.String)>($r22);
+
+        i5 = 0;
+
+     label05:
+        if i5 >= 7000 goto label22;
+
+        $r1 = new java.io.RandomAccessFile;
+
+        $r2 = new java.io.File;
+
+        $r3 = <GraphHopperTest: java.lang.String someFile>;
+
+        specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>($r3);
+
+        specialinvoke $r1.<java.io.RandomAccessFile: void <init>(java.io.File,java.lang.String)>($r2, "r");
+
+        r23 = null;
+
+     label06:
+        $r4 = virtualinvoke $r1.<java.io.RandomAccessFile: java.nio.channels.FileChannel getChannel()>();
+
+        $r5 = <java.nio.channels.FileChannel$MapMode: java.nio.channels.FileChannel$MapMode READ_ONLY>;
+
+        $l1 = virtualinvoke $r4.<java.nio.channels.FileChannel: long size()>();
+
+        $r6 = virtualinvoke $r4.<java.nio.channels.FileChannel: java.nio.MappedByteBuffer map(java.nio.channels.FileChannel$MapMode,long,long)>($r5, 0L, $l1);
+
+        $r7 = <java.lang.System: java.io.PrintStream out>;
+
+        $b2 = virtualinvoke $r6.<java.nio.MappedByteBuffer: byte get()>();
+
+        $c3 = (char) $b2;
+
+        virtualinvoke $r7.<java.io.PrintStream: void print(char)>($c3);
+
+        if z0 == 0 goto label08;
+
+        if z1 == 0 goto label07;
+
+        $i4 = i5 % 1000;
+
+        if $i4 != 0 goto label07;
+
+        staticinvoke <java.lang.System: void gc()>();
+
+     label07:
+        if z1 != 0 goto label08;
+
+        staticinvoke <GraphHopperTest: void cleanMappedByteBuffer(java.nio.ByteBuffer)>($r6);
+
+     label08:
+        if $r1 == null goto label21;
+
+        if null == null goto label12;
+
+     label09:
+        virtualinvoke $r1.<java.io.RandomAccessFile: void close()>();
+
+     label10:
+        goto label21;
+
+     label11:
+        $r12 := @caughtexception;
+
+        virtualinvoke r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r12);
+
+        goto label21;
+
+     label12:
+        virtualinvoke $r1.<java.io.RandomAccessFile: void close()>();
+
+        goto label21;
+
+     label13:
+        $r11 := @caughtexception;
+
+        r23 = $r11;
+
+        throw $r11;
+
+     label14:
+        $r10 := @caughtexception;
+
+     label15:
+        if $r1 == null goto label20;
+
+        if r23 == null goto label19;
+
+     label16:
+        virtualinvoke $r1.<java.io.RandomAccessFile: void close()>();
+
+     label17:
+        goto label20;
+
+     label18:
+        $r9 := @caughtexception;
+
+        virtualinvoke r23.<java.lang.Throwable: void addSuppressed(java.lang.Throwable)>($r9);
+
+        goto label20;
+
+     label19:
+        virtualinvoke $r1.<java.io.RandomAccessFile: void close()>();
+
+     label20:
+        throw $r10;
+
+     label21:
+        i5 = i5 + 1;
+
+        goto label05;
+
+     label22:
+        return;
+
+        catch java.lang.Throwable from label09 to label10 with label11;
+        catch java.lang.Throwable from label06 to label08 with label13;
+        catch java.lang.Throwable from label16 to label17 with label18;
+        catch java.lang.Throwable from label13 to label15 with label14;
+    }
+
+    static void <clinit>()
+    {
+        <GraphHopperTest: java.lang.String someFile> = "test.txt";
+
+        return;
+    }
+}

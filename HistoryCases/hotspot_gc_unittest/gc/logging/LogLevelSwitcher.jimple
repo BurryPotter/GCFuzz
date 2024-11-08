@@ -1,0 +1,238 @@
+class LogLevelSwitcher extends java.lang.Object implements java.lang.Runnable
+{
+    public static volatile boolean shouldStop;
+    private final int logCount;
+    private final java.lang.String logFilePrefix;
+    private final java.util.Random RND;
+    private final javax.management.MBeanServer MBS;
+    private static final java.lang.String[] LOG_LEVELS;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        <gc.logging.LogLevelSwitcher: boolean shouldStop> = 0;
+
+        $r0 = newarray (java.lang.String)[5];
+
+        $r0[0] = "error";
+
+        $r0[1] = "warning";
+
+        $r0[2] = "info";
+
+        $r0[3] = "debug";
+
+        $r0[4] = "trace";
+
+        <gc.logging.LogLevelSwitcher: java.lang.String[] LOG_LEVELS> = $r0;
+
+        return;
+    }
+
+    public void <init>(java.lang.String, int)
+    {
+        java.util.Random $r1;
+        LogLevelSwitcher r0;
+        javax.management.MBeanServer $r2;
+        int i0;
+        java.lang.String r3;
+        gc.logging.LogLevelSwitcher $r4, $r5, $r6, $r7;
+
+        r0 := @this: LogLevelSwitcher;
+
+        r3 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = staticinvoke <jdk.test.lib.Utils: java.util.Random getRandomInstance()>();
+
+        $r4 = (gc.logging.LogLevelSwitcher) r0;
+
+        $r4.<gc.logging.LogLevelSwitcher: java.util.Random RND> = $r1;
+
+        $r2 = staticinvoke <java.lang.management.ManagementFactory: javax.management.MBeanServer getPlatformMBeanServer()>();
+
+        $r5 = (gc.logging.LogLevelSwitcher) r0;
+
+        $r5.<gc.logging.LogLevelSwitcher: javax.management.MBeanServer MBS> = $r2;
+
+        $r6 = (gc.logging.LogLevelSwitcher) r0;
+
+        $r6.<gc.logging.LogLevelSwitcher: int logCount> = i0;
+
+        $r7 = (gc.logging.LogLevelSwitcher) r0;
+
+        $r7.<gc.logging.LogLevelSwitcher: java.lang.String logFilePrefix> = r3;
+
+        return;
+    }
+
+    public void run()
+    {
+        java.util.Random $r1, $r3;
+        java.lang.Integer $r6;
+        gc.logging.LogLevelSwitcher $r36, $r37, $r38, $r39, $r40;
+        boolean $z0, $z1;
+        javax.management.ObjectName $r33;
+        javax.management.JMException $r26;
+        java.lang.StringBuilder $r11, $r12, $r29, $r32, $r34;
+        java.lang.Object[] $r4, $r16, $r23;
+        java.lang.Error $r35;
+        java.lang.String[] $r2, $r9, $r17, $r18;
+        javax.management.MBeanServer $r15;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String $r5, $r7, $r10, $r13, $r20, $r22, $r30;
+        java.io.PrintStream $r24, $r25, $r28;
+        LogLevelSwitcher r0;
+        java.lang.Class $r19;
+        java.lang.Object $r21;
+
+        r0 := @this: LogLevelSwitcher;
+
+        goto label6;
+
+     label1:
+        $r36 = (gc.logging.LogLevelSwitcher) r0;
+
+        $r1 = $r36.<gc.logging.LogLevelSwitcher: java.util.Random RND>;
+
+        $r37 = (gc.logging.LogLevelSwitcher) r0;
+
+        $i0 = $r37.<gc.logging.LogLevelSwitcher: int logCount>;
+
+        $i1 = virtualinvoke $r1.<java.util.Random: int nextInt(int)>($i0);
+
+        $r38 = (gc.logging.LogLevelSwitcher) r0;
+
+        $r3 = $r38.<gc.logging.LogLevelSwitcher: java.util.Random RND>;
+
+        $r2 = <gc.logging.LogLevelSwitcher: java.lang.String[] LOG_LEVELS>;
+
+        $i2 = lengthof $r2;
+
+        $i3 = virtualinvoke $r3.<java.util.Random: int nextInt(int)>($i2);
+
+        $r4 = newarray (java.lang.Object)[2];
+
+        $r39 = (gc.logging.LogLevelSwitcher) r0;
+
+        $r5 = $r39.<gc.logging.LogLevelSwitcher: java.lang.String logFilePrefix>;
+
+        $r4[0] = $r5;
+
+        $r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        $r4[1] = $r6;
+
+        $r7 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("output=%s_%d.log", $r4);
+
+        $r32 = new java.lang.StringBuilder;
+
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>(java.lang.String)>("what=\'gc*=");
+
+        $r9 = <gc.logging.LogLevelSwitcher: java.lang.String[] LOG_LEVELS>;
+
+        $r10 = $r9[$i3];
+
+        $r11 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label2:
+        $r40 = (gc.logging.LogLevelSwitcher) r0;
+
+        $r15 = $r40.<gc.logging.LogLevelSwitcher: javax.management.MBeanServer MBS>;
+
+        $r33 = new javax.management.ObjectName;
+
+        specialinvoke $r33.<javax.management.ObjectName: void <init>(java.lang.String)>("com.sun.management:type=DiagnosticCommand");
+
+        $r16 = newarray (java.lang.Object)[1];
+
+        $r17 = newarray (java.lang.String)[2];
+
+        $r17[0] = $r7;
+
+        $r17[1] = $r13;
+
+        $r16[0] = $r17;
+
+        $r18 = newarray (java.lang.String)[1];
+
+        $r19 = class "[Ljava/lang/String;";
+
+        $r20 = virtualinvoke $r19.<java.lang.Class: java.lang.String getName()>();
+
+        $r18[0] = $r20;
+
+        $r21 = interfaceinvoke $r15.<javax.management.MBeanServer: java.lang.Object invoke(javax.management.ObjectName,java.lang.String,java.lang.Object[],java.lang.String[])>($r33, "vmLog", $r16, $r18);
+
+        $r22 = virtualinvoke $r21.<java.lang.Object: java.lang.String toString()>();
+
+        $z0 = virtualinvoke $r22.<java.lang.String: boolean isEmpty()>();
+
+        if $z0 != 0 goto label5;
+
+        $r24 = <java.lang.System: java.io.PrintStream out>;
+
+        $r23 = newarray (java.lang.Object)[3];
+
+        $r23[0] = $r7;
+
+        $r23[1] = $r13;
+
+        $r23[2] = $r21;
+
+        virtualinvoke $r24.<java.io.PrintStream: java.io.PrintStream format(java.lang.String,java.lang.Object[])>("WARNING: Diagnostic command vmLog with arguments %s,%s returned not empty output %s\n", $r23);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r26 := @caughtexception;
+
+        $r28 = <java.lang.System: java.io.PrintStream out>;
+
+        $r34 = new java.lang.StringBuilder;
+
+        specialinvoke $r34.<java.lang.StringBuilder: void <init>(java.lang.String)>("Got exception trying to change log level:");
+
+        $r29 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r26);
+
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r28.<java.io.PrintStream: void println(java.lang.String)>($r30);
+
+        virtualinvoke $r26.<javax.management.JMException: void printStackTrace()>();
+
+        $r35 = new java.lang.Error;
+
+        specialinvoke $r35.<java.lang.Error: void <init>(java.lang.Throwable)>($r26);
+
+        throw $r35;
+
+     label5:
+        staticinvoke <java.lang.Thread: void yield()>();
+
+     label6:
+        $z1 = <gc.logging.LogLevelSwitcher: boolean shouldStop>;
+
+        if $z1 == 0 goto label1;
+
+        $r25 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r25.<java.io.PrintStream: void println(java.lang.String)>("Log Switcher finished");
+
+        return;
+
+        catch javax.management.InstanceNotFoundException from label2 to label3 with label4;
+        catch javax.management.MBeanException from label2 to label3 with label4;
+        catch javax.management.ReflectionException from label2 to label3 with label4;
+        catch javax.management.MalformedObjectNameException from label2 to label3 with label4;
+    }
+}

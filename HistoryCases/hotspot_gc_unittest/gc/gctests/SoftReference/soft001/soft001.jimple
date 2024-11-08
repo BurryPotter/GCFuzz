@@ -1,0 +1,137 @@
+public class soft001 extends nsk.share.gc.ThreadedGCTest implements nsk.share.gc.gp.GarbageProducerAware, nsk.share.gc.gp.MemoryStrategyAware
+{
+    private nsk.share.gc.gp.GarbageProducer garbageProducer;
+    private nsk.share.gc.gp.string.InternedStringProducer internedStringProducer;
+    private nsk.share.gc.gp.MemoryStrategy memoryStrategy;
+    static final int TYPES_COUNT;
+    static final int SIZE;
+
+    public void <init>()
+    {
+        nsk.share.gc.gp.string.InternedStringProducer $r4;
+        nsk.share.gc.gp.string.RandomStringProducer $r3;
+        nsk.share.gc.gp.GarbageProducer $r5;
+        soft001 r0;
+        gc.gctests.SoftReference.soft001.soft001 $r6;
+
+        r0 := @this: soft001;
+
+        specialinvoke r0.<nsk.share.gc.ThreadedGCTest: void <init>()>();
+
+        $r4 = new nsk.share.gc.gp.string.InternedStringProducer;
+
+        $r3 = new nsk.share.gc.gp.string.RandomStringProducer;
+
+        specialinvoke $r3.<nsk.share.gc.gp.string.RandomStringProducer: void <init>(int)>(10);
+
+        $r5 = (nsk.share.gc.gp.GarbageProducer) $r3;
+
+        specialinvoke $r4.<nsk.share.gc.gp.string.InternedStringProducer: void <init>(nsk.share.gc.gp.GarbageProducer)>($r5);
+
+        $r6 = (gc.gctests.SoftReference.soft001.soft001) r0;
+
+        $r6.<gc.gctests.SoftReference.soft001.soft001: nsk.share.gc.gp.string.InternedStringProducer internedStringProducer> = $r4;
+
+        return;
+    }
+
+    protected java.lang.Runnable createRunnable(int)
+    {
+        int i0;
+        gc.gctests.SoftReference.soft001.soft001$Test $r2;
+        java.lang.Runnable $r4;
+        soft001 r1;
+        gc.gctests.SoftReference.soft001.soft001 $r3;
+
+        r1 := @this: soft001;
+
+        i0 := @parameter0: int;
+
+        $r2 = new gc.gctests.SoftReference.soft001.soft001$Test;
+
+        $r3 = (gc.gctests.SoftReference.soft001.soft001) r1;
+
+        specialinvoke $r2.<gc.gctests.SoftReference.soft001.soft001$Test: void <init>(gc.gctests.SoftReference.soft001.soft001)>($r3);
+
+        $r4 = (java.lang.Runnable) $r2;
+
+        return $r4;
+    }
+
+    public void setGarbageProducer(nsk.share.gc.gp.GarbageProducer)
+    {
+        nsk.share.gc.gp.GarbageProducer r1;
+        soft001 r0;
+        gc.gctests.SoftReference.soft001.soft001 $r2;
+
+        r0 := @this: soft001;
+
+        r1 := @parameter0: nsk.share.gc.gp.GarbageProducer;
+
+        $r2 = (gc.gctests.SoftReference.soft001.soft001) r0;
+
+        $r2.<gc.gctests.SoftReference.soft001.soft001: nsk.share.gc.gp.GarbageProducer garbageProducer> = r1;
+
+        return;
+    }
+
+    public void setMemoryStrategy(nsk.share.gc.gp.MemoryStrategy)
+    {
+        soft001 r0;
+        gc.gctests.SoftReference.soft001.soft001 $r2;
+        nsk.share.gc.gp.MemoryStrategy r1;
+
+        r0 := @this: soft001;
+
+        r1 := @parameter0: nsk.share.gc.gp.MemoryStrategy;
+
+        $r2 = (gc.gctests.SoftReference.soft001.soft001) r0;
+
+        $r2.<gc.gctests.SoftReference.soft001.soft001: nsk.share.gc.gp.MemoryStrategy memoryStrategy> = r1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r1;
+        nsk.share.test.Test $r3;
+        gc.gctests.SoftReference.soft001.soft001 $r2;
+
+        r1 := @parameter0: java.lang.String[];
+
+        $r2 = new gc.gctests.SoftReference.soft001.soft001;
+
+        specialinvoke $r2.<gc.gctests.SoftReference.soft001.soft001: void <init>()>();
+
+        $r3 = (nsk.share.test.Test) $r2;
+
+        staticinvoke <nsk.share.gc.GC: void runTest(nsk.share.test.Test,java.lang.String[])>($r3, r1);
+
+        return;
+    }
+
+    static nsk.share.log.Log access$0(gc.gctests.SoftReference.soft001.soft001)
+    {
+        nsk.share.log.Log $r1;
+        gc.gctests.SoftReference.soft001.soft001 r0;
+
+        r0 := @parameter0: gc.gctests.SoftReference.soft001.soft001;
+
+        $r1 = r0.<gc.gctests.SoftReference.soft001.soft001: nsk.share.log.Log log>;
+
+        return $r1;
+    }
+
+    static nsk.share.test.ExecutionController access$1(gc.gctests.SoftReference.soft001.soft001)
+    {
+        nsk.share.test.ExecutionController $r1;
+        gc.gctests.SoftReference.soft001.soft001 r0;
+
+        r0 := @parameter0: gc.gctests.SoftReference.soft001.soft001;
+
+        $r1 = virtualinvoke r0.<gc.gctests.SoftReference.soft001.soft001: nsk.share.test.ExecutionController getExecutionController()>();
+
+        return $r1;
+    }
+}

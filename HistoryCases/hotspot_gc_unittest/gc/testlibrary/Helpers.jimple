@@ -1,0 +1,630 @@
+public class Helpers extends java.lang.Object
+{
+    public static final int SIZE_OF_LONG;
+    private static final int MAX_PADDING_SIZE;
+    private static final int MAXIMUM_AMOUNT_OF_FIELDS_IN_CLASS;
+
+    public void <init>()
+    {
+        Helpers r0;
+
+        r0 := @this: Helpers;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static int detectByteArrayAllocationOverhead()
+    {
+        byte[] $r1, $r2;
+        java.lang.Error $r3;
+        sun.hotspot.WhiteBox $r0;
+        long $l0, $l2;
+        int i1, i3, $i4, $i5, i6;
+
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $r1 = newarray (byte)[0];
+
+        $l0 = virtualinvoke $r0.<sun.hotspot.WhiteBox: long getObjectSize(java.lang.Object)>($r1);
+
+        i1 = (int) $l0;
+
+        i6 = 1;
+
+        goto label3;
+
+     label1:
+        $r2 = newarray (byte)[i6];
+
+        $l2 = virtualinvoke $r0.<sun.hotspot.WhiteBox: long getObjectSize(java.lang.Object)>($r2);
+
+        i3 = (int) $l2;
+
+        if i3 == i1 goto label2;
+
+        $i4 = i6 - 1;
+
+        $i5 = i1 - $i4;
+
+        return $i5;
+
+     label2:
+        i6 = i6 + 1;
+
+     label3:
+        if i6 < 129 goto label1;
+
+        $r3 = new java.lang.Error;
+
+        specialinvoke $r3.<java.lang.Error: void <init>(java.lang.String)>("We cannot find byte[] memory overhead - should not reach here");
+
+        throw $r3;
+    }
+
+    public static void compileClass(java.lang.String, java.nio.file.Path, java.lang.String) throws java.io.IOException
+    {
+        byte[] $r8;
+        java.nio.file.Path r0, $r6, $r12, $r21, $r25;
+        java.lang.Process $r31;
+        jdk.test.lib.JDKToolLauncher $r10, $r11, $r14, $r15, $r24, $r27;
+        jdk.test.lib.process.OutputAnalyzer $r30;
+        java.lang.StringBuilder $r1, $r4, $r16, $r20, $r22;
+        java.lang.String[] $r29;
+        java.nio.file.OpenOption[] $r9;
+        java.lang.String r2, $r3, $r5, r7, $r13, $r17, $r18, $r19, $r23, $r26;
+        java.lang.ProcessBuilder $r28;
+
+        r2 := @parameter0: java.lang.String;
+
+        r0 := @parameter1: java.nio.file.Path;
+
+        r7 := @parameter2: java.lang.String;
+
+        $r1 = new java.lang.StringBuilder;
+
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2);
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+
+        $r4 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".java");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r6 = interfaceinvoke r0.<java.nio.file.Path: java.nio.file.Path resolve(java.lang.String)>($r5);
+
+        $r8 = virtualinvoke r7.<java.lang.String: byte[] getBytes()>();
+
+        $r9 = newarray (java.nio.file.OpenOption)[0];
+
+        staticinvoke <java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,byte[],java.nio.file.OpenOption[])>($r6, $r8, $r9);
+
+        $r10 = staticinvoke <jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher create(java.lang.String)>("javac");
+
+        $r11 = virtualinvoke $r10.<jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher addToolArg(java.lang.String)>("-d");
+
+        $r12 = interfaceinvoke r0.<java.nio.file.Path: java.nio.file.Path toAbsolutePath()>();
+
+        $r13 = interfaceinvoke $r12.<java.nio.file.Path: java.lang.String toString()>();
+
+        $r14 = virtualinvoke $r11.<jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher addToolArg(java.lang.String)>($r13);
+
+        $r15 = virtualinvoke $r14.<jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher addToolArg(java.lang.String)>("-cp");
+
+        $r16 = new java.lang.StringBuilder;
+
+        $r17 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("java.class.path");
+
+        $r18 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r17);
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>($r18);
+
+        $r19 = <java.io.File: java.lang.String pathSeparator>;
+
+        $r20 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19);
+
+        $r21 = interfaceinvoke r0.<java.nio.file.Path: java.nio.file.Path toAbsolutePath()>();
+
+        $r22 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r21);
+
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r24 = virtualinvoke $r15.<jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher addToolArg(java.lang.String)>($r23);
+
+        $r25 = interfaceinvoke $r6.<java.nio.file.Path: java.nio.file.Path toAbsolutePath()>();
+
+        $r26 = interfaceinvoke $r25.<java.nio.file.Path: java.lang.String toString()>();
+
+        $r27 = virtualinvoke $r24.<jdk.test.lib.JDKToolLauncher: jdk.test.lib.JDKToolLauncher addToolArg(java.lang.String)>($r26);
+
+        $r28 = new java.lang.ProcessBuilder;
+
+        $r29 = virtualinvoke $r27.<jdk.test.lib.JDKToolLauncher: java.lang.String[] getCommand()>();
+
+        specialinvoke $r28.<java.lang.ProcessBuilder: void <init>(java.lang.String[])>($r29);
+
+        $r30 = new jdk.test.lib.process.OutputAnalyzer;
+
+        $r31 = virtualinvoke $r28.<java.lang.ProcessBuilder: java.lang.Process start()>();
+
+        specialinvoke $r30.<jdk.test.lib.process.OutputAnalyzer: void <init>(java.lang.Process)>($r31);
+
+        virtualinvoke $r30.<jdk.test.lib.process.OutputAnalyzer: jdk.test.lib.process.OutputAnalyzer shouldHaveExitValue(int)>(0);
+
+        return;
+    }
+
+    public static java.lang.String generate(java.lang.String, java.lang.String, java.lang.String, long)
+    {
+        java.lang.Object[] $r1;
+        long l0;
+        java.lang.String r2, r3, $r6, r8, $r10, $r13, $r14, $r15;
+        java.lang.StringBuilder $r0, $r4, $r5, $r7, $r9, $r11, $r12;
+
+        r2 := @parameter0: java.lang.String;
+
+        r3 := @parameter1: java.lang.String;
+
+        r8 := @parameter2: java.lang.String;
+
+        l0 := @parameter3: long;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = newarray (java.lang.Object)[2];
+
+        $r1[0] = r2;
+
+        if r3 != null goto label1;
+
+        $r14 = "";
+
+        goto label2;
+
+     label1:
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>(" extends ");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r14 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label2:
+        $r1[1] = $r14;
+
+        $r6 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("public class %s%s {\n", $r1);
+
+        $r7 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        if r8 != null goto label3;
+
+        $r15 = "";
+
+        goto label4;
+
+     label3:
+        $r15 = r8;
+
+     label4:
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r15);
+
+        $r10 = staticinvoke <gc.testlibrary.Helpers: java.lang.String fieldsGenerator(long)>(l0);
+
+        $r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("}\n");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r13;
+    }
+
+    private static java.lang.String fieldsGenerator(long)
+    {
+        java.lang.Object[] $r1;
+        long l0, $l1;
+        java.lang.Integer $r2;
+        byte $b2;
+        int i3, $i4;
+        java.lang.StringBuilder $r5;
+        java.lang.String $r3, $r4;
+
+        l0 := @parameter0: long;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        $r1 = newarray (java.lang.Object)[1];
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i3);
+
+        $r1[0] = $r2;
+
+        $r3 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("long f%d;\n", $r1);
+
+        virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        i3 = i3 + 1;
+
+     label2:
+        $l1 = (long) i3;
+
+        $b2 = $l1 cmp l0;
+
+        $i4 = (int) $b2;
+
+        if $i4 < 0 goto label1;
+
+        $r4 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r4;
+    }
+
+    public static java.lang.String enumNameToClassName(java.lang.String)
+    {
+        char $c0, $c1, $c2;
+        int i3, $i4, $i5;
+        java.lang.StringBuilder $r5;
+        java.lang.String r0, $r2, $r3, $r4;
+        boolean z0;
+
+        r0 := @parameter0: java.lang.String;
+
+        if r0 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>()>();
+
+        z0 = 0;
+
+        i3 = 0;
+
+        goto label7;
+
+     label2:
+        $c0 = virtualinvoke r0.<java.lang.String: char charAt(int)>(i3);
+
+        $i5 = (int) $c0;
+
+        if $i5 != 95 goto label3;
+
+        z0 = 0;
+
+        goto label6;
+
+     label3:
+        if z0 == 0 goto label4;
+
+        $c2 = virtualinvoke r0.<java.lang.String: char charAt(int)>(i3);
+
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(char)>($c2);
+
+        $r4 = virtualinvoke $r2.<java.lang.String: java.lang.String toLowerCase()>();
+
+        goto label5;
+
+     label4:
+        $c1 = virtualinvoke r0.<java.lang.String: char charAt(int)>(i3);
+
+        $r4 = staticinvoke <java.lang.String: java.lang.String valueOf(char)>($c1);
+
+     label5:
+        virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        z0 = 1;
+
+     label6:
+        i3 = i3 + 1;
+
+     label7:
+        $i4 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        if i3 < $i4 goto label2;
+
+        $r3 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r3;
+    }
+
+    public static java.lang.Class generateCompileAndLoad(java.lang.ClassLoader, java.lang.String, long, java.nio.file.Path, java.lang.String) throws java.io.IOException, java.lang.ClassNotFoundException
+    {
+        long l0;
+        java.lang.Class $r4;
+        java.lang.String r0, r2;
+        java.lang.ClassLoader r3;
+        java.nio.file.Path r1;
+
+        r3 := @parameter0: java.lang.ClassLoader;
+
+        r0 := @parameter1: java.lang.String;
+
+        l0 := @parameter2: long;
+
+        r1 := @parameter3: java.nio.file.Path;
+
+        r2 := @parameter4: java.lang.String;
+
+        staticinvoke <gc.testlibrary.Helpers: void generateByTemplateAndCompile(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,java.nio.file.Path,java.lang.String)>(r0, null, "public class ${ClassName} extends ${BaseClass} {\n${Fields}}\n", "", l0, r1, r2);
+
+        $r4 = virtualinvoke r3.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>(r0);
+
+        return $r4;
+    }
+
+    public static void generateByTemplateAndCompile(java.lang.String, java.lang.String, java.lang.String, java.lang.String, long, java.nio.file.Path, java.lang.String) throws java.io.IOException
+    {
+        java.lang.Integer $r30;
+        byte $b2;
+        java.lang.Long $r26, $r31;
+        java.nio.file.Path r7;
+        java.lang.StringBuilder $r5, $r10, $r20, $r38, $r39, $r40;
+        java.lang.Object[] $r25, $r29;
+        java.lang.Error $r35, $r37;
+        long l0, $l1, $l3, $l4, $l10;
+        int $i5, i6, i7, $i8, $i9, i11, i12, i13, $i14, $i16, $i18, $i20;
+        java.lang.String r3, $r4, $r6, $r9, r11, $r12, $r13, r14, r15, r16, $r17, $r19, $r21, $r22, $r23, $r27, $r32, $r33, $r34;
+        sun.hotspot.WhiteBox $r0;
+        java.lang.Object $r36;
+
+        r15 := @parameter0: java.lang.String;
+
+        r14 := @parameter1: java.lang.String;
+
+        r16 := @parameter2: java.lang.String;
+
+        r11 := @parameter3: java.lang.String;
+
+        l0 := @parameter4: long;
+
+        r7 := @parameter5: java.nio.file.Path;
+
+        r3 := @parameter6: java.lang.String;
+
+        $l1 = l0 % 8L;
+
+        $b2 = $l1 cmp 0L;
+
+        if $b2 == 0 goto label01;
+
+        $r35 = new java.lang.Error;
+
+        $r29 = newarray (java.lang.Object)[2];
+
+        $r30 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(8);
+
+        $r29[0] = $r30;
+
+        $r31 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0);
+
+        $r29[1] = $r31;
+
+        $r32 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Test bug: only sizes aligned by %d bytes are supported and %d was specified", $r29);
+
+        specialinvoke $r35.<java.lang.Error: void <init>(java.lang.String)>($r32);
+
+        throw $r35;
+
+     label01:
+        $r0 = staticinvoke <sun.hotspot.WhiteBox: sun.hotspot.WhiteBox getWhiteBox()>();
+
+        $r36 = new java.lang.Object;
+
+        specialinvoke $r36.<java.lang.Object: void <init>()>();
+
+        $l3 = virtualinvoke $r0.<sun.hotspot.WhiteBox: long getObjectSize(java.lang.Object)>($r36);
+
+        $l4 = l0 - $l3;
+
+        $i5 = (int) $l4;
+
+        i6 = $i5 / 8;
+
+        if i6 > 0 goto label02;
+
+        $r37 = new java.lang.Error;
+
+        $r25 = newarray (java.lang.Object)[1];
+
+        $r26 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l0);
+
+        $r25[0] = $r26;
+
+        $r27 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("Test bug: specified instance size is too small - %d. Cannot generate any classes", $r25);
+
+        specialinvoke $r37.<java.lang.Error: void <init>(java.lang.String)>($r27);
+
+        throw $r37;
+
+     label02:
+        $i16 = (int) 64512;
+
+        i7 = i6 % $i16;
+
+        $i18 = (int) 64512;
+
+        i11 = i6 / $i18;
+
+        if i7 != 0 goto label03;
+
+        $i20 = (int) 64512;
+
+        i12 = $i20;
+
+        goto label04;
+
+     label03:
+        i11 = i11 + 1;
+
+        i12 = i7;
+
+     label04:
+        i13 = 0;
+
+        goto label08;
+
+     label05:
+        $r38 = new java.lang.StringBuilder;
+
+        $r4 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r3);
+
+        specialinvoke $r38.<java.lang.StringBuilder: void <init>(java.lang.String)>($r4);
+
+        $r5 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i13);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        if i13 != 0 goto label06;
+
+        $r33 = r14;
+
+        goto label07;
+
+     label06:
+        $r39 = new java.lang.StringBuilder;
+
+        $r9 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r3);
+
+        specialinvoke $r39.<java.lang.StringBuilder: void <init>(java.lang.String)>($r9);
+
+        $i8 = i13 - 1;
+
+        $r10 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8);
+
+        $r33 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label07:
+        $r12 = virtualinvoke r11.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${ClassName}", $r6);
+
+        $r13 = staticinvoke <gc.testlibrary.Helpers: java.lang.String generate(java.lang.String,java.lang.String,java.lang.String,long)>($r6, $r33, $r12, 64512L);
+
+        staticinvoke <gc.testlibrary.Helpers: void compileClass(java.lang.String,java.nio.file.Path,java.lang.String)>($r6, r7, $r13);
+
+        i13 = i13 + 1;
+
+     label08:
+        $i14 = i11 - 1;
+
+        if i13 < $i14 goto label05;
+
+        $r17 = virtualinvoke r16.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("\\$\\{ClassName\\}", r15);
+
+        if i11 != 1 goto label09;
+
+        $r34 = r14;
+
+        goto label10;
+
+     label09:
+        $r40 = new java.lang.StringBuilder;
+
+        $r19 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r3);
+
+        specialinvoke $r40.<java.lang.StringBuilder: void <init>(java.lang.String)>($r19);
+
+        $i9 = i11 - 2;
+
+        $r20 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9);
+
+        $r34 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label10:
+        $r21 = virtualinvoke $r17.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${BaseClass}", $r34);
+
+        $l10 = (long) i12;
+
+        $r22 = staticinvoke <gc.testlibrary.Helpers: java.lang.String fieldsGenerator(long)>($l10);
+
+        $r23 = virtualinvoke $r21.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("${Fields}", $r22);
+
+        staticinvoke <gc.testlibrary.Helpers: void compileClass(java.lang.String,java.nio.file.Path,java.lang.String)>(r15, r7, $r23);
+
+        return;
+    }
+
+    public static void waitTillCMCFinished(sun.hotspot.WhiteBox, int)
+    {
+        java.io.PrintStream $r2;
+        sun.hotspot.WhiteBox r0;
+        long $l1;
+        java.lang.InterruptedException $r1;
+        java.lang.Thread $r3;
+        int i0, $i3;
+        boolean $z0;
+
+        r0 := @parameter0: sun.hotspot.WhiteBox;
+
+        i0 := @parameter1: int;
+
+        goto label5;
+
+     label1:
+        $i3 = (int) -1;
+
+        if i0 <= $i3 goto label5;
+
+     label2:
+        $l1 = (long) i0;
+
+        staticinvoke <java.lang.Thread: void sleep(long)>($l1);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r1 := @caughtexception;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("Got InterruptedException while waiting for ConcMarkCycle to finish");
+
+        $r3 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>();
+
+        virtualinvoke $r3.<java.lang.Thread: void interrupt()>();
+
+        goto label6;
+
+     label5:
+        $z0 = virtualinvoke r0.<sun.hotspot.WhiteBox: boolean g1InConcurrentMark()>();
+
+        if $z0 != 0 goto label1;
+
+     label6:
+        return;
+
+        catch java.lang.InterruptedException from label2 to label3 with label4;
+    }
+
+    public static java.text.NumberFormat numberFormatter()
+    {
+        java.text.DecimalFormat $r0;
+        java.text.DecimalFormatSymbols $r1;
+
+        $r0 = new java.text.DecimalFormat;
+
+        specialinvoke $r0.<java.text.DecimalFormat: void <init>()>();
+
+        $r1 = virtualinvoke $r0.<java.text.DecimalFormat: java.text.DecimalFormatSymbols getDecimalFormatSymbols()>();
+
+        virtualinvoke $r1.<java.text.DecimalFormatSymbols: void setGroupingSeparator(char)>(95);
+
+        virtualinvoke $r1.<java.text.DecimalFormatSymbols: void setDecimalSeparator(char)>(46);
+
+        virtualinvoke $r0.<java.text.DecimalFormat: void setDecimalFormatSymbols(java.text.DecimalFormatSymbols)>($r1);
+
+        return $r0;
+    }
+}

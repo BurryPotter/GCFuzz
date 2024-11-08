@@ -1,0 +1,54 @@
+public class TemplateClassWithStaticField extends java.lang.Object
+{
+    private static java.lang.Object field;
+    static int field2;
+
+    static void <clinit>()
+    {
+        <gc.g1.unloading.bytecode.TemplateClassWithStaticField: int field2> = -1;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        TemplateClassWithStaticField r0;
+
+        r0 := @this: TemplateClassWithStaticField;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void setField(java.lang.Object)
+    {
+        java.lang.Object r0;
+
+        r0 := @parameter0: java.lang.Object;
+
+        <gc.g1.unloading.bytecode.TemplateClassWithStaticField: java.lang.Object field> = r0;
+
+        return;
+    }
+
+    public static void methodForCompilation(java.lang.Object)
+    {
+        int $i0, $i1, $i2, i3;
+        java.lang.Object r0;
+
+        r0 := @parameter0: java.lang.Object;
+
+        $i0 = virtualinvoke r0.<java.lang.Object: int hashCode()>();
+
+        $i1 = $i0 * 2000;
+
+        $i2 = $i1 / 1994;
+
+        i3 = $i2 + 153;
+
+        <gc.g1.unloading.bytecode.TemplateClassWithStaticField: int field2> = i3;
+
+        return;
+    }
+}

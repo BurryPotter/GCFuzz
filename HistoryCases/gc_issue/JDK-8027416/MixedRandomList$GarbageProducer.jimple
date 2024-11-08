@@ -1,0 +1,112 @@
+public class MixedRandomList$GarbageProducer extends java.lang.Object implements java.lang.Runnable
+{
+    int fractionLive;
+    long myNumLive;
+
+    public void <init>(int, long)
+    {
+        int i0;
+        long l1;
+        MixedRandomList$GarbageProducer r0;
+
+        r0 := @this: MixedRandomList$GarbageProducer;
+
+        i0 := @parameter0: int;
+
+        l1 := @parameter1: long;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<MixedRandomList$GarbageProducer: int fractionLive> = i0;
+
+        r0.<MixedRandomList$GarbageProducer: long myNumLive> = l1;
+
+        return;
+    }
+
+    public void run()
+    {
+        long $l1, $l3, $l4, $l6;
+        java.util.ArrayList $r6;
+        byte $b5;
+        int $i0, $i2, i7, i8, $i9, i10, $i11;
+        java.lang.String $r7, $r8, $r9;
+        double $d0, $d1, $d2;
+        MixedRandomList$GarbageProducer r2;
+        char[] $r0;
+
+        r2 := @this: MixedRandomList$GarbageProducer;
+
+        staticinvoke <MixedRandomList: int access$000()>();
+
+        $i0 = staticinvoke <MixedRandomList: int access$000()>();
+
+        $r0 = staticinvoke <MixedRandomList: char[] access$100(int)>($i0);
+
+        $r6 = new java.util.ArrayList;
+
+        $l1 = r2.<MixedRandomList$GarbageProducer: long myNumLive>;
+
+        $i2 = (int) $l1;
+
+        specialinvoke $r6.<java.util.ArrayList: void <init>(int)>($i2);
+
+        i7 = 0;
+
+     label1:
+        $l4 = (long) i7;
+
+        $l3 = r2.<MixedRandomList$GarbageProducer: long myNumLive>;
+
+        $b5 = $l4 cmp $l3;
+
+        $i11 = (int) $b5;
+
+        if $i11 >= 0 goto label2;
+
+        $r7 = new java.lang.String;
+
+        specialinvoke $r7.<java.lang.String: void <init>(char[])>($r0);
+
+        interfaceinvoke $r6.<java.util.List: boolean add(java.lang.Object)>($r7);
+
+        i7 = i7 + 1;
+
+        goto label1;
+
+     label2:
+        i8 = 0;
+
+     label3:
+        $i9 = r2.<MixedRandomList$GarbageProducer: int fractionLive>;
+
+        if i8 >= $i9 goto label4;
+
+        $r8 = new java.lang.String;
+
+        specialinvoke $r8.<java.lang.String: void <init>(char[])>($r0);
+
+        i8 = i8 + 1;
+
+        goto label3;
+
+     label4:
+        $d0 = staticinvoke <java.lang.Math: double random()>();
+
+        $l6 = r2.<MixedRandomList$GarbageProducer: long myNumLive>;
+
+        $d1 = (double) $l6;
+
+        $d2 = $d0 * $d1;
+
+        i10 = (int) $d2;
+
+        $r9 = new java.lang.String;
+
+        specialinvoke $r9.<java.lang.String: void <init>(char[])>($r0);
+
+        interfaceinvoke $r6.<java.util.List: java.lang.Object set(int,java.lang.Object)>(i10, $r9);
+
+        goto label2;
+    }
+}

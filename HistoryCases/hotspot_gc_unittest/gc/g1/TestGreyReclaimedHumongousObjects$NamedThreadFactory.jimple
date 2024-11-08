@@ -1,0 +1,59 @@
+class TestGreyReclaimedHumongousObjects$NamedThreadFactory extends java.lang.Object implements java.util.concurrent.ThreadFactory
+{
+    private int threadNum;
+
+    void <init>()
+    {
+        gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory $r1;
+        TestGreyReclaimedHumongousObjects$NamedThreadFactory r0;
+
+        r0 := @this: TestGreyReclaimedHumongousObjects$NamedThreadFactory;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r1 = (gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory) r0;
+
+        $r1.<gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory: int threadNum> = 0;
+
+        return;
+    }
+
+    public java.lang.Thread newThread(java.lang.Runnable)
+    {
+        TestGreyReclaimedHumongousObjects$NamedThreadFactory r3;
+        java.lang.Runnable r1;
+        gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory $r8, $r9;
+        java.lang.Thread $r7;
+        int $i0, $i1;
+        java.lang.StringBuilder $r4, $r6;
+        java.lang.String $r5;
+
+        r3 := @this: TestGreyReclaimedHumongousObjects$NamedThreadFactory;
+
+        r1 := @parameter0: java.lang.Runnable;
+
+        $r7 = new java.lang.Thread;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("TestGreyRH-");
+
+        $r8 = (gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory) r3;
+
+        $i0 = $r8.<gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory: int threadNum>;
+
+        $i1 = $i0 + 1;
+
+        $r9 = (gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory) r3;
+
+        $r9.<gc.g1.TestGreyReclaimedHumongousObjects$NamedThreadFactory: int threadNum> = $i1;
+
+        $r4 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r7.<java.lang.Thread: void <init>(java.lang.Runnable,java.lang.String)>(r1, $r5);
+
+        return $r7;
+    }
+}

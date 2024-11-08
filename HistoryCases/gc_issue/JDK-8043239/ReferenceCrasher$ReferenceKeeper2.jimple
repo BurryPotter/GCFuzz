@@ -1,0 +1,35 @@
+class ReferenceCrasher$ReferenceKeeper2 extends java.lang.Object
+{
+    ReferenceCrasher$OurWeakReference2 reference;
+    java.lang.Object referent;
+
+    void <init>(java.lang.Object)
+    {
+        ReferenceCrasher$OurWeakReference2 $r2;
+        ReferenceCrasher$ReferenceQueue2 $r3;
+        java.lang.Object r1, $r4;
+        ReferenceCrasher$ReferenceKeeper2 r0;
+
+        r0 := @this: ReferenceCrasher$ReferenceKeeper2;
+
+        r1 := @parameter0: java.lang.Object;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ReferenceCrasher$ReferenceKeeper2: java.lang.Object referent> = r1;
+
+        $r2 = new ReferenceCrasher$OurWeakReference2;
+
+        $r4 = r0.<ReferenceCrasher$ReferenceKeeper2: java.lang.Object referent>;
+
+        $r3 = new ReferenceCrasher$ReferenceQueue2;
+
+        specialinvoke $r3.<ReferenceCrasher$ReferenceQueue2: void <init>()>();
+
+        specialinvoke $r2.<ReferenceCrasher$OurWeakReference2: void <init>(java.lang.Object,java.lang.ref.ReferenceQueue)>($r4, $r3);
+
+        r0.<ReferenceCrasher$ReferenceKeeper2: ReferenceCrasher$OurWeakReference2 reference> = $r2;
+
+        return;
+    }
+}
