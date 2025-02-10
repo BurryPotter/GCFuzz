@@ -39,6 +39,9 @@ This is the implementation repository for out paper submission: **Exploring JVM 
 | #18156      | https://github.com/eclipse-openj9/openj9/issues/18156 |
 | #18644      | https://github.com/eclipse-openj9/openj9/issues/18644 |
 | #17793      | https://github.com/eclipse-openj9/openj9/issues/17793 |
+| #17445      | https://github.com/eclipse-openj9/openj9/issues/17445 |
+| #20687      | https://github.com/eclipse-openj9/openj9/issues/20687 |
+| #20477      | https://github.com/eclipse-openj9/openj9/issues/20477 |
 
 ## Start
 
