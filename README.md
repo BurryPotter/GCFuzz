@@ -1,6 +1,6 @@
 # GCFuzz
 
-This is the implementation repository for out paper submission: **Exploring JVM Garbage Collector Testing with Event-Coverage**
+This is the implementation repository for our paper submission: **Exploring JVM Garbage Collector Testing with Event-Coverage**
 
 ## Directory Description
 
