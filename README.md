@@ -88,6 +88,8 @@ If you want to collect the Edge coverage information, you need to build AFLplusp
 # Please use the full path of AFL_GCC_ALLOWLIST.
 ```
 
+Ensure that the JVM environment is configured as described in file [01JVMS_README](https://github.com/BurryPotter/GCFuzz/blob/main/01JVMS/linux64/READEME.md)
+
 ### Step2. Build and Run GCFuzz
 
 * You can import it into IntelliJ IDEA workspace
